@@ -4,51 +4,6 @@
 
 let
   sources = {
-    "@types/lodash-4.14.109" = {
-      name = "_at_types_slash_lodash";
-      packageName = "@types/lodash";
-      version = "4.14.109";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.109.tgz";
-        sha512 = "2zmiqhq1208ggl07q6d70nal5n91x3hdklm955az728f8zh9a03cdd9q5kb6gi350gbpa3dim11hcn2mv4lx6kf4vf3c4ylsd4pr2l6";
-      };
-    };
-    "@types/msgpack-lite-0.1.6" = {
-      name = "_at_types_slash_msgpack-lite";
-      packageName = "@types/msgpack-lite";
-      version = "0.1.6";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/@types/msgpack-lite/-/msgpack-lite-0.1.6.tgz";
-        sha512 = "0q3did2rdmxxi30p25qzmn6mzykbzr5z4bip7i04r6h8qj28n08fdjzyll471dnhm096wk6hrxya2a8xkd37vg1lxxrmdrarz48blb3";
-      };
-    };
-    "@types/node-10.1.2" = {
-      name = "_at_types_slash_node";
-      packageName = "@types/node";
-      version = "10.1.2";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-10.1.2.tgz";
-        sha512 = "2jdnzxb8n7a3qjzjckg15vm6ypxcv5df5s1yz9yn4bgr29yaicqdy5i92qc00bnf7yblyagvmzhxs2m10x1aaz9bazjf14rhx23afbf";
-      };
-    };
-    "@types/traverse-0.6.30" = {
-      name = "_at_types_slash_traverse";
-      packageName = "@types/traverse";
-      version = "0.6.30";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/@types/traverse/-/traverse-0.6.30.tgz";
-        sha512 = "3ni8jlrvllmfvndvffnkjcwckk44j5sfvmanf8w3d9cn46gkg3m34z9d7p7nf18pdsb5v38di4hhyaqh135h1163vsvcy9xly5ldqkb";
-      };
-    };
-    "@types/winston-2.3.9" = {
-      name = "_at_types_slash_winston";
-      packageName = "@types/winston";
-      version = "2.3.9";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/@types/winston/-/winston-2.3.9.tgz";
-        sha512 = "3c6zz4ilybc1ycv2hpkzlywip5hbkxgqv4dgv04v1101ldvnvckc4v9ydvkyq8kmhb7zrijlcgyb88pyll74qr0vp90fdidw5hfwfng";
-      };
-    };
     "async-1.0.0" = {
       name = "async";
       packageName = "async";
@@ -94,13 +49,13 @@ let
         sha1 = "62cf120234c683785d902348a800ef3e0cc20bc0";
       };
     };
-    "ieee754-1.1.11" = {
+    "ieee754-1.1.12" = {
       name = "ieee754";
       packageName = "ieee754";
-      version = "1.1.11";
+      version = "1.1.12";
       src = fetchurl {
-        url = "https://registry.npmjs.org/ieee754/-/ieee754-1.1.11.tgz";
-        sha512 = "0g5x1ijy37vzfz46pnh03mxkmdb9d2qd9f8ncy49xj4j9xkks9p0x8s5hnyc7grwh6sryk118rd7w7wz6w0hzyw9agwnavvlc4g642n";
+        url = "https://registry.npmjs.org/ieee754/-/ieee754-1.1.12.tgz";
+        sha512 = "0nf551idk1p8slbvd2jvzdh9hkm5z2dpv0b3jh1wgkab3mbi33vimdwiivrymvaqk7ba3by6rg9bn5xsdiqi24cn9vr5yjq6kw8y2qs";
       };
     };
     "int64-buffer-0.1.10" = {
@@ -166,33 +121,28 @@ let
         sha1 = "cbdf560fd7b9af632502fed40f918c157ea97137";
       };
     };
-    "winston-2.4.2" = {
+    "winston-2.4.3" = {
       name = "winston";
       packageName = "winston";
-      version = "2.4.2";
+      version = "2.4.3";
       src = fetchurl {
-        url = "https://registry.npmjs.org/winston/-/winston-2.4.2.tgz";
-        sha512 = "1n2jk29vqjj4v60j3553gyy1lz5mnm90bf999p4nz6chnmh0izg8c9kf4chy1j68fx8d3mnr5ci5llqr4cjy0n775ydjj2zhrvw0bz1";
+        url = "https://registry.npmjs.org/winston/-/winston-2.4.3.tgz";
+        sha512 = "2xl32n4m1fmdgpqh1rgbsdchj1cs0y65b2p8zn44m660d41v3ryfpwhlg8f5qyzkg7lq32jpxkzkcqcxk9xhhsj05c9rnpkqg5ax0hr";
       };
     };
   };
   args = {
     name = "neovim";
     packageName = "neovim";
-    version = "4.0.1";
+    version = "4.1.0";
     src = ./.;
     dependencies = [
-      sources."@types/lodash-4.14.109"
-      sources."@types/msgpack-lite-0.1.6"
-      sources."@types/node-10.1.2"
-      sources."@types/traverse-0.6.30"
-      sources."@types/winston-2.3.9"
       sources."async-1.0.0"
       sources."colors-1.0.3"
       sources."cycle-1.0.3"
       sources."event-lite-0.1.1"
       sources."eyes-0.1.8"
-      sources."ieee754-1.1.11"
+      sources."ieee754-1.1.12"
       sources."int64-buffer-0.1.10"
       sources."isarray-1.0.0"
       sources."isstream-0.1.2"
@@ -200,7 +150,7 @@ let
       sources."msgpack-lite-0.1.26"
       sources."stack-trace-0.0.10"
       sources."traverse-0.6.6"
-      sources."winston-2.4.2"
+      sources."winston-2.4.3"
     ];
     buildInputs = globalBuildInputs;
     meta = {
