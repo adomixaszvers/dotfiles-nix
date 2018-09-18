@@ -3,7 +3,7 @@ let
   version = "1.7.0";
 in stdenv.mkDerivation {
   name = "bumblebee-status-${version}";
-  version = "1.7.0";
+  inherit version;
   src = fetchgit {
     rev = "7152bb17f2536edd807b143517073205369d51f7";
     url = "https://github.com/tobi-wan-kenobi/bumblebee-status.git";
