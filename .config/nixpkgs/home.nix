@@ -13,14 +13,16 @@
   };
   home.keyboard.layout = "lt,us";
   home.packages = import ./packages.nix {inherit pkgs;};
+  manual.html.enable = true;
   programs.home-manager.enable = true;
   programs.home-manager.path = https://github.com/rycee/home-manager/archive/release-18.03.tar.gz;
   programs.neovim = import ./neovim.nix { inherit pkgs; };
   programs.feh.enable = true;
   programs.rofi = {
     enable = true;
-    theme = "Monokai";
+    theme = "solarized";
   };
+  services.network-manager-applet.enable = true;
   xresources.extraConfig = ''
     URxvt*font: xft:Source Code Pro:size=10 
     URxvt.perl-ext-common: default,matcher,selection-to-clipboard,resize-font

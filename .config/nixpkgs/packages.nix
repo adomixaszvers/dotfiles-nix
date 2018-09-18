@@ -2,6 +2,7 @@
 with pkgs; [
   (callPackage ./consul {})
   (callPackage ./vimgolf {})
+  (callPackage ./bumblebee-status {})
   (ghc.withPackages (
   haskellPackages: with haskellPackages; [
         # ghc-mod
@@ -14,10 +15,6 @@ with pkgs; [
         hspec
         pointfree pointful
         stylish-haskell
-      ]))
-      (python3.withPackages (
-      pythonPackages: with pythonPackages; [
-        i3ipc requests taskw psutil
       ]))
       arandr
       atom

@@ -14,7 +14,7 @@
     in {
       inherit modifier;
       bars = [{
-        statusCommand = "/home/adomas/git/bumblebee-status/bumblebee-status -m title cpu memory layout pasink datetime -t gruvbox-powerline";
+        statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t gruvbox-powerline";
         fonts = [ "DejaVu Sans Mono, Icons 8" ];
       }];
       fonts = [ "DejaVuSansMono Nerd Font 8" ];
@@ -106,8 +106,5 @@
           Escape = "mode default";
         };
       };
-      startup = [
-        { command = "${pkgs.gnome3.networkmanagerapplet}/bin/nm-applet"; notification = false; }
-      ];
     };
   }
