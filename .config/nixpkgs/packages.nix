@@ -45,6 +45,7 @@ let
     okular
     qbittorrent
     ranger
+    rxvt_unicode-with-plugins
     smartgithg
     stack
     thefuck
