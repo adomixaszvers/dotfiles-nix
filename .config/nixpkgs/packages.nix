@@ -58,4 +58,5 @@ let
     vlc
     xfce.gvfs
     xfce.thunar-bare
+    xsel
   ]
