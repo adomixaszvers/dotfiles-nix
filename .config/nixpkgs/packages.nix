@@ -1,10 +1,7 @@
 { pkgs, ... }:
-with pkgs; [
-  (callPackage ./consul {})
-  (callPackage ./vimgolf {})
-  (callPackage ./bumblebee-status {})
-  (ghc.withPackages (
-  haskellPackages: with haskellPackages; [
+with pkgs; 
+let
+  ghcCustom = (ghc.withPackages (haskellPackages: with haskellPackages; [
         # ghc-mod
         # leksah
         hasktags
@@ -15,39 +12,48 @@ with pkgs; [
         hspec
         pointfree pointful
         stylish-haskell
-      ]))
-      arandr
-      atom
-      calibre
-      discord
-      exercism
-      file
-      git
-      gnome3.adwaita-icon-theme
-      gnome3.gnome-screenshot
-      google-chrome
-      htop
-      jetbrains.idea-ultimate
-      keepass
-      klavaro
-      lxappearance
-      meld
-      ncdu
-      nodejs
-      notify-osd
-      okular
-      qbittorrent
-      ranger
+      ]));
+      consul = (callPackage ./consul {});
+      vimgolf = (callPackage ./vimgolf {});
+      bumblebee-status = (callPackage ./bumblebee-status {});
+    in
+    [
     # skype
+    # typora
+    arandr
+    atom
+    bumblebee-status
+    calibre
+    consul
+    discord
+    exercism
+    file
+    ghcCustom
+    git
+    gnome3.adwaita-icon-theme
+    gnome3.gnome-screenshot
+    google-chrome
+    htop
+    jetbrains.idea-ultimate
+    keepass
+    klavaro
+    lxappearance
+    meld
+    ncdu
+    nodejs
+    notify-osd
+    okular
+    qbittorrent
+    ranger
     smartgithg
     stack
     thefuck
     torbrowser
     tree
-    # typora
     vcsh
     viber
     vim
+    vimgolf
     vlc
     xfce.gvfs
     xfce.thunar-bare
