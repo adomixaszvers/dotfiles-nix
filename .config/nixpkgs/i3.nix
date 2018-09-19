@@ -106,5 +106,8 @@
           Escape = "mode default";
         };
       };
+      startup = [
+        { command = "feh --bg-scale ~/wallpaper.png"; notification = false; }
+      ];
     };
   }

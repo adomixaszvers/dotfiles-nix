@@ -12,6 +12,12 @@
     };
   };
   home.keyboard.layout = "lt,us";
+  home.file."wallpaper.png" = {
+    source =  pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/d871f7cb0a39bb1d7c1370814ba13520d09fbc9d/wallpapers/nix-wallpaper-simple-dark-gray.png";
+      sha256 = "1282cnqc5qynp0q9gdll7bgpw23yp5bhvaqpar59ibkh3iscg8i5";
+    };
+  };
   home.packages = import ./packages.nix {inherit pkgs;};
   manual.html.enable = true;
   programs.home-manager.enable = true;

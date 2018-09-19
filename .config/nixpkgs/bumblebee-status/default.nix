@@ -14,11 +14,10 @@ in stdenv.mkDerivation {
   ))];
   unpackPhase = ":";
   installPhase = ''
-    install -m755 -D $src/bumblebee-status $out/bin/bumblebee-status
-    cp -r $src/bumblebee $out/bin/bumblebee
-    cp -r $src/themes $out/bin/themes
-    install -d $out/share/doc
-    install -m655 -D $src/CODE_OF_CONDUCT.md $src/CONTRIBUTING.md $src/README.md $src/LICENSE $out/share/doc
+    install -d $out/opt
+    cp -rp $src/* $out/opt
+    install -d $out/bin
+    ln -s $out/opt/bumblebee-status $out/bin/bumblebee-status
   '';
   meta = {};
 }
