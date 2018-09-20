@@ -17,12 +17,10 @@ let
       vimgolf = (callPackage ./pkgs/vimgolf {});
       bumblebee-status = (callPackage ./pkgs/bumblebee-status {});
       config = { allowUnfree = true; };
-      unstablePkgs = import (pkgs.fetchgit {
-        url = "https://github.com/NixOS/nixpkgs-channels.git";
-        rev = "b853e73d528385029960ef5bae18c278d0a32f94";
-        # date = "2018-09-18T19:14:17-04:00";
-        sha256 = "132jfbghzwc7h9kqvrk4nakp14v2ha8yq4i3rdalyxwa7qjw3c0h";
-        fetchSubmodules = true;
+      unstablePkgs = import (builtins.fetchTarball {
+        name = "nixos-18.09-2018-09-18";
+        url = "https://api.github.com/repos/NixOS/nixpkgs-channels/tarball/9fa6a261fb237f68071b361a9913ed1742d5e082";
+        sha256 = "11733y8xfbisvp8jzpcpjwz70883qfnlzdxv7yl3k2accin88a9z";
       }) { inherit config; };
     in
     [
