@@ -17,7 +17,6 @@ let
       consul = (callPackage ./pkgs/consul {});
       vimgolf = (callPackage ./pkgs/vimgolf {});
       bumblebee-status = (callPackage ./pkgs/bumblebee-status {});
-      config = { allowUnfree = true; };
       unstablePkgs = import (fetchNixPkgs {
         rev = "9fa6a261fb237f68071b361a9913ed1742d5e082";
         sha256 = "11733y8xfbisvp8jzpcpjwz70883qfnlzdxv7yl3k2accin88a9z";
