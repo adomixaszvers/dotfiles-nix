@@ -13,9 +13,9 @@ let
         stylish-haskell
       ];
       ghcCustom = (ghc.withPackages haskellPackages);
-      consul = (callPackage ./consul {});
-      vimgolf = (callPackage ./vimgolf {});
-      bumblebee-status = (callPackage ./bumblebee-status {});
+      consul = (callPackage ./pkgs/consul {});
+      vimgolf = (callPackage ./pkgs/vimgolf {});
+      bumblebee-status = (callPackage ./pkgs/bumblebee-status {});
       config = { allowUnfree = true; };
       unstablePkgs = import (pkgs.fetchgit {
         url = "https://github.com/NixOS/nixpkgs-channels.git";
