@@ -1,6 +1,7 @@
 { pkgs, ... }:
 with pkgs;
 let
+  fetchNixPkgs = import ./fetchNixPkgs.nix;
   haskellPackages = ps: with ps; [
         # ghc-mod
         hasktags
@@ -17,9 +18,8 @@ let
       vimgolf = (callPackage ./pkgs/vimgolf {});
       bumblebee-status = (callPackage ./pkgs/bumblebee-status {});
       config = { allowUnfree = true; };
-      unstablePkgs = import (builtins.fetchTarball {
-        name = "nixos-18.09-2018-09-18";
-        url = "https://api.github.com/repos/NixOS/nixpkgs-channels/tarball/9fa6a261fb237f68071b361a9913ed1742d5e082";
+      unstablePkgs = import (fetchNixPkgs {
+        rev = "9fa6a261fb237f68071b361a9913ed1742d5e082";
         sha256 = "11733y8xfbisvp8jzpcpjwz70883qfnlzdxv7yl3k2accin88a9z";
       }) { inherit config; };
     in
