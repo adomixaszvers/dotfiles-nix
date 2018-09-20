@@ -25,9 +25,7 @@ let
     [
       unstablePkgs.skype
       arandr
-      atom
       bumblebee-status
-      calibre
       consul
       discord
       exercism
