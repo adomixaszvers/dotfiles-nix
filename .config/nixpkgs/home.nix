@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  imports = [ ./hosts/current-host.nix ];
   gtk = {
     enable = true;
     iconTheme = {
@@ -18,7 +19,6 @@
       sha256 = "1282cnqc5qynp0q9gdll7bgpw23yp5bhvaqpar59ibkh3iscg8i5";
     };
   };
-  home.packages = import ./packages.nix {inherit pkgs;};
   manual.html.enable = true;
   programs.home-manager.enable = true;
   programs.home-manager.path = https://github.com/rycee/home-manager/archive/release-18.03.tar.gz;
