@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
-  imports = [ ./hosts/current-host.nix ];
+  imports = let
+    current = ./hosts/current.nix;
+    default = ./hosts/mini.nix;
+    hostSpecific = if builtins.pathExists current then current else default;
+  in
+  [ hostSpecific ];
   gtk = {
     enable = true;
     iconTheme = {

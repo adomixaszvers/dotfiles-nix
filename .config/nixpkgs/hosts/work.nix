@@ -1,4 +1,4 @@
 { pkgs, ... }:
 {
-  home.packages = with import ../packages.nix { inherit pkgs; }; common ++ work;
+  home.packages = with import ../packages.nix pkgs; common ++ work;
 }

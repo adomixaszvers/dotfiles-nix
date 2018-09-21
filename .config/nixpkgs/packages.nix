@@ -1,7 +1,6 @@
-{ pkgs, ... }:
+pkgs:
 with pkgs;
 let
-  fetchNixPkgs = import ./fetchNixPkgs.nix;
   haskellPackages = ps: with ps; [
         # ghc-mod
         hasktags
@@ -17,10 +16,6 @@ let
       consul = (callPackage ./pkgs/consul {});
       vimgolf = (callPackage ./pkgs/vimgolf {});
       bumblebee-status = (callPackage ./pkgs/bumblebee-status {});
-      unstablePkgs = import (fetchNixPkgs {
-        rev = "9fa6a261fb237f68071b361a9913ed1742d5e082";
-        sha256 = "11733y8xfbisvp8jzpcpjwz70883qfnlzdxv7yl3k2accin88a9z";
-      }) { inherit config; };
     in
     {
       all = [
@@ -90,7 +85,7 @@ let
       ];
       home = [
         discord
-        exercism
+        unstablePkgs.exercism
         ghcCustom
         stack
         torbrowser
@@ -98,6 +93,7 @@ let
         vimgolf
         vlc
         qbittorrent
+        unstablePkgs.typora
       ];
       work = [
         consul
