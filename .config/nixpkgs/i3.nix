@@ -60,6 +60,7 @@
 
         "${modifier}+r" = "mode resize";
         "${modifier}+Pause" = "mode \"${modeSystem}\"";
+        "${modifier}+m" = "move workspace to output left";
       };
       keycodebindings = {
         "${modifier}+10" = "workspace ${workspace1}";
