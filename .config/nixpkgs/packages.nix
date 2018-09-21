@@ -18,48 +18,6 @@ let
       bumblebee-status = (callPackage ./pkgs/bumblebee-status {});
     in
     {
-      all = [
-        unstablePkgs.skype
-        arandr
-        bumblebee-status
-        consul
-        discord
-        exercism
-        file
-        ghcCustom
-        git
-        gnome3.adwaita-icon-theme
-        gnome3.gnome-screenshot
-        google-chrome
-        htop
-        jdk8
-        jetbrains.idea-ultimate
-        keepass
-        klavaro
-        lxappearance
-        maven
-        meld
-        ncdu
-        nodejs
-        notify-osd
-        evince
-        qbittorrent
-        ranger
-        rxvt_unicode-with-plugins
-        unstablePkgs.smartgithg
-        stack
-        thefuck
-        torbrowser
-        tree
-        vcsh
-        viber
-        vim
-        vimgolf
-        vlc
-        xfce.gvfs
-        xfce.thunar-bare
-        xsel
-      ];
       common = [
         arandr
         bumblebee-status
@@ -68,6 +26,7 @@ let
         gnome3.adwaita-icon-theme
         gnome3.gnome-screenshot
         google-chrome
+        i3lock
         htop
         keepass
         meld
