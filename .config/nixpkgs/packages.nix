@@ -47,7 +47,7 @@ let
         ncdu
         nodejs
         notify-osd
-        okular
+        evince
         qbittorrent
         ranger
         rxvt_unicode-with-plugins
@@ -78,7 +78,7 @@ let
         meld
         ncdu
         notify-osd
-        okular
+        evince
         ranger
         rxvt_unicode-with-plugins
         thefuck
