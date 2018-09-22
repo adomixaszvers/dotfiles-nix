@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  xsession.windowManager.i3 = {
     enable = true;
     config = let
       modifier = "Mod4";
@@ -111,4 +112,5 @@
         { command = "feh --bg-scale ~/wallpaper.png"; notification = false; }
       ];
     };
-  }
+  };
+}

@@ -5,7 +5,11 @@
     default = ./hosts/mini.nix;
     hostSpecific = if builtins.pathExists current then current else default;
   in
-  [ hostSpecific ];
+  [
+    hostSpecific
+    ./i3.nix
+    ./neovim.nix
+  ];
   gtk = {
     enable = true;
     iconTheme = {
@@ -27,7 +31,6 @@
   manual.html.enable = true;
   programs.home-manager.enable = true;
   programs.home-manager.path = https://github.com/rycee/home-manager/archive/release-18.03.tar.gz;
-  programs.neovim = import ./neovim.nix { inherit pkgs; };
   programs.feh.enable = true;
   programs.rofi = {
     enable = true;
@@ -82,5 +85,4 @@
     *.color15:      #fdf6e3
   '';
   xsession.enable = true;
-  xsession.windowManager.i3 = import ./i3.nix { inherit pkgs; };
 }
