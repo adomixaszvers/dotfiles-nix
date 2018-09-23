@@ -8,11 +8,11 @@
   unstablePkgs = import (self.fetchNixPkgs {
     rev = "9fa6a261fb237f68071b361a9913ed1742d5e082";
     sha256 = "11733y8xfbisvp8jzpcpjwz70883qfnlzdxv7yl3k2accin88a9z";
-  }) { config = super.config; };
+  }) { config = self.config; };
   mine = {
-    consul = self.callPackage ./pkgs/consul {};
-    bumblebee-status = self.callPackage ./pkgs/bumblebee-status {};
-    vimgolf = self.callPackage ./pkgs/vimgolf {};
+    consul = super.callPackage ./pkgs/consul {};
+    bumblebee-status = super.callPackage ./pkgs/bumblebee-status {};
+    vimgolf = super.callPackage ./pkgs/vimgolf {};
     ghc = let
       haskellPackages = ps: with ps; [
         # ghc-mod
@@ -26,6 +26,6 @@
         stylish-haskell
       ];
     in
-    (super.ghc.withPackages haskellPackages);
+    (self.ghc.withPackages haskellPackages);
   };
 })]
