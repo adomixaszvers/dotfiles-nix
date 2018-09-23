@@ -9,4 +9,23 @@
     rev = "9fa6a261fb237f68071b361a9913ed1742d5e082";
     sha256 = "11733y8xfbisvp8jzpcpjwz70883qfnlzdxv7yl3k2accin88a9z";
   }) { config = super.config; };
+  mine = {
+    consul = self.callPackage ./pkgs/consul {};
+    bumblebee-status = self.callPackage ./pkgs/bumblebee-status {};
+    vimgolf = self.callPackage ./pkgs/vimgolf {};
+    ghc = let
+      haskellPackages = ps: with ps; [
+        # ghc-mod
+        hasktags
+        hdevtools
+        hindent
+        hlint
+        hoogle
+        hspec
+        pointfree pointful
+        stylish-haskell
+      ];
+    in
+    (super.ghc.withPackages haskellPackages);
+  };
 })]

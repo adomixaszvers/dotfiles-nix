@@ -1,26 +1,11 @@
 pkgs:
 with pkgs;
 let
-  haskellPackages = ps: with ps; [
-        # ghc-mod
-        hasktags
-        hdevtools
-        hindent
-        hlint
-        hoogle
-        hspec
-        pointfree pointful
-        stylish-haskell
-      ];
-      ghcCustom = (ghc.withPackages haskellPackages);
-      consul = (callPackage ./pkgs/consul {});
-      vimgolf = (callPackage ./pkgs/vimgolf {});
-      bumblebee-status = (callPackage ./pkgs/bumblebee-status {});
     in
     {
       common = [
         arandr
-        bumblebee-status
+        mine.bumblebee-status
         file
         git
         gnome3.adwaita-icon-theme
@@ -45,17 +30,17 @@ let
       home = [
         discord
         unstablePkgs.exercism
-        ghcCustom
+        ghc
         stack
         torbrowser
         vim
-        vimgolf
+        mine.vimgolf
         vlc
         qbittorrent
         unstablePkgs.typora
       ];
       work = [
-        consul
+        mine.consul
         jdk8
         jetbrains.idea-ultimate
         libreoffice-fresh
