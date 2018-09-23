@@ -12,29 +12,21 @@
           let g:neomake_open_list = 2
 
           colorscheme google
-          packadd neomake
+          " packadd neomake
           call neomake#configure#automake('nrwi', 500)
-          let g:hardtime_default_on = 0
+          let g:hardtime_default_on = 1
       '';
-      packages.myNeoVim = with pkgs.vimPlugins; {
-        start = [
-          tlib
-          fugitive
-          surround
-          vim-addon-actions
-          vim-addon-completion
-          vim-addon-errorformats
-          vim-addon-goto-thing-at-cursor
-          vim-addon-mw-utils
-          vim-addon-nix
-          vim-colorschemes
-          vim-hardtime
-          vim-hdevtools
-          vim-nix
-          vinegar
-        ];
-        opt = [ neomake ];
-      };
+      vam.knownPlugins = pkgs.vimPlugins;
+      vam.pluginDictionaries = [
+        { name = "fugitive"; }
+        { name = "surround"; }
+        { name = "vinegar"; }
+        { name = "neomake"; }
+        { name = "vim-colorschemes"; }
+        { name = "vim-addon-nix"; }
+        { name = "vim-nix"; }
+        { name = "vim-hardtime"; }
+      ];
     };
   };
 }
