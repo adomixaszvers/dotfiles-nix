@@ -6,8 +6,8 @@
     inherit sha256;
   };
   unstablePkgs = import (self.fetchNixPkgs {
-    rev = "9fa6a261fb237f68071b361a9913ed1742d5e082";
-    sha256 = "11733y8xfbisvp8jzpcpjwz70883qfnlzdxv7yl3k2accin88a9z";
+    rev = "3cee0ce5b8705df5828a2ef247aa58781237e953";
+    sha256 = "0wrnk3r93467qji7xdjd80h935djr9cr2w5n7k15lw5m154ca60f";
   }) { config = self.config; };
   mine = {
     consul = super.callPackage ./pkgs/consul {};
