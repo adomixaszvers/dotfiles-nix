@@ -14,6 +14,14 @@
       workspace10  = "10: ";
     in {
       inherit modifier;
+      assigns = {
+        "${workspace1}" = [{ class = "^Google-chrome\$"; }];
+        "${workspace3}" = [{ class="^(Atom|jetbrains-idea)\$"; }];
+        "${workspace4}" = [{ class="^Skype$"; }];
+        "${workspace5}" = [{ class="^Steam$"; } { class="^SmartGit"; }];
+        "${workspace6}" = [{ class="^libreoffice"; }];
+        "${workspace10}" = [{ class="^Spotify"; }];
+      };
       bars = [{
         statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t gruvbox-powerline";
         fonts = [ "DejaVu Sans Mono, Icons 8" ];
@@ -110,6 +118,10 @@
       };
       startup = [
         { command = "feh --bg-scale ~/wallpaper.png"; notification = false; }
+      ];
+      window.commands = [
+        { command = "move to workspace ${workspace10}"; criteria = { class = "Spotify"; }; }
+        { command = "move to workspace 6"; criteria = { class = "libreoffice"; }; }
       ];
     };
   };
