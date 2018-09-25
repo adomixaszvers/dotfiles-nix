@@ -29,6 +29,33 @@
     };
   };
   manual.html.enable = true;
+  programs.autorandr = {
+    enable = true;
+    profiles = {
+      work = {
+        fingerprint = {
+          VGA1 = "00ffffffffffff004c2daa085637555a021701030e301b782a90c1a259559c270e5054bfef80714f81c0810081809500a9c0b3000101023a801871382d40582c4500dd0c1100001e000000fd00384b1e5111000a202020202020000000fc00533232423330300a2020202020000000ff00484d42443130313132390a202000b4";
+          eDP1 = "00ffffffffffff0006afec46000000000f15010490221378020bb59757548c2623505400000001010101010101010101010101010101ce1d56e250001e302616360058c110000018df1356e250001e302616360058c11000001800000000000000000000000000000000000000000002000d48ff0a3c64140e1a682020200039";
+        };
+        config = {
+          HDMI1.enable = false;
+          VIRTUAL1.enable = false;
+          VGA1 = {
+            enable = true;
+            primary = true;
+            position = "0x0";
+            mode = "1920x1080";
+            rate = "60.00";
+          };
+          eDP1 = {
+            mode = "1366x768";
+            position = "1920x0";
+            rate = "60.06";
+          };
+        };
+      };
+    };
+  };
   programs.home-manager.enable = true;
   programs.home-manager.path = https://github.com/rycee/home-manager/archive/release-18.03.tar.gz;
   programs.feh.enable = true;
@@ -85,4 +112,5 @@
     *.color15:      #fdf6e3
   '';
   xsession.enable = true;
+  xsession.initExtra = "autorandr --change";
 }
