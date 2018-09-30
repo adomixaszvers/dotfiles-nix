@@ -12,9 +12,9 @@ with pkgs;
     i3lock
     htop
     keepass
+    dunst
     meld
     ncdu
-    lxqt.lxqt-notificationd
     evince
     ranger
     rxvt_unicode-with-plugins
