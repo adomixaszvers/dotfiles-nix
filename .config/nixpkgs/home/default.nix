@@ -24,8 +24,8 @@
   home.keyboard.layout = "lt,us";
   home.file."wallpaper.png" = {
     source =  pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/d871f7cb0a39bb1d7c1370814ba13520d09fbc9d/wallpapers/nix-wallpaper-simple-dark-gray.png";
-      sha256 = "1282cnqc5qynp0q9gdll7bgpw23yp5bhvaqpar59ibkh3iscg8i5";
+      url = "http://i.imgur.com/YLInLlY.png";
+      sha256 = "0qziky603gwbzjr8sjfmlxgnwsxmv5n7fvnygykm8xj2y43657xi";
     };
   };
   manual.html.enable = true;
@@ -56,6 +56,11 @@
       };
     };
   };
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
   programs.home-manager.enable = true;
   programs.home-manager.path = https://github.com/rycee/home-manager/archive/release-18.03.tar.gz;
   programs.feh.enable = true;
@@ -63,6 +68,7 @@
     enable = true;
     theme = "solarized";
   };
+  programs.zsh.enable = true;
   services.network-manager-applet.enable = true;
   xresources.extraConfig = ''
     URxvt*font: xft:Source Code Pro:size=10 

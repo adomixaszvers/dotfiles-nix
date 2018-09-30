@@ -117,7 +117,7 @@
         };
       };
       startup = [
-        { command = "feh --bg-scale ~/wallpaper.png"; notification = false; }
+        { command = "feh --bg-max --image-bg white ~/wallpaper.png"; notification = false; }
       ];
       window.commands = [
         { command = "move to workspace ${workspace10}"; criteria = { class = "Spotify"; }; }

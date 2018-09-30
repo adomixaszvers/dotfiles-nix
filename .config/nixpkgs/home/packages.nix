@@ -14,7 +14,7 @@ with pkgs;
     keepass
     meld
     ncdu
-    notify-osd
+    lxqt.lxqt-notificationd
     evince
     ranger
     rxvt_unicode-with-plugins

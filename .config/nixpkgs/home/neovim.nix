@@ -22,6 +22,8 @@
         { name = "surround"; }
         { name = "vinegar"; }
         { name = "neomake"; }
+        { name = "rust-vim"; }
+        { name = "syntastic"; }
         { name = "vim-colorschemes"; }
         { name = "vim-addon-nix"; }
         { name = "vim-nix"; }
