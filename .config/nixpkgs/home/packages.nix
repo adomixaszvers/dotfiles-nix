@@ -49,6 +49,8 @@ in
       typora
     ];
     work = [
+      docker
+      visualvm
       mine.consul
       jdk8
       jetbrains.idea-ultimate
