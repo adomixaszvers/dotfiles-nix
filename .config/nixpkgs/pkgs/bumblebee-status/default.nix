@@ -14,10 +14,10 @@ in stdenv.mkDerivation {
   ))];
   unpackPhase = ":";
   installPhase = ''
-    install -d $out/opt
-    cp -rp $src/* $out/opt
+    install -d $out/opt/bumblebee-status
+    cp -rp $src/* $out/opt/bumblebee-status
     install -d $out/bin
-    ln -s $out/opt/bumblebee-status $out/bin/bumblebee-status
+    ln -s $out/opt/bumblebee-status/bumblebee-status $out/bin/bumblebee-status
   '';
   meta = {};
 }
