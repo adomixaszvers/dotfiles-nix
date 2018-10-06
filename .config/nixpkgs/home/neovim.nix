@@ -10,6 +10,8 @@
           set list
 
           let g:neomake_open_list = 2
+          let g:hardtime_showmsg = 1
+          let g:hardtime_allow_different_key = 1
 
           colorscheme google
           " packadd neomake
