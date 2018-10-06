@@ -21,6 +21,7 @@
         { name = "fugitive"; }
         { name = "surround"; }
         { name = "vinegar"; }
+        { name = "repeat"; }
         { name = "neomake"; }
         { name = "rust-vim"; }
         { name = "syntastic"; }

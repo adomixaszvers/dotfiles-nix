@@ -7,6 +7,7 @@
   in
   [
     hostSpecific
+    ./compton.nix
     ./dunst.nix
     ./i3.nix
     ./neovim.nix
@@ -74,6 +75,35 @@
   };
   programs.zsh.enable = true;
   services.network-manager-applet.enable = true;
+  services.polybar = {
+    enable = false;
+    package = pkgs.polybar.override {
+      i3GapsSupport = true;
+      alsaSupport = true;
+    };
+    config = {
+      "bar/bottom" = {
+        font-0 = "DejaVuSansMono Nerd Font:pixelsize=10;0";
+        bottom = true;
+        width = "100%";
+        heigth = "3%";
+        modules-center = "title";
+        modules-left = "i3";
+        modules-right = "alsa";
+      };
+      "module/alsa" = {
+        type = "internal/alsa";
+      };
+      "module/i3" = {
+        type = "internal/i3";
+      };
+      "module/title" = {
+        type = "internal/xwindow";
+      };
+    };
+    script = "PATH=$PATH:${pkgs.i3-gaps}/bin polybar bottom &";
+  };
+  systemd.user.startServices = true;
   xresources.extraConfig = ''
     URxvt*font: xft:Source Code Pro:size=10 
     URxvt.perl-ext-common: default,matcher,selection-to-clipboard,resize-font
@@ -83,6 +113,8 @@
     URxvt.iso14755: false
     URxvt.iso14755_52: false
     URxvt.scrollBar:	false
+    urxvt*depth: 32
+    urxvt*background: [90]#002b36
 
     ! special
     *.foreground:   #93a1a1

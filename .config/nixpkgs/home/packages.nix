@@ -1,51 +1,62 @@
 pkgs:
 with pkgs;
-{
-  common = [
-    arandr
-    mine.bumblebee-status
-    file
-    git
-    gnome3.adwaita-icon-theme
-    gnome3.gnome-screenshot
-    google-chrome
-    i3lock
-    htop
-    keepass
-    dunst
-    meld
-    ncdu
-    evince
-    ranger
-    rxvt_unicode-with-plugins
-    thefuck
-    tree
-    vcsh
-    xfce.gvfs
-    xfce.thunar-bare
-    xsel
+let
+  fonts = [
+    corefonts
+    dejavu_fonts
+    source-code-pro
+    google-fonts
+    nerdfonts
   ];
-  home = [
-    discord
-    unstablePkgs.exercism
-    ghc
-    stack
-    torbrowser
-    vim
-    mine.vimgolf
-    vlc
-    qbittorrent
-    unstablePkgs.typora
-  ];
-  work = [
-    mine.consul
-    jdk8
-    jetbrains.idea-ultimate
-    libreoffice-fresh
-    maven
-    nodejs
-    yarn
-    unstablePkgs.smartgithg
-    unstablePkgs.skype
-  ];
-}
+in
+  {
+    common = fonts ++ [
+      arandr
+      dunst
+      evince
+      file
+      git
+      gnome3.adwaita-icon-theme
+      gnome3.file-roller
+      gnome3.gnome-screenshot
+      google-chrome
+      htop
+      i3lock
+      keepass
+      meld
+      mine.bumblebee-status
+      ncdu
+      p7zip
+      ranger
+      rxvt_unicode-with-plugins
+      thefuck
+      tree
+      vcsh
+      xfce.gvfs
+      xfce.thunar-bare
+      xsel
+    ];
+    home = [
+      discord
+      unstablePkgs.exercism
+      ghc
+      stack
+      torbrowser
+      vim
+      mine.vimgolf
+      vlc
+      qbittorrent
+      unstablePkgs.typora
+    ];
+    work = [
+      mine.consul
+      jdk8
+      jetbrains.idea-ultimate
+      libreoffice-fresh
+      maven
+      nodejs
+      yarn
+      unstablePkgs.smartgithg
+      unstablePkgs.skype
+    ];
+  }

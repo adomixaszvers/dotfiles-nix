@@ -18,14 +18,7 @@
   fonts = {
     enableFontDir = true;
     enableGhostscriptFonts = true;
-    fonts = with pkgs; [
-      corefonts
-      dejavu_fonts
-      source-code-pro
-      google-fonts
-      nerdfonts
-      roboto
-    ];
+    enableDefaultFonts = true;
   };
 
   sound.enable = true;

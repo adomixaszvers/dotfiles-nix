@@ -118,7 +118,9 @@
       };
       startup = [
         { command = "feh --bg-max --image-bg white ~/wallpaper.png"; notification = false; }
+        # { command = "systemctl --user restart polybar"; always = true; notification = false; }
       ];
+      window.border = 3;
       window.commands = [
         { command = "move to workspace ${workspace10}"; criteria = { class = "Spotify"; }; }
         { command = "move to workspace 6"; criteria = { class = "libreoffice"; }; }
