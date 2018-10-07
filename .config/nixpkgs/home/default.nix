@@ -16,12 +16,12 @@
   gtk = {
     enable = true;
     iconTheme = {
-      name = "Numix";
-      package = pkgs.numix-icon-theme;
+      name = "Arc";
+      package = pkgs.arc-icon-theme;
     };
     theme = {
-      name = "NumixSolarizedDarkBlue";
-      package = pkgs.numix-solarized-gtk-theme;
+      name = "Arc-Darker";
+      package = pkgs.arc-theme;
     };
   };
   home.keyboard.layout = "lt,us";
