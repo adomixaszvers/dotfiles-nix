@@ -18,7 +18,7 @@ in
       git
       gnome3.adwaita-icon-theme
       gnome3.file-roller
-      gnome3.gnome-screenshot
+      # gnome3.gnome-screenshot
       google-chrome
       htop
       i3lock
@@ -38,15 +38,15 @@ in
     ];
     home = [
       discord
-      unstablePkgs.exercism
+      exercism
       ghc
       stack
-      torbrowser
+      # torbrowser
       vim
       mine.vimgolf
       vlc
       qbittorrent
-      unstablePkgs.typora
+      typora
     ];
     work = [
       mine.consul
@@ -56,7 +56,7 @@ in
       maven
       nodejs
       yarn
-      unstablePkgs.smartgithg
-      unstablePkgs.skype
+      smartgithg
+      skype
     ];
   }
