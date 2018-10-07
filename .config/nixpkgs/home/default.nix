@@ -79,7 +79,7 @@
   systemd.user.startServices = true;
   xresources.extraConfig = ''
     URxvt*font: xft:Source Code Pro:size=10 
-    URxvt.perl-ext-common: default,matcher,selection-to-clipboard,resize-font
+    URxvt.perl-ext-common: default,matcher,selection-to-clipboard,font-size
     URxvt.url-launcher: /usr/bin/xdg-open
     URxvt.matcher.button: 1
     URxvt.letterSpace: -1
@@ -88,6 +88,13 @@
     URxvt.scrollBar:	false
     urxvt*depth: 32
     urxvt*background: [90]#002b36
+
+    URxvt.keysym.C-Up:     font-size:increase
+    URxvt.keysym.C-Down:   font-size:decrease
+    URxvt.keysym.C-S-Up:   font-size:incglobal
+    URxvt.keysym.C-S-Down: font-size:decglobal
+    URxvt.keysym.C-equal:  font-size:reset
+    URxvt.keysym.C-slash:  font-size:show
 
     ! special
     *.foreground:   #93a1a1
