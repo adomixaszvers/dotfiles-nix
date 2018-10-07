@@ -8,7 +8,7 @@
       workspace1 = "1: ";
       workspace2  = "2: ";
       workspace3  = "3: ";
-      workspace4  = "4: ";
+      workspace4  = "4: ";
       workspace5  = "5: ";
       workspace6  = "6: ";
       workspace10  = "10: ";
@@ -23,8 +23,8 @@
         "${workspace10}" = [{ class="^Spotify"; }];
       };
       bars = [{
-        statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t gruvbox-powerline";
-        fonts = [ "DejaVu Sans Mono, Icons 8" ];
+        statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t greyish-powerline";
+        fonts = [ "DejaVuSansMono Nerd Font 8" ];
       }];
       fonts = [ "DejaVuSansMono Nerd Font 8" ];
       gaps = {

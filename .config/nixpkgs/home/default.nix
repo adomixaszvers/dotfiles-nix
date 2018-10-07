@@ -20,8 +20,8 @@
       package = pkgs.numix-icon-theme;
     };
     theme = {
-      name = "Numix";
-      package = pkgs.numix-gtk-theme;
+      name = "NumixSolarizedDarkBlue";
+      package = pkgs.numix-solarized-gtk-theme;
     };
   };
   home.keyboard.layout = "lt,us";
