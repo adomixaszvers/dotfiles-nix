@@ -11,6 +11,7 @@
     ./dunst.nix
     ./i3.nix
     ./neovim.nix
+    ./polybar.nix
   ];
   gtk = {
     enable = true;
@@ -75,34 +76,6 @@
   };
   programs.zsh.enable = true;
   services.network-manager-applet.enable = true;
-  services.polybar = {
-    enable = false;
-    package = pkgs.polybar.override {
-      i3GapsSupport = true;
-      alsaSupport = true;
-    };
-    config = {
-      "bar/bottom" = {
-        font-0 = "DejaVuSansMono Nerd Font:pixelsize=10;0";
-        bottom = true;
-        width = "100%";
-        heigth = "3%";
-        modules-center = "title";
-        modules-left = "i3";
-        modules-right = "alsa";
-      };
-      "module/alsa" = {
-        type = "internal/alsa";
-      };
-      "module/i3" = {
-        type = "internal/i3";
-      };
-      "module/title" = {
-        type = "internal/xwindow";
-      };
-    };
-    script = "PATH=$PATH:${pkgs.i3-gaps}/bin polybar bottom &";
-  };
   systemd.user.startServices = true;
   xresources.extraConfig = ''
     URxvt*font: xft:Source Code Pro:size=10 
