@@ -86,8 +86,6 @@
     URxvt.iso14755: false
     URxvt.iso14755_52: false
     URxvt.scrollBar:	false
-    urxvt*depth: 32
-    urxvt*background: [90]#002b36
 
     URxvt.keysym.C-Up:     font-size:increase
     URxvt.keysym.C-Down:   font-size:decrease
