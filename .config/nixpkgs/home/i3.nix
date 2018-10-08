@@ -9,7 +9,7 @@
       workspace2  = "2: ";
       workspace3  = "3: ";
       workspace4  = "4: ";
-      workspace5  = "5: ";
+      workspace5  = "5: ";
       workspace6  = "6: ";
       workspace10  = "10: ";
     in {
