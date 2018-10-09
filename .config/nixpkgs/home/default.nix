@@ -78,7 +78,7 @@
   services.network-manager-applet.enable = true;
   systemd.user.startServices = true;
   xresources.extraConfig = ''
-    URxvt*font: xft:Source Code Pro:size=10 
+    URxvt*font: xft:SauceCodePro Nerd Font Mono:size=10 
     URxvt.perl-ext-common: default,matcher,selection-to-clipboard,font-size
     URxvt.url-launcher: /usr/bin/xdg-open
     URxvt.matcher.button: 1
