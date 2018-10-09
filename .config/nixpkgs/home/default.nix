@@ -12,6 +12,7 @@
     ./i3.nix
     ./neovim.nix
     ./polybar.nix
+    ./termite.nix
   ];
   gtk = {
     enable = true;
@@ -78,22 +79,6 @@
   services.network-manager-applet.enable = true;
   systemd.user.startServices = true;
   xresources.extraConfig = ''
-    URxvt*font: xft:SauceCodePro Nerd Font Mono:size=10 
-    URxvt.perl-ext-common: default,matcher,selection-to-clipboard,font-size
-    URxvt.url-launcher: /usr/bin/xdg-open
-    URxvt.matcher.button: 1
-    URxvt.letterSpace: -1
-    URxvt.iso14755: false
-    URxvt.iso14755_52: false
-    URxvt.scrollBar:	false
-
-    URxvt.keysym.C-Up:     font-size:increase
-    URxvt.keysym.C-Down:   font-size:decrease
-    URxvt.keysym.C-S-Up:   font-size:incglobal
-    URxvt.keysym.C-S-Down: font-size:decglobal
-    URxvt.keysym.C-equal:  font-size:reset
-    URxvt.keysym.C-slash:  font-size:show
-
     ! special
     *.foreground:   #93a1a1
     *.background:   #002b36
