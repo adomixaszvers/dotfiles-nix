@@ -34,6 +34,7 @@
   };
   home.sessionVariables = {
     EDITOR = "nvim";
+    TERMINAL = "termite";
   };
   manual.html.enable = true;
   programs.autorandr = {
