@@ -32,8 +32,7 @@
         { name = "vim-addon-nix"; }
         { name = "vim-nix"; }
         { name = "vim-hardtime"; }
-        { name = "vim-airline"; }
-        { name = "vim-devicons"; }
+        { name = "lightline-vim"; }
       ];
     };
   };
