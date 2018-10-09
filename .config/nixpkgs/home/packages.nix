@@ -27,6 +27,7 @@ in
       ncdu
       p7zip
       ranger
+      rxvt_unicode-with-plugins
       shutter
       thefuck
       tree
