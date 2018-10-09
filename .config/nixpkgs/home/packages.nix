@@ -18,7 +18,6 @@ in
       git
       gnome3.adwaita-icon-theme
       gnome3.file-roller
-      # gnome3.gnome-screenshot
       google-chrome
       htop
       i3lock
@@ -29,6 +28,7 @@ in
       p7zip
       ranger
       rxvt_unicode-with-plugins
+      shutter
       thefuck
       tree
       vcsh
