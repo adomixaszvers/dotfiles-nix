@@ -23,7 +23,7 @@
         "${workspace10}" = [{ class="^Spotify"; }];
       };
       bars = [{
-        statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t greyish-powerline";
+        statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t greyish-powerline -p memory.format=\"{used}/{total}\"";
         fonts = [ "DejaVuSansMono Nerd Font 8" ];
       }];
       fonts = [ "DejaVuSansMono Nerd Font 8" ];
