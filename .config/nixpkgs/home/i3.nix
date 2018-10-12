@@ -7,11 +7,11 @@
       modeSystem = "System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown";
       workspace1 = "1: ";
       workspace2  = "2: ";
-      workspace3  = "3: ";
+      workspace3  = "3: ";
       workspace4  = "4: ";
       workspace5  = "5: ";
-      workspace6  = "6: ";
-      workspace10  = "10: ";
+      workspace6  = "6: ";
+      workspace10  = "10: ";
     in {
       inherit modifier;
       assigns = {
