@@ -44,6 +44,6 @@
       color7  = #93a1a1
       color15 = #fdf6e3
     '';
-    font = "SauceCodePro Nerd Font 10";
+    font = "SauceCodePro Nerd Font Mono 10";
   };
 }

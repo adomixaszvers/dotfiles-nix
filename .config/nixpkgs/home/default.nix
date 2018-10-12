@@ -32,9 +32,14 @@
       sha256 = "0qziky603gwbzjr8sjfmlxgnwsxmv5n7fvnygykm8xj2y43657xi";
     };
   };
+  home.file.".config/ranger/rc.conf" = {
+    text = ''
+      set preview_images true
+    '';
+  };
   home.sessionVariables = {
     EDITOR = "nvim";
-    TERMINAL = "urxvt";
+    TERMINAL = "termite";
   };
   manual.html.enable = true;
   programs.autorandr = {

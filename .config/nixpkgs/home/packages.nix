@@ -32,6 +32,7 @@ in
       thefuck
       tree
       vcsh
+      w3m # for ranger image previews
       xfce.gvfs
       xfce.thunar-bare
       xsel
