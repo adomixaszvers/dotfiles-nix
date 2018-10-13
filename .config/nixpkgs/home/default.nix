@@ -27,10 +27,16 @@
     };
   };
   home.keyboard.layout = "lt,us";
-  home.file."wallpaper.png" = {
+  home.file."vim-cheatsheet.png" = {
     source =  pkgs.fetchurl {
       url = "http://i.imgur.com/YLInLlY.png";
       sha256 = "0qziky603gwbzjr8sjfmlxgnwsxmv5n7fvnygykm8xj2y43657xi";
+    };
+  };
+  home.file."wallpaper.png" = {
+    source =  pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/wallpapers/nix-wallpaper-simple-light-gray.png";
+      sha256 = "0i6d0xv1nzrv7na9hjrgzl3jrwn81vnprnq2pxyznlxbjcgkjnk2";
     };
   };
   home.file.".config/ranger/rc.conf" = {

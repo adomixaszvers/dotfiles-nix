@@ -23,8 +23,16 @@
         "${workspace10}" = [{ class="^Spotify"; }];
       };
       bars = [{
-        statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t greyish-powerline -p memory.format=\"{used}/{total}\"";
-        fonts = [ "DejaVuSansMono Nerd Font 8" ];
+        statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t solarized-powerline -p memory.format=\"{used}/{total}\"";
+        fonts = [ "DejaVuSansMono Nerd Font 9" ];
+        colors = with config.lib.colors.solarized; {
+          activeWorkspace = { background = background; border = background; text = whiteb; };
+          background = background;
+          focusedWorkspace = { background = white; border = whiteb; text = background; };
+          inactiveWorkspace = { background = background; border = background; text = white; };
+          statusline = white;
+          urgentWorkspace = { background = redb; border = red; text = whiteb; };
+        };
       }];
       fonts = [ "DejaVuSansMono Nerd Font 8" ];
       gaps = {

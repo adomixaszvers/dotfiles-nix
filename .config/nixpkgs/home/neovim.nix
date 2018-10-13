@@ -8,6 +8,7 @@
           set relativenumber
           set path+=**
           set list
+          set inccommand=nosplit
 
           let g:neomake_open_list = 2
           let g:hardtime_showmsg = 1
