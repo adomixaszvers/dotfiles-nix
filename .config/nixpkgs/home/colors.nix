@@ -5,7 +5,7 @@ let
     background = "#002b36";
     backgroundTRGBA = "rgba(0, 43, 54, 0.95)";
     backgroundTransparent = "[95]#002b36";
-    cursorColor = "#93a1a1";
+    cursorColor = "#800080";
 
     # black
     black = "#002b36";
