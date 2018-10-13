@@ -1,48 +1,48 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   programs.termite = {
     enable = true;
     allowBold = true;
     browser = "${pkgs.xdg_utils}/xdg-open";
     clickableUrl = true;
-    colorsExtra = ''
+    colorsExtra = with config.lib.colors.solarized; ''
       # special
-      foreground      = #93a1a1
-      foreground_bold = #93a1a1
-      cursor          = #93a1a1
-      background      = rgba(0, 43, 54, 0.9)
+      foreground      = ${foreground}
+      foreground_bold = ${foreground}
+      cursor          = ${cursorColor}
+      background      = ${backgroundTRGBA}
 
       # black
-      color0  = #002b36
-      color8  = #657b83
+      color0  = ${black}
+      color8  = ${blackb}
 
       # red
-      color1  = #dc322f
-      color9  = #dc322f
+      color1  = ${red}
+      color9  = ${redb}
 
       # green
-      color2  = #859900
-      color10 = #859900
+      color2  = ${green}
+      color10 = ${greenb}
 
       # yellow
-      color3  = #b58900
-      color11 = #b58900
+      color3  = ${yellow}
+      color11 = ${yellowb}
 
       # blue
-      color4  = #268bd2
-      color12 = #268bd2
+      color4  = ${blue}
+      color12 = ${blueb}
 
       # magenta
-      color5  = #6c71c4
-      color13 = #6c71c4
+      color5  = ${magenta}
+      color13 = ${magentab}
 
       # cyan
-      color6  = #2aa198
-      color14 = #2aa198
+      color6  = ${cyan}
+      color14 = ${cyanb}
 
       # white
-      color7  = #93a1a1
-      color15 = #fdf6e3
+      color7  = ${white}
+      color15 = ${whiteb}
     '';
     font = "SauceCodePro Nerd Font Mono 10";
   };

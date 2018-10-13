@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   imports = let
     current = ./hosts/current.nix;
@@ -8,6 +8,7 @@
   [
     hostSpecific
     ./compton.nix
+    ./colors.nix
     ./dunst.nix
     ./i3.nix
     ./neovim.nix
@@ -84,7 +85,7 @@
   programs.zsh.enable = true;
   services.network-manager-applet.enable = true;
   systemd.user.startServices = true;
-  xresources.extraConfig = ''
+  xresources.extraConfig = with config.lib.colors.solarized; ''
     URxvt*font: xft:SauceCodePro Nerd Font Mono:size=10
     URxvt.perl-ext-common: default,matcher,selection-to-clipboard,font-size
     URxvt.url-launcher: /usr/bin/xdg-open
@@ -93,6 +94,8 @@
     URxvt.iso14755: false
     URxvt.iso14755_52: false
     URxvt.scrollBar:	false
+    URxvt.background: ${backgroundTransparent}
+    urxvt*depth: 32
 
     URxvt.keysym.C-Up:     font-size:increase
     URxvt.keysym.C-Down:   font-size:decrease
@@ -102,41 +105,41 @@
     URxvt.keysym.C-slash:  font-size:show
 
     ! special
-    *.foreground:   #93a1a1
-    *.background:   #002b36
-    *.cursorColor:  #93a1a1
+    *.foreground:   ${foreground}
+    *.background:   ${background}
+    *.cursorColor:  ${cursorColor}
 
     ! black
-    *.color0:       #002b36
-    *.color8:       #657b83
+    *.color0:       ${black}
+    *.color8:       ${blackb}
 
     ! red
-    *.color1:       #dc322f
-    *.color9:       #dc322f
+    *.color1:       ${red}
+    *.color9:       ${redb}
 
     ! green
-    *.color2:       #859900
-    *.color10:      #859900
+    *.color2:       ${green}
+    *.color10:      ${greenb}
 
     ! yellow
-    *.color3:       #b58900
-    *.color11:      #b58900
+    *.color3:       ${yellow}
+    *.color11:      ${yellowb}
 
     ! blue
-    *.color4:       #268bd2
-    *.color12:      #268bd2
+    *.color4:       ${blue}
+    *.color12:      ${blueb}
 
     ! magenta
-    *.color5:       #6c71c4
-    *.color13:      #6c71c4
+    *.color5:       ${magenta}
+    *.color13:      ${magentab}
 
     ! cyan
-    *.color6:       #2aa198
-    *.color14:      #2aa198
+    *.color6:       ${cyan}
+    *.color14:      ${cyanb}
 
     ! white
-    *.color7:       #93a1a1
-    *.color15:      #fdf6e3
+    *.color7:       ${white}
+    *.color15:      ${whiteb}
   '';
   xsession.enable = true;
   xsession.initExtra = "autorandr --change";
