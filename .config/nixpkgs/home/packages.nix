@@ -26,6 +26,7 @@ in
       mine.bumblebee-status
       ncdu
       p7zip
+      powerline-rs
       ranger
       rxvt_unicode-with-plugins
       shutter
@@ -40,7 +41,7 @@ in
     home = [
       discord
       exercism
-      ghc
+      mine.ghc
       stack
       # torbrowser
       vim
