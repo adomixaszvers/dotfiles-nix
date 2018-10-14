@@ -88,15 +88,7 @@
     enable = true;
     theme = "solarized";
   };
-  programs.zsh = {
-    enable = true;
-    initExtra = ''
-      prompt() {
-        PS1="$(powerline-rs --shell zsh $?)"
-      }
-      precmd_functions+=(prompt)
-    '';
-  };
+  programs.zsh.enable = true;
   services.network-manager-applet.enable = true;
   systemd.user.startServices = true;
   xresources.extraConfig = with config.lib.colors.solarized; ''

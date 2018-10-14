@@ -3,6 +3,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     acpi
+    exfat
     git
     grml-zsh-config
     lm_sensors

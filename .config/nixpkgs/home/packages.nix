@@ -26,7 +26,6 @@ in
       mine.bumblebee-status
       ncdu
       p7zip
-      powerline-rs
       ranger
       rxvt_unicode-with-plugins
       shutter
