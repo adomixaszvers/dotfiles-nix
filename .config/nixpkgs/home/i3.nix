@@ -131,7 +131,7 @@
       window.border = 3;
       window.commands = [
         { command = "move to workspace ${workspace10}"; criteria = { class = "Spotify"; }; }
-        { command = "move to workspace 6"; criteria = { class = "libreoffice"; }; }
+        { command = "move to workspace ${workspace6}"; criteria = { class = "libreoffice"; }; }
       ];
     };
   };
