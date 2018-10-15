@@ -28,7 +28,7 @@
         colors = with config.lib.colors.solarized; {
           activeWorkspace = { background = background; border = background; text = whiteb; };
           background = background;
-          focusedWorkspace = { background = white; border = whiteb; text = background; };
+          focusedWorkspace = { background = blackb; border = background; text = whiteb; };
           inactiveWorkspace = { background = background; border = background; text = white; };
           statusline = white;
           urgentWorkspace = { background = redb; border = red; text = whiteb; };
