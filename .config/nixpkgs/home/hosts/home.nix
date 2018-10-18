@@ -1,4 +1,16 @@
 { pkgs, ... }:
 {
-  home.packages = with import ../packages.nix pkgs; common ++ home;
+  home.packages = with pkgs;
+  [
+    discord
+    exercism
+    mine.ghc
+    stack
+    # torbrowser
+    vim
+    mine.vimgolf
+    vlc
+    qbittorrent
+    typora
+  ];
 }

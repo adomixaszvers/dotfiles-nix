@@ -2,8 +2,7 @@
 {
   imports = let
     current = ./hosts/current.nix;
-    default = ./hosts/mini.nix;
-    hostSpecific = if builtins.pathExists current then current else default;
+    hostSpecific = if builtins.pathExists current then current else {};
   in
   [
     hostSpecific
@@ -26,6 +25,10 @@
       package = pkgs.arc-theme;
     };
   };
+  qt = {
+    enable = true;
+    useGtkTheme = true;
+  };
   home.keyboard.layout = "lt,us";
   home.file."vim-cheatsheet.png" = {
     source =  pkgs.fetchurl {
@@ -44,6 +47,43 @@
       set preview_images true
     '';
   };
+  home.packages =
+    with pkgs; let
+      fonts = [
+        corefonts
+        dejavu_fonts
+        source-code-pro
+        google-fonts
+        nerdfonts
+      ];
+    in
+    [
+      arandr
+      dunst
+      evince
+      file
+      git
+      gnome3.adwaita-icon-theme
+      gnome3.file-roller
+      google-chrome
+      htop
+      i3lock
+      keepass
+      meld
+      mine.bumblebee-status
+      ncdu
+      p7zip
+      ranger
+      rxvt_unicode-with-plugins
+      shutter
+      thefuck
+      tree
+      vcsh
+      w3m # for ranger image previews
+      xfce.gvfs
+      xfce.thunar-bare
+      xsel
+    ];
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "termite";
