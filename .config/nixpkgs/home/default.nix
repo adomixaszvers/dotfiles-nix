@@ -57,7 +57,7 @@
         nerdfonts
       ];
     in
-    [
+    fonts ++ [
       arandr
       dunst
       evince
