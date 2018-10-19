@@ -14,4 +14,7 @@
     smartgithg
     skype
   ];
+  xsession.windowManager.i3.config.startup = [
+    { command = "skypeforlinux"; notification = false; }
+  ];
 }
