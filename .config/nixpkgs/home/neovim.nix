@@ -11,12 +11,18 @@
           set inccommand=nosplit
           colorscheme google
 
+          set noshowmode
+
           let g:neomake_open_list = 2
           call neomake#configure#automake('nrwi', 500)
 
           let g:hardtime_default_on = 1
           let g:hardtime_showmsg = 1
           let g:hardtime_allow_different_key = 1
+
+          let g:rainbow_active = 1
+
+          noremap - -
       '';
       vam.knownPlugins = pkgs.vimPlugins;
       vam.pluginDictionaries = [
@@ -24,6 +30,7 @@
         { name = "fugitive"; }
         { name = "lightline-vim"; }
         { name = "neomake"; }
+        { name = "rainbow"; }
         { name = "repeat"; }
         { name = "rust-vim"; }
         { name = "surround"; }
