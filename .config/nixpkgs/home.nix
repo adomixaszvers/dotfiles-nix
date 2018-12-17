@@ -88,6 +88,7 @@
       EDITOR = "nvim";
       TERMINAL = "termite";
     };
+    home.stateVersion = "18.09";
     manual.html.enable = true;
     programs.autorandr = {
       enable = true;
