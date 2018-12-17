@@ -3,9 +3,8 @@
   services.compton = {
     enable = true;
     extraOptions = ''
-      backend = "xrender";
-      xrender-sync = true;
-      xrender-sync-fence = true;
+      backend = "glx";
+      vsync = "opengl";
 
       shadow = true;
       no-dnd-shadow = true;
