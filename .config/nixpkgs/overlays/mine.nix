@@ -18,5 +18,20 @@ self: super:
       ];
     in
     (self.ghc.withPackages haskellPackages);
+    steam = super.steam.override {
+      extraPkgs = ps: with ps; [
+        atk
+        cairo
+        dbus
+        fontconfig
+        freetype
+        gdk_pixbuf
+        glib
+        gnome3.gtk
+        pango
+        xorg.libxcb
+        zlib
+      ];
+    };
   };
 }
