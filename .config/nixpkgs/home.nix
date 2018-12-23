@@ -65,7 +65,6 @@
       git
       gnome3.adwaita-icon-theme
       gnome3.file-roller
-      google-chrome
       htop
       i3lock
       keepass
@@ -88,6 +87,7 @@
       EDITOR = "nvim";
       TERMINAL = "termite";
     };
+    home.stateVersion = "18.09";
     manual.html.enable = true;
     programs.autorandr = {
       enable = true;
