@@ -3,6 +3,7 @@
   home.packages = with pkgs;
   [
     docker
+    google-chrome
     jdk8
     jetbrains.idea-ultimate
     libreoffice-fresh

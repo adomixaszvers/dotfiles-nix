@@ -2,15 +2,22 @@
 {
   home.packages = with pkgs;
   [
+    # sageWithDoc
     discord
+    elmPackages.elm
     exercism
+    firefox
+    jdk
+    jetbrains.idea-ultimate
     mine.ghc
-    stack
-    # torbrowser
-    vim
+    mine.steam
     mine.vimgolf
-    vlc
     qbittorrent
+    sbt
+    stack
+    torbrowser
     typora
+    vim
+    vlc
   ];
 }
