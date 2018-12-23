@@ -4,6 +4,7 @@
   [
     docker
     google-chrome
+    flameshot
     jdk8
     jetbrains.idea-ultimate
     libreoffice-fresh
@@ -13,7 +14,9 @@
     robo3t
     skype
     smartgithg
+    traceroute
     visualvm
+    whois
     yarn
   ];
   xsession.windowManager.i3.config.startup = [
