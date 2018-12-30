@@ -29,12 +29,28 @@
 
           let g:rainbow_active = 1
 
+          let g:LanguageClient_serverCommands = {
+            \ 'haskell': ['${pkgs.hies}/bin/hie-wrapper'],
+            \ 'python': ['${pkgs.pythonPackages.python-language-server}/bin/pyls'],
+            \}
+          nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+          map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
+          map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+          map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+          map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+          map <Leader>lb :call LanguageClient#textDocument_references()<CR>
+          map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+          map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+
           noremap - -
       '';
       vam.knownPlugins = pkgs.vimPlugins;
       vam.pluginDictionaries = [
         { name = "commentary"; }
         { name = "fugitive"; }
+        { name = "fzf-vim"; }
+        { name = "fzfWrapper"; }
+        { name = "LanguageClient-neovim"; }
         { name = "lightline-vim"; }
         { name = "neomake"; }
         { name = "rainbow"; }
