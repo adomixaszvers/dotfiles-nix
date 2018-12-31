@@ -42,9 +42,37 @@
           map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
           map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
+          let g:lightline = {}
+
+          let g:lightline.component_expand = {
+          \  'linter_checking': 'lightline#lsc#checking',
+          \  'linter_warnings': 'lightline#lsc#warnings',
+          \  'linter_errors': 'lightline#lsc#errors',
+          \  'linter_ok': 'lightline#lsc#ok',
+          \ }
+
+          let g:lightline.component_type = {
+          \     'linter_checking': 'left',
+          \     'linter_warnings': 'warning',
+          \     'linter_errors': 'error',
+          \     'linter_ok': 'left',
+          \ }
+
+          let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+
           noremap - -
       '';
-      vam.knownPlugins = pkgs.vimPlugins;
+      vam.knownPlugins = pkgs.vimPlugins // {
+        lightline-lsc-nvim = pkgs.vimUtils.buildVimPlugin {
+          name = "lightline-lsc-nvim";
+          src = pkgs.fetchFromGitHub {
+            owner = "palpatineli";
+            repo = "lightline-lsc-nvim";
+            rev = "b7be53d276ff0421b22dab9cbccd28e6a4fabeb8";
+            sha256 = "0mrdfvdipx08c7z5f1a96a67cpbapz1rh6jl98ckzhmm2k6p439r";
+          };
+        };
+      };
       vam.pluginDictionaries = [
         { name = "commentary"; }
         { name = "fugitive"; }
@@ -52,6 +80,7 @@
         { name = "fzfWrapper"; }
         { name = "LanguageClient-neovim"; }
         { name = "lightline-vim"; }
+        { name = "lightline-lsc-nvim"; }
         { name = "neomake"; }
         { name = "rainbow"; }
         { name = "repeat"; }
