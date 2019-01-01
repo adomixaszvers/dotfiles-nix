@@ -86,6 +86,7 @@
     home.sessionVariables = {
       EDITOR = "nvim";
       TERMINAL = "termite";
+      HIE_HOOGLE_DATABASE = "$HOME/.nix-profile/share/doc/hoogle/index.html";
     };
     home.stateVersion = "18.09";
     manual.html.enable = true;
