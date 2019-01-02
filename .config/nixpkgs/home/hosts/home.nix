@@ -20,4 +20,6 @@
     vim
     vlc
   ];
+  lib.enableHie = true;
+  lib.enablePyls = true;
 }

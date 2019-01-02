@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   programs.neovim  = {
     enable = true;
@@ -30,8 +30,14 @@
           let g:rainbow_active = 1
 
           let g:LanguageClient_serverCommands = {
+          '' +
+          (if config.lib.enableHie or false then ''
             \ 'haskell': ['${pkgs.hies}/bin/hie-wrapper'],
+          '' else "") +
+          (if config.lib.enablePyls or false then ''
             \ 'python': ['${pkgs.pythonPackages.python-language-server}/bin/pyls'],
+          '' else "") +
+          ''
             \}
           nnoremap <F5> :call LanguageClient_contextMenu()<CR>
           map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
