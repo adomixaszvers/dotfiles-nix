@@ -19,6 +19,12 @@
     whois
     yarn
   ];
+  lib = {
+    lsc = {
+      hie = false;
+      pyls = false;
+    };
+  };
   xsession.windowManager.i3.config.startup = [
     { command = "skypeforlinux"; notification = false; }
   ];

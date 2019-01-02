@@ -1,4 +1,5 @@
 { pkgs, config, ... }:
+with pkgs.lib;
 {
   programs.neovim  = {
     enable = true;
@@ -31,10 +32,10 @@
 
           let g:LanguageClient_serverCommands = {
           '' +
-          (if config.lib.enableHie or false then ''
+          (if attrByPath ["lib" "lsc" "hie"] false config then ''
             \ 'haskell': ['${pkgs.hies}/bin/hie-wrapper'],
           '' else "") +
-          (if config.lib.enablePyls or false then ''
+          (if attrByPath ["lib" "lsc" "pyls"] false config then ''
             \ 'python': ['${pkgs.pythonPackages.python-language-server}/bin/pyls'],
           '' else "") +
           ''
