@@ -13,6 +13,7 @@
     ./home/neovim
     ./home/polybar.nix
     ./home/termite.nix
+    ./home/xmonad.nix
   ];
   gtk = {
     enable = true;
