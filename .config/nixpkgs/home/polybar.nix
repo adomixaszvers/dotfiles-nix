@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+with config.lib.colors.solarized;
 {
   services.polybar = {
     enable = false;
@@ -9,8 +10,7 @@
     };
     config = {
       "bar/bottom" = {
-        background = "#cc000000";
-        foreground = "#ccffffff";
+        inherit foreground background;
         font-0 = "DejaVuSansMono Nerd Font:pixelsize=10;0";
         bottom = true;
         width = "100%";
@@ -82,6 +82,19 @@
         type = "internal/xwindow";
       };
     };
-    script = "PATH=$PATH:${pkgs.i3-gaps}/bin polybar bottom &";
+    script = ''
+      export PATH=$PATH:${pkgs.i3-gaps}/bin
+
+      # Terminate already running bar instances
+      ${pkgs.psmisc}/bin/killall -q polybar
+
+      # Wait until the processes have been shut down
+      while ${pkgs.procps}/bin/pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+      # Launch Polybar, using default config location ~/.config/polybar/config
+      polybar bottom &
+
+      echo "Polybar launched..."
+    '';
   };
 }
