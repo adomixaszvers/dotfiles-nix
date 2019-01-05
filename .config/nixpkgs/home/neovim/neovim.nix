@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  lscConfig = import ./lscConfig { inherit pkgs config; lib = pkgs.lib;};
+  lscConfig = import ./lscConfig.nix { inherit pkgs config; lib = pkgs.lib;};
 in
   {
     programs.neovim  = {
