@@ -8,17 +8,18 @@ self: super:
       haskellPackages = ps: with ps; [
         # ghc-mod
         hasktags
-        hdevtools
+        # hdevtools
         hindent
         hlint
-        hoogle
+        # hoogle
         hspec
         pointfree pointful
         stylish-haskell
       ];
     in
-    (self.ghc.withPackages haskellPackages);
+    (self.ghc.withHoogle haskellPackages);
     steam = super.steam.override {
+      withPrimus = true;
       extraPkgs = ps: with ps; [
         atk
         cairo

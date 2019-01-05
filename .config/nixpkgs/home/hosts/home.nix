@@ -22,8 +22,7 @@
   ];
   lib = {
     lsc = {
-      hie = true;
-      pyls = true;
+      enable = true;
     };
   };
 }

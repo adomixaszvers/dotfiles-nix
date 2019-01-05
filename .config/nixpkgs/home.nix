@@ -10,7 +10,7 @@
     ./home/colors.nix
     ./home/dunst.nix
     ./home/i3.nix
-    ./home/neovim.nix
+    ./home/neovim
     ./home/polybar.nix
     ./home/termite.nix
   ];
@@ -123,7 +123,7 @@
       enableZshIntegration = true;
     };
     programs.home-manager.enable = true;
-    programs.home-manager.path = https://github.com/rycee/home-manager/archive/release-18.09.tar.gz;
+    # programs.home-manager.path = https://github.com/rycee/home-manager/archive/release-18.09.tar.gz;
     programs.feh.enable = true;
     programs.rofi = {
       enable = true;

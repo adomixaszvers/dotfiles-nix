@@ -1,0 +1,1 @@
+import ./neovim.nix
