@@ -19,6 +19,9 @@
     whois
     yarn
   ];
+  home.sessionVariables = {
+    BROWSER = "${pkgs.google-chrome}/bin/google-chrome-stable";
+  };
   xsession.windowManager.i3.config.startup = [
     { command = "skypeforlinux"; notification = false; }
   ];
