@@ -73,6 +73,7 @@
       ncdu
       p7zip
       ranger
+      ripgrep
       rxvt_unicode-with-plugins
       shutter
       thefuck
@@ -85,6 +86,7 @@
     ];
     home.sessionVariables = {
       EDITOR = "nvim";
+      FZF_DEFAULT_COMMAND = "${pkgs.ripgrep}/bin/rg --files --no-ignore-vcs --hidden";
       TERMINAL = "termite";
       HIE_HOOGLE_DATABASE = "$HOME/.nix-profile/share/doc/hoogle/index.html";
     };
