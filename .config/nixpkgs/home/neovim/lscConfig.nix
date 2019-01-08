@@ -1,6 +1,5 @@
-{ pkgs, config, lib, ...}:
-with lib;
-(if (attrByPath ["lib" "lsc" "enable"] false config) then
+{ pkgs, config, ...}:
+(if config.lib.lsc.enable or false then
 {
   customRC = ''
   let g:LanguageClient_serverCommands = {
