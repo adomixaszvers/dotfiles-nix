@@ -1,5 +1,10 @@
 { pkgs, config, ... }:
-{
+let
+  gaps = {
+    inner = 15;
+    outer = 0;
+  };
+in {
   xsession.windowManager.i3 = {
     enable = true;
     config = let
@@ -36,8 +41,7 @@
       }];
       fonts = [ "DejaVuSansMono Nerd Font 8" ];
       gaps = {
-        inner = 15;
-        outer = 0;
+        inherit (gaps) inner outer;
         smartGaps = true;
         smartBorders = "on";
       };
@@ -78,6 +82,9 @@
         "${modifier}+r" = "mode resize";
         "${modifier}+Pause" = "mode \"${modeSystem}\"";
         "${modifier}+m" = "move workspace to output left";
+
+        "${modifier}+g" = "gaps inner current set ${toString gaps.inner}; gaps outer current set ${toString gaps.outer}";
+        "${modifier}+Shift+g" = "gaps inner current set 0; gaps outer current set 0";
       };
       keycodebindings = {
         "${modifier}+10" = "workspace ${workspace1}";
