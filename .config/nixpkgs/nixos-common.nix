@@ -52,6 +52,10 @@
   services.xserver.layout = "lt,us";
   services.xserver.displayManager.lightdm.enable = true;
 
+  system.autoUpgrade = {
+    enable = true;
+  };
+
   time.timeZone = "Europe/Vilnius";
 
   users.defaultUserShell = pkgs.zsh;
@@ -63,5 +67,6 @@
     uid = 1000;
     extraGroups = [ "wheel" ];
     shell = pkgs.zsh;
+    packages = [ pkgs.vcsh ];
   };
 }
