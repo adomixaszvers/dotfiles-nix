@@ -15,21 +15,19 @@
   map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
   map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
-  let g:lightline = {}
-
-  let g:lightline.component_expand = {
+  call extend(g:lightline.component_expand, {
   \  'linter_checking': 'lightline#lsc#checking',
   \  'linter_warnings': 'lightline#lsc#warnings',
   \  'linter_errors': 'lightline#lsc#errors',
   \  'linter_ok': 'lightline#lsc#ok',
-  \ }
+  \ })
 
-  let g:lightline.component_type = {
+  call extend(g:lightline.component_type, {
   \     'linter_checking': 'left',
   \     'linter_warnings': 'warning',
   \     'linter_errors': 'error',
   \     'linter_ok': 'left',
-  \ }
+  \ })
 
   let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
 

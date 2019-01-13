@@ -1,6 +1,17 @@
 { pkgs, config, ... }:
 let
   lscConfig = import ./lscConfig.nix { inherit pkgs config; lib = pkgs.lib;};
+  customPlugins = {
+    lightline-bufferline = pkgs.vimUtils.buildVimPlugin {
+      name = "lightline-bufferline";
+      src = pkgs.fetchFromGitHub {
+        owner = "mengelbrecht";
+        repo = "lightline-bufferline";
+        rev = "467bf6894621f74845045ca0dd5b0841f5607491";
+        sha256 = "1lf6bpl1zzl5hx9f8pw8rlzcrl1as6xh4nhw34pz670hp60yiryh";
+      };
+    };
+  };
 in
   {
     programs.neovim  = {
@@ -32,13 +43,20 @@ in
 
         let g:rainbow_active = 1
         noremap - -
+
+        let g:lightline = {}
+        let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+        let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+        let g:lightline.component_type   = {'buffers': 'tabsel'}
+        set showtabline=2
         '' + lscConfig.customRC;
-        vam.knownPlugins = pkgs.vimPlugins // lscConfig.customPlugins;
+        vam.knownPlugins = pkgs.vimPlugins // customPlugins // lscConfig.customPlugins;
         vam.pluginDictionaries = [
           { name = "commentary"; }
           { name = "fugitive"; }
           { name = "fzf-vim"; }
           { name = "fzfWrapper"; }
+          { name = "lightline-bufferline"; }
           { name = "lightline-vim"; }
           { name = "neomake"; }
           { name = "rainbow"; }
