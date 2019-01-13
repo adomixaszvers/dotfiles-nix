@@ -52,6 +52,16 @@ in {
         "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
         "${modifier}+Tab" = "exec ${pkgs.rofi}/bin/rofi -show window";
 
+        "${modifier}+h" = "focus left";
+        "${modifier}+j" = "focus down";
+        "${modifier}+k" = "focus up";
+        "${modifier}+l" = "focus right";
+
+        "${modifier}+Shift+h" = "move left";
+        "${modifier}+Shift+j" = "move down";
+        "${modifier}+Shift+k" = "move up";
+        "${modifier}+Shift+l" = "move right";
+
         "${modifier}+Left" = "focus left";
         "${modifier}+Down" = "focus down";
         "${modifier}+Up" = "focus up";
@@ -62,7 +72,7 @@ in {
         "${modifier}+Shift+Up" = "move up";
         "${modifier}+Shift+Right" = "move right";
 
-        "${modifier}+h" = "split h";
+        "${modifier}+b" = "split h";
         "${modifier}+v" = "split v";
         "${modifier}+f" = "fullscreen toggle";
 
