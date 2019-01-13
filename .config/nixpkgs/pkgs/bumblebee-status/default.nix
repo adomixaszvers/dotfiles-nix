@@ -1,12 +1,13 @@
-{ stdenv, fetchgit, python3 }:
+{ stdenv, fetchFromGitHub, python3 }:
 let
   version = "1.7.2";
 in stdenv.mkDerivation {
   name = "bumblebee-status-${version}";
   inherit version;
-  src = fetchgit {
+  src = fetchFromGitHub {
+    owner = "tobi-wan-kenobi";
+    repo = "bumblebee-status";
     rev = "c514d965cb25314f57a3bca1c9643e86af00a214";
-    url = "https://github.com/tobi-wan-kenobi/bumblebee-status.git";
     sha256 = "1hppysqkmr6wa9dmx3szb6xs3l6s9dmadnxp6g84m7rbzi875iw0";
   };
   buildInputs = [(python3.withPackages (
