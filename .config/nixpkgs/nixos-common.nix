@@ -46,6 +46,7 @@
   programs.zsh.promptInit = ""; # otherwise it'll override the grml prompt
 
   services.acpid.enable = true;
+  services.dbus.packages = with pkgs; [ gnome3.dconf ];
   services.nixosManual.showManual = true;
 
   services.xserver.enable = true;
