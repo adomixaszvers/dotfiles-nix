@@ -49,6 +49,7 @@ in
         let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
         let g:lightline.component_type   = {'buffers': 'tabsel'}
         set showtabline=2
+        autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
         '' + lscConfig.customRC;
         vam.knownPlugins = pkgs.vimPlugins // customPlugins // lscConfig.customPlugins;
         vam.pluginDictionaries = [
