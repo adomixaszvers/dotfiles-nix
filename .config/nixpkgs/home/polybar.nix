@@ -82,14 +82,15 @@ with config.lib.colors.solarized;
         type = "internal/xwindow";
       };
     };
-    script = ''
-      export PATH=$PATH:${pkgs.i3-gaps}/bin
+    script = let binPath = with pkgs; lib.makeBinPath [i3-gaps psmisc procps]; in
+    ''
+      export PATH=$PATH:${binPath}
 
       # Terminate already running bar instances
-      ${pkgs.psmisc}/bin/killall -q polybar
+      killall -q polybar
 
       # Wait until the processes have been shut down
-      while ${pkgs.procps}/bin/pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+      while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
       # Launch Polybar, using default config location ~/.config/polybar/config
       polybar bottom &
