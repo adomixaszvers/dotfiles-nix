@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 let
   gaps = {
     inner = 15;
@@ -27,7 +27,7 @@ in {
         "${workspace6}" = [{ class="^libreoffice"; }];
         "${workspace10}" = [{ class="^Spotify"; }];
       };
-      bars = [{
+      bars = let polybarDisabled = ! config.services.polybar.enable; in lib.optionals polybarDisabled [{
         statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t solarized-powerline -p memory.format=\"{used}/{total}\"";
         fonts = [ "DejaVuSansMono Nerd Font 9" ];
         colors = with config.lib.colors.solarized; {
@@ -143,8 +143,7 @@ in {
       };
       startup = [
         { command = "feh --bg-max --image-bg white ~/wallpaper.png"; notification = false; }
-        # { command = "systemctl --user restart polybar"; always = true; notification = false; }
-      ];
+      ] ++ lib.optional config.services.polybar.enable { command = "systemctl --user restart polybar"; always = true; notification = false; };
       window.border = 3;
       window.commands = [
         { command = "move to workspace ${workspace10}"; criteria = { class = "Spotify"; }; }
