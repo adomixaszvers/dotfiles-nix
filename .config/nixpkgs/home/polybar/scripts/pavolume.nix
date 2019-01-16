@@ -3,6 +3,7 @@ with pkgs;
 writeScript "pavolume.sh" ''
 #!${stdenv.shell}
 PATH=$PATH:${lib.makeBinPath [pulseaudio gawk qt5.qttools gnugrep]}
+LANG=C
 
 # finds the active sink for pulse audio and increments the volume. useful when you have multiple audio outputs and have a key bound to vol-up and down
 
