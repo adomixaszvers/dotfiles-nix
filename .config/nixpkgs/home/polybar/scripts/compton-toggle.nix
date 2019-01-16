@@ -1,4 +1,5 @@
-with import <nixpkgs> {};
+{ pkgs}:
+with pkgs;
 writeScript "compton-toggle.sh" ''
 #!${stdenv.shell}
 

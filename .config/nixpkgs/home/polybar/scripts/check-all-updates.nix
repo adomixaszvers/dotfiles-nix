@@ -1,4 +1,5 @@
-with import <nixpkgs> {};
+{ pkgs}:
+with pkgs;
 writeScript "check-all-updates.sh" ''
 #source https://github.com/x70b1/polybar-scripts
 

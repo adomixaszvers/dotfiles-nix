@@ -1,4 +1,5 @@
-with import <nixpkgs> {};
+{ pkgs}:
+with pkgs;
 writeScript "spotify1.sh" ''
 #!${stdenv.shell}
 

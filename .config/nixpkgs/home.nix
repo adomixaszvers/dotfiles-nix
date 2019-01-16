@@ -11,7 +11,6 @@
     ./home/dunst.nix
     ./home/i3.nix
     ./home/neovim
-    ./home/polybar
     ./home/termite.nix
     ./home/xmonad.nix
   ];
@@ -53,9 +52,9 @@
       fonts = [
         corefonts
         dejavu_fonts
-        source-code-pro
         google-fonts
         nerdfonts
+        source-code-pro
       ];
     in
     fonts ++ [

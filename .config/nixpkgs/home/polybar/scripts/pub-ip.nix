@@ -1,4 +1,5 @@
-with import <nixpkgs> {};
+{ pkgs}:
+with pkgs;
 writeScript "pub-ip.sh" ''
 #!${stdenv.shell}
 

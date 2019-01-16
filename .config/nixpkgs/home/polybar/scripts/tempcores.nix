@@ -1,4 +1,5 @@
-with import <nixpkgs> {};
+{ pkgs}:
+with pkgs;
 writeScript "tempcores.sh" ''
 #!${stdenv.shell}
 PATH=$PATH:${lib.makeBinPath [lm_sensors gnugrep gawk]}

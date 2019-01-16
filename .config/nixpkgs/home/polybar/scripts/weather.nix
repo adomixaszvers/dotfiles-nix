@@ -1,4 +1,5 @@
-with import <nixpkgs> {};
+{ pkgs}:
+with pkgs;
 writeScript "weather.py" ''
 #!${python.withPackages (ps: with ps; [requests])}/bin/python
 # -*- coding: utf-8 -*-
