@@ -10,20 +10,13 @@ in {
     config = let
       modifier = "Mod4";
       modeSystem = "System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown";
-      workspace1 = "1";
-      workspace2  = "2";
-      workspace3  = "3";
-      workspace4  = "4";
-      workspace5  = "5";
-      workspace6  = "6";
-      workspace10  = "10";
-      # workspace1 = "1: ";
-      # workspace2  = "2: ";
-      # workspace3  = "3: ";
-      # workspace4  = "4: ";
-      # workspace5  = "5: ";
-      # workspace6  = "6: ";
-      # workspace10  = "10: ";
+      workspace1 = "1: ";
+      workspace2  = "2: ";
+      workspace3  = "3: ";
+      workspace4  = "4: ";
+      workspace5  = "5: ";
+      workspace6  = "6: ";
+      workspace10  = "10: ";
     in {
       inherit modifier;
       assigns = {
@@ -34,7 +27,7 @@ in {
         "${workspace6}" = [{ class="^libreoffice"; }];
         "${workspace10}" = [{ class="^Spotify"; }];
       };
-      bars = let polybarDisabled = ! true; in lib.optionals polybarDisabled [{
+      bars = [{
         statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t solarized-powerline -p memory.format=\"{used}/{total}\"";
         fonts = [ "DejaVuSansMono Nerd Font 9" ];
         colors = with config.lib.colors.solarized; {
@@ -150,8 +143,8 @@ in {
       };
       startup = [
         { command = "feh --bg-max --image-bg white ~/wallpaper.png"; notification = false; }
-        { command = with (import ./polybar {inherit pkgs config; }); "${launch}"; always = true; notification = false; }
-      ]; 
+        # { command = with (import ./polybar {inherit pkgs config; }); "${launch}"; always = true; notification = false; }
+      ];
       window.border = 3;
       window.commands = [
         { command = "move to workspace ${workspace10}"; criteria = { class = "Spotify"; }; }
