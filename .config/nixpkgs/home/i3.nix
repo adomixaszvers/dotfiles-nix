@@ -4,16 +4,28 @@ let
     inner = 15;
     outer = 0;
   };
+  maimSelect = pkgs.writeScript "maim-select.sh" ''
+    #!${pkgs.stdenv.shell}
+    PATH=$PATH:${with pkgs; lib.makeBinPath [coreutils maim xdotool xclip]}
+    case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfullscreen (copy)" | rofi -dmenu -l 6 -i -p "Screenshot which area?")" in
+      "a selected area") maim -s pic-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
+      "current window") maim -i "$(xdotool getactivewindow)" pic-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
+      "full screen") maim pic-full-"$(date '+%y%m%d-%H%M-%S').png" ;;
+      "a selected area (copy)") maim -s | xclip -selection clipboard -t image/png ;;
+      "current window (copy)") maim -i | xclip -selection clipboard -t image/png ;;
+      "full screen (copy)") maim | xclip -selection clipboard -t image/png ;;
+    esac
+  '';
 in {
   xsession.windowManager.i3 = {
     enable = true;
     config = let
       modifier = "Mod4";
       modeSystem = "System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown";
-      workspace1 = "1: ";
+      workspace1 = "1: ";
       workspace2  = "2: ";
       workspace3  = "3: ";
-      workspace4  = "4: ";
+      workspace4  = "4: ";
       workspace5  = "5: ";
       workspace6  = "6: ";
       workspace10  = "10: ";
@@ -95,6 +107,8 @@ in {
 
         "${modifier}+g" = "gaps inner current set ${toString gaps.inner}; gaps outer current set ${toString gaps.outer}";
         "${modifier}+Shift+g" = "gaps inner current set 0; gaps outer current set 0";
+
+        "Shift+Print" = "exec --no-startup-id ${maimSelect}";
       };
       keycodebindings = {
         "${modifier}+10" = "workspace ${workspace1}";

@@ -43,9 +43,9 @@
       };
     };
   };
-  pluginDictionaries = [
-    { name = "LanguageClient-neovim"; }
-    { name = "lightline-lsc-nvim"; }
+  pluginDictionaries = let ft_regex = "^\\(haskell\\|python\\)\$"; in [
+    { inherit ft_regex; name = "LanguageClient-neovim"; }
+    { inherit ft_regex; name = "lightline-lsc-nvim"; }
   ];
 }
 else {
