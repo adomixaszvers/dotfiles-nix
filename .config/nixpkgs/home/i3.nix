@@ -41,7 +41,7 @@ in {
       };
       bars = [{
         statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t solarized-powerline -p memory.format=\"{used}/{total}\"";
-        fonts = [ "DejaVuSansMono Nerd Font 9" ];
+        fonts = [ "Noto Sans 10" ];
         colors = with config.lib.colors.solarized; {
           activeWorkspace = { background = background; border = background; text = whiteb; };
           background = background;
@@ -51,7 +51,7 @@ in {
           urgentWorkspace = { background = redb; border = red; text = whiteb; };
         };
       }];
-      fonts = [ "DejaVuSansMono Nerd Font 8" ];
+      fonts = [ "Noto Sans 8" ];
       gaps = {
         inherit (gaps) inner outer;
         smartGaps = true;

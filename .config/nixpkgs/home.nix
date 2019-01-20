@@ -51,10 +51,8 @@
     with pkgs; let
       fonts = [
         corefonts
-        dejavu_fonts
         google-fonts
         nerdfonts
-        source-code-pro
       ];
     in
     fonts ++ [
