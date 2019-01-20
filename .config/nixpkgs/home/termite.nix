@@ -44,6 +44,6 @@
       color7  = ${white}
       color15 = ${whiteb}
     '';
-    font = "SauceCodePro Nerd Font Mono 10";
+    font = "Fira Mono 10";
   };
 }
