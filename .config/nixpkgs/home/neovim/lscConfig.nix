@@ -1,9 +1,9 @@
 { pkgs, config, ...}:
 (if config.lib.lsc.enable or false then
 {
-  customRC = ''
+  customRC = with import <hie-nix> {}; ''
   let g:LanguageClient_serverCommands = {
-  \   'haskell': ['${pkgs.hies}/bin/hie-wrapper'],
+  \   'haskell': ['${hies}/bin/hie-wrapper'],
   \   'python': ['${pkgs.pythonPackages.python-language-server}/bin/pyls'],
   \}
   nnoremap <F5> :call LanguageClient_contextMenu()<CR>
