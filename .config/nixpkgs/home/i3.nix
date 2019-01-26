@@ -42,7 +42,7 @@ in {
       bars = [{
         statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t solarized-powerline -p memory.format=\"{used}/{total}\"";
         fonts = [ "NotoMono Nerd Font 9" ];
-        colors = with config.lib.colors.solarized; {
+        colors = with config.lib.colors; {
           activeWorkspace = { background = background; border = background; text = whiteb; };
           background = background;
           focusedWorkspace = { background = blackb; border = background; text = whiteb; };

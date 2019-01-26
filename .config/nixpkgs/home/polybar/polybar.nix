@@ -1,6 +1,6 @@
 { pkgs, config}:
 let
-  colors = config.lib.colors.solarized;
+  colors = config.lib.colors;
   polybar = pkgs.polybar.override {
     i3GapsSupport = true;
     alsaSupport = true;

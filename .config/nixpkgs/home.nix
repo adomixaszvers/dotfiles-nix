@@ -56,6 +56,7 @@
       ];
     in
     fonts ++ [
+      alacritty
       arandr
       dunst
       evince
@@ -85,7 +86,7 @@
     home.sessionVariables = {
       EDITOR = "nvim";
       FZF_DEFAULT_COMMAND = "${pkgs.ripgrep}/bin/rg --files --no-ignore-vcs --hidden";
-      TERMINAL = "termite";
+      TERMINAL = "alacritty";
       HIE_HOOGLE_DATABASE = "$HOME/.nix-profile/share/doc/hoogle/index.html";
     };
     home.stateVersion = "18.09";
@@ -141,7 +142,14 @@
     services.network-manager-applet.enable = true;
     systemd.user.startServices = true;
 
-    xresources.properties = with config.lib.colors.solarized; {
+    xdg = {
+      enable = true;
+      configFile."alacritty/alacritty.yml" = {
+        text = import ./home/dotfiles/alacritty.yml.nix { inherit config; lib = pkgs.lib; };
+      };
+    };
+
+    xresources.properties = with config.lib.colors; {
       "URxvt*font" = "xft:SauceCodePro Nerd Font Mono:size=10";
       "URxvt.perl-ext-common" = "default,matcher,selection-to-clipboard,font-size";
       "URxvt.url-launcher" = "/usr/bin/xdg-open";
