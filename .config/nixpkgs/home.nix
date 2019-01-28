@@ -17,12 +17,12 @@
   gtk = {
     enable = true;
     iconTheme = {
-      name = "Arc";
-      package = pkgs.arc-icon-theme;
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
     };
     theme = {
-      name = "Arc-Darker";
-      package = pkgs.arc-theme;
+      name = "Adapta-Eta";
+      package = pkgs.adapta-gtk-theme;
     };
   };
   qt = {
@@ -71,6 +71,7 @@
       mine.bumblebee-status
       ncdu
       p7zip
+      pcmanfm
       ranger
       ripgrep
       rxvt_unicode-with-plugins
@@ -80,7 +81,6 @@
       vcsh
       w3m # for ranger image previews
       xfce.gvfs
-      xfce.thunar-bare
       xsel
     ];
     home.sessionVariables = {
