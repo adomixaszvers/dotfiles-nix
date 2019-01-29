@@ -50,6 +50,8 @@ in
         let g:lightline.component_type   = {'buffers': 'tabsel'}
         set showtabline=2
         autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+
+        set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
         '' + lscConfig.customRC;
         vam.knownPlugins = pkgs.vimPlugins // customPlugins // lscConfig.customPlugins;
         vam.pluginDictionaries = [
