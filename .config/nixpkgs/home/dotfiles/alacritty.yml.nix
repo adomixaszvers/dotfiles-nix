@@ -182,25 +182,25 @@ colors:
 
   # Normal colors
   normal:
-    black:   '${blackb}'
+    black:   '${black}'
     red:     '${redb}'
     green:   '${greenb}'
     yellow:  '${yellowb}'
     blue:    '${blueb}'
     magenta: '${magentab}'
     cyan:    '${cyanb}'
-    white:   '${whiteb}'
+    white:   '${white}'
 
   # Bright colors
   bright:
-    black:   '${black}'
+    black:   '${blackb}'
     red:     '${red}'
     green:   '${green}'
     yellow:  '${yellow}'
     blue:    '${blue}'
     magenta: '${magenta}'
     cyan:    '${cyan}'
-    white:   '${white}'
+    white:   '${whiteb}'
 
   # Dim colors
   #
