@@ -206,5 +206,8 @@
       "*.color15" =      whiteb;
   };
   xsession.enable = true;
-  xsession.initExtra = "autorandr --change";
+  xsession.initExtra = ''
+      autorandr --change
+      unset SSH_ASKPASS
+  '';
 }
