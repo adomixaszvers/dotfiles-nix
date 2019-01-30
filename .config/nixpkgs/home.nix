@@ -64,6 +64,7 @@
       git
       gnome3.adwaita-icon-theme
       gnome3.file-roller
+      hicolor-icon-theme
       htop
       i3lock
       keepass
