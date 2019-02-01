@@ -44,9 +44,17 @@ in
         let g:rainbow_active = 1
         noremap - -
 
-        let g:lightline = {}
+        let g:lightline = {
+          \   'colorscheme': 'solarized',
+          \ }
         let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
         let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+        let g:lightline.separator = {
+        \   'left': '', 'right': ''
+        \}
+        let g:lightline.subseparator = {
+        \   'left': '', 'right': ''
+        \}
         let g:lightline.component_type   = {'buffers': 'tabsel'}
         set showtabline=2
         autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
