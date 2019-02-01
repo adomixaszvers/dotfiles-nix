@@ -137,7 +137,7 @@
     programs.zsh = {
       enable = true;
       shellAliases = {
-        he = "(cd ~/.config/nixpkgs && nvim -c \":Files\")";
+        he = "(cd ~/.config/nixpkgs && vcsh run nixos nvim -c \":Files\")";
       };
     };
     services.network-manager-applet.enable = true;
