@@ -73,6 +73,7 @@ in
           { name = "vim-hardtime"; }
           { name = "vim-nix"; }
           { name = "vinegar"; }
+          { name = "vim-gitgutter"; }
         ] ++ lscConfig.pluginDictionaries;
       };
     };
