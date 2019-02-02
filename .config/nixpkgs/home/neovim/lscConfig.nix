@@ -29,7 +29,7 @@
   \     'linter_ok': 'left',
   \ })
 
-  let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+  call add(g:lightline.active.right, [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ])
 
   '';
   customPlugins = {

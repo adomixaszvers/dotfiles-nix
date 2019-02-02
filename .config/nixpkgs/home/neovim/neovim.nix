@@ -46,6 +46,20 @@ in
 
         let g:lightline = {
           \   'colorscheme': 'solarized',
+          \   'active': {
+          \     'left':[ [ 'mode', 'paste' ],
+          \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+          \     ],
+          \     'right': [ [ 'lineinfo' ],
+          \            [ 'percent' ],
+          \            [ 'fileformat', 'fileencoding', 'filetype' ] ]
+          \   },
+          \   'component': {
+          \     'lineinfo': ' %3l:%-2v',
+          \   },
+          \   'component_function': {
+          \     'gitbranch': 'fugitive#head',
+          \   }
           \ }
         let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
         let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
