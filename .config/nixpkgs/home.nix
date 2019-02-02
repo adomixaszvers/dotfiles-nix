@@ -237,4 +237,8 @@
       autorandr --change
       unset SSH_ASKPASS
   '';
+  xsession.pointerCursor = {
+    name = "capitaine-cursors";
+    package = pkgs.capitaine-cursors;
+  };
 }
