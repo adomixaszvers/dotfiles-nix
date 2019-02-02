@@ -51,6 +51,13 @@ in {
           urgentWorkspace = { background = redb; border = red; text = whiteb; };
         };
       }];
+      colors = with config.lib.colors; {
+        background = black;
+        focused = { background = black; border = blackb; text = whiteb; indicator = blackb; childBorder = black; };
+        unfocused = { background = black; border = black; text = white; indicator = blackb; childBorder = blackb; };
+        focusedInactive = { background = black; border = black; text = white; indicator = blackb; childBorder = blackb; };
+        urgent = { background = redb; border = redb; text = black; indicator = redb; childBorder = redb; };
+      };
       fonts = [ "NotoMono Nerd Font 8" ];
       gaps = {
         inherit (gaps) inner outer;
