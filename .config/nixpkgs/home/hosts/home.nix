@@ -17,7 +17,7 @@
     sbt
     stack
     torbrowser
-    typora
+    # typora
     vim
     vlc
   ];
