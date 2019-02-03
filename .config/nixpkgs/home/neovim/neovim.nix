@@ -18,6 +18,8 @@ in
       enable = true;
       configure = {
         customRC = ''
+        let mapleader = " "
+
         " Tab specific option
         set tabstop=8                   "A tab is 8 spaces
         set expandtab                   "Always uses spaces instead of tabs
@@ -42,6 +44,7 @@ in
         let g:hardtime_allow_different_key = 1
 
         let g:rainbow_active = 1
+        map <leader>f :Files<CR>
         noremap - -
 
         let g:lightline = {
