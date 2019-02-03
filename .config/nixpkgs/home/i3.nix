@@ -7,7 +7,7 @@ let
   maimSelect = pkgs.writeScript "maim-select.sh" ''
     #!${pkgs.stdenv.shell}
     PATH=$PATH:${with pkgs; lib.makeBinPath [coreutils maim xdotool xclip]}
-    case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfullscreen (copy)" | rofi -dmenu -l 6 -i -p "Screenshot which area?")" in
+    case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | rofi -dmenu -l 6 -i -p "Screenshot which area?")" in
       "a selected area") maim -s pic-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
       "current window") maim -i "$(xdotool getactivewindow)" pic-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
       "full screen") maim pic-full-"$(date '+%y%m%d-%H%M-%S').png" ;;
@@ -53,7 +53,7 @@ in {
       }];
       colors = with config.lib.colors; {
         background = black;
-        focused = { background = black; border = blackb; text = whiteb; indicator = blackb; childBorder = black; };
+        focused = { background = black; border = black; text = whiteb; indicator = blackb; childBorder = black; };
         unfocused = { background = black; border = black; text = white; indicator = blackb; childBorder = blackb; };
         focusedInactive = { background = black; border = black; text = white; indicator = blackb; childBorder = blackb; };
         urgent = { background = redb; border = redb; text = black; indicator = redb; childBorder = redb; };
