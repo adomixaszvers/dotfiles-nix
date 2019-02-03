@@ -2,7 +2,6 @@
 {
   services.compton = {
     enable = true;
-    fade = true;
     opacityRule = [
       "95:class_g = 'URxvt' && !_NET_WM_STATE@:32a"
       "0:_NET_WM_STATE@[0]:32a *= '_NET_WM_STATE_HIDDEN'"
