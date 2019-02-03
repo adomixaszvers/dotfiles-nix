@@ -119,6 +119,10 @@
         };
       };
     };
+    programs.bash = {
+      enable = true;
+      historyControl = ["erasedups" "ignoredups" "ignorespace"];
+    };
     programs.fzf = {
       enable = true;
       enableBashIntegration = true;
