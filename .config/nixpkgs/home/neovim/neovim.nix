@@ -46,6 +46,7 @@ in
         let g:rainbow_active = 1
         map <leader>f :Files<CR>
         noremap - -
+        set updatetime=100
 
         let g:lightline = {
           \   'colorscheme': 'solarized',
