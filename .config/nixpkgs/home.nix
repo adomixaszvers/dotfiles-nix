@@ -164,6 +164,8 @@
       '';
       shellAliases = {
         he = "(cd ~/.config/nixpkgs && vcsh run nixos nvim -c \":Files\")";
+        vn = "vcsh nixos";
+        vns = "vcsh status nixos";
       };
     };
     services.network-manager-applet.enable = true;
