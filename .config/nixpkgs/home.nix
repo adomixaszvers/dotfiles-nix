@@ -138,6 +138,7 @@
               rate = "60.06";
             };
           };
+          hooks.postswitch = "systemctl --user restart compton.service";
         };
       };
     };
