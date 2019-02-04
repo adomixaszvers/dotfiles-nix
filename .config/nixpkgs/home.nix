@@ -117,6 +117,28 @@
             };
           };
         };
+        work2 = {
+          fingerprint = {
+            VGA1 = "00ffffffffffff004c2db90c51555a5a311c01030e341d782a2cc1a45650a1280f5054bfef80714f81c0810081809500a9c0b3000101023a801871382d40582c450009252100001e000000fd00384b1e5111000a202020202020000000fc00533234453635300a2020202020000000ff0048345a4b4330303138380a2020002e";
+            eDP1 = "00ffffffffffff0006afec46000000000f15010490221378020bb59757548c2623505400000001010101010101010101010101010101ce1d56e250001e302616360058c110000018df1356e250001e302616360058c11000001800000000000000000000000000000000000000000002000d48ff0a3c64140e1a682020200039";
+          };
+          config = {
+            HDMI1.enable = false;
+            VIRTUAL1.enable = false;
+            VGA1 = {
+              enable = true;
+              primary = true;
+              position = "0x0";
+              mode = "1920x1080";
+              rate = "60.00";
+            };
+            eDP1 = {
+              mode = "1366x768";
+              position = "1920x0";
+              rate = "60.06";
+            };
+          };
+        };
       };
     };
     programs.bash = {
@@ -190,7 +212,7 @@
       "URxvt.letterSpace" = "-1";
       "URxvt.iso14755" = "false";
       "URxvt.iso14755_52" = "false";
-      "URxvt.scrollBar" =	"false";
+      "URxvt.scrollBar" = "false";
       "URxvt.background" = backgroundTransparent;
       "urxvt*depth" = "32";
 

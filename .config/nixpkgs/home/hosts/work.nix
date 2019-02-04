@@ -3,10 +3,11 @@
   home.packages = with pkgs;
   [
     docker
-    google-chrome
     flameshot
+    google-chrome
     jdk8
     jetbrains.idea-ultimate
+    jq
     libreoffice-fresh
     maven
     mine.consul
@@ -15,6 +16,7 @@
     skype
     smartgithg
     traceroute
+    unzip
     visualvm
     whois
     yarn
