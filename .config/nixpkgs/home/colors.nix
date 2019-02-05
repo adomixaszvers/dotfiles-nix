@@ -1,9 +1,17 @@
 { pkgs, ...}:
 let
+  hexToDec = import ./hexToDec.nix { inherit (pkgs) lib; };
+  toTrgba = hex:
+  let
+    f = i: toString (hexToDec (builtins.substring i 2 hex));
+    r = f 1;
+    g = f 3;
+    b = f 5;
+  in "rgba(${r}, ${g}, ${b}, 0.95)";
   solarized = {
     foreground = "#93a1a1";
     background = "#002b36";
-    backgroundTRGBA = "rgba(0, 43, 54, 0.95)";
+    backgroundTRGBA = toTrgba "#002b36";
     backgroundTransparent = "[95]#002b36";
     cursorColor = "#800080";
 
