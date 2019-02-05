@@ -179,6 +179,8 @@
               [[ ''${KEYMAP} = "" ]] ||
               [[ $1 = 'beam' ]]; then
               echo -ne '\e[5 q'
+              bindkey -M viins '^?' backward-delete-char
+              bindkey -M viins '^H' backward-delete-char
           fi
         }
         zle -N zle-keymap-select
