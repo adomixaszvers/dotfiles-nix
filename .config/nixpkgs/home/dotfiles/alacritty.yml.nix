@@ -176,9 +176,9 @@ colors:
   #
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
-  #cursor:
+  cursor:
   #  text: '0x000000'
-  #  cursor: '0xffffff'
+    cursor: ${cursorColor}
 
   # Normal colors
   normal:
