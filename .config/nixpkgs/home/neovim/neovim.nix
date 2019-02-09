@@ -11,6 +11,24 @@ let
         sha256 = "1lf6bpl1zzl5hx9f8pw8rlzcrl1as6xh4nhw34pz670hp60yiryh";
       };
     };
+    lightline-neomake = pkgs.vimUtils.buildVimPlugin {
+      name = "lightline-neomake";
+      src = pkgs.fetchFromGitHub {
+        owner = "sinetoami";
+        repo = "lightline-neomake";
+        rev = "08271edbdb8b6efb21123cd602471a806dff1913";
+        sha256 = "0gr4kpci2w38xskh2y588amzpp5grnp0qyi7a06vcsq930l0yq41";
+      };
+    };
+    vim-unimpaired = pkgs.vimUtils.buildVimPlugin {
+      name = "vim-unimpaired";
+      src = pkgs.fetchFromGitHub {
+        owner = "tpope";
+        repo = "vim-unimpaired";
+        rev = "5694455d72229e73ff333bfe5196cc7193dca5e7";
+        sha256 = "1fsz9bg0rrp35rs7qwgqzm0wnnd22pckmc2f792kkpcfmmpg5lay";
+      };
+    };
   };
 in
   {
@@ -33,13 +51,14 @@ in
         set list
         set inccommand=nosplit
         set background=dark
+        set cursorline
         let g:solarized_termcolors=256
-        let g:solarized_termtrans=1
+        " let g:solarized_termtrans=1
         colorscheme solarized
 
         set noshowmode
 
-        let g:neomake_open_list = 2
+        " let g:neomake_open_list = 2
         call neomake#configure#automake('nrwi', 500)
 
         let g:hardtime_default_on = 1
@@ -59,7 +78,9 @@ in
           \     ],
           \     'right': [ [ 'lineinfo' ],
           \            [ 'percent' ],
-          \            [ 'fileformat', 'fileencoding', 'filetype' ] ]
+          \            [ 'fileformat', 'fileencoding', 'filetype' ],
+          \              ['neomake_warnings', 'neomake_errors', 'neomake_infos', 'neomake_ok']
+          \     ]
           \   },
           \   'component': {
           \     'lineinfo': ' %3l:%-2v',
@@ -69,14 +90,25 @@ in
           \   }
           \ }
         let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
-        let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+        let g:lightline.component_expand = {
+          \ 'buffers': 'lightline#bufferline#buffers',
+          \ 'neomake_infos': 'lightline#neomake#infos',
+          \ 'neomake_warnings': 'lightline#neomake#warnings',
+          \ 'neomake_errors': 'lightline#neomke#errors',
+          \ 'neomake_ok': 'lightline#neomake#ok',
+          \ }
         let g:lightline.separator = {
         \   'left': '', 'right': ''
         \}
         let g:lightline.subseparator = {
         \   'left': '', 'right': ''
         \}
-        let g:lightline.component_type   = {'buffers': 'tabsel'}
+        let g:lightline.component_type   = {
+          \ 'buffers': 'tabsel',
+          \ 'neomake_warnings': 'warning',
+          \ 'neomake_errors': 'error',
+          \ 'neomake_ok': 'left',
+          \}
         set showtabline=2
         autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
@@ -89,20 +121,19 @@ in
           { name = "fzf-vim"; }
           { name = "fzfWrapper"; }
           { name = "lightline-bufferline"; }
+          { name = "lightline-neomake"; }
           { name = "lightline-vim"; }
           { name = "neomake"; }
           { name = "rainbow"; }
           { name = "repeat"; }
-          { name = "rust-vim"; }
           { name = "surround"; }
-          { name = "syntastic"; }
-          { name = "vim-addon-nix"; }
           { name = "vim-colorschemes"; }
           { name = "vim-easymotion"; }
-          { name = "vim-hardtime"; }
-          { name = "vim-nix"; }
-          { name = "vinegar"; }
           { name = "vim-gitgutter"; }
+          { name = "vim-hardtime"; }
+          { name = "vim-polyglot"; }
+          { name = "vim-unimpaired"; }
+          { name = "vinegar"; }
         ] ++ lscConfig.pluginDictionaries;
       };
     };
