@@ -178,7 +178,7 @@ colors:
   # the cursor color will be the inverse of the cell color.
   cursor:
   #  text: '0x000000'
-    cursor: ${cursorColor}
+    cursor: "${cursorColor}"
 
   # Normal colors
   normal:
