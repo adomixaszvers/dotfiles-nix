@@ -192,7 +192,7 @@
         precmd_functions+=(_fix_cursor)
       '';
       shellAliases = {
-        he = "(cd ~/.config/nixpkgs && vcsh run nixos nvim -c \":Files\")";
+        he = "(cd ~/.config/nixpkgs && vcsh run nixos nvim)";
         vn = "vcsh nixos";
         vns = "vcsh status nixos";
       };
