@@ -142,12 +142,12 @@ in {
       };
       modes = {
         resize = {
-          Down = "resize grow height 10 px or 10 ppt";
           Escape = "mode default";
-          Left = "resize shrink width 10 px or 10 ppt";
           Return = "mode default";
-          Right = "resize grow width 10 px or 10 ppt";
-          Up = "resize shrink height 10 px or 10 ppt";
+          h = "resize shrink width 10 px or 10 ppt";
+          j = "resize grow height 10 px or 10 ppt";
+          k = "resize shrink height 10 px or 10 ppt";
+          l = "resize grow width 10 px or 10 ppt";
         };
         "${modeSystem}" = let locker = "i3lock && sleep 1"; in {
           l = "exec --no-startup-id ${locker}, mode default";
