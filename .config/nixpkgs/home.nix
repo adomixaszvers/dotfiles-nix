@@ -42,11 +42,6 @@
       sha256 = "0i6d0xv1nzrv7na9hjrgzl3jrwn81vnprnq2pxyznlxbjcgkjnk2";
     };
   };
-  home.file.".config/ranger/rc.conf" = {
-    text = ''
-      set preview_images true
-    '';
-  };
   home.packages =
     with pkgs; let
       fonts = [
@@ -204,6 +199,11 @@
       enable = true;
       configFile."alacritty/alacritty.yml" = {
         text = import ./home/dotfiles/alacritty.yml.nix { inherit config; lib = pkgs.lib; };
+      };
+      configFile."ranger/rc.conf" = {
+        text = ''
+          set preview_images true
+        '';
       };
     };
 
