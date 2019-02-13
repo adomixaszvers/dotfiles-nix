@@ -89,7 +89,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: FuraMono Nerd Font
+    family: FuraCode Nerd Font
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -100,7 +100,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: FuraMono Nerd Font
+    family: FuraCode Nerd Font
 
     # The `style` can be specified to pick a specific face.
     #style: Bold
@@ -111,7 +111,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: FuraMono Nerd Font
+    family: FuraCode Nerd Font
 
     # The `style` can be specified to pick a specific face.
     #style: Italic
