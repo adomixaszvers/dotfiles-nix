@@ -58,11 +58,11 @@
       file
       git
       gnome3.adwaita-icon-theme
-      gnome3.file-roller
       hicolor-icon-theme
       htop
       i3lock
-      keepass
+      icdiff
+      keepassxc
       meld
       mine.bumblebee-status
       ncdu
@@ -76,6 +76,7 @@
       tree
       vcsh
       w3m # for ranger image previews
+      xarchiver
       xfce.gvfs
       xsel
     ];
