@@ -71,7 +71,6 @@
       ranger
       ripgrep
       rxvt_unicode-with-plugins
-      shutter
       thefuck
       tree
       vcsh
