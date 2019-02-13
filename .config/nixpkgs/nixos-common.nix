@@ -19,7 +19,6 @@
     acpi
     exfat
     git
-    grml-zsh-config
     lm_sensors
     neovim
     ntfs3g
