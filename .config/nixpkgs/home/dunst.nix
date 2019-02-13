@@ -17,7 +17,7 @@ in
         dmenu = "${pkgs.rofi}/bin/rofi -dmenu -p dunst";
         follow = "keyboard";
         font = "NotoMono Nerd Font 8";
-        format = "<b>%s</b>\n%b";
+        format = "<b>%s</b>\\n%b";
         geometry = "300x5-30+20";
         horizontal_padding = 8;
         idle_threshold = 120;
@@ -36,6 +36,7 @@ in
         transparency = 0;
         word_wrap = true;
         icon_position = "left";
+        max_icon_size = "32";
       };
       frame = {
         width = 1;
