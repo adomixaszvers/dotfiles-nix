@@ -7,7 +7,7 @@ in
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
-      size = "16x16";
+      size = "32x32";
     };
     settings = {
       global = {
