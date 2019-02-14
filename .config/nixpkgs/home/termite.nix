@@ -10,7 +10,7 @@
       foreground      = ${foreground}
       foreground_bold = ${foreground}
       cursor          = ${cursorColor}
-      background      = ${backgroundTRGBA}
+      background      = ${background}
 
       # black
       color0  = ${black}

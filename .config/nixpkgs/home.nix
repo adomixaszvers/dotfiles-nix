@@ -216,7 +216,7 @@
       "URxvt.iso14755" = "false";
       "URxvt.iso14755_52" = "false";
       "URxvt.scrollBar" = "false";
-      "URxvt.background" = backgroundTransparent;
+      "URxvt.background" = background;
       "urxvt*depth" = "32";
 
       "URxvt.keysym.C-Up" =     "font-size:increase";
