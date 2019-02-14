@@ -53,6 +53,7 @@
     fonts ++ [
       alacritty
       arandr
+      bfs
       dunst
       evince
       file
@@ -71,7 +72,6 @@
       ranger
       ripgrep
       rxvt_unicode-with-plugins
-      thefuck
       tree
       vcsh
       w3m # for ranger image previews
@@ -81,8 +81,7 @@
     ];
     home.sessionVariables = {
       EDITOR = "nvim";
-      FZF_DEFAULT_COMMAND = "${pkgs.ripgrep}/bin/rg --files --no-ignore-vcs --hidden";
-      TERMINAL = "alacritty";
+      TERMINAL = "termite";
       HIE_HOOGLE_DATABASE = "$HOME/.nix-profile/share/doc/hoogle/index.html";
     };
     home.stateVersion = "18.09";
@@ -142,9 +141,12 @@
       historyControl = ["erasedups" "ignoredups" "ignorespace"];
     };
     programs.fzf = {
+      changeDirWidgetCommand = "bfs -type d";
+      defaultCommand = "rg --files";
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
+      fileWidgetCommand = "rg --files";
     };
     programs.home-manager.enable = true;
     # programs.home-manager.path = https://github.com/rycee/home-manager/archive/release-18.09.tar.gz;

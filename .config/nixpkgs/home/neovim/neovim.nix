@@ -38,7 +38,7 @@ in
         customRC = ''
         let mapleader = " "
 
-        " Tab specific option
+        " Tab specific options
         set tabstop=8                   "A tab is 8 spaces
         set expandtab                   "Always uses spaces instead of tabs
         set softtabstop=4               "Insert 4 spaces when tab is pressed

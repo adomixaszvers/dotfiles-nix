@@ -44,6 +44,6 @@
       color7  = ${white}
       color15 = ${whiteb}
     '';
-    font = "Fira Mono 10";
+    font = "Fira Mono 9";
   };
 }
