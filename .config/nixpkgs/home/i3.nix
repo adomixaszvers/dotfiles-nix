@@ -40,7 +40,7 @@ in {
         "${workspace10}" = [{ class="^Spotify"; }];
       };
       bars = [{
-        statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t solarized-powerline -p memory.format=\"{used}/{total}\"";
+        statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t iceberg-rainbow -p memory.format=\"{used}/{total}\"";
         fonts = [ "NotoMono Nerd Font 9" ];
         colors = with config.lib.colors; {
           activeWorkspace = { background = background; border = background; text = whiteb; };
@@ -53,7 +53,7 @@ in {
       }];
       colors = with config.lib.colors; {
         background = black;
-        focused = { background = black; border = black; text = whiteb; indicator = blackb; childBorder = black; };
+        focused = { background = background; border = background; text = whiteb; indicator = blackb; childBorder = cyan; };
         unfocused = { background = black; border = black; text = white; indicator = blackb; childBorder = blackb; };
         focusedInactive = { background = black; border = black; text = white; indicator = blackb; childBorder = blackb; };
         urgent = { background = redb; border = redb; text = black; indicator = redb; childBorder = redb; };

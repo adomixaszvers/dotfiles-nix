@@ -52,9 +52,10 @@ in
         set inccommand=nosplit
         set background=dark
         set cursorline
-        let g:solarized_termcolors=256
+
+        " let g:solarized_termcolors=256
         " let g:solarized_termtrans=1
-        colorscheme solarized
+        colorscheme dracula
 
         set noshowmode
 
@@ -71,7 +72,7 @@ in
         set updatetime=100
 
         let g:lightline = {
-          \   'colorscheme': 'solarized',
+          \   'colorscheme': 'wombat',
           \   'active': {
           \     'left':[ [ 'mode', 'paste' ],
           \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]

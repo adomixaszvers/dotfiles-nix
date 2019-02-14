@@ -154,7 +154,7 @@
       extraConfig = ''
         rofi.modi: drun,window,run,ssh
       '';
-      theme = "solarized";
+      theme = "Pop-Dark";
     };
     programs.zsh = {
       defaultKeymap = "viins";

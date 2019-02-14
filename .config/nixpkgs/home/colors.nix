@@ -79,7 +79,39 @@ let
     backgroundTransparent = "[95]#1b1d1e";
     cursorColor = "#800080";
   };
+  dracula = rec {
+    foreground = "#F8F8F2";
+    background = "#282A36";
+
+    black = "#000000";
+    blackb = "#4D4D4D";
+
+    red = "#FF5555";
+    redb = "#FF6E67";
+
+    green = "#50FA7B";
+    greenb = "#5AF78E";
+
+    yellow = "#F1FA8C";
+    yellowb = "#F4F99D";
+
+    blue = "#BD93F9";
+    blueb = "#CAA9FA";
+
+    magenta = "#FF79C6";
+    magentab = "#FF92D0";
+
+    cyan = "#8BE9FD";
+    cyanb = "#9AEDFE";
+
+    white = "#BFBFBF";
+    whiteb = "#E6E6E6";
+
+    backgroundTRGBA = toTrgba background;
+    backgroundTransparent = "[95]${background}";
+    cursorColor = "#800080";
+  };
 in
   {
-    lib.colors = solarized;
+    lib.colors = dracula;
   }
