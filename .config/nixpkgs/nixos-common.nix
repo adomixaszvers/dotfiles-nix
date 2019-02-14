@@ -19,6 +19,7 @@
     acpi
     exfat
     git
+    gparted
     lm_sensors
     neovim
     ntfs3g
@@ -33,6 +34,7 @@
     enableFontDir = true;
     enableGhostscriptFonts = true;
     enableDefaultFonts = true;
+    fonts = [ pkgs.nerdfonts ];
   };
 
   sound.enable = true;
