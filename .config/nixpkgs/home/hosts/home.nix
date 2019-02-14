@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  imports = [ ../emacs.nix ];
   home.packages = with pkgs;
   [
     # sageWithDoc
