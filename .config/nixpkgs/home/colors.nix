@@ -109,7 +109,7 @@ let
 
     backgroundTRGBA = toTrgba background;
     backgroundTransparent = "[95]${background}";
-    cursorColor = "#800080";
+    cursorColor = "#008080";
   };
 in
   {
