@@ -98,12 +98,16 @@ in
           \ 'neomake_errors': 'lightline#neomke#errors',
           \ 'neomake_ok': 'lightline#neomake#ok',
           \ }
-        let g:lightline.separator = {
-        \   'left': '', 'right': ''
-        \}
-        let g:lightline.subseparator = {
-        \   'left': '', 'right': ''
-        \}
+        if !empty($DISPLAY)
+          let g:lightline.separator = {
+          \   'left': '', 'right': ''
+          \}
+          let g:lightline.subseparator = {
+          \   'left': '', 'right': ''
+          \}
+        else
+          set guicursor=
+        endif
         let g:lightline.component_type   = {
           \ 'buffers': 'tabsel',
           \ 'neomake_warnings': 'warning',
