@@ -2,6 +2,15 @@
 let
   lscConfig = import ./lscConfig.nix { inherit pkgs config; lib = pkgs.lib;};
   customPlugins = {
+    lightline-ale = pkgs.vimUtils.buildVimPlugin {
+      name = "lightline-ale";
+      src = pkgs.fetchFromGitHub {
+        owner = "maximbaz";
+        repo = "lightline-ale";
+        rev = "dd59077f9537b344f7ae80f713c1e4856ec1520c";
+        sha256 = "1f9v6nsksy36s5i27nfx6vmyfyjk27p2w2g6x25cw56b0r3sgxmx";
+      };
+    };
     lightline-bufferline = pkgs.vimUtils.buildVimPlugin {
       name = "lightline-bufferline";
       src = pkgs.fetchFromGitHub {
@@ -59,9 +68,6 @@ in
 
         set noshowmode
 
-        " let g:neomake_open_list = 2
-        call neomake#configure#automake('nrwi', 500)
-
         let g:hardtime_default_on = 1
         let g:hardtime_showmsg = 1
         let g:hardtime_allow_different_key = 1
@@ -80,7 +86,7 @@ in
           \     'right': [ [ 'lineinfo' ],
           \            [ 'percent' ],
           \            [ 'fileformat', 'fileencoding', 'filetype' ],
-          \              ['neomake_warnings', 'neomake_errors', 'neomake_infos', 'neomake_ok']
+          \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
           \     ]
           \   },
           \   'component': {
@@ -93,10 +99,10 @@ in
         let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
         let g:lightline.component_expand = {
           \ 'buffers': 'lightline#bufferline#buffers',
-          \ 'neomake_infos': 'lightline#neomake#infos',
-          \ 'neomake_warnings': 'lightline#neomake#warnings',
-          \ 'neomake_errors': 'lightline#neomke#errors',
-          \ 'neomake_ok': 'lightline#neomake#ok',
+          \ 'linter_checking': 'lightline#ale#checking',
+          \ 'linter_warnings': 'lightline#ale#warnings',
+          \ 'linter_errors': 'lightline#ale#errors',
+          \ 'linter_ok': 'lightline#ale#ok',
           \ }
         if !empty($DISPLAY)
           let g:lightline.separator = {
@@ -110,9 +116,10 @@ in
         endif
         let g:lightline.component_type   = {
           \ 'buffers': 'tabsel',
-          \ 'neomake_warnings': 'warning',
-          \ 'neomake_errors': 'error',
-          \ 'neomake_ok': 'left',
+          \ 'linter_checking': 'left',
+          \ 'linter_warnings': 'warning',
+          \ 'linter_errors': 'error',
+          \ 'linter_ok': 'left',
           \}
         set showtabline=2
         autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
@@ -121,14 +128,14 @@ in
         '' + lscConfig.customRC;
         vam.knownPlugins = pkgs.vimPlugins // customPlugins // lscConfig.customPlugins;
         vam.pluginDictionaries = [
+          { name = "ale"; }
           { name = "commentary"; }
           { name = "fugitive"; }
           { name = "fzf-vim"; }
           { name = "fzfWrapper"; }
+          { name = "lightline-ale"; }
           { name = "lightline-bufferline"; }
-          { name = "lightline-neomake"; }
           { name = "lightline-vim"; }
-          { name = "neomake"; }
           { name = "rainbow"; }
           { name = "repeat"; }
           { name = "surround"; }
