@@ -13,6 +13,7 @@
     jetbrains.idea-ultimate
     mine.ghc
     mine.steam
+    (with import <hie-nix> {}; hies)
     mine.vimgolf
     qbittorrent
     sbt
@@ -22,9 +23,4 @@
     vim
     vlc
   ];
-  lib = {
-    lsc = {
-      enable = true;
-    };
-  };
 }

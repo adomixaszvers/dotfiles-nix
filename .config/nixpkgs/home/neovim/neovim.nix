@@ -1,6 +1,5 @@
 { pkgs, config, ... }:
 let
-  lscConfig = import ./lscConfig.nix { inherit pkgs config; lib = pkgs.lib;};
   customPlugins = {
     lightline-ale = pkgs.vimUtils.buildVimPlugin {
       name = "lightline-ale";
@@ -74,6 +73,8 @@ in
 
         let g:rainbow_active = 1
         map <leader>f :Files<CR>
+        map <leader>n <Plug>(ale_next_wrap)
+        map <leader>p <Plug>(ale_previous_wrap)
         noremap - -
         set updatetime=100
 
@@ -125,8 +126,8 @@ in
         autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
         set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-        '' + lscConfig.customRC;
-        vam.knownPlugins = pkgs.vimPlugins // customPlugins // lscConfig.customPlugins;
+        '';
+        vam.knownPlugins = pkgs.vimPlugins // customPlugins;
         vam.pluginDictionaries = [
           { name = "ale"; }
           { name = "commentary"; }
@@ -146,7 +147,7 @@ in
           { name = "vim-polyglot"; }
           { name = "vim-unimpaired"; }
           { name = "vinegar"; }
-        ] ++ lscConfig.pluginDictionaries;
+        ];
       };
     };
   }
