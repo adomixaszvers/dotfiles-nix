@@ -83,6 +83,5 @@
     uid = 1000;
     extraGroups = [ "wheel" ];
     shell = pkgs.zsh;
-    packages = [ pkgs.vcsh ];
   };
 }

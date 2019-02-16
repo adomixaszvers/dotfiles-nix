@@ -73,7 +73,6 @@
       ripgrep
       rxvt_unicode-with-plugins
       tree
-      vcsh
       w3m # for ranger image previews
       xarchiver
       xfce.gvfs
