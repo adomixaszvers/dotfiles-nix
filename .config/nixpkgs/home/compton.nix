@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   services.compton = {
-    enable = true;
+    enable = config.xsession.enable;
     extraOptions = ''
       inactive-dim = 0.1
     '';
