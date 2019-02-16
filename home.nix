@@ -189,9 +189,8 @@
         precmd_functions+=(_fix_cursor)
       '';
       shellAliases = {
-        he = "(cd ~/.config/nixpkgs && vcsh run nixos nvim)";
-        vn = "vcsh nixos";
-        vns = "vcsh status nixos";
+        he = "(hcd && nvim)";
+        hcd = "cd ~/.config/nixpkgs";
       };
     };
     services.network-manager-applet.enable = true;
