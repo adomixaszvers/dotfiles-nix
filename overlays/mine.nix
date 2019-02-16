@@ -29,6 +29,7 @@ self: super:
         gdk_pixbuf
         glib
         gnome3.gtk
+        lsb-release
         pango
         xorg.libxcb
         zlib
