@@ -4,7 +4,20 @@
   };
   programs.emacs = {
     enable = true;
-    extraPackages = epkgs: with epkgs; [ evil evil-collection evil-leader fzf ivy counsel counsel-projectile swiper nix-mode evil-magit ];
+    extraPackages = epkgs: with epkgs; [
+      counsel
+      counsel-projectile
+      evil
+      evil-collection
+      evil-leader
+      evil-magit
+      flycheck
+      fzf
+      ivy
+      nix-mode
+      swiper
+      use-package
+    ];
   };
   services.emacs.enable = true;
 }
