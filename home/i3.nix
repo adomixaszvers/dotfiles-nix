@@ -40,7 +40,11 @@ in {
         "${workspace10}" = [{ class="^Spotify"; }];
       };
       bars = [{
-        statusCommand = "bumblebee-status -m title cpu memory layout pasink datetime -t iceberg-rainbow -p memory.format=\"{used}/{total}\"";
+        statusCommand = ''
+          bumblebee-status -m title cpu memory disk layout pasink datetime \
+            -t iceberg-rainbow \
+            -p memory.format="{used}/{total}" disk.format="{percent:05.02f}%"
+        '';
         fonts = [ "NotoMono Nerd Font 9" ];
         colors = with config.lib.colors; {
           activeWorkspace = { background = background; border = background; text = whiteb; };
