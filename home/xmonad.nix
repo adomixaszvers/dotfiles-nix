@@ -1,10 +1,9 @@
-{pkgs, config, ...}:
+{pkgs, lib, config, ... }:
 {
-  home.packages = pkgs.lib.optionals
-    config.xsession.windowManager.xmonad.enable [ pkgs.xorg.xmessage ];
+  home.packages = [ pkgs.xorg.xmessage ];
   xsession.windowManager.xmonad = {
-    enable = false;
+    enable = true;
     enableContribAndExtras = true;
-    config = ~/.config/nixpkgs/home/dotfiles/xmonad.hs;
+    config = ./dotfiles/xmonad.hs;
   };
 }

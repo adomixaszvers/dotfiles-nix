@@ -9,10 +9,11 @@
     ./home/compton.nix
     ./home/colors.nix
     ./home/dunst.nix
+    # ./home/emacs.nix
     ./home/i3.nix
     ./home/neovim
     ./home/termite.nix
-    ./home/xmonad.nix
+    # ./home/xmonad.nix
   ];
   gtk = {
     enable = true;
