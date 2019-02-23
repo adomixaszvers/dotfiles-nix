@@ -46,6 +46,8 @@ in
 
         strip-wsnumbers = true;
 
+        label-mode-background = colors.background;
+
         label-unfocused-padding = 1;
 
         label-focused-background = colors.background;
