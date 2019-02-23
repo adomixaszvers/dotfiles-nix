@@ -34,7 +34,6 @@
     enableFontDir = true;
     enableGhostscriptFonts = true;
     enableDefaultFonts = true;
-    fonts = [ pkgs.nerdfonts ];
   };
 
   sound.enable = true;
