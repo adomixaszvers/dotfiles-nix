@@ -189,6 +189,7 @@
         precmd_functions+=(_fix_cursor)
       '';
       shellAliases = {
+        em = "emacsclient -t";
         he = "(hcd && nvim)";
         hcd = "cd ~/.config/nixpkgs";
       };
