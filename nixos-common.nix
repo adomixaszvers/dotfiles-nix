@@ -64,6 +64,7 @@
   services.nixosManual.showManual = true;
 
   services.xserver.enable = true;
+  services.xserver.exportConfiguration = true;
   services.xserver.layout = "lt,us";
   services.xserver.displayManager.lightdm.enable = true;
 
