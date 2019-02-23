@@ -17,7 +17,7 @@
    kept-new-versions 6
    kept-old-versions 2
    version-control t)       ; use versioned backups
-(set-frame-font "FuraMono Nerd Font-9")
+(set-frame-font "FuraMono Nerd Font Mono-9")
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)

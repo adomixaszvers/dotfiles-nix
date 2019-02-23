@@ -39,6 +39,7 @@ in {
         "${workspace6}" = [{ class="^libreoffice"; }];
         "${workspace10}" = [{ class="^Spotify"; }];
       };
+      /*
       bars = [{
         statusCommand = ''
           bumblebee-status -m title cpu memory disk layout pasink datetime \
@@ -54,7 +55,8 @@ in {
           statusline = white;
           urgentWorkspace = { background = redb; border = red; text = whiteb; };
         };
-      }];
+      }]; */
+      bars = [];
       colors = with config.lib.colors; {
         background = black;
         focused = { background = background; border = background; text = whiteb; indicator = blackb; childBorder = cyan; };
