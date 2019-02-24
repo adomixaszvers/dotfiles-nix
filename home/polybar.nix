@@ -78,6 +78,7 @@ in
 
       "module/title" = {
         type = "internal/xwindow";
+        label-maxlen = 50;
       };
     };
     script = ''
