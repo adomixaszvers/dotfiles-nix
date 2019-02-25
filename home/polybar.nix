@@ -11,9 +11,10 @@ in
     config = {
       "bar/bottom" = {
         bottom = true;
+        enable-ipc = true;
         font-0 = "FuraMono Nerd Font Mono:pixelsize=10;2";
         width = "100%";
-        height = 16;
+        height = 20;
         radius = 0;
         background = colors.black;
         foreground = colors.white;
@@ -23,6 +24,7 @@ in
         modules-right = "cpu memory disk keyboard pulse date";
 
         tray-position = "right";
+        tray-max-size = 16;
       };
       "module/cpu" = {
         type = "internal/cpu";
@@ -38,7 +40,7 @@ in
       "module/disk" = {
         type = "internal/fs";
         mount-0 = "/";
-        mount-1 = "/home";
+        # mount-1 = "/home";
         label-mounted = "%mountpoint%%percentage_used%";
       };
       "module/i3" = {

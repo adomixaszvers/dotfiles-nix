@@ -171,6 +171,7 @@ in {
       startup = [
         { command = "feh --bg-max --image-bg white ~/wallpaper.png"; always = true; notification = false; }
         # { command = with (import ./polybar {inherit pkgs config; }); "${launch}"; always = true; notification = false; }
+        { command = "polybar-msg cmd restart"; always = true; notification = false; }
       ];
       window.border = 3;
       window.commands = [
