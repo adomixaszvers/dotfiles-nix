@@ -162,6 +162,8 @@
     programs.zsh = {
       defaultKeymap = "viins";
       enable = true;
+      enableAutosuggestions = true;
+      enableCompletion = true;
       initExtra = ''
         # Remove mode switching delay.
         KEYTIMEOUT=5
