@@ -8,6 +8,7 @@
     exercism
     firefox
     gtypist
+    klavaro
     mine.steam
     mine.vimgolf
     qbittorrent

@@ -69,6 +69,7 @@
       meld
       mine.bumblebee-status
       ncdu
+      ncpamixer
       p7zip
       pcmanfm
       ranger
