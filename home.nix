@@ -6,6 +6,7 @@
   in
   [
     hostSpecific
+    # ./home/bspwm.nix
     ./home/compton.nix
     ./home/colors.nix
     ./home/dunst.nix
