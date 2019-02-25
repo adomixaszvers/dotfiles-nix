@@ -7,16 +7,16 @@
     extraPackages = epkgs: with epkgs; [
       counsel
       counsel-projectile
-      evil
-      evil-collection
-      evil-leader
-      evil-magit
+      dashboard
       flycheck
+      flx
       fzf
       ivy
+      magit
       nix-mode
       swiper
       use-package
+      which-key
     ];
   };
   services.emacs.enable = true;
