@@ -1,0 +1,104 @@
+* Display
+** Relative Numbers
+#+BEGIN_SRC emacs-lisp
+  (setq-default display-line-numbers-type 'relative
+		display-line-numbers-current-absolute t
+		display-line-numbers-width 4
+		display-line-numbers-widen t)
+  (setq display-line-numbers 'relative)
+  (add-hook 'text-mode-hook #'display-line-numbers-mode)
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+#+END_SRC
+** Font
+#+BEGIN_SRC emacs-lisp
+  (set-default-font "FuraMono Nerd Font Mono-9")
+#+END_SRC
+* Quality of life changes
+** y or n
+#+BEGIN_SRC emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+* Backups
+** Don't clobber symlinks
+#+BEGIN_SRC emacs-lisp
+  (setq backup-by-copying t)
+#+END_SRC
+** Don't litter filesytem tree
+#+BEGIN_SRC emacs-lisp
+  (setq backup-directory-alist
+   '(("." . "~/.emacs-saves/")))
+#+END_SRC
+** Use versioned backups
+#+BEGIN_SRC emacs-lisp
+  (setq delete-old-versions t
+   kept-new-versions 6
+   kept-old-versions 2
+   version-control t)
+#+END_SRC
+* Packages
+** We will use use-package macro
+#+BEGIN_SRC emacs-lisp
+  (require 'use-package)
+#+END_SRC
+** Counsel
+#+BEGIN_SRC emacs-lisp
+  (use-package counsel
+    :config
+    (counsel-mode 1))
+#+END_SRC
+** Counsel Projectile
+#+BEGIN_SRC emacs-lisp
+  (use-package projectile
+    :config
+    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  (use-package counsel-projectile
+    :after (counsel projectile)
+    :config
+    (counsel-projectile-mode 1))
+#+END_SRC
+** Dashboard
+#+BEGIN_SRC emacs-lisp
+  (use-package dashboard
+    :init
+    (setq dashboard-items '((recents  . 5)
+			  (bookmarks . 5)
+			  (projects . 5)
+			  (agenda . 5)
+			  (registers . 5)))
+    (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+    :config
+    (dashboard-setup-startup-hook))
+#+END_SRC
+** Flycheck
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :config
+    (global-flycheck-mode))
+#+END_SRC
+** Ivy
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy
+    :init
+    (setq ivy-display-style 'fancy)
+    (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+    :config
+    (ivy-mode 1))
+#+END_SRC
+** Magit
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :config
+    (global-magit-file-mode))
+#+END_SRC
+** Swiper
+#+BEGIN_SRC emacs-lisp
+  (use-package swiper
+    :bind
+    (("C-s" . swiper)))
+#+END_SRC
+** Which key
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :config
+    (which-key-mode))
+#+END_SRC
