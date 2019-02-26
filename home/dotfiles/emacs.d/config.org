@@ -1,3 +1,4 @@
+#+PROPERTY: header-args :tangle config.el
 * Display
 ** Relative Numbers
 #+BEGIN_SRC emacs-lisp
@@ -69,36 +70,15 @@
     :config
     (dashboard-setup-startup-hook))
 #+END_SRC
-** Flycheck
+** Doom themes
 #+BEGIN_SRC emacs-lisp
-  (use-package flycheck
-    :config
-    (global-flycheck-mode))
-#+END_SRC
-** Ivy
-#+BEGIN_SRC emacs-lisp
-  (use-package ivy
+  (use-package doom-themes
     :init
-    (setq ivy-display-style 'fancy)
-    (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+    ;; Global settings (defaults)
+    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+	  doom-themes-enable-italic t) ; if nil, italics is universally disabled
     :config
-    (ivy-mode 1))
-#+END_SRC
-** Magit
-#+BEGIN_SRC emacs-lisp
-  (use-package magit
-    :config
-    (global-magit-file-mode))
-#+END_SRC
-** Swiper
-#+BEGIN_SRC emacs-lisp
-  (use-package swiper
-    :bind
-    (("C-s" . swiper)))
-#+END_SRC
-** Which key
-#+BEGIN_SRC emacs-lisp
-  (use-package which-key
-    :config
-    (which-key-mode))
-#+END_SRC
+    ;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
+    ;; may have their own settings.
+    (load-theme 'doom-one t)
+

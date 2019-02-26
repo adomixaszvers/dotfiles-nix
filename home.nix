@@ -216,6 +216,7 @@
     };
 
     xresources.properties = with config.lib.colors; {
+      "Emacs.font" = "FuraMono Nerd Font Mono-9";
       "URxvt*font" = "xft:SauceCodePro Nerd Font Mono:size=10";
       "URxvt.perl-ext-common" = "default,matcher,selection-to-clipboard,font-size";
       "URxvt.url-launcher" = "/usr/bin/xdg-open";
