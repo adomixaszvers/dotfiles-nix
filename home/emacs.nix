@@ -9,7 +9,7 @@
       installPhase = ''
         mkdir $out
         cp -r $src/* $out
-        ${pkgs.emacs}/bin/emacs --batch --file $out/config.org --eval "(org-babel-tangle)"
+        emacs --batch --file $out/config.org --eval "(org-babel-tangle)"
       '';
     };
     recursive = true;
