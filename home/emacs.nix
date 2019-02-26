@@ -21,6 +21,8 @@
       counsel-projectile
       dashboard
       doom-themes
+      evil
+      evil-collection
       flycheck
       flx
       fzf

@@ -87,6 +87,21 @@
     ;; may have their own settings.
     (load-theme 'doom-one t))
 #+END_SRC
+** Evil
+#+BEGIN_SRC emacs-lisp
+  (use-package evil
+    :init
+    (setq evil-want-integration nil) ;; This is optional since it's already set to t by default.
+    (setq evil-want-keybinding nil)
+    (setq evil-want-C-u-scroll t)
+    :config
+    (evil-mode 1))
+
+  (use-package evil-collection
+    :after evil
+    :config
+    (evil-collection-init))
+#+END_SRC
 ** Flycheck
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
