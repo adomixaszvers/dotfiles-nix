@@ -1,5 +1,11 @@
 #+PROPERTY: header-args :tangle config.el
 * Display
+** Ediff
+#+BEGIN_SRC emacs-lisp
+  (setq ediff-split-window-function 'split-window-horizontally
+      ediff-window-setup-function 'ediff-setup-windows-plain)
+  (add-hook 'ediff-prepare-buffer-hook #'outline-show-all)
+#+END_SRC
 ** Relative Numbers
 #+BEGIN_SRC emacs-lisp
   (setq-default display-line-numbers-type 'relative
