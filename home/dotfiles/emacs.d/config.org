@@ -104,6 +104,7 @@
 #+BEGIN_SRC emacs-lisp
   (use-package evil
     :init
+    (setq evil-search-module 'evil-search)
     (setq evil-want-integration nil) ;; This is optional since it's already set to t by default.
     (setq evil-want-keybinding nil)
     (setq evil-want-C-u-scroll t)
