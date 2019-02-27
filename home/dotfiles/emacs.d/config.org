@@ -141,6 +141,8 @@
 ** Spaceline
 #+BEGIN_SRC emacs-lisp
   (use-package spaceline
+    :init
+    (setq powerline-default-separator 'wave)
     :config
     (spaceline-spacemacs-theme))
 #+END_SRC
