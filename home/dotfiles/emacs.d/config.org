@@ -7,6 +7,10 @@
   (add-hook 'ediff-prepare-buffer-hook
     (lambda () (when (eq major-mode 'org-mode) (outline-show-all))))
 #+END_SRC
+** Rainbow delimiters
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+#+END_SRC
 ** Relative Numbers
 #+BEGIN_SRC emacs-lisp
   (setq-default display-line-numbers-type 'relative
