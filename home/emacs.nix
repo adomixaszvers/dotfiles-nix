@@ -32,6 +32,7 @@
       nix-mode
       powerline
       swiper
+      spaceline
       use-package
       which-key
     ];

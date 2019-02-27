@@ -138,6 +138,12 @@
     :config
     (global-magit-file-mode))
 #+END_SRC
+** Spaceline
+#+BEGIN_SRC emacs-lisp
+  (use-package spaceline
+    :config
+    (spaceline-spacemacs-theme))
+#+END_SRC
 ** Swiper
 #+BEGIN_SRC emacs-lisp
   (use-package swiper
