@@ -25,7 +25,7 @@
 #+BEGIN_SRC emacs-lisp
   (set-default-font "FuraMono Nerd Font Mono-9")
 #+END_SRC
-** Menu and toolbar
+** Disable menu and toolbar
 #+BEGIN_SRC emacs-lisp
   (menu-bar-mode -1)
   (tool-bar-mode -1)
