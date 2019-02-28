@@ -1,2 +1,2 @@
-((nil . ((compile-command . "home-manager switch")
+((nil . ((projectile-project-compilation-cmd . "home-manager switch")
 	 )))
