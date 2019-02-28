@@ -31,6 +31,7 @@
       magit
       nix-mode
       powerline
+      org-bullets
       rainbow-delimiters
       swiper
       spaceline
