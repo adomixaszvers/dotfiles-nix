@@ -49,6 +49,10 @@
    )
 #+END_SRC
 * Quality of life changes
+** Disable indent tabs mode
+#+BEGIN_SRC emacs-lisp
+  (setq-default indent-tabs-mode nil)
+#+END_SRC
 ** y or n
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
