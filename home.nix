@@ -32,7 +32,10 @@
     enable = true;
     useGtkTheme = true;
   };
-  home.keyboard.layout = "lt,us";
+  home.keyboard = {
+    layout = "lt,us";
+    options = [ "ctrl:nocaps" ];
+  };
   home.file."vim-cheatsheet.png" = {
     source =  pkgs.fetchurl {
       url = "http://i.imgur.com/YLInLlY.png";
