@@ -24,6 +24,7 @@
       doom-themes
       evil
       evil-collection
+      format-all
       flycheck
       flx
       fzf
