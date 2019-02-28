@@ -17,9 +17,10 @@
                 display-line-numbers-current-absolute t
                 display-line-numbers-width 4
                 display-line-numbers-widen t)
-  (setq display-line-numbers 'relative)
   (add-hook 'text-mode-hook #'display-line-numbers-mode)
   (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+  (add-hook 'display-line-numbers-mode-hook
+            (lambda () (setq-local display-line-numbers (if (eq major-mode 'org-mode) 'visual 'relative))))
 #+END_SRC
 ** Font
 #+BEGIN_SRC emacs-lisp
