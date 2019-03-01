@@ -58,6 +58,11 @@
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
+** Disable checkdoc in org source blocks
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'org-src-mode-hook (lambda ()
+    (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
+#+END_SRC
 * Backups
 ** Don't clobber symlinks
 #+BEGIN_SRC emacs-lisp
@@ -102,7 +107,8 @@
     :init
     (setq safe-local-variable-values
           (quote
-           ((projectile-project-compilation-cmd . "home-manager switch"))))
+           ((projectile-project-compilation-cmd . "home-manager switch")
+           (flycheck-disabled-checkers . '(emacs-lisp-checkdoc)))))
     :config
     (counsel-projectile-mode 1))
 #+END_SRC
