@@ -41,4 +41,5 @@
       which-key
     ];
   };
+  services.emacs.enable = true;
 }
