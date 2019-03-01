@@ -18,25 +18,26 @@
     enable = true;
     extraPackages = epkgs: with epkgs; [
       beacon
+      company
       counsel
       counsel-projectile
       dashboard
       doom-themes
       evil
       evil-collection
-      format-all
-      flycheck
       flx
+      flycheck
+      format-all
       fzf
       geiser
       ivy
       magit
       nix-mode
-      powerline
       org-bullets
+      powerline
       rainbow-delimiters
-      swiper
       spaceline
+      swiper
       use-package
       which-key
     ];
