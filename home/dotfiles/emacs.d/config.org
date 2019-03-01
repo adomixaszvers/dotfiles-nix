@@ -49,6 +49,14 @@
    ;; If there is more than one, they won't work right.
    )
 #+END_SRC
+** Scroll compilation output
+#+BEGIN_SRC emacs-lisp
+  (setq compilation-scroll-output t)
+#+END_SRC
+** Trailing whitespace
+#+BEGIN_SRC emacs-lisp
+  (setq-default show-trailing-whitespace t)
+#+END_SRC
 * Quality of life changes
 ** Disable indent tabs mode
 #+BEGIN_SRC emacs-lisp
@@ -138,6 +146,18 @@
 
     ;; Corrects (and improves) org-mode's native fontification.
     (doom-themes-org-config))
+#+END_SRC
+*** Workaround for blue colors
+#+BEGIN_SRC emacs-lisp
+  (defun doom|init-theme ()
+    (load-theme 'doom-dracula t))
+  (defun doom|init-theme-in-frame (frame)
+    (with-selected-frame frame (doom|init-theme))
+    ;; Unregister this hook once its run
+    (remove-hook 'after-make-frame-functions 'doom|init-theme-in-frame))
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions 'doom|init-theme-in-frame)
+      (doom|init-theme))
 #+END_SRC
 ** Evil
 #+BEGIN_SRC emacs-lisp
