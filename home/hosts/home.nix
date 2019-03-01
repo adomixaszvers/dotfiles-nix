@@ -7,6 +7,7 @@
     discord
     exercism
     firefox
+    guile
     gtypist
     klavaro
     mine.steam

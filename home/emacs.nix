@@ -28,6 +28,7 @@
       flycheck
       flx
       fzf
+      geiser
       ivy
       magit
       nix-mode
