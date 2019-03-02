@@ -102,6 +102,8 @@
 ** Counsel Projectile
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
+    :init
+    (setq projectile-completion-system 'ivy)
     :config
     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
   (use-package counsel-projectile
