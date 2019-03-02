@@ -28,6 +28,7 @@ in {
       workspace4  = "4: ";
       workspace5  = "5: ";
       workspace6  = "6: ";
+      workspace7  = "7: ";
       workspace10  = "10: ";
     in {
       inherit modifier;
@@ -37,6 +38,7 @@ in {
         "${workspace4}" = [{ class="^Skype$"; }];
         "${workspace5}" = [{ class="^Steam$"; } { class="^SmartGit"; }];
         "${workspace6}" = [{ class="^libreoffice"; }];
+        "${workspace7}" = [{ class="^Emacs"; }];
         "${workspace10}" = [{ class="^Spotify"; }];
       };
       /*
@@ -130,7 +132,7 @@ in {
         "${modifier}+13" = "workspace ${workspace4}";
         "${modifier}+14" = "workspace ${workspace5}";
         "${modifier}+15" = "workspace ${workspace6}";
-        "${modifier}+16" = "workspace 7";
+        "${modifier}+16" = "workspace ${workspace7}";
         "${modifier}+17" = "workspace 8";
         "${modifier}+18" = "workspace 9";
         "${modifier}+19" = "workspace ${workspace10}";
@@ -141,7 +143,7 @@ in {
         "Shift+${modifier}+13" = "move container to workspace ${workspace4}";
         "Shift+${modifier}+14" = "move container to workspace ${workspace5}";
         "Shift+${modifier}+15" = "move container to workspace ${workspace6}";
-        "Shift+${modifier}+16" = "move container to workspace 7";
+        "Shift+${modifier}+16" = "move container to workspace ${workspace7}";
         "Shift+${modifier}+17" = "move container to workspace 8";
         "Shift+${modifier}+18" = "move container to workspace 9";
         "Shift+${modifier}+19" = "move container to workspace ${workspace10}";
