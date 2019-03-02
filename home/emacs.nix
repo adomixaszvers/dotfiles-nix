@@ -18,7 +18,6 @@
     enable = true;
     extraPackages = epkgs: with epkgs; [
       beacon
-      company
       counsel
       counsel-projectile
       dashboard
