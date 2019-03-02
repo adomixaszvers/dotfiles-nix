@@ -41,6 +41,7 @@
       swiper
       use-package
       which-key
+      zoom
     ];
   };
   services.emacs.enable = true;

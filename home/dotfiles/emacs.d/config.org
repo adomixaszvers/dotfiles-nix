@@ -208,3 +208,9 @@
     :config
     (which-key-mode))
 #+END_SRC
+** Zoom for better window sizes
+#+BEGIN_SRC emacs-lisp
+  (use-package zoom
+    :bind
+    (([remap balance-windows] . zoom)))
+#+END_SRC
