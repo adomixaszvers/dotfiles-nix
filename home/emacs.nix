@@ -31,6 +31,7 @@
       fzf
       geiser
       ivy
+      ivy-hydra
       magit
       nix-mode
       org-bullets

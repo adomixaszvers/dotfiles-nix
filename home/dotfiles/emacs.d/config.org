@@ -204,7 +204,7 @@
 #+BEGIN_SRC emacs-lisp
   (use-package swiper
     :bind
-    (("C-s" . swiper)))
+    (([remap isearch-forward] . swiper)))
 #+END_SRC
 ** Which key
 #+BEGIN_SRC emacs-lisp
