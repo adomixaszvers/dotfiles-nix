@@ -198,7 +198,7 @@
       '';
       shellAliases = {
         em = "emacsclient -t";
-        he = "(hcd && nvim)";
+        he = "(hcd && nvim $(fzf))";
         hcd = "cd ~/.config/nixpkgs";
       };
     };
