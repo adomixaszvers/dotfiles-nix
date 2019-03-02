@@ -46,7 +46,7 @@ in
       "module/i3" = {
         type = "internal/i3";
 
-        strip-wsnumbers = true;
+        strip-wsnumbers = false;
 
         label-mode-background = colors.background;
 
