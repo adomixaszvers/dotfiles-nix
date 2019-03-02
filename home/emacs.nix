@@ -36,6 +36,7 @@
       org-bullets
       powerline
       rainbow-delimiters
+      ripgrep
       spaceline
       swiper
       use-package
