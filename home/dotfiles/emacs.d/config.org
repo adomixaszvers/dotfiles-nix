@@ -1,4 +1,12 @@
 #+PROPERTY: header-args :tangle config.el
+* Package initialization
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  ;; optional. makes unpure packages archives unavailable
+  (setq package-archives nil)
+  (setq package-enable-at-startup nil)
+  (package-initialize)
+#+END_SRC
 * Display
 ** Ediff
 #+BEGIN_SRC emacs-lisp
@@ -89,6 +97,13 @@
   (use-package beacon
     :config
     (beacon-mode 1))
+#+END_SRC
+** Benchmark init
+#+BEGIN_SRC emacs-lisp
+  (use-package benchmark-init
+    :hook
+    ;; To disable collection of benchmark data after init is done.
+    (('after-init-hook . 'benchmark-init/deactivate)))
 #+END_SRC
 ** Counsel
 #+BEGIN_SRC emacs-lisp

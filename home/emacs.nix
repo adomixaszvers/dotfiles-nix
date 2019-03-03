@@ -18,6 +18,7 @@
     enable = true;
     extraPackages = epkgs: with epkgs; [
       beacon
+      benchmark-init
       counsel
       counsel-projectile
       dashboard
