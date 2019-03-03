@@ -73,8 +73,8 @@
       meld
       mine.bumblebee-status
       ncdu
-      ncpamixer
       p7zip
+      pavucontrol
       pcmanfm
       ranger
       ripgrep
