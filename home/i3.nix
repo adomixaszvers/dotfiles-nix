@@ -44,7 +44,6 @@ in {
         "${workspace7}" = [{ class="^Emacs"; }];
         "${workspace10}" = [{ class="^Spotify"; }];
       };
-      /*
       bars = [{
         statusCommand = ''
           bumblebee-status -m title cpu memory disk layout pasink datetime \
@@ -60,8 +59,8 @@ in {
           statusline = white;
           urgentWorkspace = { background = redb; border = red; text = whiteb; };
         };
-      }]; */
-      bars = [];
+      }];
+      # bars = [];
       colors = with config.lib.colors; {
         background = black;
         focused = { background = background; border = background; text = whiteb; indicator = blackb; childBorder = cyan; };
@@ -176,7 +175,7 @@ in {
       startup = [
         { command = "feh --bg-max --image-bg white ~/wallpaper.png"; always = true; notification = false; }
         # { command = with (import ./polybar {inherit pkgs config; }); "${launch}"; always = true; notification = false; }
-        { command = "polybar-msg cmd restart"; always = true; notification = false; }
+        # { command = "polybar-msg cmd restart"; always = true; notification = false; }
       ];
       window.border = 3;
       window.commands = [

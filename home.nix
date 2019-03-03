@@ -13,7 +13,7 @@
     # ./home/emacs.nix
     ./home/i3.nix
     ./home/neovim
-    ./home/polybar.nix
+    # ./home/polybar.nix
     ./home/termite.nix
     # ./home/xmonad.nix
   ];
