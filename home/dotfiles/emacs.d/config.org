@@ -37,7 +37,9 @@
 #+END_SRC
 ** Trailing whitespace
 #+BEGIN_SRC emacs-lisp
-  (setq-default show-trailing-whitespace t)
+  (let ((stw (lambda () (setq-local show-trailing-whitespace t))))
+      (add-hook 'text-mode-hook stw)
+      (add-hook 'prog-mode-hook stw))
 #+END_SRC
 * Quality of life changes
 ** Disable indent tabs mode
