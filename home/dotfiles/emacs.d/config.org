@@ -24,7 +24,7 @@
 #+END_SRC
 ** Font
 #+BEGIN_SRC emacs-lisp
-  (set-default-font "FuraMono Nerd Font Mono-9")
+  (set-frame-font "FuraMono Nerd Font Mono-9")
 #+END_SRC
 ** Disable menu and toolbar
 #+BEGIN_SRC emacs-lisp
@@ -33,7 +33,7 @@
 #+END_SRC
 ** Scroll compilation output
 #+BEGIN_SRC emacs-lisp
-  (setq compilation-scroll-output t)
+  (customize-set-variable 'compilation-scroll-output t)
 #+END_SRC
 ** Trailing whitespace
 #+BEGIN_SRC emacs-lisp
@@ -56,19 +56,19 @@
 * Backups
 ** Don't clobber symlinks
 #+BEGIN_SRC emacs-lisp
-  (setq backup-by-copying t)
+  (customize-set-variable 'backup-by-copying t)
 #+END_SRC
 ** Don't litter filesytem tree
 #+BEGIN_SRC emacs-lisp
-  (setq backup-directory-alist
+  (customize-set-variable 'backup-directory-alist
    '(("." . "~/.emacs-saves/")))
 #+END_SRC
 ** Use versioned backups
 #+BEGIN_SRC emacs-lisp
-  (setq delete-old-versions t
-   kept-new-versions 6
-   kept-old-versions 2
-   version-control t)
+  (customize-set-variable 'delete-old-versions t)
+  (customize-set-variable 'kept-new-versions 6)
+  (customize-set-variable 'kept-old-versions 2)
+  (customize-set-variable 'version-control t)
 #+END_SRC
 * Safe to load variables
 #+BEGIN_SRC emacs-lisp
@@ -79,7 +79,8 @@
 * Packages
 ** We will use use-package macro
 #+BEGIN_SRC emacs-lisp
-  (require 'use-package)
+  (eval-when-compile
+    (require 'use-package))
 #+END_SRC
 ** Beacon
 #+BEGIN_SRC emacs-lisp
@@ -96,8 +97,8 @@
 ** Counsel Projectile
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
-    :init
-    (setq projectile-completion-system 'ivy)
+    :custom
+    (projectile-completion-system 'ivy)
     :bind-keymap
     ("C-c p" . projectile-command-map))
   (use-package counsel-projectile
@@ -114,22 +115,19 @@
                           (projects . 5)
                           (agenda . 5)
                           (registers . 5)))
-    (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+    :custom
+    (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
     :config
     (dashboard-setup-startup-hook))
 #+END_SRC
 ** Doom themes
 #+BEGIN_SRC emacs-lisp
   (use-package doom-themes
-    :init
-    ;; Global settings (defaults)
-    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-          doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    :custom
+    (doom-themes-enable-bold t)
+    (doom-themes-enable-italic t)
     :config
-    ;; Enable flashing mode-line on errors
     (doom-themes-visual-bell-config)
-
-    ;; Corrects (and improves) org-mode's native fontification.
     (doom-themes-org-config))
 #+END_SRC
 *** Workaround for blue colors
@@ -148,10 +146,11 @@
 #+BEGIN_SRC emacs-lisp
   (use-package evil
     :init
-    (setq evil-search-module 'evil-search)
-    (setq evil-want-integration nil) ;; This is optional since it's already set to t by default.
     (setq evil-want-keybinding nil)
-    (setq evil-want-C-u-scroll t)
+    :custom
+    (evil-search-module 'evil-search)
+    (evil-want-integration nil)
+    (evil-want-C-u-scroll t)
     :config
     (evil-mode 1)
     (evil-set-initial-state 'dashboard-mode 'emacs))
@@ -171,8 +170,9 @@
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
     :init
-    (setq ivy-display-style 'fancy)
     (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+    :custom
+    (ivy-display-style 'fancy)
     :config
     (ivy-mode 1))
 #+END_SRC
@@ -191,8 +191,8 @@
 ** Spaceline
 #+BEGIN_SRC emacs-lisp
   (use-package spaceline
-    :init
-    (setq powerline-default-separator 'wave)
+    :custom
+    (powerline-default-separator 'wave)
     :config
     (spaceline-spacemacs-theme))
 #+END_SRC
