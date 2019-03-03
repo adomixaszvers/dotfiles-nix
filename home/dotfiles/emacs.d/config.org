@@ -154,11 +154,20 @@
     :config
     (evil-mode 1)
     (evil-set-initial-state 'dashboard-mode 'emacs))
-
+#+END_SRC
+*** Evil collection
+#+BEGIN_SRC emacs-lisp
   (use-package evil-collection
     :after evil
     :config
     (evil-collection-init))
+#+END_SRC
+*** Evil commentary
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-commentary
+    :after evil
+    :config
+    (evil-commentary-mode))
 #+END_SRC
 ** Flycheck
 #+BEGIN_SRC emacs-lisp

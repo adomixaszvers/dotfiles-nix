@@ -24,6 +24,7 @@
       doom-themes
       evil
       evil-collection
+      evil-commentary
       flx
       flycheck
       format-all
