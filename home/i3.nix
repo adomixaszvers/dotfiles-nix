@@ -33,7 +33,10 @@ in {
     in {
       inherit modifier;
       assigns = {
-        "${workspace1}" = [{ class = "^Google-chrome\$"; }];
+        "${workspace1}" = [
+          { class = "^Google-chrome\$"; }
+          { class = "^Firefox\$"; }
+        ];
         "${workspace3}" = [{ class="^(Atom|jetbrains-idea)\$"; }];
         "${workspace4}" = [{ class="^Skype$"; }];
         "${workspace5}" = [{ class="^Steam$"; } { class="^SmartGit"; }];
