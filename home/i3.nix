@@ -38,7 +38,10 @@ in {
           { class = "^Firefox\$"; }
         ];
         "${workspace3}" = [{ class="^(Atom|jetbrains-idea)\$"; }];
-        "${workspace4}" = [{ class="^Skype$"; }];
+        "${workspace4}" = [
+            { class="^Skype$"; }
+            { class="^Rocket\\.Chat"; }
+        ];
         "${workspace5}" = [{ class="^Steam$"; } { class="^SmartGit"; }];
         "${workspace6}" = [{ class="^libreoffice"; }];
         "${workspace7}" = [{ class="^Emacs"; }];
