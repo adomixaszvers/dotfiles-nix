@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  imports = [ ../emacs.nix ];
   home.packages = with pkgs;
   [
     docker
@@ -10,21 +11,23 @@
     jq
     libreoffice-fresh
     maven
-    mine.consul
+    # mine.consul
     nodejs
     robo3t
-    skype
+    # skype
     smartgithg
     traceroute
     unzip
     visualvm
     whois
-    yarn
+    # yarn
   ];
   home.sessionVariables = {
     BROWSER = "${pkgs.google-chrome}/bin/google-chrome-stable";
   };
-  xsession.windowManager.i3.config.startup = [
-    { command = "skypeforlinux"; notification = false; }
-  ];
+  services.screen-locker = {
+    enable = true;
+    inactiveInterval = 5;
+    lockCmd = "i3lock -n";
+  };
 }

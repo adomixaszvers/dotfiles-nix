@@ -96,49 +96,30 @@
       enable = true;
       profiles = {
         work = {
-          fingerprint = {
-            VGA1 = "00ffffffffffff004c2daa085637555a021701030e301b782a90c1a259559c270e5054bfef80714f81c0810081809500a9c0b3000101023a801871382d40582c4500dd0c1100001e000000fd00384b1e5111000a202020202020000000fc00533232423330300a2020202020000000ff00484d42443130313132390a202000b4";
-            eDP1 = "00ffffffffffff0006afec46000000000f15010490221378020bb59757548c2623505400000001010101010101010101010101010101ce1d56e250001e302616360058c110000018df1356e250001e302616360058c11000001800000000000000000000000000000000000000000002000d48ff0a3c64140e1a682020200039";
-          };
-          config = {
-            HDMI1.enable = false;
-            VIRTUAL1.enable = false;
-            VGA1 = {
-              enable = true;
-              primary = true;
-              position = "0x0";
-              mode = "1920x1080";
-              rate = "60.00";
+            fingerprint = {
+                DP1 = "00ffffffffffff0022f06e32010101012b1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e43363433303832370a20200019";
+                DP2 = "00ffffffffffff0022f06e32010101010e1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e433631343036364d0a20200020";
             };
-            eDP1 = {
-              mode = "1366x768";
-              position = "1920x0";
-              rate = "60.06";
+            config = {
+                HDMI1.enable = false;
+                HDMI2.enable = false;
+                VGA1.enable = false;
+                VIRTUAL1.enable = false;
+                DP2 = {
+                    enable = true;
+                    primary = true;
+                    position = "0x0";
+                    rate = "59.95";
+                    mode = "1920x1200";
+                };
+                DP1 = {
+                    enable = true;
+                    position = "1920x0";
+                    rate = "59.95";
+                    mode = "1920x1200";
+                };
             };
-          };
-        };
-        work2 = {
-          fingerprint = {
-            VGA1 = "00ffffffffffff004c2db90c51555a5a311c01030e341d782a2cc1a45650a1280f5054bfef80714f81c0810081809500a9c0b3000101023a801871382d40582c450009252100001e000000fd00384b1e5111000a202020202020000000fc00533234453635300a2020202020000000ff0048345a4b4330303138380a2020002e";
-            eDP1 = "00ffffffffffff0006afec46000000000f15010490221378020bb59757548c2623505400000001010101010101010101010101010101ce1d56e250001e302616360058c110000018df1356e250001e302616360058c11000001800000000000000000000000000000000000000000002000d48ff0a3c64140e1a682020200039";
-          };
-          config = {
-            HDMI1.enable = false;
-            VIRTUAL1.enable = false;
-            VGA1 = {
-              enable = true;
-              primary = true;
-              position = "0x0";
-              mode = "1920x1080";
-              rate = "60.00";
-            };
-            eDP1 = {
-              mode = "1366x768";
-              position = "1920x0";
-              rate = "60.06";
-            };
-          };
-          hooks.postswitch = "systemctl --user restart compton.service && i3-msg restart";
+            hooks.postswitch = "systemctl --user restart compton.service && i3-msg restart";
         };
       };
     };
