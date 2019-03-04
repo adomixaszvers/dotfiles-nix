@@ -30,4 +30,10 @@
     inactiveInterval = 5;
     lockCmd = "i3lock -n";
   };
+  xsession.windowManager.i3.config.startup = [
+    # add services.flatpak.enable = true in OS configuration
+    # flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    # flatpak --user install flathub chat.rocket.RocketChat
+    { command = "flatpak run chat.rocket.RocketChat"; notification = false; }
+  ];
 }
