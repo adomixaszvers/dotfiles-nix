@@ -186,6 +186,16 @@
     :config
     (evil-commentary-mode))
 #+END_SRC
+*** Evil Magit
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-magit)
+#+END_SRC
+*** Evil Surround
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-surround
+    :config
+    (global-evil-surround-mode 1))
+#+END_SRC
 ** Flycheck
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck

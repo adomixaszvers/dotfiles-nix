@@ -26,6 +26,8 @@
       evil
       evil-collection
       evil-commentary
+      evil-magit
+      evil-surround
       flx
       flycheck
       format-all
