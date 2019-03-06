@@ -27,6 +27,7 @@
       evil-collection
       evil-commentary
       evil-magit
+      evil-org
       evil-surround
       flx
       flycheck

@@ -190,6 +190,18 @@
 #+BEGIN_SRC emacs-lisp
   (use-package evil-magit)
 #+END_SRC
+*** Evil Org
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-org
+    :after org
+    :config
+    (add-hook 'org-mode-hook 'evil-org-mode)
+    (add-hook 'evil-org-mode-hook
+              (lambda ()
+                (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))))
+    (require 'evil-org-agenda)
+    (evil-org-agenda-set-keys))
+#+END_SRC
 *** Evil Surround
 #+BEGIN_SRC emacs-lisp
   (use-package evil-surround
@@ -221,6 +233,7 @@
 ** Org bullets
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
+    :after org
     :hook
     (('org-mode . (lambda () (org-bullets-mode 1)))))
 #+END_SRC
