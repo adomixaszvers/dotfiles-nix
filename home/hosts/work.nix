@@ -14,7 +14,7 @@
     # mine.consul
     nodejs
     robo3t
-    # skype
+    skype
     smartgithg
     traceroute
     unzip
