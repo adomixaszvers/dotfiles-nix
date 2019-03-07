@@ -11,6 +11,7 @@
     jq
     libreoffice-fresh
     maven
+    mercurial
     # mine.consul
     nodejs
     robo3t
