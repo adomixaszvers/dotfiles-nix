@@ -15,10 +15,6 @@
   (add-hook 'ediff-prepare-buffer-hook
     (lambda () (when (eq major-mode 'org-mode) (outline-show-all))))
 #+END_SRC
-** Rainbow delimiters
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-#+END_SRC
 ** Relative Numbers
 #+BEGIN_SRC emacs-lisp
   (setq-default display-line-numbers-type 'relative
@@ -48,6 +44,10 @@
   (let ((stw (lambda () (setq-local show-trailing-whitespace t))))
       (add-hook 'text-mode-hook stw)
       (add-hook 'prog-mode-hook stw))
+#+END_SRC
+** Disable startup screen
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-startup-screen t)
 #+END_SRC
 * Quality of life changes
 ** Disable indent tabs mode
@@ -92,18 +92,18 @@
   (eval-when-compile
     (require 'use-package))
 #+END_SRC
+** Benchmark init
+#+BEGIN_SRC emacs-lisp
+  (use-package benchmark-init
+    :init
+    ;; To disable collection of benchmark data after init is done.
+    (add-hook 'after-init-hook #'benchmark-init/deactivate))
+#+END_SRC
 ** Beacon
 #+BEGIN_SRC emacs-lisp
   (use-package beacon
     :config
     (beacon-mode 1))
-#+END_SRC
-** Benchmark init
-#+BEGIN_SRC emacs-lisp
-  (use-package benchmark-init
-    :hook
-    ;; To disable collection of benchmark data after init is done.
-    (('after-init-hook . 'benchmark-init/deactivate)))
 #+END_SRC
 ** Counsel
 #+BEGIN_SRC emacs-lisp
@@ -129,9 +129,7 @@
     :init
     (setq dashboard-items '((recents  . 5)
                           (bookmarks . 5)
-                          (projects . 5)
-                          (agenda . 5)
-                          (registers . 5)))
+                          (projects . 5)))
     :custom
     (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
     :config
@@ -145,19 +143,8 @@
     (doom-themes-enable-italic t)
     :config
     (doom-themes-visual-bell-config)
-    (doom-themes-org-config))
-#+END_SRC
-*** Workaround for blue colors
-#+BEGIN_SRC emacs-lisp
-  (defun doom|init-theme ()
+    (doom-themes-org-config)
     (load-theme 'doom-dracula t))
-  (defun doom|init-theme-in-frame (frame)
-    (with-selected-frame frame (doom|init-theme))
-    ;; Unregister this hook once its run
-    (remove-hook 'after-make-frame-functions 'doom|init-theme-in-frame))
-  (if (daemonp)
-      (add-hook 'after-make-frame-functions 'doom|init-theme-in-frame)
-      (doom|init-theme))
 #+END_SRC
 ** Evil
 #+BEGIN_SRC emacs-lisp
@@ -188,7 +175,8 @@
 #+END_SRC
 *** Evil Magit
 #+BEGIN_SRC emacs-lisp
-  (use-package evil-magit)
+  (use-package evil-magit
+    :after magit)
 #+END_SRC
 *** Evil Org
 #+BEGIN_SRC emacs-lisp
@@ -207,14 +195,14 @@
 *** Evil Surround
 #+BEGIN_SRC emacs-lisp
   (use-package evil-surround
-    :config
-    (global-evil-surround-mode 1))
+    :hook
+    (prog-mode . evil-surround-mode))
 #+END_SRC
 ** Flycheck
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
-    :config
-    (global-flycheck-mode))
+    :hook
+    (prog-mode . flycheck-mode))
 #+END_SRC
 ** Ivy
 #+BEGIN_SRC emacs-lisp
@@ -229,15 +217,21 @@
 ** Magit
 #+BEGIN_SRC emacs-lisp
   (use-package magit
-    :config
-    (global-magit-file-mode))
+    :bind
+    ("C-x g" . magit-status))
 #+END_SRC
 ** Org bullets
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :after org
     :hook
-    (('org-mode . (lambda () (org-bullets-mode 1)))))
+    (org-mode . (lambda () (org-bullets-mode 1))))
+#+END_SRC
+** Rainbow delimiters
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+    :hook
+    (prog-mode . rainbow-delimiters-mode))
 #+END_SRC
 ** Spaceline
 #+BEGIN_SRC emacs-lisp
@@ -251,7 +245,7 @@
 #+BEGIN_SRC emacs-lisp
   (use-package swiper
     :bind
-    (([remap isearch-forward] . swiper)))
+    ("C-s" . swiper))
 #+END_SRC
 ** Which key
 #+BEGIN_SRC emacs-lisp
@@ -263,5 +257,5 @@
 #+BEGIN_SRC emacs-lisp
   (use-package zoom
     :bind
-    (([remap balance-windows] . zoom)))
+    ("C-x +" . zoom))
 #+END_SRC

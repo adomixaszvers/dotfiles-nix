@@ -49,5 +49,4 @@
       zoom
     ];
   };
-  services.emacs.enable = true;
 }
