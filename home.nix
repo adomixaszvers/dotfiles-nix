@@ -107,7 +107,6 @@
                 VIRTUAL1.enable = false;
                 DP2 = {
                     enable = true;
-                    primary = true;
                     position = "0x0";
                     rate = "59.95";
                     mode = "1920x1200";
@@ -115,6 +114,7 @@
                 DP1 = {
                     enable = true;
                     position = "1920x0";
+                    primary = true;
                     rate = "59.95";
                     mode = "1920x1200";
                 };
