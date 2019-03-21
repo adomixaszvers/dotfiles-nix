@@ -113,13 +113,9 @@
 #+END_SRC
 ** Counsel Projectile
 #+BEGIN_SRC emacs-lisp
-  (use-package projectile
-    :custom
-    (projectile-completion-system 'ivy)
-    :bind-keymap
-    ("C-c p" . projectile-command-map))
   (use-package counsel-projectile
-    :after (counsel projectile)
+    :bind-keymap
+    ("C-c p" . counsel-projectile-command-map)
     :config
     (counsel-projectile-mode 1))
 #+END_SRC
@@ -130,8 +126,6 @@
     (setq dashboard-items '((recents  . 5)
                           (bookmarks . 5)
                           (projects . 5)))
-    :custom
-    (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
     :config
     (dashboard-setup-startup-hook))
 #+END_SRC
