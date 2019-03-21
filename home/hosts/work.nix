@@ -3,7 +3,10 @@
   imports = [ ../emacs.nix ];
   home.packages = with pkgs;
   [
+    # mine.consul
+    # yarn
     docker
+    filezilla
     flameshot
     google-chrome
     jdk8
@@ -12,16 +15,15 @@
     libreoffice-fresh
     maven
     mercurial
-    # mine.consul
     nodejs
     robo3t
     skype
     smartgithg
+    sqldeveloper_18
     traceroute
     unzip
     visualvm
     whois
-    # yarn
   ];
   home.sessionVariables = {
     BROWSER = "${pkgs.google-chrome}/bin/google-chrome-stable";
