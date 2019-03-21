@@ -184,7 +184,6 @@
       };
     };
     services.network-manager-applet.enable = true;
-    services.gnome-keyring.enable = true;
     systemd.user.startServices = true;
 
     xdg = {
