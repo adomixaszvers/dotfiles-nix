@@ -1,13 +1,15 @@
 { pkgs, ... }:
 {
   imports = [ ../emacs.nix ];
-  home.packages = with pkgs;
+  home.packages = let unstable = import <nixos-unstable> {}; in with pkgs;
   [
     # mine.consul
     # yarn
+    (lowPrio  unstable.openjdk11)
     docker
     filezilla
     flameshot
+    gnome3.nautilus
     google-chrome
     jdk8
     jetbrains.idea-ultimate
@@ -16,11 +18,15 @@
     maven
     mercurial
     nodejs
+    remmina
     robo3t
+    samba
     skype
-    smartgithg
-    sqldeveloper_18
+    soapui
+    (sqldeveloper_18.override { jdk = openjdk; })
+    swagger-codegen
     traceroute
+    unstable.postman
     unzip
     visualvm
     whois
