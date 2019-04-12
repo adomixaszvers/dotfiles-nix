@@ -113,9 +113,11 @@
 #+END_SRC
 ** Counsel Projectile
 #+BEGIN_SRC emacs-lisp
-  (use-package counsel-projectile
+  (use-package projectile
     :bind-keymap
-    ("C-c p" . counsel-projectile-command-map)
+    ("C-c p" . projectile-command-map))
+  (use-package counsel-projectile
+    :after projectile
     :config
     (counsel-projectile-mode 1))
 #+END_SRC
@@ -147,7 +149,7 @@
     (setq evil-want-keybinding nil)
     :custom
     (evil-search-module 'evil-search)
-    (evil-want-integration nil)
+    (evil-want-integration t)
     (evil-want-C-u-scroll t)
     :config
     (evil-mode 1)
