@@ -30,7 +30,7 @@
   };
   qt = {
     enable = true;
-    useGtkTheme = true;
+    platformTheme = "gnome";
   };
   home.keyboard = {
     layout = "lt,us";
@@ -82,7 +82,6 @@
       tree
       w3m # for ranger image previews
       xarchiver
-      xfce.gvfs
       xsel
     ];
     home.sessionVariables = {
@@ -90,7 +89,7 @@
       TERMINAL = "termite";
       HIE_HOOGLE_DATABASE = "$HOME/.nix-profile/share/doc/hoogle/index.html";
     };
-    home.stateVersion = "18.09";
+    home.stateVersion = "19.03";
     manual.html.enable = true;
     programs.autorandr = {
       enable = true;
