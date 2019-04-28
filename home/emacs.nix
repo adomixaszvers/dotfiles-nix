@@ -22,6 +22,7 @@
       counsel
       counsel-projectile
       dashboard
+      direnv
       doom-themes
       evil
       evil-collection

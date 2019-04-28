@@ -126,6 +126,11 @@
       enable = true;
       historyControl = ["erasedups" "ignoredups" "ignorespace"];
     };
+    programs.direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
     programs.fzf = {
       changeDirWidgetCommand = "bfs -type d";
       defaultCommand = "rg --files";

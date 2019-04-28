@@ -131,6 +131,12 @@
     :config
     (dashboard-setup-startup-hook))
 #+END_SRC
+** Direnv
+#+BEGIN_SRC emacs-lisp
+  (use-package direnv
+    :config
+    (direnv-mode))
+#+END_SRC
 ** Doom themes
 #+BEGIN_SRC emacs-lisp
   (use-package doom-themes
