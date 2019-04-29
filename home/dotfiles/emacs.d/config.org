@@ -91,13 +91,7 @@
 #+BEGIN_SRC emacs-lisp
   (eval-when-compile
     (require 'use-package))
-#+END_SRC
-** Benchmark init
-#+BEGIN_SRC emacs-lisp
-  (use-package benchmark-init
-    :init
-    ;; To disable collection of benchmark data after init is done.
-    (add-hook 'after-init-hook #'benchmark-init/deactivate))
+  (require 'bind-key)
 #+END_SRC
 ** Beacon
 #+BEGIN_SRC emacs-lisp
@@ -224,6 +218,11 @@
     :bind
     ("C-x g" . magit-status))
 #+END_SRC
+** Nov Mode
+#+BEGIN_SRC emacs-lisp
+  (use-package nov
+    :mode ("\\.epub\\'" . nov-mode))
+#+END_SRC
 ** Org bullets
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
@@ -236,6 +235,10 @@
   (use-package rainbow-delimiters
     :hook
     (prog-mode . rainbow-delimiters-mode))
+#+END_SRC
+** Rust mode
+#+BEGIN_SRC emacs-lisp
+  (use-package rust-mode)
 #+END_SRC
 ** Spaceline
 #+BEGIN_SRC emacs-lisp

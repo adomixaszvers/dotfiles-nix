@@ -39,10 +39,13 @@
       ivy-hydra
       magit
       nix-mode
+      nov
       org-bullets
       powerline
+      racer
       rainbow-delimiters
       ripgrep
+      rust-mode
       spaceline
       swiper
       use-package
