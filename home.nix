@@ -80,6 +80,7 @@
       ripgrep
       rxvt_unicode-with-plugins
       tree
+      unzip
       w3m # for ranger image previews
       xarchiver
       xsel
@@ -263,6 +264,7 @@
   xsession.initExtra = ''
       autorandr --change
       unset SSH_ASKPASS
+      xset s off -dpms
   '';
   xsession.pointerCursor = {
     name = "capitaine-cursors";

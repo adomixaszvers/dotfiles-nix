@@ -7,11 +7,13 @@
     discord
     exercism
     firefox
-    guile
     gtypist
+    guile
+    jetbrains.idea-ultimate
     klavaro
     mine.steam
     mine.vimgolf
+    openjdk11
     qbittorrent
     torbrowser
     vim
