@@ -114,6 +114,8 @@
 ** Counsel Projectile
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
+    :custom
+    (projectile-completion-system 'ivy)
     :bind-keymap
     ("C-c p" . projectile-command-map))
   (use-package counsel-projectile
