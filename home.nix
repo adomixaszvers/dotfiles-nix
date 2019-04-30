@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 {
   imports = let
     current = ./home/hosts/current.nix;
@@ -31,7 +31,7 @@
   };
   qt = {
     enable = true;
-    platformTheme = "gnome";
+    platformTheme = "gtk";
   };
   home.keyboard = {
     layout = "lt,us";
@@ -189,7 +189,7 @@
         hcd = "cd ~/.config/nixpkgs";
       };
     };
-    services.network-manager-applet.enable = true;
+    services.network-manager-applet.enable = config.xsession.enable;
     systemd.user.startServices = true;
 
     xdg = {
@@ -261,7 +261,7 @@
       "*.color7" =       white;
       "*.color15" =      whiteb;
   };
-  xsession.enable = true;
+  xsession.enable = lib.mkDefault true;
   xsession.initExtra = ''
       autorandr --change
       unset SSH_ASKPASS

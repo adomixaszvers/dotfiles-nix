@@ -3,7 +3,7 @@ let colors = config.lib.colors;
 in
 {
   services.dunst = {
-    enable = true;
+    enable = config.xsession.enable;
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
