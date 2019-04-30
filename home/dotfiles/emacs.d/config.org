@@ -238,7 +238,8 @@
 #+END_SRC
 ** Rust mode
 #+BEGIN_SRC emacs-lisp
-  (use-package rust-mode)
+  (use-package rust-mode
+    :mode "\\.rs\\'")
 #+END_SRC
 ** Spaceline
 #+BEGIN_SRC emacs-lisp
