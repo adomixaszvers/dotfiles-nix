@@ -218,6 +218,11 @@
     :bind
     ("C-x g" . magit-status))
 #+END_SRC
+** Nix mode
+#+BEGIN_SRC emacs-lisp
+  (use-package nix-mode
+    :mode "\\.nix\\'")
+#+END_SRC
 ** Nov Mode
 #+BEGIN_SRC emacs-lisp
   (use-package nov
