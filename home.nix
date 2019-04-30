@@ -13,6 +13,7 @@
     # ./home/emacs.nix
     ./home/i3.nix
     ./home/neovim
+    ./home/alacritty.nix
     # ./home/polybar.nix
     ./home/termite.nix
     # ./home/xmonad.nix
@@ -193,9 +194,9 @@
 
     xdg = {
       enable = true;
-      configFile."alacritty/alacritty.yml" = {
-        text = import ./home/dotfiles/alacritty.yml.nix { inherit config; lib = pkgs.lib; };
-      };
+      # configFile."alacritty/alacritty.yml" = {
+      #   text = import ./home/dotfiles/alacritty.yml.nix { inherit config; lib = pkgs.lib; };
+      # };
       configFile."ranger/rc.conf" = {
         text = ''
           set preview_images true
