@@ -5,14 +5,18 @@
   [
     # mine.consul
     # yarn
-    (lowPrio  unstable.openjdk11)
+    (lowPrio jdk11)
+    (sqldeveloper_18.override { jdk = openjdk; })
     docker
+    docker-compose
+    docker-machine
     filezilla
     flameshot
     gnome3.nautilus
     google-chrome
     jdk8
     jetbrains.idea-ultimate
+    jetbrains.datagrip
     jq
     libreoffice-fresh
     maven
@@ -22,11 +26,13 @@
     robo3t
     samba
     skype
+    smartgithg
+    subversion
     soapui
-    (sqldeveloper_18.override { jdk = openjdk; })
+    steam
     swagger-codegen
     traceroute
-    unstable.postman
+    postman
     unzip
     visualvm
     whois
