@@ -35,6 +35,7 @@
       format-all
       fzf
       geiser
+      haskell-mode
       intero
       ivy
       ivy-hydra

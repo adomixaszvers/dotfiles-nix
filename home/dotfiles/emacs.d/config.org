@@ -207,6 +207,11 @@
   (use-package intero
     :hook (haskell-mode . intero-mode))
 #+END_SRC
+** Haskell mode
+#+BEGIN_SRC emacs-lisp
+  (use-package haskell-mode
+    :mode "\\.hs\\'")
+#+END_SRC
 ** Ivy
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
