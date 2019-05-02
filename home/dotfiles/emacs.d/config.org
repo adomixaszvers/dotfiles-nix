@@ -202,6 +202,11 @@
     :hook
     (prog-mode . flycheck-mode))
 #+END_SRC
+** Intero
+#+BEGIN_SRC emacs-lisp
+  (use-package intero
+    :hook (haskell-mode . intero-mode))
+#+END_SRC
 ** Ivy
 #+BEGIN_SRC emacs-lisp
   (use-package ivy

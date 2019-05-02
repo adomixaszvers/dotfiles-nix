@@ -35,6 +35,7 @@
       format-all
       fzf
       geiser
+      intero
       ivy
       ivy-hydra
       magit
