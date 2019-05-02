@@ -36,6 +36,7 @@
       fzf
       geiser
       haskell-mode
+      hindent
       intero
       ivy
       ivy-hydra

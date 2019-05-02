@@ -212,6 +212,12 @@
   (use-package haskell-mode
     :mode "\\.hs\\'")
 #+END_SRC
+** Hindent
+#+BEGIN_SRC emacs-lisp
+  (use-package hindent
+    :hook
+    (haskell-mode . hindent-mode))
+#+END_SRC
 ** Ivy
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
