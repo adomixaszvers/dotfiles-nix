@@ -205,6 +205,9 @@
 ** Intero
 #+BEGIN_SRC emacs-lisp
   (use-package intero
+    :config
+    (flycheck-add-next-checker 'intero
+                             '(warning . haskell-hlint))
     :hook (haskell-mode . intero-mode))
 #+END_SRC
 ** Haskell mode
