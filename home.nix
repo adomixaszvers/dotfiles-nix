@@ -6,12 +6,13 @@
   in
   [
     hostSpecific
+    ./home/awesome.nix
     # ./home/bspwm.nix
     ./home/compton.nix
     ./home/colors.nix
     ./home/dunst.nix
     # ./home/emacs.nix
-    ./home/i3.nix
+    # ./home/i3.nix
     ./home/neovim
     ./home/alacritty.nix
     # ./home/polybar.nix

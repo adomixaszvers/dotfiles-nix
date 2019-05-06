@@ -40,6 +40,7 @@
       intero
       ivy
       ivy-hydra
+      lua-mode
       magit
       nix-mode
       nov
