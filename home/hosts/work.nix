@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [ ../emacs.nix ];
   home.packages = let unstable = import <nixos-unstable> {}; in with pkgs;
   [
     # mine.consul
@@ -15,25 +14,26 @@
     gnome3.nautilus
     google-chrome
     jdk8
-    jetbrains.idea-ultimate
     jetbrains.datagrip
+    jetbrains.idea-ultimate
     jq
     libreoffice-fresh
     maven
     mercurial
     nodejs
+    postman
     remmina
     robo3t
     samba
     skype
     smartgithg
-    subversion
     soapui
     steam
+    subversion
     swagger-codegen
     traceroute
-    postman
     unzip
+    vagrant
     visualvm
     whois
   ];

@@ -11,7 +11,7 @@
     ./home/compton.nix
     ./home/colors.nix
     ./home/dunst.nix
-    # ./home/emacs.nix
+    ./home/emacs.nix
     ./home/i3.nix
     ./home/neovim
     ./home/alacritty.nix
@@ -81,6 +81,7 @@
       ranger
       ripgrep
       rxvt_unicode-with-plugins
+      shellcheck
       tree
       unzip
       w3m # for ranger image previews
