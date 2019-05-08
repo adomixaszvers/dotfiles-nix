@@ -279,6 +279,18 @@
     :bind
     ("C-s" . swiper))
 #+END_SRC
+** Volatile highlights
+#+BEGIN_SRC emacs-lisp
+  (use-package volatile-highlights
+    :config
+    (volatile-highlights-mode t)
+    ;;-----------------------------------------------------------------------------
+    ;; Supporting evil-mode.
+    ;;-----------------------------------------------------------------------------
+    (vhl/define-extension 'evil 'evil-paste-after 'evil-paste-before
+                          'evil-paste-pop 'evil-move)
+    (vhl/install-extension 'evil))
+#+END_SRC
 ** Which key
 #+BEGIN_SRC emacs-lisp
   (use-package which-key

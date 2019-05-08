@@ -53,6 +53,7 @@
       spaceline
       swiper
       use-package
+      volatile-highlights
       which-key
       yaml-mode
       zoom
