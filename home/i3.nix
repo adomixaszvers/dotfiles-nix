@@ -162,7 +162,7 @@ in {
           k = "resize shrink height 10 px or 10 ppt";
           l = "resize grow width 10 px or 10 ppt";
         };
-        "${modeSystem}" = let locker = "i3lock && sleep 1"; in {
+        "${modeSystem}" = let locker = "loginctl lock-session && sleep 1"; in {
           l = "exec --no-startup-id ${locker}, mode default";
           e = "exec --no-startup-id i3-msg exit, mode default";
           s = "exec --no-startup-id ${locker} && systemctl suspend, mode default";
