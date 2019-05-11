@@ -102,6 +102,7 @@
 ** Counsel
 #+BEGIN_SRC emacs-lisp
   (use-package counsel
+    :bind ([remap org-goto] . counsel-org-goto)
     :config
     (counsel-mode 1))
 #+END_SRC
