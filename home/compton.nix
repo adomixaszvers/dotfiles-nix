@@ -13,6 +13,7 @@
       "0:_NET_WM_STATE@[3]:32a *= '_NET_WM_STATE_HIDDEN'"
       "0:_NET_WM_STATE@[4]:32a *= '_NET_WM_STATE_HIDDEN'"
     ];
+    package = pkgs.compton-git;
     vSync = "opengl-swc";
   };
 }
