@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 let
   hexToDec = import ./hexToDec.nix { inherit (pkgs) lib; };
   toTrgba = hex:
@@ -111,7 +111,4 @@ let
     backgroundTransparent = "[95]${background}";
     cursorColor = "#008080";
   };
-in
-  {
-    lib.colors = dracula;
-  }
+in { lib.colors = dracula; }

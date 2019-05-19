@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.packages = with pkgs; [ bspwm sxhkd ];
   xdg.configFile."bspwm/bspwmrc" = {
     source = ./dotfiles/bspwmrc;

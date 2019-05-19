@@ -24,7 +24,7 @@ let
     "F" = 15;
   };
   charToNumber = x: builtins.getAttr x charMap;
-in
-  { lib }:
-  hex:
-  builtins.foldl' (acc: ele: acc * 16 + ele) 0 (map charToNumber (lib.stringToCharacters hex))
+in { lib }:
+hex:
+builtins.foldl' (acc: ele: acc * 16 + ele) 0
+(map charToNumber (lib.stringToCharacters hex))

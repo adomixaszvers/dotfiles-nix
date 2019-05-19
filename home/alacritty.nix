@@ -1,6 +1,6 @@
 { config, lib, ... }:
-with (lib.mapAttrs (n: v: builtins.replaceStrings [ "#" ] [ "0x" ] v) config.lib.colors);
-{
+with (lib.mapAttrs (n: v: builtins.replaceStrings ["#"] ["0x"] v)
+config.lib.colors); {
   programs.alacritty = {
     enable = true;
     settings = {
@@ -22,7 +22,8 @@ with (lib.mapAttrs (n: v: builtins.replaceStrings [ "#" ] [ "0x" ] v) config.lib
           white = whiteb;
         };
       };
-      font = let fontSettings = { family = "FuraMono Nerd Font Mono"; }; in {
+      font = let fontSettings = { family = "FuraMono Nerd Font Mono"; };
+      in {
         normal = fontSettings;
         bold = fontSettings;
         italic = fontSettings;

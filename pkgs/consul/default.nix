@@ -10,13 +10,12 @@ buildGoPackage rec {
 
   src = fetchgit {
     inherit rev;
-    url = "https://github.com/hashicorp/consul.git";
+    url = https://github.com/hashicorp/consul.git;
     sha256 = "04h5y5vixjh9np9lsrk02ypbqwcq855h7l1jlnl1vmfq3sfqjds7";
   };
 
   goDeps = ./deps.nix;
 
   # TODO: add metadata https://nixos.org/nixpkgs/manual/#sec-standard-meta-attributes
-  meta = {
-  };
+  meta = { };
 }

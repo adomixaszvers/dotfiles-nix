@@ -3,5 +3,5 @@
 bundlerApp {
   pname = "vimgolf";
   gemdir = ./.;
-  exes = [ "vimgolf" ];
+  exes = ["vimgolf"];
 }

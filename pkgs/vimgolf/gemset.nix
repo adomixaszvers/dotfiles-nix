@@ -24,7 +24,7 @@
     version = "0.20.0";
   };
   vimgolf = {
-    dependencies = ["highline" "json_pure" "thor"];
+    dependencies = [ "highline" "json_pure" "thor" ];
     source = {
       remotes = ["https://rubygems.org"];
       sha256 = "1qp6fdycxb65ivi3szb9d9xh2cvv36bpkcw3k0a2ggg27l9afbq4";

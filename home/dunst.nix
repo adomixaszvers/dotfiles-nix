@@ -1,7 +1,6 @@
 { pkgs, config, ... }:
 let colors = config.lib.colors;
-in
-{
+in {
   services.dunst = {
     enable = config.xsession.enable;
     iconTheme = {

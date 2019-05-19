@@ -1,10 +1,9 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.file.".emacs.d" = {
     source = pkgs.stdenv.mkDerivation {
       name = "emacs.d";
       src = ./dotfiles/emacs.d;
-      nativeBuildInputs = [ pkgs.emacs ];
+      nativeBuildInputs = [pkgs.emacs];
       unpackPhase = ":";
       installPhase = ''
         mkdir $out
@@ -16,7 +15,8 @@
   };
   programs.emacs = {
     enable = true;
-    extraPackages = epkgs: with epkgs; [
+    extraPackages = epkgs:
+    with epkgs; [
       beacon
       benchmark-init
       counsel

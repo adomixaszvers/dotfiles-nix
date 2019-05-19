@@ -1,11 +1,11 @@
-self: super:
-{
+self: super: {
   mine = {
-    consul = super.callPackage ../pkgs/consul {};
-    bumblebee-status = super.callPackage ../pkgs/bumblebee-status {};
-    vimgolf = super.callPackage ../pkgs/vimgolf {};
+    consul = super.callPackage ../pkgs/consul { };
+    bumblebee-status = super.callPackage ../pkgs/bumblebee-status { };
+    vimgolf = super.callPackage ../pkgs/vimgolf { };
     ghc = let
-      haskellPackages = ps: with ps; [
+      haskellPackages = ps:
+      with ps; [
         # ghc-mod
         hasktags
         # hdevtools
@@ -13,14 +13,15 @@ self: super:
         hlint
         # hoogle
         hspec
-        pointfree pointful
+        pointfree
+        pointful
         stylish-haskell
       ];
-    in
-    (self.ghc.withHoogle haskellPackages);
+    in (self.ghc.withHoogle haskellPackages);
     steam = super.steam.override {
       withPrimus = true;
-      extraPkgs = ps: with ps; [
+      extraPkgs = ps:
+      with ps; [
         atk
         cairo
         dbus

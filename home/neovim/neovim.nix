@@ -38,12 +38,11 @@ let
       };
     };
   };
-in
-  {
-    programs.neovim  = {
-      enable = true;
-      configure = {
-        customRC = ''
+in {
+  programs.neovim = {
+    enable = true;
+    configure = {
+      customRC = ''
         let mapleader = " "
 
         " Tab specific options
@@ -126,28 +125,64 @@ in
         autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
         set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-        '';
-        vam.knownPlugins = pkgs.vimPlugins // customPlugins;
-        vam.pluginDictionaries = [
-          { name = "ale"; }
-          { name = "commentary"; }
-          { name = "fugitive"; }
-          { name = "fzf-vim"; }
-          { name = "fzfWrapper"; }
-          { name = "lightline-ale"; }
-          { name = "lightline-bufferline"; }
-          { name = "lightline-vim"; }
-          { name = "rainbow"; }
-          { name = "repeat"; }
-          { name = "surround"; }
-          { name = "vim-colorschemes"; }
-          { name = "vim-easymotion"; }
-          { name = "vim-gitgutter"; }
-          { name = "vim-hardtime"; }
-          { name = "vim-polyglot"; }
-          { name = "vim-unimpaired"; }
-          { name = "vinegar"; }
-        ];
-      };
+      '';
+      vam.knownPlugins = pkgs.vimPlugins // customPlugins;
+      vam.pluginDictionaries = [
+        {
+          name = "ale";
+        }
+        {
+          name = "commentary";
+        }
+        {
+          name = "fugitive";
+        }
+        {
+          name = "fzf-vim";
+        }
+        {
+          name = "fzfWrapper";
+        }
+        {
+          name = "lightline-ale";
+        }
+        {
+          name = "lightline-bufferline";
+        }
+        {
+          name = "lightline-vim";
+        }
+        {
+          name = "rainbow";
+        }
+        {
+          name = "repeat";
+        }
+        {
+          name = "surround";
+        }
+        {
+          name = "vim-colorschemes";
+        }
+        {
+          name = "vim-easymotion";
+        }
+        {
+          name = "vim-gitgutter";
+        }
+        {
+          name = "vim-hardtime";
+        }
+        {
+          name = "vim-polyglot";
+        }
+        {
+          name = "vim-unimpaired";
+        }
+        {
+          name = "vinegar";
+        }
+      ];
     };
-  }
+  };
+}

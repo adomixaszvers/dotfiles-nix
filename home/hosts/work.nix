@@ -1,7 +1,6 @@
-{ pkgs, ... }:
-{
-  home.packages = let unstable = import <nixos-unstable> {}; in with pkgs;
-  [
+{ pkgs, ... }: {
+  home.packages = let unstable = import <nixos-unstable> { };
+  in with pkgs; [
     # mine.consul
     # yarn
     (lowPrio jdk11)
@@ -50,6 +49,9 @@
     # add services.flatpak.enable = true in OS configuration
     # flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     # flatpak --user install flathub chat.rocket.RocketChat
-    { command = "flatpak run chat.rocket.RocketChat"; notification = false; }
+    {
+      command = "flatpak run chat.rocket.RocketChat";
+      notification = false;
+    }
   ];
 }

@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
@@ -28,7 +27,7 @@
     usbutils
     wget
   ];
-  environment.shells = [ pkgs.zsh ];
+  environment.shells = [pkgs.zsh];
 
   fonts = {
     enableFontDir = true;
@@ -38,7 +37,7 @@
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.configFile = pkgs.runCommand "default.pa" {} ''
+  hardware.pulseaudio.configFile = pkgs.runCommand "default.pa" { } ''
     sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
       ${pkgs.pulseaudioLight}/etc/pulse/default.pa > $out
   '';
@@ -60,7 +59,7 @@
   programs.zsh.promptInit = ""; # otherwise it'll override the grml prompt
 
   services.acpid.enable = true;
-  services.dbus.packages = with pkgs; [ gnome3.dconf ];
+  services.dbus.packages = with pkgs; [gnome3.dconf];
   services.nixosManual.showManual = true;
 
   services.gnome3.gnome-keyring.enable = true;
@@ -76,20 +75,20 @@
   services.xserver.layout = "lt,us";
   services.xserver.displayManager.lightdm.enable = true;
 
-  system.autoUpgrade = {
-    enable = true;
-  };
+  system.autoUpgrade = { enable = true; };
 
   time.timeZone = "Europe/Vilnius";
 
   users.defaultUserShell = pkgs.zsh;
   users.mutableUsers = false;
-  users.users.root.hashedPassword = "***REMOVED***";
+  users.users.root.hashedPassword =
+    "***REMOVED***";
   users.extraUsers.adomas = {
-    hashedPassword = "***REMOVED***";
+    hashedPassword =
+      "***REMOVED***";
     isNormalUser = true;
     uid = 1000;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     shell = pkgs.zsh;
   };
 }

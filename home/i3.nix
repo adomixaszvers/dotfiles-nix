@@ -6,7 +6,7 @@ let
   };
   maimSelect = pkgs.writeScript "maim-select.sh" ''
     #!${pkgs.stdenv.shell}
-    PATH=$PATH:${with pkgs; lib.makeBinPath [coreutils maim xdotool xclip]}
+    PATH=$PATH:${with pkgs; lib.makeBinPath [ coreutils maim xdotool xclip ]}
     case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | rofi -dmenu -l 6 -i -p "Screenshot which area?")" in
       "a selected area") maim -s pic-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
       "current window") maim -i "$(xdotool getactivewindow)" pic-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
@@ -21,31 +21,28 @@ in {
     enable = true;
     config = let
       modifier = "Mod4";
-      modeSystem = "System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown";
+      modeSystem =
+        "System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown";
       workspace1 = "1: ";
-      workspace2  = "2: ";
-      workspace3  = "3: ";
-      workspace4  = "4: ";
-      workspace5  = "5: ";
-      workspace6  = "6: ";
-      workspace7  = "7: ";
-      workspace10  = "10: ";
+      workspace2 = "2: ";
+      workspace3 = "3: ";
+      workspace4 = "4: ";
+      workspace5 = "5: ";
+      workspace6 = "6: ";
+      workspace7 = "7: ";
+      workspace10 = "10: ";
     in {
       inherit modifier;
       assigns = {
-        "${workspace1}" = [
-          { class = "^Google-chrome\$"; }
-          { class = "^Firefox\$"; }
-        ];
-        "${workspace3}" = [{ class="^(Atom|jetbrains-idea)\$"; }];
-        "${workspace4}" = [
-            { class="^Skype$"; }
-            { class="^Rocket\\.Chat"; }
-        ];
-        "${workspace5}" = [{ class="^Steam$"; } { class="^SmartGit"; }];
-        "${workspace6}" = [{ class="^libreoffice"; }];
-        "${workspace7}" = [{ class="^Emacs"; }];
-        "${workspace10}" = [{ class="^Spotify"; }];
+        "${workspace1}" =
+        [ { class = "^Google-chrome$"; } { class = "^Firefox$"; } ];
+        "${workspace3}" = [{ class = "^(Atom|jetbrains-idea)$"; }];
+        "${workspace4}" =
+        [ { class = "^Skype$"; } { class = "^Rocket\\.Chat"; } ];
+        "${workspace5}" = [ { class = "^Steam$"; } { class = "^SmartGit"; } ];
+        "${workspace6}" = [{ class = "^libreoffice"; }];
+        "${workspace7}" = [{ class = "^Emacs"; }];
+        "${workspace10}" = [{ class = "^Spotify"; }];
       };
       bars = [{
         statusCommand = ''
@@ -53,25 +50,65 @@ in {
             -t iceberg-rainbow \
             -p memory.format="{used}/{total}" disk.format="{percent:05.02f}%"
         '';
-        fonts = [ "NotoMono Nerd Font 9" ];
+        fonts = ["NotoMono Nerd Font 9"];
         colors = with config.lib.colors; {
-          activeWorkspace = { background = background; border = background; text = whiteb; };
+          activeWorkspace = {
+            background = background;
+            border = background;
+            text = whiteb;
+          };
           background = background;
-          focusedWorkspace = { background = blackb; border = background; text = whiteb; };
-          inactiveWorkspace = { background = background; border = background; text = white; };
+          focusedWorkspace = {
+            background = blackb;
+            border = background;
+            text = whiteb;
+          };
+          inactiveWorkspace = {
+            background = background;
+            border = background;
+            text = white;
+          };
           statusline = white;
-          urgentWorkspace = { background = redb; border = red; text = whiteb; };
+          urgentWorkspace = {
+            background = redb;
+            border = red;
+            text = whiteb;
+          };
         };
       }];
       # bars = [];
       colors = with config.lib.colors; {
         background = black;
-        focused = { background = background; border = background; text = whiteb; indicator = blackb; childBorder = cyan; };
-        unfocused = { background = black; border = black; text = white; indicator = blackb; childBorder = blackb; };
-        focusedInactive = { background = black; border = black; text = white; indicator = blackb; childBorder = blackb; };
-        urgent = { background = redb; border = redb; text = black; indicator = redb; childBorder = redb; };
+        focused = {
+          background = background;
+          border = background;
+          text = whiteb;
+          indicator = blackb;
+          childBorder = cyan;
+        };
+        unfocused = {
+          background = black;
+          border = black;
+          text = white;
+          indicator = blackb;
+          childBorder = blackb;
+        };
+        focusedInactive = {
+          background = black;
+          border = black;
+          text = white;
+          indicator = blackb;
+          childBorder = blackb;
+        };
+        urgent = {
+          background = redb;
+          border = redb;
+          text = black;
+          indicator = redb;
+          childBorder = redb;
+        };
       };
-      fonts = [ "NotoMono Nerd Font 8" ];
+      fonts = ["NotoMono Nerd Font 8"];
       gaps = {
         inherit (gaps) inner outer;
         smartGaps = true;
@@ -119,14 +156,18 @@ in {
 
         "${modifier}+Shift+c" = "reload";
         "${modifier}+Shift+r" = "restart";
-        "${modifier}+Shift+e" = "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
+        "${modifier}+Shift+e" =
+          "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
 
         "${modifier}+r" = "mode resize";
-        "${modifier}+Pause" = "mode \"${modeSystem}\"";
+        "${modifier}+Pause" = ''mode "${modeSystem}"'';
         "${modifier}+m" = "move workspace to output left";
 
-        "${modifier}+g" = "gaps inner current set ${toString gaps.inner}; gaps outer current set ${toString gaps.outer}";
-        "${modifier}+Shift+g" = "gaps inner current set 0; gaps outer current set 0";
+        "${modifier}+g" = "gaps inner current set ${
+          toString gaps.inner
+        }; gaps outer current set ${toString gaps.outer}";
+        "${modifier}+Shift+g" =
+          "gaps inner current set 0; gaps outer current set 0";
 
         "Shift+Print" = "exec --no-startup-id ${maimSelect}";
       };
@@ -162,28 +203,41 @@ in {
           k = "resize shrink height 10 px or 10 ppt";
           l = "resize grow width 10 px or 10 ppt";
         };
-        "${modeSystem}" = let locker = "loginctl lock-session && sleep 1"; in {
+        "${modeSystem}" = let locker = "loginctl lock-session && sleep 1";
+        in {
           l = "exec --no-startup-id ${locker}, mode default";
           e = "exec --no-startup-id i3-msg exit, mode default";
-          s = "exec --no-startup-id ${locker} && systemctl suspend, mode default";
-          h = "exec --no-startup-id ${locker} && systemctl hibernate, mode default";
+          s =
+          "exec --no-startup-id ${locker} && systemctl suspend, mode default";
+          h =
+          "exec --no-startup-id ${locker} && systemctl hibernate, mode default";
           r = "exec --no-startup-id systemctl reboot, mode default";
-          "Shift+s" = "exec --no-startup-id systemctl poweroff -i, mode default";
+          "Shift+s" =
+            "exec --no-startup-id systemctl poweroff -i, mode default";
 
           # back to normal: Enter or Escape
           Return = "mode default";
           Escape = "mode default";
         };
       };
-      startup = [
-        { command = "feh --bg-max --image-bg white ~/wallpaper.png"; always = true; notification = false; }
-        # { command = with (import ./polybar {inherit pkgs config; }); "${launch}"; always = true; notification = false; }
-        # { command = "polybar-msg cmd restart"; always = true; notification = false; }
+      startup = [{
+        command = "feh --bg-max --image-bg white ~/wallpaper.png";
+        always = true;
+        notification = false;
+      }
+      # { command = with (import ./polybar {inherit pkgs config; }); "${launch}"; always = true; notification = false; }
+      # { command = "polybar-msg cmd restart"; always = true; notification = false; }
       ];
       window.border = 3;
       window.commands = [
-        { command = "move to workspace ${workspace10}"; criteria = { class = "Spotify"; }; }
-        { command = "move to workspace ${workspace6}"; criteria = { class = "libreoffice"; }; }
+        {
+          command = "move to workspace ${workspace10}";
+          criteria = { class = "Spotify"; };
+        }
+        {
+          command = "move to workspace ${workspace6}";
+          criteria = { class = "libreoffice"; };
+        }
       ];
     };
   };

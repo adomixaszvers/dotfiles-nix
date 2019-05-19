@@ -1,5 +1,4 @@
-{ pkgs, config, ... }:
-{
+{ pkgs, config, ... }: {
   services.compton = {
     enable = config.xsession.enable;
     extraOptions = ''

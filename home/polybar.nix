@@ -1,7 +1,6 @@
 { pkgs, config, ... }:
 let colors = config.lib.colors;
-in
-{
+in {
   services.polybar = {
     enable = true;
     package = pkgs.polybar.override {
@@ -59,9 +58,7 @@ in
         label-seperator-padding = 0;
       };
 
-      "module/keyboard" = {
-        type = "internal/xkeyboard";
-      };
+      "module/keyboard" = { type = "internal/xkeyboard"; };
       "module/memory" = {
         type = "internal/memory";
         label = "%percentage_used%";
@@ -85,7 +82,7 @@ in
     };
     script = ''
       #!/bin/bash
-      PATH=$PATH:${pkgs.lib.makeBinPath [pkgs.procps pkgs.psmisc]}
+      PATH=$PATH:${pkgs.lib.makeBinPath [ pkgs.procps pkgs.psmisc ]}
 
       # Terminate already running bar instances
       killall -q polybar

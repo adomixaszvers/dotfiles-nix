@@ -1,5 +1,4 @@
-{pkgs, lib, config, ... }:
-{
+{ pkgs, lib, config, ... }: {
   home.packages = with pkgs; [ xorg.xmessage xmobar ];
   xsession.windowManager.xmonad = {
     enable = true;
