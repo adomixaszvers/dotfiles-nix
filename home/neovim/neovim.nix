@@ -127,62 +127,28 @@ in {
         set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
       '';
       vam.knownPlugins = pkgs.vimPlugins // customPlugins;
-      vam.pluginDictionaries = [
-        {
-          name = "ale";
-        }
-        {
-          name = "commentary";
-        }
-        {
-          name = "fugitive";
-        }
-        {
-          name = "fzf-vim";
-        }
-        {
-          name = "fzfWrapper";
-        }
-        {
-          name = "lightline-ale";
-        }
-        {
-          name = "lightline-bufferline";
-        }
-        {
-          name = "lightline-vim";
-        }
-        {
-          name = "rainbow";
-        }
-        {
-          name = "repeat";
-        }
-        {
-          name = "surround";
-        }
-        {
-          name = "vim-colorschemes";
-        }
-        {
-          name = "vim-easymotion";
-        }
-        {
-          name = "vim-gitgutter";
-        }
-        {
-          name = "vim-hardtime";
-        }
-        {
-          name = "vim-polyglot";
-        }
-        {
-          name = "vim-unimpaired";
-        }
-        {
-          name = "vinegar";
-        }
-      ];
+      vam.pluginDictionaries = let
+        names = [
+          "ale"
+          "commentary"
+          "fugitive"
+          "fzf-vim"
+          "fzfWrapper"
+          "lightline-ale"
+          "lightline-bufferline"
+          "lightline-vim"
+          "rainbow"
+          "repeat"
+          "surround"
+          "vim-colorschemes"
+          "vim-easymotion"
+          "vim-gitgutter"
+          "vim-hardtime"
+          "vim-polyglot"
+          "vim-unimpaired"
+          "vinegar"
+        ];
+      in map (name: { inherit name; }) names;
     };
   };
 }
