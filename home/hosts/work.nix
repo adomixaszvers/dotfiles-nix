@@ -40,6 +40,7 @@
   home.sessionVariables = {
     BROWSER = "${pkgs.google-chrome}/bin/google-chrome-stable";
   };
+  nixpkgs.config = { allowUnfree = true; };
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;

@@ -1,16 +1,12 @@
-{ pkgs, ... }:
-{
-  home.packages = with pkgs;
-  [
+{ pkgs, ... }: {
+  home.packages = with pkgs; [
     borgbackup
-    discord
     exercism
     firefox
+    gnome3.gnome-boxes
     gtypist
     guile
-    jetbrains.idea-ultimate
     klavaro
-    mine.steam
     mine.vimgolf
     openjdk11
     qbittorrent
