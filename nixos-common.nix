@@ -63,6 +63,14 @@
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
   services.nixosManual.showManual = true;
 
+  services.gnome3.gnome-keyring.enable = true;
+  services.gnome3.seahorse.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
+  security.wrappers.gnome-keyring-daemon = {
+    source = "${pkgs.gnome3.gnome-keyring}/bin/gnome-keyring-daemon";
+    capabilities = "cap_ipc_lock=ep";
+  };
+
   services.xserver.enable = true;
   services.xserver.exportConfiguration = true;
   services.xserver.layout = "lt,us";
