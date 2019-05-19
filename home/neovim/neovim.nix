@@ -15,8 +15,8 @@ let
       src = pkgs.fetchFromGitHub {
         owner = "mengelbrecht";
         repo = "lightline-bufferline";
-        rev = "467bf6894621f74845045ca0dd5b0841f5607491";
-        sha256 = "1lf6bpl1zzl5hx9f8pw8rlzcrl1as6xh4nhw34pz670hp60yiryh";
+        rev = "3bf44e879e42cf1e64f847aa747bf07289200c5b";
+        sha256 = "0wjnh797f504bh17nxh63jzcxzlgfwqlsd06xf0lq9y80853rbz6";
       };
     };
     lightline-neomake = pkgs.vimUtils.buildVimPlugin {
@@ -26,15 +26,6 @@ let
         repo = "lightline-neomake";
         rev = "08271edbdb8b6efb21123cd602471a806dff1913";
         sha256 = "0gr4kpci2w38xskh2y588amzpp5grnp0qyi7a06vcsq930l0yq41";
-      };
-    };
-    vim-unimpaired = pkgs.vimUtils.buildVimPlugin {
-      name = "vim-unimpaired";
-      src = pkgs.fetchFromGitHub {
-        owner = "tpope";
-        repo = "vim-unimpaired";
-        rev = "5694455d72229e73ff333bfe5196cc7193dca5e7";
-        sha256 = "1fsz9bg0rrp35rs7qwgqzm0wnnd22pckmc2f792kkpcfmmpg5lay";
       };
     };
   };
