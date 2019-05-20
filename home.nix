@@ -57,7 +57,7 @@
       rev = "26682e3078608a478ac1a87eceadc108f0def906";
       sha256 = "1q0gaxi83mrh88ihdiqgjd8p6ka02xzb01a2x5icdg4als9vnva1";
     }) { };
-    fonts = [ google-fonts nerdfonts ];
+    fonts = [ corefonts google-fonts nerdfonts ];
   in fonts ++ [
     alacritty
     arandr
@@ -96,7 +96,6 @@
   };
   home.stateVersion = "19.03";
   manual.html.enable = true;
-  nixpkgs.config = { vim.ftNix = false; };
   programs.autorandr = {
     enable = true;
     profiles = {
