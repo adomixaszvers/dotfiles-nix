@@ -195,6 +195,10 @@
       hcd = "cd ~/.config/nixpkgs";
     };
   };
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
   services.network-manager-applet.enable = config.xsession.enable;
   systemd.user.startServices = true;
 
