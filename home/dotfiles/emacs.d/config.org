@@ -1,12 +1,4 @@
 #+PROPERTY: header-args :tangle config.el
-* Package initialization
-#+BEGIN_SRC emacs-lisp
-  (require 'package)
-  ;; optional. makes unpure packages archives unavailable
-  (setq package-archives nil)
-  (setq package-enable-at-startup nil)
-  (package-initialize)
-#+END_SRC
 * Display
 ** Ediff
 #+BEGIN_SRC emacs-lisp
@@ -87,12 +79,6 @@
           (flycheck-disabled-checkers . '(emacs-lisp-checkdoc))))
 #+END_SRC
 * Packages
-** We will use use-package macro
-#+BEGIN_SRC emacs-lisp
-  (eval-when-compile
-    (require 'use-package))
-  (require 'bind-key)
-#+END_SRC
 ** Beacon
 #+BEGIN_SRC emacs-lisp
   (use-package beacon
