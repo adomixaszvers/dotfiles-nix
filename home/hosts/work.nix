@@ -10,6 +10,7 @@
     docker-machine
     filezilla
     flameshot
+    gitAndTools.gitflow
     gnome3.nautilus
     google-chrome
     jdk8
@@ -20,7 +21,6 @@
     maven
     mercurial
     nodejs
-    postman
     remmina
     robo3t
     samba
@@ -31,6 +31,7 @@
     subversion
     swagger-codegen
     traceroute
+    unstable.postman
     unzip
     vagrant
     visualvm
