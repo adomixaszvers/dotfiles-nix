@@ -36,6 +36,7 @@
     layout = "lt,us";
     options = ["ctrl:nocaps"];
   };
+  home.extraOutputsToInstall = [ "doc" "info" "devdoc" ];
   home.file."vim-cheatsheet.png" = {
     source = pkgs.fetchurl {
       url = http://i.imgur.com/YLInLlY.png;
