@@ -227,6 +227,8 @@
 ** Nix mode
 #+BEGIN_SRC emacs-lisp
   (use-package nix-mode
+    :init
+    (nix-prettify-global-mode 1)
     :mode "\\.nix\\'")
 #+END_SRC
 ** Nov Mode
