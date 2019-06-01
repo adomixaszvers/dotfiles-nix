@@ -243,6 +243,12 @@
     :hook
     (org-mode . (lambda () (org-bullets-mode 1))))
 #+END_SRC
+** Pretty mode
+#+BEGIN_SRC emacs-lisp
+  (use-package pretty-mode
+    :config
+    (global-pretty-mode t))
+#+END_SRC
 ** Rainbow delimiters
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters

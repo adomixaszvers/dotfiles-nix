@@ -46,6 +46,7 @@
       nov
       org-bullets
       powerline
+      pretty-mode
       racer
       rainbow-delimiters
       ripgrep
