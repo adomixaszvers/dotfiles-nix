@@ -11,7 +11,7 @@
     ./home/dunst.nix
     ./home/emacs.nix
     ./home/i3.nix
-    ./home/neovim
+    ./home/neovim.nix
     ./home/alacritty.nix
     # ./home/polybar.nix
     ./home/termite.nix
