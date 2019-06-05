@@ -11,6 +11,7 @@
     ./home/dunst.nix
     ./home/emacs.nix
     ./home/i3.nix
+    ./home/keepass.nix
     ./home/neovim.nix
     ./home/alacritty.nix
     # ./home/polybar.nix
@@ -72,7 +73,6 @@
     htop
     i3lock
     icdiff
-    keepassxc
     meld
     mine.bumblebee-status
     ncdu

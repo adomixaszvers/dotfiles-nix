@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TriggerCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Triggers>
+		<Trigger>
+			<Guid>DWgF+SL63U+GAsBJQXhahg==</Guid>
+			<Name>Save to Google Drive</Name>
+			<Comments>When the local copy is saved, the server copy will be pulled and synchronized with the local copy. The local copy will then be copied to the local Google Drive folder and pushed to the server.</Comments>
+			<Events>
+				<Event>
+					<TypeGuid>s6j9/ngTSmqcXdW6hDqbjg==</TypeGuid>
+					<Parameters>
+						<Parameter>0</Parameter>
+						<Parameter>/home/adomas/Dokumentai/NewDatabase.kdbx</Parameter>
+					</Parameters>
+				</Event>
+			</Events>
+			<Conditions />
+			<Actions>
+				<Action>
+					<TypeGuid>tkamn96US7mbrjykfswQ6g==</TypeGuid>
+					<Parameters>
+						<Parameter />
+						<Parameter>0</Parameter>
+					</Parameters>
+				</Action>
+				<Action>
+					<TypeGuid>2uX4OwcwTBOe7y66y27kxw==</TypeGuid>
+					<Parameters>
+						<Parameter>/home/adomas/.nix-profile/bin/keepass_trigger_load.sh</Parameter>
+						<Parameter />
+						<Parameter>True</Parameter>
+						<Parameter>0</Parameter>
+						<Parameter />
+					</Parameters>
+				</Action>
+				<Action>
+					<TypeGuid>Iq135Bd4Tu2ZtFcdArOtTQ==</TypeGuid>
+					<Parameters>
+						<Parameter>/home/adomas/google_drive/NewDatabase.kdbx</Parameter>
+						<Parameter />
+						<Parameter />
+					</Parameters>
+				</Action>
+				<Action>
+					<TypeGuid>2uX4OwcwTBOe7y66y27kxw==</TypeGuid>
+					<Parameters>
+						<Parameter>/home/adomas/.nix-profile/bin/keepass_trigger_save.sh</Parameter>
+						<Parameter />
+						<Parameter>False</Parameter>
+						<Parameter>0</Parameter>
+						<Parameter />
+					</Parameters>
+				</Action>
+				<Action>
+					<TypeGuid>tkamn96US7mbrjykfswQ6g==</TypeGuid>
+					<Parameters>
+						<Parameter />
+						<Parameter>1</Parameter>
+					</Parameters>
+				</Action>
+			</Actions>
+		</Trigger>
+		<Trigger>
+			<Guid>POhA77GdHU6Hy6Pwl7pf/w==</Guid>
+			<Name>Load from Google Drive</Name>
+			<Comments>When the local copy is opened, the server copy will be pulled and synchronized with the local copy.</Comments>
+			<Events>
+				<Event>
+					<TypeGuid>5f8TBoW4QYm5BvaeKztApw==</TypeGuid>
+					<Parameters>
+						<Parameter>0</Parameter>
+						<Parameter>/home/adomas/Dokumentai/NewDatabase.kdbx</Parameter>
+					</Parameters>
+				</Event>
+			</Events>
+			<Conditions />
+			<Actions>
+				<Action>
+					<TypeGuid>tkamn96US7mbrjykfswQ6g==</TypeGuid>
+					<Parameters>
+						<Parameter />
+						<Parameter>0</Parameter>
+					</Parameters>
+				</Action>
+				<Action>
+					<TypeGuid>2uX4OwcwTBOe7y66y27kxw==</TypeGuid>
+					<Parameters>
+						<Parameter>/home/adomas/.nix-profile/bin/keepass_trigger_load.sh</Parameter>
+						<Parameter />
+						<Parameter>True</Parameter>
+						<Parameter>0</Parameter>
+						<Parameter />
+					</Parameters>
+				</Action>
+				<Action>
+					<TypeGuid>Iq135Bd4Tu2ZtFcdArOtTQ==</TypeGuid>
+					<Parameters>
+						<Parameter>/home/adomas/google_drive/NewDatabase.kdbx</Parameter>
+						<Parameter />
+						<Parameter />
+					</Parameters>
+				</Action>
+				<Action>
+					<TypeGuid>tkamn96US7mbrjykfswQ6g==</TypeGuid>
+					<Parameters>
+						<Parameter />
+						<Parameter>1</Parameter>
+					</Parameters>
+				</Action>
+			</Actions>
+		</Trigger>
+	</Triggers>
+</TriggerCollection>
