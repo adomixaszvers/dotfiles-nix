@@ -21,6 +21,7 @@
       benchmark-init
       counsel
       counsel-projectile
+      csv-mode
       dashboard
       direnv
       doom-themes
