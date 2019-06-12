@@ -64,6 +64,7 @@
   services.nixosManual.showManual = true;
 
   services.gnome3.gnome-keyring.enable = true;
+  security.pam.services.lightdm.enableGnomeKeyring = true;
   services.gnome3.seahorse.enable = true;
 
   services.xserver.enable = true;
