@@ -144,14 +144,14 @@
     (evil-mode 1)
     (evil-set-initial-state 'dashboard-mode 'emacs))
 #+END_SRC
-*** Evil collection
+*** Evil Collection
 #+BEGIN_SRC emacs-lisp
   (use-package evil-collection
     :after evil
     :config
     (evil-collection-init))
 #+END_SRC
-*** Evil commentary
+*** Evil Commentary
 #+BEGIN_SRC emacs-lisp
   (use-package evil-commentary
     :after evil
