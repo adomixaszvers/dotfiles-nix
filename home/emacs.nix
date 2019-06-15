@@ -41,6 +41,7 @@
       intero
       ivy
       ivy-hydra
+      lispy
       lua-mode
       magit
       nix-mode

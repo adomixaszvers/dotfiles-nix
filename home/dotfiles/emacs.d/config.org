@@ -218,6 +218,12 @@
     :config
     (ivy-mode 1))
 #+END_SRC
+** Lispy
+#+BEGIN_SRC emacs-lisp
+  (use-package lispy
+    :hook
+    (emacs-lisp-mode . lispy-mode))
+#+END_SRC
 ** Magit
 #+BEGIN_SRC emacs-lisp
   (use-package magit
