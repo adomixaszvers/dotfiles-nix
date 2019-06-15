@@ -82,12 +82,14 @@
 ** Beacon
 #+BEGIN_SRC emacs-lisp
   (use-package beacon
+    :diminish beacon-mode
     :config
     (beacon-mode 1))
 #+END_SRC
 ** Counsel
 #+BEGIN_SRC emacs-lisp
   (use-package counsel
+    :diminish counsel-mode
     :bind ([remap org-goto] . counsel-org-goto)
     :config
     (counsel-mode 1))
@@ -154,6 +156,7 @@
 *** Evil Commentary
 #+BEGIN_SRC emacs-lisp
   (use-package evil-commentary
+    :diminish evil-commentary-mode
     :after evil
     :config
     (evil-commentary-mode))
@@ -211,6 +214,7 @@
 ** Ivy
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
+    :diminish ivy-mode
     :init
     (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
     :custom
@@ -233,6 +237,7 @@
 ** Nix mode
 #+BEGIN_SRC emacs-lisp
   (use-package nix-mode
+    :diminish nix-prettify-mode
     :init
     (nix-prettify-global-mode 1)
     :mode "\\.nix\\'")
@@ -280,9 +285,15 @@
     :bind
     ("C-s" . swiper))
 #+END_SRC
+** Undo Tree
+#+BEGIN_SRC emacs-lisp
+  (use-package undo-tree
+    :diminish undo-tree-mode)
+#+END_SRC
 ** Volatile highlights
 #+BEGIN_SRC emacs-lisp
   (use-package volatile-highlights
+    :diminish volatile-highlights-mode
     :config
     (volatile-highlights-mode t)
     ;;-----------------------------------------------------------------------------
@@ -295,6 +306,7 @@
 ** Which key
 #+BEGIN_SRC emacs-lisp
   (use-package which-key
+    :diminish which-key-mode
     :config
     (which-key-mode))
 #+END_SRC

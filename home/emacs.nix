@@ -23,6 +23,7 @@
       counsel-projectile
       csv-mode
       dashboard
+      diminish
       direnv
       doom-themes
       evil
