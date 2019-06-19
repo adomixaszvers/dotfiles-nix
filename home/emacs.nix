@@ -15,8 +15,9 @@
   };
   programs.emacs = {
     enable = true;
-    extraPackages = epkgs:
-    with epkgs; [
+    extraPackages = let unstable = import <nixos-unstable> { };
+    in epkgs:
+    with unstable.emacsPackagesNg; [
       beacon
       benchmark-init
       counsel
