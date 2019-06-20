@@ -3,21 +3,22 @@
   in with pkgs; [
     # mine.consul
     # yarn
-    (lowPrio jdk11)
     (sqldeveloper_18.override { jdk = openjdk; })
     docker
     docker-compose
     docker-machine
     filezilla
+    firefox
     flameshot
     gitAndTools.gitflow
     gnome3.nautilus
     google-chrome
-    jdk8
+    gradle
     jetbrains.datagrip
     jetbrains.idea-ultimate
     jq
     libreoffice-fresh
+    liquibase
     maven
     mercurial
     nodejs
@@ -30,6 +31,7 @@
     steam
     subversion
     swagger-codegen
+    tomcat8
     traceroute
     unstable.postman
     unzip
@@ -38,7 +40,7 @@
     whois
   ];
   home.sessionVariables = {
-    BROWSER = "${pkgs.google-chrome}/bin/google-chrome-stable";
+    BROWSER = "firefox";
   };
   services.screen-locker = {
     enable = true;
