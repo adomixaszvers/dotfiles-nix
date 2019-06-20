@@ -3,6 +3,7 @@
   home.packages = with pkgs;
   [
     borgbackup
+    calibre
     discord
     exercism
     firefox
@@ -10,7 +11,7 @@
     guile
     jetbrains.idea-ultimate
     klavaro
-    mine.steam
+    # mine.steam
     mine.vimgolf
     openjdk11
     qbittorrent
