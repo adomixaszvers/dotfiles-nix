@@ -20,6 +20,7 @@
     with unstable.emacsPackagesNg; [
       beacon
       benchmark-init
+      melpaStablePackages.cider
       counsel
       counsel-projectile
       csv-mode
