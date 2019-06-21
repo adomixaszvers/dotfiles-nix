@@ -1,9 +1,13 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  unstable = import <nixos-unstable> { };
+  emacs = unstable.emacs;
+in {
   home.file.".emacs.d" = {
     source = pkgs.stdenv.mkDerivation {
       name = "emacs.d";
       src = ./dotfiles/emacs.d;
-      nativeBuildInputs = [pkgs.emacs];
+      nativeBuildInputs = [emacs];
       unpackPhase = ":";
       installPhase = ''
         mkdir $out
@@ -15,12 +19,11 @@
   };
   programs.emacs = {
     enable = true;
-    extraPackages = let unstable = import <nixos-unstable> { };
-    in epkgs:
+    package = emacs;
+    extraPackages = epkgs:
     with unstable.emacsPackagesNg; [
       beacon
       benchmark-init
-      melpaStablePackages.cider
       counsel
       counsel-projectile
       csv-mode
@@ -47,6 +50,7 @@
       lispy
       lua-mode
       magit
+      melpaStablePackages.cider
       nix-mode
       nov
       org-bullets
