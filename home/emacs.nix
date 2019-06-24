@@ -28,6 +28,7 @@ in {
       counsel-projectile
       csv-mode
       dashboard
+      delight
       diminish
       direnv
       doom-themes
@@ -48,6 +49,7 @@ in {
       ivy
       ivy-hydra
       lispy
+      lispyville
       lua-mode
       magit
       melpaStablePackages.cider

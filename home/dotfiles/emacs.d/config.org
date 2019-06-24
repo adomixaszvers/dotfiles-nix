@@ -233,6 +233,15 @@
     (emacs-lisp-mode . lispy-mode)
     (clojure-mode . lispy-mode))
 #+END_SRC
+** Lispyville
+#+BEGIN_SRC emacs-lisp
+  (use-package lispyville
+    :delight
+    '(:eval (when (featurep 'lispyville)
+              (lispyville-mode-line-string)))
+    :hook
+    (lispy-mode . lispyville-mode))
+#+END_SRC
 ** Magit
 #+BEGIN_SRC emacs-lisp
   (use-package magit
