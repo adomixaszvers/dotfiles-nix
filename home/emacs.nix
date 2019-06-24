@@ -52,6 +52,7 @@ in {
       lispyville
       lua-mode
       magit
+      markdown-mode
       melpaStablePackages.cider
       nix-mode
       nov
