@@ -215,8 +215,6 @@
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
     :diminish ivy-mode
-    :init
-    (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
     :custom
     (ivy-display-style 'fancy)
     :config
