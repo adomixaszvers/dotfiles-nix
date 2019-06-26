@@ -152,6 +152,7 @@
 *** Evil Collection
 #+BEGIN_SRC emacs-lisp
   (use-package evil-collection
+    :custom (evil-collection-setup-minibuffer t)
     :config
     (evil-collection-init))
 #+END_SRC
