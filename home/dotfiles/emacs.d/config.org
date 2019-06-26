@@ -106,7 +106,6 @@
     :bind-keymap
     ("C-c p" . projectile-command-map))
   (use-package counsel-projectile
-    :after projectile
     :config
     (counsel-projectile-mode 1))
 #+END_SRC
@@ -153,7 +152,6 @@
 *** Evil Collection
 #+BEGIN_SRC emacs-lisp
   (use-package evil-collection
-    :after evil
     :config
     (evil-collection-init))
 #+END_SRC
@@ -161,19 +159,16 @@
 #+BEGIN_SRC emacs-lisp
   (use-package evil-commentary
     :diminish evil-commentary-mode
-    :after evil
     :config
     (evil-commentary-mode))
 #+END_SRC
 *** Evil Magit
 #+BEGIN_SRC emacs-lisp
-  (use-package evil-magit
-    :after magit)
+  (use-package evil-magit)
 #+END_SRC
 *** Evil Org
 #+BEGIN_SRC emacs-lisp
   (use-package evil-org
-    :after org
     :custom
     (evil-org-key-theme '(textobjects insert navigation additional))
     :config
@@ -273,7 +268,6 @@
 ** Org bullets
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
-    :after org
     :hook
     (org-mode . (lambda () (org-bullets-mode 1))))
 #+END_SRC
