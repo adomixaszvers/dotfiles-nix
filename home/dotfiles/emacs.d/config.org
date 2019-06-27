@@ -264,6 +264,13 @@
   (use-package nov
     :mode ("\\.epub\\'" . nov-mode))
 #+END_SRC
+** Org Beautify Theme
+#+BEGIN_SRC emacs-lisp
+  (use-package org-beautify-theme
+    :after doom-themes
+    :config
+    (load-theme 'org-beautify t))
+#+END_SRC
 ** Org bullets
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets

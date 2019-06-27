@@ -56,6 +56,7 @@ in {
       melpaStablePackages.cider
       nix-mode
       nov
+      org-beautify-theme
       org-bullets
       powerline
       pretty-mode
