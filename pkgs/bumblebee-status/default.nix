@@ -1,13 +1,13 @@
 { stdenv, fetchFromGitHub, python3 }:
-let version = "1.7.2";
+let version = "1.8.0";
 in stdenv.mkDerivation {
   name = "bumblebee-status-${version}";
   inherit version;
   src = fetchFromGitHub {
     owner = "tobi-wan-kenobi";
     repo = "bumblebee-status";
-    rev = "c514d965cb25314f57a3bca1c9643e86af00a214";
-    sha256 = "1hppysqkmr6wa9dmx3szb6xs3l6s9dmadnxp6g84m7rbzi875iw0";
+    rev = "v1.8.0";
+    sha256 = "1kf979gh3fd4iphqc0dndnvlx5sdn3cmm0lmvgnxyvzjj5qmhf6k";
   };
   buildInputs = [(python3.withPackages
   (ps: with ps; [ i3ipc requests taskw netifaces psutil ]))];
