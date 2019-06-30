@@ -184,11 +184,16 @@
       }
       zle -N zle-keymap-select
 
-      _fix_cursor() {
+      _fix_cursor_precmd() {
         echo -ne '\e[5 q'
       }
 
-      precmd_functions+=(_fix_cursor)
+      _fix_cursor_preexec() {
+        echo -ne '\e[1 q'
+      }
+
+      precmd_functions+=(_fix_cursor_precmd)
+      preexec_functions+=(_fix_cursor_preexec)
     '';
     shellAliases = {
       em = "emacsclient -t";
