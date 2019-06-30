@@ -15,8 +15,8 @@
 #+END_SRC
 ** Ediff
 #+BEGIN_SRC emacs-lisp
-  (setq ediff-split-window-function #'split-window-horizontally
-      ediff-window-setup-function #'ediff-setup-windows-plain)
+  (customize-set-variable 'ediff-split-window-function 'split-window-horizontally)
+  (customize-set-variable 'ediff-window-setup-function 'ediff-setup-windows-plain)
   (add-hook 'ediff-prepare-buffer-hook
     (lambda () (when (eq major-mode 'org-mode) (outline-show-all))))
 #+END_SRC
