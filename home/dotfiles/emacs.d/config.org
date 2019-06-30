@@ -1,9 +1,22 @@
 #+PROPERTY: header-args :tangle config.el
 * Display
+** Disable startup screen
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-startup-screen t)
+#+END_SRC
+** Disable menu and toolbar
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+#+END_SRC
+** Font
+#+BEGIN_SRC emacs-lisp
+  (set-frame-font "FuraMono Nerd Font Mono-9")
+#+END_SRC
 ** Ediff
 #+BEGIN_SRC emacs-lisp
-  (setq ediff-split-window-function 'split-window-horizontally
-      ediff-window-setup-function 'ediff-setup-windows-plain)
+  (setq ediff-split-window-function #'split-window-horizontally
+      ediff-window-setup-function #'ediff-setup-windows-plain)
   (add-hook 'ediff-prepare-buffer-hook
     (lambda () (when (eq major-mode 'org-mode) (outline-show-all))))
 #+END_SRC
@@ -18,15 +31,6 @@
   (add-hook 'display-line-numbers-mode-hook
             (lambda () (setq-local display-line-numbers (if (eq major-mode 'org-mode) 'visual 'relative))))
 #+END_SRC
-** Font
-#+BEGIN_SRC emacs-lisp
-  (set-frame-font "FuraMono Nerd Font Mono-9")
-#+END_SRC
-** Disable menu and toolbar
-#+BEGIN_SRC emacs-lisp
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-#+END_SRC
 ** Scroll compilation output
 #+BEGIN_SRC emacs-lisp
   (customize-set-variable 'compilation-scroll-output t)
@@ -36,10 +40,6 @@
   (let ((stw (lambda () (setq-local show-trailing-whitespace t))))
       (add-hook 'text-mode-hook stw)
       (add-hook 'prog-mode-hook stw))
-#+END_SRC
-** Disable startup screen
-#+BEGIN_SRC emacs-lisp
-  (setq inhibit-startup-screen t)
 #+END_SRC
 * Quality of life changes
 ** Disable indent tabs mode
@@ -88,7 +88,8 @@
 #+END_SRC
 ** Cider
 #+BEGIN_SRC emacs-lisp
-  (use-package cider)
+  (use-package cider
+    :after clojure-mode)
 #+END_SRC
 ** Counsel
 #+BEGIN_SRC emacs-lisp
@@ -106,6 +107,7 @@
     :bind-keymap
     ("C-c p" . projectile-command-map))
   (use-package counsel-projectile
+    :after projectile
     :config
     (counsel-projectile-mode 1))
 #+END_SRC
@@ -165,11 +167,13 @@
 #+END_SRC
 *** Evil Magit
 #+BEGIN_SRC emacs-lisp
-  (use-package evil-magit)
+  (use-package evil-magit
+    :after magit)
 #+END_SRC
 *** Evil Org
 #+BEGIN_SRC emacs-lisp
   (use-package evil-org
+    :after org
     :custom
     (evil-org-key-theme '(textobjects insert navigation additional))
     :config
@@ -267,7 +271,7 @@
 ** Org Beautify Theme
 #+BEGIN_SRC emacs-lisp
   (use-package org-beautify-theme
-    :after doom-themes
+    :after (doom-themes org)
     :config
     (load-theme 'org-beautify t))
 #+END_SRC
