@@ -63,7 +63,7 @@
 ** Don't litter filesytem tree
 #+BEGIN_SRC emacs-lisp
   (customize-set-variable 'backup-directory-alist
-   '(("." . "~/.emacs-saves/")))
+                          `(("." . ,(concat user-emacs-directory "backups"))))
 #+END_SRC
 ** Use versioned backups
 #+BEGIN_SRC emacs-lisp
