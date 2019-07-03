@@ -32,6 +32,7 @@ in {
       diminish
       direnv
       doom-themes
+      emojify
       evil
       evil-collection
       evil-commentary

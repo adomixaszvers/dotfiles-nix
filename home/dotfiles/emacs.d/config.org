@@ -138,6 +138,13 @@
     (doom-themes-org-config)
     (load-theme 'doom-dracula t))
 #+END_SRC
+** Emojify
+#+BEGIN_SRC emacs-lisp
+  (use-package emojify
+    :config
+    (global-emojify-mode)
+    (global-emojify-mode-line-mode))
+#+END_SRC
 ** Evil
 #+BEGIN_SRC emacs-lisp
   (use-package evil
