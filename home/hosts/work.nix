@@ -17,11 +17,13 @@
     jetbrains.datagrip
     jetbrains.idea-ultimate
     jq
+    keepassxc
     libreoffice-fresh
     liquibase
     maven
     mercurial
     nodejs
+    rambox
     remmina
     robo3t
     samba
