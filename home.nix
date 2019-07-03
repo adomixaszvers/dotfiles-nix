@@ -64,6 +64,7 @@
     alacritty
     arandr
     bfs
+    cachix
     dunst
     evince
     file
