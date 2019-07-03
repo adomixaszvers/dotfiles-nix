@@ -91,6 +91,14 @@
   (use-package cider
     :after clojure-mode)
 #+END_SRC
+** Company
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :bind
+    ("C-S-SPC" . company-complete)
+    :config
+    (global-company-mode))
+#+END_SRC
 ** Counsel
 #+BEGIN_SRC emacs-lisp
   (use-package counsel
@@ -161,6 +169,8 @@
 *** Evil Collection
 #+BEGIN_SRC emacs-lisp
   (use-package evil-collection
+    :custom
+    (evil-collection-company-use-tng t)
     :config
     (evil-collection-init))
 #+END_SRC

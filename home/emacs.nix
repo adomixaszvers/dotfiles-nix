@@ -24,6 +24,7 @@ in {
     with unstable.emacsPackagesNg; [
       beacon
       benchmark-init
+      company
       counsel
       counsel-projectile
       csv-mode
