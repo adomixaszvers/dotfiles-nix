@@ -54,6 +54,7 @@
   };
   home.packages = with pkgs;
   let
+    mine = import <mine> { inherit pkgs; };
     nixfmt = import (fetchFromGitHub {
       owner = "serokell";
       repo = "nixfmt";
@@ -93,6 +94,7 @@
     xsel
   ];
   home.sessionVariables = {
+    NIX_PATH="mine=$HOME/.config/nixpkgs/pkgs:$NIX_PATH";
     EDITOR = "nvim";
     TERMINAL = "termite";
     HIE_HOOGLE_DATABASE = "$HOME/.nix-profile/share/doc/hoogle/index.html";
