@@ -9,7 +9,8 @@
     ./home/compton.nix
     ./home/colors.nix
     ./home/dunst.nix
-    ./home/emacs.nix
+    # ./home/emacs.nix
+    ./home/doom-emacs.nix
     ./home/i3.nix
     ./home/keepass.nix
     ./home/neovim.nix
