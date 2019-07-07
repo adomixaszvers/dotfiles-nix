@@ -12,6 +12,7 @@
     klavaro
     mine.steam
     mine.vimgolf
+    minecraft
     openjdk11
     qbittorrent
     torbrowser
