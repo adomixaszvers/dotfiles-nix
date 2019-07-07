@@ -79,16 +79,17 @@
 
   time.timeZone = "Europe/Vilnius";
 
-  users.defaultUserShell = pkgs.zsh;
-  users.mutableUsers = false;
-  users.users.root.hashedPassword =
-    "***REMOVED***";
-  users.extraUsers.adomas = {
-    hashedPassword =
-      "***REMOVED***";
-    isNormalUser = true;
-    uid = 1000;
-    extraGroups = ["wheel"];
-    shell = pkgs.zsh;
+  users = let secrets = import ./secrets.nix;
+  in {
+    defaultUserShell = pkgs.zsh;
+    mutableUsers = false;
+    users.root.hashedPassword = secrets.root.hashedPassword;
+    extraUsers.adomas = {
+      hashedPassword = secrets.adomas.hashedPassword;
+      isNormalUser = true;
+      uid = 1000;
+      extraGroups = ["wheel"];
+      shell = pkgs.zsh;
+    };
   };
 }
