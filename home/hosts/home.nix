@@ -11,7 +11,7 @@
     guile
     jetbrains.idea-ultimate
     klavaro
-    # mine.steam
+    mine.steam
     mine.vimgolf
     minecraft
     openjdk11
