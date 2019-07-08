@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   home.packages = let unstable = import <nixos-unstable> { };
   in with pkgs; [
+    # mine.consul
     # yarn
     (sqldeveloper_18.override { jdk = openjdk; })
     docker

@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
-  home.packages = let mine = import <mine> { inherit pkgs; };
-  in with pkgs; [
+{ pkgs, ... }:
+{
+  home.packages = with pkgs;
+  [
     borgbackup
     calibre
     discord
@@ -10,7 +11,7 @@
     guile
     jetbrains.idea-ultimate
     klavaro
-    mine.steam
+    # mine.steam
     mine.vimgolf
     minecraft
     openjdk11
