@@ -54,12 +54,7 @@
   };
   home.packages = with pkgs;
   let
-    nixfmt = import (fetchFromGitHub {
-      owner = "serokell";
-      repo = "nixfmt";
-      rev = "26682e3078608a478ac1a87eceadc108f0def906";
-      sha256 = "1q0gaxi83mrh88ihdiqgjd8p6ka02xzb01a2x5icdg4als9vnva1";
-    }) { };
+    nixfmt = import <nixfmt> { };
     fonts = [ corefonts google-fonts nerdfonts ];
   in fonts ++ [
     alacritty
@@ -75,6 +70,7 @@
     htop
     i3lock
     icdiff
+    lsof
     meld
     mine.bumblebee-status
     ncdu
