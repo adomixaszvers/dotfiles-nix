@@ -13,4 +13,7 @@ let
     drive push -ignore-conflict -quiet ${db-name}
   '';
   my-keepass = keepass.override { plugins = [ keepass-keepassrpc ]; };
-in { home.packages = [ drive my-keepass keepass-trigger-load keepass-trigger-save ]; }
+in {
+  home.packages =
+  [ drive my-keepass keepass-trigger-load keepass-trigger-save ];
+}

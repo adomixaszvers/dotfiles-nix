@@ -1,5 +1,5 @@
 { config, lib, ... }:
-with (lib.mapAttrs (n: v: builtins.replaceStrings ["#"] ["0x"] v)
+with (lib.mapAttrs (n: v: builtins.replaceStrings [ "#" ] [ "0x" ] v)
 config.lib.colors); {
   programs.alacritty = {
     enable = true;

@@ -22,7 +22,7 @@ in {
     config = let
       modifier = "Mod4";
       modeSystem =
-        "System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown";
+      "System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown";
       workspace1 = "1: ";
       workspace2 = "2: ";
       workspace3 = "3: ";
@@ -37,8 +37,7 @@ in {
         "${workspace1}" =
         [ { class = "^Google-chrome$"; } { class = "^Firefox$"; } ];
         "${workspace3}" = [{ class = "^(Atom|jetbrains-idea)$"; }];
-        "${workspace4}" =
-        [ { class = "^Skype$"; } { class = "^rambox$"; } ];
+        "${workspace4}" = [ { class = "^Skype$"; } { class = "^rambox$"; } ];
         "${workspace5}" = [ { class = "^Steam$"; } { class = "^SmartGit"; } ];
         "${workspace6}" = [{ class = "^libreoffice"; }];
         "${workspace7}" = [{ class = "^Emacs"; }];
@@ -50,7 +49,7 @@ in {
             -t iceberg-rainbow \
             -p memory.format="{used}/{total}" disk.format="{percent:05.02f}%"
         '';
-        fonts = ["NotoMono Nerd Font 9"];
+        fonts = [ "NotoMono Nerd Font 9" ];
         colors = with config.lib.colors; {
           activeWorkspace = {
             background = background;
@@ -108,7 +107,7 @@ in {
           childBorder = redb;
         };
       };
-      fonts = ["NotoMono Nerd Font 8"];
+      fonts = [ "NotoMono Nerd Font 8" ];
       gaps = {
         inherit (gaps) inner outer;
         smartGaps = true;
@@ -157,7 +156,7 @@ in {
         "${modifier}+Shift+c" = "reload";
         "${modifier}+Shift+r" = "restart";
         "${modifier}+Shift+e" =
-          "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
+        "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
 
         "${modifier}+r" = "mode resize";
         "${modifier}+Pause" = ''mode "${modeSystem}"'';
@@ -167,7 +166,7 @@ in {
           toString gaps.inner
         }; gaps outer current set ${toString gaps.outer}";
         "${modifier}+Shift+g" =
-          "gaps inner current set 0; gaps outer current set 0";
+        "gaps inner current set 0; gaps outer current set 0";
 
         "Shift+Print" = "exec --no-startup-id ${maimSelect}";
       };
@@ -213,7 +212,7 @@ in {
           "exec --no-startup-id ${locker} && systemctl hibernate, mode default";
           r = "exec --no-startup-id systemctl reboot, mode default";
           "Shift+s" =
-            "exec --no-startup-id systemctl poweroff -i, mode default";
+          "exec --no-startup-id systemctl poweroff -i, mode default";
 
           # back to normal: Enter or Escape
           Return = "mode default";

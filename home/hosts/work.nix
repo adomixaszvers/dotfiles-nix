@@ -41,18 +41,14 @@
     visualvm
     whois
   ];
-  home.sessionVariables = {
-    BROWSER = "firefox";
-  };
+  home.sessionVariables = { BROWSER = "firefox"; };
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;
     lockCmd = "i3lock -n";
   };
-  xsession.windowManager.i3.config.startup = [
-    {
-      command = "rambox";
-      notification = false;
-    }
-  ];
+  xsession.windowManager.i3.config.startup = [{
+    command = "rambox";
+    notification = false;
+  }];
 }

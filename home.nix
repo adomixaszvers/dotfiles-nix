@@ -36,19 +36,19 @@
   };
   home.keyboard = {
     layout = "lt,us";
-    options = ["ctrl:nocaps"];
+    options = [ "ctrl:nocaps" ];
   };
   home.extraOutputsToInstall = [ "doc" "info" "devdoc" ];
   home.file."vim-cheatsheet.png" = {
     source = pkgs.fetchurl {
-      url = http://i.imgur.com/YLInLlY.png;
+      url = "http://i.imgur.com/YLInLlY.png";
       sha256 = "0qziky603gwbzjr8sjfmlxgnwsxmv5n7fvnygykm8xj2y43657xi";
     };
   };
   home.file."wallpaper.png" = {
     source = pkgs.fetchurl {
       url =
-        https://raw.githubusercontent.com/NixOS/nixos-artwork/master/wallpapers/nix-wallpaper-simple-light-gray.png;
+      "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/wallpapers/nix-wallpaper-simple-light-gray.png";
       sha256 = "0i6d0xv1nzrv7na9hjrgzl3jrwn81vnprnq2pxyznlxbjcgkjnk2";
     };
   };
@@ -101,9 +101,9 @@
       work = {
         fingerprint = {
           DP-1 =
-            "00ffffffffffff0022f06e32010101012b1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e43363433303832370a20200019";
+          "00ffffffffffff0022f06e32010101012b1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e43363433303832370a20200019";
           DP-2 =
-            "00ffffffffffff0022f06e32010101010e1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e433631343036364d0a20200020";
+          "00ffffffffffff0022f06e32010101010e1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e433631343036364d0a20200020";
         };
         config = {
           HDMI1.enable = false;
@@ -125,7 +125,7 @@
           };
         };
         hooks.postswitch =
-          "systemctl --user restart compton.service && i3-msg restart";
+        "systemctl --user restart compton.service && i3-msg restart";
       };
     };
   };
@@ -218,7 +218,7 @@
     "Emacs.font" = "FuraMono Nerd Font Mono-9";
     "URxvt*font" = "xft:SauceCodePro Nerd Font Mono:size=10";
     "URxvt.perl-ext-common" =
-      "default,matcher,selection-to-clipboard,font-size";
+    "default,matcher,selection-to-clipboard,font-size";
     "URxvt.url-launcher" = "/usr/bin/xdg-open";
     "URxvt.matcher.button" = "1";
     "URxvt.letterSpace" = "-1";

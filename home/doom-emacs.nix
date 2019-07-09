@@ -1,4 +1,1 @@
-{ pkgs, ... }:
-{
-  home.packages = with pkgs; [ emacs gcc gnutls pandoc fd ];
-}
+{ pkgs, ... }: { home.packages = with pkgs; [ emacs gcc gnutls pandoc fd ]; }

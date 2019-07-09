@@ -31,7 +31,7 @@
     usbutils
     wget
   ];
-  environment.shells = [pkgs.zsh];
+  environment.shells = [ pkgs.zsh ];
 
   fonts = {
     enableFontDir = true;
@@ -63,7 +63,7 @@
   programs.zsh.promptInit = ""; # otherwise it'll override the grml prompt
 
   services.acpid.enable = true;
-  services.dbus.packages = with pkgs; [gnome3.dconf];
+  services.dbus.packages = with pkgs; [ gnome3.dconf ];
   services.nixosManual.showManual = true;
 
   services.gnome3.gnome-keyring.enable = true;
@@ -88,7 +88,7 @@
       hashedPassword = secrets.adomas.hashedPassword;
       isNormalUser = true;
       uid = 1000;
-      extraGroups = ["wheel"];
+      extraGroups = [ "wheel" ];
       shell = pkgs.zsh;
     };
   };

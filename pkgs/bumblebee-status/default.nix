@@ -9,8 +9,10 @@ in stdenv.mkDerivation {
     rev = "v1.8.0";
     sha256 = "1kf979gh3fd4iphqc0dndnvlx5sdn3cmm0lmvgnxyvzjj5qmhf6k";
   };
-  buildInputs = [(python3.withPackages
-  (ps: with ps; [ i3ipc requests taskw netifaces psutil ]))];
+  buildInputs = [
+    (python3.withPackages
+    (ps: with ps; [ i3ipc requests taskw netifaces psutil ]))
+  ];
   unpackPhase = ":";
   installPhase = ''
     install -d $out/share/bumblebee-status
@@ -20,7 +22,7 @@ in stdenv.mkDerivation {
   '';
   meta = {
     description =
-      "bumblebee-status is a modular, theme-able status line generator for the i3 window manager.";
-    homepage = https://github.com/tobi-wan-kenobi/bumblebee-status;
+    "bumblebee-status is a modular, theme-able status line generator for the i3 window manager.";
+    homepage = "https://github.com/tobi-wan-kenobi/bumblebee-status";
   };
 }
