@@ -45,7 +45,7 @@
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;
-    lockCmd = "i3lock -n";
+    lockCmd = let wallpaper = ../dotfiles/lockscreen.png; in "i3lock -n -i ${wallpaper} -t";
   };
   xsession.windowManager.i3.config.startup = [{
     command = "rambox";
