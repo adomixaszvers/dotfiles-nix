@@ -22,12 +22,12 @@
   gtk = {
     enable = true;
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      name = "Arc";
+      package = pkgs.arc-icon-theme;
     };
     theme = {
-      name = "Adapta-Eta";
-      package = pkgs.adapta-gtk-theme;
+      name = "Arc-Darker";
+      package = pkgs.arc-theme;
     };
   };
   qt = {
