@@ -18,6 +18,11 @@
     trustedUsers = [ "root" "adomas" ];
   };
 
+  documentation = {
+    enable = true;
+    dev.enable = true;
+    info.enable = true;
+  };
   environment.systemPackages = with pkgs; [
     acpi
     exfat
