@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   home.packages = with pkgs; [
     borgbackup
     calibre
@@ -19,7 +19,7 @@
     vlc
   ];
   services.kdeconnect = {
-    enable = true;
+    enable = config.xsession.enable;
     indicator = true;
   };
 }
