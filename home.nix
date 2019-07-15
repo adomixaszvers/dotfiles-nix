@@ -66,6 +66,7 @@
     file
     git
     gnome3.adwaita-icon-theme
+    google-play-music-desktop-player
     hicolor-icon-theme
     htop
     i3lock
