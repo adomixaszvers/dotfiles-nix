@@ -199,6 +199,10 @@
       hcd = "cd ~/.config/nixpkgs";
     };
   };
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "pkcs11" "secrets" "ssh" ];
+  };
   services.network-manager-applet.enable = config.xsession.enable;
   systemd.user.startServices = true;
 
