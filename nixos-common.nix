@@ -14,7 +14,7 @@
     extraOptions = ''
       keep-outputs = true
     '';
-    optimise.automatic = true;
+    autoOptimiseStore = true;
     trustedUsers = [ "root" "adomas" ];
   };
 
