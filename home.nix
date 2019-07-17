@@ -158,42 +158,9 @@
     theme = "Pop-Dark";
   };
   programs.zsh = {
-    defaultKeymap = "viins";
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    initExtra = ''
-      # Remove mode switching delay.
-      KEYTIMEOUT=5
-
-      # Change cursor shape for different vi modes.
-      function zle-keymap-select {
-        if [[ ''${KEYMAP} == vicmd ]] ||
-          [[ $1 = 'block' ]]; then
-          echo -ne '\e[1 q'
-
-        elif [[ ''${KEYMAP} == main ]] ||
-            [[ ''${KEYMAP} == viins ]] ||
-            [[ ''${KEYMAP} = "" ]] ||
-            [[ $1 = 'beam' ]]; then
-            echo -ne '\e[5 q'
-            bindkey -M viins '^?' backward-delete-char
-            bindkey -M viins '^H' backward-delete-char
-        fi
-      }
-      zle -N zle-keymap-select
-
-      _fix_cursor_precmd() {
-        echo -ne '\e[5 q'
-      }
-
-      _fix_cursor_preexec() {
-        echo -ne '\e[1 q'
-      }
-
-      precmd_functions+=(_fix_cursor_precmd)
-      preexec_functions+=(_fix_cursor_preexec)
-    '';
     shellAliases = {
       em = "emacsclient -t";
       he = "(hcd && nvim $(fzf))";
