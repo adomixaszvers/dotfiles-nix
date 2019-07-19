@@ -220,7 +220,7 @@ in {
         };
       };
       startup = [{
-        command = "feh --bg-max --image-bg white ~/wallpaper.png";
+        command = "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png";
         always = true;
         notification = false;
       }
