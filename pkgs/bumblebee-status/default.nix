@@ -6,7 +6,7 @@ in stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "tobi-wan-kenobi";
     repo = "bumblebee-status";
-    rev = "v1.8.0";
+    rev = "v${version}";
     sha256 = "1kf979gh3fd4iphqc0dndnvlx5sdn3cmm0lmvgnxyvzjj5qmhf6k";
   };
   buildInputs = [
@@ -20,9 +20,11 @@ in stdenv.mkDerivation {
     install -d $out/bin
     ln -s $out/share/bumblebee-status/bumblebee-status $out/bin/bumblebee-status
   '';
-  meta = {
+  meta = with stdenv.lib; {
+    platforms = platforms.linux;
+    license = licenses.mit;
     description =
-    "bumblebee-status is a modular, theme-able status line generator for the i3 window manager.";
+    "a modular, theme-able status line generator for the i3 window manager";
     homepage = "https://github.com/tobi-wan-kenobi/bumblebee-status";
   };
 }
