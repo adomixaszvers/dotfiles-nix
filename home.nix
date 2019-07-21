@@ -162,7 +162,6 @@
     enableAutosuggestions = true;
     enableCompletion = true;
     shellAliases = {
-      em = "emacsclient -t";
       he = "(hcd && nvim $(fzf))";
       hcd = "cd ~/.config/nixpkgs";
     };
