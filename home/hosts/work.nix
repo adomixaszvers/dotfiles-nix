@@ -28,7 +28,6 @@
     robo3t
     samba
     skype
-    smartgithg
     soapui
     steam
     subversion
