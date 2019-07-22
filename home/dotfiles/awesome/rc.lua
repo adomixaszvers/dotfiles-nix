@@ -496,25 +496,25 @@ awful.rules.rules = {
     },
 
     { rule_any = { class = { "Google-chrome", "Firefox" } },
-      properties = { screen = 2, tag = "1" }
+      properties = { tag = "1" }
     },
     { rule = { class = "jetbrains-idea" },
-      properties = { screen = 1, tag = "3" }
+      properties = { tag = "3" }
     },
     { rule_any = { class = { "Skype", "rambox" } },
-      properties = { screen = 1, tag = "4" }
+      properties = { tag = "4" }
     },
     { rule_any = { class = { "Steam", "SmartGit" } },
-      properties = { screen = 1, tag = "5" }
+      properties = { tag = "5" }
     },
     { rule = { class = "libreoffice" },
-      properties = { screen = 1, tag = "6" }
+      properties = { tag = "6" }
     },
     { rule = { class = "Spotify" },
-      properties = { screen = 2, tag = "10" }
+      properties = { tag = "10" }
     },
     { rule = { class = "Emacs" },
-      properties = { screen = 1, tag = "7" }
+      properties = { tag = "7" }
     }
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
