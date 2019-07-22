@@ -41,6 +41,10 @@
     whois
   ];
   home.sessionVariables = { BROWSER = "firefox"; };
+  programs.zsh.shellAliases = {
+      imvn = "mvn -s ~/.m2/insoft-settings.xml";
+      amvn = "mvn -s ~/.m2/kazan-settings.xml";
+  };
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;
