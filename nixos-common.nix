@@ -6,10 +6,12 @@
       "https://cache.nixos.org/"
       "https://hie-nix.cachix.org"
       "https://nerdfonts.cachix.org"
+      "https://nixfmt.cachix.org"
     ];
     binaryCachePublicKeys = [
       "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
       "nerdfonts.cachix.org-1:aBl3vMJ8JpYEzuJYQ4OrfxGl5yoabTC7Tfh9fAcFf+c="
+      "nixfmt.cachix.org-1:uyEQg16IhCFeDpFV07aL+Dbmh18XHVUqpkk/35WAgJI="
     ];
     extraOptions = ''
       keep-outputs = true
