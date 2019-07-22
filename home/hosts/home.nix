@@ -18,8 +18,4 @@
     vim
     vlc
   ];
-  services.kdeconnect = {
-    enable = config.xsession.enable;
-    indicator = true;
-  };
 }
