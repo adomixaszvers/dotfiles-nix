@@ -71,6 +71,7 @@
     htop
     i3lock
     icdiff
+    iotop
     lsof
     meld
     mine.bumblebee-status

@@ -42,13 +42,14 @@
   ];
   home.sessionVariables = { BROWSER = "firefox"; };
   programs.zsh.shellAliases = {
-      imvn = "mvn -s ~/.m2/insoft-settings.xml";
-      amvn = "mvn -s ~/.m2/kazan-settings.xml";
+    imvn = "mvn -s ~/.m2/insoft-settings.xml";
+    amvn = "mvn -s ~/.m2/kazan-settings.xml";
   };
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;
-    lockCmd = let wallpaper = ../dotfiles/lockscreen.png; in "i3lock -n -i ${wallpaper} -t";
+    lockCmd = let wallpaper = ../dotfiles/lockscreen.png;
+    in "i3lock -n -i ${wallpaper} -t";
   };
   xsession.windowManager.i3.config.startup = [{
     command = "rambox";
