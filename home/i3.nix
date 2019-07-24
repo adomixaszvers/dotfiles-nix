@@ -116,8 +116,8 @@ in {
       keybindings = {
         "${modifier}+Return" = "exec i3-sensible-terminal";
         "${modifier}+Shift+q" = "kill";
-        "Shift+${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show run";
-        "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
+        "Shift+${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show run -sidebar-mode";
+        "${modifier}+d" = ''exec ${pkgs.rofi}/bin/rofi -show combi -combi-modi "window#drun" -modi combi'';
         "${modifier}+Tab" = "exec ${pkgs.rofi}/bin/rofi -show window";
 
         "${modifier}+h" = "focus left";
