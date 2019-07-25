@@ -156,7 +156,7 @@
     extraConfig = ''
       rofi.modi: drun,window,run,ssh
     '';
-    theme = "Pop-Dark";
+    theme = "paper-float";
   };
   programs.zsh = {
     enable = true;
