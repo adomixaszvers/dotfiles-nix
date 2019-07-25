@@ -17,7 +17,6 @@
       keep-outputs = true
     '';
     autoOptimiseStore = true;
-    trustedUsers = [ "root" "adomas" ];
   };
 
   documentation = {
