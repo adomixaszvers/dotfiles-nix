@@ -1,7 +1,20 @@
 { pkgs, config, ... }: {
   services.compton = {
     enable = config.xsession.enable;
+    shadow = true;
+    shadowExclude = [
+        "name = 'Notification'"
+        "class_g = 'Conky'"
+        "class_g ?= 'Notify-osd'"
+        "class_g = 'Cairo-clock'"
+        "_GTK_FRAME_EXTENTS@:c"
+    ];
+    shadowOffsets = [ (-7) (-7) ];
+    shadowOpacity = "0.9";
     extraOptions = ''
+      clear-shadow = true;
+      shadow-radius = 7;
+
       inactive-dim = 0.1
     '';
     opacityRule = [
