@@ -2,23 +2,23 @@
   imports = let
     current = ./home/hosts/current.nix;
     hostSpecific = if builtins.pathExists current then current else { };
-  in [
-    hostSpecific
-    # ./home/awesome.nix
-    # ./home/bspwm.nix
-    ./home/compton.nix
-    ./home/colors.nix
-    ./home/dunst.nix
-    # ./home/emacs.nix
-    ./home/doom-emacs.nix
-    ./home/i3.nix
-    ./home/keepass.nix
-    ./home/neovim.nix
-    ./home/alacritty.nix
-    # ./home/polybar.nix
-    ./home/termite.nix
-    # ./home/xmonad.nix
-  ];
+    in [
+      hostSpecific
+      # ./home/awesome.nix
+      # ./home/bspwm.nix
+      ./home/compton.nix
+      ./home/colors.nix
+      ./home/dunst.nix
+      # ./home/emacs.nix
+      ./home/doom-emacs.nix
+      ./home/i3.nix
+      ./home/keepass.nix
+      ./home/neovim.nix
+      ./home/alacritty.nix
+      # ./home/polybar.nix
+      ./home/termite.nix
+      # ./home/xmonad.nix
+    ];
   gtk = {
     enable = true;
     iconTheme = {
@@ -48,48 +48,48 @@
   home.file."wallpaper.png" = {
     source = pkgs.fetchurl {
       url =
-      "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/wallpapers/nix-wallpaper-simple-light-gray.png";
+        "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/wallpapers/nix-wallpaper-simple-light-gray.png";
       sha256 = "0i6d0xv1nzrv7na9hjrgzl3jrwn81vnprnq2pxyznlxbjcgkjnk2";
     };
   };
   home.packages = with pkgs;
-  let
-    nixfmt = import <nixfmt> { };
-    fonts = [ corefonts google-fonts nerdfonts ];
-  in fonts ++ [
-    alacritty
-    arandr
-    bfs
-    cachix
-    dunst
-    evince
-    file
-    git
-    gnome3.adwaita-icon-theme
-    google-play-music-desktop-player
-    hicolor-icon-theme
-    htop
-    i3lock
-    icdiff
-    iotop
-    lsof
-    meld
-    mine.bumblebee-status
-    ncdu
-    nixfmt
-    p7zip
-    pavucontrol
-    pcmanfm
-    ranger
-    ripgrep
-    rxvt_unicode-with-plugins
-    shellcheck
-    tree
-    unzip
-    w3m # for ranger image previews
-    xarchiver
-    xsel
-  ];
+    let
+      nixfmt = import <nixfmt> { };
+      fonts = [ corefonts google-fonts nerdfonts ];
+    in fonts ++ [
+      alacritty
+      arandr
+      bfs
+      cachix
+      dunst
+      evince
+      file
+      git
+      gnome3.adwaita-icon-theme
+      google-play-music-desktop-player
+      hicolor-icon-theme
+      htop
+      i3lock
+      icdiff
+      iotop
+      lsof
+      meld
+      mine.bumblebee-status
+      ncdu
+      nixfmt
+      p7zip
+      pavucontrol
+      pcmanfm
+      ranger
+      ripgrep
+      rxvt_unicode-with-plugins
+      shellcheck
+      tree
+      unzip
+      w3m # for ranger image previews
+      xarchiver
+      xsel
+    ];
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "termite";
@@ -103,9 +103,9 @@
       work = {
         fingerprint = {
           DP-1 =
-          "00ffffffffffff0022f06e32010101012b1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e43363433303832370a20200019";
+            "00ffffffffffff0022f06e32010101012b1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e43363433303832370a20200019";
           DP-2 =
-          "00ffffffffffff0022f06e32010101010e1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e433631343036364d0a20200020";
+            "00ffffffffffff0022f06e32010101010e1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e433631343036364d0a20200020";
         };
         config = {
           HDMI1.enable = false;
@@ -127,7 +127,7 @@
           };
         };
         hooks.postswitch =
-        "systemctl --user restart compton.service && i3-msg restart";
+          "systemctl --user restart compton.service && i3-msg restart";
       };
     };
   };
@@ -190,7 +190,7 @@
     "Emacs.font" = "FuraMono Nerd Font Mono-9";
     "URxvt*font" = "xft:SauceCodePro Nerd Font Mono:size=10";
     "URxvt.perl-ext-common" =
-    "default,matcher,selection-to-clipboard,font-size";
+      "default,matcher,selection-to-clipboard,font-size";
     "URxvt.url-launcher" = "/usr/bin/xdg-open";
     "URxvt.matcher.button" = "1";
     "URxvt.letterSpace" = "-1";

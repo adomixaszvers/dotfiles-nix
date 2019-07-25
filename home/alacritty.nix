@@ -23,12 +23,12 @@ config.lib.colors); {
         };
       };
       font = let fontSettings = { family = "FuraMono Nerd Font Mono"; };
-      in {
-        normal = fontSettings;
-        bold = fontSettings;
-        italic = fontSettings;
-        size = 9;
-      };
+        in {
+          normal = fontSettings;
+          bold = fontSettings;
+          italic = fontSettings;
+          size = 9;
+        };
     };
   };
 }

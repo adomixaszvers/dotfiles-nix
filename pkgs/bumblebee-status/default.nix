@@ -24,7 +24,7 @@ in stdenv.mkDerivation {
     platforms = platforms.linux;
     license = licenses.mit;
     description =
-    "a modular, theme-able status line generator for the i3 window manager";
+      "a modular, theme-able status line generator for the i3 window manager";
     homepage = "https://github.com/tobi-wan-kenobi/bumblebee-status";
   };
 }

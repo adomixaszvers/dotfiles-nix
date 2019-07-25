@@ -4,35 +4,35 @@ self: super: {
     vimgolf = super.callPackage ../pkgs/vimgolf { };
     ghc = let
       haskellPackages = ps:
-      with ps; [
-        # ghc-mod
-        hasktags
-        # hdevtools
-        hindent
-        hlint
-        # hoogle
-        hspec
-        pointfree
-        pointful
-        stylish-haskell
-      ];
-    in self.ghc.withHoogle haskellPackages;
+        with ps; [
+          # ghc-mod
+          hasktags
+          # hdevtools
+          hindent
+          hlint
+          # hoogle
+          hspec
+          pointfree
+          pointful
+          stylish-haskell
+        ];
+      in self.ghc.withHoogle haskellPackages;
     steam = super.steam.override {
       extraPkgs = ps:
-      with ps; [
-        atk
-        cairo
-        dbus
-        fontconfig
-        freetype
-        gdk_pixbuf
-        glib
-        gnome3.gtk
-        lsb-release
-        pango
-        xorg.libxcb
-        zlib
-      ];
+        with ps; [
+          atk
+          cairo
+          dbus
+          fontconfig
+          freetype
+          gdk_pixbuf
+          glib
+          gnome3.gtk
+          lsb-release
+          pango
+          xorg.libxcb
+          zlib
+        ];
     };
   };
 }

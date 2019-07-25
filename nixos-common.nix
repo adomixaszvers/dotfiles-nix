@@ -86,16 +86,16 @@
   time.timeZone = "Europe/Vilnius";
 
   users = let secrets = import ./secrets.nix;
-  in {
-    defaultUserShell = pkgs.zsh;
-    mutableUsers = false;
-    users.root.hashedPassword = secrets.root.hashedPassword;
-    extraUsers.adomas = {
-      hashedPassword = secrets.adomas.hashedPassword;
-      isNormalUser = true;
-      uid = 1000;
-      extraGroups = [ "wheel" ];
-      shell = pkgs.zsh;
+    in {
+      defaultUserShell = pkgs.zsh;
+      mutableUsers = false;
+      users.root.hashedPassword = secrets.root.hashedPassword;
+      extraUsers.adomas = {
+        hashedPassword = secrets.adomas.hashedPassword;
+        isNormalUser = true;
+        uid = 1000;
+        extraGroups = [ "wheel" ];
+        shell = pkgs.zsh;
+      };
     };
-  };
 }

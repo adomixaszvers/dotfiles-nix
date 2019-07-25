@@ -139,7 +139,7 @@ in {
           "vim-unimpaired"
           "vinegar"
         ];
-      in map (name: { inherit name; }) names;
+        in map (name: { inherit name; }) names;
     };
   };
 }

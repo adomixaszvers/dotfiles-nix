@@ -15,5 +15,5 @@ let
   my-keepass = keepass.override { plugins = [ keepass-keepassrpc ]; };
 in {
   home.packages =
-  [ drive my-keepass keepass-trigger-load keepass-trigger-save ];
+    [ drive my-keepass keepass-trigger-load keepass-trigger-save ];
 }
