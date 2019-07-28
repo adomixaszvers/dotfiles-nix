@@ -223,7 +223,10 @@ in {
     };
     script = ''
       #!/bin/bash
-      PATH=$PATH:${with pkgs; lib.makeBinPath [ coreutils gnugrep procps psmisc xorg.xrandr ]}
+      PATH=$PATH:${
+        with pkgs;
+        lib.makeBinPath [ coreutils gnugrep procps psmisc xorg.xrandr ]
+      }
 
       # Terminate already running bar instances
       killall -q polybar

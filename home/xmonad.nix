@@ -3,14 +3,8 @@
     (with import <nixos-unstable> { }; haskellPackages.brittany)
     cabal-install
     mine.rofi-powermenu
-    (ghc.withPackages (hs:
-    with hs; [
-      hlint
-      ghcid
-      xmonad
-      xmonad-contrib
-      xmonad-extras
-    ]))
+    (ghc.withPackages
+    (hs: with hs; [ hlint ghcid xmonad xmonad-contrib xmonad-extras ]))
     xorg.xmessage
   ];
   xsession.windowManager.xmonad = {
