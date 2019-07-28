@@ -33,7 +33,7 @@ myConfig =
           , modMask            = mod4Mask
           , borderWidth        = 2
           , layoutHook         = myMainLayout
-          , manageHook         = manageDocks <+> manageHook def
+          , manageHook         = myManageHook <+> manageDocks <+> manageHook def
           , startupHook        = myStartupHook
           }
     `removeKeysP` ["M-p", "M-S-p"]
@@ -54,6 +54,16 @@ myMainLayout = smartBorders . avoidStruts $ tiled ||| Mirror tiled ||| Full
       $ Tall 1 (3 / 100) (1 / 2)
   outer = 3
   inner = 5
+
+myManageHook = composeAll
+  [ className =? "Google-chrome" <||> className =? "Firefox" --> doShift "1"
+  , className =? "jetbrains-idea" --> doShift "3"
+  , className =? "rambox" --> doShift "4"
+  , className =? "Steam" <||> className =? "SmartGit" --> doShift "5"
+  , className =? "libreoffice" --> doShift "6"
+  , className =? "Emacs" --> doShift "7"
+  , className =? "google play music desktop player" --> doShift "9"
+  ]
 
 myAdditionalKeys c =
   let ltKeys =
