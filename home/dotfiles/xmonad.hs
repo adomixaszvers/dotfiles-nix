@@ -25,7 +25,6 @@ import           XMonad.Util.NamedActions       ( addDescrKeys
                                                 , subtitle
                                                 , xMessage
                                                 )
-
 main = xmonad . ewmh . docks $ myConfig
 
 myTerminal = "termite"
@@ -47,7 +46,9 @@ myConfig =
 
 myModMask = mod4Mask
 
-myStartupHook = spawn "systemctl --user restart polybar.service"
+myStartupHook = do
+  spawn "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
+  spawn "systemctl --user restart polybar.service"
 
 myMainLayout = smartBorders . avoidStruts $ tiled ||| Mirror tiled ||| Full
  where
