@@ -55,7 +55,13 @@
   home.packages = with pkgs;
     let
       nixfmt = import <nixfmt> { };
-      fonts = [ corefonts google-fonts nerdfonts ];
+      fonts = [
+        corefonts
+        emacs-all-the-icons-fonts
+        google-fonts
+        material-icons
+        nerdfonts
+      ];
     in fonts ++ [
       alacritty
       arandr
