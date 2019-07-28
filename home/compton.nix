@@ -3,11 +3,12 @@
     enable = config.xsession.enable;
     shadow = true;
     shadowExclude = [
-      "name = 'Notification'"
-      "class_g = 'Conky'"
-      "class_g ?= 'Notify-osd'"
-      "class_g = 'Cairo-clock'"
       "_GTK_FRAME_EXTENTS@:c"
+      "class_g = 'Cairo-clock'"
+      "class_g = 'Conky'"
+      "class_g = 'Firefox' && argb"
+      "class_g ?= 'Notify-osd'"
+      "name = 'Notification'"
     ];
     shadowOffsets = [ (-7) (-7) ];
     shadowOpacity = "0.9";
