@@ -1,5 +1,17 @@
 { pkgs, lib, config, ... }: {
-  home.packages = with pkgs; [ xorg.xmessage xmobar ];
+  home.packages = with pkgs; [
+    (with import <nixos-unstable> { }; haskellPackages.brittany)
+    cabal-install
+    (ghc.withPackages (hs:
+    with hs; [
+      hlint
+      ghcid
+      xmonad
+      xmonad-contrib
+      xmonad-extras
+    ]))
+    xorg.xmessage
+  ];
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
