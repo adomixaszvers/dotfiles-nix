@@ -2,6 +2,7 @@ self: super: {
   mine = {
     bumblebee-status = super.callPackage ../pkgs/bumblebee-status { };
     vimgolf = super.callPackage ../pkgs/vimgolf { };
+    rofi-powermenu = super.callPackage ../pkgs/rofi-powermenu.nix { };
     ghc = let
       haskellPackages = ps:
         with ps; [

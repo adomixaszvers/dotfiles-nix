@@ -100,7 +100,7 @@ myAdditionalKeys c =
          , ("M-S-<Return>", addName "Swap master" $ windows W.swapMaster)
          , ("M-<Return>"  , addName "Spawn terminal" $ spawn myTerminal)
          , ("M-S-q"       , addName "Kill client" kill)
-         , ("M-S-c"       , addName "Exit XMonad" $ io exitSuccess)
+         , ("M-S-c"       , addName "Power menu" $ spawn "rofi-powermenu")
          ]
     ++ [ ((m .|. myModMask, key), addName (name ++ " " ++ i) $ windows $ f i)
        | (i, key) <- zip (XMonad.workspaces c) ltKeys

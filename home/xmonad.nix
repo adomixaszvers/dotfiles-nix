@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     (with import <nixos-unstable> { }; haskellPackages.brittany)
     cabal-install
+    mine.rofi-powermenu
     (ghc.withPackages (hs:
     with hs; [
       hlint
