@@ -11,13 +11,13 @@
       ./home/dunst.nix
       # ./home/emacs.nix
       ./home/doom-emacs.nix
-      ./home/i3.nix
+      # ./home/i3.nix
       ./home/keepass.nix
       ./home/neovim.nix
       ./home/alacritty.nix
-      # ./home/polybar.nix
+      ./home/polybar.nix
       ./home/termite.nix
-      # ./home/xmonad.nix
+      ./home/xmonad.nix
     ];
   gtk = {
     enable = true;
@@ -64,6 +64,7 @@
       dunst
       evince
       file
+      font-manager
       git
       gnome3.adwaita-icon-theme
       google-play-music-desktop-player
@@ -93,7 +94,6 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "termite";
-    HIE_HOOGLE_DATABASE = "$HOME/.nix-profile/share/doc/hoogle/index.html";
   };
   home.stateVersion = "19.03";
   manual.html.enable = true;
@@ -156,7 +156,7 @@
     extraConfig = ''
       rofi.modi: drun,window,run,ssh
     '';
-    theme = "paper-float";
+    theme = "Pop-Dark";
   };
   programs.zsh = {
     enable = true;
