@@ -78,7 +78,7 @@ myMainLayout = smartBorders . avoidStruts $ tiled ||| Mirror tiled ||| Full
  where
   tiled =
     smartBorders
-      $ spacingRaw False
+      $ spacingRaw True
                    (Border outer outer outer outer)
                    True
                    (Border inner inner inner inner)
