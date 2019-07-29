@@ -7,6 +7,21 @@ let
     custom-primary = "#3daee9";
     custom-warn = "#da4453";
   };
+  defaultBar = {
+    monitor = ''
+      ''${env:MONITOR}
+    '';
+    height = 25;
+    bottom = false;
+    fixed-center = true;
+
+    inherit (colors) background foreground;
+
+    font-0 = "Iosevka Term:fontformat=truetype:pixelsize=8:antialias=true;2";
+    font-1 =
+      "Iosevka Nerd Font Mono:fontformat=truetype:size=10:antialias=true;3";
+    font-2 = "Material Icons:fontformat=truetype:pixelsize=10:antialias=true;3";
+  };
 in {
   services.polybar = {
     enable = true;
@@ -15,46 +30,7 @@ in {
       pulseSupport = true;
     };
     config = {
-      "bar/bottom" = {
-        bottom = true;
-        enable-ipc = true;
-        font-0 =
-          "Iosevka Term:fontformat=truetype:pixelsize=8:antialias=true;2";
-        font-1 =
-          "Iosevka Nerd Font Mono:fontformat=truetype:size=10:antialias=true;3";
-        font-2 =
-          "Material Icons:fontformat=truetype:pixelsize=10:antialias=true;3";
-        width = "100%";
-        height = 20;
-        radius = 0;
-        background = colors.black;
-        foreground = colors.white;
-        separator = " ";
-        modules-left = "ewmh";
-        modules-center = "title";
-        modules-right = "cpu memory disk keyboard pulse date";
-
-        tray-position = "right";
-        tray-max-size = 16;
-        tray-background = colors.custom-background-light;
-      };
-      "bar/top" = {
-        monitor = ''
-          ''${env:MONITOR:LVDS-1}
-        '';
-        height = 25;
-        bottom = false;
-        fixed-center = true;
-
-        inherit (colors) background foreground;
-
-        font-0 =
-          "Iosevka Term:fontformat=truetype:pixelsize=8:antialias=true;2";
-        font-1 =
-          "Iosevka Nerd Font Mono:fontformat=truetype:size=10:antialias=true;3";
-        font-2 =
-          "Material Icons:fontformat=truetype:pixelsize=10:antialias=true;3";
-
+      "bar/top" = defaultBar //  {
         modules-left = "xmonad";
         modules-center = "";
         modules-right =
@@ -63,6 +39,11 @@ in {
         tray-max-size = 16;
         tray-background = colors.custom-background-dark;
       };
+      "bar/top-extra" = defaultBar // {
+        modules-left = "xmonad";
+        modules-center = "";
+        modules-right = "";
+      };
       "module/xmonad" = {
         type = "custom/script";
         exec = "${pkgs.xmonad-log}/bin/xmonad-log";
@@ -70,7 +51,6 @@ in {
       };
       "module/cpu" = {
         type = "internal/cpu";
-        interval = 1;
 
         format-prefix = "%{T3}%{T-}";
         format-prefix-foreground = colors.custom-primary;
@@ -94,7 +74,6 @@ in {
       };
       "module/time" = {
         type = "internal/date";
-        interval = 1;
 
         time = "%H:%M";
         time-alt = "%H:%M:%S";
@@ -239,11 +218,14 @@ in {
       # Wait until the processes have been shut down
       while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-      MONITOR=$(xrandr --query | grep " connected primary" | cut -d" " -f1)
-      export MONITOR
+      PRIMARY_MONITOR=$(xrandr --query | grep " connected primary" | cut -d" " -f1)
 
       # Launch Polybar, using default config location ~/.config/polybar/config
-      polybar top &
+      MONITOR=$PRIMARY_MONITOR polybar top &
+
+      for m in $(xrandr --query | grep " connected" | grep -v primary | cut -d" " -f1); do
+          MONITOR=$m polybar top-extra &
+      done
 
       echo "Polybar launched..."
     '';
