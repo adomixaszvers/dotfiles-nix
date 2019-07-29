@@ -17,9 +17,9 @@ let
 
     inherit (colors) background foreground;
 
-    font-0 = "Iosevka Term:fontformat=truetype:pixelsize=8:antialias=true;2";
+    font-0 = "NotoMono Nerd Font:fontformat=truetype:pixelsize=8:antialias=true;2";
     font-1 =
-      "Iosevka Nerd Font Mono:fontformat=truetype:size=10:antialias=true;3";
+      "NotoMono Nerd Font:fontformat=truetype:size=10:antialias=true;2";
     font-2 = "Material Icons:fontformat=truetype:pixelsize=10:antialias=true;3";
   };
 in {
