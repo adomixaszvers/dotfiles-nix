@@ -44,6 +44,12 @@ import           XMonad.Util.NamedActions       ( NamedAction(..)
                                                 , subtitle
                                                 , showKm
                                                 )
+import           XMonad.Util.NamedScratchpad    ( NamedScratchpads
+                                                , NamedScratchpad(NS)
+                                                , customFloating
+                                                , namedScratchpadAction
+                                                , namedScratchpadManageHook
+                                                )
 import           XMonad.Util.Run                ( spawnPipe )
 
 main = do
@@ -62,15 +68,19 @@ myConfig =
   addDescrKeys
       ((myModMask, xK_F1), showKeybindings)
       myAdditionalKeys
-      def { terminal           = myTerminal
-          , focusedBorderColor = "#8BE9FD"
-          , modMask            = mod4Mask
-          , borderWidth        = 2
-          , handleEventHook    = fullscreenEventHook <+> handleEventHook def
-          , layoutHook         = myMainLayout
-          , manageHook         = manageDocks <+> myManageHook <+> manageHook def
-          , startupHook        = myStartupHook
-          }
+      def
+        { terminal           = myTerminal
+        , focusedBorderColor = "#8BE9FD"
+        , modMask            = mod4Mask
+        , borderWidth        = 2
+        , handleEventHook    = fullscreenEventHook <+> handleEventHook def
+        , layoutHook         = myMainLayout
+        , manageHook         = manageDocks
+                               <+> namedScratchpadManageHook myScratchpads
+                               <+> myManageHook
+                               <+> manageHook def
+        , startupHook        = myStartupHook
+        }
     `removeKeysP` ["M-p", "M-S-p"]
 
 myModMask = mod4Mask
@@ -98,7 +108,6 @@ myManageHook = composeOne
   , className =? "rambox" -?> doShift "4"
   , className =? "Steam" <||> className =? "SmartGit" -?> doShift "5"
   , className =? "libreoffice" -?> doShift "6"
-  , className =? "Emacs" -?> doShift "7"
   , className =? "google play music desktop player" -?> doShift "9"
   ]
 
@@ -130,6 +139,14 @@ myAdditionalKeys c =
          , ("M-<Return>"  , addName "Spawn terminal" $ spawn myTerminal)
          , ("M-S-q"       , addName "Kill client" kill)
          , ("M-<Pause>"   , addName "Power menu" $ spawn "rofi-powermenu")
+         , ( "M-C-e"
+           , addName "Emacs scratchpad"
+             $ namedScratchpadAction myScratchpads "emacs"
+           )
+         , ( "M-C-s"
+           , addName "Terminal scratchpad"
+             $ namedScratchpadAction myScratchpads "terminal"
+           )
          ]
     ++ [ ((m .|. myModMask, key), addName (name ++ " " ++ i) $ windows $ f i)
        | (i, key) <- zip (XMonad.workspaces c) ltKeys
@@ -168,3 +185,13 @@ dbusOutput dbus str = do
   objectPath    = D.objectPath_ "/org/xmonad/Log"
   interfaceName = D.interfaceName_ "org.xmonad.Log"
   memberName    = D.memberName_ "Update"
+
+myScratchpads :: NamedScratchpads
+myScratchpads =
+  [ NS "emacs" "emacs" (className =? "Emacs") (customFloating rect)
+  , NS "terminal"
+       (myTerminal ++ " -t scratchpad")
+       (title =? "scratchpad")
+       (customFloating rect)
+  ]
+  where rect = W.RationalRect 0.025 0.025 0.95 0.95
