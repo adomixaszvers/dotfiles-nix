@@ -2,6 +2,9 @@
 import qualified Codec.Binary.UTF8.String      as UTF8
 import qualified DBus                          as D
 import qualified DBus.Client                   as D
+import           System.IO                      ( hClose
+                                                , hPutStr
+                                                )
 import           XMonad
 import           XMonad.Hooks.DynamicLog        ( PP(..)
                                                 , dynamicLogWithPP
@@ -35,11 +38,13 @@ import qualified XMonad.StackSet               as W
 import           XMonad.Util.EZConfig           ( mkNamedKeymap
                                                 , removeKeysP
                                                 )
-import           XMonad.Util.NamedActions       ( addDescrKeys
+import           XMonad.Util.NamedActions       ( NamedAction(..)
+                                                , addDescrKeys
                                                 , addName
                                                 , subtitle
-                                                , xMessage
+                                                , showKm
                                                 )
+import           XMonad.Util.Run                ( spawnPipe )
 
 main = do
   dbus <- D.connectSession
@@ -55,7 +60,7 @@ myTerminal = "termite"
 
 myConfig =
   addDescrKeys
-      ((myModMask, xK_F1), xMessage)
+      ((myModMask, xK_F1), showKeybindings)
       myAdditionalKeys
       def { terminal           = myTerminal
           , focusedBorderColor = "#8BE9FD"
@@ -133,6 +138,13 @@ myAdditionalKeys c =
          , (W.shift     , "Move to workspace", shiftMask)
          ]
        ]
+
+showKeybindings :: [((KeyMask, KeySym), NamedAction)] -> NamedAction
+showKeybindings x = addName "Show Keybindings" $ io $ do
+  h <- spawnPipe "zenity --text-info --font=\"NotoMono Nerd Font\""
+  hPutStr h (unlines $ showKm x)
+  hClose h
+  return ()
 
 myLogHook :: D.Client -> PP
 myLogHook dbus = def { ppOutput  = dbusOutput dbus

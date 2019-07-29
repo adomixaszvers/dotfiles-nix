@@ -11,11 +11,11 @@ let
     ];
 in {
   home.packages = with pkgs; [
+    (ghc.withHoogle extraPackages)
     (with import <nixos-unstable> { }; haskellPackages.brittany)
     cabal-install
+    gnome3.zenity
     mine.rofi-powermenu
-    (ghc.withHoogle extraPackages)
-    xorg.xmessage
   ];
   xsession.windowManager.xmonad = {
     inherit extraPackages;
