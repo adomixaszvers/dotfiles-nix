@@ -1,12 +1,28 @@
 {-# OPTIONS_GHC -fno-warn-missing-signatures #-}
+import qualified Codec.Binary.UTF8.String      as UTF8
+import qualified DBus                          as D
+import qualified DBus.Client                   as D
 import           XMonad
+import           XMonad.Hooks.DynamicLog        ( PP(..)
+                                                , dynamicLogWithPP
+                                                , ppCurrent
+                                                , ppHidden
+                                                , ppOutput
+                                                , ppSep
+                                                , ppTitle
+                                                , ppUrgent
+                                                , ppVisible
+                                                , ppWsSep
+                                                , shorten
+                                                , wrap
+                                                )
 import           XMonad.Hooks.EwmhDesktops      ( ewmh
                                                 , fullscreenEventHook
                                                 )
-import           XMonad.Hooks.ManageDocks       ( avoidStruts
+import           XMonad.Hooks.ManageDocks       ( ToggleStruts(ToggleStruts)
+                                                , avoidStruts
                                                 , docks
                                                 , manageDocks
-                                                , ToggleStruts(ToggleStruts)
                                                 )
 import           XMonad.Hooks.ManageHelpers     ( composeOne
                                                 , (-?>)
@@ -24,7 +40,16 @@ import           XMonad.Util.NamedActions       ( addDescrKeys
                                                 , subtitle
                                                 , xMessage
                                                 )
-main = xmonad . ewmh . docks $ myConfig
+
+main = do
+  dbus <- D.connectSession
+    -- Request access to the DBus name
+  _    <- D.requestName
+    dbus
+    (D.busName_ "org.xmonad.Log")
+    [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+  xmonad . ewmh . docks $ myConfig { logHook = dynamicLogWithPP (myLogHook dbus)
+                                   }
 
 myTerminal = "termite"
 
@@ -108,3 +133,26 @@ myAdditionalKeys c =
          , (W.shift     , "Move to workspace", shiftMask)
          ]
        ]
+
+myLogHook :: D.Client -> PP
+myLogHook dbus = def { ppOutput  = dbusOutput dbus
+                     , ppCurrent = wrap "%{B#666a73} " " %{B-}"
+                     , ppVisible = wrap "%{B#404552} " " %{B-}"
+                     , ppUrgent  = wrap "%{F#da4453} " " %{F-}"
+                     , ppHidden  = wrap " " " "
+                     , ppWsSep   = ""
+                     , ppSep     = " : "
+                     , ppTitle   = shorten 100
+                     }
+
+-- Emit a DBus signal on log updates
+dbusOutput :: D.Client -> String -> IO ()
+dbusOutput dbus str = do
+  let signal = (D.signal objectPath interfaceName memberName)
+        { D.signalBody = [D.toVariant $ UTF8.decodeString str]
+        }
+  D.emit dbus signal
+ where
+  objectPath    = D.objectPath_ "/org/xmonad/Log"
+  interfaceName = D.interfaceName_ "org.xmonad.Log"
+  memberName    = D.memberName_ "Update"

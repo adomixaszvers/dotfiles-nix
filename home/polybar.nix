@@ -55,13 +55,18 @@ in {
         font-2 =
           "Material Icons:fontformat=truetype:pixelsize=10:antialias=true;3";
 
-        modules-left = "ewmh";
-        modules-center = "title";
+        modules-left = "xmonad";
+        modules-center = "";
         modules-right =
           "battery memory divider cpu divider temperature divider volume divider date divider time";
         tray-position = "right";
         tray-max-size = 16;
         tray-background = colors.custom-background-dark;
+      };
+      "module/xmonad" = {
+        type = "custom/script";
+        exec = "${pkgs.xmonad-log}/bin/xmonad-log";
+        tail = true;
       };
       "module/cpu" = {
         type = "internal/cpu";
