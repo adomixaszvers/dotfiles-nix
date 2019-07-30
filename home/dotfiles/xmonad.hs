@@ -112,12 +112,11 @@ myStartupHook = do
 myMainLayout = smartBorders . avoidStruts $ tiled ||| Mirror tiled ||| Full
  where
   tiled =
-    smartBorders
-      $ spacingRaw True
-                   (Border outer outer outer outer)
-                   True
-                   (Border inner inner inner inner)
-                   True
+    spacingRaw True
+               (Border outer outer outer outer)
+               True
+               (Border inner inner inner inner)
+               True
       $ Tall 1 (3 / 100) (1 / 2)
   outer = 3
   inner = 5
