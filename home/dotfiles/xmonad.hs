@@ -89,8 +89,20 @@ myConfig =
 myModMask :: KeyMask
 myModMask = mod4Mask
 
+ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0 :: String
+ws1 = "I"
+ws2 = "II"
+ws3 = "III"
+ws4 = "IV"
+ws5 = "V"
+ws6 = "VI"
+ws7 = "VII"
+ws8 = "VIII"
+ws9 = "IX"
+ws0 = "X"
+
 myWorkspaces :: [String]
-myWorkspaces = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
+myWorkspaces = [ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0]
 
 myStartupHook :: X ()
 myStartupHook = do
@@ -112,12 +124,12 @@ myMainLayout = smartBorders . avoidStruts $ tiled ||| Mirror tiled ||| Full
 
 myManageHook :: ManageHook
 myManageHook = composeOne
-  [ className =? "Google-chrome" <||> className =? "Firefox" -?> doShift "I"
-  , className =? "jetbrains-idea" -?> doShift "III"
-  , className =? "rambox" -?> doShift "IV"
-  , className =? "Steam" <||> className =? "SmartGit" -?> doShift "V"
-  , className =? "libreoffice" -?> doShift "VI"
-  , className =? "google play music desktop player" -?> doShift "X"
+  [ className =? "Google-chrome" <||> className =? "Firefox" -?> doShift ws1
+  , className =? "jetbrains-idea" -?> doShift ws3
+  , className =? "rambox" -?> doShift ws4
+  , className =? "Steam" <||> className =? "SmartGit" -?> doShift ws5
+  , className =? "libreoffice" -?> doShift ws6
+  , className =? "google play music desktop player" -?> doShift ws0
   ]
 
 myAdditionalKeys :: XConfig l -> [((KeyMask, KeySym), NamedAction)]
