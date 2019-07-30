@@ -80,10 +80,14 @@ myConfig =
                                <+> myManageHook
                                <+> manageHook def
         , startupHook        = myStartupHook
+        , workspaces         = myWorkspaces
         }
     `removeKeysP` ["M-p", "M-S-p"]
 
 myModMask = mod4Mask
+
+myWorkspaces :: [String]
+myWorkspaces = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
 
 myStartupHook = do
   spawn "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
@@ -103,12 +107,12 @@ myMainLayout = smartBorders . avoidStruts $ tiled ||| Mirror tiled ||| Full
   inner = 5
 
 myManageHook = composeOne
-  [ className =? "Google-chrome" <||> className =? "Firefox" -?> doShift "1"
-  , className =? "jetbrains-idea" -?> doShift "3"
-  , className =? "rambox" -?> doShift "4"
-  , className =? "Steam" <||> className =? "SmartGit" -?> doShift "5"
-  , className =? "libreoffice" -?> doShift "6"
-  , className =? "google play music desktop player" -?> doShift "9"
+  [ className =? "Google-chrome" <||> className =? "Firefox" -?> doShift "I"
+  , className =? "jetbrains-idea" -?> doShift "III"
+  , className =? "rambox" -?> doShift "IV"
+  , className =? "Steam" <||> className =? "SmartGit" -?> doShift "V"
+  , className =? "libreoffice" -?> doShift "VI"
+  , className =? "google play music desktop player" -?> doShift "X"
   ]
 
 myAdditionalKeys c =
@@ -122,6 +126,7 @@ myAdditionalKeys c =
           , 0x3f9 -- ų
           , 0x3fe -- ū
           , 0xafe -- „
+          , 0xad2 -- “
           ]
   in
     (subtitle "Custom Keys" :)
