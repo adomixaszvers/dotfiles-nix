@@ -52,6 +52,7 @@ import           XMonad.Util.NamedScratchpad    ( NamedScratchpads
                                                 )
 import           XMonad.Util.Run                ( spawnPipe )
 
+main :: IO ()
 main = do
   dbus <- D.connectSession
     -- Request access to the DBus name
@@ -62,6 +63,7 @@ main = do
   xmonad . ewmh . docks $ myConfig { logHook = dynamicLogWithPP (myLogHook dbus)
                                    }
 
+myTerminal :: String
 myTerminal = "termite"
 
 myConfig =
@@ -84,11 +86,13 @@ myConfig =
         }
     `removeKeysP` ["M-p", "M-S-p"]
 
+myModMask :: KeyMask
 myModMask = mod4Mask
 
 myWorkspaces :: [String]
 myWorkspaces = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
 
+myStartupHook :: X ()
 myStartupHook = do
   spawn "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
   spawn "systemctl --user restart polybar.service"
@@ -106,6 +110,7 @@ myMainLayout = smartBorders . avoidStruts $ tiled ||| Mirror tiled ||| Full
   outer = 3
   inner = 5
 
+myManageHook :: ManageHook
 myManageHook = composeOne
   [ className =? "Google-chrome" <||> className =? "Firefox" -?> doShift "I"
   , className =? "jetbrains-idea" -?> doShift "III"
@@ -115,6 +120,7 @@ myManageHook = composeOne
   , className =? "google play music desktop player" -?> doShift "X"
   ]
 
+myAdditionalKeys :: XConfig l -> [((KeyMask, KeySym), NamedAction)]
 myAdditionalKeys c =
   let ltKeys =
           [ 0x1b1 -- ą
