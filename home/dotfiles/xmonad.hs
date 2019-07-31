@@ -70,20 +70,16 @@ myConfig =
   addDescrKeys
       ((myModMask, xK_F1), showKeybindings)
       myAdditionalKeys
-      def
-        { terminal           = myTerminal
-        , focusedBorderColor = "#8BE9FD"
-        , modMask            = mod4Mask
-        , borderWidth        = 2
-        , handleEventHook    = fullscreenEventHook <+> handleEventHook def
-        , layoutHook         = myMainLayout
-        , manageHook         = manageDocks
-                               <+> namedScratchpadManageHook myScratchpads
-                               <+> myManageHook
-                               <+> manageHook def
-        , startupHook        = myStartupHook
-        , workspaces         = myWorkspaces
-        }
+      def { terminal           = myTerminal
+          , focusedBorderColor = "#8BE9FD"
+          , modMask            = mod4Mask
+          , borderWidth        = 2
+          , handleEventHook    = fullscreenEventHook <+> handleEventHook def
+          , layoutHook         = myMainLayout
+          , manageHook         = myManageHook
+          , startupHook        = myStartupHook
+          , workspaces         = myWorkspaces
+          }
     `removeKeysP` ["M-p", "M-S-p"]
 
 myModMask :: KeyMask
@@ -122,14 +118,21 @@ myMainLayout = smartBorders . avoidStruts $ tiled ||| Mirror tiled ||| Full
   inner = 5
 
 myManageHook :: ManageHook
-myManageHook = composeOne
-  [ className =? "Google-chrome" <||> className =? "Firefox" -?> doShift ws1
-  , className =? "jetbrains-idea" -?> doShift ws3
-  , className =? "rambox" -?> doShift ws4
-  , className =? "Steam" <||> className =? "SmartGit" -?> doShift ws5
-  , className =? "libreoffice" -?> doShift ws6
-  , className =? "google play music desktop player" -?> doShift ws0
+myManageHook = composeAll
+  [ spawnHook
+  , manageDocks
+  , namedScratchpadManageHook myScratchpads
+  , manageHook def
   ]
+ where
+  spawnHook = composeOne
+    [ className =? "Google-chrome" <||> className =? "Firefox" -?> doShift ws1
+    , className =? "jetbrains-idea" -?> doShift ws3
+    , className =? "rambox" -?> doShift ws4
+    , className =? "Steam" <||> className =? "SmartGit" -?> doShift ws5
+    , className =? "libreoffice" -?> doShift ws6
+    , className =? "google play music desktop player" -?> doShift ws0
+    ]
 
 myAdditionalKeys :: XConfig l -> [((KeyMask, KeySym), NamedAction)]
 myAdditionalKeys c =
