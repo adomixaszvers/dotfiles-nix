@@ -15,6 +15,7 @@ in {
     (with import <nixos-unstable> { }; haskellPackages.brittany)
     cabal-install
     gnome3.zenity
+    mine.maim-select
     mine.rofi-powermenu
   ];
   xsession.windowManager.xmonad = {

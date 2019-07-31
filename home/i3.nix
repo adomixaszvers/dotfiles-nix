@@ -4,18 +4,6 @@ let
     inner = 15;
     outer = 0;
   };
-  maimSelect = pkgs.writeScript "maim-select.sh" ''
-    #!${pkgs.stdenv.shell}
-    PATH=$PATH:${with pkgs; lib.makeBinPath [ coreutils maim xdotool xclip ]}
-    case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | rofi -dmenu -l 6 -i -p "Screenshot which area?")" in
-      "a selected area") maim -s pic-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
-      "current window") maim -i "$(xdotool getactivewindow)" pic-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
-      "full screen") maim pic-full-"$(date '+%y%m%d-%H%M-%S').png" ;;
-      "a selected area (copy)") maim -s | xclip -selection clipboard -t image/png ;;
-      "current window (copy)") maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png ;;
-      "full screen (copy)") maim | xclip -selection clipboard -t image/png ;;
-    esac
-  '';
 in {
   xsession.windowManager.i3 = {
     enable = true;
@@ -170,7 +158,7 @@ in {
           "${modifier}+Shift+g" =
             "gaps inner current set 0; gaps outer current set 0";
 
-          "Shift+Print" = "exec --no-startup-id ${maimSelect}";
+          "Shift+Print" = "exec --no-startup-id ${pkgs.mine.maim-select}/bin/maim-select";
         };
         keycodebindings = {
           "${modifier}+10" = "workspace ${workspace1}";

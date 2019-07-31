@@ -174,6 +174,7 @@ myAdditionalKeys c =
          , ("M-<Return>"  , addName "Spawn terminal" $ spawn myTerminal)
          , ("M-S-q"       , addName "Kill client" kill)
          , ("M-<Pause>"   , addName "Power menu" $ spawn "rofi-powermenu")
+         , ("<Print>"     , addName "Make screenshot" $ spawn "maim-select")
          , ( "M-C-e"
            , addName "Emacs scratchpad"
              $ namedScratchpadAction myScratchpads "emacs"
