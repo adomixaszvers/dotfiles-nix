@@ -54,6 +54,7 @@ import           XMonad.Util.NamedScratchpad    ( NamedScratchpads
                                                 , customFloating
                                                 , namedScratchpadAction
                                                 , namedScratchpadManageHook
+                                                , namedScratchpadFilterOutWorkspacePP
                                                 )
 import           XMonad.Util.Run                ( spawnPipe )
 
@@ -65,8 +66,12 @@ main = do
     dbus
     (D.busName_ "org.xmonad.Log")
     [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
-  xmonad . ewmh . docks $ myConfig { logHook = dynamicLogWithPP (myLogHook dbus)
-                                   }
+  xmonad . ewmh . docks $ myConfig
+    { logHook = dynamicLogWithPP
+                . namedScratchpadFilterOutWorkspacePP
+                . myLogHook
+                $ dbus
+    }
 
 myTerminal :: String
 myTerminal = "termite"
