@@ -7,6 +7,10 @@ import           System.IO                      ( hClose
                                                 , hPutStr
                                                 )
 import           XMonad
+import           XMonad.Actions.PhysicalScreens ( PhysicalScreen(..)
+                                                , viewScreen
+                                                , sendToScreen
+                                                )
 import           XMonad.Hooks.DynamicLog        ( PP(..)
                                                 , dynamicLogWithPP
                                                 , ppCurrent
@@ -174,11 +178,18 @@ myAdditionalKeys c =
              $ namedScratchpadAction myScratchpads "terminal"
            )
          ]
-    ++ [ ((m .|. myModMask, key), addName (name ++ " " ++ i) $ windows $ f i)
+    ++ [ ((m .|. myModMask, key), addName (name ++ i) $ windows $ f i)
        | (i, key) <- zip (XMonad.workspaces c) ltKeys
        , (f, name, m) <-
-         [ (W.greedyView, "Open workspace"   , 0)
-         , (W.shift     , "Move to workspace", shiftMask)
+         [ (W.greedyView, "Open workspace "   , 0)
+         , (W.shift     , "Move to workspace ", shiftMask)
+         ]
+       ]
+    ++ [ ((myModMask .|. mask, key), addName (name ++ show sc) $ f def (P sc))
+       | (key, sc)       <- zip [xK_w, xK_e, xK_r] [0 ..]
+       , (f, mask, name) <-
+         [ (viewScreen  , 0        , "View screen ")
+         , (sendToScreen, shiftMask, "Move to screen ")
          ]
        ]
 
