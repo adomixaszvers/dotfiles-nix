@@ -2,7 +2,7 @@ self: super: {
   mine = {
     bumblebee-status = super.callPackage ../pkgs/bumblebee-status { };
     vimgolf = super.callPackage ../pkgs/vimgolf { };
-    maim-select = super.callPackage ../pkgs/maim-select.nix { };
+    maimpick = super.callPackage ../pkgs/maimpick.nix { };
     rofi-powermenu = super.callPackage ../pkgs/rofi-powermenu.nix { };
     ghc = let
       haskellPackages = ps:

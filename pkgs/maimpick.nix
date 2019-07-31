@@ -1,5 +1,5 @@
 { writeScriptBin, stdenv, lib, coreutils, maim, xdotool, xclip }:
-writeScriptBin "maim-select" ''
+writeScriptBin "maimpick" ''
     #!${stdenv.shell}
     PATH=$PATH:${lib.makeBinPath [ coreutils maim xdotool xclip ]}
     case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | rofi -dmenu -l 6 -i -p "Screenshot which area?")" in

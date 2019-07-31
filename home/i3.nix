@@ -158,7 +158,7 @@ in {
           "${modifier}+Shift+g" =
             "gaps inner current set 0; gaps outer current set 0";
 
-          "Shift+Print" = "exec --no-startup-id ${pkgs.mine.maim-select}/bin/maim-select";
+          "Shift+Print" = "exec --no-startup-id ${pkgs.mine.maimpick}/bin/maimpick";
         };
         keycodebindings = {
           "${modifier}+10" = "workspace ${workspace1}";
