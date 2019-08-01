@@ -94,6 +94,7 @@
       unzip
       w3m # for ranger image previews
       xarchiver
+      xdg-user-dirs
       xsel
     ];
   home.sessionVariables = {
