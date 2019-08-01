@@ -17,9 +17,9 @@ let
 
     inherit (colors) background foreground;
 
-    font-0 = "NotoMono Nerd Font:fontformat=truetype:pixelsize=8:antialias=true;2";
-    font-1 =
-      "NotoMono Nerd Font:fontformat=truetype:size=10:antialias=true;2";
+    font-0 =
+      "NotoMono Nerd Font:fontformat=truetype:pixelsize=8:antialias=true;2";
+    font-1 = "NotoMono Nerd Font:fontformat=truetype:size=10:antialias=true;2";
     font-2 = "Material Icons:fontformat=truetype:pixelsize=10:antialias=true;3";
   };
 in {
@@ -30,7 +30,7 @@ in {
       pulseSupport = true;
     };
     config = {
-      "bar/top" = defaultBar //  {
+      "bar/top" = defaultBar // {
         modules-left = "xmonad";
         modules-center = "";
         modules-right =
