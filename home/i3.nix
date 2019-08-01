@@ -5,6 +5,7 @@ let
     outer = 0;
   };
 in {
+  home.packages = [ pkgs.mine.bumblebee-status ];
   xsession.windowManager.i3 = {
     enable = true;
     config = let

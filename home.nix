@@ -81,7 +81,6 @@
       iotop
       lsof
       meld
-      mine.bumblebee-status
       ncdu
       nixfmt
       p7zip
