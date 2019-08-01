@@ -3,6 +3,7 @@ import qualified Codec.Binary.UTF8.String      as UTF8
 import           Control.Exception              ( bracket )
 import qualified DBus                          as D
 import qualified DBus.Client                   as D
+import           System.Exit                    ( exitSuccess )
 import           System.IO                      ( hClose
                                                 , hPutStr
                                                 )
@@ -40,12 +41,11 @@ import           XMonad.Layout.Spacing          ( Border(..)
                                                 , spacingRaw
                                                 )
 import qualified XMonad.StackSet               as W
-import           XMonad.Util.EZConfig           ( mkNamedKeymap
-                                                , removeKeysP
-                                                )
 import           XMonad.Util.NamedActions       ( NamedAction(..)
-                                                , addDescrKeys
+                                                , addDescrKeys'
                                                 , addName
+                                                , sendMessage'
+                                                , separator
                                                 , subtitle
                                                 , showKm
                                                 )
@@ -76,21 +76,19 @@ main = do
 myTerminal :: String
 myTerminal = "termite"
 
-myConfig =
-  addDescrKeys
-      ((myModMask, xK_F1), showKeybindings)
-      myAdditionalKeys
-      def { terminal           = myTerminal
-          , focusedBorderColor = "#8BE9FD"
-          , modMask            = mod4Mask
-          , borderWidth        = 2
-          , handleEventHook    = fullscreenEventHook <+> handleEventHook def
-          , layoutHook         = myMainLayout
-          , manageHook         = myManageHook
-          , startupHook        = myStartupHook
-          , workspaces         = myWorkspaces
-          }
-    `removeKeysP` ["M-p", "M-S-p"]
+myConfig = addDescrKeys'
+  ((myModMask, xK_F1), showKeybindings)
+  myKeysDescr
+  def { terminal           = myTerminal
+      , focusedBorderColor = "#8BE9FD"
+      , modMask            = mod4Mask
+      , borderWidth        = 2
+      , handleEventHook    = fullscreenEventHook <+> handleEventHook def
+      , layoutHook         = myMainLayout
+      , manageHook         = myManageHook
+      , startupHook        = myStartupHook
+      , workspaces         = myWorkspaces
+      }
 
 myModMask :: KeyMask
 myModMask = mod4Mask
@@ -144,8 +142,8 @@ myManageHook = composeAll
     , className =? "google play music desktop player" -?> doShift ws0
     ]
 
-myAdditionalKeys :: XConfig l -> [((KeyMask, KeySym), NamedAction)]
-myAdditionalKeys c =
+myKeysDescr :: XConfig Layout -> [((KeyMask, KeySym), NamedAction)]
+myKeysDescr conf@XConfig { XMonad.modMask = modm } =
   let ltKeys =
           [ 0x1b1 -- ą
           , 0x1e8 -- č
@@ -159,44 +157,112 @@ myAdditionalKeys c =
           , 0xad2 -- “
           ]
   in
-    (subtitle "Custom Keys" :)
-    $  mkNamedKeymap
-         c
-         [ ("M-b", addName "Toggle struts" $ sendMessage ToggleStruts)
-         , ( "M-d"
-           , addName "Open DRun menu"
-             $ spawn "rofi -show combi -combi-modi window,drun"
-           )
-         , ( "M-S-d"
-           , addName "Open Run menu" $ spawn "rofi -show run -sidebar-mode"
-           )
-         , ("M-S-<Return>", addName "Swap master" $ windows W.swapMaster)
-         , ("M-<Return>"  , addName "Spawn terminal" $ spawn myTerminal)
-         , ("M-S-q"       , addName "Kill client" kill)
-         , ("M-<Pause>"   , addName "Power menu" $ spawn "rofi-powermenu")
-         , ("<Print>"     , addName "Make screenshot" $ spawn "maimpick")
-         , ( "M-C-e"
-           , addName "Emacs scratchpad"
-             $ namedScratchpadAction myScratchpads "emacs"
-           )
-         , ( "M-C-s"
-           , addName "Terminal scratchpad"
-             $ namedScratchpadAction myScratchpads "terminal"
-           )
+    [ subtitle "launching and killing programs"
+    , ( (modm, xK_Return)
+      , addName "Launch Terminal" $ spawn $ XMonad.terminal conf
+      ) -- %! Launch terminal
+    , ( (modm, xK_d)
+      , addName "Open DRun menu"
+        $ spawn "rofi -show combi -combi-modi window,drun"
+      )
+    , ( (modm .|. shiftMask, xK_d)
+      , addName "Open Run menu" $ spawn "rofi -show run -sidebar-mode"
+      )
+    , ( (modm .|. shiftMask, xK_q)
+      , addName "Close the focused window" kill
+      ) -- %! Close the focused window
+    , subtitle "changing layouts"
+    , ( (modm, xK_space)
+      , sendMessage' NextLayout
+      ) -- %! Rotate through the available layout algorithms
+    , ( (modm .|. shiftMask, xK_space)
+      , addName "Reset the layout" $ setLayout $ XMonad.layoutHook conf
+      ) -- %!  Reset the layouts on the current workspace to default
+    , separator
+    , ( (modm, xK_n)
+      , addName "Refresh" refresh
+      ) -- %! Resize viewed windows to the correct size
+    , ((modm, xK_b), addName "Toggle struts" $ sendMessage ToggleStruts)
+    , subtitle "move focus up or down the window stack"
+    , ( (modm, xK_Tab)
+      , addName "Focus down" $ windows W.focusDown
+      ) -- %! Move focus to the next window
+    , ( (modm .|. shiftMask, xK_Tab)
+      , addName "Focus up" $ windows W.focusUp
+      ) -- %! Move focus to the previous window
+    , ( (modm, xK_j)
+      , addName "Focus down" $ windows W.focusDown
+      ) -- %! Move focus to the next window
+    , ( (modm, xK_k)
+      , addName "Focus up" $ windows W.focusUp
+      ) -- %! Move focus to the previous window
+    , ( (modm, xK_m)
+      , addName "Focus the master" $ windows W.focusMaster
+      ) -- %! Move focus to the master window
+    , subtitle "modifying the window order"
+    , ( (modm .|. shiftMask, xK_Return)
+      , addName "Swap with the master" $ windows W.swapMaster
+      ) -- %! Swap the focused window and the master window
+    , ( (modm .|. shiftMask, xK_j)
+      , addName "Swap down" $ windows W.swapDown
+      ) -- %! Swap the focused window with the next window
+    , ( (modm .|. shiftMask, xK_k)
+      , addName "Swap up" $ windows W.swapUp
+      ) -- %! Swap the focused window with the previous window
+    , subtitle "resizing the master/slave ratio"
+    , ( (modm, xK_h)
+      , sendMessage' Shrink
+      ) -- %! Shrink the master area
+    , ( (modm, xK_l)
+      , sendMessage' Expand
+      ) -- %! Expand the master area
+    , subtitle "floating layer support"
+    , ( (modm, xK_t)
+      , addName "Push floating to tiled" $ withFocused $ windows . W.sink
+      ) -- %! Push window back into tiling
+    , subtitle "change the number of windows in the master area"
+    , ( (modm, xK_comma)
+      , sendMessage' (IncMasterN 1)
+      ) -- %! Increment the number of windows in the master area
+    , ( (modm, xK_period)
+      , sendMessage' (IncMasterN (-1))
+      ) -- %! Deincrement the number of windows in the master area
+    , subtitle "quit, or restart"
+    , ( (modm .|. shiftMask, xK_c)
+      , addName "Quit" $ io exitSuccess
+      ) -- %! Quit xmonad
+    , ((modm, xK_Pause), addName "Power menu" $ spawn "rofi-powermenu")
+    , ( (modm, xK_q)
+      , addName "Restart" $ spawn "xmonad --recompile && xmonad --restart"
+      ) -- %! Restart xmonad
+    , subtitle "scratchpads"
+    , ( (modm .|. controlMask, xK_e)
+      , addName "Emacs scratchpad" $ namedScratchpadAction myScratchpads "emacs"
+      )
+    , ( (modm .|. controlMask, xK_s)
+      , addName "Terminal scratchpad"
+        $ namedScratchpadAction myScratchpads "terminal"
+      )
+    ]
+    ++ subtitle "switching workspaces"
+    :  [ ((m .|. modm, k), addName (n ++ i) $ windows $ f i)
+       | (f, m, n) <-
+         [ (W.greedyView, 0        , "Switch to workspace ")
+         , (W.shift     , shiftMask, "Move client to workspace ")
          ]
-    ++ [ ((m .|. myModMask, key), addName (name ++ i) $ windows $ f i)
-       | (i, key) <- zip (XMonad.workspaces c) ltKeys
-       , (f, name, m) <-
-         [ (W.greedyView, "Open workspace "   , 0)
-         , (W.shift     , "Move to workspace ", shiftMask)
-         ]
+       , (i, k) <- concatMap (zip (XMonad.workspaces conf))
+                             [[xK_1 .. xK_9] ++ [xK_0], ltKeys]
        ]
-    ++ [ ((myModMask .|. mask, key), addName (name ++ show sc) $ f def (P sc))
+    ++ subtitle "switching screens"
+    :  [ ((modm .|. mask, key), addName (name ++ show sc) $ f def (P sc))
        | (key, sc)       <- zip [xK_w, xK_e, xK_r] [0 ..]
        , (f, mask, name) <-
          [ (viewScreen  , 0        , "View screen ")
          , (sendToScreen, shiftMask, "Move to screen ")
          ]
+       ]
+    ++ [ subtitle "extra"
+       , ((0, xK_Print), addName "Make screenshot" $ spawn "maimpick")
        ]
 
 showKeybindings :: [((KeyMask, KeySym), NamedAction)] -> NamedAction
