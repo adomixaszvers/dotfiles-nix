@@ -1,27 +1,16 @@
-{ pkgs, lib, config, ... }:
-let
-  extraPackages = hs:
-    with hs; [
-      dbus
-      ghcid
-      hlint
-      xmonad
-      xmonad-contrib
-      xmonad-extras
-    ];
-in {
+{ pkgs, lib, config, ... }: {
+  home.file.".xmonad/build" = {
+    executable = true;
+    source = ./dotfiles/my-xmonad/build;
+  };
   home.packages = with pkgs; [
-    (ghc.withHoogle extraPackages)
     (with import <nixos-unstable> { }; haskellPackages.brittany)
-    cabal-install
+    (with import <all-hies> {  }; versions.ghc864)
     gnome3.zenity
+    haskellPackages.hlint
     mine.maimpick
     mine.rofi-powermenu
+    stack
   ];
-  xsession.windowManager.xmonad = {
-    inherit extraPackages;
-    enable = true;
-    enableContribAndExtras = true;
-    config = ./dotfiles/xmonad.hs;
-  };
+  xsession.windowManager.xmonad = { enable = true; config = ./dotfiles/my-xmonad/xmonad.hs; };
 }
