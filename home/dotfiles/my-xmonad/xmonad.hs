@@ -7,6 +7,9 @@ import           System.Exit                    ( exitSuccess )
 import           System.IO                      ( hClose
                                                 , hPutStr
                                                 )
+import           System.Posix.Unistd            ( getSystemID
+                                                , nodeName
+                                                )
 import           XMonad
 import           XMonad.Actions.PhysicalScreens ( PhysicalScreen(..)
                                                 , viewScreen
@@ -61,13 +64,14 @@ import           XMonad.Util.SpawnOnce          ( spawnOnce )
 
 main :: IO ()
 main = do
+  host <- fmap nodeName getSystemID
   dbus <- D.connectSession
     -- Request access to the DBus name
   _    <- D.requestName
     dbus
     (D.busName_ "org.xmonad.Log")
     [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
-  xmonad . ewmh . docks $ myConfig
+  xmonad . hostSpecific host . ewmh . docks $ myConfig
     { logHook = dynamicLogWithPP
                 . namedScratchpadFilterOutWorkspacePP
                 . myLogHook
@@ -271,6 +275,11 @@ showKeybindings x = addName "Show Keybindings" $ io $ bracket
   (spawnPipe "zenity --text-info --font=\"NotoMono Nerd Font\"")
   hClose
   (\h -> hPutStr h (unlines $ showKm x))
+
+hostSpecific :: String -> XConfig l -> XConfig l
+hostSpecific "adomas-jatuzis-nixos" conf@XConfig { startupHook = oldStartupHook }
+  = conf { startupHook = oldStartupHook >> spawnOnce "rambox" }
+hostSpecific _ conf = conf
 
 myLogHook :: D.Client -> PP
 myLogHook dbus = def { ppOutput  = dbusOutput dbus

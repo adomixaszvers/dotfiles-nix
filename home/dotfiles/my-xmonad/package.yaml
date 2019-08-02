@@ -24,4 +24,5 @@ executables:
     - xmonad
     - xmonad-contrib
     - dbus
+    - unix
     - utf8-string
