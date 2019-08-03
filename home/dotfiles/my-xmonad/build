@@ -1,5 +1,6 @@
-#!/bin/sh -eu
-# -*- mode: sh-mode; -*-
+#!/usr/bin/env bash
+# -*- mode: bash-mode; -*-
+set -eu
 
 ################################################################################
 # Edit the following constants and then rename this script to ~/.xmonad/build
@@ -13,6 +14,14 @@ EXE_NAME=my-xmonad
 
 ################################################################################
 
+CONFIG_NAME=$SRC_DIR/xmonad.hs
+TARGET_EXE=$1
+
+if [ "$TARGET_EXE" -nt $CONFIG_NAME ]; then
+    echo "Xmonad executable is newer than config: doing nothing"
+    exit 0
+fi
+
 # Unset STACK_YAML, to ensure that $SRC_DIR/stack.yaml is used.
 unset STACK_YAML
 
@@ -21,4 +30,4 @@ cd $SRC_DIR
 stack build
 
 # Create a hard link at the requested destination, replacing any existing one.
-ln -f -T "$(stack exec -- which $EXE_NAME)" "$1"
+ln -f -T "$(stack exec -- which $EXE_NAME)" "$TARGET_EXE"
