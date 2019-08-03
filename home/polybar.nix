@@ -206,7 +206,6 @@ in {
       };
     };
     script = ''
-      #!/bin/bash
       PATH=$PATH:${
         with pkgs;
         lib.makeBinPath [ coreutils gnugrep procps psmisc xorg.xrandr ]
