@@ -1,4 +1,3 @@
-{-# OPTIONS_GHC -fno-warn-missing-signatures #-}
 import qualified Codec.Binary.UTF8.String      as UTF8
 import           Control.Exception              ( bracket )
 import qualified DBus                          as D

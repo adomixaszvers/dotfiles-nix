@@ -17,12 +17,13 @@ executables:
   my-xmonad:
     main:                xmonad.hs
     ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+    - -O2
+    - -Wall
+    - -Werror
+    - -fno-warn-missing-signatures
     dependencies:
-    - xmonad
-    - xmonad-contrib
     - dbus
     - unix
     - utf8-string
+    - xmonad
+    - xmonad-contrib
