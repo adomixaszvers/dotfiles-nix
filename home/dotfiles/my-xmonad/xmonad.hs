@@ -241,11 +241,11 @@ myKeysDescr conf@XConfig { XMonad.modMask = modm } =
       ) -- %! Restart xmonad
     , subtitle "scratchpads"
     , ( (modm .|. controlMask, xK_e)
-      , addName "Emacs scratchpad" $ namedScratchpadAction myScratchpads "emacs"
+      , addName "Emacs scratchpad" $ namedScratchpadAction myScratchpads nsEmacs
       )
     , ( (modm .|. controlMask, xK_s)
       , addName "Terminal scratchpad"
-        $ namedScratchpadAction myScratchpads "terminal"
+        $ namedScratchpadAction myScratchpads nsTerminal
       )
     ]
     ++ subtitle "switching workspaces"
@@ -303,12 +303,13 @@ dbusOutput dbus str = do
   interfaceName = D.interfaceName_ "org.xmonad.Log"
   memberName    = D.memberName_ "Update"
 
+nsEmacs, nsTerminal :: String
+nsEmacs = "emacs"
+nsTerminal = "terminal"
+
 myScratchpads :: NamedScratchpads
 myScratchpads =
-  [ NS "emacs" "emacs" (className =? "Emacs") (customFloating rect)
-  , NS "terminal"
-       (myTerminal ++ " -t scratchpad")
-       (title =? "scratchpad")
-       (customFloating rect)
+  [ NS nsEmacs    "emacs"                          (className =? "Emacs")  hook
+  , NS nsTerminal (myTerminal ++ " -t scratchpad") (title =? "scratchpad") hook
   ]
-  where rect = W.RationalRect 0.025 0.025 0.95 0.95
+  where hook = customFloating $ W.RationalRect 0.025 0.025 0.95 0.95
