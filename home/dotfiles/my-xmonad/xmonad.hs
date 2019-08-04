@@ -38,6 +38,7 @@ import           XMonad.Hooks.ManageDocks       ( ToggleStruts(ToggleStruts)
 import           XMonad.Hooks.ManageHelpers     ( composeOne
                                                 , (-?>)
                                                 )
+import           XMonad.Hooks.SetWMName         ( setWMName )
 import           XMonad.Layout.NoBorders        ( smartBorders )
 import           XMonad.Layout.Spacing          ( Border(..)
                                                 , spacingRaw
@@ -114,6 +115,7 @@ myWorkspaces = [ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0]
 
 myStartupHook :: X ()
 myStartupHook = do
+  setWMName "LG3D"
   spawnOnce "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
   spawnOnce "systemctl --user restart polybar.service"
 
