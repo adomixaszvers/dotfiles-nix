@@ -17,6 +17,7 @@ executables:
   my-xmonad:
     main:                xmonad.hs
     ghc-options:
+    - -dynamic
     - -O2
     - -Wall
     - -Werror
