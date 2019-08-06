@@ -178,7 +178,10 @@
     components = [ "pkcs11" "secrets" "ssh" ];
   };
   services.network-manager-applet.enable = config.xsession.enable;
-  systemd.user.startServices = true;
+  systemd.user = {
+    startServices = true;
+    systemctlPath = "/run/current-system/sw/bin/systemctl";
+  };
 
   xdg = {
     enable = true;
