@@ -1,16 +1,18 @@
-{ pkgs, lib, config, ... }: {
-  home.file.".xmonad/build" = {
-    executable = true;
-    source = ./dotfiles/my-xmonad/build;
-  };
+{ pkgs, lib, config, ... }:
+let
+  extraPackages = hs: with hs; [ xmonad xmonad-contrib unix dbus utf8-string ];
+in {
   home.packages = with pkgs; [
+    (ghc.withPackages extraPackages)
     (with import <nixos-unstable> { }; haskellPackages.brittany)
-    (with import <all-hies> {  }; versions.ghc865)
     gnome3.zenity
     haskellPackages.hlint
     mine.maimpick
     mine.rofi-powermenu
-    stack
   ];
-  xsession.windowManager.xmonad = { enable = true; config = ./dotfiles/my-xmonad/xmonad.hs; };
+  xsession.windowManager.xmonad = {
+    inherit extraPackages;
+    enable = true;
+    config = ./dotfiles/my-xmonad/xmonad.hs;
+  };
 }
