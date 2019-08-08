@@ -50,7 +50,7 @@
     enable = true;
     inactiveInterval = 5;
     lockCmd = let wallpaper = ../dotfiles/lockscreen.png;
-      in "i3lock -n -i ${wallpaper} -t -p win -b -u";
+      in "i3lock -n -i ${wallpaper} -t -p win -f";
   };
   xsession.windowManager.i3.config.startup = [{
     command = "rambox";
