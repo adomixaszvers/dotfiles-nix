@@ -313,7 +313,13 @@ nsTerminal = "terminal"
 
 myScratchpads :: NamedScratchpads
 myScratchpads =
-  [ NS nsEmacs    "emacs"                          (className =? "Emacs")  hook
-  , NS nsTerminal (myTerminal ++ " -t scratchpad") (title =? "scratchpad") hook
+  [ NS nsEmacs
+       "emacs -T scratchpad"
+       (title =? "scratchpad" <&&> className =? "Emacs")
+       hook
+  , NS nsTerminal
+       "termite -t scratchpad"
+       (title =? "scratchpad" <&&> className =? "Termite")
+       hook
   ]
   where hook = customFloating $ W.RationalRect 0.025 0.025 0.95 0.95
