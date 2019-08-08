@@ -22,14 +22,13 @@
       liquibase
       maven
       mercurial
+      mine.steam
       nodejs
       rambox
       remmina
       robo3t
       samba
-      skype
       soapui
-      mine.steam
       subversion
       swagger-codegen
       tomcat8
