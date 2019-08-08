@@ -2,23 +2,23 @@
   imports = let
     current = ./home/hosts/current.nix;
     hostSpecific = if builtins.pathExists current then current else { };
-    in [
-      hostSpecific
-      # ./home/awesome.nix
-      # ./home/bspwm.nix
-      ./home/compton.nix
-      ./home/colors.nix
-      ./home/dunst.nix
-      # ./home/emacs.nix
-      ./home/doom-emacs.nix
-      # ./home/i3.nix
-      ./home/keepass.nix
-      ./home/neovim.nix
-      ./home/alacritty.nix
-      ./home/polybar.nix
-      ./home/termite.nix
-      ./home/xmonad.nix
-    ];
+  in [
+    hostSpecific
+    # ./home/awesome.nix
+    # ./home/bspwm.nix
+    ./home/compton.nix
+    ./home/colors.nix
+    ./home/dunst.nix
+    # ./home/emacs.nix
+    ./home/doom-emacs.nix
+    # ./home/i3.nix
+    ./home/keepass.nix
+    ./home/neovim.nix
+    ./home/alacritty.nix
+    ./home/polybar.nix
+    ./home/termite.nix
+    ./home/xmonad.nix
+  ];
   gtk = {
     enable = true;
     iconTheme = {

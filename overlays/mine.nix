@@ -18,7 +18,7 @@ self: super: {
           pointful
           stylish-haskell
         ];
-      in self.ghc.withHoogle haskellPackages;
+    in self.ghc.withHoogle haskellPackages;
     steam = super.steam.override {
       extraPkgs = ps:
         with ps; [

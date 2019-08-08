@@ -11,7 +11,7 @@ in stdenv.mkDerivation {
   };
   buildInputs = [
     (python3.withPackages
-    (ps: with ps; [ i3ipc requests taskw netifaces psutil ]))
+      (ps: with ps; [ i3ipc requests taskw netifaces psutil ]))
   ];
   unpackPhase = ":";
   installPhase = ''
