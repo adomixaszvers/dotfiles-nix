@@ -166,7 +166,6 @@ in {
       };
       "module/temperature" = {
         type = "internal/temperature";
-        thermal-zone = 0;
         warn-temperature = 70;
 
         format-prefix = "%{T3}%{T-}";

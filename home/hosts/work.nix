@@ -45,6 +45,7 @@
     imvn = "mvn -s ~/.m2/insoft-settings.xml";
     amvn = "mvn -s ~/.m2/kazan-settings.xml";
   };
+  services.polybar.config."module/temperature".thermal-zone = 2;
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;
