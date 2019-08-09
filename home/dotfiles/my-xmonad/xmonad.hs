@@ -2,6 +2,10 @@
 
 import qualified Codec.Binary.UTF8.String      as UTF8
 import           Control.Exception              ( bracket )
+import           Control.Monad                  ( join
+                                                , when
+                                                )
+import           Data.Maybe                     ( maybeToList )
 import qualified DBus                          as D
 import qualified DBus.Client                   as D
 import           System.Exit                    ( exitSuccess )
@@ -122,6 +126,7 @@ myStartupHook = do
   setWMName "LG3D"
   spawnOnce "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
   spawnOnce "systemctl --user restart polybar.service"
+  addEWMHFullscreen
 
 myLayoutHook = smartBorders . avoidStruts $ onWorkspace
   ws3
@@ -330,3 +335,23 @@ myScratchpads =
        hook
   ]
   where hook = customFloating $ W.RationalRect 0.025 0.025 0.95 0.95
+
+addNETSupported :: Atom -> X ()
+addNETSupported x = withDisplay $ \dpy -> do
+  r               <- asks theRoot
+  a_NET_SUPPORTED <- getAtom "_NET_SUPPORTED"
+  a               <- getAtom "ATOM"
+  liftIO $ do
+    sup <- join . maybeToList <$> getWindowProperty32 dpy a_NET_SUPPORTED r
+    when (fromIntegral x `notElem` sup) $ changeProperty32 dpy
+                                                           r
+                                                           a_NET_SUPPORTED
+                                                           a
+                                                           propModeAppend
+                                                           [fromIntegral x]
+
+addEWMHFullscreen :: X ()
+addEWMHFullscreen = do
+  wms <- getAtom "_NET_WM_STATE"
+  wfs <- getAtom "_NET_WM_STATE_FULLSCREEN"
+  mapM_ addNETSupported [wms, wfs]
