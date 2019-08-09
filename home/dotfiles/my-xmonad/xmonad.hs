@@ -42,9 +42,11 @@ import           XMonad.Hooks.ManageHelpers     ( composeOne
                                                 )
 import           XMonad.Hooks.SetWMName         ( setWMName )
 import           XMonad.Layout.NoBorders        ( smartBorders )
+import           XMonad.Layout.PerWorkspace     ( onWorkspace )
 import           XMonad.Layout.Spacing          ( Border(..)
                                                 , spacingRaw
                                                 )
+import           XMonad.Layout.Tabbed           ( simpleTabbed )
 import qualified XMonad.StackSet               as W
 import           XMonad.Util.NamedActions       ( NamedAction(..)
                                                 , addDescrKeys'
@@ -91,7 +93,7 @@ myConfig = addDescrKeys'
       , modMask            = mod4Mask
       , borderWidth        = 2
       , handleEventHook    = fullscreenEventHook <+> handleEventHook def
-      , layoutHook         = myMainLayout
+      , layoutHook         = myLayoutHook
       , manageHook         = myManageHook
       , startupHook        = myStartupHook
       , workspaces         = myWorkspaces
@@ -121,7 +123,12 @@ myStartupHook = do
   spawnOnce "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
   spawnOnce "systemctl --user restart polybar.service"
 
-myMainLayout = smartBorders . avoidStruts $ tiled ||| Mirror tiled ||| Full
+myLayoutHook = smartBorders . avoidStruts $ onWorkspace
+  ws3
+  (simpleTabbed ||| myMainLayout)
+  myMainLayout
+
+myMainLayout = tiled ||| Mirror tiled ||| Full
  where
   tiled =
     spacingRaw True
