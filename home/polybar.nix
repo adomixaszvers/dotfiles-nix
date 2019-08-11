@@ -25,10 +25,7 @@ let
 in {
   services.polybar = {
     enable = true;
-    package = pkgs.polybar.override {
-      i3GapsSupport = true;
-      pulseSupport = true;
-    };
+    package = pkgs.polybarFull;
     config = {
       "bar/top" = defaultBar // {
         modules-left = "xmonad";
