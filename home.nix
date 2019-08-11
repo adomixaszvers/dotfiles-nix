@@ -79,6 +79,7 @@
       i3lock
       icdiff
       iotop
+      kakoune
       lsof
       meld
       ncdu
