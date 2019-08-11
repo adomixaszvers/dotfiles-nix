@@ -1,6 +1,8 @@
 { pkgs, config, ... }: {
   services.compton = {
     enable = config.xsession.enable;
+    fade = true;
+    fadeDelta = 5;
     shadow = true;
     shadowExclude = [
       "_GTK_FRAME_EXTENTS@:c"
