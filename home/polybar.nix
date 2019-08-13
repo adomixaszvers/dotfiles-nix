@@ -25,7 +25,9 @@ let
 in {
   services.polybar = {
     enable = true;
-    package = pkgs.polybarFull;
+    package = pkgs.polybar.override {
+      pulseSupport = true;
+    };
     config = {
       "bar/top" = defaultBar // {
         modules-left = "xmonad";
