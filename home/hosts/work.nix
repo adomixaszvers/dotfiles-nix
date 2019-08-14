@@ -14,8 +14,7 @@
     gnome3.nautilus
     google-chrome
     gradle
-    jetbrains.datagrip
-    jetbrains.idea-ultimate
+    unstable.jetbrains.idea-ultimate
     jq
     keepassxc
     libreoffice-fresh
