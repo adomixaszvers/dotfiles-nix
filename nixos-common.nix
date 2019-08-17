@@ -3,13 +3,13 @@
 
   nix = {
     binaryCaches = [
+      "https://all-hies.cachix.org"
       "https://cache.nixos.org/"
-      "https://hie-nix.cachix.org"
       "https://nerdfonts.cachix.org"
       "https://nixfmt.cachix.org"
     ];
     binaryCachePublicKeys = [
-      "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
+      "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k="
       "nerdfonts.cachix.org-1:aBl3vMJ8JpYEzuJYQ4OrfxGl5yoabTC7Tfh9fAcFf+c="
       "nixfmt.cachix.org-1:uyEQg16IhCFeDpFV07aL+Dbmh18XHVUqpkk/35WAgJI="
     ];
@@ -81,8 +81,6 @@
   services.xserver.layout = "lt,us";
   services.xserver.displayManager.lightdm.enable = true;
 
-  system.autoUpgrade = { enable = true; };
-
   time.timeZone = "Europe/Vilnius";
 
   users = let secrets = import ./secrets.nix;
@@ -94,7 +92,7 @@
       hashedPassword = secrets.adomas.hashedPassword;
       isNormalUser = true;
       uid = 1000;
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "video" "wheel" ];
       shell = pkgs.zsh;
     };
   };
