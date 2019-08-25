@@ -1,12 +1,12 @@
 { pkgs, config, ... }:
 let
-  colors = config.lib.colors // {
-    custom-foreground = "#d3dae3";
-    custom-background-dark = "#404552";
-    custom-background-light = "#666a73";
-    custom-primary = "#3daee9";
-    custom-warn = "#da4453";
-  };
+  colors = config.lib.colors // (with config.lib.colors; {
+    custom-foreground = foreground;
+    custom-background-dark = background;
+    custom-background-light = blackb;
+    custom-primary = cyanb;
+    custom-warn = redb;
+  });
   defaultBar = {
     monitor = ''
       ''${env:MONITOR}
@@ -21,16 +21,18 @@ let
       "NotoMono Nerd Font:fontformat=truetype:pixelsize=8:antialias=true;2";
     font-1 = "NotoMono Nerd Font:fontformat=truetype:size=10:antialias=true;2";
     font-2 = "Material Icons:fontformat=truetype:pixelsize=10:antialias=true;3";
+
+    line-size = 2;
+
+    wm-restack = "bspwm";
   };
 in {
   services.polybar = {
     enable = true;
-    package = pkgs.polybar.override {
-      pulseSupport = true;
-    };
+    package = pkgs.polybar.override { pulseSupport = true; };
     config = {
       "bar/top" = defaultBar // {
-        modules-left = "xmonad";
+        modules-left = "bspwm";
         modules-center = "";
         modules-right =
           "memory divider disk divider cpu divider temperature divider volume divider date divider time";
@@ -39,9 +41,24 @@ in {
         tray-background = colors.custom-background-dark;
       };
       "bar/top-extra" = defaultBar // {
-        modules-left = "xmonad";
+        modules-left = "bspwm";
         modules-center = "";
         modules-right = "";
+      };
+      "module/bspwm" = {
+        type = "internal/bspwm";
+        pin-workspaces = false;
+        enable-click = true;
+
+        label-focused = "%name%";
+        label-focused-underline = colors.foreground;
+
+        label-occupied = "%name%";
+
+        label-empty = "%name%";
+        label-empty-foreground = colors.white;
+
+        label-separator = " ";
       };
       "module/xmonad" = {
         type = "custom/script";

@@ -7,8 +7,10 @@ super + Return
         $TERMINAL
 
 # program launcher
-super + {_, shift + } @space
-        rofi -show {drun, run}
+super + space
+        rofi -show combi -combi-modi window,drun
+super + shift + space
+        rofi -show run -sidebar-mode
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -83,6 +85,8 @@ super + {o,i}
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
         bspc {desktop -f,node -d} '^{1-9,10}'
+super + {_,shift + }{aogonek,ccaron,eogonek,eabovedot,iogonek,scaron,uogonek,umacron,doublelowquotemark,leftdoublequotemark}
+        bspc {desktop -f,node -d} '^{1,2,3,4,5,6,7,8,9,10}'
 
 #
 # preselect

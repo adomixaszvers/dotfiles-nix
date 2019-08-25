@@ -5,7 +5,7 @@
   in [
     hostSpecific
     # ./home/awesome.nix
-    # ./home/bspwm.nix
+    ./home/bspwm.nix
     ./home/compton.nix
     ./home/colors.nix
     ./home/dunst.nix
@@ -17,7 +17,7 @@
     ./home/alacritty.nix
     ./home/polybar.nix
     ./home/termite.nix
-    ./home/xmonad.nix
+    # ./home/xmonad.nix
   ];
   gtk = {
     enable = true;
