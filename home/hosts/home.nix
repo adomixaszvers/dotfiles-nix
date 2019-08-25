@@ -9,7 +9,7 @@
     guile
     jetbrains.idea-ultimate
     klavaro
-    (mine.steam.override { withPrimus = true; })
+    (mine.steam.override { config.steam.primus = true; })
     mine.vimgolf
     minecraft
     openjdk11
