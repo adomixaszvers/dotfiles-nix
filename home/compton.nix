@@ -1,6 +1,6 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, lib, ... }: {
   services.compton = {
-    enable = config.xsession.enable;
+    enable = lib.mkDefault config.xsession.enable;
     fade = true;
     fadeDelta = 5;
     shadow = true;
@@ -10,6 +10,7 @@
       "class_g = 'Conky'"
       "class_g = 'Firefox' && argb"
       "class_g ?= 'Notify-osd'"
+      "class_g ?= 'plasmashell'"
       "name = 'Notification'"
     ];
     shadowOffsets = [ (-7) (-7) ];
@@ -18,7 +19,10 @@
       clear-shadow = true;
       shadow-radius = 7;
 
-      inactive-dim = 0.1
+      inactive-dim = 0.1;
+      focus-exclude = [
+         "class_g ?= 'plasmashell'"
+      ];
     '';
     opacityRule = [
       "95:class_g = 'URxvt' && !_NET_WM_STATE@:32a"
