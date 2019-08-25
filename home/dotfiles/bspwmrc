@@ -15,9 +15,19 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config focus_follows_pointer true
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
-bspc rule -a Emacs state=tiled
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a Chromium desktop='^2'
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off
+# bspc rule -a Emacs state=tiled
+
+bspc rule -a Google-chrome desktop='^1'
+bspc rule -a Firefox desktop='^1'
+bspc rule -a jetbrains-idea desktop='^3'
+bspc rule -a rambox desktop='^4'
+bspc rule -a SmartGit desktop='^5'
+bspc rule -a Steam desktop='^5'
+bspc rule -a libreoffice desktop='^6'
+bspc rule -a Emacs desktop='^7' state=tiled
+bspc rule -a "Google Play Music Desktop Player" desktop='^10'
