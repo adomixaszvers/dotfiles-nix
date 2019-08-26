@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 let
   colors = config.lib.colors // (with config.lib.colors; {
     custom-foreground = foreground;
@@ -8,6 +8,8 @@ let
     custom-warn = redb;
   });
   defaultBar = {
+    modules-left = lib.mkDefault "ewmh";
+
     monitor = ''
       ''${env:MONITOR}
     '';
@@ -28,11 +30,10 @@ let
   };
 in {
   services.polybar = {
-    enable = true;
+    enable = lib.mkDefault true;
     package = pkgs.polybar.override { pulseSupport = true; };
     config = {
       "bar/top" = defaultBar // {
-        modules-left = "bspwm";
         modules-center = "";
         modules-right =
           "memory divider disk divider cpu divider temperature divider volume divider date divider time";
@@ -41,7 +42,6 @@ in {
         tray-background = colors.custom-background-dark;
       };
       "bar/top-extra" = defaultBar // {
-        modules-left = "bspwm";
         modules-center = "";
         modules-right = "";
       };

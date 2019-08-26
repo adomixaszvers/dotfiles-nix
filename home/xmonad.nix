@@ -10,6 +10,10 @@ in {
     mine.maimpick
     mine.rofi-powermenu
   ];
+  services.polybar.config = {
+    "bar/top".modules-left = "xmonad";
+    "bar/top-extra".modules-left = "xmonad";
+  };
   xsession.windowManager.xmonad = {
     inherit extraPackages;
     enable = true;
