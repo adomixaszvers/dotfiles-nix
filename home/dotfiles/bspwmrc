@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sxhkd &
+sxhkd -m -1 &
 systemctl --user restart polybar.service
 
 bspc monitor -d I II III IV V VI VII VIII IX X

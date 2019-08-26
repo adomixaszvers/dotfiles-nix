@@ -50,6 +50,8 @@ in {
         pin-workspaces = false;
         enable-click = true;
 
+        format = "<label-state> <label-mode>";
+
         label-focused = "%name%";
         label-focused-underline = colors.foreground;
 
@@ -59,6 +61,19 @@ in {
         label-empty-foreground = colors.white;
 
         label-separator = " ";
+
+        label-monocle = "";
+        label-tiled = "";
+        label-fullscreen = "";
+        label-floating = "";
+        label-pseudotiled = "P";
+        label-locked = "";
+        label-locked-foreground = "#bd2c40";
+        label-sticky = "";
+        label-sticky-foreground = "#fba922";
+        label-private = "";
+        label-private-foreground = "#bd2c40";
+        label-marked = "M";
       };
       "module/xmonad" = {
         type = "custom/script";
