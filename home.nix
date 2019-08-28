@@ -146,6 +146,7 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    stdlib = lib.readFile ./home/dotfiles/use_nix.sh;
   };
   programs.fzf = {
     changeDirWidgetCommand = "bfs -type d";
