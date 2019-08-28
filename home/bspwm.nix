@@ -1,8 +1,13 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [ bspwm sxhkd ];
-  services.polybar.config = {
-    "bar/top".modules-left = "bspwm";
-    "bar/top-extra".modules-left = "bspwm";
+  services.polybar.config = let
+    common = {
+      modules-left = "bspwm";
+      wm-restack = "bspwm";
+    };
+  in {
+    "bar/top" = common;
+    "bar/top-extra" = common;
   };
   xdg.configFile."bspwm/bspwmrc" = {
     source = ./dotfiles/bspwmrc;

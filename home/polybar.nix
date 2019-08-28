@@ -25,8 +25,6 @@ let
     font-2 = "Material Icons:fontformat=truetype:pixelsize=10:antialias=true;3";
 
     line-size = 2;
-
-    wm-restack = "bspwm";
   };
 in {
   services.polybar = {
