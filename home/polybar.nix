@@ -13,18 +13,18 @@ let
     monitor = ''
       ''${env:MONITOR}
     '';
-    height = 25;
+    height = 16;
     bottom = false;
     fixed-center = true;
 
     inherit (colors) background foreground;
 
     font-0 =
-      "NotoMono Nerd Font:fontformat=truetype:pixelsize=8:antialias=true;2";
-    font-1 = "NotoMono Nerd Font:fontformat=truetype:size=10:antialias=true;2";
-    font-2 = "Material Icons:fontformat=truetype:pixelsize=10:antialias=true;3";
+      "NotoMono Nerd Font:fontformat=truetype:pixelsize=8:antialias=true;1";
+    font-1 = "NotoMono Nerd Font:fontformat=truetype:size=10:antialias=true;1";
+    font-2 = "Material Icons:fontformat=truetype:pixelsize=10:antialias=true;2";
 
-    line-size = 2;
+    line-size = 1;
   };
 in {
   services.polybar = {
@@ -34,7 +34,7 @@ in {
       "bar/top" = defaultBar // {
         modules-center = "";
         modules-right =
-          "memory divider disk divider cpu divider temperature divider volume divider date divider time";
+          "memory divider disk divider cpu divider temperature divider volume divider date divider time divider";
         tray-position = "right";
         tray-max-size = 16;
         tray-background = colors.custom-background-dark;

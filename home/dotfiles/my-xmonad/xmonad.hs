@@ -298,9 +298,9 @@ hostSpecific _ conf = conf
 
 myLogHook :: D.Client -> PP
 myLogHook dbus = def { ppOutput  = dbusOutput dbus
-                     , ppCurrent = wrap "%{u#fff}" "%{-u}"
+                     , ppCurrent = wrap "%{o#fff}" "%{-o}"
                      , ppVisible = wrap "" ""
-                     , ppUrgent  = wrap "%{u#f00}" "%{-u}"
+                     , ppUrgent  = wrap "%{o#f00}" "%{-o}"
                      , ppHidden  = wrap "" ""
                      , ppWsSep   = " "
                      , ppSep     = " : "
