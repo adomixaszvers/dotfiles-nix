@@ -32,7 +32,7 @@ in {
         "${workspace7}" = [{ class = "^Emacs"; }];
         "${workspace10}" = [{ class = "^Spotify"; }];
       };
-      bars = lib.optionals (!config.services.polybar.enable) [{
+      bars = assert (lib.assertMsg (!config.services.polybar.enable) "Polybar must be disabled in i3wm"); [{
         statusCommand = ''
           bumblebee-status -m title cpu memory disk layout pasink datetime \
             -t iceberg-rainbow \
