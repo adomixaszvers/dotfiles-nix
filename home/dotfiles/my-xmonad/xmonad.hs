@@ -12,9 +12,6 @@ import           System.Exit                    ( exitSuccess )
 import           System.IO                      ( hClose
                                                 , hPutStr
                                                 )
-import           System.Posix.Unistd            ( getSystemID
-                                                , nodeName
-                                                )
 import           XMonad
 import           XMonad.Actions.PhysicalScreens ( PhysicalScreen(..)
                                                 , viewScreen
@@ -42,6 +39,7 @@ import           XMonad.Hooks.ManageDocks       ( ToggleStruts(ToggleStruts)
                                                 , manageDocks
                                                 )
 import           XMonad.Hooks.ManageHelpers     ( composeOne
+                                                , transience
                                                 , (-?>)
                                                 )
 import           XMonad.Hooks.SetWMName         ( setWMName )
@@ -67,19 +65,20 @@ import           XMonad.Util.NamedScratchpad    ( NamedScratchpads
                                                 , namedScratchpadManageHook
                                                 , namedScratchpadFilterOutWorkspacePP
                                                 )
-import           XMonad.Util.Run                ( spawnPipe )
+import           XMonad.Util.Run                ( spawnPipe
+                                                , runProcessWithInput
+                                                )
 import           XMonad.Util.SpawnOnce          ( spawnOnce )
 
 main :: IO ()
 main = do
-  host <- fmap nodeName getSystemID
   dbus <- D.connectSession
     -- Request access to the DBus name
   _    <- D.requestName
     dbus
     (D.busName_ "org.xmonad.Log")
     [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
-  xmonad . hostSpecific host . ewmh . docks $ myConfig
+  xmonad . ewmh . docks $ myConfig
     { logHook = dynamicLogWithPP
                 . namedScratchpadFilterOutWorkspacePP
                 . myLogHook
@@ -127,6 +126,7 @@ myStartupHook = do
   spawnOnce "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
   spawnOnce "systemctl --user restart polybar.service"
   addEWMHFullscreen
+  whenX isWork $ spawnOnce "rambox"
 
 myLayoutHook = smartBorders . avoidStruts $ onWorkspace
   ws3
@@ -154,7 +154,8 @@ myManageHook = composeAll
   ]
  where
   spawnHook = composeOne
-    [ className =? "Google-chrome" <||> className =? "Firefox" -?> doShift ws1
+    [ transience
+    , className =? "Google-chrome" <||> className =? "Firefox" -?> doShift ws1
     , className =? "jetbrains-idea" -?> doShift ws3
     , className =? "rambox" -?> doShift ws4
     , className =? "Steam" <||> className =? "SmartGit" -?> doShift ws5
@@ -291,11 +292,6 @@ showKeybindings x = addName "Show Keybindings" $ io $ bracket
   hClose
   (\h -> hPutStr h (unlines $ showKm x))
 
-hostSpecific :: String -> XConfig l -> XConfig l
-hostSpecific "adomas-jatuzis-nixos" conf@XConfig { startupHook = oldStartupHook }
-  = conf { startupHook = oldStartupHook >> spawnOnce "rambox" }
-hostSpecific _ conf = conf
-
 myLogHook :: D.Client -> PP
 myLogHook dbus = def { ppOutput  = dbusOutput dbus
                      , ppCurrent = wrap "%{o#fff}" "%{-o}"
@@ -355,3 +351,6 @@ addEWMHFullscreen = do
   wms <- getAtom "_NET_WM_STATE"
   wfs <- getAtom "_NET_WM_STATE_FULLSCREEN"
   mapM_ addNETSupported [wms, wfs]
+
+isWork :: MonadIO m => m Bool
+isWork = (== "work\n") <$> runProcessWithInput "autorandr" ["--detect"] ""

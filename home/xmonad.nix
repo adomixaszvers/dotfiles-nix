@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  extraPackages = hs: with hs; [ xmonad xmonad-contrib unix dbus utf8-string ];
+  extraPackages = hs: with hs; [ xmonad xmonad-contrib dbus utf8-string ];
 in {
   home.packages = with pkgs; [
     (ghc.withPackages extraPackages)
