@@ -93,7 +93,9 @@
       shellcheck
       tree
       unzip
+      vlc
       w3m # for ranger image previews
+      wmctrl
       xarchiver
       xdg-user-dirs
       xsel

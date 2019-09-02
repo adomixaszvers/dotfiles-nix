@@ -33,6 +33,7 @@
     tomcat8
     traceroute
     unstable.postman
+    unrar
     unzip
     vagrant
     visualvm
