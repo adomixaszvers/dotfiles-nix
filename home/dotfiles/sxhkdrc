@@ -7,10 +7,14 @@ super + Return
         $TERMINAL
 
 # program launcher
-super + space
+super + d
         rofi -show combi -combi-modi window,drun
-super + shift + space
+super + shift + d
         rofi -show run -sidebar-mode
+
+# power menu
+super + Pause
+        rofi-powermenu
 
 # make sxhkd reload its configuration files:
 super + Escape
