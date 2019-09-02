@@ -3,7 +3,12 @@
 sxhkd -m -1 &
 systemctl --user restart polybar.service
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+if [[ $(autorandr --detect) == 'work' ]]; then
+    bspc monitor DP-1 -d I II III IV V
+    bspc monitor DP-2 -d VI VII VIII IX X
+else
+    bspc monitor -d I II III IV V VI VII VIII IX X
+fi
 
 bspc config border_width         2
 bspc config window_gap          7
