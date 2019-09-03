@@ -1,0 +1,11 @@
+diff --git a/src/locales.h b/src/locales.h
+index bd45fa0..73756b5 100644
+--- a/src/locales.h
++++ b/src/locales.h
+@@ -49,5 +49,6 @@
+ #define XK_MATHEMATICAL
+ #define XK_BRAILLE
+ #define XK_SINHALA
++#define XK_PUBLISHING
+ 
+ #endif

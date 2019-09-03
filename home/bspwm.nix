@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ bspwm sxhkd mine.rofi-powermenu ];
+  home.packages = with pkgs; [ bspwm mine.sxhkd mine.rofi-powermenu ];
   services.polybar.config = let
     common = {
       modules-left = "bspwm";
