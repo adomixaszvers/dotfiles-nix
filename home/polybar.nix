@@ -51,7 +51,7 @@ in {
         format = "<label-state> <label-mode>";
 
         label-focused = "%name%";
-        label-focused-underline = colors.foreground;
+        label-focused-overline = colors.foreground;
 
         label-occupied = "%name%";
 
