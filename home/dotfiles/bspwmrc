@@ -1,5 +1,6 @@
 #!/bin/sh
 
+wmname LG3D
 sxhkd -m -1 &
 systemctl --user restart polybar.service
 
