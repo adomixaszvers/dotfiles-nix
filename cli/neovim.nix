@@ -15,8 +15,8 @@ let
       src = pkgs.fetchFromGitHub {
         owner = "mengelbrecht";
         repo = "lightline-bufferline";
-        rev = "3bf44e879e42cf1e64f847aa747bf07289200c5b";
-        sha256 = "0wjnh797f504bh17nxh63jzcxzlgfwqlsd06xf0lq9y80853rbz6";
+        rev = "87431565ccfcc4c9ac892ab271eae77920c191e5";
+        sha256 = "0dmcabdp8768fnb0mzzcidz6bx1aj93fgm4l4z768ils3xycbyw8";
       };
     };
     lightline-neomake = pkgs.vimUtils.buildVimPlugin {
