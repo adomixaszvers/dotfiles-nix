@@ -152,11 +152,11 @@
   };
   programs.fzf = {
     changeDirWidgetCommand = "bfs -type d";
-    defaultCommand = "rg --files";
+    defaultCommand = "fd --type f";
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    fileWidgetCommand = "rg --files";
+    fileWidgetCommand = "fd --type f";
   };
   programs.home-manager.enable = true;
   # programs.home-manager.path = https://github.com/rycee/home-manager/archive/release-19.03.tar.gz;
