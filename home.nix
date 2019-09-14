@@ -173,7 +173,7 @@
     enableAutosuggestions = true;
     enableCompletion = true;
     shellAliases = {
-      he = "(hcd && nvim $(fzf))";
+      he = "(hcd && nvim $(FZF_DEFAULT_COMMAND='fd --type f --no-ignore-vcs' fzf))";
       hcd = "cd ~/.config/nixpkgs";
     };
   };
