@@ -5,6 +5,7 @@
     fd
     gcc
     gnutls
-    pandoc
+    mdl
+    multimarkdown
   ];
 }
