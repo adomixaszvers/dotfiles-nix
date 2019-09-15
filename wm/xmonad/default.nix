@@ -1,6 +1,5 @@
 { pkgs, lib, config, ... }:
-let
-  extraPackages = hs: with hs; [ xmonad xmonad-contrib dbus utf8-string ];
+let extraPackages = hs: with hs; [ xmonad xmonad-contrib dbus utf8-string ];
 in {
   home.packages = with pkgs; [
     (ghc.withPackages extraPackages)
@@ -17,6 +16,6 @@ in {
   xsession.windowManager.xmonad = {
     inherit extraPackages;
     enable = true;
-    config = ./dotfiles/my-xmonad/xmonad.hs;
+    config = ./my-xmonad/xmonad.hs;
   };
 }

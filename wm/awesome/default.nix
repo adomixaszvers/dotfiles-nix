@@ -1,5 +1,5 @@
 {
   services.pasystray.enable = true;
   xsession.windowManager.awesome.enable = true;
-  xdg.configFile."awesome/rc.lua".source = ./dotfiles/awesome/rc.lua;
+  xdg.configFile."awesome/rc.lua".source = ./rc.lua;
 }

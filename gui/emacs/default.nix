@@ -6,7 +6,7 @@ in {
   home.file.".emacs.d" = {
     source = pkgs.stdenv.mkDerivation {
       name = "emacs.d";
-      src = ./dotfiles/emacs.d;
+      src = ./emacs.d;
       nativeBuildInputs = [ emacs ];
       unpackPhase = ":";
       installPhase = ''

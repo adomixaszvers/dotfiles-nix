@@ -10,12 +10,12 @@
     "bar/top-extra" = common;
   };
   xdg.configFile."bspwm/bspwmrc" = {
-    source = ./dotfiles/bspwmrc;
+    source = ./bspwmrc;
     executable = true;
     onChange = "pidof bspwm 1>/dev/null && bspc wm -r";
   };
   xdg.configFile."sxhkd/sxhkdrc" = {
-    source = ./dotfiles/sxhkdrc;
+    source = ./sxhkdrc;
     onChange = "pidof sxhkd 1>/dev/null && pkill -USR1 -x sxhkd";
   };
   xsession.windowManager.command = "bspwm";

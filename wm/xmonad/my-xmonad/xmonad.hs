@@ -39,6 +39,7 @@ import           XMonad.Hooks.ManageDocks       ( ToggleStruts(ToggleStruts)
                                                 , manageDocks
                                                 )
 import           XMonad.Hooks.ManageHelpers     ( composeOne
+                                                , doCenterFloat
                                                 , transience
                                                 , (-?>)
                                                 )
@@ -148,6 +149,7 @@ myMainLayout = tiled ||| Mirror tiled ||| Full
 myManageHook :: ManageHook
 myManageHook = composeAll
   [ spawnHook
+  , className =? "lxqt-openssh-askpass" --> doCenterFloat
   , manageDocks
   , namedScratchpadManageHook myScratchpads
   , manageHook def
