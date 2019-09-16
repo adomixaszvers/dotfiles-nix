@@ -162,6 +162,7 @@ myManageHook = composeAll
     , className =? "rambox" -?> doShift ws4
     , className =? "Steam" <||> className =? "SmartGit" -?> doShift ws5
     , className =? "libreoffice" -?> doShift ws6
+    , className =? "keepass2" -?> doShift ws9
     , className =? "Google Play Music Desktop Player" -?> doShift ws0
     ]
 
