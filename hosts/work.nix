@@ -81,7 +81,7 @@
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;
-    lockCmd = let wallpaper = ../dotfiles/lockscreen.png;
+    lockCmd = let wallpaper = ./lockscreen.png;
     in "i3lock -n -i ${wallpaper} -t -p win -f";
   };
   xsession.windowManager.i3.config.startup = [{
