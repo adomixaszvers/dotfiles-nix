@@ -32,38 +32,39 @@ in {
         "${workspace7}" = [{ class = "^Emacs"; }];
         "${workspace10}" = [{ class = "^Spotify"; }];
       };
-      bars = assert (lib.assertMsg (!config.services.polybar.enable) "Polybar must be disabled in i3wm"); [{
-        statusCommand = ''
-          bumblebee-status -m title cpu memory disk layout pasink datetime \
-            -t iceberg-rainbow \
-            -p memory.format="{used}/{total}" disk.format="{percent:05.02f}%"
-        '';
-        fonts = [ "NotoMono Nerd Font 9" ];
-        colors = with config.lib.colors; {
-          activeWorkspace = {
+      bars = assert (lib.assertMsg (!config.services.polybar.enable)
+        "Polybar must be disabled in i3wm"); [{
+          statusCommand = ''
+            bumblebee-status -m title cpu memory disk layout pasink datetime \
+              -t iceberg-rainbow \
+              -p memory.format="{used}/{total}" disk.format="{percent:05.02f}%"
+          '';
+          fonts = [ "NotoMono Nerd Font 9" ];
+          colors = with config.lib.colors; {
+            activeWorkspace = {
+              background = background;
+              border = background;
+              text = whiteb;
+            };
             background = background;
-            border = background;
-            text = whiteb;
+            focusedWorkspace = {
+              background = blackb;
+              border = background;
+              text = whiteb;
+            };
+            inactiveWorkspace = {
+              background = background;
+              border = background;
+              text = white;
+            };
+            statusline = white;
+            urgentWorkspace = {
+              background = redb;
+              border = red;
+              text = whiteb;
+            };
           };
-          background = background;
-          focusedWorkspace = {
-            background = blackb;
-            border = background;
-            text = whiteb;
-          };
-          inactiveWorkspace = {
-            background = background;
-            border = background;
-            text = white;
-          };
-          statusline = white;
-          urgentWorkspace = {
-            background = redb;
-            border = red;
-            text = whiteb;
-          };
-        };
-      }];
+        }];
       # bars = [];
       colors = with config.lib.colors; {
         background = black;

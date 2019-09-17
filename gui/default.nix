@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./fonts.nix ./termite.nix ./keepass ./colors.nix ./doom-emacs.nix ];
+  imports =
+    [ ./fonts.nix ./termite.nix ./keepass ./colors.nix ./doom-emacs.nix ];
   gtk = {
     enable = true;
     iconTheme = {

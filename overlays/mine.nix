@@ -4,9 +4,8 @@ self: super: {
     vimgolf = super.callPackage ../pkgs/vimgolf { };
     maimpick = super.callPackage ../pkgs/maimpick.nix { };
     rofi-powermenu = super.callPackage ../pkgs/rofi-powermenu.nix { };
-    sxhkd = super.sxhkd.overrideAttrs (oldAttrs: {
-      patches = [ ../pkgs/sxhkd.patch ];
-    });
+    sxhkd = super.sxhkd.overrideAttrs
+      (oldAttrs: { patches = [ ../pkgs/sxhkd.patch ]; });
     ghc = let
       haskellPackages = ps:
         with ps; [
