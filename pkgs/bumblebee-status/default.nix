@@ -1,5 +1,5 @@
 { stdenv, fetchFromGitHub, python3 }:
-let version = "1.8.0";
+let version = "1.9.0";
 in stdenv.mkDerivation {
   name = "bumblebee-status-${version}";
   inherit version;
@@ -7,7 +7,7 @@ in stdenv.mkDerivation {
     owner = "tobi-wan-kenobi";
     repo = "bumblebee-status";
     rev = "v${version}";
-    sha256 = "1kf979gh3fd4iphqc0dndnvlx5sdn3cmm0lmvgnxyvzjj5qmhf6k";
+    sha256 = "1df59aj6kg93sgagxh018hv8fxrmcvnkz51lvpvsdibc2xx0irn4";
   };
   buildInputs = [
     (python3.withPackages
