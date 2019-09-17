@@ -43,41 +43,6 @@ in {
         modules-center = "";
         modules-right = "";
       };
-      "module/bspwm" = {
-        type = "internal/bspwm";
-        pin-workspaces = false;
-        enable-click = true;
-
-        format = "<label-state> <label-mode>";
-
-        label-focused = "%name%";
-        label-focused-overline = colors.foreground;
-
-        label-occupied = "%name%";
-
-        label-empty = "%name%";
-        label-empty-foreground = colors.white;
-
-        label-separator = " ";
-
-        label-monocle = "";
-        label-tiled = "";
-        label-fullscreen = "";
-        label-floating = "";
-        label-pseudotiled = "P";
-        label-locked = "";
-        label-locked-foreground = "#bd2c40";
-        label-sticky = "";
-        label-sticky-foreground = "#fba922";
-        label-private = "";
-        label-private-foreground = "#bd2c40";
-        label-marked = "M";
-      };
-      "module/xmonad" = {
-        type = "custom/script";
-        exec = "${pkgs.xmonad-log}/bin/xmonad-log";
-        tail = true;
-      };
       "module/cpu" = {
         type = "internal/cpu";
 

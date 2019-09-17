@@ -12,6 +12,11 @@ in {
   services.polybar.config = {
     "bar/top".modules-left = "xmonad";
     "bar/top-extra".modules-left = "xmonad";
+    "module/xmonad" = {
+      type = "custom/script";
+      exec = "${pkgs.xmonad-log}/bin/xmonad-log";
+      tail = true;
+    };
   };
   xsession.windowManager.xmonad = {
     inherit extraPackages;
