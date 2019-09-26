@@ -1,5 +1,21 @@
 { pkgs, ... }: {
-  home.packages = let unstable = import <nixos-unstable> { };
+  home.packages = let
+    unstable = import <nixos-unstable> { };
+    myEclipse = with unstable.eclipses;
+      eclipseWithPlugins {
+        eclipse = eclipse-java;
+        plugins = [
+          (plugins.buildEclipseUpdateSite {
+            name = "activiti-designer-5.18.0";
+            src = unstable.fetchzip {
+              stripRoot = false;
+              url =
+                "http://www.activiti.org/designer/archived/activiti-designer-5.18.0.zip";
+              sha256 = "1iimskpdvibq1z11hh48krq2qvw6qhddl41qbqc7547x3g19slfr";
+            };
+          })
+        ];
+      };
   in with pkgs; [
     # mine.consul
     # yarn
@@ -7,6 +23,7 @@
     docker
     docker-compose
     docker-machine
+    myEclipse
     filezilla
     firefox
     flameshot
