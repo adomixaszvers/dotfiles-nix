@@ -14,7 +14,6 @@
     gnome3.nautilus
     google-chrome
     gradle
-    unstable.jetbrains.idea-ultimate
     jq
     keepassxc
     libreoffice-fresh
@@ -32,8 +31,9 @@
     swagger-codegen
     tomcat8
     traceroute
-    unstable.postman
     unrar
+    unstable.jetbrains.idea-ultimate
+    unstable.postman
     unzip
     vagrant
     visualvm
