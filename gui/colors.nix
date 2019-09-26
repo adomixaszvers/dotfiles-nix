@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, ... }:
 let
-  hexToDec = import ./hexToDec.nix { inherit (pkgs) lib; };
+  hexToDec = import ./hexToDec.nix { inherit lib; };
   toTrgba = hex:
     let
       f = i: toString (hexToDec (builtins.substring i 2 hex));
