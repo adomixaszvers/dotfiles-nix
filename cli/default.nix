@@ -2,7 +2,7 @@
 
 {
   imports = [ ./neovim.nix ];
-  home.packages = let nixfmt = import <nixfmt> { };
+  home.packages = let unstable = import <nixos-unstable> { };
   in with pkgs; [
     bfs
     cachix
@@ -14,7 +14,7 @@
     kakoune
     lsof
     ncdu
-    nixfmt
+    unstable.nixfmt
     p7zip
     ranger
     ripgrep
