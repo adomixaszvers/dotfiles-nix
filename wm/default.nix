@@ -2,6 +2,7 @@
 
 {
   imports = [ ./xmonad ./polybar.nix ./dunst.nix ./compton.nix ];
+  services.network-manager-applet.enable = config.xsession.enable;
   xsession.enable = lib.mkDefault true;
   xsession.initExtra = ''
     xset s off -dpms

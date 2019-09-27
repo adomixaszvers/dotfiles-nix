@@ -68,7 +68,6 @@
     enable = true;
     components = [ "pkcs11" "secrets" "ssh" ];
   };
-  services.network-manager-applet.enable = config.xsession.enable;
   xdg.configFile."ranger/rc.conf" = {
     text = ''
       set preview_images true
