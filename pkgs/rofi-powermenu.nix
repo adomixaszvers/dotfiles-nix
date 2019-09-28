@@ -1,6 +1,6 @@
-{ writeScriptBin, rofi, systemd, lib }:
+{ writeScriptBin, rofi, lib }:
 writeScriptBin "rofi-powermenu" ''
-  PATH=$PATH:${lib.makeBinPath [ rofi systemd ]}
+  PATH=$PATH:${lib.makeBinPath [ rofi ]}
   case "$(printf "lock session\\nlogout\\npoweroff\\nreboot"| rofi -dmenu -l 4 -i -p "Power menu")" in
     "lock session") loginctl lock-session ;;
     "logout") loginctl kill-session $XDG_SESSION_ID ;;
