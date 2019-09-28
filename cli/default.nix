@@ -42,6 +42,10 @@
     enableZshIntegration = true;
     fileWidgetCommand = "fd --type f";
   };
+  programs.tmux = {
+    enable = true;
+    terminal = "screen-256color";
+  };
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
