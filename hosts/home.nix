@@ -1,6 +1,4 @@
-{ pkgs, config, ... }:
-let unstable = import <nixos-unstable> { };
-in {
+{ pkgs, config, ... }: {
   home.packages = with pkgs; [
     borgbackup
     calibre
@@ -9,14 +7,13 @@ in {
     firefox
     gtypist
     guile
-    unstable.jetbrains.idea-ultimate
     klavaro
+    minecraft
     (mine.steam.override { config.steam.primus = true; })
     mine.vimgolf
-    minecraft
-    openjdk11
     qbittorrent
     torbrowser
+    jetbrains.idea-ultimate
     vim
   ];
 }

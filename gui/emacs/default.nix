@@ -1,7 +1,5 @@
 { pkgs, ... }:
-let
-  unstable = import <nixos-unstable> { };
-  emacs = unstable.emacs;
+let emacs = pkgs.emacs;
 in {
   home.file.".emacs.d" = {
     source = pkgs.stdenv.mkDerivation {
@@ -21,7 +19,7 @@ in {
     enable = true;
     package = emacs;
     extraPackages = epkgs:
-      with unstable.emacsPackagesNg; [
+      with epkgs.emacsPackagesNg; [
         beacon
         benchmark-init
         company

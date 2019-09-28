@@ -1,13 +1,12 @@
 { pkgs, ... }: {
   home.packages = let
-    unstable = import <nixos-unstable> { };
-    myEclipse = with unstable.eclipses;
+    myEclipse = with pkgs.eclipses;
       eclipseWithPlugins {
         eclipse = eclipse-java;
         plugins = [
           (plugins.buildEclipseUpdateSite {
             name = "activiti-designer-5.18.0";
-            src = unstable.fetchzip {
+            src = pkgs.fetchzip {
               stripRoot = false;
               url =
                 "http://www.activiti.org/designer/archived/activiti-designer-5.18.0.zip";
@@ -49,8 +48,8 @@
     tomcat8
     traceroute
     unrar
-    unstable.jetbrains.idea-ultimate
-    unstable.postman
+    jetbrains.idea-ultimate
+    postman
     unzip
     vagrant
     visualvm

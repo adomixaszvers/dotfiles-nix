@@ -3,7 +3,7 @@ let extraPackages = hs: with hs; [ xmonad xmonad-contrib dbus utf8-string ];
 in {
   home.packages = with pkgs; [
     (ghc.withPackages extraPackages)
-    (with import <nixos-unstable> { }; haskellPackages.brittany)
+    haskellPackages.brittany
     gnome3.zenity
     haskellPackages.hlint
     mine.maimpick

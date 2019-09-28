@@ -1,12 +1,10 @@
 { pkgs, ... }: {
-  home.packages = let unstable = import <nixos-unstable> { };
-  in with unstable; [
+  home.packages = with pkgs; [
     (kakoune.override { configure.plugins = [ kakounePlugins.kak-fzf ]; })
-    pkgs.mine.kaknix
+    mine.kaknix
   ];
   xdg.configFile."kak" = {
     source = ./kak;
     recursive = true;
   };
 }
-
