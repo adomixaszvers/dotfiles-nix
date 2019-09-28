@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./neovim.nix ];
+  imports = [ ./neovim.nix ./kakoune ];
   home.packages = let unstable = import <nixos-unstable> { };
   in with pkgs; [
     bfs
@@ -11,7 +11,6 @@
     htop
     icdiff
     iotop
-    kakoune
     lsof
     ncdu
     unstable.nixfmt
