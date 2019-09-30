@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./neovim.nix ./kakoune ];
+  imports = [ ./neovim ./kakoune ];
   home.packages = with pkgs; [
     bfs
     cachix
