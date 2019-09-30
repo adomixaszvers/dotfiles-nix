@@ -24,6 +24,7 @@
   };
   environment.systemPackages = with pkgs; [
     acpi
+    efibootmgr
     exfat
     git
     gparted
