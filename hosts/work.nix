@@ -22,14 +22,15 @@
     docker
     docker-compose
     docker-machine
-    myEclipse
     filezilla
     firefox
     flameshot
     gitAndTools.gitflow
     gnome3.nautilus
+    gnumake
     google-chrome
     gradle
+    jetbrains.idea-ultimate
     jq
     keepassxc
     libreoffice-fresh
@@ -37,7 +38,9 @@
     maven
     mercurial
     mine.steam
+    myEclipse
     nodejs
+    postman
     rambox
     remmina
     robo3t
@@ -48,8 +51,6 @@
     tomcat8
     traceroute
     unrar
-    jetbrains.idea-ultimate
-    postman
     unzip
     vagrant
     visualvm
