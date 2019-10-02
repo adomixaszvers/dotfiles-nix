@@ -37,6 +37,7 @@
     liquibase
     maven
     mercurial
+    mine.dbxcli
     mine.steam
     myEclipse
     nodejs
