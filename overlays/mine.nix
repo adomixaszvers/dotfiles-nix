@@ -1,4 +1,8 @@
 self: super: {
+  kakounePlugins = super.kakounePlugins // {
+    kakoune-text-objects =
+      super.callPackage ../pkgs/kakoune-text-objects.nix { };
+  };
   mine = {
     bumblebee-status = super.callPackage ../pkgs/bumblebee-status { };
     vimgolf = super.callPackage ../pkgs/vimgolf { };
