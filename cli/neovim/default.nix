@@ -39,12 +39,11 @@ in {
       fugitive
       fzf-vim
       fzfWrapper
-      lightline-ale
-      lightline-bufferline
-      lightline-vim
       rainbow
       repeat
       surround
+      vim-airline
+      vim-airline-themes
       vim-colorschemes
       vim-easymotion
       vim-gitgutter
