@@ -79,6 +79,13 @@
   services.xserver.exportConfiguration = true;
   services.xserver.layout = "lt,us";
   services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.desktopManager.session = [{
+    name = "home-manager";
+    start = ''
+      ${pkgs.stdenv.shell} $HOME/.xsession-hm &
+      waitPID=$!
+    '';
+  }];
 
   time.timeZone = "Europe/Vilnius";
 

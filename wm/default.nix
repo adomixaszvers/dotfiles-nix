@@ -11,4 +11,5 @@
     name = "capitaine-cursors";
     package = pkgs.capitaine-cursors;
   };
+  xsession.scriptPath = ".xsession-hm";
 }
