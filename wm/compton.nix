@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }: {
   services.compton = {
     enable = lib.mkDefault config.xsession.enable;
-    fade = true;
+    fade = false;
     fadeDelta = 5;
     shadow = true;
     shadowExclude = [
