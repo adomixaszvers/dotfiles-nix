@@ -87,7 +87,7 @@ main = do
     }
 
 myTerminal :: String
-myTerminal = "termite"
+myTerminal = "alacritty"
 
 myConfig = addDescrKeys'
   ((myModMask, xK_F1), showKeybindings)
@@ -330,8 +330,8 @@ myScratchpads =
        (title =? "scratchpad" <&&> className =? "Emacs")
        hook
   , NS nsTerminal
-       "termite -t scratchpad"
-       (title =? "scratchpad" <&&> className =? "Termite")
+       "alacritty -t scratchpad"
+       (title =? "scratchpad" <&&> className =? "Alacritty")
        hook
   ]
   where hook = customFloating $ W.RationalRect 0.025 0.025 0.95 0.95
