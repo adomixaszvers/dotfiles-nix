@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
@@ -73,7 +73,7 @@
 
   services.gnome3.gnome-keyring.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = true;
-  services.gnome3.seahorse.enable = true;
+  programs.seahorse.enable = true;
 
   services.xserver.enable = true;
   services.xserver.exportConfiguration = true;

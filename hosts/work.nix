@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   home.packages = let
+    unstable = pkgs.channels.nixos-unstable;
     myEclipse = with pkgs.eclipses;
       eclipseWithPlugins {
         eclipse = eclipse-java;
@@ -30,7 +31,6 @@
     gnumake
     google-chrome
     gradle
-    jetbrains.idea-ultimate
     jq
     keepassxc
     libreoffice-fresh
@@ -41,7 +41,6 @@
     mine.steam
     myEclipse
     nodejs
-    postman
     rambox
     remmina
     robo3t
@@ -52,6 +51,8 @@
     tomcat8
     traceroute
     unrar
+    unstable.jetbrains.idea-ultimate
+    unstable.postman
     unzip
     vagrant
     visualvm
