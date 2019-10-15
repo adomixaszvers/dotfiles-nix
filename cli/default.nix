@@ -10,6 +10,7 @@
     htop
     icdiff
     iotop
+    jq
     lsof
     ncdu
     nixfmt

@@ -1,5 +1,5 @@
 { pkgs, config, ... }: {
-  home.packages = with pkgs; [
+  home.packages = with pkgs; let unstable = channels.nixos-unstable; in [
     borgbackup
     calibre
     discord
@@ -13,7 +13,7 @@
     mine.vimgolf
     qbittorrent
     torbrowser
-    jetbrains.idea-ultimate
+    unstable.jetbrains.idea-ultimate
     vim
   ];
 }
