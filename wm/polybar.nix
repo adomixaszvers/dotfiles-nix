@@ -29,7 +29,7 @@ let
 in {
   services.polybar = {
     enable = lib.mkDefault true;
-    package = pkgs.polybar.override { pulseSupport = true; };
+    package = pkgs.polybarFull;
     config = {
       "bar/top" = defaultBar // {
         modules-center = "";
