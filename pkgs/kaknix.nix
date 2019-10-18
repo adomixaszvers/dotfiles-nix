@@ -1,9 +1,8 @@
-{ runtimeShell, writeScriptBin, nix, gnused, lib }:
+{ runtimeShell, writeScriptBin, nix, gnused }:
 writeScriptBin "kaknix" ''
   #!${runtimeShell}
-  PATH=${lib.makeBinPath [ nix gnused ]}:$PATH
   if [ $# -ne 1 ] || [ ! -f "$1"  ]; then
     exit 1
   fi
-  nix-instantiate --parse "$1" 2>&1 >&- | sed 's/^\(.\+\), at \(.\+\)$/\2: \1/'
+  ${nix}/bin/nix-instantiate --parse "$1" 2>&1 >&- | ${gnused}/bin/sed 's/^\(.\+\), at \(.\+\)$/\2: \1/'
 ''
