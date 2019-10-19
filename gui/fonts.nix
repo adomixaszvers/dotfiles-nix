@@ -6,5 +6,6 @@
     google-fonts
     material-icons
     nerdfonts
+    noto-fonts-emoji
   ];
 }

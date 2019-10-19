@@ -23,6 +23,8 @@ let
       "NotoMono Nerd Font:fontformat=truetype:pixelsize=8:antialias=true;1";
     font-1 = "NotoMono Nerd Font:fontformat=truetype:size=10:antialias=true;1";
     font-2 = "Material Icons:fontformat=truetype:pixelsize=10:antialias=true;2";
+    font-3 =
+      "Noto Color Emoji:fontformat=truetype:scale=10:antialias=true;1";
 
     line-size = 1;
   };
