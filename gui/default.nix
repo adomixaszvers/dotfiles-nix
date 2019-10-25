@@ -26,7 +26,7 @@
   };
   home.keyboard = {
     layout = "lt,us";
-    options = [ "ctrl:nocaps" ];
+    options = [ "grp:caps_toggle" ];
   };
   home.file."vim-cheatsheet.png" = {
     source = pkgs.fetchurl {

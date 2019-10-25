@@ -35,7 +35,7 @@ in {
       "bar/top" = defaultBar // {
         modules-center = "";
         modules-right =
-          "memory divider disk divider cpu divider temperature divider volume divider date divider time divider";
+          "memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider";
         tray-position = "right";
         tray-max-size = 16;
         tray-background = colors.custom-background-dark;
@@ -148,7 +148,12 @@ in {
         label-seperator-padding = 0;
       };
 
-      "module/keyboard" = { type = "internal/xkeyboard"; };
+      "module/keyboard" = {
+        format-prefix = "%{T3}%{T-} ";
+        format-prefix-foreground = colors.custom-primary;
+        format-prefix-background = colors.custom-background-dark;
+        type = "internal/xkeyboard";
+      };
       "module/memory" = {
         type = "internal/memory";
         format-prefix = "%{T3}%{T-}";
