@@ -9,7 +9,7 @@ let
   });
   module = icon: other:
     {
-      format-prefix = "%{T3}${icon}%{T-}";
+      format-prefix = "%{T2}${icon}%{T-}";
       format-prefix-foreground = colors.custom-primary;
       format-prefix-background = colors.custom-background-dark;
       label-foreground = colors.custom-foreground;
@@ -30,7 +30,6 @@ let
     font-0 =
       "NotoMono Nerd Font:fontformat=truetype:pixelsize=8:antialias=true;1";
     font-1 = "NotoMono Nerd Font:fontformat=truetype:size=10:antialias=true;1";
-    font-2 = "Material Icons:fontformat=truetype:pixelsize=10:antialias=true;2";
     font-3 = "Noto Color Emoji:fontformat=truetype:scale=10:antialias=true;1";
 
     line-size = 1;
@@ -52,16 +51,16 @@ in {
         modules-center = "";
         modules-right = "";
       };
-      "module/cpu" = module "" {
+      "module/cpu" = module "" {
         type = "internal/cpu";
         label = " %percentage:3%%";
       };
-      "module/date" = module "" {
+      "module/date" = module "ﭷ" {
         type = "internal/date";
         date = "%Y-%m-%d%";
         label = " %date%";
       };
-      "module/time" = module "" {
+      "module/time" = module "" {
         type = "internal/date";
 
         time = "%H:%M";
@@ -73,7 +72,7 @@ in {
         type = "internal/fs";
         mount-0 = "/";
         # mount-1 = "/home";
-        format-mounted-prefix = "%{T3}%{T-}";
+        format-mounted-prefix = "%{T3}%{T-}";
         format-mounted-prefix-foreground = colors.custom-primary;
         format-mounted-prefix-background = colors.custom-background-dark;
 
@@ -136,16 +135,16 @@ in {
       };
 
       "module/keyboard" = module " " { type = "internal/xkeyboard"; };
-      "module/memory" = module "" {
+      "module/memory" = module "" {
         type = "internal/memory";
         label = " %percentage_used:3%%";
       };
-      "module/temperature" = module "" {
+      "module/temperature" = module "" {
         type = "internal/temperature";
         warn-temperature = 70;
         label = " %temperature-c:3%";
 
-        format-warn-prefix = "%{T3}%{T-}";
+        format-warn-prefix = "%{T3}%{T-}";
         format-warn-prefix-foreground = colors.custom-warn;
         format-warn-prefix-background = colors.custom-background-dark;
 
@@ -156,7 +155,7 @@ in {
       "module/volume" = {
         type = "internal/pulseaudio";
 
-        format-volume-prefix = "%{T3}%{T-}";
+        format-volume-prefix = "%{T3}墳%{T-}";
         format-volume-prefix-foreground = colors.custom-primary;
         format-volume-prefix-background = colors.custom-background-dark;
 
@@ -164,7 +163,7 @@ in {
         label-volume-foreground = colors.custom-foreground;
         label-volume-background = colors.custom-background-dark;
 
-        format-muted-prefix = "%{T3}%{T-}";
+        format-muted-prefix = "%{T3}ﱝ%{T-}";
         format-muted-prefix-foreground = colors.custom-warn;
         format-muted-prefix-background = colors.custom-background-dark;
 
