@@ -113,7 +113,7 @@ in {
       };
       "module/divider" = {
         type = "custom/text";
-        content = "  |  ";
+        content = " | ";
         content-foreground = colors.custom-background-light;
         content-background = colors.custom-background-dark;
       };
