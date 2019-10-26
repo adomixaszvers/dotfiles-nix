@@ -7,6 +7,14 @@ let
     custom-primary = cyanb;
     custom-warn = redb;
   });
+  module = icon: other:
+    {
+      format-prefix = "%{T3}${icon}%{T-}";
+      format-prefix-foreground = colors.custom-primary;
+      format-prefix-background = colors.custom-background-dark;
+      label-foreground = colors.custom-foreground;
+      label-background = colors.custom-background-dark;
+    } // other;
   defaultBar = {
     modules-left = lib.mkDefault "ewmh";
 
@@ -44,43 +52,22 @@ in {
         modules-center = "";
         modules-right = "";
       };
-      "module/cpu" = {
+      "module/cpu" = module "" {
         type = "internal/cpu";
-
-        format-prefix = "%{T3}%{T-}";
-        format-prefix-foreground = colors.custom-primary;
-        format-prefix-background = colors.custom-background-dark;
-
         label = " %percentage:3%%";
-        label-foreground = colors.custom-foreground;
-        label-background = colors.custom-background-dark;
-
       };
-      "module/date" = {
+      "module/date" = module "" {
         type = "internal/date";
         date = "%Y-%m-%d%";
-        format-prefix = "%{T3}%{T-}";
-        format-prefix-foreground = colors.custom-primary;
-        format-prefix-background = colors.custom-background-dark;
-
         label = " %date%";
-        label-foreground = colors.custom-foreground;
-        label-background = colors.custom-background-dark;
       };
-      "module/time" = {
+      "module/time" = module "" {
         type = "internal/date";
 
         time = "%H:%M";
         time-alt = "%H:%M:%S";
 
-        format-prefix = "%{T3}%{T-}";
-        format-prefix-foreground = colors.custom-primary;
-        format-prefix-background = colors.custom-background-dark;
-
         label = " %time%";
-        label-foreground = colors.custom-foreground;
-        label-background = colors.custom-background-dark;
-
       };
       "module/disk" = {
         type = "internal/fs";
@@ -148,33 +135,15 @@ in {
         label-seperator-padding = 0;
       };
 
-      "module/keyboard" = {
-        format-prefix = "%{T3}%{T-} ";
-        format-prefix-foreground = colors.custom-primary;
-        format-prefix-background = colors.custom-background-dark;
-        type = "internal/xkeyboard";
-      };
-      "module/memory" = {
+      "module/keyboard" = module " " { type = "internal/xkeyboard"; };
+      "module/memory" = module "" {
         type = "internal/memory";
-        format-prefix = "%{T3}%{T-}";
-        format-prefix-foreground = colors.custom-primary;
-        format-prefix-background = colors.custom-background-dark;
-
         label = " %percentage_used:3%%";
-        label-foreground = colors.custom-foreground;
-        label-background = colors.custom-background-dark;
       };
-      "module/temperature" = {
+      "module/temperature" = module "" {
         type = "internal/temperature";
         warn-temperature = 70;
-
-        format-prefix = "%{T3}%{T-}";
-        format-prefix-foreground = colors.custom-primary;
-        format-prefix-background = colors.custom-background-dark;
-
         label = " %temperature-c:3%";
-        label-foreground = colors.custom-foreground;
-        label-background = colors.custom-background-dark;
 
         format-warn-prefix = "%{T3}%{T-}";
         format-warn-prefix-foreground = colors.custom-warn;
