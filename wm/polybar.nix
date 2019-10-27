@@ -51,7 +51,7 @@ in {
         modules-center = "";
         modules-right = "";
       };
-      "module/cpu" = module "" {
+      "module/cpu" = module "﬙" {
         type = "internal/cpu";
         label = " %percentage:3%%";
       };
