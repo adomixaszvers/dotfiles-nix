@@ -19,7 +19,8 @@
   in with pkgs; [
     # mine.consul
     # yarn
-    (sqldeveloper_18.override { jdk = openjdk; })
+    sqldeveloper
+    asciinema
     docker
     docker-compose
     docker-machine
