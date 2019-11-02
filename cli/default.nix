@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./neovim ./kakoune ];
+  imports = [ ./lorri.nix ./neovim ./kakoune ];
   home.packages = with pkgs; [
     bfs
     cachix
@@ -32,7 +32,6 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    stdlib = lib.readFile ./use_nix.sh;
   };
   programs.fzf = {
     changeDirWidgetCommand = "bfs -type d";
