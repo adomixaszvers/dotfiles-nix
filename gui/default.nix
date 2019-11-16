@@ -10,7 +10,7 @@
     ./termite.nix
   ];
   gtk = {
-    enable = true;
+    enable = lib.mkDefault true;
     iconTheme = {
       name = "Arc";
       package = pkgs.arc-icon-theme;
@@ -21,7 +21,7 @@
     };
   };
   qt = {
-    enable = true;
+    enable = lib.mkDefault true;
     platformTheme = "gtk";
   };
   home.keyboard = {

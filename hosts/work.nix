@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  imports = [ ../cli ../gui ../wm ];
   home.file."jdks/opendk8".source = pkgs.openjdk8;
   home.file."jdks/opendk11".source = pkgs.openjdk11;
   home.packages = let

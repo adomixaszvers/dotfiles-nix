@@ -1,4 +1,5 @@
 { pkgs, config, ... }: {
+  imports = [ ../cli ../gui ../wm ];
   home.packages = with pkgs;
     let unstable = channels.nixos-unstable;
     in [
