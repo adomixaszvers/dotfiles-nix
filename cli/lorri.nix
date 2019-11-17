@@ -1,5 +1,5 @@
 { pkgs, ... }:
-let lorri = pkgs.channels.lorri;
+let lorri = pkgs.lorri;
 in {
   home.packages = [ lorri ];
   programs.direnv = {
