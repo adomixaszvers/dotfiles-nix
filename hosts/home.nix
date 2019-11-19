@@ -12,7 +12,8 @@
       guile
       klavaro
       minecraft
-      (mine.steam.override { config.steam.primus = true; })
+      mine.steam
+      # (mine.steam.override { config.steam.primus = true; })
       mine.vimgolf
       qbittorrent
       tigervnc
