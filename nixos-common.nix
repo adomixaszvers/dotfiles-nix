@@ -5,11 +5,9 @@
     binaryCaches = [
       "https://all-hies.cachix.org"
       "https://cache.nixos.org/"
-      "https://nerdfonts.cachix.org"
     ];
     binaryCachePublicKeys = [
       "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k="
-      "nerdfonts.cachix.org-1:aBl3vMJ8JpYEzuJYQ4OrfxGl5yoabTC7Tfh9fAcFf+c="
     ];
     extraOptions = ''
       keep-outputs = true
