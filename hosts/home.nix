@@ -15,6 +15,7 @@
       (mine.steam.override { config.steam.primus = true; })
       mine.vimgolf
       qbittorrent
+      tigervnc
       torbrowser
       unstable.jetbrains.idea-ultimate
       vim

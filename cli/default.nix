@@ -4,6 +4,7 @@
   imports = [ ./lorri.nix ./neovim ./kakoune ];
   home.packages = with pkgs; [
     bfs
+    binutils
     cachix
     file
     git
@@ -15,6 +16,7 @@
     ncdu
     nixfmt
     p7zip
+    patchelf
     ranger
     ripgrep
     shellcheck
