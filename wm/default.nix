@@ -17,9 +17,6 @@
     enable = lib.mkDefault true;
     platformTheme = "gtk";
   };
-  home.sessionVariables = {
-    SSH_ASKPASS = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
-  };
   services.network-manager-applet.enable = lib.mkDefault true;
   services.udiskie.enable = true;
   xsession.enable = lib.mkDefault true;
