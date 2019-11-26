@@ -2,13 +2,9 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    binaryCaches = [
-      "https://all-hies.cachix.org"
-      "https://cache.nixos.org/"
-    ];
-    binaryCachePublicKeys = [
-      "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k="
-    ];
+    binaryCaches = [ "https://all-hies.cachix.org" ];
+    binaryCachePublicKeys =
+      [ "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k=" ];
     extraOptions = ''
       keep-outputs = true
     '';
@@ -25,6 +21,7 @@
     efibootmgr
     exfat
     git
+    vim
     gparted
     lm_sensors
     neovim
@@ -55,9 +52,10 @@
     defaultLocale = "lt_LT.UTF-8";
   };
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = lib.mkDefault true;
 
   programs.command-not-found.enable = true;
+  programs.ssh.startAgent = true;
   programs.zsh.enable = true;
   programs.zsh.syntaxHighlighting.enable = true;
   programs.zsh.interactiveShellInit = ''
@@ -73,17 +71,19 @@
   security.pam.services.lightdm.enableGnomeKeyring = true;
   programs.seahorse.enable = true;
 
-  services.xserver.enable = true;
-  services.xserver.exportConfiguration = true;
-  services.xserver.layout = "lt,us";
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.session = [{
-    name = "home-manager";
-    start = ''
-      ${pkgs.stdenv.shell} $HOME/.xsession-hm &
-      waitPID=$!
-    '';
-  }];
+  services.xserver = {
+    enable = true;
+    exportConfiguration = true;
+    layout = "lt,us";
+    displayManager.lightdm.enable = true;
+    desktopManager.session = [{
+      name = "home-manager";
+      start = ''
+        ${pkgs.stdenv.shell} $HOME/.xsession-hm &
+        waitPID=$!
+      '';
+    }];
+  };
 
   time.timeZone = "Europe/Vilnius";
 
