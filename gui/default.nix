@@ -9,21 +9,6 @@
     ./keepass
     ./termite.nix
   ];
-  gtk = {
-    enable = lib.mkDefault true;
-    iconTheme = {
-      name = "Arc";
-      package = pkgs.arc-icon-theme;
-    };
-    theme = {
-      name = "Arc-Darker";
-      package = pkgs.arc-theme;
-    };
-  };
-  qt = {
-    enable = lib.mkDefault true;
-    platformTheme = "gtk";
-  };
   home.keyboard = {
     layout = "lt,us";
     options = [ "grp:caps_toggle" ];
@@ -58,10 +43,7 @@
     xarchiver
     xsel
   ];
-  home.sessionVariables = {
-    SSH_ASKPASS = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
-    TERMINAL = "termite";
-  };
+  home.sessionVariables = { TERMINAL = "termite"; };
   programs.feh.enable = true;
   programs.rofi = {
     enable = true;

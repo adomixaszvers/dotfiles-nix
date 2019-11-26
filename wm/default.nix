@@ -2,7 +2,25 @@
 
 {
   imports = [ ./xmonad ./polybar.nix ./dunst.nix ./compton.nix ];
-  services.network-manager-applet.enable = config.xsession.enable;
+  gtk = {
+    enable = lib.mkDefault true;
+    iconTheme = {
+      name = "Arc";
+      package = pkgs.arc-icon-theme;
+    };
+    theme = {
+      name = "Arc-Darker";
+      package = pkgs.arc-theme;
+    };
+  };
+  qt = {
+    enable = lib.mkDefault true;
+    platformTheme = "gtk";
+  };
+  home.sessionVariables = {
+    SSH_ASKPASS = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
+  };
+  services.network-manager-applet.enable = lib.mkDefault true;
   services.udiskie.enable = true;
   xsession.enable = lib.mkDefault true;
   xsession.initExtra = ''
