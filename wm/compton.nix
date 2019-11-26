@@ -9,6 +9,7 @@
       "class_g = 'Firefox' && argb"
       "class_g ?= 'Notify-osd'"
       "class_g ?= 'plasmashell'"
+      "class_g ?= 'VirtualBoxVM'"
       "name = 'Notification'"
     ];
     shadowOffsets = [ (-7) (-7) ];
