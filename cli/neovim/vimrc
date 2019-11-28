@@ -18,7 +18,6 @@ set cursorline
 
 " let g:solarized_termcolors=256
 " let g:solarized_termtrans=1
-colorscheme dracula
 
 set noshowmode
 
@@ -34,3 +33,12 @@ noremap - -
 set updatetime=100
 
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+
+if !empty($DISPLAY)
+    colorscheme dracula
+    let g:airline_powerline_fonts = 1
+else
+    colorscheme solarized
+    let g:airline_symbols_ascii = 1
+    set guicursor=
+endif
