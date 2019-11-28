@@ -1,8 +1,9 @@
 { pkgs, config, ... }: {
-  imports = [ ../cli ../gui ../wm ];
+  imports = [ ../cli ../gui ];
   home.packages = with pkgs;
     let unstable = channels.nixos-unstable;
     in [
+      # (mine.steam.override { config.steam.primus = true; })
       borgbackup
       calibre
       discord
@@ -10,11 +11,11 @@
       firefox
       gtypist
       guile
+      keepassxc
       klavaro
-      minecraft
       mine.steam
-      # (mine.steam.override { config.steam.primus = true; })
       mine.vimgolf
+      minecraft
       qbittorrent
       tigervnc
       torbrowser
