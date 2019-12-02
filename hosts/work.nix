@@ -22,7 +22,6 @@
   in with pkgs; [
     # mine.consul
     # yarn
-    sqldeveloper
     asciinema
     docker
     docker-compose
@@ -50,6 +49,7 @@
     robo3t
     samba
     soapui
+    sqldeveloper
     subversion
     swagger-codegen
     tomcat8
@@ -100,6 +100,7 @@
     imvn = "mvn -s ~/.m2/insoft-settings.xml";
     amvn = "mvn -s ~/.m2/kazan-settings.xml";
   };
+  services.network-manager-applet.enable = false;
   services.polybar.config."module/temperature".thermal-zone = 2;
   services.screen-locker = {
     enable = true;
