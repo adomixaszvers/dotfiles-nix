@@ -45,11 +45,9 @@ import           XMonad.Hooks.ManageHelpers     ( composeOne
                                                 )
 import           XMonad.Hooks.SetWMName         ( setWMName )
 import           XMonad.Layout.NoBorders        ( smartBorders )
-import           XMonad.Layout.PerWorkspace     ( onWorkspace )
 import           XMonad.Layout.Spacing          ( Border(..)
                                                 , spacingRaw
                                                 )
-import           XMonad.Layout.Tabbed           ( simpleTabbed )
 import qualified XMonad.StackSet               as W
 import           XMonad.Util.NamedActions       ( NamedAction(..)
                                                 , addDescrKeys'
@@ -129,10 +127,7 @@ myStartupHook = do
   addEWMHFullscreen
   whenX isWork $ spawnOnce "rambox"
 
-myLayoutHook = smartBorders . avoidStruts $ onWorkspace
-  ws3
-  (simpleTabbed ||| myMainLayout)
-  myMainLayout
+myLayoutHook = smartBorders . avoidStruts $ myMainLayout
 
 myMainLayout = tiled ||| Mirror tiled ||| Full
  where
