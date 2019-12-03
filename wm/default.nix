@@ -28,4 +28,7 @@
     package = pkgs.capitaine-cursors;
   };
   xsession.scriptPath = ".xsession-hm";
+  home.sessionVariables = {
+    SSH_ASKPASS = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
+  };
 }
