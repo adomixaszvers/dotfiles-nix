@@ -6,6 +6,7 @@
     bfs
     binutils
     cachix
+    exa
     file
     git
     htop
@@ -52,10 +53,27 @@
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "z" ];
+    };
+    plugins = [{
+      name = "fz";
+      src = pkgs.fetchFromGitHub {
+        owner = "changyuheng";
+        repo = "fz";
+        rev = "ae0cd3ab0f0daebc80256f1236eda3a3283e4c1c";
+        sha256 = "0x3w03gcqhyhfhjfxvbp5m1i96ihq9l3m52w4xnpbkchqfsyw737";
+      };
+    }];
     shellAliases = {
       he =
         "(hcd && nvim $(FZF_DEFAULT_COMMAND='fd --type f --no-ignore-vcs' fzf))";
       hcd = "cd ~/.config/nixpkgs";
+      ls = "exa";
+      la = "exa -a --group-directories-first";
+      ll = "exa -al --group-directories-first";
+      lt = "exa -aT";
     };
   };
 }
