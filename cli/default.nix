@@ -53,10 +53,9 @@
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "z" ];
-    };
+    initExtra = ''
+      eval "$(${pkgs.z-lua}/bin/z --init zsh once)"
+    '';
     plugins = [{
       name = "fz";
       src = pkgs.fetchFromGitHub {
@@ -66,6 +65,7 @@
         sha256 = "0x3w03gcqhyhfhjfxvbp5m1i96ihq9l3m52w4xnpbkchqfsyw737";
       };
     }];
+    sessionVariables = { FZ_HISTORY_CD_CMD = "_zlua"; };
     shellAliases = {
       he =
         "(hcd && nvim $(FZF_DEFAULT_COMMAND='fd --type f --no-ignore-vcs' fzf))";
