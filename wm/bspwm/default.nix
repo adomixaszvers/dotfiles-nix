@@ -1,5 +1,6 @@
 { pkgs, config, ... }: {
-  home.packages = with pkgs; [ bspwm mine.sxhkd mine.rofi-powermenu wmname ];
+  imports = [ ./sxhkd.nix ];
+  home.packages = with pkgs; [ bspwm mine.rofi-powermenu wmname tdrop ];
   services.polybar.config = let
     common = {
       modules-left = "bspwm";
@@ -26,16 +27,16 @@
 
       label-separator = " ";
 
-      label-monocle = "";
-      label-tiled = "";
-      label-fullscreen = "";
-      label-floating = "";
+      label-monocle = "";
+      label-tiled = "";
+      label-fullscreen = "";
+      label-floating = "";
       label-pseudotiled = "P";
-      label-locked = "";
+      label-locked = "";
       label-locked-foreground = "#bd2c40";
-      label-sticky = "";
+      label-sticky = "";
       label-sticky-foreground = "#fba922";
-      label-private = "";
+      label-private = "";
       label-private-foreground = "#bd2c40";
       label-marked = "M";
     };
@@ -44,10 +45,6 @@
     source = ./bspwmrc;
     executable = true;
     onChange = "pidof bspwm 1>/dev/null && bspc wm -r";
-  };
-  xdg.configFile."sxhkd/sxhkdrc" = {
-    source = ./sxhkdrc;
-    onChange = "pidof sxhkd 1>/dev/null && pkill -USR1 -x sxhkd";
   };
   xsession.windowManager.command = "bspwm";
 }

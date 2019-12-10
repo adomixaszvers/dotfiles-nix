@@ -1,10 +1,14 @@
 #!/bin/sh
 
+
+# If refreshing bspwm, remove all previous rules to prevent doubling up.
+bspc rule -r "*"
+
+feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png
 wmname LG3D
-sxhkd -m -1 &
 systemctl --user restart polybar.service
 
-if [[ $(autorandr --detect) == 'work' ]]; then
+if [ "$(autorandr --detect)" = 'work' ]; then
     bspc monitor DP-1 -d I II III IV V
     bspc monitor DP-2 -d VI VII VIII IX X
 else
@@ -35,5 +39,6 @@ bspc rule -a rambox desktop='^4'
 bspc rule -a SmartGit desktop='^5'
 bspc rule -a Steam desktop='^5'
 bspc rule -a libreoffice desktop='^6'
-bspc rule -a Emacs desktop='^7' state=tiled
+bspc rule -a 'Emacs:scratchpad' state=floating
+bspc rule -a 'Termite:scratchpad' state=floating
 bspc rule -a "Google Play Music Desktop Player" desktop='^10'
