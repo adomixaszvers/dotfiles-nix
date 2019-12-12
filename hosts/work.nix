@@ -1,7 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let unstable = pkgs.channels.nixos-unstable;
+in {
   imports = [ ../cli ../gui ../wm ];
-  home.file."jdks/opendk8".source = pkgs.openjdk8;
-  home.file."jdks/opendk11".source = pkgs.openjdk11;
+  home.file."jdks/openjdk8".source = unstable.openjdk8;
+  home.file."jdks/openjdk11".source = pkgs.openjdk11;
   home.packages = let
     unstable = pkgs.channels.nixos-unstable;
     myEclipse = with pkgs.eclipses;
