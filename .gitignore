@@ -1,3 +1,4 @@
 hosts/current.nix
 hosts/lockscreen.png
 pkgs/dbxcli/keys.patch
+.luacheckcache
