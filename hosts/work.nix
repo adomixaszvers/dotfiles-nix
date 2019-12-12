@@ -45,7 +45,7 @@ in {
     mine.dbvisualizer
     mine.dbxcli
     mine.steam
-    myEclipse
+    # myEclipse
     nodejs
     rambox
     remmina
