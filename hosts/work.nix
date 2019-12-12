@@ -52,6 +52,7 @@ in {
     robo3t
     samba
     soapui
+    spotify
     sqldeveloper
     subversion
     swagger-codegen
