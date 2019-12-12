@@ -42,6 +42,7 @@ in {
     liquibase
     maven
     mercurial
+    mine.dbvisualizer
     mine.dbxcli
     mine.steam
     myEclipse

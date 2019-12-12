@@ -12,6 +12,7 @@ self: super: {
     rofi-powermenu = super.callPackage ../pkgs/rofi-powermenu.nix { };
     kaknix = super.callPackage ../pkgs/kaknix.nix { };
     dbxcli = super.callPackage ../pkgs/dbxcli { };
+    dbvisualizer = super.callPackage ../pkgs/dbvisualizer.nix { };
     ghc = let
       haskellPackages = ps:
         with ps; [
