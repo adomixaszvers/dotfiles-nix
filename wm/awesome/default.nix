@@ -3,6 +3,10 @@
   services.pasystray.enable = true;
   xsession.windowManager.awesome = { enable = true; };
   xdg.configFile."awesome/rc.lua".source = ./rc.lua;
+  xdg.configFile."awesome/scratch.lua".source = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/notnew/awesome-scratch/master/scratch.lua";
+    sha256 = "0jskdpfkk4n23skgsa144pnljrgv5rb0gd5jmqlgpzg8729717sd";
+  };
   xdg.configFile."awesome/sharedtags" = {
     source = pkgs.fetchFromGitHub {
       owner = "Drauthius";

@@ -19,6 +19,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 local sharedtags = require("sharedtags")
+local scratch = require("scratch")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -348,7 +349,14 @@ local globalkeys = gears.table.join(
     awful.key({ modkey, "Shift" }, "d", function() awful.spawn("rofi -show run -sidebar-mode") end,
               {description = "show rofi", group = "launcher"}),
     awful.key({ modkey }, "d", function() awful.spawn("rofi -combi-modi window,drun -show combi -modi combi") end,
-              {description = "show rofi", group = "launcher"})
+              {description = "show rofi", group = "launcher"}),
+    -- Scratch
+    awful.key({ modkey, "Control" }, "e", function()
+        scratch.toggle("emacs --name=scratchpad", { instance = "scratchpad", class = "Emacs" })
+    end, { description = "launch Emacs", group = "scratch" }),
+    awful.key({ modkey, "Control" }, "s", function()
+            scratch.toggle("termite --name=scratchpad", { instance = "scratchpad", class = "Termite" })
+    end, { description = "launch Termite", group = "scratch" })
 )
 
 local clientkeys = gears.table.join(
@@ -532,6 +540,9 @@ awful.rules.rules = {
     },
     { rule = { class = "Spotify" },
       properties = { tag = tags[ 9 ] }
+    },
+    { rule = { instance = "scratchpad" },
+      properties = { floating = true, maximized = true }
     },
     -- { rule = { class = "Emacs" },
     --   properties = { tag = "7" }
