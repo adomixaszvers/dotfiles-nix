@@ -18,6 +18,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+local sharedtags = require("sharedtags")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -78,6 +80,20 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
+-- }}}
+
+-- {{{ Shared tags
+local tags = sharedtags({
+        { layout = awful.layout.layouts[1] },
+        { screen = 2, layout = awful.layout.layouts[1] },
+        { layout = awful.layout.layouts[1] },
+        { layout = awful.layout.layouts[1] },
+        { layout = awful.layout.layouts[1] },
+        { layout = awful.layout.layouts[1] },
+        { layout = awful.layout.layouts[1] },
+        { layout = awful.layout.layouts[1] },
+        { layout = awful.layout.layouts[1] },
+});
 -- }}}
 
 -- {{{ Menu
@@ -169,7 +185,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -252,8 +268,8 @@ local globalkeys = gears.table.join(
     ),
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
-    awful.key({ modkey,           }, "Pause", function () awful.spawn("loginctl lock-session") end,
-              {description = "lock session", group = "awesome"}),
+    awful.key({ modkey,           }, "Pause", function () awful.spawn("rofi-powermenu") end,
+              {description = "power menu", group = "awesome"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -388,9 +404,9 @@ for i = 1, 9 do
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
                         local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
+                        local tag = tags[i]
                         if tag then
-                           tag:view_only()
+                            sharedtags.viewonly(tag, screen)
                         end
                   end,
                   {description = "view tag #"..i, group = "tag"}),
@@ -398,9 +414,9 @@ for i = 1, 9 do
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
                       local screen = awful.screen.focused()
-                      local tag = screen.tags[i]
+                      local tag = tags[i]
                       if tag then
-                         awful.tag.viewtoggle(tag)
+                         sharedtags.viewtoggle(tag, screen)
                       end
                   end,
                   {description = "toggle tag #" .. i, group = "tag"}),
@@ -408,7 +424,7 @@ for i = 1, 9 do
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
-                          local tag = client.focus.screen.tags[i]
+                          local tag = tags[i]
                           if tag then
                               client.focus:move_to_tag(tag)
                           end
@@ -419,7 +435,7 @@ for i = 1, 9 do
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
-                          local tag = client.focus.screen.tags[i]
+                          local tag = tags[i]
                           if tag then
                               client.focus:toggle_tag(tag)
                           end
@@ -500,26 +516,26 @@ awful.rules.rules = {
     },
 
     { rule_any = { class = { "Google-chrome", "Firefox" } },
-      properties = { tag = "1" }
+      properties = { tag = tags[ 1 ] }
     },
     { rule = { class = "jetbrains-idea" },
-      properties = { tag = "3" }
+      properties = { tag = tags[ 3 ] }
     },
     { rule_any = { class = { "Skype", "rambox" } },
-      properties = { tag = "4" }
+      properties = { tag = tags[ 4 ] }
     },
     { rule_any = { class = { "Steam", "SmartGit" } },
-      properties = { tag = "5" }
+      properties = { tag = tags[ 5 ] }
     },
     { rule = { class = "libreoffice" },
-      properties = { tag = "6" }
+      properties = { tag = tags[ 6 ] }
     },
     { rule = { class = "Spotify" },
-      properties = { tag = "10" }
+      properties = { tag = tags[ 9 ] }
     },
-    { rule = { class = "Emacs" },
-      properties = { tag = "7" }
-    }
+    -- { rule = { class = "Emacs" },
+    --   properties = { tag = "7" }
+    -- }
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
