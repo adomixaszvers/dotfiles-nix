@@ -1,11 +1,8 @@
 { pkgs, lib, config, ... }:
-let extraPackages = hs: with hs; [ xmonad xmonad-contrib dbus utf8-string ];
+let extraPackages = import ./extraPackages.nix;
 in {
   home.packages = with pkgs; [
-    (ghc.withPackages extraPackages)
-    haskellPackages.brittany
     gnome3.zenity
-    haskellPackages.hlint
     mine.maimpick
     mine.rofi-powermenu
   ];
