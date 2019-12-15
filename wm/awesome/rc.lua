@@ -194,11 +194,18 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(gears.table.join(
-                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
-                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+    s.mylayout_popup = awful.popup {
+        widget = awful.widget.layoutlist {
+            screen      = s,
+            base_layout = wibox.layout.flex.vertical
+        },
+        maximum_height = #awful.layout.layouts * 24,
+        minimum_height = #awful.layout.layouts * 24,
+        ontop = true,
+        visible = false
+    }
+    s.mylayout_popup:connect_signal("button::release", function() s.mylayout_popup.visible = false end)
+    s.mylayout_popup:bind_to_widget(s.mylayoutbox)
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
