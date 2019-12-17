@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let unstable = pkgs.channels.nixos-unstable;
 in {
-  imports = [ ../cli ../gui ../wm ];
+  imports = [ ../cli ../gui ../wm/common.nix ../wm/awesome ];
   home.file."jdks/openjdk8".source = unstable.openjdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
   home.packages = let

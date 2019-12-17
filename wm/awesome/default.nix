@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  imports = [ ../compton.nix ];
   home.packages = with pkgs; [ mine.rofi-powermenu ];
   services.pasystray.enable = true;
   xsession.windowManager.awesome = { enable = true; };

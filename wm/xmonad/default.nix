@@ -1,6 +1,7 @@
 { pkgs, lib, config, ... }:
 let extraPackages = import ./extraPackages.nix;
 in {
+  imports = [ ../polybar.nix ../dunst.nix ../compton.nix ];
   home.packages = with pkgs; [
     gnome3.zenity
     mine.maimpick

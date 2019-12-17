@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./xmonad ./polybar.nix ./dunst.nix ./compton.nix ];
   gtk = {
     enable = lib.mkDefault true;
     iconTheme = {
