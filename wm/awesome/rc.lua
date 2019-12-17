@@ -507,6 +507,7 @@ awful.rules.rules = {
           "Blueman-manager",
           "Gpick",
           "Kruler",
+          "lxqt-openssh-askpass",
           "MessageWin",  -- kalarm.
           "Sxiv",
           "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
