@@ -16,6 +16,18 @@
     enable = lib.mkDefault true;
     platformTheme = "gtk";
   };
+  services.screen-locker = {
+    inactiveInterval = 5;
+    lockCmd = lib.mkDefault "i3lock -n -t -f";
+    xautolockExtraOptions = [
+      "-corners"
+      "--00"
+      "-killer"
+      "'systemctl hybric-sleep'"
+      "-killtime"
+      "20"
+    ];
+  };
   services.network-manager-applet.enable = lib.mkDefault true;
   services.udiskie.enable = true;
   xsession.enable = lib.mkDefault true;

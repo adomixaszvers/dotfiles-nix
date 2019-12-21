@@ -108,7 +108,6 @@ in {
   services.polybar.config."module/temperature".thermal-zone = 2;
   services.screen-locker = {
     enable = true;
-    inactiveInterval = 5;
     lockCmd = let wallpaper = ./lockscreen.png;
     in "i3lock -n -i ${wallpaper} -t -p win -f";
   };
