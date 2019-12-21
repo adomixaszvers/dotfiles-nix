@@ -7,6 +7,7 @@ self: super: {
     (oldAttrs: { patches = [ ../pkgs/sxhkd.patch ]; });
   mine = {
     bumblebee-status = super.callPackage ../pkgs/bumblebee-status { };
+    lcf = super.callPackage ../pkgs/lcf.nix { luaPackages = self.lua53Packages; };
     vimgolf = super.callPackage ../pkgs/vimgolf { };
     maimpick = super.callPackage ../pkgs/maimpick.nix { };
     rofi-powermenu = super.callPackage ../pkgs/rofi-powermenu.nix { };
