@@ -49,6 +49,7 @@ in {
       vim-gitgutter
       vim-hardtime
       vim-polyglot
+      vim-sneak
       vim-unimpaired
       vinegar
     ];
