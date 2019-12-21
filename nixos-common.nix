@@ -26,6 +26,7 @@
     lm_sensors
     neovim
     ntfs3g
+    pciutils
     psmisc
     shared_mime_info
     usbutils
