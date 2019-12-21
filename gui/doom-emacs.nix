@@ -7,7 +7,5 @@
     gnutls
     mdl
     multimarkdown
-    emacsPackagesNg.emacs-libvterm
-    emacsPackagesNg.emacsql
   ];
 }
