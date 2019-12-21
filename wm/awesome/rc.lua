@@ -14,6 +14,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local dpi   = require("beautiful.xresources").apply_dpi
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -50,6 +51,7 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "rainbow"))
 beautiful.gap_single_client = false
+beautiful.useless_gap = dpi(5)
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "termite"
