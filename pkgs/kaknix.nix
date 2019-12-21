@@ -1,6 +1,5 @@
-{ runtimeShell, writeScriptBin, nix, gnused }:
-writeScriptBin "kaknix" ''
-  #!${runtimeShell}
+{ runtimeShell, writeShellScriptBin, nix, gnused }:
+writeShellScriptBin "kaknix" ''
   if [ $# -ne 1 ] || [ ! -f "$1"  ]; then
     exit 1
   fi
