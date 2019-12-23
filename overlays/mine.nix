@@ -7,13 +7,8 @@ self: super: {
     (oldAttrs: { patches = [ ../pkgs/sxhkd.patch ]; });
   mine = {
     bumblebee-status = super.callPackage ../pkgs/bumblebee-status { };
-    lcf = super.callPackage ../pkgs/lcf.nix { luaPackages = self.lua53Packages; };
-    vimgolf = super.callPackage ../pkgs/vimgolf { };
-    maimpick = super.callPackage ../pkgs/maimpick.nix { };
-    rofi-powermenu = super.callPackage ../pkgs/rofi-powermenu.nix { };
-    kaknix = super.callPackage ../pkgs/kaknix.nix { };
-    dbxcli = super.callPackage ../pkgs/dbxcli { };
     dbvisualizer = super.callPackage ../pkgs/dbvisualizer.nix { };
+    dbxcli = super.callPackage ../pkgs/dbxcli { };
     ghc = let
       haskellPackages = ps:
         with ps; [
@@ -29,6 +24,11 @@ self: super: {
           stylish-haskell
         ];
     in self.ghc.withHoogle haskellPackages;
+    kaknix = super.callPackage ../pkgs/kaknix.nix { };
+    lcf =
+      super.callPackage ../pkgs/lcf.nix { luaPackages = self.lua53Packages; };
+    maimpick = super.callPackage ../pkgs/maimpick.nix { };
+    rofi-powermenu = super.callPackage ../pkgs/rofi-powermenu.nix { };
     steam = super.steam.override {
       extraPkgs = ps:
         with ps; [
@@ -46,5 +46,6 @@ self: super: {
           zlib
         ];
     };
+    vimgolf = super.callPackage ../pkgs/vimgolf { };
   };
 }
