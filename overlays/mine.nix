@@ -12,6 +12,7 @@ self: super: {
     kaknix = super.callPackage ../pkgs/kaknix.nix { };
     lcf =
       super.callPackage ../pkgs/lcf.nix { luaPackages = self.lua53Packages; };
+    lua-fmt = (import ../pkgs/lua-fmt { pkgs = self; }).lua-fmt;
     maimpick = super.callPackage ../pkgs/maimpick.nix { };
     rofi-powermenu = super.callPackage ../pkgs/rofi-powermenu.nix { };
     steam = super.steam.override {
