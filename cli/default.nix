@@ -13,6 +13,7 @@
     icdiff
     iotop
     jq
+    lf
     lsof
     ncdu
     nixfmt
