@@ -5,7 +5,6 @@ in {
   home.file."jdks/openjdk8".source = unstable.openjdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
   home.packages = let
-    unstable = pkgs.channels.nixos-unstable;
     myEclipse = with pkgs.eclipses;
       eclipseWithPlugins {
         eclipse = eclipse-java;
@@ -47,12 +46,12 @@ in {
     mine.steam
     # myEclipse
     nodejs
+    playerctl
     rambox
     remmina
     robo3t
     samba
     soapui
-    spotify
     sqldeveloper
     subversion
     swagger-codegen
@@ -61,6 +60,7 @@ in {
     unrar
     unstable.jetbrains.idea-ultimate
     unstable.postman
+    unstable.spotify
     unzip
     vagrant
     visualvm

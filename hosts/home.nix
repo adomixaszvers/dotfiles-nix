@@ -16,7 +16,9 @@
       mine.steam
       mine.vimgolf
       minecraft
+      playerctl
       qbittorrent
+      unstable.spotify
       tigervnc
       torbrowser
       unstable.jetbrains.idea-ultimate
