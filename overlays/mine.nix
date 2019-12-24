@@ -10,8 +10,6 @@ self: super: {
     dbvisualizer = super.callPackage ../pkgs/dbvisualizer.nix { };
     dbxcli = super.callPackage ../pkgs/dbxcli { };
     kaknix = super.callPackage ../pkgs/kaknix.nix { };
-    lcf =
-      super.callPackage ../pkgs/lcf.nix { luaPackages = self.lua53Packages; };
     lua-fmt = (import ../pkgs/lua-fmt { pkgs = self; }).lua-fmt;
     maimpick = super.callPackage ../pkgs/maimpick.nix { };
     rofi-powermenu = super.callPackage ../pkgs/rofi-powermenu.nix { };
