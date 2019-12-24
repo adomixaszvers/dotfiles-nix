@@ -4,5 +4,5 @@ with pkgs;
 
 mkShell {
   name = "awesomewm-shell";
-  buildInputs = [ luaPackages.luacheck ];
+  buildInputs = [ luaPackages.luacheck mine.lua-fmt ];
 }
