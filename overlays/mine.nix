@@ -9,21 +9,6 @@ self: super: {
     bumblebee-status = super.callPackage ../pkgs/bumblebee-status { };
     dbvisualizer = super.callPackage ../pkgs/dbvisualizer.nix { };
     dbxcli = super.callPackage ../pkgs/dbxcli { };
-    ghc = let
-      haskellPackages = ps:
-        with ps; [
-          # ghc-mod
-          hasktags
-          # hdevtools
-          hindent
-          hlint
-          # hoogle
-          hspec
-          pointfree
-          pointful
-          stylish-haskell
-        ];
-    in self.ghc.withHoogle haskellPackages;
     kaknix = super.callPackage ../pkgs/kaknix.nix { };
     lcf =
       super.callPackage ../pkgs/lcf.nix { luaPackages = self.lua53Packages; };
