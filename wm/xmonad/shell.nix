@@ -1,15 +1,15 @@
 { pkgs ? import <nixpkgs> { } }:
 let
   extraPackages = import ./extraPackages.nix;
-  all-hies = import (fetchTarball
-    "https://github.com/rycee/home-manager/archive/release-19.09.tar.gz") { };
-  hie = all-hies.selection { selector = p: { inherit (p) ghc865; }; };
+  all-hies = import <all-hies> { };
+  hie = all-hies.latest;
 in with pkgs;
 
 mkShell {
   buildInputs = [
     (ghc.withHoogle extraPackages)
-    # hie
+    cabal-install
+    hie
     haskellPackages.brittany
     haskellPackages.hlint
   ];
