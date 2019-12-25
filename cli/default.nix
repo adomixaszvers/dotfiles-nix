@@ -50,13 +50,11 @@
     keyMode = "vi";
     terminal = "screen-256color";
   };
+  programs.z-lua.enable = true;
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    initExtra = ''
-      eval "$(${pkgs.z-lua}/bin/z --init zsh once)"
-    '';
     plugins = [{
       name = "fz";
       src = pkgs.fetchFromGitHub {
