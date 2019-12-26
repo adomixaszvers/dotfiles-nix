@@ -28,7 +28,6 @@
   };
   home.packages = with pkgs; [
     arandr
-    evince
     font-manager
     gnome3.adwaita-icon-theme
     google-play-music-desktop-player
@@ -42,6 +41,7 @@
     wmctrl
     xarchiver
     xsel
+    zathura
   ];
   home.sessionVariables = { TERMINAL = "termite"; };
   programs.feh.enable = true;
