@@ -62,7 +62,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "dremora"))
+beautiful.init(gears.filesystem.get_themes_dir() .. "xresources/theme.lua")
 beautiful.gap_single_client = false
 beautiful.useless_gap = dpi(5)
 

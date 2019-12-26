@@ -21,42 +21,5 @@
     "URxvt.keysym.C-S-Down" = "font-size:decglobal";
     "URxvt.keysym.C-equal" = "font-size:reset";
     "URxvt.keysym.C-slash" = "font-size:show";
-
-    # special
-    "*.foreground" = foreground;
-    "*.background" = background;
-    "*.cursorColor" = cursorColor;
-
-    # black
-    "*.color0" = black;
-    "*.color8" = blackb;
-
-    # red
-    "*.color1" = red;
-    "*.color9" = redb;
-
-    # green
-    "*.color2" = green;
-    "*.color10" = greenb;
-
-    # yellow
-    "*.color3" = yellow;
-    "*.color11" = yellowb;
-
-    # blue
-    "*.color4" = blue;
-    "*.color12" = blueb;
-
-    # magenta
-    "*.color5" = magenta;
-    "*.color13" = magentab;
-
-    # cyan
-    "*.color6" = cyan;
-    "*.color14" = cyanb;
-
-    # white
-    "*.color7" = white;
-    "*.color15" = whiteb;
   };
 }

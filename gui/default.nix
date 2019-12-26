@@ -61,5 +61,44 @@
       set preview_images true
     '';
   };
-  xresources.properties = { "Emacs.font" = "FuraMono Nerd Font Mono-9"; };
+  xresources.properties = with config.lib.colors; {
+    "Emacs.font" = "FuraMono Nerd Font Mono-9";
+
+    # special
+    "*.foreground" = foreground;
+    "*.background" = background;
+    "*.cursorColor" = cursorColor;
+
+    # black
+    "*.color0" = black;
+    "*.color8" = blackb;
+
+    # red
+    "*.color1" = red;
+    "*.color9" = redb;
+
+    # green
+    "*.color2" = green;
+    "*.color10" = greenb;
+
+    # yellow
+    "*.color3" = yellow;
+    "*.color11" = yellowb;
+
+    # blue
+    "*.color4" = blue;
+    "*.color12" = blueb;
+
+    # magenta
+    "*.color5" = magenta;
+    "*.color13" = magentab;
+
+    # cyan
+    "*.color6" = cyan;
+    "*.color14" = cyanb;
+
+    # white
+    "*.color7" = white;
+    "*.color15" = whiteb;
+  };
 }
