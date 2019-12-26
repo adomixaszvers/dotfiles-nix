@@ -8,7 +8,6 @@ in with pkgs;
 mkShell {
   buildInputs = [
     (ghc.withHoogle extraPackages)
-    cabal-install
     hie
     haskellPackages.brittany
     haskellPackages.hlint
