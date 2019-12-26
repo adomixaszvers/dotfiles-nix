@@ -19,6 +19,6 @@ in {
   xsession.windowManager.xmonad = {
     inherit extraPackages;
     enable = true;
-    config = ./my-xmonad/xmonad.hs;
+    config = ./xmonad.hs;
   };
 }
