@@ -96,7 +96,7 @@ for i in groups:
         ]
     )
 
-layout_settings = {"border_focus": "#8BE9FD", "margin": 5}
+layout_settings = {"border_focus": "#8BE9FD", "margin": 5, "single_border_width": 0, "single_margin": 0}
 
 layouts = [
     layout.xmonad.MonadTall(**layout_settings),
@@ -111,7 +111,7 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(),
+                widget.GroupBox(hide_unused=True),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.TextBox("default config", name="default"),
