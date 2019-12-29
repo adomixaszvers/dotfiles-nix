@@ -50,7 +50,10 @@
     keyMode = "vi";
     terminal = "screen-256color";
   };
-  programs.z-lua.enable = true;
+  programs.z-lua = {
+    enable = true;
+    options = [ "once" ];
+  };
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
