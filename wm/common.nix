@@ -38,7 +38,6 @@
     name = "capitaine-cursors";
     package = pkgs.capitaine-cursors;
   };
-  xsession.scriptPath = ".xsession-hm";
   home.sessionVariables =
     let askpass = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
     in {
