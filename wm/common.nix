@@ -29,7 +29,10 @@
     ];
   };
   services.network-manager-applet.enable = lib.mkDefault true;
-  services.udiskie.enable = true;
+  services.udiskie = {
+    enable = true;
+    automount = false;
+  };
   xsession.enable = lib.mkDefault true;
   xsession.initExtra = ''
     xset s off -dpms
