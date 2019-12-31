@@ -391,6 +391,14 @@ local globalkeys =
         end,
         {description = "power menu", group = "awesome"}
     ),
+    awful.key(
+        {},
+        "Print",
+        function()
+            awful.spawn("maimpick")
+        end,
+        {description = "print menu", group = "awesome"}
+    ),
     -- Layout manipulation
     awful.key(
         {modkey, "Shift"},
