@@ -17,7 +17,6 @@
     platformTheme = "gtk";
   };
   services.screen-locker = {
-    inactiveInterval = 5;
     lockCmd = lib.mkDefault "i3lock -n -t -f";
     xautolockExtraOptions = [
       "-corners"

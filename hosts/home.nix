@@ -25,4 +25,8 @@
       unstable.jetbrains.idea-ultimate
       vim
     ];
+  services.screen-locker = {
+    enable = true;
+    inactiveInterval = 60;
+  };
 }
