@@ -1,8 +1,4 @@
 self: super: {
-  kakounePlugins = super.kakounePlugins // {
-    kakoune-text-objects =
-      super.callPackage ../pkgs/kakoune-text-objects.nix { };
-  };
   sxhkd = super.sxhkd.overrideAttrs
     (oldAttrs: { patches = [ ../pkgs/sxhkd.patch ]; });
   mine = {

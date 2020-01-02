@@ -1,8 +1,4 @@
 colorscheme dracula
-# space is my leader
-map global normal <space> , -docstring 'leader'
-map global normal <backspace> <space> -docstring 'remove all sels except main'
-map global normal <a-backspace> <a-space> -docstring 'remove main sel'
 hook -once global ModuleLoaded fzf %{
     set-option global fzf_file_command 'fd --type f'
 }
@@ -14,7 +10,6 @@ hook global WinSetOption filetype=nix %{
     hook buffer -group lint BufWritePost .+\.nix lint
 }
 
-source ~/.config/kak/filetype/nix.kak
 alias global x write-quit
 map global user f ':fzf-mode<ret>'
 map global user n ':lint-next-error<ret>'

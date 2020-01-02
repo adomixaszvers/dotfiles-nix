@@ -17,7 +17,7 @@ stdenv.mkDerivation {
   meta = with stdenv.lib; {
     description = "kakoune plugin providing extra text-objects";
     homepage = "https://github.com/Delapouite/kakoune-text-objects";
-    license = licenses.publicDoman;
+    license = licenses.mit;
     platform = platforms.all;
   };
 }
