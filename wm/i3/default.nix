@@ -5,6 +5,7 @@ let
     outer = 0;
   };
 in {
+  imports = [ ../compton.nix ../dunst.nix ];
   home.packages = [ pkgs.mine.bumblebee-status ];
   xsession.windowManager.i3 = {
     enable = true;
@@ -35,9 +36,7 @@ in {
       bars = assert (lib.assertMsg (!config.services.polybar.enable)
         "Polybar must be disabled in i3wm"); [{
           statusCommand = ''
-            bumblebee-status -m title cpu memory disk layout pasink datetime \
-              -t iceberg-rainbow \
-              -p memory.format="{used}/{total}" disk.format="{percent:05.02f}%"
+            ${pkgs.i3status-rust}/bin/i3status-rs ${./status_config.toml}
           '';
           fonts = [ "NotoMono Nerd Font 9" ];
           colors = with config.lib.colors; {
@@ -64,6 +63,7 @@ in {
               text = whiteb;
             };
           };
+          position = "top";
         }];
       # bars = [];
       colors = with config.lib.colors; {
