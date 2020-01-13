@@ -70,21 +70,14 @@
   services.nixosManual.showManual = true;
 
   services.gnome3.gnome-keyring.enable = true;
-  security.pam.services.lightdm.enableGnomeKeyring = true;
+  security.pam.services.lightdm.enableGnomeKeyring = lib.mkDefault true;
   programs.seahorse.enable = true;
 
   services.xserver = {
     enable = true;
     exportConfiguration = true;
     layout = "lt,us";
-    displayManager.lightdm.enable = true;
-    desktopManager.session = [{
-      name = "home-manager";
-      start = ''
-        ${pkgs.stdenv.shell} $HOME/.xsession-hm &
-        waitPID=$!
-      '';
-    }];
+    displayManager.lightdm.enable = lib.mkDefault true;
   };
 
   time.timeZone = "Europe/Vilnius";
