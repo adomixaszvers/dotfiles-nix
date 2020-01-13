@@ -71,12 +71,9 @@ in {
       "module/disk" = {
         type = "internal/fs";
         mount-0 = "/";
-        # mount-1 = "/home";
-        format-mounted-prefix = "%{T3}%{T-}";
-        format-mounted-prefix-foreground = colors.custom-primary;
-        format-mounted-prefix-background = colors.custom-background-dark;
+        mount-1 = "/home";
 
-        label-mounted = " %mountpoint%%percentage_used%%";
+        label-mounted = " %mountpoint% %free%";
         label-mounted-foreground = colors.custom-foreground;
         label-mounted-background = colors.custom-background-dark;
       };
