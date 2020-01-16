@@ -51,6 +51,7 @@ in {
     remmina
     robo3t
     samba
+    mine.sky
     soapui
     sqldeveloper
     subversion

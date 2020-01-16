@@ -9,6 +9,7 @@ self: super: {
     lua-fmt = (import ../pkgs/lua-fmt { pkgs = self; }).lua-fmt;
     maimpick = super.callPackage ../pkgs/maimpick.nix { };
     rofi-powermenu = super.callPackage ../pkgs/rofi-powermenu.nix { };
+    sky = super.callPackage ../pkgs/sky.nix { };
     steam = super.steam.override {
       extraPkgs = ps:
         with ps; [
