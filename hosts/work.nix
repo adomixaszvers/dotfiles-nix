@@ -20,8 +20,12 @@ in {
           })
         ];
       };
+    myPidgin =
+      pkgs.pidgin-with-plugins.override { plugins = [ pkgs.pidgin-sipe ]; };
   in with pkgs; [
     # mine.consul
+    # myEclipse
+    # unstable.skype
     # yarn
     asciinema
     docker
@@ -31,12 +35,12 @@ in {
     firefox
     flameshot
     gitAndTools.gitflow
-    gnome3.nautilus
+    gnome3.gnome-boxes
+    gnome3.libsecret
     gnumake
     google-chrome
     gradle
     jq
-    keepassxc
     libreoffice-fresh
     liquibase
     maven
@@ -44,22 +48,26 @@ in {
     mine.dbvisualizer
     mine.dbxcli
     mine.steam
-    # myEclipse
+    moonlight-embedded
+    myPidgin
     nodejs
     playerctl
     rambox
     remmina
     robo3t
     samba
-    mine.sky
+    sbcl
     soapui
     sqldeveloper
+    steam-run-native
     subversion
     swagger-codegen
     tomcat8
+    torbrowser
     traceroute
     unrar
     unstable.jetbrains.idea-ultimate
+    unstable.keepassxc
     unstable.postman
     unstable.spotify
     unzip
