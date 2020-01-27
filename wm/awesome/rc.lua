@@ -841,27 +841,27 @@ awful.rules.rules = {
     },
     {
         rule_any = {class = {"Google-chrome", "Firefox"}},
-        properties = {tag = tags[1]}
+        properties = {tag = tags[1], maximized = false}
     },
     {
         rule = {class = "jetbrains-idea"},
-        properties = {tag = tags[3]}
+        properties = {tag = tags[3], maximized = false}
     },
     {
         rule_any = {class = {"Skype", "rambox"}},
-        properties = {tag = tags[4]}
+        properties = {tag = tags[4], maximized = false}
     },
     {
         rule_any = {class = {"Steam", "SmartGit"}},
-        properties = {tag = tags[5]}
+        properties = {tag = tags[5], maximized = false}
     },
     {
         rule = {class = "libreoffice"},
-        properties = {tag = tags[6]}
+        properties = {tag = tags[6], maximized = false}
     },
     {
         rule = {class = "[Ss]potify"},
-        properties = {tag = tags[10]}
+        properties = {tag = tags[10], maximized = false}
     },
     {
         rule = {instance = "scratchpad"},
