@@ -3,7 +3,7 @@
   home.packages = with pkgs; [ bspwm mine.rofi-powermenu wmname tdrop ];
   services.polybar.config = let
     common = {
-      modules-left = "bspwm";
+      modules-left = "bspwm divider title";
       wm-restack = "bspwm";
     };
   in {
