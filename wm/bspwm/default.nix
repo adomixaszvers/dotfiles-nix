@@ -1,5 +1,5 @@
 { pkgs, config, ... }: {
-  imports = [ ../polybar.nix ../dunst.nix ../compton.nix ];
+  imports = [ ../polybar.nix ../dunst.nix ../compton.nix ./sxhkd.nix ];
   home.packages = with pkgs; [ bspwm mine.rofi-powermenu wmname tdrop ];
   services.polybar.config = let
     common = {
