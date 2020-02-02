@@ -4,27 +4,8 @@ in {
   imports = [ ../cli ../gui ../wm/common.nix ../wm/awesome ];
   home.file."jdks/openjdk8".source = unstable.openjdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
-  home.packages = let
-    myEclipse = with pkgs.eclipses;
-      eclipseWithPlugins {
-        eclipse = eclipse-java;
-        plugins = [
-          (plugins.buildEclipseUpdateSite {
-            name = "activiti-designer-5.18.0";
-            src = pkgs.fetchzip {
-              stripRoot = false;
-              url =
-                "http://www.activiti.org/designer/archived/activiti-designer-5.18.0.zip";
-              sha256 = "1iimskpdvibq1z11hh48krq2qvw6qhddl41qbqc7547x3g19slfr";
-            };
-          })
-        ];
-      };
-    myPidgin =
-      pkgs.pidgin-with-plugins.override { plugins = [ pkgs.pidgin-sipe ]; };
-  in with pkgs; [
+  home.packages = with pkgs; [
     # mine.consul
-    # myEclipse
     # unstable.skype
     # yarn
     asciinema

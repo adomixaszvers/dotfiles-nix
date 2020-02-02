@@ -4,12 +4,10 @@ self: super: {
   mine = {
     bumblebee-status = super.callPackage ../pkgs/bumblebee-status { };
     dbvisualizer = super.callPackage ../pkgs/dbvisualizer.nix { };
-    dbxcli = super.callPackage ../pkgs/dbxcli { };
     kaknix = super.callPackage ../pkgs/kaknix.nix { };
     lua-fmt = (import ../pkgs/lua-fmt { pkgs = self; }).lua-fmt;
     maimpick = super.callPackage ../pkgs/maimpick.nix { };
     rofi-powermenu = super.callPackage ../pkgs/rofi-powermenu.nix { };
-    sky = super.callPackage ../pkgs/sky.nix { };
     steam = super.steam.override {
       extraPkgs = ps:
         with ps; [
