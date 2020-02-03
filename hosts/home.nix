@@ -25,6 +25,7 @@
       unstable.jetbrains.idea-ultimate
       vim
     ];
+  home.sessionVariables = { BROWSER = "firefox"; };
   services.screen-locker = {
     enable = true;
     inactiveInterval = 60;
