@@ -865,7 +865,7 @@ awful.rules.rules = {
     },
     {
         rule = {instance = "scratchpad"},
-        properties = {floating = true, maximized = true}
+        properties = {maximized = true}
     }
     -- { rule = { class = "Emacs" },
     --   properties = { tag = "7" }
