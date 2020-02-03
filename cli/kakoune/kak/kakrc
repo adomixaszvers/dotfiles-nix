@@ -12,6 +12,8 @@ hook global WinSetOption filetype=nix %{
 
 alias global x write-quit
 map global user f ':fzf-mode<ret>'
+map global insert <c-t> '<a-;><gt>'
+map global insert <c-d> '<a-;><lt>'
 map global user n ':lint-next-error<ret>'
 map global user p ':lint-previous-error<ret>'
 add-highlighter global/ number-lines -relative
