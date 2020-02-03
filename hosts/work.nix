@@ -27,10 +27,8 @@ in {
     maven
     mercurial
     mine.dbvisualizer
-    mine.dbxcli
     mine.steam
     moonlight-embedded
-    myPidgin
     nodejs
     playerctl
     rambox
