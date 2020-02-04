@@ -105,7 +105,7 @@ local tags =
     {
         {layout = awful.layout.layouts[1]},
         {screen = 2, layout = awful.layout.layouts[1]},
-        {layout = awful.layout.layouts[1]},
+        {layout = awful.layout.suit.max},
         {layout = awful.layout.layouts[1]},
         {layout = awful.layout.layouts[1]},
         {layout = awful.layout.layouts[1]},
