@@ -18,14 +18,7 @@
   };
   services.screen-locker = {
     lockCmd = lib.mkDefault "i3lock -n -t -f";
-    xautolockExtraOptions = [
-      "-corners"
-      "--00"
-      "-killer"
-      "'systemctl hybric-sleep'"
-      "-killtime"
-      "20"
-    ];
+    xautolockExtraOptions = [ "-corners" "--00" ];
   };
   services.network-manager-applet.enable = lib.mkDefault true;
   services.udiskie = {
