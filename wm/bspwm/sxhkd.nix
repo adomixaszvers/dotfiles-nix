@@ -6,6 +6,7 @@
       #
       # wm independent hotkeys
       #
+      "Print" = "maimpick";
 
       #scratchpads
       "super + ctrl + s" = ''

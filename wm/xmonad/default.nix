@@ -2,11 +2,7 @@
 let extraPackages = import ./extraPackages.nix;
 in {
   imports = [ ../polybar.nix ../dunst.nix ../compton.nix ];
-  home.packages = with pkgs; [
-    gnome3.zenity
-    mine.maimpick
-    mine.rofi-powermenu
-  ];
+  home.packages = with pkgs; [ gnome3.zenity ];
   services.polybar.config = {
     "bar/top".modules-left = "xmonad";
     "bar/top-extra".modules-left = "xmonad";

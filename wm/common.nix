@@ -33,6 +33,7 @@
     name = "capitaine-cursors";
     package = pkgs.capitaine-cursors;
   };
+  home.packages = with pkgs; [ mine.maimpick mine.rofi-powermenu ];
   home.sessionVariables =
     let askpass = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
     in {
