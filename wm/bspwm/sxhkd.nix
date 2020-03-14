@@ -97,6 +97,8 @@
       "super + ctrl + {h,j,k,l}" = "bspc node -p {west,south,north,east}";
 
       # preselect the ratio
+      "super + ctrl + {aogonek,ccaron,eogonek,eabovedot,iogonek,scaron,uogonek,umacron,doublelowquotemark}" =
+        "bspc node -o 0.{1-9}";
       "super + ctrl + {1-9}" = "bspc node -o 0.{1-9}";
 
       # cancel the preselection for the focused node
