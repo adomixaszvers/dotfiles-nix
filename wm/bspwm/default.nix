@@ -17,28 +17,29 @@
 
       format = "<label-state> <label-mode>";
 
-      label-focused = "%name%";
+      label = "%{T2}%title%%{T-}";
+      label-focused = "%{T2}%name%%{T-}";
       label-focused-overline = colors.foreground;
 
-      label-occupied = "%name%";
+      label-occupied = "%{T2}%name%%{T-}";
 
       label-empty = "%name%";
       label-empty-foreground = colors.white;
 
       label-separator = " ";
 
-      label-monocle = "";
-      label-tiled = "";
-      label-fullscreen = "";
-      label-floating = "";
-      label-pseudotiled = "P";
-      label-locked = "";
+      label-monocle = "%{T2}%{T-}";
+      label-tiled = "%{T2}%{T-}";
+      label-fullscreen = "%{T2}%{T-}";
+      label-floating = "%{T2}%{T-}";
+      label-pseudotiled = "%{T2}P%{T-}";
+      label-locked = "%{T2}%{T-}";
       label-locked-foreground = "#bd2c40";
-      label-sticky = "";
+      label-sticky = "%{T2}%{T-}";
       label-sticky-foreground = "#fba922";
-      label-private = "";
+      label-private = "%{T2}%{T-}";
       label-private-foreground = "#bd2c40";
-      label-marked = "M";
+      label-marked = "%{T2}M%{T-}";
     };
   };
   xdg.configFile."bspwm/bspwmrc" = {
