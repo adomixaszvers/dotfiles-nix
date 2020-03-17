@@ -77,6 +77,11 @@
       # focus the next/previous desktop in the current monitor
       "super + bracket{left,right}" = "bspc desktop -f {prev,next}.local";
 
+      # move desktop to next/previous monitor
+      "super + ctrl + bracket{left,right}" = ''
+        ;desktop=$(bspc query -D -d focused) && bspc desktop $desktop -m {prev,next} -f && bspwm-reorder-desktops
+      '';
+
       # focus the last node/desktop
       "super + {grave,Tab}" = "bspc {node,desktop} -f last";
 

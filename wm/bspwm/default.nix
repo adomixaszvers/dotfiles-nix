@@ -1,6 +1,6 @@
 { pkgs, config, ... }: {
   imports = [ ../polybar.nix ../dunst.nix ../compton.nix ./sxhkd.nix ];
-  home.packages = with pkgs; [ bspwm wmname tdrop ];
+  home.packages = with pkgs; [ bspwm mine.bspwm-reorder-desktops wmname tdrop ];
   services.polybar.config = let
     common = {
       modules-left = "bspwm divider title";

@@ -8,12 +8,19 @@ feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png
 wmname LG3D
 systemctl --user restart polybar.service
 
-if [ "$(autorandr --detect)" = 'work' ]; then
-    bspc monitor DP-1 -d 2 3 5 6 7 8 9
-    bspc monitor DP-2 -d 1 4 10
-else
-    bspc monitor -d 1 2 3 4 5 6 7 8 9 10
-fi
+case "$(autorandr --detect)" in
+    work)
+        bspc monitor DP-1 -d 2 3 5 6 7 8 9
+        bspc monitor DP-2 -d 1 4 10
+        ;;
+    home-prime)
+        bspc monitor HDMI-1 -d 1 2 3 5 6 7 8 9
+        bspc monitor LVDS-1 -d 4 10
+        ;;
+    *)
+        bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+        ;;
+esac
 
 bspc config border_width         2
 bspc config window_gap          7
@@ -24,6 +31,7 @@ bspc config single_monocle       true
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config focus_follows_pointer true
+bspc config pointer_follows_monitor true
 
 # bspc rule -a Gimp desktop='^8' state=floating follow=on
 # bspc rule -a Chromium desktop='^2'
@@ -32,14 +40,15 @@ bspc config focus_follows_pointer true
 # bspc rule -a Screenkey manage=off
 # bspc rule -a Emacs state=tiled
 
-bspc rule -a Google-chrome desktop='^1'
-bspc rule -a Firefox desktop='^1'
-bspc rule -a jetbrains-idea desktop='^3'
-bspc rule -a rambox desktop='^4'
-bspc rule -a SmartGit desktop='^5'
-bspc rule -a Steam desktop='^5'
-bspc rule -a libreoffice desktop='^6'
-bspc rule -a KeePassXC desktop='^9'
+bspc rule -a Google-chrome desktop='1'
+bspc rule -a Firefox desktop='1'
+bspc rule -a jetbrains-idea desktop='3'
+bspc rule -a rambox desktop='4'
+bspc rule -a SmartGit desktop='5'
+bspc rule -a Steam desktop='5'
+bspc rule -a libreoffice desktop='6'
+bspc rule -a KeePassXC desktop='9'
+bspc rule -a "Google Play Music Desktop Player" desktop='10'
+bspc rule -a Spotify desktop='10'
 bspc rule -a 'Emacs:scratchpad' state=floating
 bspc rule -a 'Termite:scratchpad' state=floating
-bspc rule -a "Google Play Music Desktop Player" desktop='^10'

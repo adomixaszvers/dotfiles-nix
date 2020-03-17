@@ -2,6 +2,8 @@ self: super: {
   sxhkd = super.sxhkd.overrideAttrs
     (oldAttrs: { patches = [ ../pkgs/sxhkd.patch ]; });
   mine = {
+    bspwm-reorder-desktops =
+      super.callPackage ../pkgs/bspwm-reorder-desktops.nix { };
     bumblebee-status = super.callPackage ../pkgs/bumblebee-status { };
     dbvisualizer = super.callPackage ../pkgs/dbvisualizer.nix { };
     kaknix = super.callPackage ../pkgs/kaknix.nix { };
