@@ -79,7 +79,7 @@
 
       # move desktop to next/previous monitor
       "super + ctrl + bracket{left,right}" = ''
-        ;desktop=$(bspc query -D -d focused) && bspc desktop $desktop -m {prev,next} -f && bspwm-reorder-desktops
+        ; bspc desktop -m {prev,next} -f && bspwm-reorder-desktops
       '';
 
       # focus the last node/desktop
