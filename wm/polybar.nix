@@ -187,14 +187,20 @@ in {
       # Wait until the processes have been shut down
       while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-      PRIMARY_MONITOR=$(xrandr --query | grep " connected primary" | cut -d" " -f1)
+      XRANDR_QUERY="$(xrandr --query | grep " connected")"
 
-      # Launch Polybar, using default config location ~/.config/polybar/config
-      MONITOR=$PRIMARY_MONITOR polybar top &
+      if [ "$(echo "$XRANDR_QUERY" | wc -l)" -eq 1 ]; then
+        MONITOR=$(echo "$XRANDR_QUERY" | cut -d' ' -f1) polybar top &
+      else
+        PRIMARY_MONITOR=$(echo "$XRANDR_QUERY"| grep primary | cut -d" " -f1)
 
-      for m in $(xrandr --query | grep " connected" | grep -v primary | cut -d" " -f1); do
-          MONITOR=$m polybar top-extra &
-      done
+        MONITOR=$PRIMARY_MONITOR polybar top &
+
+        for m in $(echo "$XRANDR_QUERY"| grep -v primary | cut -d' ' -f1); do
+            MONITOR=$m polybar top-extra &
+        done
+      fi
+
 
       echo "Polybar launched..."
     '';
