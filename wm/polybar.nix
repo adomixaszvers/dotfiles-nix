@@ -96,7 +96,7 @@ in {
       };
       "module/divider" = {
         type = "custom/text";
-        content = " | ";
+        content = "|";
         content-foreground = colors.custom-background-light;
         content-background = colors.custom-background-dark;
       };
@@ -131,7 +131,10 @@ in {
         label-seperator-padding = 0;
       };
 
-      "module/keyboard" = module " " { type = "internal/xkeyboard"; };
+      "module/keyboard" = module " " {
+        type = "internal/xkeyboard";
+        label-indicator-on-numlock = "N";
+      };
       "module/memory" = module "" {
         type = "internal/memory";
         label = " %percentage_used:3%%";
