@@ -71,7 +71,7 @@ keys = [
 ]
 
 groups = [Group(i) for i in "1234567890"]
-ltKeys = {
+lt_keys = {
     "1": "aogonek",
     "2": "ccaron",
     "3": "eogonek",
@@ -89,14 +89,19 @@ for i in groups:
         [
             # mod1 + letter of group = switch to group
             Key([mod], i.name, lazy.group[i.name].toscreen()),
-            Key([mod], ltKeys[i.name], lazy.group[i.name].toscreen()),
+            Key([mod], lt_keys[i.name], lazy.group[i.name].toscreen()),
             # mod1 + shift + letter of group = switch to & move focused window to group
             Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
-            Key([mod, "shift"], ltKeys[i.name], lazy.window.togroup(i.name)),
+            Key([mod, "shift"], lt_keys[i.name], lazy.window.togroup(i.name)),
         ]
     )
 
-layout_settings = {"border_focus": "#8BE9FD", "margin": 5, "single_border_width": 0, "single_margin": 0}
+layout_settings = {
+    "border_focus": "#8BE9FD",
+    "margin": 5,
+    "single_border_width": 0,
+    "single_margin": 0,
+}
 
 layouts = [
     layout.xmonad.MonadTall(**layout_settings),
