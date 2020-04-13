@@ -50,5 +50,4 @@ bspc rule -a libreoffice desktop='6'
 bspc rule -a KeePassXC desktop='9'
 bspc rule -a "Google Play Music Desktop Player" desktop='10'
 bspc rule -a Spotify desktop='10'
-bspc rule -a 'Emacs:scratchpad' state=floating
-bspc rule -a 'Termite:scratchpad' state=floating
+bspc rule -a '*:scratchpad' state=floating

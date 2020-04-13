@@ -43,7 +43,7 @@
     xsel
     zathura
   ];
-  home.sessionVariables = { TERMINAL = "termite"; };
+  home.sessionVariables = { TERMINAL = "alacritty"; };
   programs.feh.enable = true;
   programs.rofi = {
     enable = true;
