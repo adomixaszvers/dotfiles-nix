@@ -1,6 +1,6 @@
 { config, lib }:
 with (lib.mapAttrs (n: v: builtins.replaceStrings [ "#" ] [ "0x" ] v)
-  config.lib.colors); ''
+  config.colors); ''
     # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
     # Any items in the `env` entry below will be added as

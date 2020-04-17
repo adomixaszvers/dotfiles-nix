@@ -3,7 +3,7 @@
 {
   imports = [
     ./alacritty
-    ./colors.nix
+    ./colors
     ./doom-emacs.nix
     ./fonts.nix
     ./keepass
@@ -61,7 +61,7 @@
       set preview_images true
     '';
   };
-  xresources.properties = with config.lib.colors; {
+  xresources.properties = with config.colors; {
     "Emacs.font" = "FuraMono Nerd Font Mono-9";
 
     # special

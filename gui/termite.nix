@@ -4,7 +4,7 @@
     allowBold = true;
     browser = "${pkgs.xdg_utils}/xdg-open";
     clickableUrl = true;
-    colorsExtra = with config.lib.colors; ''
+    colorsExtra = with config.colors; ''
       # special
       foreground      = ${foreground}
       foreground_bold = ${foreground}

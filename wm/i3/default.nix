@@ -39,7 +39,7 @@ in {
             ${pkgs.i3status-rust}/bin/i3status-rs ${./status_config.toml}
           '';
           fonts = [ "NotoMono Nerd Font 9" ];
-          colors = with config.lib.colors; {
+          colors = with config.colors; {
             activeWorkspace = {
               background = background;
               border = background;
@@ -66,7 +66,7 @@ in {
           position = "top";
         }];
       # bars = [];
-      colors = with config.lib.colors; {
+      colors = with config.colors; {
         background = black;
         focused = {
           background = background;

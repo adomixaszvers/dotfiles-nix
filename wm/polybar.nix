@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }:
 let
-  colors = config.lib.colors // (with config.lib.colors; {
+  colors = config.colors // (with config.colors; {
     custom-foreground = foreground;
     custom-background-dark = background;
     custom-background-light = blackb;

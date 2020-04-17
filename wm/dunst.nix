@@ -1,5 +1,5 @@
 { pkgs, config, ... }:
-let colors = config.lib.colors;
+let colors = config.colors;
 in {
   services.dunst = {
     enable = config.xsession.enable;

@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [ rxvt_unicode-with-plugins ];
-  xresources.properties = with config.lib.colors; {
+  xresources.properties = with config.colors; {
     "URxvt*font" = "xft:SauceCodePro Nerd Font Mono:size=10";
     "URxvt.perl-ext-common" =
       "default,matcher,selection-to-clipboard,font-size";
