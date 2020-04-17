@@ -23,6 +23,7 @@
     git
     vim
     gparted
+    iotop
     lm_sensors
     neovim
     ntfs3g
@@ -57,12 +58,14 @@
 
   programs.command-not-found.enable = true;
   programs.ssh.startAgent = true;
-  programs.zsh.enable = true;
-  programs.zsh.syntaxHighlighting.enable = true;
-  programs.zsh.interactiveShellInit = ''
-    source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
-  '';
-  programs.zsh.promptInit = ""; # otherwise it'll override the grml prompt
+  programs.zsh = {
+    enable = true;
+    syntaxHighlighting.enable = true;
+    interactiveShellInit = ''
+      source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
+    '';
+    promptInit = ""; # otherwise it'll override the grml prompt
+  };
 
   services.acpid.enable = true;
   services.colord.enable = true;
