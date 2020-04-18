@@ -5,8 +5,8 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "Delapouite";
     repo = "kakoune-text-objects";
-    rev = "1ef64a04e183e27f87655db7a334c2eea810bfbf";
-    sha256 = "1v5a383kqwl4kzbi4s5n22a2cw9fim2rk08a0430k1qm1h8l25mi";
+    rev = "aacd554982ba9a7a77a788817bb8ee2e1b380ee7";
+    sha256 = "0qdzl0z32wgw6k4ssy598sdqk2jh13lwvczslzyg4x5d6z8jwhyf";
   };
 
   installPhase = ''
