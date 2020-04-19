@@ -45,7 +45,6 @@
     enableZshIntegration = true;
     fileWidgetCommand = "fd --type f";
   };
-  programs.starship.enable = true;
   programs.tmux = {
     enable = true;
     keyMode = "vi";
@@ -59,7 +58,6 @@
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    defaultKeymap = "viins";
     initExtra = ''
       lorri_rebuild () {
         for i in $(fd -t f \\.envrc ~ --no-ignore-vcs --hidden -x echo {//}); do
@@ -72,9 +70,6 @@
           fi;
         done
       }
-
-      KEYTIMEOUT=1
-      prompt off
     '';
     plugins = [{
       name = "fz";
