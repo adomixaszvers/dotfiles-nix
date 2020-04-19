@@ -2,7 +2,7 @@
   home.packages = with pkgs.channels.nixos-unstable; [
     (kakoune.override {
       configure.plugins = with kakounePlugins;
-        [ kak-fzf kak-powerline ]
+        [ kak-fzf ]
         ++ [ (callPackage (import ./kakoune-text-objects.nix) { }) ];
     })
     mine.kaknix
