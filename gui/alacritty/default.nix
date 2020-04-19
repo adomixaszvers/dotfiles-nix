@@ -9,18 +9,17 @@ with (lib.mapAttrs (n: v: builtins.replaceStrings [ "#" ] [ "0x" ] v)
           primary = { inherit background foreground; };
           cursor = { cursor = cursorColor; };
           normal = {
-            inherit black white;
+            inherit black white red green yellow blue magenta cyan;
+          };
+          bright = {
+            black = blackb;
+            white = whiteb;
             red = redb;
             green = greenb;
             yellow = yellowb;
             blue = blueb;
             magenta = magentab;
             cyan = cyanb;
-          };
-          bright = {
-            inherit red green yellow blue magenta cyan;
-            black = blackb;
-            white = whiteb;
           };
         };
         font = let fontSettings = { family = "FuraMono Nerd Font Mono"; };

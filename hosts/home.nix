@@ -1,6 +1,6 @@
 { pkgs, config, ... }: {
   imports = [ ../cli ../gui ../wm/common.nix ../wm/awesome ];
-  colors = import ../gui/colors/dracula.nix;
+  colors = import ../gui/colors/nord.nix;
   home.packages = with pkgs;
     let unstable = channels.nixos-unstable;
     in [
