@@ -1,29 +1,50 @@
-{
-  foreground = "#d8dee9";
-  background = "#2e3440";
-  cursorColor = "#d8dee9";
+let
+  # polar night
+  nord0 = "#2e3440";
+  nord1 = "#3b4252";
+  nord2 = "#434c5e";
+  nord3 = "#4c566a";
+  # snow storm
+  nord4 = "#d8dee9";
+  nord5 = "#e5e9f0";
+  nord6 = "#eceff4";
+  # frost
+  nord7 = "#8fbcbb";
+  nord8 = "#88c0c0";
+  nord9 = "#81a1c1";
+  nord10 = "#5e81ac";
+  # aurora
+  nord11 = "#bf616a";
+  nord12 = "#d08770";
+  nord13 = "#ebcb8b";
+  nord14 = "#a3bebc";
+  nord15 = "#b48ead";
+in {
+  foreground = nord4;
+  background = nord0;
+  cursorColor = nord4;
 
-  black = "#3b4252";
-  blackb = "#4c566a";
+  black = nord1;
+  blackb = nord3;
 
-  red = "#bf616a";
-  redb = "#bf616a";
+  red = nord11;
+  redb = nord11;
 
-  green = "#a3bebc";
-  greenb = "#a3bebc";
+  green = nord14;
+  greenb = nord14;
 
-  yellow = "#ebcb8b";
-  yellowb = "#ebcb8b";
+  yellow = nord13;
+  yellowb = nord13;
 
-  blue = "#81a1c1";
-  blueb = "#81a1c1";
+  blue = nord9;
+  blueb = nord9;
 
-  magenta = "#b48ead";
-  magentab = "#b48ead";
+  magenta = nord15;
+  magentab = nord15;
 
-  cyan = "#88c0c0";
-  cyanb = "#8fbcbb";
+  cyan = nord8;
+  cyanb = nord7;
 
-  white = "#e5e9f0";
-  whiteb = "#eceff4";
+  white = nord5;
+  whiteb = nord6;
 }
