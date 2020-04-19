@@ -1,4 +1,3 @@
-colorscheme dracula
 hook -once global ModuleLoaded fzf %{
     set-option global fzf_file_command 'fd --type f'
 }
