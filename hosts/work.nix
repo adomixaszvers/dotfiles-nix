@@ -4,6 +4,10 @@ in {
   imports = [ ../cli ../gui ../wm/common.nix ../wm/awesome ];
   home.file."jdks/openjdk8".source = unstable.openjdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
+  home.file."startwm.sh".source = pkgs.writeShellScript "startwm.sh" ''
+    source /etc/profile
+    exec ${pkgs.runtimeShell} ~/.xsession
+  '';
   home.packages = with pkgs; [
     # mine.consul
     # unstable.skype
