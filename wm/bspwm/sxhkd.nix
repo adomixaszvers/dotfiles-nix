@@ -8,7 +8,7 @@
       #
       "Print" = "maimpick";
 
-      #scratchpads
+      # scratchpads
       "super + ctrl + s" = ''
         tdrop --wm=bspwm -m -w 94% -h 94% -x 3% -y 3% -f "--class scratchpad" ${terminal}
       '';
@@ -21,6 +21,11 @@
       # program launcher
       "super + d" = "rofi -show combi -combi-modi window,drun";
       "super + shift + d" = "rofi -show run -sidebar-mode";
+
+      # music hotkeys
+      "super + F5" = "playerctl play-pause";
+      "super + F6" = "playerctl previous";
+      "super + F7" = "playerctl next";
 
       # power menu
       "super + Pause" = "rofi-powermenu";
