@@ -385,7 +385,7 @@ local globalkeys =
     ),
     awful.key(
         {modkey},
-        "Pause",
+        "F4",
         function()
             awful.spawn("rofi-powermenu")
         end,
