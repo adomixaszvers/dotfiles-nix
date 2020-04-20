@@ -30,12 +30,11 @@
     arandr
     font-manager
     gnome3.adwaita-icon-theme
-    google-play-music-desktop-player
+    gnome3.nautilus
     hicolor-icon-theme
     i3lock
     meld
     pavucontrol
-    pcmanfm
     vlc
     w3m # for ranger image previews
     wmctrl
