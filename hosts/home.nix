@@ -1,5 +1,5 @@
 { pkgs, config, ... }: {
-  imports = [ ../cli ../gui ../wm/common.nix ../wm/awesome ];
+  imports = [ ../cli ../gui ../wm/common.nix ../wm/bspwm ];
   colors = import ../gui/colors/nord.nix;
   home.packages = with pkgs;
     let unstable = channels.nixos-unstable;
@@ -11,19 +11,21 @@
       discord
       exercism
       firefox
+      google-chrome
       gtypist
       guile
-      keepassxc
       klavaro
       mine.steam
       mine.vimgolf
-      minecraft
       playerctl
       qbittorrent
-      unstable.spotify
+      remmina
       tigervnc
       torbrowser
       unstable.jetbrains.idea-ultimate
+      unstable.keepassxc
+      unstable.minecraft
+      spotifywm
       vim
     ];
   home.sessionVariables = { BROWSER = "firefox"; };
@@ -58,6 +60,7 @@
       };
     };
   };
+  programs.broot.enable = true;
   services.screen-locker = {
     enable = true;
     inactiveInterval = 60;
