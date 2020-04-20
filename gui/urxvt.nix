@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [ rxvt_unicode-with-plugins ];
   xresources.properties = with config.colors; {
-    "URxvt*font" = "xft:SauceCodePro Nerd Font Mono:size=10";
+    "URxvt*font" = "xft:FuraMono Nerd Font Mono:size=10";
     "URxvt.perl-ext-common" =
       "default,matcher,selection-to-clipboard,font-size";
     "URxvt.url-launcher" = "/usr/bin/xdg-open";
