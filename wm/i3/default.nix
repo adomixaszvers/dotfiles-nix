@@ -5,7 +5,7 @@ let
     outer = 0;
   };
 in {
-  imports = [ ../compton.nix ../dunst.nix ];
+  imports = [ ../picom.nix ../dunst.nix ];
   home.packages = [ pkgs.mine.bumblebee-status ];
   xsession.windowManager.i3 = {
     enable = true;

@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ../compton.nix ];
+  imports = [ ../picom.nix ];
   services.pasystray.enable = true;
   xsession.windowManager.awesome = { enable = true; };
   xdg.configFile = let

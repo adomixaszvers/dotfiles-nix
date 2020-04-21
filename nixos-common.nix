@@ -48,11 +48,11 @@
       ${pkgs.pulseaudioLight}/etc/pulse/default.pa > $out
   '';
 
-  i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
-    defaultLocale = "lt_LT.UTF-8";
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
   };
+  i18n = { defaultLocale = "lt_LT.UTF-8"; };
 
   networking.networkmanager.enable = lib.mkDefault true;
 
@@ -80,6 +80,7 @@
     enable = true;
     exportConfiguration = true;
     layout = "lt,us";
+    desktopManager.xterm.enable = true;
     displayManager.lightdm.enable = lib.mkDefault true;
   };
 

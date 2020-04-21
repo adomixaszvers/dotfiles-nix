@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 let extraPackages = import ./extraPackages.nix;
 in {
-  imports = [ ../polybar.nix ../dunst.nix ../compton.nix ];
+  imports = [ ../polybar.nix ../dunst.nix ../picom.nix ];
   home.packages = with pkgs; [ gnome3.zenity ];
   services.polybar.config = {
     "bar/top".modules-left = "xmonad";

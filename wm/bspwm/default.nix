@@ -1,5 +1,5 @@
 { pkgs, config, ... }: {
-  imports = [ ../polybar.nix ../dunst.nix ../compton.nix ./sxhkd.nix ];
+  imports = [ ../polybar.nix ../dunst.nix ../picom.nix ./sxhkd.nix ];
   home.packages = with pkgs; [ bspwm mine.bspwm-reorder-desktops wmname tdrop ];
   services.polybar.config = let
     common = {

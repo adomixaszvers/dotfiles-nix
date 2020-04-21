@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [ ../compton.nix ../dunst.nix ];
+  imports = [ ../picom.nix ../dunst.nix ];
   home.packages = with pkgs.channels.nixos-unstable; [ qtile ];
   xsession.windowManager.command = "qtile";
   xdg.configFile."qtile/config.py" = {
