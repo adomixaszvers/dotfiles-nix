@@ -56,7 +56,7 @@
             mode = "1920x1080";
           };
         };
-        hooks.postswitch = "systemctl --user restart compton.service";
+        hooks.postswitch = "systemctl --user restart picom.service";
       };
     };
   };
