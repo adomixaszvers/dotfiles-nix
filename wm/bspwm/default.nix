@@ -1,6 +1,6 @@
 { pkgs, config, ... }: {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ./sxhkd.nix ];
-  home.packages = with pkgs; [ bspwm mine.bspwm-reorder-desktops tdrop ];
+  home.packages = with pkgs; [ bspwm mine.bspwm-reorder-desktops tdrop wmname ];
   services.polybar.config = let
     common = {
       modules-left = "bspwm divider title";
@@ -15,7 +15,7 @@
       pin-workspaces = false;
       enable-click = true;
 
-      format = "<label-state> <label-mode>";
+      format = "<label-state> [<label-mode>]";
 
       label = "%{T2}%title%%{T-}";
       label-focused = "%{T2}%name%%{T-}";
@@ -28,23 +28,24 @@
 
       label-separator = " ";
 
-      label-monocle = "%{T2}%{T-}";
-      label-tiled = "%{T2}%{T-}";
-      label-fullscreen = "%{T2}%{T-}";
-      label-floating = "%{T2}%{T-}";
+      label-monocle = "%{T2}M%{T-}";
+      label-tiled = "%{T2}t%{T-}";
+      label-fullscreen = "%{T2}F%{T-}";
+      label-floating = "%{T2}f%{T-}";
       label-pseudotiled = "%{T2}P%{T-}";
-      label-locked = "%{T2}%{T-}";
+      label-locked = "%{T2}L%{T-}";
       label-locked-foreground = "#bd2c40";
-      label-sticky = "%{T2}%{T-}";
+      label-sticky = "%{T2}s%{T-}";
       label-sticky-foreground = "#fba922";
-      label-private = "%{T2}%{T-}";
+      label-private = "%{T2}p%{T-}";
       label-private-foreground = "#bd2c40";
-      label-marked = "%{T2}M%{T-}";
+      label-marked = "%{T2}m%{T-}";
     };
   };
   xsession.windowManager.bspwm = {
     enable = true;
     extraConfig = ''
+      wmname LG3D
       feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png
       systemctl --user restart polybar.service
     '';
