@@ -36,6 +36,8 @@
     i3lock
     meld
     pavucontrol
+    pcmanfm
+    qt5.qttools.bin
     vlc
     w3m # for ranger image previews
     wmctrl

@@ -591,7 +591,7 @@ local globalkeys =
         {modkey, "Control"},
         "s",
         function()
-            scratch.toggle("termite --name=scratchpad", {instance = "scratchpad", class = "Termite"})
+            scratch.toggle("alacritty --class=scratchpad", {instance = "scratchpad", class = "Alacritty"})
         end,
         {description = "launch Termite", group = "scratch"}
     )

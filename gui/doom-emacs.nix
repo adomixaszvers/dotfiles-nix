@@ -8,5 +8,6 @@
     gnutls
     mdl
     multimarkdown
+    nodePackages.prettier
   ];
 }

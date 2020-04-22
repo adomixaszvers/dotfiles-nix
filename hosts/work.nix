@@ -2,8 +2,10 @@
 let unstable = pkgs.channels.nixos-unstable;
 in {
   imports = [ ../cli ../gui ../wm/common.nix ../wm/awesome ];
+  colors = import ../gui/colors/nord.nix;
   home.file."jdks/openjdk8".source = unstable.openjdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
+  home.file."jdks/scala".source = pkgs.scala;
   home.file."startwm.sh".source = pkgs.writeShellScript "startwm.sh" ''
     source /etc/profile
     exec ${pkgs.runtimeShell} ~/.xsession
@@ -13,14 +15,13 @@ in {
     # unstable.skype
     # yarn
     asciinema
+    calibre
     docker
     docker-compose
     docker-machine
     filezilla
     firefox
-    flameshot
     gitAndTools.gitflow
-    gnome3.gnome-boxes
     gnome3.libsecret
     gnumake
     google-chrome
@@ -34,14 +35,15 @@ in {
     mine.steam
     moonlight-embedded
     nodejs
+    peek
     playerctl
     rambox
     remmina
     robo3t
     samba
-    sbcl
     soapui
     sqldeveloper
+    sshpass
     steam-run-native
     subversion
     swagger-codegen
@@ -57,8 +59,9 @@ in {
     vagrant
     visualvm
     whois
+    zip
   ];
-  home.sessionVariables = { BROWSER = "firefox"; };
+  home.sessionVariables = { BROWSER = "google-chrome-stable"; };
   programs.autorandr = {
     enable = true;
     profiles = {
