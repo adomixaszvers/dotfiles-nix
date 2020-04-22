@@ -2,9 +2,12 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    binaryCaches = [ "https://all-hies.cachix.org" ];
-    binaryCachePublicKeys =
-      [ "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k=" ];
+    binaryCaches =
+      [ "https://all-hies.cachix.org" "https://adomixaszvers.cachix.org" ];
+    binaryCachePublicKeys = [
+      "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k="
+      "adomixaszvers.cachix.org-1:r3/lrlbDE7o/Vjk/muEU2iLIiCEZMbC09ZqiwAs64so="
+    ];
     extraOptions = ''
       keep-outputs = true
     '';
