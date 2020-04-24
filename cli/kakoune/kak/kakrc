@@ -1,6 +1,23 @@
 hook -once global ModuleLoaded fzf %{
     set-option global fzf_file_command 'fd --type f'
 }
+
+eval %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
+    lsp-enable-window
+    lsp-auto-hover-enable
+    lsp-auto-hover-insert-mode-disable
+    set-option window lsp_hover_anchor true
+    set-option window lsp_hover_max_lines 10
+    set-face window DiagnosticError default+u
+    set-face window DiagnosticWarning default+u
+}
+hook global WinSetOption filetype=rust %{
+    set-option window lsp_server_configuration rust.clippy_preference="on"
+    set-option buffer formatcmd 'rustfmt'
+}
+hook global KakEnd .* lsp-exit
+
 hook global WinSetOption filetype=nix %{
     set-option buffer formatcmd 'nixfmt'
     set-option buffer lintcmd 'kaknix'
