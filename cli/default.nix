@@ -47,6 +47,9 @@
   };
   programs.tmux = {
     enable = true;
+    extraConfig = ''
+      set -g mouse on
+    '';
     keyMode = "vi";
     terminal = "screen-256color";
   };
