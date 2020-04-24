@@ -15,16 +15,15 @@
       pin-workspaces = false;
       enable-click = true;
 
-      format = "<label-state> [<label-mode>]";
+      format = "<label-state> <label-mode>";
 
       label = "%{T2}%title%%{T-}";
-      label-focused = "%{T2}%name%%{T-}";
-      label-focused-overline = colors.foreground;
+      label-focused = "[%name%]";
 
-      label-occupied = "%{T2}%name%%{T-}";
+      label-occupied = "%name%";
 
       label-empty = "%name%";
-      label-empty-foreground = colors.white;
+      label-empty-foreground = colors.cyanb;
 
       label-separator = " ";
 
