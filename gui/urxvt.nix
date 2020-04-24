@@ -6,7 +6,7 @@
     "URxvt*font" = "xft:FuraMono Nerd Font Mono:size=10";
     "URxvt.perl-ext-common" =
       "default,matcher,selection-to-clipboard,font-size";
-    "URxvt.url-launcher" = "/usr/bin/xdg-open";
+    "URxvt.url-launcher" = "${pkgs.xdg_utils}/xdg-open";
     "URxvt.matcher.button" = "1";
     "URxvt.letterSpace" = "-1";
     "URxvt.iso14755" = "false";
