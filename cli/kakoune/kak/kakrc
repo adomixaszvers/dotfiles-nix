@@ -33,3 +33,17 @@ map global insert <c-d> '<a-;><lt>'
 map global user n ':lint-next-error<ret>'
 map global user p ':lint-previous-error<ret>'
 add-highlighter global/ number-lines -relative
+
+# TODO find better solution to ignore x11-* commands
+hook global KakBegin .* %{
+    evaluate-commands %sh{
+        if [ "$TERM" = "xterm-kitty" ] && [ -z "$TMUX" ]; then
+            echo 'require-module kitty'
+            echo 'alias global terminal kitty-terminal'
+            echo 'alias global terminal-tab kitty-terminal-tab'
+            echo 'alias global focus kitty-focus'
+            echo 'alias global repl kitty-repl'
+            echo 'alias global send-text kitty-send-text'
+        fi
+    }
+}
