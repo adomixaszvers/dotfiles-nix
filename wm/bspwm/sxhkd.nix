@@ -10,7 +10,7 @@
 
       # scratchpads
       "super + ctrl + s" = ''
-        tdrop --wm=bspwm -m -w 94% -h 94% -x 3% -y 3% -f "--class scratchpad" ${terminal}
+        tdrop --wm=bspwm -m -w 94% -h 94% -x 3% -y 3% -f "--name scratchpad" ${terminal}
       '';
       "super + ctrl + e" =
         "tdrop --wm=bspwm --name=scratchpad -m -w 94% -h 94% -x 3% -y 3% emacs";

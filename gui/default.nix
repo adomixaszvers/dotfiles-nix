@@ -7,6 +7,7 @@
     ./doom-emacs.nix
     ./fonts.nix
     ./keepass
+    ./kitty.nix
     ./termite.nix
   ];
   home.keyboard = {
@@ -42,7 +43,7 @@
     xsel
     zathura
   ];
-  home.sessionVariables = { TERMINAL = "alacritty"; };
+  home.sessionVariables = { TERMINAL = "kitty"; };
   programs.feh.enable = true;
   programs.rofi = {
     enable = true;
