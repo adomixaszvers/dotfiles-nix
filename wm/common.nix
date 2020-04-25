@@ -25,6 +25,10 @@
     enable = true;
     automount = false;
   };
+  services.unclutter = {
+    enable = true;
+    timeout = 10;
+  };
   xsession.enable = lib.mkDefault true;
   xsession.initExtra = ''
     xset s off -dpms
