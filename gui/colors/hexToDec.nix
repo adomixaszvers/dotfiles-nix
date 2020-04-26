@@ -26,5 +26,5 @@ let
   charToNumber = x: builtins.getAttr x charMap;
 in { lib }:
 hex:
-builtins.foldl' (acc: ele: acc * 16 + ele) 0
-(map charToNumber (lib.stringToCharacters hex))
+builtins.foldl' (acc: ele: acc * 16 + charToNumber ele) 0
+(lib.stringToCharacters hex)
