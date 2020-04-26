@@ -8,9 +8,7 @@ with (lib.mapAttrs (n: v: builtins.replaceStrings [ "#" ] [ "0x" ] v)
         colors = {
           primary = { inherit background foreground; };
           cursor = { cursor = cursorColor; };
-          normal = {
-            inherit black white red green yellow blue magenta cyan;
-          };
+          normal = { inherit black white red green yellow blue magenta cyan; };
           bright = {
             black = blackb;
             white = whiteb;
