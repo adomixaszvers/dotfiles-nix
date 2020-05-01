@@ -85,7 +85,7 @@ main = do
     }
 
 myTerminal :: String
-myTerminal = "termite"
+myTerminal = "kitty"
 
 myConfig = addDescrKeys'
   ((myModMask, xK_F1), showKeybindings)
@@ -293,7 +293,7 @@ showKeybindings x = addName "Show Keybindings" $ io $ bracket
 
 myLogHook :: D.Client -> PP
 myLogHook dbus = def { ppOutput  = dbusOutput dbus
-                     , ppCurrent = wrap "%{o#fff}" "%{-o}"
+                     , ppCurrent = wrap "[" "]"
                      , ppVisible = wrap "" ""
                      , ppUrgent  = wrap "%{o#f00}" "%{-o}"
                      , ppHidden  = wrap "" ""
@@ -325,8 +325,8 @@ myScratchpads =
        (title =? "scratchpad" <&&> className =? "Emacs")
        hook
   , NS nsTerminal
-       "termite -t scratchpad"
-       (title =? "scratchpad" <&&> className =? "Termite")
+       "kitty --name scratchpad"
+       (appName =? "scratchpad" <&&> className =? "kitty")
        hook
   ]
   where hook = customFloating $ W.RationalRect 0.025 0.025 0.95 0.95
