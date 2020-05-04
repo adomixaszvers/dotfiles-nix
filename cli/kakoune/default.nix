@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home.packages = with pkgs.channels.nixos-unstable; [
+  home.packages = with pkgs; [
     (kakoune.override {
       configure.plugins = with kakounePlugins;
         [ kak-fzf ]
