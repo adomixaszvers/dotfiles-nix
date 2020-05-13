@@ -5,10 +5,10 @@
       allow_remote_control = true;
 
       font_family = "FuraMono Nerd Font Mono";
-      font_size = 9;
+      font_size = "9.5";
 
       inherit foreground background;
-      background_opacity = "0.95";
+      background_opacity = "1.0";
 
       # black
       color0 = black;
