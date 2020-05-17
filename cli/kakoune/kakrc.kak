@@ -15,20 +15,20 @@ hook global WinSetOption filetype=(rust|python|haskell) %{
 }
 hook global WinSetOption filetype=rust %{
     set-option window lsp_server_configuration rust.clippy_preference="on"
-    set-option buffer formatcmd 'rustfmt'
+    set-option window formatcmd 'rustfmt'
 }
 hook global KakEnd .* lsp-exit
 
 hook global WinSetOption filetype=haskell %{
-    set-option buffer formatcmd 'brittany'
+    set-option window formatcmd 'brittany'
 }
 
 hook global WinSetOption filetype=nix %{
-    set-option buffer formatcmd 'nixfmt'
-    set-option buffer lintcmd 'kaknix'
+    set-option window formatcmd 'nixfmt'
+    set-option window lintcmd 'kaknix'
     lint-enable
     lint
-    hook buffer -group lint BufWritePost .+\.nix lint
+    hook window -group lint BufWritePost .*\.nix lint
 }
 
 alias global x write-quit
