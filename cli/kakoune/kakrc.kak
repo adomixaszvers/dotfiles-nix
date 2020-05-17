@@ -52,3 +52,4 @@ hook global KakBegin .* %{
         fi
     }
 }
+set-option global grepcmd 'rg --column'
