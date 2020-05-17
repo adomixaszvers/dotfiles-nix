@@ -61,19 +61,6 @@
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    initExtra = ''
-      lorri_rebuild () {
-        for i in $(fd -t f \\.envrc ~ --no-ignore-vcs --hidden -x echo {//}); do
-          if [ -f $i/shell.nix ]; then
-            (
-              echo "rebuilding $i"
-              cd $i
-              lorri watch --once
-            )
-          fi;
-        done
-      }
-    '';
     plugins = [{
       name = "fz";
       src = pkgs.fetchFromGitHub {
