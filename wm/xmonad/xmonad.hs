@@ -264,6 +264,13 @@ myKeysDescr conf@XConfig { XMonad.modMask = modm } =
         $ namedScratchpadAction myScratchpads nsTerminal
       )
     ]
+    ++ subtitle "music player controls"
+    :  [ ( (modm, xK_F5)
+         , addName "Player play-pause" $ spawn "playerctl play-pause"
+         )
+       , ((modm, xK_F6), addName "Player previous" $ spawn "playerctl previous")
+       , ((modm, xK_F7), addName "Player next" $ spawn "playerctl next")
+       ]
     ++ subtitle "switching workspaces"
     :  [ ((m .|. modm, k), addName (n ++ i) $ windows $ f i)
        | (f, m, n) <-
