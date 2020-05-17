@@ -7,11 +7,7 @@
   home.stateVersion = "19.09";
   manual.html.enable = true;
   programs.home-manager.enable = true;
-  # programs.home-manager.path = https://github.com/rycee/home-manager/archive/release-19.03.tar.gz;
-  systemd.user = {
-    startServices = true;
-    systemctlPath = "/run/current-system/sw/bin/systemctl";
-  };
+  systemd.user = { startServices = true; };
 
   xdg = { enable = true; };
 }
