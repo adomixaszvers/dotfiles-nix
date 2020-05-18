@@ -8,12 +8,12 @@
   };
   programs.zsh.initExtra = ''
     lorri_rebuild () {
-      for i in $(fd -t f \\.envrc ~ --no-ignore-vcs --hidden -x echo {//}); do
-        if [ -f $i/shell.nix ]; then
+      while read i; do
+        if [ -f "$i"/shell.nix ]; then
           echo "rebuilding $i"
-          lorri watch --once --shell-file $i/shell.nix
+          lorri watch --once --shell-file "$i"/shell.nix
         fi
-      done
+      done <<< $(bfs ~ -type f -name .envrc -printf '%h\n')
     }
   '';
   services.lorri.enable = true;
