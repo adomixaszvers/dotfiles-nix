@@ -14,9 +14,7 @@
       vim-airline
       vim-airline-themes
       vim-colorschemes
-      vim-easymotion
       vim-gitgutter
-      vim-hardtime
       vim-polyglot
       vim-sneak
       vim-unimpaired
