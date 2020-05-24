@@ -181,7 +181,7 @@ in {
     script = ''
       PATH=$PATH:${
         with pkgs;
-        lib.makeBinPath [ coreutils gnugrep procps psmisc xorg.xrandr ]
+        lib.makeBinPath [ coreutils gnugrep procps psmisc xorg.xrandr xdotool ]
       }
 
       # Terminate already running bar instances

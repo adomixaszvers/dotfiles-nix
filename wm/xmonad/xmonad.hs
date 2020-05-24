@@ -5,7 +5,10 @@ import           Control.Exception              ( bracket )
 import           Control.Monad                  ( join
                                                 , when
                                                 )
-import           Data.Maybe                     ( maybeToList )
+import           Data.List                      ( elemIndex )
+import           Data.Maybe                     ( maybe
+                                                , maybeToList
+                                                )
 import qualified DBus                          as D
 import qualified DBus.Client                   as D
 import           System.Exit                    ( exitSuccess )
@@ -300,14 +303,19 @@ showKeybindings x = addName "Show Keybindings" $ io $ bracket
 
 myLogHook :: D.Client -> PP
 myLogHook dbus = def { ppOutput  = dbusOutput dbus
-                     , ppCurrent = wrap "[" "]"
-                     , ppVisible = wrap "" ""
-                     , ppUrgent  = wrap "%{o#f00}" "%{-o}"
-                     , ppHidden  = wrap "" ""
+                     , ppCurrent = wrap "[" "]" . clickableWS
+                     , ppVisible = wrap "" "" . clickableWS
+                     , ppUrgent  = wrap "%{o#f00}" "%{-o}" . clickableWS
+                     , ppHidden  = wrap "" "" . clickableWS
                      , ppWsSep   = " "
                      , ppSep     = " : "
                      , ppTitle   = shorten 100
                      }
+ where
+  clickableWS ws =
+    maybe ws
+          (\i -> "%{A1:xdotool set_desktop " ++ show i ++ ":}" ++ ws ++ "%{A}")
+      $ elemIndex ws myWorkspaces
 
 -- Emit a DBus signal on log updates
 dbusOutput :: D.Client -> String -> IO ()
