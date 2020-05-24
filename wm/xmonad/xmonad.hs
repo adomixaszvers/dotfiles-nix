@@ -48,6 +48,9 @@ import           XMonad.Hooks.ManageHelpers     ( composeOne
                                                 )
 import           XMonad.Hooks.SetWMName         ( setWMName )
 import           XMonad.Layout.NoBorders        ( smartBorders )
+import           XMonad.Layout.Renamed          ( Rename(..)
+                                                , renamed
+                                                )
 import           XMonad.Layout.Spacing          ( Border(..)
                                                 , spacingRaw
                                                 )
@@ -132,7 +135,10 @@ myStartupHook = do
 
 myLayoutHook = smartBorders . avoidStruts $ myMainLayout
 
-myMainLayout = tiled ||| Mirror tiled ||| Full
+myMainLayout =
+  renamed [Replace "Tall"] tiled
+    ||| renamed [Replace "Wide"] (Mirror tiled)
+    ||| Full
  where
   tiled =
     spacingRaw True
