@@ -1,8 +1,6 @@
 {
   foreground = "#f2efed";
   background = "#282828";
-  backgroundTRGBA = toTrgba "#282828";
-  backgroundTransparent = "[95]#282828";
   cursorColor = "#c8ccd4";
 
   black = "#32302f";
