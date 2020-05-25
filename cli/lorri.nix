@@ -9,11 +9,11 @@
   programs.zsh.initExtra = ''
     lorri_rebuild () {
       while read i; do
-        if [ -f "$i"/shell.nix ]; then
+        if [ -f "$i" ]; then
           echo "rebuilding $i"
-          lorri watch --once --shell-file "$i"/shell.nix
+          lorri watch --once --shell-file "$i"
         fi
-      done <<< $(bfs ~ -type f -name .envrc -printf '%h\n')
+      done <<< $(find-shells)
     }
   '';
   services.lorri.enable = true;
