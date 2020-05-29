@@ -6,25 +6,18 @@
     in [
       # (mine.steam.override { config.steam.primus = true; })
       borgbackup
-      calibre
       compsize
-      discord
       exercism
       firefox
-      google-chrome
       gtypist
-      guile
       klavaro
       mine.steam
       mine.vimgolf
       playerctl
       qbittorrent
       remmina
-      tigervnc
       torbrowser
-      unstable.jetbrains.idea-ultimate
       unstable.keepassxc
-      unstable.minecraft
       spotifywm
       vim
     ];
