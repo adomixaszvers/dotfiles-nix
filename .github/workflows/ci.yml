@@ -2,8 +2,12 @@ name: CI
 on:
   push:
     branches: [ "master" ]
+    paths:
+      - '**.nix'
   pull_request:
     branches: [ "**" ]
+    paths:
+      - '**.nix'
 jobs:
   parsing:
     runs-on: ubuntu-latest
