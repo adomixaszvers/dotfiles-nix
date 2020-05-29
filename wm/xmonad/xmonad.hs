@@ -189,7 +189,7 @@ myKeysDescr conf@XConfig { XMonad.modMask = modm } =
     [ subtitle "launching and killing programs"
     , ( (modm, xK_Return)
       , addName "Launch Terminal" $ spawn $ XMonad.terminal conf
-      ) -- %! Launch terminal
+      )
     , ( (modm, xK_d)
       , addName "Open DRun menu"
         $ spawn "rofi -show combi -combi-modi window,drun"
@@ -197,73 +197,43 @@ myKeysDescr conf@XConfig { XMonad.modMask = modm } =
     , ( (modm .|. shiftMask, xK_d)
       , addName "Open Run menu" $ spawn "rofi -show run -sidebar-mode"
       )
-    , ( (modm .|. shiftMask, xK_q)
-      , addName "Close the focused window" kill
-      ) -- %! Close the focused window
+    , ((modm .|. shiftMask, xK_q), addName "Close the focused window" kill)
     , subtitle "changing layouts"
-    , ( (modm, xK_space)
-      , sendMessage' NextLayout
-      ) -- %! Rotate through the available layout algorithms
+    , ((modm, xK_space), sendMessage' NextLayout)
     , ( (modm .|. shiftMask, xK_space)
       , addName "Reset the layout" $ setLayout $ XMonad.layoutHook conf
-      ) -- %!  Reset the layouts on the current workspace to default
+      )
     , separator
-    , ( (modm, xK_n)
-      , addName "Refresh" refresh
-      ) -- %! Resize viewed windows to the correct size
+    , ((modm, xK_n), addName "Refresh" refresh)
     , ((modm, xK_b), addName "Toggle struts" $ sendMessage ToggleStruts)
     , subtitle "move focus up or down the window stack"
-    , ( (modm, xK_Tab)
-      , addName "Focus down" $ windows W.focusDown
-      ) -- %! Move focus to the next window
-    , ( (modm .|. shiftMask, xK_Tab)
-      , addName "Focus up" $ windows W.focusUp
-      ) -- %! Move focus to the previous window
-    , ( (modm, xK_j)
-      , addName "Focus down" $ windows W.focusDown
-      ) -- %! Move focus to the next window
-    , ( (modm, xK_k)
-      , addName "Focus up" $ windows W.focusUp
-      ) -- %! Move focus to the previous window
-    , ( (modm, xK_m)
-      , addName "Focus the master" $ windows W.focusMaster
-      ) -- %! Move focus to the master window
+    , ((modm, xK_Tab)              , addName "Focus down" $ windows W.focusDown)
+    , ((modm .|. shiftMask, xK_Tab), addName "Focus up" $ windows W.focusUp)
+    , ((modm, xK_j)                , addName "Focus down" $ windows W.focusDown)
+    , ((modm, xK_k)                , addName "Focus up" $ windows W.focusUp)
+    , ((modm, xK_m), addName "Focus the master" $ windows W.focusMaster)
     , subtitle "modifying the window order"
     , ( (modm .|. shiftMask, xK_Return)
       , addName "Swap with the master" $ windows W.swapMaster
-      ) -- %! Swap the focused window and the master window
-    , ( (modm .|. shiftMask, xK_j)
-      , addName "Swap down" $ windows W.swapDown
-      ) -- %! Swap the focused window with the next window
-    , ( (modm .|. shiftMask, xK_k)
-      , addName "Swap up" $ windows W.swapUp
-      ) -- %! Swap the focused window with the previous window
+      )
+    , ((modm .|. shiftMask, xK_j), addName "Swap down" $ windows W.swapDown)
+    , ((modm .|. shiftMask, xK_k), addName "Swap up" $ windows W.swapUp)
     , subtitle "resizing the master/slave ratio"
-    , ( (modm, xK_h)
-      , sendMessage' Shrink
-      ) -- %! Shrink the master area
-    , ( (modm, xK_l)
-      , sendMessage' Expand
-      ) -- %! Expand the master area
+    , ((modm, xK_h), sendMessage' Shrink)
+    , ((modm, xK_l), sendMessage' Expand)
     , subtitle "floating layer support"
     , ( (modm, xK_t)
       , addName "Push floating to tiled" $ withFocused $ windows . W.sink
-      ) -- %! Push window back into tiling
+      )
     , subtitle "change the number of windows in the master area"
-    , ( (modm, xK_comma)
-      , sendMessage' (IncMasterN 1)
-      ) -- %! Increment the number of windows in the master area
-    , ( (modm, xK_period)
-      , sendMessage' (IncMasterN (-1))
-      ) -- %! Deincrement the number of windows in the master area
+    , ((modm, xK_comma) , sendMessage' (IncMasterN 1))
+    , ((modm, xK_period), sendMessage' (IncMasterN (-1)))
     , subtitle "quit, or restart"
-    , ( (modm .|. shiftMask, xK_c)
-      , addName "Quit" $ io exitSuccess
-      ) -- %! Quit xmonad
+    , ((modm .|. shiftMask, xK_c), addName "Quit" $ io exitSuccess)
     , ((modm, xK_Pause), addName "Power menu" $ spawn "rofi-powermenu")
     , ( (modm, xK_q)
       , addName "Restart" $ spawn "xmonad --recompile && xmonad --restart"
-      ) -- %! Restart xmonad
+      )
     , subtitle "scratchpads"
     , ( (modm .|. controlMask, xK_e)
       , addName "Emacs scratchpad" $ namedScratchpadAction myScratchpads nsEmacs
