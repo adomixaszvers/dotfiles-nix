@@ -3,6 +3,7 @@
 {
   imports = [ ./lorri.nix ./neovim ./kakoune ];
   home.packages = with pkgs; [
+    bat
     bfs
     binutils
     cachix
@@ -73,7 +74,7 @@
     sessionVariables = { FZ_HISTORY_CD_CMD = "_zlua"; };
     shellAliases = {
       he =
-        "(hcd && nvim $(FZF_DEFAULT_COMMAND='fd --type f --no-ignore-vcs' fzf))";
+        "(hcd && FZF_DEFAULT_COMMAND='fd --type f --no-ignore-vcs' nvim -c ':Files')";
       hcd = "cd ~/.config/nixpkgs";
       ls = "exa";
       la = "exa -a --group-directories-first";
