@@ -61,6 +61,7 @@
       "'Google Play Music Desktop Player'" = { desktop = "10"; };
       Spotify = { desktop = "10"; };
       "'*:scratchpad'" = { state = "floating"; };
+      lxqt-openssh-askpass = { state = "floating"; };
     };
     settings = {
       border_width = 2;
