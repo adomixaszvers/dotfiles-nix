@@ -1,5 +1,6 @@
 hook -once global ModuleLoaded fzf %{
     set-option global fzf_file_command 'fd --type f'
+    set-option global fzf_highlight_command 'bat'
 }
 
 eval %sh{kak-lsp --kakoune -s $kak_session}
