@@ -15,10 +15,10 @@
 
       # scratchpads
       "super + ctrl + s" = ''
-        tdrop --wm=bspwm -m -w 94% -h 94% -x 3% -y 3% -f "--name scratchpad" ${terminal}
+        tdrop --wm=bspwm -m -w -60 -h -60 -x 30 -y 30 -f "--name scratchpad" ${terminal}
       '';
       "super + ctrl + e" =
-        "tdrop --wm=bspwm --name=scratchpad -m -w 94% -h 94% -x 3% -y 3% emacs";
+        "tdrop --wm=bspwm --name=scratchpad -m -w -60 -h -60 -x 30 -y 30 emacs";
 
       # terminal emulator
       "super + Return" = terminal;
