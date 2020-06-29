@@ -111,6 +111,10 @@ in {
     command = "rambox";
     notification = false;
   }];
+  xsession.windowManager.bspwm.monitors = {
+    "DP-1" = [ "1" "2" "3" "4" "5" ];
+    "DP-2" = [ "6" "7" "8" "9" "10" ];
+  };
   xsession.initExtra = ''
     autorandr --change
   '';

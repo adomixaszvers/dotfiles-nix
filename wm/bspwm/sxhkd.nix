@@ -89,7 +89,7 @@
 
       # move desktop to next/previous monitor
       "super + ctrl + bracket{left,right}" = ''
-        ; bspc desktop -m {prev,next} -f && bspwm-reorder-desktops
+        ; bspc monitor {prev,next} -f
       '';
 
       # focus the last node/desktop
@@ -100,9 +100,13 @@
         "bspc wm -h off; bspc node {older,newer} -f; bspc wm -h on";
 
       # focus or send to the given desktop
-      "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '{1-9,10}'";
-      "super + {_,shift + }{aogonek,ccaron,eogonek,eabovedot,iogonek,scaron,uogonek,umacron,doublelowquotemark,leftdoublequotemark}" =
-        "bspc {desktop -f,node -d} '{1,2,3,4,5,6,7,8,9,10}'";
+      "super + {1-9,0}" = "bspwm-greedy-focus '{1-9,10}' && bspwm-reorder-desktops";
+      "super + {aogonek,ccaron,eogonek,eabovedot,iogonek,scaron,uogonek,umacron,doublelowquotemark,leftdoublequotemark}" =
+        "bspwm-greedy-focus '{1,2,3,4,5,6,7,8,9,10}' && bspwm-reorder-desktops";
+
+      "super + shift {1-9,0}" = "bspc node -d '{1-9,10}'";
+      "super + shift {aogonek,ccaron,eogonek,eabovedot,iogonek,scaron,uogonek,umacron,doublelowquotemark,leftdoublequotemark}" =
+        "bspc node -d '{1,2,3,4,5,6,7,8,9,10}'";
 
       #
       # preselect

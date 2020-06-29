@@ -1,6 +1,12 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, lib, ... }: {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ./sxhkd.nix ];
-  home.packages = with pkgs; [ bspwm mine.bspwm-reorder-desktops tdrop wmname ];
+  home.packages = with pkgs; [
+    bspwm
+    mine.bspwm-reorder-desktops
+    mine.bspwm-greedy-focus
+    tdrop
+    wmname
+  ];
   services.polybar.config = let
     common = {
       modules-left = "bspwm divider title";
@@ -12,7 +18,7 @@
     "module/bspwm" = let colors = config.colors;
     in {
       type = "internal/bspwm";
-      pin-workspaces = false;
+      pin-workspaces = true;
       enable-click = true;
 
       format = "<label-state> <label-mode>";
@@ -48,7 +54,8 @@
       feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png
       systemctl --user restart polybar.service
     '';
-    monitors = { "'^1'" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" ]; };
+    monitors =
+      lib.mkDefault { "'^1'" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" ]; };
     rules = {
       Google-chrome = { desktop = "1"; };
       Firefox = { desktop = "1"; };
