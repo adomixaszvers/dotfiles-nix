@@ -1,13 +1,7 @@
-{ stdenv, fetchFromGitHub }:
+{ stdenv, nivSources }:
 stdenv.mkDerivation {
   name = "kakoune-text-objects";
-  version = "2019-05-09";
-  src = fetchFromGitHub {
-    owner = "Delapouite";
-    repo = "kakoune-text-objects";
-    rev = "aacd554982ba9a7a77a788817bb8ee2e1b380ee7";
-    sha256 = "0qdzl0z32wgw6k4ssy598sdqk2jh13lwvczslzyg4x5d6z8jwhyf";
-  };
+  src = nivSources.kakoune-text-objects;
 
   installPhase = ''
     mkdir -p $out/share/kak/autoload/plugins

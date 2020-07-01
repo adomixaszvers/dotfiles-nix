@@ -1,0 +1,88 @@
+{
+    "awesome-copycats": {
+        "branch": "master",
+        "description": "Awesome WM themes",
+        "fetchSubmodules": true,
+        "homepage": "",
+        "owner": "lcpz",
+        "repo": "awesome-copycats",
+        "rev": "41fd4ab224b974ceb4926302d2572f441e2d2b62",
+        "sha256": "1c72z280km24lh96rcz7a75k7hcvanwsqna8f3sxzrq4h048jk1d",
+        "type": "tarball",
+        "url": "https://github.com/lcpz/awesome-copycats/archive/41fd4ab224b974ceb4926302d2572f441e2d2b62.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "awesome-sharedtags": {
+        "branch": "v4.0",
+        "description": "Share and move tags on multiple screens when using the awesome window manager.",
+        "homepage": null,
+        "owner": "Drauthius",
+        "repo": "awesome-sharedtags",
+        "rev": "32d878d0d12bcfd900f2c6a7516a1370e6ebb7d6",
+        "sha256": "0js6v2jmkczi3g8j7vbk9hsq5wfz96jnhi7ka5c1rqw22lmjmlrk",
+        "type": "tarball",
+        "url": "https://github.com/Drauthius/awesome-sharedtags/archive/32d878d0d12bcfd900f2c6a7516a1370e6ebb7d6.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "bumblebee-status": {
+        "branch": "main",
+        "description": "bumblebee-status is a modular, theme-able status line generator for the i3 window manager.",
+        "homepage": "https://bumblebee-status.readthedocs.io/en/main/",
+        "owner": "tobi-wan-kenobi",
+        "repo": "bumblebee-status",
+        "rev": "b4fc88b57e541b4a15f898b73b74385ce5295290",
+        "sha256": "1df59aj6kg93sgagxh018hv8fxrmcvnkz51lvpvsdibc2xx0irn4",
+        "type": "tarball",
+        "url": "https://github.com/tobi-wan-kenobi/bumblebee-status/archive/v1.9.0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
+        "version": "v1.9.0"
+    },
+    "fz": {
+        "branch": "master",
+        "description": "Cli shell plugin, the missing fuzzy tab completion feature of z jump around command.",
+        "homepage": "",
+        "owner": "changyuheng",
+        "repo": "fz",
+        "rev": "ae0cd3ab0f0daebc80256f1236eda3a3283e4c1c",
+        "sha256": "0x3w03gcqhyhfhjfxvbp5m1i96ihq9l3m52w4xnpbkchqfsyw737",
+        "type": "tarball",
+        "url": "https://github.com/changyuheng/fz/archive/ae0cd3ab0f0daebc80256f1236eda3a3283e4c1c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "kakoune-sudo-write": {
+        "branch": "master",
+        "description": "Write to files using 'sudo'",
+        "homepage": "",
+        "owner": "occivink",
+        "repo": "kakoune-sudo-write",
+        "rev": "9a11b5c8c229c517848c069e3614f591a43d6ad3",
+        "sha256": "0ga8048z7hkfpl1gjrw76d4dk979a6vjpg8jsnrs3swg493qr6ix",
+        "type": "tarball",
+        "url": "https://github.com/occivink/kakoune-sudo-write/archive/9a11b5c8c229c517848c069e3614f591a43d6ad3.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "kakoune-text-objects": {
+        "branch": "master",
+        "description": "Extra text-objects",
+        "homepage": "http://kakoune.org/",
+        "owner": "Delapouite",
+        "repo": "kakoune-text-objects",
+        "rev": "aacd554982ba9a7a77a788817bb8ee2e1b380ee7",
+        "sha256": "0qdzl0z32wgw6k4ssy598sdqk2jh13lwvczslzyg4x5d6z8jwhyf",
+        "type": "tarball",
+        "url": "https://github.com/Delapouite/kakoune-text-objects/archive/aacd554982ba9a7a77a788817bb8ee2e1b380ee7.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nix-doom-emacs": {
+        "branch": "master",
+        "description": "doom-emacs packaged for Nix",
+        "homepage": "",
+        "owner": "vlaci",
+        "repo": "nix-doom-emacs",
+        "rev": "2c1bf99ddfddb32d39e85772548aa3f993484f82",
+        "sha256": "0x03hpscczfv5hsa6rspvfqfqhqnmivbd5d0h97l1f0rz4m605ab",
+        "type": "tarball",
+        "url": "https://github.com/vlaci/nix-doom-emacs/archive/2c1bf99ddfddb32d39e85772548aa3f993484f82.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}

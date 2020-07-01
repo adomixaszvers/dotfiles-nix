@@ -64,12 +64,7 @@
     enableCompletion = true;
     plugins = [{
       name = "fz";
-      src = pkgs.fetchFromGitHub {
-        owner = "changyuheng";
-        repo = "fz";
-        rev = "ae0cd3ab0f0daebc80256f1236eda3a3283e4c1c";
-        sha256 = "0x3w03gcqhyhfhjfxvbp5m1i96ihq9l3m52w4xnpbkchqfsyw737";
-      };
+      src = pkgs.nivSources.fz;
     }];
     sessionVariables = { FZ_HISTORY_CD_CMD = "_zlua"; };
     shellAliases = {
