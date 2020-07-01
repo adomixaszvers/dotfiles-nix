@@ -31,11 +31,11 @@
         "owner": "tobi-wan-kenobi",
         "repo": "bumblebee-status",
         "rev": "b4fc88b57e541b4a15f898b73b74385ce5295290",
-        "sha256": "1df59aj6kg93sgagxh018hv8fxrmcvnkz51lvpvsdibc2xx0irn4",
+        "sha256": "1i8vr0qij62x8rxjnkk2ji7w79cxyi5qcgmg583ps3ny3z64brx1",
         "type": "tarball",
-        "url": "https://github.com/tobi-wan-kenobi/bumblebee-status/archive/v1.9.0.tar.gz",
+        "url": "https://github.com/tobi-wan-kenobi/bumblebee-status/archive/v2.0.5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
-        "version": "v1.9.0"
+        "version": "v2.0.5"
     },
     "fz": {
         "branch": "master",
