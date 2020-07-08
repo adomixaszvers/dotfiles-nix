@@ -10,4 +10,7 @@
     multimarkdown
     nodePackages.prettier
   ];
+  home.file.".emacs-profile".text = ''
+    default
+  '';
 }
