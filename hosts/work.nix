@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let unstable = pkgs.channels.nixos-unstable;
 in {
-  imports = [ ../cli ../gui ../wm/common.nix ../wm/awesome ];
+  imports = [ ../cli ../gui ../wm/common.nix ../wm/bspwm ];
   colors = import ../gui/colors/nord.nix;
   home.file."jdks/openjdk8".source = unstable.openjdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
@@ -37,11 +37,11 @@ in {
     nodejs
     peek
     playerctl
-    rambox
     remmina
     robo3t
     samba
     soapui
+    spotifywm
     sqldeveloper
     sshpass
     steam-run-native
@@ -54,7 +54,7 @@ in {
     unstable.jetbrains.idea-ultimate
     unstable.keepassxc
     unstable.postman
-    unstable.spotify
+    unstable.rambox
     unzip
     vagrant
     visualvm
@@ -105,7 +105,9 @@ in {
     enable = true;
     inactiveInterval = 5;
     lockCmd = let wallpaper = ./lockscreen.png;
-    in "i3lock -n -i ${wallpaper} -t -p win -f";
+    in "${pkgs.i3lock}/bin/i3lock -n -c ${
+      builtins.substring 1 6 config.colors.background
+    } -t -p win -f";
   };
   xsession.windowManager.i3.config.startup = [{
     command = "rambox";
