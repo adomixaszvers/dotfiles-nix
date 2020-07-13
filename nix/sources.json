@@ -49,10 +49,10 @@
         "homepage": "",
         "owner": "occivink",
         "repo": "kakoune-sudo-write",
-        "rev": "9a11b5c8c229c517848c069e3614f591a43d6ad3",
-        "sha256": "0ga8048z7hkfpl1gjrw76d4dk979a6vjpg8jsnrs3swg493qr6ix",
+        "rev": "abe6bd6d6e111957d7e84e790e682955b8b319c6",
+        "sha256": "05b6hxsqvh3kmi7f139rihx0i9fn2j5fjz7yzy1g4flm8lb0h129",
         "type": "tarball",
-        "url": "https://github.com/occivink/kakoune-sudo-write/archive/9a11b5c8c229c517848c069e3614f591a43d6ad3.tar.gz",
+        "url": "https://github.com/occivink/kakoune-sudo-write/archive/abe6bd6d6e111957d7e84e790e682955b8b319c6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "kakoune-text-objects": {
