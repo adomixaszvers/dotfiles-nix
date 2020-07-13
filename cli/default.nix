@@ -18,6 +18,7 @@
     lsof
     ncdu
     nixfmt
+    niv
     p7zip
     patchelf
     ranger
