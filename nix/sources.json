@@ -25,16 +25,10 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "bumblebee-status": {
-        "branch": "main",
-        "description": "bumblebee-status is a modular, theme-able status line generator for the i3 window manager.",
-        "homepage": "https://bumblebee-status.readthedocs.io/en/main/",
-        "owner": "tobi-wan-kenobi",
-        "repo": "bumblebee-status",
-        "rev": "b4fc88b57e541b4a15f898b73b74385ce5295290",
         "sha256": "1i8vr0qij62x8rxjnkk2ji7w79cxyi5qcgmg583ps3ny3z64brx1",
         "type": "tarball",
         "url": "https://github.com/tobi-wan-kenobi/bumblebee-status/archive/v2.0.5.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<version>.tar.gz",
+        "url_template": "https://github.com/tobi-wan-kenobi/bumblebee-status/archive/<version>.tar.gz",
         "version": "v2.0.5"
     },
     "fz": {
