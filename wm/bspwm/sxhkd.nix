@@ -33,7 +33,7 @@
       "super + F7" = "playerctl next";
 
       # power menu
-      "super + Pause" = "rofi-powermenu";
+      "super + F4" = "rofi-powermenu";
 
       # make sxhkd reload its configuration files:
       "super + Escape" = "pkill -USR1 -x sxhkd";
