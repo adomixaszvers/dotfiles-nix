@@ -19,7 +19,7 @@
     in {
       type = "internal/bspwm";
       pin-workspaces = true;
-      enable-click = true;
+      enable-click = false;
 
       format = "<label-state> <label-mode>";
 
