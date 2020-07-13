@@ -39,7 +39,7 @@
   };
   home.packages = with pkgs; [ mine.maimpick mine.rofi-powermenu ];
   home.sessionVariables =
-    let askpass = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
+    let askpass = "${pkgs.gnome3.seahorse}/libexec/seahorse/ssh-askpass";
     in {
       SSH_ASKPASS = askpass;
       SUDO_ASKPASS = askpass;
