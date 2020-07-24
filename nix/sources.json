@@ -68,15 +68,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-doom-emacs": {
-        "branch": "develop",
+        "branch": "master",
         "description": "doom-emacs packaged for Nix",
         "homepage": "",
         "owner": "vlaci",
         "repo": "nix-doom-emacs",
-        "rev": "a4d50421009ab1b310d8fc8054a6e7a184b69738",
-        "sha256": "19cphzd2d6c8320f1i0c5w0575069rn9acmqqg58rbz5vsqkkgyw",
+        "rev": "626f30c72836daea3f38fe1e3cc26e8772789e9a",
+        "sha256": "0lzcz5qwg96s6qd9dzs4iv19lddz0hsr84p6cgdh22rwjvs9b91f",
         "type": "tarball",
-        "url": "https://github.com/vlaci/nix-doom-emacs/archive/a4d50421009ab1b310d8fc8054a6e7a184b69738.tar.gz",
+        "url": "https://github.com/vlaci/nix-doom-emacs/archive/626f30c72836daea3f38fe1e3cc26e8772789e9a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
