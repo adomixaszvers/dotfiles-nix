@@ -101,7 +101,8 @@
         "bspc wm -h off; bspc node {older,newer} -f; bspc wm -h on";
 
       # focus or send to the given desktop
-      "super + {1-9,0}" = "bspwm-greedy-focus '{1-9,10}' && bspwm-reorder-desktops";
+      "super + {1-9,0}" =
+        "bspwm-greedy-focus '{1-9,10}' && bspwm-reorder-desktops";
       "super + {aogonek,ccaron,eogonek,eabovedot,iogonek,scaron,uogonek,umacron,doublelowquotemark,leftdoublequotemark}" =
         "bspwm-greedy-focus '{1,2,3,4,5,6,7,8,9,10}' && bspwm-reorder-desktops";
 

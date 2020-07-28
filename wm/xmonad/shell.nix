@@ -1,6 +1,5 @@
 { pkgs ? import <nixpkgs> { } }:
-let
-  extraPackages = import ./extraPackages.nix;
+let extraPackages = import ./extraPackages.nix;
 in with pkgs;
 
 mkShell {
