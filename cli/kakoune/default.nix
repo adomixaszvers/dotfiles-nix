@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs;
     let
-      unstable = channels.nixos-unstable;
+      unstable = nixos-unstable;
       kakouneTextObjects = callPackage (import ./kakoune-text-objects.nix) { };
       sudoWrite = callPackage (import ./sudo-write.nix) { };
       kakrc = runCommandNoCCLocal "kakrc" { } ''

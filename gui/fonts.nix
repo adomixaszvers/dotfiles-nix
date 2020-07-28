@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs;
-    let unstable = pkgs.channels.nixos-unstable;
+    let unstable = pkgs.nixos-unstable;
     in [
       corefonts
       google-fonts

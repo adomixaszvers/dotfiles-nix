@@ -1,5 +1,5 @@
 { pkgs, config, ... }:
-let unstable = pkgs.channels.nixos-unstable;
+let unstable = pkgs.nixos-unstable;
 in {
   imports = [ ../cli ../gui ../wm/common.nix ../wm/bspwm ];
   colors = import ../gui/colors/nord.nix;

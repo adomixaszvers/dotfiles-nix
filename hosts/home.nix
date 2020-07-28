@@ -2,7 +2,7 @@
   imports = [ ../cli ../gui ../wm/common.nix ../wm/bspwm ];
   colors = import ../gui/colors/nord.nix;
   home.packages = with pkgs;
-    let unstable = channels.nixos-unstable;
+    let unstable = pkgs.nixos-unstable;
     in [
       # (mine.steam.override { config.steam.primus = true; })
       borgbackup

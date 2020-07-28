@@ -2,7 +2,7 @@
 
 {
   imports = [ ../picom.nix ../dunst.nix ];
-  home.packages = with pkgs.channels.nixos-unstable; [ qtile ];
+  home.packages = with pkgs.nixos-unstable; [ qtile ];
   xsession.windowManager.command = "qtile";
   xdg.configFile."qtile/config.py" = {
     source = ./config.py;
