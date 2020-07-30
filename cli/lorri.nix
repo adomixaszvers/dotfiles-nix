@@ -17,5 +17,4 @@
     }
   '';
   services.lorri.enable = true;
-  xsession.importedVariables = [ "NIX_PATH" ];
 }

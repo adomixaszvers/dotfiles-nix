@@ -1,7 +1,6 @@
 self: super: {
   sxhkd = super.sxhkd.overrideAttrs
     (oldAttrs: { patches = [ ./pkgs/sxhkd.patch ]; });
-  nivSources = import ./nix/sources.nix;
   mine = {
     bspwm-greedy-focus = super.callPackage ./pkgs/bspwm-greedy-focus.nix { };
     bspwm-reorder-desktops =
