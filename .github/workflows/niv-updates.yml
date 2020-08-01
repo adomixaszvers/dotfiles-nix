@@ -31,11 +31,11 @@ jobs:
           # Update all dependencies tracked by niv. Another example: 'common,jq,hub'
           whitelist: ''
           # Do not blacklist any of the dependencies. Another example: 'nixpkgs,niv'
-          blacklist: ''
+          blacklist: 'nixpkgs,nixos-unstable'
           # Note that | is really important for the labels
           labels: |
-            documentation
-            good first issue
+            automated
+            dependencies
           # Let's not show merges in the changelog
           show_merges: false
           # Have some prefix and a suffix. Use '|' to keep newlines
