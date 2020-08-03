@@ -31,7 +31,7 @@ jobs:
           # Update all dependencies tracked by niv. Another example: 'common,jq,hub'
           whitelist: ''
           # Do not blacklist any of the dependencies. Another example: 'nixpkgs,niv'
-          blacklist: 'nixpkgs,nixos-unstable'
+          blacklist: ''
           # Note that | is really important for the labels
           labels: |
             automated
