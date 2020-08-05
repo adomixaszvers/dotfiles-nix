@@ -31,13 +31,13 @@ let
         sha1 = "46afbcaf09e94fe025afa07ae994ac3168adbdf3";
       };
     };
-    "@types/node-14.0.5" = {
+    "@types/node-14.0.27" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "14.0.5";
+      version = "14.0.27";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-14.0.5.tgz";
-        sha512 = "90hiq6/VqtQgX8Sp0EzeIsv3r+ellbGj4URKj5j30tLlZvRUpnAe9YbYnjl3pJM93GyXU0tghHhvXHq+5rnCKA==";
+        url = "https://registry.npmjs.org/@types/node/-/node-14.0.27.tgz";
+        sha512 = "kVrqXhbclHNHGu9ztnAwSncIgJv/FaxmzXJvGXNdcCpV1b8u1/Mi6z6m0vwy0LzKeXFTPLH0NzwmoJ3fNCIq0g==";
       };
     };
     "commander-2.20.3" = {
@@ -92,7 +92,7 @@ in
       sources."@types/commander-2.12.2"
       sources."@types/diff-3.5.3"
       sources."@types/get-stdin-5.0.1"
-      sources."@types/node-14.0.5"
+      sources."@types/node-14.0.27"
       sources."commander-2.20.3"
       sources."diff-3.5.0"
       sources."get-stdin-5.0.1"
