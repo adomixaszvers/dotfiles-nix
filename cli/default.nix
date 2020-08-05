@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./lorri.nix ./neovim ./kakoune ];
+  imports = [ ./gpg-agent.nix ./lorri.nix ./neovim ./kakoune ];
   home.packages = with pkgs; [
     bat
     bfs
@@ -17,8 +17,8 @@
     lf
     lsof
     ncdu
-    nixfmt
     niv
+    nixfmt
     p7zip
     patchelf
     ranger
