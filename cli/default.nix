@@ -76,6 +76,7 @@
       la = "exa -a --group-directories-first";
       ll = "exa -al --group-directories-first";
       lt = "exa -aT";
+      setlt = "setxkbmap lt,us -option grp:caps_toggle -model pc104";
     };
     initExtra = ''
       find-shells () {
