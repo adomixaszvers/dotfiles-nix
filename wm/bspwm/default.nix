@@ -67,7 +67,7 @@
       KeePassXC = { desktop = "9"; };
       "'Google Play Music Desktop Player'" = { desktop = "10"; };
       Spotify = { desktop = "10"; };
-      "'*:scratchpad'" = { state = "floating"; };
+      "'*:scratchpad'" = { state = "fullscreen"; };
       lxqt-openssh-askpass = { state = "floating"; };
     };
     settings = {
