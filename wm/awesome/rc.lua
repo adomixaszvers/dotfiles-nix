@@ -67,7 +67,7 @@ beautiful.gap_single_client = false
 beautiful.useless_gap = dpi(5)
 
 -- This is used later as the default terminal and editor to run.
-local terminal = os.getenv("TERMINAL") or "termite"
+local terminal = "alacritty"
 local editor = os.getenv("EDITOR") or "nano"
 local editor_cmd = terminal .. " -e " .. editor
 
@@ -591,7 +591,7 @@ local globalkeys =
         {modkey, "Control"},
         "s",
         function()
-            scratch.toggle("kitty --name=scratchpad", {instance = "scratchpad", class = "kitty"})
+            scratch.toggle("alacritty --class=scratchpad", {instance = "scratchpad", class = "Alacritty"})
         end,
         {description = "launch Termite", group = "scratch"}
     )
