@@ -4,6 +4,7 @@ in {
   imports = [ ../cli ../gui ../wm/common.nix ../wm/bspwm ];
   colors = import ../gui/colors/nord.nix;
   home.file."jdks/openjdk8".source = unstable.openjdk8;
+  home.file."jdks/oraclejdk8".source = unstable.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
   home.file."jdks/scala".source = pkgs.scala;
   home.file."startwm.sh".source = pkgs.writeShellScript "startwm.sh" ''
@@ -21,6 +22,7 @@ in {
     docker-machine
     filezilla
     firefox
+    gimp
     gitAndTools.gitflow
     gnome3.libsecret
     gnumake
@@ -34,9 +36,9 @@ in {
     mine.dbvisualizer
     mine.steam
     moonlight-embedded
-    nodejs
     peek
     playerctl
+    rambox
     remmina
     robo3t
     samba
@@ -54,7 +56,6 @@ in {
     unstable.jetbrains.idea-ultimate
     unstable.keepassxc
     unstable.postman
-    unstable.rambox
     unzip
     vagrant
     visualvm
