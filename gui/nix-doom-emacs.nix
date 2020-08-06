@@ -2,7 +2,7 @@
 
 let
   doom-emacs = pkgs.callPackage pkgs.nivSources.nix-doom-emacs {
-    doomPrivateDir =
+    doomPrivateDir = pkgs.gitignoreSource
       ~/.config/doom; # Directory containing your config.el init.el
     # and packages.el files
   };
