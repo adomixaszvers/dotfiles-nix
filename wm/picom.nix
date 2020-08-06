@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ config, lib, ... }: {
   services.picom = {
     enable = lib.mkDefault config.xsession.enable;
     inactiveDim = "0.1";

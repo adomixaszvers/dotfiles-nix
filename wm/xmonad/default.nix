@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, ... }:
 let extraPackages = import ./extraPackages.nix;
 in {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ];

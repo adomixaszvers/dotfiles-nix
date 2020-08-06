@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ pkgs, ... }: {
   imports = let
     current = ./hosts/current.nix;
     hostSpecific = if builtins.pathExists current then current else { };

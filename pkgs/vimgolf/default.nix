@@ -1,4 +1,4 @@
-{ lib, bundlerApp, vim }:
+{ bundlerApp }:
 
 bundlerApp {
   pname = "vimgolf";

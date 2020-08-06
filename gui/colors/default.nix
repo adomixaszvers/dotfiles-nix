@@ -59,9 +59,8 @@ in {
           };
         };
     };
-  config.colors = lib.mapAttrs (_: v: lib.mkDefault v) (import ./dracula.nix)
-    // {
-      backgroundTRGBA = lib.mkDefault (toTrgba cfg.background);
-      backgroundTransparent = lib.mkDefault "[95]${cfg.background}";
-    };
+  config.colors = lib.mapAttrs (_: lib.mkDefault) (import ./dracula.nix) // {
+    backgroundTRGBA = lib.mkDefault (toTrgba cfg.background);
+    backgroundTransparent = lib.mkDefault "[95]${cfg.background}";
+  };
 }

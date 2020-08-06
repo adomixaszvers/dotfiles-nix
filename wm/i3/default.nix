@@ -40,19 +40,19 @@ in {
           '';
           fonts = [ "NotoMono Nerd Font 9" ];
           colors = with config.colors; {
+            inherit background;
             activeWorkspace = {
-              background = background;
+              inherit background;
               border = background;
               text = whiteb;
             };
-            background = background;
             focusedWorkspace = {
               background = blackb;
               border = background;
               text = whiteb;
             };
             inactiveWorkspace = {
-              background = background;
+              inherit background;
               border = background;
               text = white;
             };
@@ -69,7 +69,7 @@ in {
       colors = with config.colors; {
         background = black;
         focused = {
-          background = background;
+          inherit background;
           border = background;
           text = whiteb;
           indicator = blackb;

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ ./gpg-agent.nix ./lorri.nix ./neovim ./kakoune ];

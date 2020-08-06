@@ -1,6 +1,5 @@
-self: super: {
-  sxhkd = super.sxhkd.overrideAttrs
-    (oldAttrs: { patches = [ ./pkgs/sxhkd.patch ]; });
+pkgs: super: {
+  sxhkd = super.sxhkd.overrideAttrs (_: { patches = [ ./pkgs/sxhkd.patch ]; });
   mine = {
     bspwm-greedy-focus = super.callPackage ./pkgs/bspwm-greedy-focus.nix { };
     bspwm-reorder-desktops =
@@ -8,7 +7,7 @@ self: super: {
     bumblebee-status = super.callPackage ./pkgs/bumblebee-status { };
     dbvisualizer = super.callPackage ./pkgs/dbvisualizer.nix { };
     kaknix = super.callPackage ./pkgs/kaknix.nix { };
-    lua-fmt = (import ./pkgs/lua-fmt { pkgs = self; }).lua-fmt;
+    lua-fmt = (import ./pkgs/lua-fmt { inherit pkgs; }).lua-fmt;
     maimpick = super.callPackage ./pkgs/maimpick.nix { };
     rofi-powermenu = super.callPackage ./pkgs/rofi-powermenu.nix { };
     steam = super.steam.override {

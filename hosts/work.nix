@@ -105,10 +105,9 @@ in {
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;
-    lockCmd = let wallpaper = ./lockscreen.png;
-    in "${pkgs.i3lock}/bin/i3lock -n -c ${
-      builtins.substring 1 6 config.colors.background
-    } -t -p win -f";
+    lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c ${
+        builtins.substring 1 6 config.colors.background
+      } -t -p win -f";
   };
   xsession.windowManager.i3.config.startup = [{
     command = "rambox";
