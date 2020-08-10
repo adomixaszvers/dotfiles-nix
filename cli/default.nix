@@ -82,15 +82,6 @@
       find-shells () {
         cat $XDG_DATA_HOME/direnv/allow/* | sort | uniq | sed -e 's/\.envrc$/shell.nix/'
       }
-
-      nix-rebuild-shells () {
-        while read i; do
-          if [ -f "$i" ]; then
-            echo "rebuilding $i"
-            nix-shell "$i" --run true
-          fi
-        done <<< $(find-shells)
-      }
     '';
   };
 }

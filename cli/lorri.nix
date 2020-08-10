@@ -11,7 +11,7 @@
       while read i; do
         if [ -f "$i" ]; then
           echo "rebuilding $i"
-          lorri watch --once --shell-file "$i"
+          nix-shell "$i" --run true && lorri watch --once --shell-file "$i"
         fi
       done <<< $(find-shells)
     }
