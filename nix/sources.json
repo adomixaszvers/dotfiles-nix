@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "Infinisil",
         "repo": "all-hies",
-        "rev": "09ba836904fa290b5e37d5403150ea0c921661fb",
-        "sha256": "0qbjqv1fkhkx1cffqybz1mfks1jphh0vh3zd8ad2qd6lch4gyys4",
+        "rev": "534ac517b386821b787d1edbd855b9966d0c0775",
+        "sha256": "0bw1llpwxbh1dnrnbxkj2l0j58s523hjivszf827c3az5i4py1i2",
         "type": "tarball",
-        "url": "https://github.com/Infinisil/all-hies/archive/09ba836904fa290b5e37d5403150ea0c921661fb.tar.gz",
+        "url": "https://github.com/Infinisil/all-hies/archive/534ac517b386821b787d1edbd855b9966d0c0775.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "awesome-copycats": {
