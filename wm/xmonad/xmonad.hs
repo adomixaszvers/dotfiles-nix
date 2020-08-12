@@ -169,6 +169,7 @@ myManageHook = composeAll
     , className =? "Eclipse" -?> doShift ws7
     , className =? "KeePass2" -?> doShift ws9
     , className =? "Google Play Music Desktop Player" -?> doShift ws0
+    , className =? "Spotify" -?> doShift ws0
     ]
 
 myKeysDescr :: XConfig Layout -> [((KeyMask, KeySym), NamedAction)]
@@ -230,7 +231,7 @@ myKeysDescr conf@XConfig { XMonad.modMask = modm } =
     , ((modm, xK_period), sendMessage' (IncMasterN (-1)))
     , subtitle "quit, or restart"
     , ((modm .|. shiftMask, xK_c), addName "Quit" $ io exitSuccess)
-    , ((modm, xK_Pause), addName "Power menu" $ spawn "rofi-powermenu")
+    , ((modm, xK_F4), addName "Power menu" $ spawn "rofi-powermenu")
     , ( (modm, xK_q)
       , addName "Restart" $ spawn "xmonad --recompile && xmonad --restart"
       )
@@ -289,8 +290,9 @@ myLogHook dbus = def { ppOutput  = dbusOutput dbus
                      }
  where
   clickableWS ws =
-    maybe ws
-          (\i -> "%{A1:xdotool set_desktop " ++ show i ++ ":}" ++ ws ++ "%{A}")
+    maybe
+        ws
+        (\i -> "%{A1:xdotool set_desktop " ++ show i ++ ":}" ++ ws ++ "%{A}")
       $ elemIndex ws myWorkspaces
 
 -- Emit a DBus signal on log updates
