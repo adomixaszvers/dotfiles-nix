@@ -2,8 +2,8 @@ name: Automated niv-managed dependency updates
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    # run this every day at 2:00am
-    - cron:  '0 2 * * *'
+    # run this every Friday
+    - cron:  '0 0 * * FRI'
   workflow_dispatch:
     inputs: {}
 jobs:
