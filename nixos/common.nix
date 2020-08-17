@@ -50,10 +50,6 @@
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.configFile = pkgs.runCommand "default.pa" { } ''
-    sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
-      ${pkgs.pulseaudioLight}/etc/pulse/default.pa > $out
-  '';
 
   console = {
     font = "Lat2-Terminus16";
