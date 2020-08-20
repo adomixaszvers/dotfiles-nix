@@ -3,7 +3,9 @@ with pkgs;
 mkShell {
   name = "qtile-shell";
   buildInputs = with pkgs.nixos-unstable.python3Packages; [
-    python-language-server
+    qtile
     black
+    python-language-server
+    xlib
   ];
 }

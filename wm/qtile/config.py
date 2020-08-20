@@ -24,9 +24,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile.config import Key, Screen, Group, Drag, Click
+from libqtile.config import (
+    Key, Screen, Group, Drag, Click, Match, DropDown, ScratchPad)
 from libqtile.command import lazy
 from libqtile import layout, bar, widget
+# this import requires python-xlib to be installed
+from Xlib import display as xdisplay
 
 try:
     from typing import List  # noqa: F401
@@ -67,10 +70,31 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "d", lazy.spawn("rofi -show combi -combi-modi window,drun")),
     Key([mod, "shift"], "d", lazy.spawn("rofi -show run -sidebar-mode")),
-    Key([mod], "Pause", lazy.spawn("rofi-powermenu")),
+    Key([mod], "F4", lazy.spawn("rofi-powermenu")),
+    Key([mod, "control"], "s", lazy.group["scratchpad"].dropdown_toggle("term")),
+    Key([mod, "control"], "e", lazy.group["scratchpad"].dropdown_toggle("emacs")),
 ]
 
-groups = [Group(i) for i in "1234567890"]
+groups = [
+    Group("1", matches=[Match(wm_class=["Firefox", "Google-chrome"])]),
+    Group("2"),
+    Group("3", matches=[Match(wm_class=["jetbrains-idea"]), ]),
+    Group("4", matches=[Match(wm_class=["rambox"])]),
+    Group("5", matches=[Match(wm_class=["SmartGit", "Steam"])]),
+    Group("6", matches=[Match(wm_class=["libreoffice"])]),
+    Group("7"),
+    Group("8"),
+    Group("9", matches=[Match(wm_class=["KeePassXC"])]),
+    Group("0", matches=[
+          Match(wm_class=["Google Play Music Desktop Player", "Spotify"])]),
+    ScratchPad("scratchpad", [
+        DropDown("emacs", "emacs --name scratchpad",
+                 x=0.025, y=0.025, height=0.95, width=0.95),
+        DropDown("term", "kitty --name scratchpad",
+                 x=0.025, y=0.025, height=0.95, width=0.95),
+    ]),
+]
+
 lt_keys = {
     "1": "aogonek",
     "2": "ccaron",
@@ -84,15 +108,16 @@ lt_keys = {
     "0": "leftdoublequotemark",
 }
 
-for i in groups:
+for group_name in "1234567890":
     keys.extend(
         [
             # mod1 + letter of group = switch to group
-            Key([mod], i.name, lazy.group[i.name].toscreen()),
-            Key([mod], lt_keys[i.name], lazy.group[i.name].toscreen()),
+            Key([mod], group_name, lazy.group[group_name].toscreen()),
+            Key([mod], lt_keys[group_name], lazy.group[group_name].toscreen()),
             # mod1 + shift + letter of group = switch to & move focused window to group
-            Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
-            Key([mod, "shift"], lt_keys[i.name], lazy.window.togroup(i.name)),
+            Key([mod, "shift"], group_name, lazy.window.togroup(group_name)),
+            Key([mod, "shift"], lt_keys[group_name],
+                lazy.window.togroup(group_name)),
         ]
     )
 
@@ -112,6 +137,34 @@ layouts = [
 widget_defaults = dict(font="sans", fontsize=12, padding=3,)
 extension_defaults = widget_defaults.copy()
 
+
+def get_num_monitors():
+    num_monitors = 0
+    try:
+        display = xdisplay.Display()
+        screen = display.screen()
+        resources = screen.root.xrandr_get_screen_resources()
+
+        for output in resources.outputs:
+            monitor = display.xrandr_get_output_info(
+                output, resources.config_timestamp)
+            preferred = False
+            if hasattr(monitor, "preferred"):
+                preferred = monitor.preferred
+            elif hasattr(monitor, "num_preferred"):
+                preferred = monitor.num_preferred
+            if preferred:
+                num_monitors += 1
+    except Exception as e:
+        # always setup at least one monitor
+        return 1
+    else:
+        return num_monitors
+
+
+num_monitors = get_num_monitors()
+
+
 screens = [
     Screen(
         top=bar.Bar(
@@ -119,15 +172,32 @@ screens = [
                 widget.GroupBox(hide_unused=True),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.TextBox("default config", name="default"),
                 widget.CurrentLayoutIcon(),
+                widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
                 widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
             ],
             24,
         ),
     ),
 ]
+
+if num_monitors > 1:
+    for m in range(num_monitors - 1):
+        screens.append(
+            Screen(
+                top=bar.Bar(
+                    [
+                        widget.GroupBox(hide_unused=True),
+                        widget.Prompt(),
+                        widget.WindowName(),
+                        widget.CurrentLayoutIcon(),
+                        widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
+                    ],
+                    24,
+                ),
+            )
+        )
+
 
 # Drag floating layouts.
 mouse = [
@@ -165,6 +235,7 @@ floating_layout = layout.Floating(
         {"wname": "branchdialog"},  # gitk
         {"wname": "pinentry"},  # GPG key password entry
         {"wmclass": "ssh-askpass"},  # ssh-askpass
+        {"wmclass": "sun-awt-X11-XDialogPeer"},
     ]
 )
 auto_fullscreen = True
