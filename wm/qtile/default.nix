@@ -3,8 +3,9 @@
 {
   imports = [ ../picom.nix ../dunst.nix ];
   home.packages = let
-    myQtile = pkgs.qtile.overridePythonAttrs (oldAttrs: {
-      pythonPath = oldAttrs.pythonPath ++ [ pkgs.python37Packages.xlib ];
+    unstable = pkgs.nixos-unstable;
+    myQtile = unstable.qtile.overridePythonAttrs (oldAttrs: {
+      pythonPath = oldAttrs.pythonPath ++ [ unstable.python37Packages.xlib ];
     });
   in [ myQtile ];
   xsession.windowManager.command = "qtile";
