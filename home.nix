@@ -4,7 +4,7 @@
     hostSpecific = if builtins.pathExists current then current else { };
   in [ hostSpecific ];
   home.extraOutputsToInstall = [ "doc" "info" "devdoc" ];
-  home.stateVersion = "19.09";
+  home.stateVersion = "20.03";
   manual.html.enable = true;
   programs.home-manager = {
     enable = true;
