@@ -1,16 +1,12 @@
+{self, sources, system}:
 let
-  sources = import ./nix/sources.nix;
   hie = import "${sources.all-hies}/overlay.nix";
-  mine = import ./mine.nix;
+  mine = self.packages."${system}";
   nivSources = _: _: { nivSources = sources; };
   gitignoreSource = _: super:
     let gitignore = (import sources.gitignore) { inherit (super) lib; };
     in { inherit (gitignore) gitignoreSource; };
   nixos-unstable = _: _: {
-    nixos-unstable = import sources.nixos-unstable { overlays = [ mine hie ]; };
+    nixos-unstable = import sources.nixos-unstable { inherit system; overlays = [ mine hie ]; };
   };
-  overlay = _: _:
-    import sources.nixpkgs {
-      overlays = [ mine hie nixos-unstable nivSources gitignoreSource ];
-    };
-in [ overlay ]
+in [ mine hie nixos-unstable nivSources gitignoreSource ]
