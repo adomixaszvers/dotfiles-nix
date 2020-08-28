@@ -34,10 +34,6 @@
       url = "github:Delapouite/kakoune-text-objects";
       flake = false;
     };
-    doom-config = {
-      url = "/home/adomas/.config/doom";
-      flake = false;
-    };
     nix-doom-emacs = {
       url = "github:vlaci/nix-doom-emacs";
       flake = false;

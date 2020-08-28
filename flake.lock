@@ -66,18 +66,6 @@
         "type": "github"
       }
     },
-    "doom-config": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-4E+lxLG1mtxHw+ARluZqkMDeuMVRQFQdJm5P7VsQRFo=",
-        "path": "/home/adomas/.config/doom",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/adomas/.config/doom",
-        "type": "path"
-      }
-    },
     "flake-utils": {
       "locked": {
         "lastModified": 1598466101,
@@ -228,7 +216,6 @@
         "awesome-copycats": "awesome-copycats",
         "awesome-sharedtags": "awesome-sharedtags",
         "bumblebee-status": "bumblebee-status",
-        "doom-config": "doom-config",
         "flake-utils": "flake-utils",
         "fz": "fz",
         "gitignore": "gitignore",
