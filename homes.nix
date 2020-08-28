@@ -11,7 +11,7 @@ let
     };
     module =
       extendedLib.evalModules { modules = [ { } configuration ] ++ hmModules; };
-    activate = pkgs.writeShellScript "home-manager-activate" ''
+    activate = pkgs.writeShellScriptBin "home-manager-activate" ''
       #!${pkgs.runtimeShell}
       exec ${module.config.home.activationPackage}/activate
     '';

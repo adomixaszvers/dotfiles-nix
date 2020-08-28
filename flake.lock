@@ -128,15 +128,16 @@
     "home-manager": {
       "flake": false,
       "locked": {
-        "lastModified": 1598478552,
-        "narHash": "sha256-eU8+kpU4dRr+BG47IsQUBot5KtqfZdaLlfCur7pXxhg=",
+        "lastModified": 1598217225,
+        "narHash": "sha256-QLp/RbXv42SZzYQMglqAa+RmyRmx9dKf7v9PRtKFP1U=",
         "owner": "rycee",
         "repo": "home-manager",
-        "rev": "6cf6b587b575493e7718bf08b209013d7dcf4d58",
+        "rev": "4a8d6280544d9b061c0b785d2470ad6eeda47b02",
         "type": "github"
       },
       "original": {
         "owner": "rycee",
+        "ref": "release-20.03",
         "repo": "home-manager",
         "type": "github"
       }

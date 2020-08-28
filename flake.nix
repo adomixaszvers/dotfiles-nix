@@ -43,7 +43,7 @@
       flake = false;
     };
     home-manager = {
-      url = "github:rycee/home-manager";
+      url = "github:rycee/home-manager/release-20.03";
       flake = false;
     };
     nixpkgs = { url = "github:NixOS/nixpkgs-channels/nixos-20.03"; };
