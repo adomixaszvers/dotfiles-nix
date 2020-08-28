@@ -56,6 +56,10 @@
         config = import ./config.nix;
         hie = import "${all-hies}/overlay.nix";
         mine = _: _: { mine = self.packages."${system}"; };
+        sxhkd-with-lt-keys = _: super: {
+          sxhkd = super.sxhkd.overrideAttrs
+            (_: { patches = [ ./pkgs/sxhkd.patch ]; });
+        };
         nivSources = _: _: { nivSources = sources; };
         gitignoreSource = _: super:
           let gitignore = (import sources.gitignore) { inherit (super) lib; };
@@ -66,15 +70,20 @@
             overlays = [ mine hie ];
           };
         };
-        overlays = [ mine hie nixos-unstable nivSources gitignoreSource ];
+        overlays = [
+          gitignoreSource
+          hie
+          mine
+          nivSources
+          nixos-unstable
+          sxhkd-with-lt-keys
+        ];
         pkgs = import nixpkgs { inherit system overlays config; };
       in {
-        packages = import "${self}/pkgs" {
+        packages = import ./pkgs {
           inherit pkgs;
           bumblebee-status-source = bumblebee-status;
         };
-        homes = import "${self}/homes.nix" {
-          inherit self home-manager pkgs;
-        };
+        homes = import ./homes.nix { inherit self home-manager pkgs; };
       }));
 }

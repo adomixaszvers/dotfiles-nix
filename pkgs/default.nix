@@ -1,7 +1,6 @@
 { pkgs, bumblebee-status-source }:
 
 {
-  sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
   bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
   bspwm-reorder-desktops =
     pkgs.callPackage ./bspwm-reorder-desktops.nix { };
