@@ -1,8 +1,6 @@
-system:
-{ nixpkgs, bumblebee-status-source }:
-let pkgs = nixpkgs.legacyPackages."${system}";
+{ pkgs, bumblebee-status-source }:
 
-in {
+{
   sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
   bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
   bspwm-reorder-desktops =

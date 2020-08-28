@@ -34,6 +34,10 @@
       url = "github:Delapouite/kakoune-text-objects";
       flake = false;
     };
+    doom-config = {
+      url = "/home/adomas/.config/doom";
+      flake = false;
+    };
     nix-doom-emacs = {
       url = "github:vlaci/nix-doom-emacs";
       flake = false;
@@ -47,15 +51,30 @@
   };
   outputs = { self, nixpkgs, bumblebee-status, flake-utils, all-hies
     , home-manager, ... }@sources:
-    (flake-utils.lib.eachDefaultSystem (system: {
-      packages = import "${self}/pkgs" system {
-        inherit nixpkgs;
-        bumblebee-status-source = bumblebee-status;
-      };
-      homes = import "${self}/homes.nix" {
-        inherit self nixpkgs home-manager system sources all-hies;
-      };
-    })) // {
-
-    };
+    (flake-utils.lib.eachDefaultSystem (system:
+      let
+        config = import ./config.nix;
+        hie = import "${all-hies}/overlay.nix";
+        mine = _: _: { mine = self.packages."${system}"; };
+        nivSources = _: _: { nivSources = sources; };
+        gitignoreSource = _: super:
+          let gitignore = (import sources.gitignore) { inherit (super) lib; };
+          in { inherit (gitignore) gitignoreSource; };
+        nixos-unstable = _: _: {
+          nixos-unstable = import sources.nixos-unstable {
+            inherit system config;
+            overlays = [ mine hie ];
+          };
+        };
+        overlays = [ mine hie nixos-unstable nivSources gitignoreSource ];
+        pkgs = import nixpkgs { inherit system overlays config; };
+      in {
+        packages = import "${self}/pkgs" {
+          inherit pkgs;
+          bumblebee-status-source = bumblebee-status;
+        };
+        homes = import "${self}/homes.nix" {
+          inherit self home-manager pkgs;
+        };
+      }));
 }
