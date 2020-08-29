@@ -50,23 +50,24 @@
     (flake-utils.lib.eachDefaultSystem (system:
       let
         config = import ./config.nix;
-        hie = import "${all-hies}/overlay.nix";
-        mine = _: _: { mine = self.packages."${system}"; };
-        sxhkd-with-lt-keys = _: super: {
-          sxhkd = super.sxhkd.overrideAttrs
-            (_: { patches = [ ./pkgs/sxhkd.patch ]; });
-        };
-        nivSources = _: _: { nivSources = sources; };
-        gitignoreSource = _: super:
-          let gitignore = (import sources.gitignore) { inherit (super) lib; };
-          in { inherit (gitignore) gitignoreSource; };
-        nixos-unstable = _: _: {
-          nixos-unstable = import sources.nixos-unstable {
-            inherit system config;
-            overlays = [ mine hie ];
+        overlays = let
+          hie = import "${all-hies}/overlay.nix";
+          mine = _: _: { mine = self.packages."${system}"; };
+          sxhkd-with-lt-keys = _: super: {
+            sxhkd = super.sxhkd.overrideAttrs
+              (_: { patches = [ ./pkgs/sxhkd.patch ]; });
           };
-        };
-        overlays = [
+          nivSources = _: _: { nivSources = sources; };
+          gitignoreSource = _: super:
+            let gitignore = (import sources.gitignore) { inherit (super) lib; };
+            in { inherit (gitignore) gitignoreSource; };
+          nixos-unstable = _: _: {
+            nixos-unstable = import sources.nixos-unstable {
+              inherit system config;
+              overlays = [ mine hie ];
+            };
+          };
+        in [
           gitignoreSource
           hie
           mine
