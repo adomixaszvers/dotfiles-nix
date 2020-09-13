@@ -16,6 +16,5 @@ jobs:
         uses: knl/niv-updater-action@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          HUB_VERBOSE: 1
         with:
           title_prefix: 'niv'
