@@ -1,7 +1,7 @@
 let
   sources = import ./nix/sources.nix;
   hie = import "${sources.all-hies}/overlay.nix";
-  mine = import ./mine.nix;
+  mine = import ./pkgs/overlay.nix;
   nivSources = _: _: { nivSources = sources; };
   gitignoreSource = _: super:
     let gitignore = (import sources.gitignore) { inherit (super) lib; };
