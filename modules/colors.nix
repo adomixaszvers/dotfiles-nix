@@ -59,7 +59,7 @@ in {
           };
         };
     };
-  config.colors = lib.mapAttrs (_: lib.mkDefault) (import ./dracula.nix) // {
+  config.colors = {
     backgroundTRGBA = lib.mkDefault (toTrgba cfg.background);
     backgroundTransparent = lib.mkDefault "[95]${cfg.background}";
   };

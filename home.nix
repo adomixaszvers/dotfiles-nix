@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   imports = let
-    current = ./hosts/current.nix;
+    current = ./current.nix;
     hostSpecific = if builtins.pathExists current then current else { };
-  in [ hostSpecific ];
+  in [ ./modules hostSpecific ];
   home.extraOutputsToInstall = [ "doc" "info" "devdoc" ];
   home.stateVersion = "20.03";
   manual.html.enable = true;

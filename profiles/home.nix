@@ -1,6 +1,6 @@
 { pkgs, ... }: {
-  imports = [ ../cli ../gui ../wm/common.nix ../wm/bspwm ];
-  colors = import ../gui/colors/nord.nix;
+  imports = [ ./cli ./gui ./wm/common.nix ./wm/bspwm ];
+  colors = import ./gui/colors/nord.nix;
   home.packages = with pkgs;
     let unstable = pkgs.nixos-unstable;
     in [
