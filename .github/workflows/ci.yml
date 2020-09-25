@@ -17,4 +17,5 @@ jobs:
       - name: Nix
         uses: cachix/install-nix-action@v11
       - name: Parsing
-        run: './ci/check-nix-files.sh'
+        run: |
+          find . -name "*.nix" -exec nix-instantiate --parse --quiet {} + >/dev/null
