@@ -109,10 +109,10 @@
         "homepage": "",
         "owner": "vlaci",
         "repo": "nix-doom-emacs",
-        "rev": "9fe0402668dfb9d53352aeaec87d5e2a629260f5",
-        "sha256": "1vvblldz340k1i11n5pmkff3r43ibamxvi2czjb6w341p10jy93j",
+        "rev": "5f4bcd36a276ecbb3a6564520122ec3f3dc180d3",
+        "sha256": "1fbi5n5kzh6c1z90mqgz49ysf1j8haqlsyfc6m1g5a2vvm9v8dry",
         "type": "tarball",
-        "url": "https://github.com/vlaci/nix-doom-emacs/archive/9fe0402668dfb9d53352aeaec87d5e2a629260f5.tar.gz",
+        "url": "https://github.com/vlaci/nix-doom-emacs/archive/5f4bcd36a276ecbb3a6564520122ec3f3dc180d3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-unstable": {
