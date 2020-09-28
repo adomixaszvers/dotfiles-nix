@@ -18,7 +18,7 @@
         tdrop --wm=bspwm --name=scratchpad -f "--name scratchpad" ${terminal}
       '';
       "super + ctrl + e" = ''
-        tdrop --wm=bspwm --name=scratchpad -f "--name scratchpad" emacs
+        tdrop --wm=bspwm --name=scratchpad -f "--name scratchpad --fullscreen" emacs
       '';
 
       # terminal emulator
