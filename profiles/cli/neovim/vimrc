@@ -11,7 +11,7 @@ set number
 set relativenumber
 set path+=**
 set list
-set inccommand=nosplit
+set inccommand=nosplit " Shows the effects of a command incrementally, as you type.
 set background=dark
 set cursorline
 
@@ -38,6 +38,6 @@ else
     set guicursor=
 endif
 
-" enable file previews fot :Files
+" enable file previews for :Files
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
