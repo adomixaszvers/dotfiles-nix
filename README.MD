@@ -1,1 +1,1 @@
-My config for [home manager](https://github.com/rycee/home-manager)
+My config for [home manager](https://github.com/nix-community/home-manager)
