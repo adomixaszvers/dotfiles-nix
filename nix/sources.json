@@ -18,10 +18,10 @@
         "homepage": "",
         "owner": "lcpz",
         "repo": "awesome-copycats",
-        "rev": "41fd4ab224b974ceb4926302d2572f441e2d2b62",
-        "sha256": "1c72z280km24lh96rcz7a75k7hcvanwsqna8f3sxzrq4h048jk1d",
+        "rev": "fc134083d1111482c3f6a52f2a8776274b87ff98",
+        "sha256": "1d626j4smf41slq2f2fl2bngjyq8cy1qdik58nzjcvrxmwp0faqk",
         "type": "tarball",
-        "url": "https://github.com/lcpz/awesome-copycats/archive/41fd4ab224b974ceb4926302d2572f441e2d2b62.tar.gz",
+        "url": "https://github.com/lcpz/awesome-copycats/archive/fc134083d1111482c3f6a52f2a8776274b87ff98.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "awesome-sharedtags": {
