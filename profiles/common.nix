@@ -2,7 +2,7 @@
   imports = [ ../modules ./cli ./gui ./wm/common.nix ];
   home = {
     extraOutputsToInstall = [ "doc" "info" "devdoc" ];
-    stateVersion = "20.03";
+    stateVersion = "20.09";
     username = "adomas";
     homeDirectory = "/home/adomas";
   };
