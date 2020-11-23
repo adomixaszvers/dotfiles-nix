@@ -21,7 +21,7 @@ in {
     docker-compose
     docker-machine
     filezilla
-    firefox
+    # firefox # TODO uncomment when not working remotely
     gimp
     gitAndTools.gitflow
     gnome3.libsecret
