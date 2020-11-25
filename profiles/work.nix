@@ -1,8 +1,8 @@
 { pkgs, config, ... }:
 let unstable = pkgs.nixos-unstable;
 in {
-  imports = [ ./common.nix ../cli ../gui ../wm/common.nix ../wm/bspwm ];
-  colors = import ../gui/colors/nord.nix;
+  imports = [ ./common.nix ./wm/bspwm ];
+  colors = import ./gui/colors/nord.nix;
   home.file."jdks/openjdk8".source = unstable.openjdk8;
   home.file."jdks/oraclejdk8".source = unstable.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
@@ -21,7 +21,7 @@ in {
     docker-compose
     docker-machine
     filezilla
-    firefox
+    # firefox # TODO uncomment when not working remotely
     gimp
     gitAndTools.gitflow
     gnome3.libsecret

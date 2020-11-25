@@ -1,6 +1,6 @@
 { pkgs, ... }: {
-  imports = [ ./common.nix ../cli ../gui ../wm/common.nix ../wm/bspwm ];
-  colors = import ../gui/colors/nord.nix;
+  imports = [ ./common.nix ./wm/bspwm ];
+  colors = import ./gui/colors/nord.nix;
   home.packages = with pkgs;
     let unstable = pkgs.nixos-unstable;
     in [
@@ -54,6 +54,7 @@
     };
   };
   programs.broot.enable = true;
+  services.network-manager-applet.enable = false;
   services.screen-locker = {
     enable = true;
     inactiveInterval = 60;

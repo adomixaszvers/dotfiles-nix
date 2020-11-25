@@ -5,11 +5,13 @@
     binaryCaches = [
       "https://all-hies.cachix.org"
       "https://iohk.cachix.org"
+      "https://pre-commit-hooks.cachix.org"
       "https://adomixaszvers.cachix.org"
     ];
     binaryCachePublicKeys = [
       "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k="
       "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
+      "pre-commit-hooks.cachix.org-1:Pkk3Panw5AW24TOv6kz3PvLhlH8puAsJTBbOPmBo7Rc="
       "adomixaszvers.cachix.org-1:r3/lrlbDE7o/Vjk/muEU2iLIiCEZMbC09ZqiwAs64so="
     ];
     extraOptions = ''
@@ -73,7 +75,6 @@
   services.acpid.enable = true;
   services.colord.enable = true;
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
-  services.nixosManual.showManual = true;
 
   services.gnome3.gnome-keyring.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = lib.mkDefault true;

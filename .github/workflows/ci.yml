@@ -15,8 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Nix
-        uses: cachix/install-nix-action@v10
-        with:
-          skip_adding_nixpkgs_channel: true
+        uses: cachix/install-nix-action@v12
       - name: Parsing
-        run: './ci/check-nix-files.sh'
+        run: |
+          find . -name "*.nix" -exec nix-instantiate --parse --quiet {} + >/dev/null

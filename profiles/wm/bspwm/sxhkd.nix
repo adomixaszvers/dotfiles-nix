@@ -18,14 +18,15 @@
         tdrop --wm=bspwm --name=scratchpad -f "--name scratchpad" ${terminal}
       '';
       "super + ctrl + e" = ''
-        tdrop --wm=bspwm --name=scratchpad -f "--name scratchpad" emacs
+        tdrop --wm=bspwm --name=scratchpad -f "--name scratchpad --fullscreen" emacs
       '';
 
       # terminal emulator
       "super + Return" = terminal;
 
       # program launcher
-      "super + d" = "rofi -show combi -combi-modi window,drun";
+      "super + d" =
+        "rofi -show combi -combi-modi window,drun -icon-theme ${config.gtk.iconTheme.name} -show-icons";
       "super + shift + d" = "rofi -show run -sidebar-mode";
 
       # music hotkeys

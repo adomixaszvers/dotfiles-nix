@@ -39,11 +39,11 @@
       flake = false;
     };
     home-manager = {
-      url = "github:rycee/home-manager/release-20.03";
+      url = "github:rycee/home-manager/release-20.09";
       flake = false;
     };
-    nixpkgs = { url = "github:NixOS/nixpkgs-channels/nixos-20.03"; };
-    nixos-unstable = { url = "github:NixOS/nixpkgs-channels/nixos-unstable"; };
+    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
+    nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
   };
   outputs = { self, nixpkgs, bumblebee-status, flake-utils, all-hies
     , home-manager, ... }@sources:

@@ -1,4 +1,4 @@
-{ self, home-manager, pkgs}:
+{ self, home-manager, pkgs }:
 
 let
   extendedLib =
@@ -17,6 +17,6 @@ let
     '';
   };
 in {
-  work = buildHomeManager "${self}/hosts/work.nix";
-  home = buildHomeManager "${self}/hosts/home.nix";
+  work = buildHomeManager "${self}/profiles/work.nix";
+  home = buildHomeManager "${self}/profiles/home.nix";
 }

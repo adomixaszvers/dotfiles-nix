@@ -3,7 +3,6 @@
 {
   imports = [
     ./alacritty
-    ./colors
     ./nix-doom-emacs.nix
     ./fonts.nix
     ./keepass

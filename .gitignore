@@ -1,4 +1,5 @@
-hosts/current.nix
+home.nix
 hosts/lockscreen.png
 pkgs/dbxcli/keys.patch
 .luacheckcache
+.pre-commit-config.yaml
