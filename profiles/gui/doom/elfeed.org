@@ -1,0 +1,6 @@
+#+TITLE: elfeed
+
+* Blogs :elfeed:
+** Nixos :nixos:
+*** [[https://nixos.org/blogs.xml][NixOS Planet]]
+*** [[https://github.com/rycee/home-manager/commits/master.atom][home-manager master commits]]
