@@ -16,26 +16,10 @@
     enable = lib.mkDefault true;
     platformTheme = "gtk";
   };
-  services.screen-locker = {
-    lockCmd = lib.mkDefault "i3lock -n -t -f";
-    xautolockExtraOptions = [ "-corners" "--00" ];
-  };
   services.network-manager-applet.enable = lib.mkDefault true;
   services.udiskie = {
     enable = true;
     automount = false;
-  };
-  services.unclutter = {
-    enable = true;
-    timeout = 10;
-  };
-  xsession.enable = lib.mkDefault true;
-  xsession.initExtra = ''
-    xset s off -dpms
-  '';
-  xsession.pointerCursor = {
-    name = "capitaine-cursors";
-    package = pkgs.capitaine-cursors;
   };
   home.packages = with pkgs; [ mine.maimpick mine.rofi-powermenu ];
   home.sessionVariables =
