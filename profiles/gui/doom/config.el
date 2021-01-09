@@ -2,6 +2,7 @@
 
 ;; Place your private configuration here
 ;;; Show all outlines while diffing org-mode files
+(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 12))
 (setq custom-file (expand-file-name "custom.el" doom-private-dir))
 (when (display-graphic-p)
   (setq doom-theme 'doom-nord))
@@ -25,6 +26,6 @@
 (defun my-ediff-init ()
   "Diffs init.el with init.example.el."
   (interactive)
-  (let ((my-init (expand-file-name "init.el" "~/.config/nixpkgs/doom-config"))
+  (let ((my-init (expand-file-name "init.el" "~/.config/nixpkgs/profiles/gui/doom"))
         (upstream-init (expand-file-name "init.example.el" doom-emacs-dir)))
     (ediff-files my-init upstream-init)))

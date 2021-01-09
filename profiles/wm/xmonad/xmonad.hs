@@ -6,8 +6,7 @@ import           Control.Monad                  ( join
                                                 , when
                                                 )
 import           Data.List                      ( elemIndex )
-import           Data.Maybe                     ( maybe
-                                                , maybeToList
+import           Data.Maybe                     ( maybeToList
                                                 )
 import qualified DBus                          as D
 import qualified DBus.Client                   as D

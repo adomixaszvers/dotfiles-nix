@@ -63,7 +63,6 @@
     '';
   };
   xresources.properties = with config.colors; {
-    "Emacs.font" = "FuraMono Nerd Font Mono-9";
 
     # special
     "*.foreground" = foreground;
