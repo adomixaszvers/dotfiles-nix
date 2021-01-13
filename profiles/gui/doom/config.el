@@ -14,6 +14,8 @@
 (after! nix-mode
   (set-company-backend! 'nix-mode nil))
 ;; (setq lsp-haskell-process-path-hie "hie")
+(after! haskell
+  (setq! lsp-haskell-formatting-provider "brittany"))
 
 (setq +rss-elfeed-files `(,(expand-file-name "elfeed.org" doom-private-dir)))
 (when (file-readable-p custom-file)

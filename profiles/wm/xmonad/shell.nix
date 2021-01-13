@@ -5,7 +5,7 @@ in with pkgs;
 mkShell {
   buildInputs = [
     (ghc.withHoogle extraPackages)
-    haskellPackages.hie
+    haskellPackages.haskell-language-server
     haskellPackages.brittany
     haskellPackages.hlint
   ];
