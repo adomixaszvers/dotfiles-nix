@@ -1,13 +1,15 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./gpg-agent.nix ./lorri.nix ./neovim ./kakoune ];
+  # imports = [ ./gpg-agent.nix ./lorri.nix ./neovim ./kakoune ];
+  imports = [ ./gpg-agent.nix ./lorri.nix ./novim.nix ./kakoune ];
   home.packages = with pkgs; [
     bat
     bfs
     binutils
     cachix
     exa
+    fd
     file
     git
     htop
@@ -29,7 +31,7 @@
     wol
     xdg-user-dirs
   ];
-  home.sessionVariables = { EDITOR = "nvim"; };
+  home.sessionVariables = { EDITOR = "kak"; };
   programs.bash = {
     enable = true;
     historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
