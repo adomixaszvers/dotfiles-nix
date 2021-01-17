@@ -30,7 +30,7 @@ in {
         separator_height = 2;
         show_age_threshold = 60;
         sort = true;
-        startup_notification = true;
+        startup_notification = false;
         sticky_history = true;
         transparency = 0;
         word_wrap = true;
