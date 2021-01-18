@@ -14,6 +14,7 @@ set list
 set inccommand=nosplit " Shows the effects of a command incrementally, as you type.
 set background=dark
 set cursorline
+set scrolloff=5 " minimal lines visible above and below cursor
 
 " let g:solarized_termcolors=256
 " let g:solarized_termtrans=1

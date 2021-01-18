@@ -6,22 +6,22 @@
     in [
       # (mine.steam.override { config.steam.primus = true; })
       borgbackup
+      brave
       compsize
       exercism
-      firefox
       gtypist
       klavaro
       mine.steam
-      mine.vimgolf
+      # mine.vimgolf
       playerctl
       qbittorrent
       remmina
+      spotifywm
       torbrowser
       unstable.keepassxc
-      spotifywm
-      vim
+      # vim
     ];
-  home.sessionVariables = { BROWSER = "firefox"; };
+  home.sessionVariables = { BROWSER = "brave"; };
   programs.autorandr = {
     enable = true;
     profiles = {

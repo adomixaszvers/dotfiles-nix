@@ -1,3 +1,7 @@
+set-option global tabstop 4
+set-option global scrolloff 5,5
+set-option global grepcmd 'rg --column'
+
 hook -once global ModuleLoaded fzf %{
     set-option global fzf_file_command 'fd --type f'
     set-option global fzf_highlight_command 'bat'
@@ -27,6 +31,7 @@ hook global WinSetOption filetype=haskell %{
 hook global WinSetOption filetype=nix %{
     set-option window formatcmd 'nixfmt'
     set-option window lintcmd 'kaknix'
+    set-option window tabstop 2
     lint-enable
     lint
     hook window -group lint BufWritePost .*\.nix lint
@@ -53,4 +58,3 @@ hook global KakBegin .* %{
         fi
     }
 }
-set-option global grepcmd 'rg --column'

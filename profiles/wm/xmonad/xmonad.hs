@@ -5,19 +5,18 @@ import           Control.Exception              ( bracket )
 import           Control.Monad                  ( join
                                                 , when
                                                 )
-import           Data.List                      ( elemIndex )
-import           Data.Maybe                     ( maybeToList
-                                                )
 import qualified DBus                          as D
 import qualified DBus.Client                   as D
+import           Data.List                      ( elemIndex )
+import           Data.Maybe                     ( maybeToList )
 import           System.Exit                    ( exitSuccess )
 import           System.IO                      ( hClose
                                                 , hPutStr
                                                 )
 import           XMonad
 import           XMonad.Actions.PhysicalScreens ( PhysicalScreen(..)
-                                                , viewScreen
                                                 , sendToScreen
+                                                , viewScreen
                                                 )
 import           XMonad.Hooks.DynamicLog        ( PP(..)
                                                 , dynamicLogWithPP
@@ -59,25 +58,25 @@ import           XMonad.Util.NamedActions       ( NamedAction(..)
                                                 , addName
                                                 , sendMessage'
                                                 , separator
-                                                , subtitle
                                                 , showKm
+                                                , subtitle
                                                 )
-import           XMonad.Util.NamedScratchpad    ( NamedScratchpads
-                                                , NamedScratchpad(NS)
+import           XMonad.Util.NamedScratchpad    ( NamedScratchpad(NS)
+                                                , NamedScratchpads
                                                 , customFloating
                                                 , namedScratchpadAction
-                                                , namedScratchpadManageHook
                                                 , namedScratchpadFilterOutWorkspacePP
+                                                , namedScratchpadManageHook
                                                 )
-import           XMonad.Util.Run                ( spawnPipe
-                                                , runProcessWithInput
+import           XMonad.Util.Run                ( runProcessWithInput
+                                                , spawnPipe
                                                 )
 import           XMonad.Util.SpawnOnce          ( spawnOnce )
 
 main :: IO ()
 main = do
   dbus <- D.connectSession
-    -- Request access to the DBus name
+  -- Request access to the DBus name
   _    <- D.requestName
     dbus
     (D.busName_ "org.xmonad.Log")
@@ -88,23 +87,37 @@ main = do
                 . myLogHook
                 $ dbus
     }
+ where
+  myConfig = addDescrKeys'
+    ((myModMask, xK_F1), showKeybindings)
+    myKeysDescr
+    def { terminal           = myTerminal
+        , focusedBorderColor = "#8BE9FD"
+        , modMask            = mod4Mask
+        , borderWidth        = 2
+        , handleEventHook    = fullscreenEventHook <+> handleEventHook def
+        , layoutHook         = myLayoutHook
+        , manageHook         = myManageHook
+        , startupHook        = myStartupHook
+        , workspaces         = myWorkspaces
+        }
+  tiled =
+    spacingRaw True
+               (Border outer outer outer outer)
+               True
+               (Border inner inner inner inner)
+               True
+      $ Tall 1 (3 / 100) (1 / 2)
+  outer = 3
+  inner = 5
+  myMainLayout =
+    renamed [Replace "Tall"] tiled
+      ||| renamed [Replace "Wide"] (Mirror tiled)
+      ||| Full
+  myLayoutHook = smartBorders . avoidStruts $ myMainLayout
 
 myTerminal :: String
 myTerminal = "kitty"
-
-myConfig = addDescrKeys'
-  ((myModMask, xK_F1), showKeybindings)
-  myKeysDescr
-  def { terminal           = myTerminal
-      , focusedBorderColor = "#8BE9FD"
-      , modMask            = mod4Mask
-      , borderWidth        = 2
-      , handleEventHook    = fullscreenEventHook <+> handleEventHook def
-      , layoutHook         = myLayoutHook
-      , manageHook         = myManageHook
-      , startupHook        = myStartupHook
-      , workspaces         = myWorkspaces
-      }
 
 myModMask :: KeyMask
 myModMask = mod4Mask
@@ -131,23 +144,6 @@ myStartupHook = do
   spawnOnce "systemctl --user restart polybar.service"
   addEWMHFullscreen
   whenX isWork $ spawnOnce "rambox"
-
-myLayoutHook = smartBorders . avoidStruts $ myMainLayout
-
-myMainLayout =
-  renamed [Replace "Tall"] tiled
-    ||| renamed [Replace "Wide"] (Mirror tiled)
-    ||| Full
- where
-  tiled =
-    spacingRaw True
-               (Border outer outer outer outer)
-               True
-               (Border inner inner inner inner)
-               True
-      $ Tall 1 (3 / 100) (1 / 2)
-  outer = 3
-  inner = 5
 
 myManageHook :: ManageHook
 myManageHook = composeAll
