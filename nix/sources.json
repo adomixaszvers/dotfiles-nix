@@ -73,10 +73,10 @@
         "homepage": "https://rycee.gitlab.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "22f6736e628958f05222ddaadd7df7818fe8f59d",
-        "sha256": "1j4hyjd3kgvwym5jjazzyn554ngrm05ca9wl1a7z1bid22asr99p",
+        "rev": "f33be4894cf5260f99d95ecd750c783837f33cfd",
+        "sha256": "15929ky0d6rkn44sigpjlpc66cnhmib17y2q5gp8ds2szhj3aqdf",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/22f6736e628958f05222ddaadd7df7818fe8f59d.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/f33be4894cf5260f99d95ecd750c783837f33cfd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "kakoune-sudo-write": {
