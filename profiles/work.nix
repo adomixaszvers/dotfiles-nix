@@ -21,12 +21,12 @@ in {
     docker-compose
     docker-machine
     filezilla
-    # firefox # TODO uncomment when not working remotely
+    firefox
     gimp
     gitAndTools.gitflow
     gnome3.libsecret
     gnumake
-    google-chrome
+    # google-chrome
     gradle
     jq
     libreoffice-fresh
@@ -62,7 +62,7 @@ in {
     whois
     zip
   ];
-  home.sessionVariables = { BROWSER = "google-chrome-stable"; };
+  home.sessionVariables = { BROWSER = "firefox"; };
   programs.autorandr = {
     enable = true;
     profiles = {

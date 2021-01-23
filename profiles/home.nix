@@ -6,9 +6,9 @@
     in [
       # (mine.steam.override { config.steam.primus = true; })
       borgbackup
-      brave
       compsize
       exercism
+      firefox
       gtypist
       klavaro
       mine.steam
@@ -21,7 +21,7 @@
       unstable.keepassxc
       # vim
     ];
-  home.sessionVariables = { BROWSER = "brave"; };
+  home.sessionVariables = { BROWSER = "firefox"; };
   programs.autorandr = {
     enable = true;
     profiles = {
