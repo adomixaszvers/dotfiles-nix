@@ -69,6 +69,13 @@
   services.acpid.enable = true;
   services.colord.enable = true;
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
+  security.doas = {
+    enable = true;
+    extraRules = [{
+      users = [ "adomas" ];
+      keepEnv = true;
+    }];
+  };
 
   services.gnome3.gnome-keyring.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = lib.mkDefault true;
