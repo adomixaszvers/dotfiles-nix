@@ -20,7 +20,7 @@ with (lib.mapAttrs (_: builtins.replaceStrings [ "#" ] [ "0x" ])
             cyan = cyanb;
           };
         };
-        font = let fontSettings = { family = "FuraMono Nerd Font Mono"; };
+        font = let fontSettings = { family = "FiraMono Nerd Font Mono"; };
         in {
           normal = fontSettings;
           bold = fontSettings;
