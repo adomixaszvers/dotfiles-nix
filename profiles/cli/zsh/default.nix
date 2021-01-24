@@ -3,6 +3,7 @@
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
+    defaultKeymap = "viins";
     plugins = [{
       name = "fz";
       src = pkgs.nivSources.fz;
