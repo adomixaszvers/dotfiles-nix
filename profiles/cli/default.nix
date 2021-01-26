@@ -1,8 +1,7 @@
 { pkgs, ... }:
 
 {
-  # imports = [ ./gpg-agent.nix ./lorri.nix ./neovim ./kakoune ];
-  imports = [ ./gpg-agent.nix ./lorri.nix ./novim.nix ./kakoune ./zsh ];
+  imports = [ ./gpg-agent.nix ./lorri.nix ./neovim ./kakoune ./zsh ];
   home.packages = with pkgs; [
     bat
     bfs
@@ -31,7 +30,7 @@
     wol
     xdg-user-dirs
   ];
-  home.sessionVariables = { EDITOR = "kak"; };
+  home.sessionVariables = { EDITOR = "nvim"; };
   programs.bash = {
     enable = true;
     historyControl = [ "erasedups" "ignoredups" "ignorespace" ];

@@ -12,14 +12,14 @@
       gtypist
       klavaro
       mine.steam
-      # mine.vimgolf
+      mine.vimgolf
       playerctl
       qbittorrent
       remmina
       spotifywm
       torbrowser
       unstable.keepassxc
-      # vim
+      vim
     ];
   home.sessionVariables = { BROWSER = "firefox"; };
   programs.autorandr = {
