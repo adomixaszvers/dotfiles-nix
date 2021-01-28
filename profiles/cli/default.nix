@@ -30,7 +30,10 @@
     wol
     xdg-user-dirs
   ];
-  home.sessionVariables = { EDITOR = "nvim"; };
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+  };
   programs.bash = {
     enable = true;
     historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
