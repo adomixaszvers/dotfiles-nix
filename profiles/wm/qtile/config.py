@@ -89,9 +89,9 @@ groups = [
           Match(wm_class=["Google Play Music Desktop Player", "Spotify"])]),
     ScratchPad("scratchpad", [
         DropDown("emacs", "emacs --name scratchpad",
-                 x=0.025, y=0.025, height=0.95, width=0.95),
+                 x=0.0, y=0.0, height=1.0, width=1.0, opacity=1.0),
         DropDown("term", "kitty --name scratchpad",
-                 x=0.025, y=0.025, height=0.95, width=0.95),
+                 x=0.0, y=0.0, height=1.0, width=1.0, opacity=1.0),
     ]),
 ]
 
