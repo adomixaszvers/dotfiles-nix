@@ -7,6 +7,7 @@
       pythonPath = oldAttrs.pythonPath ++ [ pkgs.python37Packages.xlib ];
     });
   in [ myQtile ];
+  services.pasystray.enable = true;
   xsession.windowManager.command = "qtile";
   xdg.configFile."qtile/config.py" = {
     source = ./config.py;
