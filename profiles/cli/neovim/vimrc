@@ -25,6 +25,7 @@ let g:rainbow_active = 1
 map <leader>f :Files<CR>
 map <leader>n <Plug>(ale_next_wrap)
 map <leader>p <Plug>(ale_previous_wrap)
+map <leader>l :Neoformat<CR>
 noremap - -
 set updatetime=100
 
