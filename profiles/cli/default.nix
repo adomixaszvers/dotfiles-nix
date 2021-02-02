@@ -1,8 +1,7 @@
 { pkgs, ... }:
 
 {
-  # imports = [ ./gpg-agent.nix ./lorri.nix ./neovim ./kakoune ];
-  imports = [ ./gpg-agent.nix ./lorri.nix ./novim.nix ./kakoune ./zsh ];
+  imports = [ ./gpg-agent.nix ./lorri.nix ./neovim ./kakoune ./zsh ];
   home.packages = with pkgs; [
     bat
     bfs
@@ -31,7 +30,10 @@
     wol
     xdg-user-dirs
   ];
-  home.sessionVariables = { EDITOR = "kak"; };
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+  };
   programs.bash = {
     enable = true;
     historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
@@ -49,6 +51,7 @@
     enableZshIntegration = true;
     fileWidgetCommand = "fd --type f";
   };
+  programs.starship.enable = true;
   programs.tmux = {
     enable = true;
     extraConfig = ''

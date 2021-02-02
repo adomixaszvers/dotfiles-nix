@@ -4,8 +4,8 @@
     settings = with config.colors; {
       allow_remote_control = true;
 
-      font_family = "FuraMono Nerd Font Mono";
-      font_size = "9.5";
+      font_family = "FiraMono Nerd Font Mono";
+      font_size = "9.0";
 
       inherit foreground background;
       background_opacity = "1.0";

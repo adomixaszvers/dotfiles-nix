@@ -43,6 +43,6 @@
       color7  = ${white}
       color15 = ${whiteb}
     '';
-    font = "FuraMono Nerd Font Mono 9";
+    font = "FiraMono Nerd Font Mono 9";
   };
 }

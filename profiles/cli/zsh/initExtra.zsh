@@ -6,6 +6,6 @@ hcd () {
 }
 he () {
   (
-    hcd && local FILES=("${(@f)$(fzf --multi)}") && [ "${#FILES[@]}" -ne 0 ] && "$EDITOR" "${FILES[@]}"
+    hcd && local FILES=("${(@f)$(fzf --multi)}") && [ -n "${FILES[*]}" ] && "$EDITOR" "${FILES[@]}"
   )
 }

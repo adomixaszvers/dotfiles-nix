@@ -2,16 +2,16 @@
 
 let
   doom-emacs = pkgs.callPackage pkgs.nivSources.nix-doom-emacs {
-    doomPrivateDir =
-      pkgs.gitignoreSource ./doom; # Directory containing your config.el init.el
+    # Directory containing your config.el init.el
     # and packages.el files
+    doomPrivateDir = ./doom;
   };
 in {
   home.packages = [ doom-emacs ] ++ (with pkgs; [
     emacs-all-the-icons-fonts
     fd
     gcc
-    gnupg # for gnub .authinfo.gpg
+    gnupg # for ghub .authinfo.gpg
     gnutls
     mdl
     multimarkdown

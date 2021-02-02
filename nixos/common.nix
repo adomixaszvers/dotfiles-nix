@@ -3,15 +3,13 @@
 
   nix = {
     binaryCaches = [
-      "https://all-hies.cachix.org"
-      "https://iohk.cachix.org"
       "https://pre-commit-hooks.cachix.org"
+      "https://nix-community.cachix.org"
       "https://adomixaszvers.cachix.org"
     ];
     binaryCachePublicKeys = [
-      "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k="
-      "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
       "pre-commit-hooks.cachix.org-1:Pkk3Panw5AW24TOv6kz3PvLhlH8puAsJTBbOPmBo7Rc="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "adomixaszvers.cachix.org-1:r3/lrlbDE7o/Vjk/muEU2iLIiCEZMbC09ZqiwAs64so="
     ];
     extraOptions = ''
@@ -66,15 +64,18 @@
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
-    interactiveShellInit = ''
-      source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
-    '';
-    promptInit = ""; # otherwise it'll override the grml prompt
   };
 
   services.acpid.enable = true;
   services.colord.enable = true;
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
+  security.doas = {
+    enable = true;
+    extraRules = [{
+      users = [ "adomas" ];
+      keepEnv = true;
+    }];
+  };
 
   services.gnome3.gnome-keyring.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = lib.mkDefault true;

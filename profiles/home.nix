@@ -1,27 +1,26 @@
 { pkgs, ... }: {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/bspwm ];
   colors = import ./gui/colors/nord.nix;
-  home.packages = with pkgs;
-    let unstable = pkgs.nixos-unstable;
-    in [
-      # (mine.steam.override { config.steam.primus = true; })
-      borgbackup
-      brave
-      compsize
-      exercism
-      gtypist
-      klavaro
-      mine.steam
-      # mine.vimgolf
-      playerctl
-      qbittorrent
-      remmina
-      spotifywm
-      torbrowser
-      unstable.keepassxc
-      # vim
-    ];
-  home.sessionVariables = { BROWSER = "brave"; };
+  home.packages = with pkgs; [
+    # (mine.steam.override { config.steam.primus = true; })
+    borgbackup
+    compsize
+    discord
+    exercism
+    firefox
+    gtypist
+    klavaro
+    mine.steam
+    mine.vimgolf
+    playerctl
+    qbittorrent
+    remmina
+    spotifywm
+    torbrowser
+    keepassxc
+    vim
+  ];
+  home.sessionVariables = { BROWSER = "firefox"; };
   programs.autorandr = {
     enable = true;
     profiles = {

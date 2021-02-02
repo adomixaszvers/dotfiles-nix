@@ -3,8 +3,8 @@ let unstable = pkgs.nixos-unstable;
 in {
   imports = [ ./common.nix ./wm/bspwm ];
   colors = import ./gui/colors/nord.nix;
-  home.file."jdks/openjdk8".source = unstable.openjdk8;
-  home.file."jdks/oraclejdk8".source = unstable.oraclejdk8;
+  home.file."jdks/openjdk8".source = pkgs.openjdk8;
+  home.file."jdks/oraclejdk8".source = pkgs.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
   home.file."jdks/scala".source = pkgs.scala;
   home.file."startwm.sh".source = pkgs.writeShellScript "startwm.sh" ''
@@ -13,7 +13,7 @@ in {
   '';
   home.packages = with pkgs; [
     # mine.consul
-    # unstable.skype
+    # skype
     # yarn
     asciinema
     calibre
@@ -21,12 +21,12 @@ in {
     docker-compose
     docker-machine
     filezilla
-    # firefox # TODO uncomment when not working remotely
+    firefox
     gimp
     gitAndTools.gitflow
     gnome3.libsecret
     gnumake
-    google-chrome
+    # google-chrome
     gradle
     jq
     libreoffice-fresh
@@ -54,15 +54,15 @@ in {
     traceroute
     unrar
     unstable.jetbrains.idea-ultimate
-    unstable.keepassxc
-    unstable.postman
+    keepassxc
+    postman
     unzip
     vagrant
     visualvm
     whois
     zip
   ];
-  home.sessionVariables = { BROWSER = "google-chrome-stable"; };
+  home.sessionVariables = { BROWSER = "firefox"; };
   programs.autorandr = {
     enable = true;
     profiles = {

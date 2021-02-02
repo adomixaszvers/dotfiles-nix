@@ -3,11 +3,11 @@
 {
   imports = [ ../picom.nix ../dunst.nix ];
   home.packages = let
-    unstable = pkgs.nixos-unstable;
-    myQtile = unstable.qtile.overridePythonAttrs (oldAttrs: {
-      pythonPath = oldAttrs.pythonPath ++ [ unstable.python37Packages.xlib ];
+    myQtile = pkgs.qtile.overridePythonAttrs (oldAttrs: {
+      pythonPath = oldAttrs.pythonPath ++ [ pkgs.python37Packages.xlib ];
     });
   in [ myQtile ];
+  services.pasystray.enable = true;
   xsession.windowManager.command = "qtile";
   xdg.configFile."qtile/config.py" = {
     source = ./config.py;

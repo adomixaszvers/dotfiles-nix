@@ -8,6 +8,7 @@
       fugitive
       fzf-vim
       fzfWrapper
+      neoformat
       rainbow
       repeat
       surround
