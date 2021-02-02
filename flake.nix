@@ -47,7 +47,7 @@
   };
   outputs = { self, nixpkgs, bumblebee-status, flake-utils, all-hies
     , home-manager, ... }@sources:
-    (flake-utils.lib.eachDefaultSystem (system:
+    (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         config = import ./config.nix;
         overlays = let
@@ -81,6 +81,13 @@
           inherit pkgs;
           bumblebee-status-source = bumblebee-status;
         };
+        defaultPackage = pkgs.writeShellScriptBin "hm-switch" ''
+          if [ -e ./current ]; then
+              nix run ".#homes.x86_64-linux.$(cat current).activate"
+          else
+              echo "No current environment is set"
+          fi
+        '';
         homes = import ./homes.nix { inherit self home-manager pkgs; };
       }));
 }
