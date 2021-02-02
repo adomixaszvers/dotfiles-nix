@@ -1,19 +1,16 @@
-{ self, home-manager, pkgs }:
+{ self, home-manager, pkgs, system }:
 
 let
-  extendedLib =
-    import "${home-manager}/modules/lib/stdlib-extended.nix" pkgs.lib;
-  buildHomeManager = configuration: rec {
-    hmModules = import "${home-manager}/modules/modules.nix" {
-      inherit pkgs;
-      lib = extendedLib;
-      useNixpkgsModule = false;
+  username = "adomas";
+  homeDirectory = "/home/adomas";
+  buildHomeManager = config: rec {
+    hmModule = home-manager.lib.homeManagerConfiguration {
+      inherit system homeDirectory username pkgs;
+      configuration = { ... }: { imports = [ config ]; };
     };
-    module =
-      extendedLib.evalModules { modules = [ { } configuration ] ++ hmModules; };
     activate = pkgs.writeShellScriptBin "home-manager-activate" ''
       #!${pkgs.runtimeShell}
-      exec ${module.config.home.activationPackage}/activate
+      exec ${hmModule.activationPackage}/activate
     '';
   };
 in {

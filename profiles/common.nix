@@ -3,8 +3,6 @@
   home = {
     extraOutputsToInstall = [ "doc" "info" "devdoc" ];
     stateVersion = "20.09";
-    username = "adomas";
-    homeDirectory = "/home/adomas";
   };
   manual.html.enable = true;
   programs.home-manager = {

@@ -34,14 +34,8 @@
       url = "github:Delapouite/kakoune-text-objects";
       flake = false;
     };
-    nix-doom-emacs = {
-      url = "github:vlaci/nix-doom-emacs";
-      flake = false;
-    };
-    home-manager = {
-      url = "github:rycee/home-manager/release-20.09";
-      flake = false;
-    };
+    nix-doom-emacs = { url = "github:vlaci/nix-doom-emacs"; };
+    home-manager = { url = "github:rycee/home-manager/release-20.09"; };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
   };
@@ -76,18 +70,15 @@
           sxhkd-with-lt-keys
         ];
         pkgs = import nixpkgs { inherit system overlays config; };
+        homes = import ./homes.nix { inherit self home-manager pkgs system; };
       in {
+        inherit homes;
         packages = import ./pkgs {
           inherit pkgs;
           bumblebee-status-source = bumblebee-status;
+        } // {
+          hm-home = homes.home.activate;
+          hm-work = homes.work.activate;
         };
-        defaultPackage = pkgs.writeShellScriptBin "hm-switch" ''
-          if [ -e ./current ]; then
-              nix run ".#homes.x86_64-linux.$(cat current).activate"
-          else
-              echo "No current environment is set"
-          fi
-        '';
-        homes = import ./homes.nix { inherit self home-manager pkgs; };
       }));
 }
