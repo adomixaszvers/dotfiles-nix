@@ -1,10 +1,6 @@
 {
   description = "My dotfiles";
   inputs = {
-    all-hies = {
-      url = "github:Infinisil/all-hies";
-      flake = false;
-    };
     awesome-copycats = {
       url = "github:lcpz/awesome-copycats";
       flake = false;
@@ -39,46 +35,46 @@
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
   };
-  outputs = { self, nixpkgs, bumblebee-status, flake-utils, all-hies
-    , home-manager, ... }@sources:
+  outputs =
+    { self, nixpkgs, bumblebee-status, flake-utils, home-manager, ... }@sources:
     (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         config = import ./config.nix;
         overlays = let
-          hie = import "${all-hies}/overlay.nix";
           mine = _: _: { mine = self.packages."${system}"; };
-          sxhkd-with-lt-keys = _: super: {
-            sxhkd = super.sxhkd.overrideAttrs
+          sxhkd-with-lt-keys = _: prev: {
+            sxhkd = prev.sxhkd.overrideAttrs
               (_: { patches = [ ./pkgs/sxhkd.patch ]; });
           };
           nivSources = _: _: { nivSources = sources; };
-          gitignoreSource = _: super:
-            let gitignore = (import sources.gitignore) { inherit (super) lib; };
+          gitignoreSource = _: prev:
+            let gitignore = (import sources.gitignore) { inherit (prev) lib; };
             in { inherit (gitignore) gitignoreSource; };
           nixos-unstable = _: _: {
             nixos-unstable = import sources.nixos-unstable {
               inherit system config;
-              overlays = [ mine hie ];
+              overlays = [ mine ];
             };
           };
         in [
           gitignoreSource
-          hie
           mine
           nivSources
           nixos-unstable
           sxhkd-with-lt-keys
         ];
         pkgs = import nixpkgs { inherit system overlays config; };
-        homes = import ./homes.nix { inherit self home-manager pkgs system; };
       in {
-        inherit homes;
         packages = import ./pkgs {
           inherit pkgs;
           bumblebee-status-source = bumblebee-status;
         } // {
-          hm-home = homes.home.activate;
-          hm-work = homes.work.activate;
+          hm-home = self.homes."${system}".home.activate;
+          hm-work = self.homes."${system}".work.activate;
+        };
+        homes = import ./homes.nix {
+          inherit self home-manager pkgs system overlays;
+          nixpkgs-config = config;
         };
       }));
 }

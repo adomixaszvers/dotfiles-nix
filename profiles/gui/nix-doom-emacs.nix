@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  # TODO fix infinite recursion
-  imports = [ pkgs.nivSources.nix-doom-emacs.hmModule ];
   programs.doom-emacs = {
     enable = true;
     doomPrivateDir = ./doom;

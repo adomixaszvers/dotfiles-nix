@@ -1,4 +1,4 @@
-{ self, home-manager, pkgs, system }:
+{ self, home-manager, pkgs, system, overlays, nixpkgs-config }:
 
 let
   username = "adomas";
@@ -6,7 +6,13 @@ let
   buildHomeManager = config: rec {
     hmModule = home-manager.lib.homeManagerConfiguration {
       inherit system homeDirectory username pkgs;
-      configuration = { ... }: { imports = [ config ]; };
+      configuration = { ... }: {
+        imports = [ pkgs.nivSources.nix-doom-emacs.hmModule config ];
+        nixpkgs = {
+          inherit overlays;
+          config = nixpkgs-config;
+        };
+      };
     };
     activate = pkgs.writeShellScriptBin "home-manager-activate" ''
       #!${pkgs.runtimeShell}

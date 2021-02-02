@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "all-hies": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1597070901,
-        "narHash": "sha256-IgZ/SSxfDXYEcl/vKOEQRaMiARVy9mWzbQGuzi+lgS8=",
-        "owner": "Infinisil",
-        "repo": "all-hies",
-        "rev": "534ac517b386821b787d1edbd855b9966d0c0775",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Infinisil",
-        "repo": "all-hies",
-        "type": "github"
-      }
-    },
     "awesome-copycats": {
       "flake": false,
       "locked": {
@@ -519,7 +503,6 @@
     },
     "root": {
       "inputs": {
-        "all-hies": "all-hies",
         "awesome-copycats": "awesome-copycats",
         "awesome-sharedtags": "awesome-sharedtags",
         "bumblebee-status": "bumblebee-status",
