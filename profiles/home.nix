@@ -5,7 +5,6 @@
     # (mine.steam.override { config.steam.primus = true; })
     borgbackup
     compsize
-    discord
     exercism
     firefox
     gtypist
