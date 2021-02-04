@@ -15,7 +15,6 @@ let
       };
     };
     activate = pkgs.writeShellScriptBin "home-manager-activate" ''
-      #!${pkgs.runtimeShell}
       exec ${hmModule.activationPackage}/activate
     '';
   };
