@@ -30,10 +30,10 @@
         "homepage": null,
         "owner": "Drauthius",
         "repo": "awesome-sharedtags",
-        "rev": "32d878d0d12bcfd900f2c6a7516a1370e6ebb7d6",
-        "sha256": "0js6v2jmkczi3g8j7vbk9hsq5wfz96jnhi7ka5c1rqw22lmjmlrk",
+        "rev": "9cf8f90004f37d7987e2cd4d82b8456deed9ef85",
+        "sha256": "0f7rvw7w48hvidmfj76f29lv7aqq1zj99f59a17p5hb0sjwgbifx",
         "type": "tarball",
-        "url": "https://github.com/Drauthius/awesome-sharedtags/archive/32d878d0d12bcfd900f2c6a7516a1370e6ebb7d6.tar.gz",
+        "url": "https://github.com/Drauthius/awesome-sharedtags/archive/9cf8f90004f37d7987e2cd4d82b8456deed9ef85.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "bumblebee-status": {
