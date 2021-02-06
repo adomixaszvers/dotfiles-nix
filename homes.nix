@@ -14,9 +14,10 @@ let
         };
       };
     };
-    activate = pkgs.writeShellScriptBin "home-manager-activate" ''
-      exec ${hmModule.activationPackage}/activate
-    '';
+    activate = {
+      type = "app";
+      program = "${hmModule.activationPackage}/activate";
+    };
   };
 in {
   work = buildHomeManager "${self}/profiles/work.nix";

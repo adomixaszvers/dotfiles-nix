@@ -65,12 +65,13 @@
         ];
         pkgs = import nixpkgs { inherit system overlays config; };
       in {
+        apps = {
+          hm-home = self.homes."${system}".home.activate;
+          hm-work = self.homes."${system}".work.activate;
+        };
         packages = import ./pkgs {
           inherit pkgs;
           bumblebee-status-source = bumblebee-status;
-        } // {
-          hm-home = self.homes."${system}".home.activate;
-          hm-work = self.homes."${system}".work.activate;
         };
         homes = import ./homes.nix {
           inherit self home-manager pkgs system overlays;
