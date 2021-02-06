@@ -9,3 +9,7 @@ he () {
     hcd && local FILES=("${(@f)$(fzf --multi)}") && [ -n "${FILES[*]}" ] && "$EDITOR" "${FILES[@]}"
   )
 }
+
+hm-switch () {
+  nix run -f ~/.config/nixpkgs/current.nix
+}
