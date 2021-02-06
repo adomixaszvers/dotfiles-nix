@@ -31,7 +31,7 @@
       flake = false;
     };
     nix-doom-emacs = { url = "github:vlaci/nix-doom-emacs"; };
-    home-manager = { url = "github:rycee/home-manager/release-20.09"; };
+    home-manager = { url = "github:nix-community/home-manager/release-20.09"; };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
   };
