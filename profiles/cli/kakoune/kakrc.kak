@@ -43,6 +43,7 @@ map global insert <c-t> '<a-;><gt>'
 map global insert <c-d> '<a-;><lt>'
 map global user n ':lint-next-error<ret>'
 map global user p ':lint-previous-error<ret>'
+map global user c ':comment-line<ret>'
 add-highlighter global/ number-lines -relative -hlcursor
 
 # TODO find better solution to ignore x11-* commands
