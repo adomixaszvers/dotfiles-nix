@@ -60,7 +60,7 @@
       Google-chrome = { desktop = "1"; };
       Firefox = { desktop = "1"; };
       jetbrains-idea = { desktop = "3"; };
-      rambox = { desktop = "4"; };
+      Rambox = { desktop = "4"; };
       SmartGit = { desktop = "5"; };
       Steam = { desktop = "5"; };
       libreoffice = { desktop = "6"; };
