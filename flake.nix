@@ -30,8 +30,17 @@
       url = "github:Delapouite/kakoune-text-objects";
       flake = false;
     };
-    nix-doom-emacs = { url = "github:vlaci/nix-doom-emacs"; };
-    home-manager = { url = "github:nix-community/home-manager/release-20.09"; };
+    nix-doom-emacs = {
+      url = "github:vlaci/nix-doom-emacs";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-20.09";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
   };
