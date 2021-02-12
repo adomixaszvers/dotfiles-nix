@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 let unstable = pkgs.nixos-unstable;
 in {
-  imports = [ ./common.nix ./wm/bspwm ];
+  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/bspwm ];
   colors = import ./gui/colors/nord.nix;
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = pkgs.oraclejdk8;
