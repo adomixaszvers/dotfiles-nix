@@ -100,7 +100,7 @@
       hashedPassword = secrets.adomas.hashedPassword;
       isNormalUser = true;
       uid = 1000;
-      extraGroups = [ "video" "wheel" ];
+      extraGroups = [ "networkmanager" "video" "wheel" ];
       shell = pkgs.zsh;
     };
   };
