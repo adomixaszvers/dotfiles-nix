@@ -462,7 +462,7 @@
         "type": "github"
       }
     },
-    "pre-commit-hooks.nix": {
+    "pre-commit-hooks": {
       "flake": false,
       "locked": {
         "lastModified": 1609781048,
@@ -509,7 +509,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs",
-        "pre-commit-hooks.nix": "pre-commit-hooks.nix"
+        "pre-commit-hooks": "pre-commit-hooks"
       }
     },
     "rotate-text": {

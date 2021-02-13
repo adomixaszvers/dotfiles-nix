@@ -1,6 +1,6 @@
 let
   self = builtins.getFlake (toString ./.);
-  nix-pre-commit-hooks = import self.inputs."pre-commit-hooks.nix";
+  nix-pre-commit-hooks = import self.inputs.pre-commit-hooks;
 in {
   pre-commit-check = nix-pre-commit-hooks.run {
     src = ./.;

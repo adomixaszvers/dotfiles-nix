@@ -22,6 +22,10 @@
       url = "github:hercules-ci/gitignore";
       flake = false;
     };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-20.09";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     kakoune-sudo-write = {
       url = "github:occivink/kakoune-sudo-write";
       flake = false;
@@ -37,17 +41,13 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    home-manager = {
-      url = "github:nix-community/home-manager/release-20.09";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    "pre-commit-hooks.nix" = {
+    nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
+    nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
+    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
+    pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       flake = false;
     };
-    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
-    nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
-    nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
   };
   outputs = { self, nixpkgs, bumblebee-status, flake-utils, home-manager
     , nixos-hardware, ... }@sources:
