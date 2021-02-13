@@ -41,6 +41,10 @@
       url = "github:nix-community/home-manager/release-20.09";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    "pre-commit-hooks.nix" = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      flake = false;
+    };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
