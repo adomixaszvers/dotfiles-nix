@@ -335,6 +335,21 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1612981022,
+        "narHash": "sha256-NKw0ntMPQw0cfNj0KzjF6QIguREEk79r6h5FMz8xbRQ=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "0cb5491af9da8d6f16540ffc4db24e2361852e46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixos-unstable": {
       "locked": {
         "lastModified": 1612996220,
@@ -475,6 +490,7 @@
         "kakoune-sudo-write": "kakoune-sudo-write",
         "kakoune-text-objects": "kakoune-text-objects",
         "nix-doom-emacs": "nix-doom-emacs",
+        "nixos-hardware": "nixos-hardware",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs"
       }

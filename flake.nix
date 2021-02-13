@@ -43,9 +43,10 @@
     };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
+    nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
   };
-  outputs =
-    { self, nixpkgs, bumblebee-status, flake-utils, home-manager, ... }@sources:
+  outputs = { self, nixpkgs, bumblebee-status, flake-utils, home-manager
+    , nixos-hardware, ... }@sources:
     (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         config = import ./config.nix;
@@ -86,5 +87,8 @@
           inherit self home-manager pkgs system overlays;
           nixpkgs-config = config;
         };
-      }));
+      })) // {
+        nixosConfigurations =
+          import ./nixos/configurations.nix { inherit nixpkgs nixos-hardware; };
+      };
 }
