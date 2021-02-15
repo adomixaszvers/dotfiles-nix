@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 let unstable = pkgs.nixos-unstable;
 in {
-  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/bspwm ];
+  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = pkgs.oraclejdk8;
@@ -9,7 +9,12 @@ in {
   home.file."jdks/scala".source = pkgs.scala;
   home.file."startwm.sh".source = pkgs.writeShellScript "startwm.sh" ''
     source /etc/profile
-    exec ${pkgs.runtimeShell} ~/.xsession
+    if [ "$DBUS_SESSION_BUS_ADDRESS" ]; then
+      export DBUS_SESSION_BUS_ADDRESS
+      exec ${pkgs.runtimeShell} ~/.xsession
+    else
+      exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.runtimeShell} ~/.xsession
+    fi
   '';
   home.packages = with pkgs; [
     # mine.consul
