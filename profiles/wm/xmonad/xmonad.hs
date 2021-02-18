@@ -123,16 +123,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0 :: String
-ws1 = "I"
-ws2 = "II"
-ws3 = "III"
-ws4 = "IV"
-ws5 = "V"
-ws6 = "VI"
-ws7 = "VII"
-ws8 = "VIII"
-ws9 = "IX"
-ws0 = "X"
+[ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0] = map show ([1..10] :: [Integer])
 
 myWorkspaces :: [String]
 myWorkspaces = [ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0]
@@ -141,7 +132,7 @@ myStartupHook :: X ()
 myStartupHook = do
   setWMName "LG3D"
   spawnOnce "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
-  spawnOnce "systemctl --user restart polybar.service"
+  spawn "systemctl --user restart polybar.service"
   addEWMHFullscreen
   whenX isWork $ spawnOnce "rambox"
 
