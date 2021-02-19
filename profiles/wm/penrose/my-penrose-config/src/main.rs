@@ -17,8 +17,9 @@ use simplelog::{LevelFilter, SimpleLogger};
 
 
 // Replace these with your preferred terminal and program launcher
-const TERMINAL: &str = "alacritty";
-const LAUNCHER: &str = "dmenu_run";
+const TERMINAL: &str = "kitty";
+const ROFI: &str = "rofi -show combi -combi-modi window,drun";
+const ROFI_RUN: &str = "rofi -show run -sidebar-mode";
 
 
 fn main() -> penrose::Result<()> {
@@ -30,8 +31,9 @@ fn main() -> penrose::Result<()> {
     let config = Config::default();
     let key_bindings = gen_keybindings! {
         // Program launchers
-        "M-semicolon" => run_external!(LAUNCHER);
         "M-Return" => run_external!(TERMINAL);
+        "M-d" => run_external!(ROFI);
+        "M-S-d" => run_external!(ROFI_RUN);
 
         // Exit Penrose (important to remember this one!)
         "M-A-C-Escape" => run_internal!(exit);
