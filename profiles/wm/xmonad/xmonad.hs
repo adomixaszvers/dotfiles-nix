@@ -74,7 +74,6 @@ import XMonad.Util.NamedActions
 import XMonad.Util.NamedScratchpad
   ( NamedScratchpad (NS),
     NamedScratchpads,
-    customFloating,
     namedScratchpadAction,
     namedScratchpadFilterOutWorkspacePP,
     namedScratchpadManageHook,
@@ -329,17 +328,15 @@ myScratchpads :: NamedScratchpads
 myScratchpads =
   [ NS
       nsEmacs
-      "emacs -T scratchpad"
+      "emacs -T scratchpad --fullscreen"
       (title =? "scratchpad" <&&> className =? "Emacs")
-      hook,
+      doFloat,
     NS
       nsTerminal
-      "kitty --name scratchpad"
+      "kitty --name scratchpad --start-as fullscreen"
       (appName =? "scratchpad" <&&> className =? "kitty")
-      hook
+      doFloat
   ]
-  where
-    hook = customFloating $ W.RationalRect 0.025 0.025 0.95 0.95
 
 addNETSupported :: Atom -> X ()
 addNETSupported x = withDisplay $ \dpy -> do
