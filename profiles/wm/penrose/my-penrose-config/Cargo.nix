@@ -700,7 +700,7 @@ rec {
         version = "0.1.0";
         edition = "2018";
         crateBin = [{
-          name = "my_penrose_config";
+          name = "penrose";
           path = "src/main.rs";
         }];
         src = (builtins.filterSource sourceFilter ./.);
