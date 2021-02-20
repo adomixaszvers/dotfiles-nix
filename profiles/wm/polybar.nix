@@ -79,20 +79,13 @@ in {
       };
       "module/ewmh" = {
         type = "internal/xworkspaces";
-        label-active = "%icon%";
+        label-active = "[%name%]";
         label-active-background = colors.custom-primary;
         label-active-foreground = colors.custom-background-dark;
         label-occupied = "%name%";
-        label-empty = "%icon%";
-        icon-0 = "1;%{T3}%{T-} :: %{T3}%{T-}";
-        icon-1 = "2;%{T3}%{T-} :: %{T3}%{T-}";
-        icon-2 = "3;%{T3}%{T-} :: %{T3}%{T-}";
-        icon-3 = "4;%{T3}%{T-} :: %{T3}%{T-}";
-        icon-4 = "5;%{T3}%{T-} :: %{T3}%{T-}";
-        icon-5 = "6;%{T3}%{T-} :: %{T3}%{T-}";
-        icon-6 = "7;%{T3}%{T-} :: %{T3}%{T-}";
-        icon-7 = "8;%{T3}%{T-} :: %{T3}%{T-}";
-        icon-8 = "9;%{T3}%{T-} :: %{T3}%{T-}";
+        label-occupied-padding = 1;
+        label-empty = "%name%";
+        label-empty-padding = 1;
       };
       "module/divider" = {
         type = "custom/text";
