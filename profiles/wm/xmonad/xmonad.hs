@@ -123,7 +123,8 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0 :: String
-[ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0] = map show ([1..10] :: [Integer])
+[ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0] =
+  map show ([1 .. 10] :: [Integer])
 
 myWorkspaces :: [String]
 myWorkspaces = [ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0]
