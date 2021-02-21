@@ -2,25 +2,25 @@
 let
   generatedBuild = callPackage ./Cargo.nix {
     defaultCrateOverrides = defaultCrateOverrides // {
-      glib-sys = _: {
-        nativeBuildInputs = [ pkg-config ];
-        buildInputs = [ glib ];
+      glib-sys = attrs: {
+        nativeBuildInputs = attrs.nativeBuildInputs ++ [ pkg-config ];
+        buildInputs = attrs.buildInputs ++ [ glib ];
       };
-      cairo-sys-rs = _: {
-        nativeBuildInputs = [ pkg-config ];
-        buildInputs = [ cairo ];
+      cairo-sys-rs = attrs: {
+        nativeBuildInputs = attrs.nativeBuildInputs ++ [ pkg-config ];
+        buildInputs = attrs.buildInputs ++ [ cairo ];
       };
-      gobject-sys = _: {
-        nativeBuildInputs = [ pkg-config ];
-        buildInputs = [ glib ];
+      gobject-sys = attrs: {
+        nativeBuildInputs = attrs.nativeBuildInputs ++ [ pkg-config ];
+        buildInputs = attrs.buildInputs ++ [ glib ];
       };
-      pango-sys = _: {
-        nativeBuildInputs = [ pkg-config ];
-        buildInputs = [ pango ];
+      pango-sys = attrs: {
+        nativeBuildInputs = attrs.nativeBuildInputs ++ [ pkg-config ];
+        buildInputs = attrs.buildInputs ++ [ pango ];
       };
-      pangocairo-sys = _: {
-        nativeBuildInputs = [ pkg-config ];
-        buildInputs = [ pango ];
+      pangocairo-sys = attrs: {
+        nativeBuildInputs = attrs.nativeBuildInputs ++ [ pkg-config ];
+        buildInputs = attrs.buildInputs ++ [ pango ];
       };
     };
   };
