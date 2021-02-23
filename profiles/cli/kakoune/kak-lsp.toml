@@ -91,7 +91,7 @@ command = "haskell-language-server-wrapper"
 args = ["--lsp"]
 
 [language.haskell.initialization_options]
-formattingProvider = "brittany"
+formattingProvider = "ormolu"
 
 [language.go]
 filetypes = ["go"]

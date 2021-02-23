@@ -24,10 +24,6 @@ hook global WinSetOption filetype=rust %{
 }
 hook global KakEnd .* lsp-exit
 
-hook global WinSetOption filetype=haskell %{
-    set-option window formatcmd 'brittany'
-}
-
 hook global WinSetOption filetype=nix %{
     set-option window formatcmd 'nixfmt'
     set-option window lintcmd 'kaknix'
