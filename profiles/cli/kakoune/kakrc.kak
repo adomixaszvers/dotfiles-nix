@@ -28,7 +28,6 @@ hook global WinSetOption filetype=nix %{
     set-option window formatcmd 'nixfmt'
     set-option window lintcmd 'kaknix'
     set-option window tabstop 2
-    lint-enable
     lint
     hook window -group lint BufWritePost .*\.nix lint
 }
@@ -37,8 +36,8 @@ alias global x write-quit
 map global user f ':fzf-mode<ret>'
 map global insert <c-t> '<a-;><gt>'
 map global insert <c-d> '<a-;><lt>'
-map global user n ':lint-next-error<ret>'
-map global user p ':lint-previous-error<ret>'
+map global user n ':lint-next-message<ret>'
+map global user p ':lint-previous-message<ret>'
 map global user c ':comment-line<ret>'
 add-highlighter global/ number-lines -relative -hlcursor
 
