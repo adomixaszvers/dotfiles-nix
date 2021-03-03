@@ -31,7 +31,7 @@ set updatetime=100
 
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 
-if !empty($DISPLAY)
+if $TERM != "linux"
     colorscheme nord
     let g:airline_powerline_fonts = 1
 else
