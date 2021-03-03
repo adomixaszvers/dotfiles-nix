@@ -31,6 +31,10 @@ set updatetime=100
 
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 if $TERM != "linux"
     colorscheme nord
     let g:airline_powerline_fonts = 1
