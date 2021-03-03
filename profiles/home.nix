@@ -8,16 +8,13 @@
     exercism
     firefox
     gtypist
-    klavaro
     mine.steam
-    mine.vimgolf
     playerctl
     qbittorrent
     remmina
     spotifywm
     torbrowser
     keepassxc
-    vim
   ];
   home.sessionVariables = { BROWSER = "firefox"; };
   programs.autorandr = {

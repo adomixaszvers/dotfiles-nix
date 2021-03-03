@@ -18,11 +18,7 @@
     autoOptimiseStore = true;
   };
 
-  documentation = {
-    enable = true;
-    dev.enable = true;
-    info.enable = true;
-  };
+  documentation = { enable = true; };
   environment.systemPackages = with pkgs; [
     acpi
     efibootmgr

@@ -1,8 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports =
-    [ ./fish ./git.nix ./gpg-agent.nix ./lorri.nix ./neovim ./kakoune ./zsh ];
+  imports = [ ./git.nix ./gpg-agent.nix ./lorri.nix ./neovim ./kakoune ./zsh ];
   home.packages = with pkgs; [
     bat
     bfs
@@ -12,6 +11,7 @@
     fd
     file
     git
+    github-cli
     htop
     icdiff
     iotop
@@ -23,7 +23,6 @@
     nixfmt
     p7zip
     patchelf
-    ranger
     ripgrep
     shellcheck
     tree
