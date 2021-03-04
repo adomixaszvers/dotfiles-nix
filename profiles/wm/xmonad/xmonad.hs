@@ -52,6 +52,8 @@ import XMonad.Hooks.ManageHelpers
     (-?>),
   )
 import XMonad.Hooks.SetWMName (setWMName)
+import XMonad.Layout.MultiToggle (Toggle (..), mkToggle, single)
+import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.Renamed
   ( Rename (..),
@@ -130,8 +132,7 @@ main = do
     myMainLayout =
       renamed [Replace "Tall"] tiled
         ||| renamed [Replace "Wide"] (Mirror tiled)
-        ||| Full
-    myLayoutHook = smartBorders . avoidStruts $ myMainLayout
+    myLayoutHook = smartBorders . avoidStruts . mkToggle (single FULL) $ myMainLayout
 
 myTerminal :: String
 myTerminal = "kitty"
@@ -212,6 +213,7 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
         separator,
         ((modm, xK_n), addName "Refresh" refresh),
         ((modm, xK_b), addName "Toggle struts" $ sendMessage ToggleStruts),
+        ((modm, xK_f), addName "Toggle fullscreen" $ sendMessage (Toggle FULL)),
         subtitle "move focus up or down the window stack",
         ((modm, xK_Tab), addName "Focus down" $ windows W.focusDown),
         ((modm .|. shiftMask, xK_Tab), addName "Focus up" $ windows W.focusUp),
