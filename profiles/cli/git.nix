@@ -3,7 +3,7 @@
     enable = true;
     delta.enable = true;
     signing = {
-      signByDefault = true;
+      signByDefault = false;
       key = "D18136106500F54B412164FACF90DBD10A9B9C26";
     };
     userEmail = "adomixaszvers@gmail.com";
