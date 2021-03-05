@@ -37,10 +37,10 @@
         "homepage": "",
         "owner": "changyuheng",
         "repo": "fz",
-        "rev": "ae0cd3ab0f0daebc80256f1236eda3a3283e4c1c",
-        "sha256": "0x3w03gcqhyhfhjfxvbp5m1i96ihq9l3m52w4xnpbkchqfsyw737",
+        "rev": "2a4c1bc73664bb938bfcc7c99f473d0065f9dbfd",
+        "sha256": "0fg2a28cp3a4smcq61vngzdvjwq8np35ayq2ix1db34c18s222a4",
         "type": "tarball",
-        "url": "https://github.com/changyuheng/fz/archive/ae0cd3ab0f0daebc80256f1236eda3a3283e4c1c.tar.gz",
+        "url": "https://github.com/changyuheng/fz/archive/2a4c1bc73664bb938bfcc7c99f473d0065f9dbfd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "gitignore": {
