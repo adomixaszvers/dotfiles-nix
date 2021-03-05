@@ -14,7 +14,7 @@ he () {
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 # enable edit command line
-autoload edit-command-line; zle -N edit-command-line 
+autoload edit-command-line; zle -N edit-command-line
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
