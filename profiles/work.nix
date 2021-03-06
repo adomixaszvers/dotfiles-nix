@@ -8,6 +8,8 @@ in {
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
   home.file."startwm.sh".source = pkgs.writeShellScript "startwm.sh" ''
     source /etc/profile
+    # fixes AltGr producing Left Arrow input on kitty
+    export XKB_DEFAULT_RULES=base
     if [ "$DBUS_SESSION_BUS_ADDRESS" ]; then
       export DBUS_SESSION_BUS_ADDRESS
       exec ${pkgs.runtimeShell} ~/.xsession
