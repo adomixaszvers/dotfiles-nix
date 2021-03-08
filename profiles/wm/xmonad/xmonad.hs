@@ -43,7 +43,6 @@ import XMonad.Hooks.ManageDocks
   ( ToggleStruts (ToggleStruts),
     avoidStruts,
     docks,
-    manageDocks,
   )
 import XMonad.Hooks.ManageHelpers
   ( composeOne,
@@ -160,7 +159,6 @@ myManageHook =
   composeAll
     [ spawnHook,
       className =? "lxqt-openssh-askpass" --> doCenterFloat,
-      manageDocks,
       namedScratchpadManageHook myScratchpads,
       manageHook def
     ]
