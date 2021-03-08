@@ -6,9 +6,10 @@ in {
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = pkgs.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
-  home.file."jdks/scala".source = pkgs.scala;
   home.file."startwm.sh".source = pkgs.writeShellScript "startwm.sh" ''
     source /etc/profile
+    # fixes AltGr producing Left Arrow input on kitty
+    export XKB_DEFAULT_RULES=base
     if [ "$DBUS_SESSION_BUS_ADDRESS" ]; then
       export DBUS_SESSION_BUS_ADDRESS
       exec ${pkgs.runtimeShell} ~/.xsession
@@ -22,7 +23,6 @@ in {
     # yarn
     asciinema
     calibre
-    docker
     docker-compose
     docker-machine
     filezilla
@@ -32,7 +32,6 @@ in {
     gnome3.libsecret
     gnumake
     # google-chrome
-    gradle
     jq
     libreoffice-fresh
     liquibase
@@ -40,18 +39,14 @@ in {
     mercurial
     mine.dbvisualizer
     mine.steam
-    moonlight-embedded
-    peek
     playerctl
     rambox
     remmina
-    robo3t
     samba
     soapui
     spotifywm
     sqldeveloper
     sshpass
-    steam-run-native
     subversion
     swagger-codegen
     tomcat8
@@ -62,7 +57,6 @@ in {
     keepassxc
     postman
     unzip
-    vagrant
     visualvm
     whois
     zip

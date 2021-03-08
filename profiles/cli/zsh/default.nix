@@ -1,4 +1,9 @@
-{ pkgs, ... }: {
+{ lib, inputs, ... }: {
+  home.file.".zshrc".text = lib.mkBefore ''
+    # fix hanging on emacs tramp
+    # see: https://www.emacswiki.org/emacs/TrampMode#h5o-9
+    [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+  '';
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -6,7 +11,7 @@
     defaultKeymap = "viins";
     plugins = [{
       name = "fz";
-      src = pkgs.nivSources.fz;
+      src = inputs.fz;
     }];
     sessionVariables = { FZ_HISTORY_CD_CMD = "_zlua"; };
     shellAliases = {

@@ -1,14 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./alacritty
-    ./nix-doom-emacs.nix
-    ./fonts.nix
-    ./keepass
-    ./kitty.nix
-    ./termite.nix
-  ];
+  imports =
+    [ ./alacritty ./nix-doom-emacs.nix ./fonts.nix ./keepass ./kitty.nix ];
   home.keyboard = {
     layout = "lt,us";
     options = [ "grp:caps_toggle" ];
@@ -30,7 +24,6 @@
     arandr
     font-manager
     gnome3.adwaita-icon-theme
-    gnome3.nautilus
     hicolor-icon-theme
     i3lock
     meld
@@ -38,7 +31,6 @@
     pcmanfm
     qt5.qttools.bin
     vlc
-    w3m # for ranger image previews
     wmctrl
     xarchiver
     xsel
@@ -56,11 +48,6 @@
   services.gnome-keyring = {
     enable = true;
     components = [ "pkcs11" "secrets" "ssh" ];
-  };
-  xdg.configFile."ranger/rc.conf" = {
-    text = ''
-      set preview_images true
-    '';
   };
   xresources.properties = with config.colors; {
 

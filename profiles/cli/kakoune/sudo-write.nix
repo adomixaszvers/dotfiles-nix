@@ -1,7 +1,7 @@
-{ stdenv, nivSources }:
+{ stdenv, kakoune-sudo-write-source }:
 stdenv.mkDerivation {
   name = "kakoune-sudo-write";
-  src = nivSources.kakoune-sudo-write;
+  src = kakoune-sudo-write-source;
 
   installPhase = ''
     mkdir -p $out/share/kak/autoload/plugins

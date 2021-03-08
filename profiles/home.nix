@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/bspwm ];
+  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
   home.packages = with pkgs; [
     # (mine.steam.override { config.steam.primus = true; })
@@ -8,16 +8,13 @@
     exercism
     firefox
     gtypist
-    klavaro
     mine.steam
-    mine.vimgolf
     playerctl
     qbittorrent
     remmina
     spotifywm
     torbrowser
     keepassxc
-    vim
   ];
   home.sessionVariables = { BROWSER = "firefox"; };
   programs.autorandr = {

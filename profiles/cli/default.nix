@@ -11,6 +11,7 @@
     fd
     file
     git
+    github-cli
     htop
     icdiff
     iotop
@@ -22,7 +23,6 @@
     nixfmt
     p7zip
     patchelf
-    ranger
     ripgrep
     shellcheck
     tree

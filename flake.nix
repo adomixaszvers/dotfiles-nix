@@ -50,7 +50,7 @@
     };
   };
   outputs = { self, nixpkgs, bumblebee-status, flake-utils, home-manager
-    , nixos-hardware, ... }@sources:
+    , nixos-hardware, ... }@inputs:
     (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         config = import ./config.nix;
@@ -60,23 +60,16 @@
             sxhkd = prev.sxhkd.overrideAttrs
               (_: { patches = [ ./pkgs/sxhkd.patch ]; });
           };
-          nivSources = _: _: { nivSources = sources; };
           gitignoreSource = _: prev:
-            let gitignore = (import sources.gitignore) { inherit (prev) lib; };
+            let gitignore = (import inputs.gitignore) { inherit (prev) lib; };
             in { inherit (gitignore) gitignoreSource; };
           nixos-unstable = _: _: {
-            nixos-unstable = import sources.nixos-unstable {
+            nixos-unstable = import inputs.nixos-unstable {
               inherit system config;
               overlays = [ mine ];
             };
           };
-        in [
-          gitignoreSource
-          mine
-          nivSources
-          nixos-unstable
-          sxhkd-with-lt-keys
-        ];
+        in [ gitignoreSource mine nixos-unstable sxhkd-with-lt-keys ];
         pkgs = import nixpkgs { inherit system overlays config; };
       in {
         apps = {
@@ -88,7 +81,7 @@
           bumblebee-status-source = bumblebee-status;
         };
         homes = import ./homes.nix {
-          inherit self home-manager pkgs system overlays;
+          inherit self home-manager pkgs system overlays inputs;
           nixpkgs-config = config;
         };
       })) // {

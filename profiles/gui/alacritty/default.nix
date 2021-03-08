@@ -4,7 +4,7 @@ with (lib.mapAttrs (_: builtins.replaceStrings [ "#" ] [ "0x" ])
     programs.alacritty = {
       enable = true;
       settings = {
-        background_opacity = 0.95;
+        background_opacity = 1.0;
         colors = {
           primary = { inherit background foreground; };
           cursor = { cursor = cursorColor; };
@@ -20,7 +20,7 @@ with (lib.mapAttrs (_: builtins.replaceStrings [ "#" ] [ "0x" ])
             cyan = cyanb;
           };
         };
-        font = let fontSettings = { family = "FiraMono Nerd Font Mono"; };
+        font = let fontSettings = { family = "FiraCode Nerd Font Mono"; };
         in {
           normal = fontSettings;
           bold = fontSettings;

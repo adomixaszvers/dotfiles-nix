@@ -4,7 +4,7 @@
     settings = with config.colors; {
       allow_remote_control = true;
 
-      font_family = "FiraMono Nerd Font Mono";
+      font_family = "FiraCode Nerd Font Mono";
       font_size = "9.0";
 
       inherit foreground background;
