@@ -1,5 +1,5 @@
 let
-  nivSources = import ./nix/sources.nix;
+  inputs = import ./nix/sources.nix;
   home-manager =
-    (import nivSources.home-manager) { pkgs = import nivSources.nixpkgs { }; };
+    (import inputs.home-manager) { pkgs = import inputs.nixpkgs { }; };
 in home-manager.install

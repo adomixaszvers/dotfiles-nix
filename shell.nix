@@ -1,6 +1,6 @@
 let
-  nivSources = import ./nix/sources.nix;
-  pkgs = import nivSources.nixpkgs { };
+  inputs = import ./nix/sources.nix;
+  pkgs = import inputs.nixpkgs { };
 in pkgs.mkShell {
   buildInputs = with pkgs; [ git-crypt ];
   shellHook = ''

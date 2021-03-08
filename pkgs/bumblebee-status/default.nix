@@ -1,6 +1,6 @@
-{ stdenv, python3, nivSources }:
+{ stdenv, python3, inputs }:
 let
-  src = nivSources.bumblebee-status;
+  src = inputs.bumblebee-status;
   version = src.version;
 
 in stdenv.mkDerivation {

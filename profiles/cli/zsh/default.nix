@@ -11,7 +11,7 @@
     defaultKeymap = "viins";
     plugins = [{
       name = "fz";
-      src = pkgs.nivSources.fz;
+      src = pkgs.inputs.fz;
     }];
     sessionVariables = { FZ_HISTORY_CD_CMD = "_zlua"; };
     shellAliases = {

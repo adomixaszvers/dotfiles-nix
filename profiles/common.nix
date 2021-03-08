@@ -8,7 +8,7 @@
   manual.html.enable = true;
   programs.home-manager = {
     enable = true;
-    path = pkgs.nivSources.home-manager.outPath;
+    path = pkgs.inputs.home-manager.outPath;
   };
   systemd.user = { startServices = true; };
 

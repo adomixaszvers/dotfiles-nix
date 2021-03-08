@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  doom-emacs = pkgs.callPackage pkgs.nivSources.nix-doom-emacs {
+  doom-emacs = pkgs.callPackage pkgs.inputs.nix-doom-emacs {
     # Directory containing your config.el init.el
     # and packages.el files
     doomPrivateDir = ./doom;
