@@ -121,10 +121,10 @@
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4d0ee90c6e253d40920f8dae5edb717a7d6f151d",
-        "sha256": "0i4w6zfj1pz52lnpdz4qn9m8d96zlmwfgizi5dsdy3vcqxdwkqi3",
+        "rev": "89a06218ca0b931ab872a9c99aa479285183d3c7",
+        "sha256": "0lzqs2zzsj3qfnmxz2whap9wjqgff60j30r1qwav3vh89xgl45iz",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/4d0ee90c6e253d40920f8dae5edb717a7d6f151d.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/89a06218ca0b931ab872a9c99aa479285183d3c7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pre-commit-hooks.nix": {
