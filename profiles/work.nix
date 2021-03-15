@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 let unstable = pkgs.nixos-unstable;
 in {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
@@ -104,9 +104,9 @@ in {
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;
-    lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c ${
-        builtins.substring 1 6 config.colors.background
-      } -t -p win -f";
+    lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
+    xssLockExtraOptions =
+      [ "-n ${pkgs.xsecurelock}/libexec/xsecurelock.dimmer" ];
   };
   xsession.windowManager.i3.config.startup = [{
     command = "rambox";
