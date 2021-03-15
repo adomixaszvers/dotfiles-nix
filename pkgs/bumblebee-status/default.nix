@@ -1,7 +1,7 @@
-{ stdenv, python3, inputs }:
+{ stdenv, python3, bumblebee-status-source }:
 let
-  src = inputs.bumblebee-status;
-  version = src.version;
+  src = bumblebee-status-source;
+  version = "v2.0.5";
 
 in stdenv.mkDerivation {
   name = "bumblebee-status-${version}";

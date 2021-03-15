@@ -1,14 +1,11 @@
 { pkgs, ... }:
 
-let
-  doom-emacs = pkgs.callPackage pkgs.inputs.nix-doom-emacs {
-    # Directory containing your config.el init.el
-    # and packages.el files
+{
+  programs.doom-emacs = {
+    enable = true;
     doomPrivateDir = ./doom;
   };
-in {
-  home.packages = [ doom-emacs ] ++ (with pkgs; [
-    emacs-all-the-icons-fonts
+  home.packages = with pkgs; [
     fd
     gcc
     gnupg # for ghub .authinfo.gpg
@@ -19,7 +16,7 @@ in {
     ripgrep
     sqlite
     wordnet
-  ]);
+  ];
   home.file.".emacs-nix.d/init.el".text = ''
     (load "default.el")
   '';

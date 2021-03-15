@@ -1,14 +1,10 @@
-{ pkgs, ... }: {
+{ inputs, ... }: {
   imports = [ ../modules ./cli ./gui ./wm/common.nix ];
-  home = {
-    stateVersion = "20.09";
-    username = "adomas";
-    homeDirectory = "/home/adomas";
-  };
+  home = { stateVersion = "20.09"; };
   manual.html.enable = true;
   programs.home-manager = {
     enable = true;
-    path = pkgs.inputs.home-manager.outPath;
+    path = inputs.home-manager.outPath;
   };
   systemd.user = { startServices = true; };
 

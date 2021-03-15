@@ -1,0 +1,1 @@
+let flake = builtins.getFlake (toString ./.); in flake.homes.x86_64-linux.home.activate

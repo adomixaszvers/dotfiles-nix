@@ -1,6 +1,6 @@
 let
-  inputs = import ./nix/sources.nix;
-  nix-pre-commit-hooks = import inputs."pre-commit-hooks.nix";
+  self = builtins.getFlake (toString ./.);
+  nix-pre-commit-hooks = import self.inputs.pre-commit-hooks;
 in {
   pre-commit-check = nix-pre-commit-hooks.run {
     src = ./.;

@@ -44,6 +44,11 @@ else
     set guicursor=
 endif
 
+augroup nix-flakes
+    autocmd!
+    autocmd BufNewFile,BufRead flake.lock set filetype=json
+augroup END
+
 " enable file previews for :Files
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)

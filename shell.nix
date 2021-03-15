@@ -1,6 +1,6 @@
 let
-  inputs = import ./nix/sources.nix;
-  pkgs = import inputs.nixpkgs { };
+  self = builtins.getFlake (toString ./.);
+  pkgs = import self.inputs.nixpkgs { };
 in pkgs.mkShell {
   buildInputs = with pkgs; [ git-crypt ];
   shellHook = ''

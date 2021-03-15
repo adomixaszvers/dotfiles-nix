@@ -1,7 +1,7 @@
-{ stdenv, inputs }:
+{ stdenv, kakoune-text-objects-source }:
 stdenv.mkDerivation {
   name = "kakoune-text-objects";
-  src = inputs.kakoune-text-objects;
+  src = kakoune-text-objects-source;
 
   installPhase = ''
     mkdir -p $out/share/kak/autoload/plugins
