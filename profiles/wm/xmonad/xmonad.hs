@@ -47,7 +47,6 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
   ( composeOne,
     doCenterFloat,
-    transience,
     (-?>),
   )
 import XMonad.Hooks.SetWMName (setWMName)
@@ -62,6 +61,7 @@ import XMonad.Layout.Spacing
   ( Border (..),
     spacingRaw,
   )
+import XMonad.Layout.TrackFloating (trackFloating, useTransientFor)
 import qualified XMonad.StackSet as W
 import XMonad.Util.NamedActions
   ( NamedAction (..),
@@ -131,7 +131,7 @@ main = do
     myMainLayout =
       renamed [Replace "Tall"] tiled
         ||| renamed [Replace "Wide"] (Mirror tiled)
-    myLayoutHook = smartBorders . avoidStruts . mkToggle (single FULL) $ myMainLayout
+    myLayoutHook = smartBorders . avoidStruts . trackFloating . useTransientFor . mkToggle (single FULL) $ myMainLayout
 
 myTerminal :: String
 myTerminal = "kitty"
@@ -165,14 +165,14 @@ myManageHook =
   where
     spawnHook =
       composeOne
-        [ transience,
+        [
           className =? "Google-chrome" <||> className =? "Firefox" -?> doShift ws1,
           className =? "jetbrains-idea" -?> doShift ws3,
           className =? "Rambox" -?> doShift ws4,
           className =? "Steam" <||> className =? "SmartGit" -?> doShift ws5,
           className =? "libreoffice" -?> doShift ws6,
           className =? "Eclipse" -?> doShift ws7,
-          className =? "KeePass2" -?> doShift ws9,
+          className =? "KeePass2" <||> className =? "KeePassXC" -?> doShift ws9,
           className =? "Google Play Music Desktop Player" -?> doShift ws0,
           className =? "Spotify" -?> doShift ws0
         ]
