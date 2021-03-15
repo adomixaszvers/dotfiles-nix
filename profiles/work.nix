@@ -18,8 +18,10 @@ in {
     fi
   '';
   home.packages = with pkgs; [
+    # google-chrome
     # mine.consul
     # skype
+    # torbrowser
     # yarn
     asciinema
     calibre
@@ -31,15 +33,18 @@ in {
     gitAndTools.gitflow
     gnome3.libsecret
     gnumake
-    # google-chrome
+    html-tidy
     jq
+    keepassxc
     libreoffice-fresh
     liquibase
     maven
     mercurial
     mine.dbvisualizer
     mine.steam
+    numlockx
     playerctl
+    postman
     rambox
     remmina
     samba
@@ -50,12 +55,9 @@ in {
     subversion
     swagger-codegen
     tomcat8
-    torbrowser
     traceroute
     unrar
     unstable.jetbrains.idea-ultimate
-    keepassxc
-    postman
     unzip
     visualvm
     whois
@@ -120,6 +122,7 @@ in {
       "DP-1" = [ "1" "2" "3" "4" "5" ];
       "DP-2" = [ "6" "7" "8" "9" "10" ];
     };
+    startupPrograms = [ "rambox" ];
   };
   xsession.initExtra = ''
     autorandr --change
