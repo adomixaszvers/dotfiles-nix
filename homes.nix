@@ -22,5 +22,6 @@ let
   };
 in {
   work = buildHomeManager "${self}/profiles/work.nix";
+  work-remote = buildHomeManager "${self}/profiles/work-remote.nix";
   home = buildHomeManager "${self}/profiles/home.nix";
 }
