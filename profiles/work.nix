@@ -98,6 +98,10 @@ in {
       };
     };
   };
+  programs.git.includes = [{
+    condition = "gitdir:~/projektai/**";
+    contents.core.excludesfile = toString ./work/gitignore_global;
+  }];
   programs.zsh.shellAliases = {
     imvn = "mvn -s ~/.m2/insoft-settings.xml";
     amvn = "mvn -s ~/.m2/kazan-settings.xml";
