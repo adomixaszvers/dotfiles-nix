@@ -1,4 +1,5 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs ?
+  (builtins.getFlake "nixpkgs").legacyPackages."${builtins.currentSystem}" }:
 let extraPackages = import ./extraPackages.nix;
 in with pkgs;
 

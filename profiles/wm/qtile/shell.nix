@@ -1,4 +1,5 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs ?
+  (builtins.getFlake "nixpkgs").legacyPackages."${builtins.currentSystem}" }:
 with pkgs;
 mkShell {
   name = "qtile-shell";
