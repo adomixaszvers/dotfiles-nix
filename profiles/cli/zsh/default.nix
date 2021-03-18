@@ -21,6 +21,8 @@
       lt = "exa -aT";
       setlt = "setxkbmap lt,us -option grp:caps_toggle -model pc104";
     };
-    initExtra = builtins.readFile ./initExtra.zsh;
+    initExtra = ''
+      export NIX_PATH=nixpkgs=${inputs.nixpkgs}''${NIX_PATH:+:}$NIX_PATH
+    '' + builtins.readFile ./initExtra.zsh;
   };
 }
