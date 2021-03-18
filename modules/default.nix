@@ -1,1 +1,1 @@
-{ imports = [ ./colors.nix ]; }
+{ imports = [ ./colors.nix ./nix-registry.nix ]; }

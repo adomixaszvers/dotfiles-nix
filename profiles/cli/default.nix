@@ -1,7 +1,15 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./git.nix ./gpg-agent.nix ./lorri.nix ./neovim ./kakoune ./zsh ];
+  imports = [
+    ./git.nix
+    ./gpg-agent.nix
+    ./lorri.nix
+    ./neovim
+    ./kakoune
+    ./registry.nix
+    ./zsh
+  ];
   home.packages = with pkgs; [
     bat
     bfs
