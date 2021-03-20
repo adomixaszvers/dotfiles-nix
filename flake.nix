@@ -41,6 +41,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    emacs-overlay = { url = "github:nix-community/emacs-overlay"; };
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
