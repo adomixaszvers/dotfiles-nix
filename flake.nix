@@ -13,6 +13,10 @@
       url = "github:tobi-wan-kenobi/bumblebee-status/v2.0.5";
       flake = false;
     };
+    chemacs = {
+      url = "github:plexus/chemacs2";
+      flake = false;
+    };
     flake-utils = { url = "github:numtide/flake-utils"; };
     fz = {
       url = "github:changyuheng/fz";

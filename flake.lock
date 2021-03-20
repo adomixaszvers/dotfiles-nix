@@ -50,6 +50,22 @@
         "type": "github"
       }
     },
+    "chemacs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1610699005,
+        "narHash": "sha256-yaFRY6aIkCStdghBvJ3J2mhk/yMMiszv22H4AvbwGT4=",
+        "owner": "plexus",
+        "repo": "chemacs2",
+        "rev": "30a20dbc2799e4ab2f8c509fdadcd90aa9845b5c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "plexus",
+        "repo": "chemacs2",
+        "type": "github"
+      }
+    },
     "doom-emacs": {
       "flake": false,
       "locked": {
@@ -514,6 +530,7 @@
         "awesome-copycats": "awesome-copycats",
         "awesome-sharedtags": "awesome-sharedtags",
         "bumblebee-status": "bumblebee-status",
+        "chemacs": "chemacs",
         "emacs-overlay": "emacs-overlay",
         "flake-utils": "flake-utils",
         "fz": "fz",
