@@ -18,6 +18,7 @@ in {
   home.file.".emacs-profile".text = ''
     doom
   '';
+  home.sessionVariables.DOOMDIR = "~/.config/nixpkgs/profiles/gui/doom";
   programs.emacs = {
     enable = true;
     package = ePkgs.emacsGcc;
