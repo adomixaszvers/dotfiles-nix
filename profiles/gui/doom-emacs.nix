@@ -3,6 +3,7 @@ let
   ePkgs = with inputs; import nixpkgs { overlays = [ emacs-overlay.overlay ]; };
 in {
   home.packages = with pkgs; [
+    emacs-all-the-icons-fonts
     fd
     gcc
     gnupg # for ghub .authinfo.gpg
