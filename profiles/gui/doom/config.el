@@ -3,6 +3,7 @@
 ;; Place your private configuration here
 ;;; Show all outlines while diffing org-mode files
 (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 12))
+(setq doom-unicode-font doom-font)
 (setq custom-file (expand-file-name "custom.el" doom-private-dir))
 (when (display-graphic-p)
   (setq doom-theme 'doom-nord))
