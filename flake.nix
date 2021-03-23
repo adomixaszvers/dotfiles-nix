@@ -76,17 +76,17 @@
           };
         in [ gitignoreSource mine nixos-unstable sxhkd-with-lt-keys ];
         pkgs = import nixpkgs { inherit system overlays config; };
-      in {
+      in rec {
         apps = {
-          hm-home = self.homes."${system}".home.activate;
-          hm-work = self.homes."${system}".work.activate;
+          hm-home = homes.home.activate;
+          hm-work = homes.work.activate;
         };
         packages = import ./pkgs {
           inherit pkgs;
           bumblebee-status-source = bumblebee-status;
         };
         homes = import ./homes.nix {
-          inherit self home-manager pkgs system overlays inputs;
+          inherit home-manager pkgs system overlays inputs;
           nixpkgs-config = config;
         };
       })) // {

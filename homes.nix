@@ -1,4 +1,4 @@
-{ self, home-manager, pkgs, system, overlays, nixpkgs-config, inputs }:
+{ home-manager, pkgs, system, overlays, nixpkgs-config, inputs }:
 
 let
   username = "adomas";
@@ -21,7 +21,7 @@ let
     };
   };
 in {
-  work = buildHomeManager "${self}/profiles/work.nix";
-  work-remote = buildHomeManager "${self}/profiles/work-remote.nix";
-  home = buildHomeManager "${self}/profiles/home.nix";
+  work = buildHomeManager ./profiles/work.nix;
+  work-remote = buildHomeManager ./profiles/work-remote.nix;
+  home = buildHomeManager ./profiles/home.nix;
 }
