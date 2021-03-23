@@ -1,23 +1,11 @@
 { pkgs, ... }:
 let unstable = pkgs.nixos-unstable;
 in {
-  imports =
-    [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ./work/secrets ];
+  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/bspwm ./work/secrets ];
   colors = import ./gui/colors/nord.nix;
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = pkgs.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
-  home.file."startwm.sh".source = pkgs.writeShellScript "startwm.sh" ''
-    source /etc/profile
-    # fixes AltGr producing Left Arrow input on kitty
-    export XKB_DEFAULT_RULES=base
-    if [ "$DBUS_SESSION_BUS_ADDRESS" ]; then
-      export DBUS_SESSION_BUS_ADDRESS
-      exec ${pkgs.runtimeShell} ~/.xsession
-    else
-      exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.runtimeShell} ~/.xsession
-    fi
-  '';
   home.packages = with pkgs; [
     # google-chrome
     # mine.consul
