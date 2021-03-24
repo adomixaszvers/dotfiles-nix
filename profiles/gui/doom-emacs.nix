@@ -1,6 +1,10 @@
 { pkgs, inputs, ... }:
 let
-  ePkgs = with inputs; import nixpkgs { overlays = [ emacs-overlay.overlay ]; };
+  ePkgs = with inputs;
+    import nixpkgs {
+      inherit (pkgs) system;
+      overlays = [ emacs-overlay.overlay ];
+    };
 in {
   home.packages = with pkgs; [
     emacs-all-the-icons-fonts
