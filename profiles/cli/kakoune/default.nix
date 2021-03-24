@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, myPkgs, inputs, ... }: {
   home.packages = with pkgs;
     let
       kakouneTextObjects = callPackage (import ./kakoune-text-objects.nix) {
@@ -15,6 +15,6 @@
         configure.plugins =
           [ kakounePlugins.kak-fzf kakouneTextObjects sudoWrite kakrc ];
       };
-    in [ myKakoune kak-lsp mine.kaknix ];
+    in [ myKakoune kak-lsp myPkgs.kaknix ];
   xdg.configFile."kak-lsp/kak-lsp.toml".source = ./kak-lsp.toml;
 }

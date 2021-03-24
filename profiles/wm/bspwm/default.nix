@@ -1,12 +1,7 @@
-{ pkgs, config, lib, ... }: {
+{ pkgs, myPkgs, config, lib, ... }: {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ./sxhkd.nix ];
-  home.packages = with pkgs; [
-    bspwm
-    mine.bspwm-reorder-desktops
-    mine.bspwm-greedy-focus
-    tdrop
-    wmname
-  ];
+  home.packages = (with pkgs; [ bspwm tdrop wmname ])
+    ++ (with myPkgs; [ bspwm-reorder-desktops bspwm-greedy-focus ]);
   services.polybar.config = let
     common = {
       modules-left = "bspwm divider title";

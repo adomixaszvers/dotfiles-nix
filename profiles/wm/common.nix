@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, myPkgs, ... }:
 
 {
   gtk = {
@@ -21,7 +21,7 @@
     enable = true;
     automount = false;
   };
-  home.packages = with pkgs; [ mine.maimpick mine.rofi-powermenu ];
+  home.packages = with myPkgs; [ maimpick rofi-powermenu ];
   home.sessionVariables =
     let askpass = "${pkgs.gnome3.seahorse}/libexec/seahorse/ssh-askpass";
     in {

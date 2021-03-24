@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, myPkgs, config, lib, ... }:
 let common = import ./common.nix { inherit pkgs config; };
 in {
   imports = [ ../picom.nix ../dunst.nix ];
@@ -18,7 +18,7 @@ in {
 
           "${modifier}+r" = "mode resize";
           "${modifier}+F4" =
-            "exec --no-startup-id ${pkgs.mine.rofi-powermenu}/bin/rofi-powermenu";
+            "exec --no-startup-id ${myPkgs.rofi-powermenu}/bin/rofi-powermenu";
           "${modifier}+m" = "move workspace to output left";
 
           "Print" = "exec --no-startup-id maimpick";

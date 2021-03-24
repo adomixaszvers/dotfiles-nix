@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, myPkgs, ... }:
 let unstable = pkgs.nixos-unstable;
 in {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/bspwm ./work/secrets ];
@@ -6,9 +6,8 @@ in {
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = pkgs.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
-  home.packages = with pkgs; [
+  home.packages = (with myPkgs; [ dbvisualizer steam ]) ++ (with pkgs; [
     # google-chrome
-    # mine.consul
     # skype
     # torbrowser
     # yarn
@@ -29,8 +28,6 @@ in {
     liquibase
     maven
     mercurial
-    mine.dbvisualizer
-    mine.steam
     numlockx
     playerctl
     postman
@@ -51,7 +48,7 @@ in {
     visualvm
     whois
     zip
-  ];
+  ]);
   home.sessionVariables = { BROWSER = "firefox"; };
   programs.autorandr = {
     enable = true;

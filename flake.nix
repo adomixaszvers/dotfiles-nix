@@ -54,13 +54,12 @@
       flake = false;
     };
   };
-  outputs = { self, nixpkgs, bumblebee-status, flake-utils, home-manager
+  outputs = { nixpkgs, bumblebee-status, flake-utils, home-manager
     , nixos-hardware, ... }@inputs:
     (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         config = import ./config.nix;
         overlays = let
-          mine = _: _: { mine = self.packages."${system}"; };
           sxhkd-with-lt-keys = _: prev: {
             sxhkd = prev.sxhkd.overrideAttrs
               (_: { patches = [ ./pkgs/sxhkd.patch ]; });
@@ -69,12 +68,10 @@
             let gitignore = (import inputs.gitignore) { inherit (prev) lib; };
             in { inherit (gitignore) gitignoreSource; };
           nixos-unstable = _: _: {
-            nixos-unstable = import inputs.nixos-unstable {
-              inherit system config;
-              overlays = [ mine ];
-            };
+            nixos-unstable =
+              import inputs.nixos-unstable { inherit system config; };
           };
-        in [ gitignoreSource mine nixos-unstable sxhkd-with-lt-keys ];
+        in [ gitignoreSource nixos-unstable sxhkd-with-lt-keys ];
         pkgs = import nixpkgs { inherit system overlays config; };
       in rec {
         apps = {
@@ -88,6 +85,7 @@
         homes = import ./homes.nix {
           inherit home-manager pkgs system overlays inputs;
           nixpkgs-config = config;
+          myPkgs = packages;
         };
       })) // {
         nixosConfigurations =
