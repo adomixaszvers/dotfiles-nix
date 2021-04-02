@@ -41,6 +41,7 @@
     nix-doom-emacs = {
       url = "github:vlaci/nix-doom-emacs";
       inputs = {
+        emacs-overlay.follows = "emacs-overlay";
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
