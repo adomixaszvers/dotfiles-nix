@@ -23,7 +23,3 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 bindkey '^e' edit-command-line
-
-hm-switch () {
-  nix run -f ~/.config/nixpkgs/current.nix
-}

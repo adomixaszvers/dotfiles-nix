@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, myPkgs, ... }:
 
 {
   imports = [
@@ -10,7 +10,7 @@
     ./registry.nix
     ./zsh
   ];
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     bat
     bfs
     binutils
@@ -37,7 +37,7 @@
     unzip
     wol
     xdg-user-dirs
-  ];
+  ]) ++ (with myPkgs; [ hm-switch ]);
   home.sessionVariables = {
     EDITOR = "nvim";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";

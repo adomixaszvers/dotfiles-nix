@@ -2,12 +2,11 @@
 
 {
   bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
-  bspwm-reorder-desktops =
-    pkgs.callPackage ./bspwm-reorder-desktops.nix { };
-  bumblebee-status = pkgs.callPackage ./bumblebee-status {
-    inherit bumblebee-status-source;
-  };
+  bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
+  bumblebee-status =
+    pkgs.callPackage ./bumblebee-status { inherit bumblebee-status-source; };
   dbvisualizer = pkgs.callPackage ./dbvisualizer.nix { };
+  hm-switch = pkgs.callPackage ./hm-switch.nix { };
   kaknix = pkgs.callPackage ./kaknix.nix { };
   lua-fmt = (import ./lua-fmt { inherit pkgs; }).lua-fmt;
   maimpick = pkgs.callPackage ./maimpick.nix { };
