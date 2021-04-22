@@ -247,7 +247,12 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
         ( (modm .|. controlMask, xK_s),
           addName "Terminal scratchpad" $
             namedScratchpadAction myScratchpads nsTerminal
-        )
+        ),
+        subtitle "dunst",
+        ((modm, xK_F9), addName "Close notification" $ spawn "dunstctl close"),
+        ((modm .|. shiftMask, xK_F9), addName "Close all notification" $ spawn "dunstctl close-all"),
+        ((modm, xK_F10), addName "Notification history pop" $ spawn "dunstctl history-pop"),
+        ((modm, xK_F11), addName "Notification context actions" $ spawn "dunstctl context")
       ]
         ++ subtitle "music player controls" :
       [ ( (modm, xK_F5),

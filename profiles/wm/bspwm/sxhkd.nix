@@ -34,6 +34,11 @@
       "super + F6" = "playerctl previous";
       "super + F7" = "playerctl next";
 
+      # dunst
+      "super + {_,shift + } + F9" = "dunstctl close{_,-all}";
+      "super + F10" = "dunstctl history-pop";
+      "super + F11" = "dunstctl context";
+
       # power menu
       "super + F4" = "rofi-powermenu";
 

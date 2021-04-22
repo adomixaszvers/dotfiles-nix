@@ -1,6 +1,7 @@
 { pkgs, config, ... }:
 let colors = config.colors;
 in {
+  home.packages = with pkgs; [ dunst ];
   services.dunst = {
     enable = config.xsession.enable;
     iconTheme = {
@@ -40,12 +41,6 @@ in {
       frame = {
         width = 1;
         color = colors.foreground;
-      };
-      shortcuts = {
-        close = "ctrl+space";
-        close_all = "ctrl+shift+space";
-        history = "ctrl+grave";
-        context = "ctrl+shift+period";
       };
       urgency_low = {
         background = colors.black;
