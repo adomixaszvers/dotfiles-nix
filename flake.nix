@@ -48,7 +48,7 @@
     };
     emacs-overlay = { url = "github:nix-community/emacs-overlay"; };
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
-    nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
+    nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
