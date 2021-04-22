@@ -10,9 +10,12 @@
     userEmail = "adomixaszvers@gmail.com";
     userName = "Adomas Jatužis";
     extraConfig = {
+      core = { autocrlf = "input"; };
       merge = { tool = "nvim"; };
       "mergetool \"nvim\"" = { cmd = ''nvim -f -c "Gdiff" "$MERGED"''; };
-      credential = { helper = "cache"; };
+      credential = {
+        helper = "${pkgs.gitAndTools.gitFull}/bin/git-credential-libsecret";
+      };
       github = { user = "adomixaszvers"; };
       pull = { rebase = true; };
     };
