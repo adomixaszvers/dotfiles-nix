@@ -1,11 +1,6 @@
-let
-  self = builtins.getFlake (toString ./.);
-  system = builtins.currentSystem;
-  pkgs = import self.inputs.nixpkgs { };
-in pkgs.mkShell {
-  buildInputs = (with pkgs; [ git-crypt ])
-    ++ (with self.packages."${system}"; [ hm-switch ]);
-  shellHook = ''
-    ${(import ./default.nix).pre-commit-check.shellHook}
-  '';
-}
+(import (let lock = builtins.fromJSON (builtins.readFile ./flake.lock);
+in fetchTarball {
+  url =
+    "https://github.com/edolstra/flake-compat/archive/${lock.nodes.flake-compat.locked.rev}.tar.gz";
+  sha256 = lock.nodes.flake-compat.locked.narHash;
+}) { src = ./.; }).shellNix

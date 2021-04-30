@@ -2,5 +2,6 @@
 hosts/lockscreen.png
 pkgs/dbxcli/keys.patch
 .luacheckcache
+.direnv
 /.pre-commit-config.yaml
 /current.nix

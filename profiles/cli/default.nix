@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./direnv
     ./git.nix
     ./gpg-agent.nix
     ./lorri.nix
@@ -45,11 +46,6 @@
   programs.bash = {
     enable = true;
     historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
-  };
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
   };
   programs.fzf = {
     changeDirWidgetCommand = "bfs -type d";

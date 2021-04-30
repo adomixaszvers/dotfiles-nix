@@ -17,6 +17,10 @@
       url = "github:plexus/chemacs2";
       flake = false;
     };
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
     flake-utils = { url = "github:numtide/flake-utils"; };
     fz = {
       url = "github:changyuheng/fz";
@@ -50,13 +54,10 @@
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      flake = false;
-    };
+    pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
   };
   outputs = { nixpkgs, bumblebee-status, flake-utils, home-manager
-    , nixos-hardware, ... }@inputs:
+    , nixos-hardware, pre-commit-hooks, ... }@inputs:
     (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         config = import ./config.nix;
@@ -87,6 +88,19 @@
           inherit home-manager pkgs system overlays inputs;
           nixpkgs-config = config;
           myPkgs = packages;
+        };
+        checks = {
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              nixfmt.enable = true;
+              nix-linter.enable = true;
+              shellcheck.enable = true;
+            };
+          };
+        };
+        devShell = nixpkgs.legacyPackages.${system}.mkShell {
+          inherit (checks.pre-commit-check) shellHook;
         };
       })) // {
         nixosConfigurations =

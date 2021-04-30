@@ -1,7 +1,7 @@
 {
   programs.direnv = {
     stdlib = ''
-      use_nix() {
+      use_lorri() {
         eval "$(lorri direnv)"
       }
     '';

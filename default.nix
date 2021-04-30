@@ -1,15 +1,6 @@
-let
-  self = builtins.getFlake (toString ./.);
-  nix-pre-commit-hooks = import self.inputs.pre-commit-hooks;
-in {
-  pre-commit-check = nix-pre-commit-hooks.run {
-    src = ./.;
-    # If your hooks are intrusive, avoid running on each commit with a default_states like this:
-    # default_stages = ["manual" "push"];
-    hooks = {
-      nixfmt.enable = true;
-      nix-linter.enable = true;
-      shellcheck.enable = true;
-    };
-  };
-}
+(import (let lock = builtins.fromJSON (builtins.readFile ./flake.lock);
+in fetchTarball {
+  url =
+    "https://github.com/edolstra/flake-compat/archive/${lock.nodes.flake-compat.locked.rev}.tar.gz";
+  sha256 = lock.nodes.flake-compat.locked.narHash;
+}) { src = ./.; }).defaultNix
