@@ -17,10 +17,4 @@
     sqlite
     wordnet
   ];
-  home.file.".emacs-nix.d/init.el".text = ''
-    (load "default.el")
-  '';
-  home.file.".emacs-profile".text = ''
-    nix-doom
-  '';
 }

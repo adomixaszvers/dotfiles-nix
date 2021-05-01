@@ -42,14 +42,7 @@
       url = "github:Delapouite/kakoune-text-objects";
       flake = false;
     };
-    nix-doom-emacs = {
-      url = "github:vlaci/nix-doom-emacs";
-      inputs = {
-        emacs-overlay.follows = "emacs-overlay";
-        flake-utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    nix-doom-emacs = { url = "github:vlaci/nix-doom-emacs"; };
     emacs-overlay = { url = "github:nix-community/emacs-overlay"; };
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
