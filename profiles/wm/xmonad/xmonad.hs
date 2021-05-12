@@ -172,6 +172,7 @@ myManageHook =
           className =? "Steam" <||> className =? "SmartGit" -?> doShift ws5,
           className =? "libreoffice" -?> doShift ws6,
           className =? "Eclipse" -?> doShift ws7,
+          className =? "org.remmina.Remmina" -?> doShift ws8,
           className =? "KeePass2" <||> className =? "KeePassXC" -?> doShift ws9,
           className =? "Google Play Music Desktop Player" -?> doShift ws0,
           className =? "Spotify" -?> doShift ws0
@@ -197,7 +198,7 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
         ),
         ( (modm, xK_d),
           addName "Open DRun menu" $
-            spawn "rofi -show combi -combi-modi window,drun"
+            spawn "rofi -show combi -combi-modi window,drun -show-icons"
         ),
         ( (modm .|. shiftMask, xK_d),
           addName "Open Run menu" $ spawn "rofi -show run -sidebar-mode"
