@@ -46,9 +46,7 @@
   programs.feh.enable = true;
   programs.rofi = {
     enable = true;
-    extraConfig = ''
-      rofi.modi: drun,window,run,ssh
-    '';
+    extraConfig = { modi = "drun,window,run,ssh"; };
     theme = "Pop-Dark";
   };
   services.gnome-keyring = {

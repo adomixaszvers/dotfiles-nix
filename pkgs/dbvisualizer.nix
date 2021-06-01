@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, jre, makeWrapper }:
+{ stdenv, lib, fetchurl, jre, makeWrapper }:
 
 stdenv.mkDerivation {
   name = "dbvisualizer-10.0.25";
@@ -21,6 +21,6 @@ stdenv.mkDerivation {
   meta = {
     description = "The universal database tool";
     homepage = "https://www.dbvis.com/";
-    license = stdenv.lib.licenses.unfree;
+    license = lib.licenses.unfree;
   };
 }

@@ -39,7 +39,7 @@
   environment.shells = [ pkgs.zsh ];
 
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     enableGhostscriptFonts = true;
     enableDefaultFonts = true;
   };
@@ -66,7 +66,7 @@
   services.colord.enable = true;
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
-  services.gnome3.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = lib.mkDefault true;
   programs.seahorse.enable = true;
 

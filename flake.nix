@@ -31,7 +31,7 @@
       flake = false;
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-20.09";
+      url = "github:nix-community/home-manager/release-21.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     kakoune-sudo-write = {
@@ -46,7 +46,7 @@
     emacs-overlay = { url = "github:nix-community/emacs-overlay"; };
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
-    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
+    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-21.05"; };
     pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
   };
   outputs = { nixpkgs, bumblebee-status, flake-utils, home-manager

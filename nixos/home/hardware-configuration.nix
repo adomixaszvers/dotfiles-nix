@@ -48,7 +48,7 @@
     fsType = "zfs";
   };
 
-  fileSystems."/home/adomas/.local/share/Steam/" = {
+  fileSystems."/home/adomas/.local/share/Steam" = {
     device = "hpool/adomas/steam";
     fsType = "zfs";
   };

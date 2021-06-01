@@ -1,4 +1,4 @@
-{ stdenv, kakoune-sudo-write-source }:
+{ stdenv, lib, kakoune-sudo-write-source }:
 stdenv.mkDerivation {
   name = "kakoune-sudo-write";
   src = kakoune-sudo-write-source;
@@ -8,7 +8,7 @@ stdenv.mkDerivation {
     cp $src/sudo-write.kak $out/share/kak/autoload/plugins/sudo-write.kak
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Write to files using 'sudo'";
     homepage = "https://github.com/occivink/kakoune-sudo-write";
     license = licenses.unlicense;

@@ -1,4 +1,4 @@
-{ stdenv, python3, bumblebee-status-source }:
+{ stdenv, lib, python3, bumblebee-status-source }:
 let
   src = bumblebee-status-source;
   version = "v2.0.5";
@@ -17,7 +17,7 @@ in stdenv.mkDerivation {
     install -d $out/bin
     ln -s $out/share/bumblebee-status/bumblebee-status $out/bin/bumblebee-status
   '';
-  meta = with stdenv.lib; {
+  meta = with lib; {
     platforms = platforms.linux;
     license = licenses.mit;
     description =
