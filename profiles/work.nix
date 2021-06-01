@@ -4,9 +4,9 @@ in {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/bspwm ./work/secrets ];
   colors = import ./gui/colors/nord.nix;
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
-  home.file."jdks/oraclejdk8".source = pkgs.oraclejdk8;
+  home.file."jdks/oraclejdk8".source = unstable.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
-  home.packages = (with myPkgs; [ dbvisualizer steam ]) ++ (with pkgs; [
+  home.packages = (with myPkgs; [ steam ]) ++ (with pkgs; [
     # google-chrome
     # skype
     # torbrowser
@@ -36,7 +36,7 @@ in {
     samba
     soapui
     spotifywm
-    sqldeveloper
+    unstable.sqldeveloper
     sshpass
     subversion
     swagger-codegen
@@ -45,7 +45,6 @@ in {
     unrar
     unstable.jetbrains.idea-ultimate
     unzip
-    visualvm
     whois
     zip
   ]);
