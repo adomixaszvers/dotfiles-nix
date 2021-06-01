@@ -168,7 +168,7 @@ myManageHook =
         [
           className =? "Google-chrome" <||> className =? "Firefox" -?> doShift ws1,
           className =? "jetbrains-idea" -?> doShift ws3,
-          className =? "Rambox" -?> doShift ws4,
+          className =? "Rambox" <||> className =? "discord" -?> doShift ws4,
           className =? "Steam" <||> className =? "SmartGit" -?> doShift ws5,
           className =? "libreoffice" -?> doShift ws6,
           className =? "Eclipse" -?> doShift ws7,

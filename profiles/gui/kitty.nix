@@ -4,6 +4,8 @@
     settings = with config.colors; {
       allow_remote_control = true;
 
+      enable_audio_bell = false;
+
       font_family = "FiraCode Nerd Font Mono";
       font_size = "9.0";
 

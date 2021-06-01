@@ -4,6 +4,7 @@
   home.packages = (with pkgs; [
     borgbackup
     compsize
+    discord
     exercism
     firefox
     gtypist
