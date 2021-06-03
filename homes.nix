@@ -3,8 +3,8 @@
 let
   username = "adomas";
   homeDirectory = "/home/adomas";
-  buildHomeManager = config: rec {
-    hmModule = home-manager.lib.homeManagerConfiguration {
+  buildHomeManager = config:
+    home-manager.lib.homeManagerConfiguration {
       inherit system homeDirectory username pkgs;
       extraSpecialArgs = { inherit inputs myPkgs; };
       configuration = { ... }: {
@@ -15,13 +15,10 @@ let
         };
       };
     };
-    activate = {
-      type = "app";
-      program = "${hmModule.activationPackage}/activate";
-    };
-  };
-in {
+in rec {
   work = buildHomeManager ./profiles/work.nix;
   work-remote = buildHomeManager ./profiles/work-remote.nix;
   home = buildHomeManager ./profiles/home.nix;
+  "adomas@adomo-nixos" = home;
+  "adomas@adomas-jatuzis-nixos" = work-remote;
 }

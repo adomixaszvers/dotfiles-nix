@@ -49,12 +49,12 @@
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-21.05"; };
     pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
   };
-  outputs = { nixpkgs, bumblebee-status, flake-utils, home-manager
+  outputs = { self, nixpkgs, bumblebee-status, flake-utils, home-manager
     , nixos-hardware, pre-commit-hooks, ... }@inputs:
-    (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
-      let
-        config = import ./config.nix;
-        overlays = let
+    let
+      config = import ./config.nix;
+      mkPkgs = system:
+        let
           sxhkd-with-lt-keys = _: prev: {
             sxhkd = prev.sxhkd.overrideAttrs
               (_: { patches = [ ./pkgs/sxhkd.patch ]; });
@@ -66,37 +66,36 @@
             nixos-unstable =
               import inputs.nixos-unstable { inherit system config; };
           };
-        in [ gitignoreSource nixos-unstable sxhkd-with-lt-keys ];
-        pkgs = import nixpkgs { inherit system overlays config; };
-      in rec {
-        apps = {
-          hm-home = homes.home.activate;
-          hm-work = homes.work.activate;
+        in rec {
+          overlays = [ gitignoreSource nixos-unstable sxhkd-with-lt-keys ];
+          pkgs = import nixpkgs { inherit system overlays config; };
         };
-        packages = import ./pkgs {
-          inherit pkgs;
-          bumblebee-status-source = bumblebee-status;
-        };
-        homes = import ./homes.nix {
-          inherit home-manager pkgs system overlays inputs;
-          nixpkgs-config = config;
-          myPkgs = packages;
-        };
-        checks = {
-          pre-commit-check = pre-commit-hooks.lib.${system}.run {
-            src = ./.;
-            hooks = {
-              nixfmt.enable = true;
-              nix-linter.enable = true;
-              shellcheck.enable = true;
-            };
+    in (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system: rec {
+      packages = import ./pkgs {
+        pkgs = (mkPkgs system).pkgs;
+        bumblebee-status-source = bumblebee-status;
+      };
+      checks = {
+        pre-commit-check = pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            nixfmt.enable = true;
+            nix-linter.enable = true;
+            shellcheck.enable = true;
           };
         };
-        devShell = nixpkgs.legacyPackages.${system}.mkShell {
-          inherit (checks.pre-commit-check) shellHook;
-        };
-      })) // {
-        nixosConfigurations =
-          import ./nixos/configurations.nix { inherit nixpkgs nixos-hardware; };
       };
+      devShell = nixpkgs.legacyPackages.${system}.mkShell {
+        inherit (checks.pre-commit-check) shellHook;
+      };
+    })) // {
+      nixosConfigurations =
+        import ./nixos/configurations.nix { inherit nixpkgs nixos-hardware; };
+      homeConfigurations = with (mkPkgs "x86_64-linux");
+        import ./homes.nix {
+          inherit home-manager pkgs system overlays inputs;
+          nixpkgs-config = config;
+          myPkgs = self.packages.x86_64-linux;
+        };
+    };
 }

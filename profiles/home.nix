@@ -1,10 +1,12 @@
-{ pkgs, myPkgs, ... }: {
+{ pkgs, myPkgs, ... }:
+let unstable = pkgs.nixos-unstable;
+in {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
   home.packages = (with pkgs; [
     borgbackup
     compsize
-    discord
+    unstable.discord
     exercism
     firefox
     gtypist
