@@ -70,32 +70,35 @@
           overlays = [ gitignoreSource nixos-unstable sxhkd-with-lt-keys ];
           pkgs = import nixpkgs { inherit system overlays config; };
         };
-    in (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system: rec {
-      packages = import ./pkgs {
-        pkgs = (mkPkgs system).pkgs;
-        bumblebee-status-source = bumblebee-status;
-      };
-      checks = {
-        pre-commit-check = pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            nixfmt.enable = true;
-            nix-linter.enable = true;
-            shellcheck.enable = true;
+    in (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
+      let pkgs = (mkPkgs system).pkgs;
+      in rec {
+        packages = import ./pkgs {
+          inherit pkgs;
+          bumblebee-status-source = bumblebee-status;
+        };
+        checks = {
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              nixfmt.enable = true;
+              nix-linter.enable = true;
+              shellcheck.enable = true;
+            };
           };
         };
-      };
-      devShell = nixpkgs.legacyPackages.${system}.mkShell {
-        inherit (checks.pre-commit-check) shellHook;
-      };
-    })) // {
-      nixosConfigurations =
-        import ./nixos/configurations.nix { inherit nixpkgs nixos-hardware; };
-      homeConfigurations = with (mkPkgs "x86_64-linux");
-        import ./homes.nix {
-          inherit home-manager pkgs system overlays inputs;
-          nixpkgs-config = config;
-          myPkgs = self.packages.x86_64-linux;
+        devShell = nixpkgs.legacyPackages.${system}.mkShell {
+          buildInputs = [ packages.hm-switch pkgs.git-crypt ];
+          inherit (checks.pre-commit-check) shellHook;
         };
-    };
+      })) // {
+        nixosConfigurations =
+          import ./nixos/configurations.nix { inherit nixpkgs nixos-hardware; };
+        homeConfigurations = with (mkPkgs "x86_64-linux");
+          import ./homes.nix {
+            inherit home-manager pkgs system overlays inputs;
+            nixpkgs-config = config;
+            myPkgs = self.packages.x86_64-linux;
+          };
+      };
 }
