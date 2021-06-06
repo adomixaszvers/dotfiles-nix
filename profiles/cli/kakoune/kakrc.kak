@@ -1,8 +1,10 @@
-set-option global tabstop 4
-set-option global scrolloff 5,5
-set-option global grepcmd 'rg --column'
+hook global KakBegin .* %{
+	set-option global tabstop 4
+	set-option global scrolloff 5,5
+	set-option global grepcmd 'rg --column'
+}
 
-hook -once global ModuleLoaded fzf %{
+hook -once global ModuleLoaded fzf-file %{
     set-option global fzf_file_command 'fd --type f'
     set-option global fzf_highlight_command 'bat'
 }
