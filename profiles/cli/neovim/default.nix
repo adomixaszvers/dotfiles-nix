@@ -11,6 +11,10 @@
       neoformat
       rainbow
       repeat
+      {
+        plugin = suda-vim;
+        config = "let g:suda_smart_edit = 1";
+      }
       surround
       vim-airline
       vim-airline-themes
