@@ -238,9 +238,6 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
         subtitle "quit, or restart",
         ((modm .|. shiftMask, xK_c), addName "Quit" $ io exitSuccess),
         ((modm, xK_F4), addName "Power menu" $ spawn "rofi-powermenu"),
-        ( (modm, xK_q),
-          addName "Restart" $ spawn "xmonad --recompile && xmonad --restart"
-        ),
         subtitle "scratchpads",
         ( (modm .|. controlMask, xK_e),
           addName "Emacs scratchpad" $ namedScratchpadAction myScratchpads nsEmacs
