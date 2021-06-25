@@ -56,6 +56,7 @@
       Firefox = { desktop = "1"; };
       jetbrains-idea = { desktop = "3"; };
       Rambox = { desktop = "4"; };
+      discord = { desktop = "4"; };
       SmartGit = { desktop = "5"; };
       Steam = { desktop = "5"; };
       libreoffice = { desktop = "6"; };
