@@ -16,9 +16,11 @@
     bfs
     binutils
     cachix
+    dnsutils
     exa
     fd
     file
+    gdb
     git
     github-cli
     htop
