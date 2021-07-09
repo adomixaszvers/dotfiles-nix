@@ -45,6 +45,7 @@
     nix-doom-emacs = { url = "github:vlaci/nix-doom-emacs"; };
     emacs-overlay = { url = "github:nix-community/emacs-overlay"; };
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
+    nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-21.05"; };
     pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
