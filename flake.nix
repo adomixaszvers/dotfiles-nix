@@ -56,10 +56,6 @@
       config = import ./config.nix;
       mkPkgs = system:
         let
-          sxhkd-with-lt-keys = _: prev: {
-            sxhkd = prev.sxhkd.overrideAttrs
-              (_: { patches = [ ./pkgs/sxhkd.patch ]; });
-          };
           gitignoreSource = _: prev:
             let gitignore = (import inputs.gitignore) { inherit (prev) lib; };
             in { inherit (gitignore) gitignoreSource; };
@@ -68,7 +64,7 @@
               import inputs.nixos-unstable { inherit system config; };
           };
         in rec {
-          overlays = [ gitignoreSource nixos-unstable sxhkd-with-lt-keys ];
+          overlays = [ gitignoreSource nixos-unstable ];
           pkgs = import nixpkgs { inherit system overlays config; };
         };
     in (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:

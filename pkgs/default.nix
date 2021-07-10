@@ -11,6 +11,7 @@
   lua-fmt = (import ./lua-fmt { inherit pkgs; }).lua-fmt;
   maimpick = pkgs.callPackage ./maimpick.nix { };
   rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
+  sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
   steam = pkgs.steam.override {
     extraPkgs = ps:
       with ps; [

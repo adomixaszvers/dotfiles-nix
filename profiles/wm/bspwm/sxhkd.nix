@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, myPkgs, ... }: {
 
   # do not kill started processes on service restart
   # see man 5 systemd.kill
@@ -6,6 +6,7 @@
 
   services.sxhkd = {
     enable = true;
+    package = myPkgs.sxhkd;
     keybindings = let terminal = config.home.sessionVariables.TERMINAL;
     in {
       #
