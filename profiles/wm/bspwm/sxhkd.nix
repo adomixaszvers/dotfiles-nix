@@ -1,9 +1,5 @@
 { config, myPkgs, ... }: {
 
-  # do not kill started processes on service restart
-  # see man 5 systemd.kill
-  systemd.user.services.sxhkd.Service.KillMode = "process";
-
   services.sxhkd = {
     enable = true;
     package = myPkgs.sxhkd;
