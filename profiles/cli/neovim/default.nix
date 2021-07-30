@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
-let unstable = pkgs.nixos-unstable;
-in with unstable; {
+let inherit (pkgs.nixos-unstable) neovim-unwrapped vimPlugins tree-sitter;
+in {
   programs.neovim = {
     enable = true;
     package = neovim-unwrapped;
@@ -32,6 +32,10 @@ in with unstable; {
             }
           EOF
         '';
+      }
+      {
+        plugin = playground;
+        config = builtins.readFile ./playground.vim;
       }
       rainbow
       repeat
