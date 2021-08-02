@@ -31,7 +31,7 @@ in {
     numlockx
     playerctl
     postman
-    rambox
+    myPkgs.rambox
     remmina
     samba
     soapui

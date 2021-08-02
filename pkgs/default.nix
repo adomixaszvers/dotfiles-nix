@@ -10,6 +10,7 @@
   kaknix = pkgs.callPackage ./kaknix.nix { };
   lua-fmt = (import ./lua-fmt { inherit pkgs; }).lua-fmt;
   maimpick = pkgs.callPackage ./maimpick.nix { };
+  rambox = pkgs.callPackage ./rambox { };
   rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
   sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
   steam = pkgs.steam.override {
