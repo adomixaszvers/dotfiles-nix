@@ -20,7 +20,10 @@ jobs:
           extra_nix_config: |
             experimental-features = nix-command flakes
       - name: Flake Updates
-        run: nix flake update
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'github-actions@users.noreply.github.com'
+          nix flake update --commit-lock-file
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
