@@ -19,5 +19,9 @@
       github = { user = "adomixaszvers"; };
       pull = { rebase = true; };
     };
+    includes = [{
+      condition = "gitdir:~/.config/nixpkgs/";
+      contents.rebase.autoStash = "true";
+    }];
   };
 }
