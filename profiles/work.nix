@@ -6,11 +6,9 @@ in {
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = unstable.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
+  home.file."nodejs/latest".source = pkgs.nodejs_latest;
+  home.file."nodejs/12".source = pkgs.nodejs-12_x;
   home.packages = (with myPkgs; [ steam ]) ++ (with pkgs; [
-    # google-chrome
-    # skype
-    # torbrowser
-    # yarn
     asciinema
     calibre
     docker-compose
@@ -20,35 +18,40 @@ in {
     gimp
     gitAndTools.gitflow
     gnome3.libsecret
+    gnome3.nautilus
     gnumake
+    google-chrome
     html-tidy
+    jetbrains.idea-ultimate
     jq
     keepassxc
     libreoffice-fresh
     liquibase
     maven
     mercurial
+    myPkgs.rambox
     numlockx
     playerctl
     postman
-    myPkgs.rambox
     remmina
     samba
     soapui
-    spotifywm
-    unstable.sqldeveloper
+    spotify
     sshpass
     subversion
     swagger-codegen
+    teams
     tomcat8
     traceroute
+    typora
     unrar
-    unstable.jetbrains.idea-ultimate
+    unstable.sqldeveloper
+    unstable.torbrowser
     unzip
     whois
     zip
   ]);
-  home.sessionVariables = { BROWSER = "firefox"; };
+  home.sessionVariables = { BROWSER = "google-chrome-stable"; };
   programs.autorandr = {
     enable = true;
     profiles = {
