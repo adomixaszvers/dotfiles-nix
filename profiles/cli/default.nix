@@ -49,6 +49,7 @@
     enable = true;
     historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
   };
+  programs.broot.enable = true;
   programs.fzf = {
     changeDirWidgetCommand = "bfs -type d";
     defaultCommand = "fd --type f";

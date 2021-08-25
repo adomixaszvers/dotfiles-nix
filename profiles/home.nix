@@ -50,7 +50,6 @@ in {
       };
     };
   };
-  programs.broot.enable = true;
   services.network-manager-applet.enable = false;
   services.screen-locker = {
     enable = true;
