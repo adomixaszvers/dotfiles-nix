@@ -59,7 +59,7 @@
       discord = { desktop = "4"; };
       SmartGit = { desktop = "5"; };
       Steam = { desktop = "5"; };
-      libreoffice = { desktop = "6"; };
+      "'*:libreoffice'" = { desktop = "6"; };
       "org.remmina.Remmina" = { desktop = "8"; };
       KeePassXC = { desktop = "9"; };
       "'Google Play Music Desktop Player'" = { desktop = "10"; };
