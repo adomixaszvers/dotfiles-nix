@@ -22,10 +22,10 @@ set scrolloff=5 " minimal lines visible above and below cursor
 set noshowmode
 
 let g:rainbow_active = 1
-map <leader><leader> :Files<CR>
-map <leader>n <Plug>(ale_next_wrap)
-map <leader>p <Plug>(ale_previous_wrap)
-map <leader>l :Neoformat<CR>
+nnoremap <leader><leader> <cmd>Telescope find_files<cr>
+nnoremap <leader>n <Plug>(ale_next_wrap)
+nnoremap <leader>p <Plug>(ale_previous_wrap)
+nnoremap <leader>l :Neoformat<CR>
 noremap - -
 set updatetime=100
 
