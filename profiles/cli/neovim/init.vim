@@ -49,6 +49,21 @@ augroup nix-flakes
     autocmd BufNewFile,BufRead flake.lock set filetype=json
 augroup END
 
-" enable file previews for :Files
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+let g:suda_smart_edit = 1
+
+lua <<EOF
+    require'nvim-treesitter.configs'.setup {
+        highlight = {
+            enable = true,              -- false will disable the whole extension
+        },
+        incremental_selection = {
+            enable = true,
+            keymaps = {
+            init_selection = "<leader>gn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm",
+            },
+        },
+    }
+EOF
