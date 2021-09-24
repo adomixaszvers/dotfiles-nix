@@ -10,6 +10,7 @@
   xsession.enable = lib.mkDefault true;
   xsession.initExtra = ''
     xset s off -dpms
+    dbus-update-activation-environment --systemd DISPLAY
   '';
   xsession.pointerCursor = {
     name = "capitaine-cursors";
