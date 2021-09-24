@@ -10,6 +10,7 @@ import qualified DBus as D
 import qualified DBus.Client as D
 import Data.List (elemIndex)
 import Data.Maybe (maybeToList)
+import Network.HostName (getHostName)
 import System.Exit (exitSuccess)
 import System.IO
   ( hClose,
@@ -50,6 +51,7 @@ import XMonad.Hooks.ManageHelpers
     (-?>),
   )
 import XMonad.Hooks.SetWMName (setWMName)
+import XMonad.Hooks.RefocusLast (refocusLastLayoutHook)
 import XMonad.Layout.MultiToggle (Toggle (..), mkToggle, single)
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
@@ -61,7 +63,7 @@ import XMonad.Layout.Spacing
   ( Border (..),
     spacingRaw,
   )
-import XMonad.Layout.TrackFloating (trackFloating, useTransientFor)
+import XMonad.Layout.TrackFloating (trackFloating)
 import qualified XMonad.StackSet as W
 import XMonad.Util.NamedActions
   ( NamedAction (..),
@@ -80,8 +82,7 @@ import XMonad.Util.NamedScratchpad
     namedScratchpadManageHook,
   )
 import XMonad.Util.Run
-  ( runProcessWithInput,
-    spawnPipe,
+  ( spawnPipe,
   )
 import XMonad.Util.SpawnOnce (spawnOnce)
 
@@ -131,10 +132,13 @@ main = do
     myMainLayout =
       renamed [Replace "Tall"] tiled
         ||| renamed [Replace "Wide"] (Mirror tiled)
-    myLayoutHook = smartBorders . avoidStruts . trackFloating . useTransientFor . mkToggle (single FULL) $ myMainLayout
+    myLayoutHook = smartBorders . avoidStruts . refocusLastLayoutHook . trackFloating . mkToggle (single FULL) $ myMainLayout
 
 myTerminal :: String
 myTerminal = "kitty"
+
+restartPolybarCmd :: String
+restartPolybarCmd = "systemctl --user restart polybar.service"
 
 myModMask :: KeyMask
 myModMask = mod4Mask
@@ -150,7 +154,7 @@ myStartupHook :: X ()
 myStartupHook = do
   setWMName "LG3D"
   spawnOnce "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
-  spawn "systemctl --user restart polybar.service"
+  spawn restartPolybarCmd
   addEWMHFullscreen
   whenX isWork $ spawnOnce "rambox"
 
@@ -216,6 +220,7 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
         subtitle "move focus up or down the window stack",
         ((modm, xK_Tab), addName "Focus down" $ windows W.focusDown),
         ((modm .|. shiftMask, xK_Tab), addName "Focus up" $ windows W.focusUp),
+        ((modm, xK_c), addName "Focus down" $ windows W.focusDown),
         ((modm, xK_j), addName "Focus down" $ windows W.focusDown),
         ((modm, xK_k), addName "Focus up" $ windows W.focusUp),
         ((modm, xK_m), addName "Focus the master" $ windows W.focusMaster),
@@ -237,6 +242,7 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
         ((modm, xK_period), sendMessage' (IncMasterN (-1))),
         subtitle "quit, or restart",
         ((modm .|. shiftMask, xK_c), addName "Quit" $ io exitSuccess),
+        ((modm .|. controlMask, xK_r), addName "Restart polybar" $ spawn restartPolybarCmd),
         ((modm, xK_F4), addName "Power menu" $ spawn "rofi-powermenu"),
         subtitle "scratchpads",
         ( (modm .|. controlMask, xK_e),
@@ -295,8 +301,8 @@ myLogHook :: D.Client -> PP
 myLogHook dbus =
   def
     { ppOutput = dbusOutput dbus,
-      ppCurrent = wrap "[" "]" . clickableWS,
-      ppVisible = wrap "" "" . clickableWS,
+      ppCurrent = wrap "[" "]",
+      ppVisible = wrap "|" "|" . clickableWS,
       ppUrgent = wrap "%{o#f00}" "%{-o}" . clickableWS,
       ppHidden = wrap "" "" . clickableWS,
       ppWsSep = " ",
@@ -364,4 +370,4 @@ addEWMHFullscreen = do
   mapM_ addNETSupported [wms, wfs]
 
 isWork :: MonadIO m => m Bool
-isWork = (== "work\n") <$> runProcessWithInput "autorandr" ["--detect"] ""
+isWork = io $ (== "adomas-jatuzis-nixos") <$> getHostName
