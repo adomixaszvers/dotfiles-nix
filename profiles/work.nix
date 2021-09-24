@@ -13,6 +13,7 @@ in {
     calibre
     docker-compose
     docker-machine
+    dos2unix
     filezilla
     firefox
     gimp
@@ -31,6 +32,7 @@ in {
     mercurial
     myPkgs.rambox
     numlockx
+    oracle-instantclient
     playerctl
     postman
     remmina
