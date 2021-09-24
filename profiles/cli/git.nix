@@ -11,6 +11,7 @@
     userName = "Adomas Jatužis";
     extraConfig = {
       core = { autocrlf = "input"; };
+      init = { defaultBranch = "master"; };
       merge = { tool = "nvim"; };
       "mergetool \"nvim\"" = { cmd = ''nvim -f -c "Gdiff" "$MERGED"''; };
       credential = {
