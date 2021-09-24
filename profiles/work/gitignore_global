@@ -5,3 +5,4 @@
 *.ipr
 
 application-local.yaml
+docker-compose.override.yml
