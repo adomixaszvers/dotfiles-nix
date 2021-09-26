@@ -5,3 +5,4 @@ pkgs/dbxcli/keys.patch
 .direnv
 /.pre-commit-config.yaml
 /current.nix
+result

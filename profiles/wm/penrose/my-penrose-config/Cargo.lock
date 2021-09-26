@@ -219,6 +219,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "lazy_static"
+version = "1.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
+
+[[package]]
 name = "libc"
 version = "0.2.86"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -340,19 +346,41 @@ dependencies = [
 [[package]]
 name = "penrose"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bf21b342c3b5241cd3de018f8abedf996ef0848ad5c807390bf78bd22ac9bc24"
+source = "git+https://github.com/sminez/penrose?branch=develop#5efd2bcfa3831d02b87056583e66eac8bb92cb9d"
 dependencies = [
+ "bitflags",
  "cairo-rs",
  "cairo-sys-rs",
- "log",
  "nix",
  "pango",
  "pangocairo",
+ "penrose_proc",
  "strum 0.19.5",
  "strum_macros 0.19.4",
  "thiserror",
+ "tracing",
  "xcb",
+]
+
+[[package]]
+name = "penrose_keysyms"
+version = "0.1.0"
+source = "git+https://github.com/sminez/penrose?branch=develop#5efd2bcfa3831d02b87056583e66eac8bb92cb9d"
+dependencies = [
+ "strum 0.19.5",
+ "strum_macros 0.19.4",
+]
+
+[[package]]
+name = "penrose_proc"
+version = "0.1.2"
+source = "git+https://github.com/sminez/penrose?branch=develop#5efd2bcfa3831d02b87056583e66eac8bb92cb9d"
+dependencies = [
+ "penrose_keysyms",
+ "proc-macro2",
+ "quote",
+ "strum 0.19.5",
+ "syn",
 ]
 
 [[package]]
@@ -571,6 +599,39 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a31142970826733df8241ef35dc040ef98c679ab14d7c3e54d827099b3acecaa"
 dependencies = [
  "serde",
+]
+
+[[package]]
+name = "tracing"
+version = "0.1.28"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "84f96e095c0c82419687c20ddf5cb3eadb61f4e1405923c9dc8e53a1adacbda8"
+dependencies = [
+ "cfg-if 1.0.0",
+ "log",
+ "pin-project-lite",
+ "tracing-attributes",
+ "tracing-core",
+]
+
+[[package]]
+name = "tracing-attributes"
+version = "0.1.16"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "98863d0dd09fa59a1b79c6750ad80dbda6b75f4e71c437a6a1a8cb91a8bcbd77"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "tracing-core"
+version = "0.1.20"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "46125608c26121c81b0c6d693eab5a420e416da7e43c426d2e8f7df8da8a3acf"
+dependencies = [
+ "lazy_static",
 ]
 
 [[package]]

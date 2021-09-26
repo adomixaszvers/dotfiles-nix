@@ -1,28 +1,33 @@
-{ callPackage, pkg-config, pango, glib, cairo, libxcb, defaultCrateOverrides }:
+{ pkgs }:
 let
-  generatedBuild = callPackage ./Cargo.nix {
-    defaultCrateOverrides = defaultCrateOverrides // {
-      glib-sys = attrs: {
-        nativeBuildInputs = attrs.nativeBuildInputs ++ [ pkg-config ];
-        buildInputs = attrs.buildInputs ++ [ glib ];
-      };
-      cairo-sys-rs = attrs: {
-        nativeBuildInputs = attrs.nativeBuildInputs ++ [ pkg-config ];
-        buildInputs = attrs.buildInputs ++ [ cairo ];
-      };
-      gobject-sys = attrs: {
-        nativeBuildInputs = attrs.nativeBuildInputs ++ [ pkg-config ];
-        buildInputs = attrs.buildInputs ++ [ glib ];
-      };
-      pango-sys = attrs: {
-        nativeBuildInputs = attrs.nativeBuildInputs ++ [ pkg-config ];
-        buildInputs = attrs.buildInputs ++ [ pango ];
-      };
-      pangocairo-sys = attrs: {
-        nativeBuildInputs = attrs.nativeBuildInputs ++ [ pkg-config ];
-        buildInputs = attrs.buildInputs ++ [ pango ];
+  customBuildRustCrateForPkgs = pkgs:
+    pkgs.buildRustCrate.override {
+      defaultCrateOverrides = pkgs.defaultCrateOverrides // {
+        glib-sys = _: {
+          nativeBuildInputs = [ pkgs.pkg-config ];
+          buildInputs = [ pkgs.glib ];
+        };
+        cairo-sys-rs = _: {
+          nativeBuildInputs = [ pkgs.pkg-config ];
+          buildInputs = [ pkgs.cairo ];
+        };
+        gobject-sys = _: {
+          nativeBuildInputs = [ pkgs.pkg-config ];
+          buildInputs = [ pkgs.glib ];
+        };
+        pango-sys = _: {
+          nativeBuildInputs = [ pkgs.pkg-config ];
+          buildInputs = [ pkgs.pango ];
+        };
+        pangocairo-sys = _: {
+          nativeBuildInputs = [ pkgs.pkg-config ];
+          buildInputs = [ pkgs.pango ];
+        };
       };
     };
+  generatedBuild = import ./Cargo.nix {
+    inherit pkgs;
+    buildRustCrateForPkgs = customBuildRustCrateForPkgs;
   };
 in generatedBuild.rootCrate.build.overrideAttrs
-(attrs: { buildInputs = attrs.buildInputs ++ [ libxcb ]; })
+(attrs: { buildInputs = attrs.buildInputs ++ [ pkgs.xorg.libxcb ]; })

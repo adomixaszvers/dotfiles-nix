@@ -3,10 +3,7 @@ extern crate penrose;
 
 use penrose::{
     core::{
-        bindings::KeyEventHandler,
-        config::Config,
-        helpers::index_selectors,
-        manager::WindowManager,
+        bindings::KeyEventHandler, config::Config, helpers::index_selectors, manager::WindowManager,
     },
     logging_error_handler,
     xcb::new_xcb_backed_window_manager,
@@ -15,12 +12,10 @@ use penrose::{
 
 use simplelog::{LevelFilter, SimpleLogger};
 
-
 // Replace these with your preferred terminal and program launcher
 const TERMINAL: &str = "kitty";
 const ROFI: &str = "rofi -show combi -combi-modi window,drun";
 const ROFI_RUN: &str = "rofi -show run -sidebar-mode";
-
 
 fn main() -> penrose::Result<()> {
     // Initialise the logger (use LevelFilter::Debug to enable debug logging)
@@ -28,7 +23,12 @@ fn main() -> penrose::Result<()> {
         panic!("unable to set log level: {}", e);
     };
 
-    let config = Config::default();
+    let mut config_builder = Config::default().builder();
+    let workspaces = vec!["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+    let config = config_builder
+        .workspaces(workspaces)
+        .build()
+        .expect("failed to build config");
     let key_bindings = gen_keybindings! {
         // Program launchers
         "M-Return" => run_external!(TERMINAL);
@@ -59,12 +59,13 @@ fn main() -> penrose::Result<()> {
         "M-A-Right" => run_internal!(update_main_ratio, More);
         "M-A-Left" => run_internal!(update_main_ratio, Less);
 
-        refmap [ config.ws_range() ] in {
-            "M-{}" => focus_workspace [ index_selectors(config.workspaces().len()) ];
-            "M-S-{}" => client_to_workspace [ index_selectors(config.workspaces().len()) ];
+        map: { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" } to index_selectors(10) => {
+            "M-{}" => focus_workspace (REF);
+            "M-S-{}" => client_to_workspace (REF);
         };
     };
 
     let mut wm = new_xcb_backed_window_manager(config, vec![], logging_error_handler())?;
-    wm.grab_keys_and_run(key_bindings, map!{})
+    wm.grab_keys_and_run(key_bindings, map! {})?;
+	Ok(())
 }

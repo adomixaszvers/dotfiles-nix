@@ -11,5 +11,5 @@ path = "src/main.rs"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-penrose = "0.2"
+penrose = { git = "https://github.com/sminez/penrose", branch = "develop" }
 simplelog = "0.8"
