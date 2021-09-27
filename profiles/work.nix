@@ -27,7 +27,7 @@ in {
     jetbrains.idea-ultimate
     jq
     keepassxc
-    libreoffice-fresh
+    libreoffice-still
     liquibase
     maven
     mercurial
