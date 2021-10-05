@@ -104,7 +104,7 @@
           };
         };
         devShell = nixpkgs.legacyPackages.${system}.mkShell {
-          buildInputs = [ packages.hm-switch pkgs.git-crypt ];
+          buildInputs = [ packages.hm-switch ];
           inherit (checks.pre-commit-check) shellHook;
         };
       })) // {
