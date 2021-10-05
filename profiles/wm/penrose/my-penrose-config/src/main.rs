@@ -2,9 +2,7 @@
 extern crate penrose;
 
 use penrose::{
-    core::{
-        bindings::KeyEventHandler, config::Config, helpers::index_selectors, manager::WindowManager,
-    },
+    core::{config::Config, helpers::index_selectors},
     logging_error_handler,
     xcb::new_xcb_backed_window_manager,
     Backward, Forward, Less, More, Selector,
@@ -67,5 +65,5 @@ fn main() -> penrose::Result<()> {
 
     let mut wm = new_xcb_backed_window_manager(config, vec![], logging_error_handler())?;
     wm.grab_keys_and_run(key_bindings, map! {})?;
-	Ok(())
+    Ok(())
 }
