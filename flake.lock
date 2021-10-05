@@ -69,8 +69,11 @@
     "credentials": {
       "flake": false,
       "locked": {
-        "lastModified": 1633424212,
-        "narHash": "sha256-We4V5CPX4udmaxNZ8eFfgPt8viSeLmcYwRYD8qRM++Q=",
+        "lastModified": 1633429412,
+        "narHash": "sha256-Ai0XCxuhzmNKMXhZN3dj7JnlNKh7ymtJ+CcdbRvoeEw=",
+        "ref": "master",
+        "rev": "4b56806a620a6674b9619e69038e156189ef6614",
+        "revCount": 3,
         "type": "git",
         "url": "file:///home/adomas/credentials-nix"
       },
