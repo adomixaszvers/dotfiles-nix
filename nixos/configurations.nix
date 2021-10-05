@@ -1,4 +1,4 @@
-{ nixpkgs, nixos-hardware }:
+{ nixpkgs, nixos-hardware, inputs }:
 let
   nixRegistry = {
     nix = {
@@ -13,6 +13,7 @@ let
 in {
   adomo-nixos = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
     modules = common ++ [
       nixpkgs.nixosModules.notDetected
       nixos-hardware.nixosModules.common-cpu-intel

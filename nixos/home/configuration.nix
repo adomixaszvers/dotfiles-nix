@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -11,8 +11,7 @@
     ./hardware-configuration.nix
     ./static-ip.nix
     ./wakeonlan.nix
-    ./secrets/passwords.nix
-    ./secrets/zerotier.nix
+    "${inputs.credentials}/home-secrets.nix"
   ];
 
   # boot.kernelParams = [ "scsi_mod.use_blk_mq=1" "dm_mod.use_blk_mq=y" ];
@@ -112,8 +111,7 @@
   hardware.pulseaudio.support32Bit = true;
 
   users.users.adomas = {
-    openssh.authorizedKeys.keyFiles =
-      [ ./secrets/juice_rsa.pub ./secrets/yubikey.pub ];
+    openssh.authorizedKeys.keyFiles = [ ./juice_rsa.pub ./yubikey.pub ];
     extraGroups = [ "docker" "libvirtd" "adbusers" ];
   };
 

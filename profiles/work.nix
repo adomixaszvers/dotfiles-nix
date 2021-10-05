@@ -1,8 +1,7 @@
 { pkgs, myPkgs, ... }:
 let unstable = pkgs.nixos-unstable;
 in {
-  imports =
-    [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ./work/secrets ];
+  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = unstable.oraclejdk8;
@@ -26,6 +25,7 @@ in {
     html-tidy
     jetbrains.idea-ultimate
     jq
+    jmeter
     keepassxc
     libreoffice-still
     liquibase
@@ -48,11 +48,12 @@ in {
     traceroute
     typora
     unrar
-    unstable.sqldeveloper
+    sqldeveloper
     unstable.torbrowser
     unzip
     whois
     zip
+    zoom-us
   ]);
   home.sessionVariables = { BROWSER = "google-chrome-stable"; };
   programs.autorandr = {
@@ -88,10 +89,16 @@ in {
       };
     };
   };
-  programs.git.includes = [{
-    condition = "gitdir:~/projektai/**";
-    contents.core.excludesfile = toString ./work/gitignore_global;
-  }];
+  programs.git.includes = [
+    {
+      condition = "gitdir:~/projektai/**";
+      contents.core.excludesfile = toString ./work/gitignore_global;
+    }
+    {
+      condition = "gitdir:~/projektai/**";
+      path = "~/projektai/git_work.inc";
+    }
+  ];
   programs.zsh.shellAliases = {
     imvn = "mvn -s ~/.m2/insoft-settings.xml";
     amvn = "mvn -s ~/.m2/kazan-settings.xml";
@@ -102,8 +109,7 @@ in {
     enable = true;
     inactiveInterval = 5;
     lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
-    xssLockExtraOptions =
-      [ "-n ${pkgs.xsecurelock}/libexec/xsecurelock.dimmer" ];
+    xssLockExtraOptions = [ "-n ${pkgs.xsecurelock}/libexec/dimmer" ];
   };
   xsession.windowManager.i3.config.startup = [{
     command = "rambox";

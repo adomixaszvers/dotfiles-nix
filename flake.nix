@@ -17,6 +17,10 @@
       url = "github:plexus/chemacs2";
       flake = false;
     };
+    credentials = {
+      url = "/home/adomas/credentials-nix";
+      flake = false;
+    };
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -84,7 +88,14 @@
         };
         checks = {
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
-            src = ./.;
+            src = builtins.filterSource (path: _type:
+              !builtins.any (sufix: nixpkgs.lib.hasSuffix sufix path) [
+                "pkgs/lua-fmt/default.nix"
+                "pkgs/lua-fmt/node-env.nix"
+                "pkgs/lua-fmt/node-packages.nix"
+                "pkgs/vimgolf/gemset.nix"
+                "profiles/wm/penrose/my-penrose-config/Cargo.nix"
+              ]) ./.;
             hooks = {
               nixfmt.enable = true;
               nix-linter.enable = true;
@@ -97,8 +108,9 @@
           inherit (checks.pre-commit-check) shellHook;
         };
       })) // {
-        nixosConfigurations =
-          import ./nixos/configurations.nix { inherit nixpkgs nixos-hardware; };
+        nixosConfigurations = import ./nixos/configurations.nix {
+          inherit nixpkgs nixos-hardware inputs;
+        };
         homeConfigurations = with (mkPkgs "x86_64-linux");
           import ./homes.nix {
             inherit home-manager pkgs system overlays inputs;

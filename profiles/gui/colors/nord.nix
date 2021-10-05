@@ -2,7 +2,7 @@ let
   # polar night
   nord0 = "#2e3440";
   nord1 = "#3b4252";
-  nord2 = "#434c5e";
+  # nord2 = "#434c5e";
   nord3 = "#4c566a";
   # snow storm
   nord4 = "#d8dee9";
@@ -12,10 +12,10 @@ let
   nord7 = "#8fbcbb";
   nord8 = "#88c0c0";
   nord9 = "#81a1c1";
-  nord10 = "#5e81ac";
+  # nord10 = "#5e81ac";
   # aurora
   nord11 = "#bf616a";
-  nord12 = "#d08770";
+  # nord12 = "#d08770";
   nord13 = "#ebcb8b";
   nord14 = "#a3bebc";
   nord15 = "#b48ead";

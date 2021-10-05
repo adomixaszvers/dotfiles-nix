@@ -66,6 +66,19 @@
         "type": "github"
       }
     },
+    "credentials": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1633424212,
+        "narHash": "sha256-We4V5CPX4udmaxNZ8eFfgPt8viSeLmcYwRYD8qRM++Q=",
+        "type": "git",
+        "url": "file:///home/adomas/credentials-nix"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/adomas/credentials-nix"
+      }
+    },
     "doom-emacs": {
       "flake": false,
       "locked": {
@@ -638,6 +651,7 @@
         "awesome-sharedtags": "awesome-sharedtags",
         "bumblebee-status": "bumblebee-status",
         "chemacs": "chemacs",
+        "credentials": "credentials",
         "emacs-overlay": "emacs-overlay",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
