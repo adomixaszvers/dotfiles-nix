@@ -18,7 +18,7 @@
       flake = false;
     };
     credentials = {
-      url = "/home/adomas/credentials-nix";
+      url = "git+file:///home/adomas/credentials-nix";
       flake = false;
     };
     flake-compat = {
@@ -32,7 +32,7 @@
     };
     gitignore = {
       url = "github:hercules-ci/gitignore";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager/release-21.05";
@@ -55,14 +55,12 @@
     pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
   };
   outputs = { self, nixpkgs, bumblebee-status, flake-utils, home-manager
-    , nixos-hardware, pre-commit-hooks, ... }@inputs:
+    , nixos-hardware, pre-commit-hooks, gitignore, ... }@inputs:
     let
       config = import ./config.nix;
       mkPkgs = system:
         let
-          gitignoreSource = _: prev:
-            let gitignore = (import inputs.gitignore) { inherit (prev) lib; };
-            in { inherit (gitignore) gitignoreSource; };
+          gitignoreSource = _: _: { inherit (gitignore.lib) gitignoreSource; };
           nixos-unstable = _: _: {
             nixos-unstable =
               import inputs.nixos-unstable { inherit system config; };

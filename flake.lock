@@ -304,7 +304,11 @@
       }
     },
     "gitignore": {
-      "flake": false,
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
         "lastModified": 1632996366,
         "narHash": "sha256-G5Rg90C9I5FFoG6kcgGFLFAxXp1bb5SDQpw4SmDNZNA=",
