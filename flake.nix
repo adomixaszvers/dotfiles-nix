@@ -83,6 +83,7 @@
         packages = import ./pkgs {
           inherit pkgs;
           bumblebee-status-source = bumblebee-status;
+          home-manager = home-manager.packages.${system}.home-manager;
         };
         checks = {
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
@@ -102,7 +103,8 @@
           };
         };
         devShell = nixpkgs.legacyPackages.${system}.mkShell {
-          buildInputs = [ packages.hm-switch ];
+          buildInputs =
+            [ packages.hm-switch home-manager.packages.${system}.home-manager ];
           inherit (checks.pre-commit-check) shellHook;
         };
       })) // {

@@ -1,4 +1,4 @@
-{ pkgs, bumblebee-status-source }:
+{ pkgs, bumblebee-status-source, home-manager }:
 
 {
   bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
@@ -6,7 +6,7 @@
   bumblebee-status =
     pkgs.callPackage ./bumblebee-status { inherit bumblebee-status-source; };
   dbvisualizer = pkgs.callPackage ./dbvisualizer.nix { };
-  hm-switch = pkgs.callPackage ./hm-switch.nix { };
+  hm-switch = pkgs.callPackage ./hm-switch.nix { inherit home-manager; };
   kaknix = pkgs.callPackage ./kaknix.nix { };
   lua-fmt = (import ./lua-fmt { inherit pkgs; }).lua-fmt;
   maimpick = pkgs.callPackage ./maimpick.nix { };
