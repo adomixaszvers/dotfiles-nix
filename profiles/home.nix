@@ -1,7 +1,7 @@
 { pkgs, myPkgs, inputs, ... }:
 let unstable = pkgs.nixos-unstable;
 in {
-  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/bspwm ];
+  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
   home.packages = (with pkgs; [
     borgbackup
