@@ -10,6 +10,10 @@ he () {
   )
 }
 
+if [ "$TERM" = 'xterm-kitty' ]; then
+  alias ssh='kitty +kitten ssh'
+fi
+
 # enable completion menu
 zstyle ':completion:*' menu select
 zmodload zsh/complist
