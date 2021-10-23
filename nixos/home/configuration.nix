@@ -75,7 +75,7 @@
   services.kmscon = {
     enable = false;
     extraConfig = ''
-      font-name=FuraMono Nerd Font
+      font-name=FiraMono Nerd Font
       font-size=9
     '';
     hwRender = true;
