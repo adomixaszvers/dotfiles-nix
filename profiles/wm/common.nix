@@ -11,6 +11,7 @@
       name = "Arc-Darker";
       package = pkgs.arc-theme;
     };
+    gtk3.extraConfig = { gtk-application-prefer-dark-theme = true; };
   };
   qt = {
     enable = lib.mkDefault true;
