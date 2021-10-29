@@ -8,11 +8,12 @@ in {
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
   home.file."nodejs/latest".source = pkgs.nodejs_latest;
   home.file."nodejs/12".source = pkgs.nodejs-12_x;
-  home.packages = (with myPkgs; [ steam ]) ++ (with pkgs; [
+  home.file."maven".source = pkgs.maven;
+  home.file."tomcat-native".source = pkgs.tomcat-native;
+  home.packages = with pkgs; [
     asciinema
     calibre
     docker-compose
-    docker-machine
     dos2unix
     filezilla
     firefox
@@ -41,12 +42,11 @@ in {
     soapui
     spotify
     sshpass
+    steam-run
     subversion
-    swagger-codegen
     teams
     tomcat8
     traceroute
-    typora
     unrar
     sqldeveloper
     unstable.torbrowser
@@ -54,7 +54,7 @@ in {
     whois
     zip
     zoom-us
-  ]);
+  ];
   home.sessionVariables = { BROWSER = "google-chrome-stable"; };
   programs.autorandr = {
     enable = true;
