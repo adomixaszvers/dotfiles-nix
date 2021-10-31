@@ -55,6 +55,7 @@ in {
     enable = true;
     inactiveInterval = 60;
   };
+  services.syncthing = { enable = true; };
   xsession.initExtra = ''
     autorandr --change
   '';

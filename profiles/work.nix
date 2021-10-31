@@ -111,6 +111,7 @@ in {
     lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
     xssLockExtraOptions = [ "-n ${pkgs.xsecurelock}/libexec/dimmer" ];
   };
+  services.syncthing = { enable = true; };
   xsession.windowManager.i3.config.startup = [{
     command = "rambox";
     notification = false;
