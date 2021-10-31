@@ -1,7 +1,8 @@
 { pkgs, lib, ... }:
 let
-  inherit (pkgs.nixos-unstable) neovim vimPlugins tree-sitter;
-  myNeovim = neovim.override {
+  inherit (pkgs.nixos-unstable)
+    vimPlugins tree-sitter neovim-unwrapped wrapNeovimUnstable neovimUtils;
+  myNeovimConfig = neovimUtils.makeNeovimConfig {
     configure = {
       packages.myPackageDir.start = with vimPlugins;
         let telescope-dependencies = [ plenary-nvim telescope-nvim ];
@@ -27,5 +28,10 @@ let
         ] ++ telescope-dependencies;
       customRC = lib.readFile ./init.vim + lib.readFile ./playground.vim;
     };
+    wrapRc = false;
   };
-in { home.packages = [ myNeovim ]; }
+  myNeovim = wrapNeovimUnstable neovim-unwrapped myNeovimConfig;
+in {
+  home.packages = [ myNeovim ];
+  xdg.configFile."nvim/init.vim".text = myNeovimConfig.neovimRcContent;
+}
