@@ -10,6 +10,15 @@ he () {
   )
 }
 
+rebuild_shells () {
+  while read i; do
+    if [ -f "$i" ]; then
+      echo "rebuilding $i"
+      nix-shell "$i" --run true
+    fi
+  done <<< $(find-shells)
+}
+
 if [ "$TERM" = 'xterm-kitty' ]; then
   alias ssh='kitty +kitten ssh'
 fi
