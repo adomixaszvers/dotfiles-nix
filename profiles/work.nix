@@ -92,7 +92,7 @@ in {
   programs.git.includes = [
     {
       condition = "gitdir:~/projektai/**";
-      contents.core.excludesfile = toString ./work/gitignore_global;
+      contents.core.excludesfile = "${./work/gitignore_global}";
     }
     {
       condition = "gitdir:~/projektai/**";
