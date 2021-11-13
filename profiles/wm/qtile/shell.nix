@@ -1,12 +1,10 @@
 { pkgs ?
   (builtins.getFlake "nixpkgs").legacyPackages."${builtins.currentSystem}" }:
-with pkgs;
-mkShell {
+pkgs.mkShell {
   name = "qtile-shell";
-  buildInputs = with pkgs.python3Packages; [
-    qtile
-    black
-    python-language-server
-    xlib
+  buildInputs = [
+    (pkgs.python3.withPackages
+      (ps: with ps; [ xlib black python-language-server pyls-black ]))
+    pkgs.qtile
   ];
 }

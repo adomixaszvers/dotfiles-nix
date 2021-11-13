@@ -28,6 +28,7 @@ from libqtile.config import (
     Key, Screen, Group, Drag, Click, Match, DropDown, ScratchPad)
 from libqtile.command import lazy
 from libqtile import layout, bar, widget
+from libqtile.log_utils import logger
 # this import requires python-xlib to be installed
 from Xlib import display as xdisplay
 
@@ -71,8 +72,10 @@ keys = [
     Key([mod], "d", lazy.spawn("rofi -show combi -combi-modi window,drun")),
     Key([mod, "shift"], "d", lazy.spawn("rofi -show run -sidebar-mode")),
     Key([mod], "F4", lazy.spawn("rofi-powermenu")),
-    Key([mod, "control"], "s", lazy.group["scratchpad"].dropdown_toggle("term")),
-    Key([mod, "control"], "e", lazy.group["scratchpad"].dropdown_toggle("emacs")),
+    Key([mod, "control"], "s",
+        lazy.group["scratchpad"].dropdown_toggle("term")),
+    Key([mod, "control"], "e",
+        lazy.group["scratchpad"].dropdown_toggle("emacs")),
 ]
 
 groups = [
@@ -109,14 +112,16 @@ lt_keys = {
 }
 
 for group_name in "1234567890":
+    lt_key = lt_keys[group_name]
     keys.extend(
         [
             # mod1 + letter of group = switch to group
             Key([mod], group_name, lazy.group[group_name].toscreen()),
-            Key([mod], lt_keys[group_name], lazy.group[group_name].toscreen()),
-            # mod1 + shift + letter of group = switch to & move focused window to group
+            Key([mod], lt_key, lazy.group[group_name].toscreen()),
+            # mod1 + shift + letter of group
+            # = switch to & move focused window to group
             Key([mod, "shift"], group_name, lazy.window.togroup(group_name)),
-            Key([mod, "shift"], lt_keys[group_name],
+            Key([mod, "shift"], lt_key,
                 lazy.window.togroup(group_name)),
         ]
     )
@@ -156,6 +161,7 @@ def get_num_monitors():
             if preferred:
                 num_monitors += 1
     except Exception as e:
+        logger.exception(e)
         # always setup at least one monitor
         return 1
     else:
@@ -173,6 +179,7 @@ screens = [
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.CurrentLayoutIcon(),
+                widget.KeyboardLayout(),
                 widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
                 widget.Systray(),
             ],
@@ -208,7 +215,8 @@ mouse = [
         start=lazy.window.get_position(),
     ),
     Drag(
-        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
+        [mod], "Button3", lazy.window.set_size_floating(),
+        start=lazy.window.get_size()
     ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
