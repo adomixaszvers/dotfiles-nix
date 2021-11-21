@@ -16,7 +16,6 @@
     binutils
     cachix
     dnsutils
-    exa
     fd
     file
     gdb
@@ -49,6 +48,10 @@
     historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
   };
   programs.broot.enable = true;
+  programs.exa = {
+    enable = true;
+    enableAliases = true;
+  };
   programs.fzf = {
     changeDirWidgetCommand = "bfs -type d";
     defaultCommand = "fd --type f";
