@@ -1,13 +1,13 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
-;;; Show all outlines while diffing org-mode files
 (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 12))
 (setq doom-unicode-font doom-font)
-(setq custom-file (expand-file-name "custom.el" doom-private-dir))
+(setq! display-line-numbers-type 'visual)
 (when (display-graphic-p)
   (setq doom-theme 'doom-nord))
 (setq! +notmuch-mail-folder "~/Maildir/adomixaszvers")
+;;; Show all outlines while diffing org-mode files
 (after! (ediff org)
   (add-hook 'ediff-prepare-buffer-hook
             (lambda () (when (eq major-mode 'org-mode) (outline-show-all)))))
@@ -19,8 +19,6 @@
   (setq! lsp-haskell-formatting-provider "ormolu"))
 
 (setq +rss-elfeed-files `(,(expand-file-name "elfeed.org" doom-private-dir)))
-(when (file-readable-p custom-file)
-  (load custom-file))
 (add-hook 'dired-mode-hook
           (lambda ()
             (when (file-remote-p dired-directory)
