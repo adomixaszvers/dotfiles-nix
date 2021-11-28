@@ -1,6 +1,7 @@
-{ pkgs, bumblebee-status-source, home-manager }:
+{ pkgs, ani-cli-source, bumblebee-status-source, home-manager }:
 
 {
+  ani-cli = pkgs.callPackage ./ani-cli { ani-cli = ani-cli-source; };
   bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
   bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
   bumblebee-status =

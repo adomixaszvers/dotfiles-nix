@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "ani-cli": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1636197918,
+        "narHash": "sha256-g2kkbsScooJWzXbjyVAsYK1RzsnlOZGCho8YZoZazEQ=",
+        "owner": "pystardust",
+        "repo": "ani-cli",
+        "rev": "34748e71a58feab8b57b2ac3de700c30a55430cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pystardust",
+        "repo": "ani-cli",
+        "type": "github"
+      }
+    },
     "awesome-copycats": {
       "flake": false,
       "locked": {
@@ -654,6 +670,7 @@
     },
     "root": {
       "inputs": {
+        "ani-cli": "ani-cli",
         "awesome-copycats": "awesome-copycats",
         "awesome-sharedtags": "awesome-sharedtags",
         "bumblebee-status": "bumblebee-status",

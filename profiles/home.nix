@@ -17,7 +17,7 @@ in {
     spotifywm
     torbrowser
     keepassxc
-  ]) ++ (with myPkgs; [ steam ]);
+  ]) ++ (with myPkgs; [ ani-cli steam ]);
   home.sessionVariables = { BROWSER = "firefox"; };
   programs.autorandr = {
     enable = true;

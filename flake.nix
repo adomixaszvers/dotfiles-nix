@@ -1,6 +1,10 @@
 {
   description = "My dotfiles";
   inputs = {
+    ani-cli = {
+      url = "github:pystardust/ani-cli";
+      flake = false;
+    };
     awesome-copycats = {
       url = "github:lcpz/awesome-copycats";
       flake = false;
@@ -54,8 +58,8 @@
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-21.05"; };
     pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
   };
-  outputs = { self, nixpkgs, bumblebee-status, flake-utils, home-manager
-    , nixos-hardware, pre-commit-hooks, gitignore, ... }@inputs:
+  outputs = { self, nixpkgs, ani-cli, bumblebee-status, flake-utils
+    , home-manager, nixos-hardware, pre-commit-hooks, gitignore, ... }@inputs:
     let
       config = import ./config.nix;
       mkPkgs = system:
@@ -82,6 +86,7 @@
       in rec {
         packages = import ./pkgs {
           inherit pkgs;
+          ani-cli-source = ani-cli;
           bumblebee-status-source = bumblebee-status;
           home-manager = home-manager.packages.${system}.home-manager;
         };
