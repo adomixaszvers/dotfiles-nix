@@ -1,6 +1,20 @@
 { pkgs, config, lib, ... }:
-let common = import ./common.nix { inherit pkgs config; };
+let
+  common = import ./common.nix { inherit config; };
+  wofi-windows = pkgs.writeShellScript "wofi-windows" ''
+    PATH=${lib.makeBinPath (with pkgs; [ sway jq wofi ])}
+    swaymsg -t get_tree |
+         jq  -r  '.nodes[].nodes[]  |  if  .nodes  then  [recurse(.nodes[])] else [] end +
+       .floating_nodes | .[] | select(.nodes==[]) | ((.id | tostring) + "" + .name)' |
+         wofi --show dmenu | {
+           read -r id name
+           swaymsg "[con_id=$id]" focus
+       }
+  '';
 in {
+  imports = [ ./i3status-rust.nix ];
+  home.packages = with pkgs; [ wofi ];
+  programs.mako.enable = true;
   wayland.windowManager.sway = {
     enable = true;
     config = {
@@ -9,14 +23,22 @@ in {
       keybindings = let
         modifier = common.config.modifier;
         combined = common.config.keybindings // {
-          "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun,run";
+          "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";
+          "${modifier}+Shift+d" = "exec ${pkgs.wofi}/bin/wofi --show run";
+          "${modifier}+Tab" = "exec ${wofi-windows}";
         };
       in lib.mkOptionDefault combined;
-      input = { "*" = { xkb_layout = "lt,us"; }; };
+      input = {
+        "1133:49948:Logitech_USB_Keyboard" = {
+          xkb_layout = "lt,us";
+          xkb_numlock = "enabled";
+        };
+      };
     };
     extraSessionCommands = ''
       export MOZ_ENABLE_WAYLAND=1
       export _JAVA_AWT_WM_NONREPARENTING=1
+      export BROWSER=firefox
     '';
   };
 }

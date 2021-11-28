@@ -1,4 +1,4 @@
-{ pkgs, config }:
+{ config }:
 let
   gaps = {
     inner = 15;
@@ -21,9 +21,14 @@ in {
 
     bars = [{
       statusCommand = ''
-        ${pkgs.i3status-rust}/bin/i3status-rs ${./status_config.toml}
+        i3status-rs ${
+          config.home.file."/home/adomas/.config/i3status-rust/config-default.toml".source
+        }
       '';
-      fonts = [ "NotoMono Nerd Font 9" ];
+      fonts = {
+        names = [ "NotoMono Nerd Font" ];
+        size = 9.0;
+      };
       colors = with config.colors; {
         inherit background;
         activeWorkspace = {
@@ -82,7 +87,10 @@ in {
         childBorder = redb;
       };
     };
-    fonts = [ "NotoMono Nerd Font 8" ];
+    fonts = {
+      names = [ "NotoMono Nerd Font" ];
+      size = 8.0;
+    };
     gaps = {
       inherit (gaps) inner outer;
       smartGaps = true;
@@ -100,7 +108,7 @@ in {
       "${workspace10}" = [{ class = "^Spotify"; }];
     };
     keybindings = {
-      "${modifier}+Return" = "exec termite";
+      "${modifier}+Return" = "exec kitty";
       "${modifier}+Shift+q" = "kill";
 
       "${modifier}+h" = "focus left";
