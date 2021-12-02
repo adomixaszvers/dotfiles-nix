@@ -39,7 +39,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-21.05";
+      url = "github:nix-community/home-manager/release-21.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     kakoune-sudo-write = {
@@ -55,7 +55,7 @@
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
-    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-21.05"; };
+    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-21.11"; };
     pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
   };
   outputs = { self, nixpkgs, ani-cli, bumblebee-status, flake-utils

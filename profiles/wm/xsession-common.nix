@@ -5,7 +5,7 @@
   };
   services.screen-locker = {
     lockCmd = lib.mkDefault "i3lock -n -t -f";
-    xautolockExtraOptions = [ "-corners" "--00" ];
+    xautolock.extraOptions = [ "-corners" "--00" ];
   };
   xsession.enable = lib.mkDefault true;
   xsession.initExtra = ''
