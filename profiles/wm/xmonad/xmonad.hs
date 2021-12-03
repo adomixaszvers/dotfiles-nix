@@ -48,10 +48,11 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
   ( composeOne,
     doCenterFloat,
+    isDialog,
     (-?>),
   )
 import XMonad.Hooks.SetWMName (setWMName)
-import XMonad.Hooks.RefocusLast (refocusLastLayoutHook)
+import XMonad.Hooks.RefocusLast (refocusLastWhen, isFloat, refocusLastLayoutHook)
 import XMonad.Layout.MultiToggle (Toggle (..), mkToggle, single)
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
@@ -101,7 +102,8 @@ main = do
           dynamicLogWithPP
             . namedScratchpadFilterOutWorkspacePP
             . myLogHook
-            $ dbus
+            $ dbus,
+            handleEventHook = refocusLastWhen isFloat <+> handleEventHook def
       }
   where
     myConfig =
@@ -170,10 +172,11 @@ myManageHook =
     spawnHook =
       composeOne
         [
+          isDialog -?> doFloat,
           className =? "Google-chrome" <||> className =? "Firefox" -?> doShift ws1,
           className =? "jetbrains-idea" -?> doShift ws3,
           className =? "Rambox" <||> className =? "discord" -?> doShift ws4,
-          className =? "Steam" <||> className =? "SmartGit" -?> doShift ws5,
+          className =? "Steam" <||> className =? "SmartGit" <||> className =? "Microsoft Teams - Preview" -?> doShift ws5,
           className =? "libreoffice" -?> doShift ws6,
           className =? "Eclipse" -?> doShift ws7,
           className =? "org.remmina.Remmina" -?> doShift ws8,
