@@ -11,6 +11,7 @@
   kaknix = pkgs.callPackage ./kaknix.nix { };
   lua-fmt = (import ./lua-fmt { inherit pkgs; }).lua-fmt;
   maimpick = pkgs.callPackage ./maimpick.nix { };
+  otpauth = pkgs.callPackage ./otpauth { };
   rambox = pkgs.callPackage ./rambox { };
   rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
   sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
