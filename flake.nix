@@ -69,16 +69,8 @@
             nixos-unstable =
               import inputs.nixos-unstable { inherit system config; };
           };
-          haskellOverrides = _: prev: {
-            haskellPackages = prev.haskellPackages.override {
-              overrides = _: hsOld: {
-                xmonad-dbus = with prev.haskell.lib;
-                  unmarkBroken (dontCheck hsOld.xmonad-dbus);
-              };
-            };
-          };
         in rec {
-          overlays = [ gitignoreSource nixos-unstable haskellOverrides ];
+          overlays = [ gitignoreSource nixos-unstable ];
           pkgs = import nixpkgs { inherit system overlays config; };
         };
     in (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:

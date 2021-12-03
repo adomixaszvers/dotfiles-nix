@@ -8,7 +8,7 @@ in {
     "bar/top-extra".modules-left = "xmonad";
     "module/xmonad" = {
       type = "custom/script";
-      exec = "${pkgs.haskellPackages.xmonad-dbus}/bin/xmonad-dbus";
+      exec = "${pkgs.xmonad-log}/bin/xmonad-log";
       tail = true;
     };
   };

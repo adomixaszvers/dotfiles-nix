@@ -1,12 +1,13 @@
 {-# OPTIONS_GHC -Wall -Werror -fno-warn-missing-signatures #-}
 
+import qualified Codec.Binary.UTF8.String as UTF8
 import Control.Exception (bracket)
 import Control.Monad
   ( join,
     when,
   )
+import qualified DBus as D
 import qualified DBus.Client as D
-import qualified XMonad.DBus as XD
 import Data.List (elemIndex)
 import Data.Maybe (maybeToList)
 import Network.HostName (getHostName)
@@ -87,9 +88,13 @@ import XMonad.Util.SpawnOnce (spawnOnce)
 
 main :: IO ()
 main = do
-  dbus <- XD.connect
+  dbus <- D.connectSession
   -- Request access to the DBus name
-  _ <- XD.requestAccess dbus
+  _ <-
+    D.requestName
+      dbus
+      (D.busName_ "org.xmonad.Log")
+      [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
   xmonad . ewmh . docks $
     myConfig
       { logHook =
@@ -295,7 +300,7 @@ showKeybindings x =
 myLogHook :: D.Client -> PP
 myLogHook dbus =
   def
-    { ppOutput = XD.send dbus,
+    { ppOutput = dbusOutput dbus,
       ppCurrent = wrap "[" "]",
       ppVisible = wrap "|" "|" . clickableWS,
       ppUrgent = wrap "%{o#f00}" "%{-o}" . clickableWS,
@@ -310,6 +315,19 @@ myLogHook dbus =
         ws
         (\i -> "%{A1:xdotool set_desktop " ++ show i ++ ":}" ++ ws ++ "%{A}")
         $ elemIndex ws myWorkspaces
+
+-- Emit a DBus signal on log updates
+dbusOutput :: D.Client -> String -> IO ()
+dbusOutput dbus str = do
+  let signal =
+        (D.signal objectPath interfaceName memberName)
+          { D.signalBody = [D.toVariant $ UTF8.decodeString str]
+          }
+  D.emit dbus signal
+  where
+    objectPath = D.objectPath_ "/org/xmonad/Log"
+    interfaceName = D.interfaceName_ "org.xmonad.Log"
+    memberName = D.memberName_ "Update"
 
 nsEmacs, nsTerminal :: String
 nsEmacs = "emacs"

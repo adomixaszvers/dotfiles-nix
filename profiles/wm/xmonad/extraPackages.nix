@@ -1,1 +1,1 @@
-hs: with hs; [ xmonad xmonad-contrib dbus hostname utf8-string xmonad-dbus ]
+hs: with hs; [ xmonad xmonad-contrib dbus hostname utf8-string ]
