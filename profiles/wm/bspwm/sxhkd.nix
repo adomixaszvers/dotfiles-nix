@@ -1,8 +1,5 @@
-{ config, lib, myPkgs, ... }: {
+{ config, myPkgs, ... }: {
 
-  xsession.initExtra = lib.mkBefore ''
-    systemctl --user stop sxhkd.scope 2> /dev/null || true
-  '';
   services.sxhkd = {
     enable = true;
     package = myPkgs.sxhkd;
