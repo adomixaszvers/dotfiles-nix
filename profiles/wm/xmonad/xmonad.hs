@@ -48,6 +48,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
   ( composeOne,
     doCenterFloat,
+    doFullFloat,
     isDialog,
     (-?>),
   )
@@ -342,12 +343,12 @@ myScratchpads =
       nsEmacs
       "emacs -T scratchpad --fullscreen"
       (title =? "scratchpad" <&&> className =? "Emacs")
-      doFloat,
+      doFullFloat,
     NS
       nsTerminal
       "kitty --name scratchpad --start-as fullscreen"
       (appName =? "scratchpad" <&&> className =? "kitty")
-      doFloat
+      doFullFloat
   ]
 
 addNETSupported :: Atom -> X ()
