@@ -50,7 +50,7 @@
       systemctl --user restart polybar.service
     '';
     monitors =
-      lib.mkDefault { "'^1'" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" ]; };
+      lib.mkDefault { "^1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" ]; };
     rules = {
       Google-chrome = { desktop = "1"; };
       Firefox = { desktop = "1"; };
@@ -59,12 +59,12 @@
       discord = { desktop = "4"; };
       SmartGit = { desktop = "5"; };
       Steam = { desktop = "5"; };
-      "'*:libreoffice'" = { desktop = "6"; };
+      "*:libreoffice" = { desktop = "6"; };
       "org.remmina.Remmina" = { desktop = "8"; };
       KeePassXC = { desktop = "9"; };
-      "'Google Play Music Desktop Player'" = { desktop = "10"; };
+      "Google Play Music Desktop Player" = { desktop = "10"; };
       Spotify = { desktop = "10"; };
-      "'*:scratchpad'" = { state = "fullscreen"; };
+      "*:scratchpad" = { state = "fullscreen"; };
       lxqt-openssh-askpass = { state = "floating"; };
     };
     settings = {
