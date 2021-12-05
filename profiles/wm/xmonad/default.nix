@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let extraPackages = import ./extraPackages.nix;
 in {
   imports = [ ./xmobar.nix ../dunst.nix ../picom.nix ];
@@ -7,17 +7,16 @@ in {
     enable = true;
     settings = {
       edge = "top";
-      padding = 6;
       SetDockType = true;
       SetPartialStrut = true;
       align = "right";
       expand = true;
       widthtype = "request";
       height = 17;
-      heighttype = "request";
       alpha = 0;
       transparent = true;
-      tint = "0xFFFFFF";
+      tint =
+        builtins.replaceStrings [ "#" ] [ "0xff" ] config.colors.background;
     };
   };
   xsession.windowManager.xmonad = {
