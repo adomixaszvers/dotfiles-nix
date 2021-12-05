@@ -1,20 +1,16 @@
 {-# OPTIONS_GHC -Wall -Werror -fno-warn-missing-signatures #-}
 
-import qualified Codec.Binary.UTF8.String as UTF8
 import Control.Exception (bracket)
 import Control.Monad
   ( join,
     when,
   )
-import qualified DBus as D
-import qualified DBus.Client as D
-import Data.List (elemIndex)
 import Data.Maybe (maybeToList)
 import Network.HostName (getHostName)
 import System.Exit (exitSuccess)
 import System.IO
   ( hClose,
-    hPutStr,
+    hPutStr, Handle
   )
 import XMonad
 import XMonad.Actions.PhysicalScreens
@@ -24,10 +20,8 @@ import XMonad.Actions.PhysicalScreens
   )
 import XMonad.Hooks.DynamicLog
   ( PP (..),
-    dynamicLogWithPP,
     ppCurrent,
     ppHidden,
-    ppOutput,
     ppSep,
     ppTitle,
     ppUrgent,
@@ -37,6 +31,7 @@ import XMonad.Hooks.DynamicLog
     wrap,
   )
 import XMonad.Hooks.DynamicProperty (dynamicPropertyChange)
+import qualified XMonad.Hooks.DynamicBars as DSB
 import XMonad.Hooks.EwmhDesktops
   ( ewmh,
     fullscreenEventHook,
@@ -89,24 +84,11 @@ import XMonad.Util.Run
 import XMonad.Util.SpawnOnce (spawnOnce)
 
 main :: IO ()
-main = do
-  dbus <- D.connectSession
-  -- Request access to the DBus name
-  _ <-
-    D.requestName
-      dbus
-      (D.busName_ "org.xmonad.Log")
-      [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
-  xmonad . ewmh . docks $
-    myConfig
-      { logHook =
-          dynamicLogWithPP
-            . namedScratchpadFilterOutWorkspacePP
-            . myLogHook
-            $ dbus
-      }
+main = xmonad . ewmh . docks $ myConfig
   where
+    pp = namedScratchpadFilterOutWorkspacePP myLogHook
     dynamicHook = dynamicPropertyChange "WM_NAME" (className =? "Spotify" --> doShift ws0)
+    dynamicBarHook = DSB.dynStatusBarEventHook' myDynamicStatusBar myDynamicStatusBarCleanup
     myConfig =
       addDescrKeys'
         ((myModMask, xK_F1), showKeybindings)
@@ -116,11 +98,12 @@ main = do
             focusedBorderColor = "#8BE9FD",
             modMask = mod4Mask,
             borderWidth = 2,
-            handleEventHook = dynamicHook <+> refocusLastWhen isFloat <+> fullscreenEventHook <+> handleEventHook def,
+            handleEventHook = dynamicHook <+> dynamicBarHook <+> refocusLastWhen isFloat <+> fullscreenEventHook <+> handleEventHook def,
             layoutHook = myLayoutHook,
             manageHook = myManageHook,
             startupHook = myStartupHook,
-            workspaces = myWorkspaces
+            workspaces = myWorkspaces,
+            logHook = DSB.multiPP pp pp
           }
     tiled =
       spacingRaw
@@ -140,9 +123,6 @@ main = do
 myTerminal :: String
 myTerminal = "kitty"
 
-restartPolybarCmd :: String
-restartPolybarCmd = "systemctl --user restart polybar.service"
-
 myModMask :: KeyMask
 myModMask = mod4Mask
 
@@ -157,9 +137,15 @@ myStartupHook :: X ()
 myStartupHook = do
   setWMName "LG3D"
   spawnOnce "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
-  spawn restartPolybarCmd
+  DSB.dynStatusBarStartup' myDynamicStatusBar myDynamicStatusBarCleanup
   addEWMHFullscreen
   whenX isWork $ spawnOnce "rambox"
+
+myDynamicStatusBar :: MonadIO m => ScreenId -> m Handle
+myDynamicStatusBar (S i) = spawnPipe $ "xmobar -x" ++ show i
+
+myDynamicStatusBarCleanup :: MonadIO m => ScreenId -> m ()
+myDynamicStatusBarCleanup (S i) = spawn $ "pkill -f 'xmobar.* -x '" ++ show i
 
 myManageHook :: ManageHook
 myManageHook =
@@ -245,7 +231,6 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
         ((modm, xK_period), sendMessage' (IncMasterN (-1))),
         subtitle "quit, or restart",
         ((modm .|. shiftMask, xK_c), addName "Quit" $ io exitSuccess),
-        ((modm .|. controlMask, xK_r), addName "Restart polybar" $ spawn restartPolybarCmd),
         ((modm, xK_F4), addName "Power menu" $ spawn "rofi-powermenu"),
         subtitle "scratchpads",
         ( (modm .|. controlMask, xK_e),
@@ -300,37 +285,17 @@ showKeybindings x =
         hClose
         (\h -> hPutStr h (unlines $ showKm x))
 
-myLogHook :: D.Client -> PP
-myLogHook dbus =
+myLogHook :: PP
+myLogHook =
   def
-    { ppOutput = dbusOutput dbus,
-      ppCurrent = wrap "[" "]",
-      ppVisible = wrap "|" "|" . clickableWS,
-      ppUrgent = wrap "%{o#f00}" "%{-o}" . clickableWS,
-      ppHidden = wrap "" "" . clickableWS,
+    { ppCurrent = wrap "[" "]",
+      ppVisible = wrap "|" "|",
+      ppUrgent = wrap "%{o#f00}" "%{-o}",
+      ppHidden = wrap "" "",
       ppWsSep = " ",
       ppSep = " : ",
       ppTitle = shorten 100
     }
-  where
-    clickableWS ws =
-      maybe
-        ws
-        (\i -> "%{A1:xdotool set_desktop " ++ show i ++ ":}" ++ ws ++ "%{A}")
-        $ elemIndex ws myWorkspaces
-
--- Emit a DBus signal on log updates
-dbusOutput :: D.Client -> String -> IO ()
-dbusOutput dbus str = do
-  let signal =
-        (D.signal objectPath interfaceName memberName)
-          { D.signalBody = [D.toVariant $ UTF8.decodeString str]
-          }
-  D.emit dbus signal
-  where
-    objectPath = D.objectPath_ "/org/xmonad/Log"
-    interfaceName = D.interfaceName_ "org.xmonad.Log"
-    memberName = D.memberName_ "Update"
 
 nsEmacs, nsTerminal :: String
 nsEmacs = "emacs"

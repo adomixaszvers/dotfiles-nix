@@ -1,15 +1,23 @@
 { pkgs, ... }:
 let extraPackages = import ./extraPackages.nix;
 in {
-  imports = [ ../polybar.nix ../dunst.nix ../picom.nix ];
+  imports = [ ./xmobar.nix ../dunst.nix ../picom.nix ];
   home.packages = with pkgs; [ gnome3.zenity ];
-  services.polybar.config = {
-    "bar/top".modules-left = "xmonad";
-    "bar/top-extra".modules-left = "xmonad";
-    "module/xmonad" = {
-      type = "custom/script";
-      exec = "${pkgs.xmonad-log}/bin/xmonad-log";
-      tail = true;
+  services.trayer = {
+    enable = true;
+    settings = {
+      edge = "top";
+      padding = 6;
+      SetDockType = true;
+      SetPartialStrut = true;
+      align = "right";
+      expand = true;
+      widthtype = "request";
+      height = 17;
+      heighttype = "request";
+      alpha = 0;
+      transparent = true;
+      tint = "0xFFFFFF";
     };
   };
   xsession.windowManager.xmonad = {
