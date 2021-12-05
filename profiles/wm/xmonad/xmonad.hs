@@ -36,6 +36,7 @@ import XMonad.Hooks.DynamicLog
     shorten,
     wrap,
   )
+import XMonad.Hooks.DynamicProperty (dynamicPropertyChange)
 import XMonad.Hooks.EwmhDesktops
   ( ewmh,
     fullscreenEventHook,
@@ -105,6 +106,7 @@ main = do
             $ dbus
       }
   where
+    dynamicHook = dynamicPropertyChange "WM_NAME" (className =? "Spotify" --> doShift ws0)
     myConfig =
       addDescrKeys'
         ((myModMask, xK_F1), showKeybindings)
@@ -114,7 +116,7 @@ main = do
             focusedBorderColor = "#8BE9FD",
             modMask = mod4Mask,
             borderWidth = 2,
-            handleEventHook = refocusLastWhen isFloat <+> fullscreenEventHook <+> handleEventHook def,
+            handleEventHook = dynamicHook <+> refocusLastWhen isFloat <+> fullscreenEventHook <+> handleEventHook def,
             layoutHook = myLayoutHook,
             manageHook = myManageHook,
             startupHook = myStartupHook,
@@ -180,8 +182,7 @@ myManageHook =
           className =? "Eclipse" -?> doShift ws7,
           className =? "org.remmina.Remmina" -?> doShift ws8,
           className =? "KeePass2" <||> className =? "KeePassXC" -?> doShift ws9,
-          className =? "Google Play Music Desktop Player" -?> doShift ws0,
-          className =? "Spotify" -?> doShift ws0
+          className =? "Google Play Music Desktop Player" -?> doShift ws0
         ]
 
 myKeysDescr :: XConfig Layout -> [((KeyMask, KeySym), NamedAction)]

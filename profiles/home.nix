@@ -14,7 +14,7 @@ in {
     playerctl
     qbittorrent
     inputs.nixos-2009.legacyPackages.x86_64-linux.remmina
-    spotifywm
+    spotify
     torbrowser
     keepassxc
   ]) ++ (with myPkgs; [ ani-cli steam ]);
