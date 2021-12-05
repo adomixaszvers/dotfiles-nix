@@ -48,7 +48,6 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
   ( composeOne,
     doCenterFloat,
-    doFullFloat,
     isDialog,
     (-?>),
   )
@@ -103,8 +102,7 @@ main = do
           dynamicLogWithPP
             . namedScratchpadFilterOutWorkspacePP
             . myLogHook
-            $ dbus,
-            handleEventHook = refocusLastWhen isFloat <+> handleEventHook def
+            $ dbus
       }
   where
     myConfig =
@@ -116,7 +114,7 @@ main = do
             focusedBorderColor = "#8BE9FD",
             modMask = mod4Mask,
             borderWidth = 2,
-            handleEventHook = fullscreenEventHook <+> handleEventHook def,
+            handleEventHook = refocusLastWhen isFloat <+> fullscreenEventHook <+> handleEventHook def,
             layoutHook = myLayoutHook,
             manageHook = myManageHook,
             startupHook = myStartupHook,
@@ -343,12 +341,12 @@ myScratchpads =
       nsEmacs
       "emacs -T scratchpad --fullscreen"
       (title =? "scratchpad" <&&> className =? "Emacs")
-      doFullFloat,
+      doFloat,
     NS
       nsTerminal
       "kitty --name scratchpad --start-as fullscreen"
       (appName =? "scratchpad" <&&> className =? "kitty")
-      doFullFloat
+      doFloat
   ]
 
 addNETSupported :: Atom -> X ()
