@@ -99,6 +99,7 @@ in {
       path = "~/projektai/git_work.inc";
     }
   ];
+  programs.xmobar.thermal-zone = 2;
   programs.zsh.shellAliases = {
     imvn = "mvn -s ~/.m2/insoft-settings.xml";
     amvn = "mvn -s ~/.m2/kazan-settings.xml";

@@ -50,6 +50,7 @@ in {
       };
     };
   };
+  programs.xmobar.thermal-zone = 1;
   services.network-manager-applet.enable = false;
   services.screen-locker = {
     enable = true;

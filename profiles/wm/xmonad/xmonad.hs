@@ -142,10 +142,14 @@ myStartupHook = do
   whenX isWork $ spawnOnce "rambox"
 
 myDynamicStatusBar :: MonadIO m => ScreenId -> m Handle
-myDynamicStatusBar (S i) = spawnPipe $ "xmobar -x" ++ show i
+myDynamicStatusBar (S i) = spawnPipe $ "xmobar -x" ++ show i ++ " " ++ xmobarConfigFile i
 
 myDynamicStatusBarCleanup :: MonadIO m => ScreenId -> m ()
-myDynamicStatusBarCleanup (S i) = spawn $ "pkill -f 'xmobar.* -x '" ++ show i
+myDynamicStatusBarCleanup (S i) = spawn $ "pkill -f 'xmobar.* -x '" ++ show i ++ " " ++ xmobarConfigFile i
+
+xmobarConfigFile :: Int -> String
+xmobarConfigFile 0 = "~/.config/xmobar/xmobarrc"
+xmobarConfigFile _ = "~/.config/xmobar/xmobarrc_without_tray"
 
 myManageHook :: ManageHook
 myManageHook =
