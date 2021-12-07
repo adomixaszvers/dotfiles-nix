@@ -33,7 +33,7 @@ let
                                   "--normal","${green}","--high","${red}"] 10
                         , Run Memory ["-t","Mem: <usedratio>%"] 10
                         , Run Swap [] 10
-                        , Run Date "%a %b %_d %Y %H:%M" "date" 10
+                        , Run Date "%a %b %d %Y %H:%M" "date" 10
                         , Run StdinReader
                         , Run Com "${padding}" ["panel"] "trayerpad" 10
                         , Run ThermalZone ${thermalZone} ["-t","<temp>°C"] 30
