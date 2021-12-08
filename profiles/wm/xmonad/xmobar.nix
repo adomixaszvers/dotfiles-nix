@@ -34,14 +34,14 @@ let
                         , Run Memory ["-t","Mem: <usedratio>%"] 10
                         , Run Swap [] 10
                         , Run Date "%a %b %d %Y %H:%M" "date" 10
-                        , Run StdinReader
+                        , Run UnsafeStdinReader
                         , Run Com "${padding}" ["panel"] "trayerpad" 10
                         , Run ThermalZone ${thermalZone} ["-t","<temp>°C"] 30
                         , Run Mpris2 "spotify" ["-t", "<artist> - <title>"] 10
                         ]
           , sepChar = "%"
           , alignSep = "}{"
-          , template = "%StdinReader% }\
+          , template = "%UnsafeStdinReader% }\
                 \{ %mpris2% | %cpu% | %memory% * %swap% | %thermal${thermalZone}% | %date% ${
                   lib.optionalString hasTray "| %trayerpad%"
                 }"

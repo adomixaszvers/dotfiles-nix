@@ -5,14 +5,16 @@ import Control.Monad
   ( join,
     when,
   )
-import Data.IORef (readIORef, IORef, modifyIORef', newIORef)
-import Data.Maybe (maybeToList)
+import Data.IORef (IORef, modifyIORef', newIORef, readIORef)
+import Data.List (elemIndex)
 import qualified Data.Map.Lazy as M
+import Data.Maybe (maybeToList)
 import Network.HostName (getHostName)
 import System.Exit (exitSuccess)
 import System.IO
-  ( hClose,
-    hPutStr, Handle
+  ( Handle,
+    hClose,
+    hPutStr,
   )
 import XMonad
 import XMonad.Actions.PhysicalScreens
@@ -20,6 +22,7 @@ import XMonad.Actions.PhysicalScreens
     sendToScreen,
     viewScreen,
   )
+import qualified XMonad.Hooks.DynamicBars as DSB
 import XMonad.Hooks.DynamicLog
   ( PP (..),
     ppCurrent,
@@ -33,7 +36,6 @@ import XMonad.Hooks.DynamicLog
     wrap,
   )
 import XMonad.Hooks.DynamicProperty (dynamicPropertyChange)
-import qualified XMonad.Hooks.DynamicBars as DSB
 import XMonad.Hooks.EwmhDesktops
   ( ewmh,
     fullscreenEventHook,
@@ -49,8 +51,8 @@ import XMonad.Hooks.ManageHelpers
     isDialog,
     (-?>),
   )
+import XMonad.Hooks.RefocusLast (isFloat, refocusLastLayoutHook, refocusLastWhen)
 import XMonad.Hooks.SetWMName (setWMName)
-import XMonad.Hooks.RefocusLast (refocusLastWhen, isFloat, refocusLastLayoutHook)
 import XMonad.Layout.MultiToggle (Toggle (..), mkToggle, single)
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
@@ -174,8 +176,7 @@ myManageHook =
   where
     spawnHook =
       composeOne
-        [
-          isDialog -?> doFloat,
+        [ isDialog -?> doFloat,
           className =? "Google-chrome" <||> className =? "Firefox" -?> doShift ws1,
           className =? "jetbrains-idea" -?> doShift ws3,
           className =? "Rambox" <||> className =? "discord" -?> doShift ws4,
@@ -306,13 +307,16 @@ myLogHook :: PP
 myLogHook =
   def
     { ppCurrent = wrap "[" "]",
-      ppVisible = wrap "|" "|",
-      ppUrgent = wrap "%{o#f00}" "%{-o}",
-      ppHidden = wrap "" "",
+      ppVisible = wrap "|" "|" . clickableWS,
+      ppUrgent = wrap "<fc=#FF0000>" "</fc>" . clickableWS,
+      ppHidden = wrap "" "" . clickableWS,
       ppWsSep = " ",
       ppSep = " : ",
       ppTitle = shorten 100
     }
+  where
+    clickableWS ws =
+      maybe ws (\i -> "<action=`xdotool set_desktop " ++ show i ++ "`>" ++ ws ++ "</action>") $ elemIndex ws myWorkspaces
 
 nsEmacs, nsTerminal :: String
 nsEmacs = "emacs"
