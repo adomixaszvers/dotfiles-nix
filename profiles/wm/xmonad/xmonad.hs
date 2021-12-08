@@ -5,9 +5,7 @@ import Control.Monad
   ( join,
     when,
   )
-import Data.IORef (IORef, modifyIORef', newIORef, readIORef)
 import Data.List (elemIndex)
-import qualified Data.Map.Lazy as M
 import Data.Maybe (maybeToList)
 import Network.HostName (getHostName)
 import System.Exit (exitSuccess)
@@ -88,14 +86,12 @@ import XMonad.Util.Run
 import XMonad.Util.SpawnOnce (spawnOnce)
 
 main :: IO ()
-main = do
-  ref <- newIORef M.empty
-  xmonad . ewmh . docks $ myConfig ref
+main = xmonad . ewmh . docks $ myConfig
   where
     pp = namedScratchpadFilterOutWorkspacePP myLogHook
     dynamicHook = dynamicPropertyChange "WM_NAME" (className =? "Spotify" --> doShift ws0)
-    dynamicBarHook ref = DSB.dynStatusBarEventHook' (myDynamicStatusBar ref) (myDynamicStatusBarCleanup ref)
-    myConfig ref =
+    dynamicBarHook = DSB.dynStatusBarEventHook' myDynamicStatusBar myDynamicStatusBarCleanup
+    myConfig =
       addDescrKeys'
         ((myModMask, xK_F1), showKeybindings)
         myKeysDescr
@@ -104,10 +100,10 @@ main = do
             focusedBorderColor = "#8BE9FD",
             modMask = mod4Mask,
             borderWidth = 2,
-            handleEventHook = dynamicHook <+> dynamicBarHook ref <+> refocusLastWhen isFloat <+> fullscreenEventHook <+> handleEventHook def,
+            handleEventHook = dynamicHook <+> dynamicBarHook <+> refocusLastWhen isFloat <+> fullscreenEventHook <+> handleEventHook def,
             layoutHook = myLayoutHook,
             manageHook = myManageHook,
-            startupHook = myStartupHook ref,
+            startupHook = myStartupHook,
             workspaces = myWorkspaces,
             logHook = DSB.multiPP pp pp
           }
@@ -139,27 +135,19 @@ ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0 :: String
 myWorkspaces :: [String]
 myWorkspaces = [ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0]
 
-myStartupHook :: IORef (M.Map ScreenId Handle) -> X ()
-myStartupHook ref = do
+myStartupHook :: X ()
+myStartupHook = do
   setWMName "LG3D"
   spawnOnce "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
-  DSB.dynStatusBarStartup' (myDynamicStatusBar ref) (myDynamicStatusBarCleanup ref)
+  DSB.dynStatusBarStartup' myDynamicStatusBar myDynamicStatusBarCleanup
   addEWMHFullscreen
   whenX isWork $ spawnOnce "rambox"
 
-myDynamicStatusBar :: IORef (M.Map ScreenId Handle) -> ScreenId -> IO Handle
-myDynamicStatusBar ref sc@(S i) = do
-  m <- readIORef ref
-  mapM_ hClose $ M.lookup sc m
-  handle <- spawnPipe $ "xmobar -x" ++ show i ++ " " ++ xmobarConfigFile i
-  modifyIORef' ref (M.insert sc handle)
-  pure handle
+myDynamicStatusBar :: MonadIO m => ScreenId -> m Handle
+myDynamicStatusBar (S i) = spawnPipe $ "xmobar -x" ++ show i ++ " " ++ xmobarConfigFile i
 
-myDynamicStatusBarCleanup :: IORef (M.Map ScreenId Handle) -> ScreenId -> IO ()
-myDynamicStatusBarCleanup ref sc = do
-  m <- readIORef ref
-  mapM_ hClose $ M.lookup sc m
-  modifyIORef' ref (M.delete sc)
+myDynamicStatusBarCleanup :: MonadIO m => ScreenId -> m ()
+myDynamicStatusBarCleanup = return . const ()
 
 xmobarConfigFile :: Int -> String
 xmobarConfigFile 0 = "~/.config/xmobar/xmobarrc"
