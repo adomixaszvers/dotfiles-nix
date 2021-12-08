@@ -37,11 +37,12 @@ let
                         , Run StdinReader
                         , Run Com "${padding}" ["panel"] "trayerpad" 10
                         , Run ThermalZone ${thermalZone} ["-t","<temp>°C"] 30
+                        , Run Mpris2 "spotify" ["-t", "<artist> - <title>"] 10
                         ]
           , sepChar = "%"
           , alignSep = "}{"
           , template = "%StdinReader% }\
-                \{ %cpu% | %memory% * %swap% | %thermal${thermalZone}% | %date% ${
+                \{ %mpris2% | %cpu% | %memory% * %swap% | %thermal${thermalZone}% | %date% ${
                   lib.optionalString hasTray "| %trayerpad%"
                 }"
           }
