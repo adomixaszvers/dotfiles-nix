@@ -7,6 +7,7 @@ import Control.Monad
   )
 import Data.List (elemIndex)
 import Data.Maybe (maybeToList)
+import Graphics.X11.ExtraTypes
 import Network.HostName (getHostName)
 import System.Exit (exitSuccess)
 import System.IO
@@ -179,14 +180,14 @@ myManageHook =
 myKeysDescr :: XConfig Layout -> [((KeyMask, KeySym), NamedAction)]
 myKeysDescr conf@XConfig {XMonad.modMask = modm} =
   let ltKeys =
-        [ 0x1b1, -- ą
-          0x1e8, -- č
-          0x1ea, -- ę
-          0x3ec, -- ė
-          0x3e7, -- į
-          0x1b9, -- š
-          0x3f9, -- ų
-          0x3fe, -- ū
+        [ xK_aogonek, -- ą
+          xK_ccaron, -- č
+          xK_eogonek, -- ę
+          xK_eabovedot, -- ė
+          xK_iogonek, -- į
+          xK_scaron, -- š
+          xK_uogonek, -- ų
+          xK_umacron, -- ū
           0xafe, -- „
           0xad2 -- “
         ]
@@ -258,6 +259,11 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
         ),
         ((modm, xK_F6), addName "Player previous" $ spawn "playerctl previous"),
         ((modm, xK_F7), addName "Player next" $ spawn "playerctl next")
+      ]
+        ++ subtitle "sound controls" :
+      [ ((modm, xK_minus), addName "Decrease volume" $ spawn "pamixer -d 5 && volnoti-show $(pamixer --get-volume)"),
+        ((modm, 0x1be), addName "Increase volume" $ spawn "pamixer -i 5 && volnoti-show $(pamixer --get-volume)"),
+        ((modm, xK_equal), addName "Increase volume" $ spawn "pamixer -i 5 && volnoti-show $(pamixer --get-volume)")
       ]
         ++ subtitle "switching workspaces" :
       [ ((m .|. modm, k), addName (n ++ i) $ windows $ f i)
