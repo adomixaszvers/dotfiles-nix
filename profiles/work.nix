@@ -1,4 +1,4 @@
-{ pkgs, myPkgs, ... }:
+{ pkgs, ... }:
 let unstable = pkgs.nixos-unstable;
 in {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
@@ -15,6 +15,7 @@ in {
     calibre
     docker-compose
     dos2unix
+    evince
     filezilla
     firefox
     gimp
@@ -25,30 +26,29 @@ in {
     google-chrome
     html-tidy
     jetbrains.idea-ultimate
-    jq
     jmeter
+    jq
     keepassxc
     libreoffice-still
     liquibase
     maven
     mercurial
-    myPkgs.rambox
     numlockx
     oracle-instantclient
     playerctl
     postman
+    rambox
     remmina
     samba
     soapui
     spotify
+    sqldeveloper
     sshpass
     steam-run
     subversion
     teams
-    tomcat8
     traceroute
     unrar
-    sqldeveloper
     unstable.torbrowser
     unzip
     whois
@@ -104,13 +104,13 @@ in {
     imvn = "mvn -s ~/.m2/insoft-settings.xml";
     amvn = "mvn -s ~/.m2/kazan-settings.xml";
   };
-  services.network-manager-applet.enable = false;
+  services.network-manager-applet.enable = true;
   services.polybar.config."module/temperature".thermal-zone = 2;
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;
     lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
-    xssLockExtraOptions = [ "-n ${pkgs.xsecurelock}/libexec/dimmer" ];
+    xss-lock.extraOptions = [ "-n ${pkgs.xsecurelock}/libexec/dimmer" ];
   };
   services.syncthing = { enable = true; };
   xsession.windowManager.i3.config.startup = [{
@@ -130,4 +130,16 @@ in {
   xsession.initExtra = ''
     autorandr --change
   '';
+  wayland.windowManager.sway.config = {
+    output = {
+      DP-1 = { pos = "0 0"; };
+      DP-2 = { pos = "1920 0"; };
+    };
+    input = {
+      "6127:24729:Lenovo_Lenovo_Traditional_USB_Keyboard" = {
+        xkb_layout = "lt,us";
+        xkb_numlock = "enabled";
+      };
+    };
+  };
 }
