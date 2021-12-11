@@ -56,7 +56,7 @@
   networking.networkmanager.enable = lib.mkDefault true;
 
   programs.command-not-found.enable = true;
-  programs.ssh.startAgent = true;
+  programs.dconf.enable = true;
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
