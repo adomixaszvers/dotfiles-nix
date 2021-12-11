@@ -174,7 +174,15 @@ in {
     script = ''
       PATH=$PATH:${
         with pkgs;
-        lib.makeBinPath [ coreutils gnugrep procps psmisc xorg.xrandr xdotool ]
+        lib.makeBinPath [
+          coreutils
+          gawk
+          gnugrep
+          procps
+          psmisc
+          xorg.xrandr
+          xdotool
+        ]
       }
 
       # Terminate already running bar instances
@@ -184,16 +192,25 @@ in {
       while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
       XRANDR_QUERY="$(xrandr --query | grep " connected")"
+      XRANDR_ACTIVE="$(xrandr --listactivemonitors)"
+
+      launch_polybar() {
+        MONITOR=$1
+        BAR=$2
+        SCREEN_ID=$(echo "$XRANDR_ACTIVE"| awk "/ $MONITOR/ { print substr(\$1, 0, 1) }")
+        MONITOR="$MONITOR" SCREEN_ID="$SCREEN_ID" polybar "$BAR"
+      }
 
       if [ "$(echo "$XRANDR_QUERY" | wc -l)" -eq 1 ]; then
-        MONITOR=$(echo "$XRANDR_QUERY" | cut -d' ' -f1) polybar top &
+        MONITOR=$(echo "$XRANDR_QUERY" | cut -d' ' -f1)
+        launch_polybar "$MONITOR" top &
       else
         PRIMARY_MONITOR=$(echo "$XRANDR_QUERY"| grep primary | cut -d" " -f1)
 
-        MONITOR=$PRIMARY_MONITOR polybar top &
+        launch_polybar "$PRIMARY_MONITOR" top &
 
         for m in $(echo "$XRANDR_QUERY"| grep -v primary | cut -d' ' -f1); do
-            MONITOR=$m polybar top-extra &
+            launch_polybar "$m" top-extra &
         done
       fi
 

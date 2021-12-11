@@ -91,7 +91,7 @@ main = xmonad . ewmh . docks $ myConfig
   where
     pp = namedScratchpadFilterOutWorkspacePP myLogHook
     dynamicHook = dynamicPropertyChange "WM_NAME" (className =? "Spotify" --> doShift ws0)
-    dynamicBarHook = DSB.dynStatusBarEventHook' myDynamicStatusBar myDynamicStatusBarCleanup
+    dynamicBarHook = DSB.dynStatusBarEventHook myDynamicStatusBar myDynamicStatusBarCleanup
     myConfig =
       addDescrKeys'
         ((myModMask, xK_F1), showKeybindings)
@@ -140,19 +140,22 @@ myStartupHook :: X ()
 myStartupHook = do
   setWMName "LG3D"
   spawnOnce "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
-  DSB.dynStatusBarStartup' myDynamicStatusBar myDynamicStatusBarCleanup
+  DSB.dynStatusBarStartup myDynamicStatusBar myDynamicStatusBarCleanup
   addEWMHFullscreen
   whenX isWork $ spawnOnce "rambox"
 
 myDynamicStatusBar :: MonadIO m => ScreenId -> m Handle
-myDynamicStatusBar (S i) = spawnPipe $ "xmobar -x" ++ show i ++ " " ++ xmobarConfigFile i
+myDynamicStatusBar sc = do
+  spawn $ "mkfifo " ++ fifoPath sc
+  spawnPipe $ "tee " ++ fifoPath sc ++ " 1>/dev/null"
 
-myDynamicStatusBarCleanup :: MonadIO m => ScreenId -> m ()
-myDynamicStatusBarCleanup = return . const ()
+myDynamicStatusBarCleanup :: MonadIO m => m ()
+myDynamicStatusBarCleanup = do
+  spawn "find /run/user/$UID -name 'xmonad-fifo-*' -type p -delete"
+  spawn "systemctl --user restart polybar"
 
-xmobarConfigFile :: Int -> String
-xmobarConfigFile 0 = "~/.config/xmobar/xmobarrc"
-xmobarConfigFile _ = "~/.config/xmobar/xmobarrc_without_tray"
+fifoPath :: ScreenId -> String
+fifoPath (S i) = "/run/user/$UID/xmonad-fifo-" ++ show i
 
 myManageHook :: ManageHook
 myManageHook =
@@ -302,7 +305,7 @@ myLogHook =
   def
     { ppCurrent = wrap "[" "]",
       ppVisible = wrap "|" "|" . clickableWS,
-      ppUrgent = wrap "<fc=#FF0000>" "</fc>" . clickableWS,
+      ppUrgent = wrap "%{o#f00}" "%{-o}" . clickableWS,
       ppHidden = wrap "" "" . clickableWS,
       ppWsSep = " ",
       ppSep = " : ",
@@ -310,7 +313,10 @@ myLogHook =
     }
   where
     clickableWS ws =
-      maybe ws (\i -> "<action=`xdotool set_desktop " ++ show i ++ "`>" ++ ws ++ "</action>") $ elemIndex ws myWorkspaces
+      maybe
+        ws
+        (\i -> "%{A1:xdotool set_desktop " ++ show i ++ ":}" ++ ws ++ "%{A}")
+        $ elemIndex ws myWorkspaces
 
 nsEmacs, nsTerminal :: String
 nsEmacs = "emacs"
