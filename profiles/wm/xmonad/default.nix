@@ -2,7 +2,7 @@
 let
   extraPackages = import ./extraPackages.nix;
   xmonadFifo = pkgs.writeShellScriptBin "xmonadFifo.sh" ''
-    mkfifo /run/user/$UID/xmonad-fifo-$1
+    mkfifo -m 600 /run/user/$UID/xmonad-fifo-$1
     exec tee /run/user/$UID/xmonad-fifo-$1 1>/dev/null
   '';
 in {
