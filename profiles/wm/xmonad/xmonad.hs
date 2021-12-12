@@ -145,14 +145,11 @@ myStartupHook = do
   whenX isWork $ spawnOnce "rambox"
 
 myDynamicStatusBar :: MonadIO m => ScreenId -> m Handle
-myDynamicStatusBar (S i) = do
-  let fifoPath = "/run/user/$UID/xmonad-fifo-" ++ show i
-  spawn $ "mkfifo " ++ fifoPath
-  spawnPipe $ "tee " ++ fifoPath ++ " 1>/dev/null"
+myDynamicStatusBar (S i) = spawnPipe $ "xmonadFifo.sh " ++ show i
 
 myDynamicStatusBarCleanup :: MonadIO m => m ()
 myDynamicStatusBarCleanup = do
-  spawn "find /run/user/$UID -name 'xmonad-fifo-*' -type p -delete"
+  spawn "find /run/user/$UID -maxdepth 1 -name 'xmonad-fifo-*' -type p -delete"
   spawn "systemctl --user restart polybar"
 
 myManageHook :: ManageHook
