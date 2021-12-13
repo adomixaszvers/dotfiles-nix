@@ -151,7 +151,6 @@ myDynamicStatusBar (S i) = spawnPipe $ "xmonadFifo.sh " ++ show i
 
 myDynamicStatusBarCleanup :: MonadIO m => m ()
 myDynamicStatusBarCleanup = do
-  spawn "find /run/user/$UID -maxdepth 1 -name 'xmonad-fifo-*' -type p -delete"
   spawn "systemctl --user restart polybar"
 
 myManageHook :: ManageHook

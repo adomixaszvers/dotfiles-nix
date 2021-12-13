@@ -2,8 +2,14 @@
 let
   extraPackages = import ./extraPackages.nix;
   xmonadFifo = pkgs.writeShellScriptBin "xmonadFifo.sh" ''
-    mkfifo -m 600 /run/user/$UID/xmonad-fifo-$1
-    exec tee /run/user/$UID/xmonad-fifo-$1 1>/dev/null
+    set -e
+    FIFO_FILE=/run/user/$UID/xmonad-fifo-$1
+    [ -p $FIFO_FILE ] || mkfifo -m 600 "$FIFO_FILE"
+    # Open file descriptor (fd) 3 for read/write on a text file.
+    exec 3<> "$FIFO_FILE"
+    tee "$FIFO_FILE" 1>/dev/null
+    # Close fd 3
+    exec 3>&-
   '';
 in {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ];
