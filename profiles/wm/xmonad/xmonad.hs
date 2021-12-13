@@ -139,7 +139,7 @@ myWorkspaces = [ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0]
 myStartupHook :: X ()
 myStartupHook = do
   setWMName "LG3D"
-  spawnOnce "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
+  spawn "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
   DSB.dynStatusBarStartup myDynamicStatusBar myDynamicStatusBarCleanup
   addEWMHFullscreen
   whenX isWork $ spawnOnce "rambox"
