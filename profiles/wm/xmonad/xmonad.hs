@@ -90,6 +90,8 @@ main :: IO ()
 main = xmonad . ewmh . docks $ myConfig
   where
     pp = namedScratchpadFilterOutWorkspacePP myLogHook
+    darkForeground = wrap "%{F#4c566a}" "%{F-}"
+    ppUnfocused = pp { ppTitle = darkForeground, ppLayout = darkForeground, ppSep = darkForeground . ppSep $ pp }
     dynamicHook = dynamicPropertyChange "WM_NAME" (className =? "Spotify" --> doShift ws0)
     dynamicBarHook = DSB.dynStatusBarEventHook myDynamicStatusBar myDynamicStatusBarCleanup
     myConfig =
@@ -106,7 +108,7 @@ main = xmonad . ewmh . docks $ myConfig
             manageHook = myManageHook,
             startupHook = myStartupHook,
             workspaces = myWorkspaces,
-            logHook = DSB.multiPP pp pp
+            logHook = DSB.multiPP pp ppUnfocused
           }
     tiled =
       spacingRaw
