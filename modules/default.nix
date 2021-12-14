@@ -1,1 +1,4 @@
-{ imports = [ ./colors.nix ./nix-registry.nix ./thermal-zone.nix ]; }
+{
+  imports =
+    [ ./colors.nix ./nix-registry.nix ./thermal-zone.nix ./xmonad-17.nix ];
+}

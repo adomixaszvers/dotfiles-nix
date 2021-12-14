@@ -1,18 +1,12 @@
 {-# OPTIONS_GHC -Wall -Werror -fno-warn-missing-signatures #-}
 
 import Control.Exception (bracket)
-import Control.Monad
-  ( join,
-    when,
-  )
 import Data.List (elemIndex)
-import Data.Maybe (maybeToList)
 import Graphics.X11.ExtraTypes
 import Network.HostName (getHostName)
 import System.Exit (exitSuccess)
 import System.IO
-  ( Handle,
-    hClose,
+  ( hClose,
     hPutStr,
   )
 import XMonad
@@ -21,9 +15,27 @@ import XMonad.Actions.PhysicalScreens
     sendToScreen,
     viewScreen,
   )
-import qualified XMonad.Hooks.DynamicBars as DSB
-import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.DynamicProperty (dynamicPropertyChange)
+import XMonad.Hooks.EwmhDesktops
+  ( ewmh,
+    ewmhFullscreen,
+  )
+import XMonad.Hooks.ManageDocks
+  ( ToggleStruts (ToggleStruts),
+  )
+import XMonad.Hooks.ManageHelpers
+  ( composeOne,
+    doCenterFloat,
+    isDialog,
+    (-?>),
+  )
+import XMonad.Hooks.RefocusLast (isFloat, refocusLastLayoutHook, refocusLastWhen)
+import XMonad.Hooks.Rescreen (addAfterRescreenHook)
+import XMonad.Hooks.SetWMName (setWMName)
+import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, statusBarPipe)
+import XMonad.Hooks.StatusBar.PP
   ( PP (..),
+    filterOutWsPP,
     ppCurrent,
     ppHidden,
     ppSep,
@@ -34,24 +46,6 @@ import XMonad.Hooks.DynamicLog
     shorten,
     wrap,
   )
-import XMonad.Hooks.DynamicProperty (dynamicPropertyChange)
-import XMonad.Hooks.EwmhDesktops
-  ( ewmh,
-    fullscreenEventHook,
-  )
-import XMonad.Hooks.ManageDocks
-  ( ToggleStruts (ToggleStruts),
-    avoidStruts,
-    docks,
-  )
-import XMonad.Hooks.ManageHelpers
-  ( composeOne,
-    doCenterFloat,
-    isDialog,
-    (-?>),
-  )
-import XMonad.Hooks.RefocusLast (isFloat, refocusLastLayoutHook, refocusLastWhen)
-import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Layout.MultiToggle (Toggle (..), mkToggle, single)
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
@@ -78,8 +72,8 @@ import XMonad.Util.NamedScratchpad
   ( NamedScratchpad (NS),
     NamedScratchpads,
     namedScratchpadAction,
-    namedScratchpadFilterOutWorkspacePP,
     namedScratchpadManageHook,
+    scratchpadWorkspaceTag,
   )
 import XMonad.Util.Run
   ( spawnPipe,
@@ -87,13 +81,9 @@ import XMonad.Util.Run
 import XMonad.Util.SpawnOnce (spawnOnce)
 
 main :: IO ()
-main = xmonad . ewmh . docks $ myConfig
+main = xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook restartPolybar . dynamicEasySBs myDynamicStatusBar $ myConfig
   where
-    pp = namedScratchpadFilterOutWorkspacePP myLogHook
-    darkForeground = wrap "%{F#4c566a}" "%{F-}"
-    ppUnfocused = pp { ppTitle = darkForeground, ppLayout = darkForeground, ppSep = darkForeground . ppSep $ pp }
     dynamicHook = dynamicPropertyChange "WM_NAME" (className =? "Spotify" --> doShift ws0)
-    dynamicBarHook = DSB.dynStatusBarEventHook myDynamicStatusBar myDynamicStatusBarCleanup
     myConfig =
       addDescrKeys'
         ((myModMask, xK_F1), showKeybindings)
@@ -103,12 +93,11 @@ main = xmonad . ewmh . docks $ myConfig
             focusedBorderColor = "#8BE9FD",
             modMask = mod4Mask,
             borderWidth = 2,
-            handleEventHook = dynamicHook <+> dynamicBarHook <+> refocusLastWhen isFloat <+> fullscreenEventHook <+> handleEventHook def,
+            handleEventHook = dynamicHook <+> refocusLastWhen isFloat <+> handleEventHook def,
             layoutHook = myLayoutHook,
             manageHook = myManageHook,
             startupHook = myStartupHook,
-            workspaces = myWorkspaces,
-            logHook = DSB.multiPP pp ppUnfocused
+            workspaces = myWorkspaces
           }
     tiled =
       spacingRaw
@@ -123,7 +112,7 @@ main = xmonad . ewmh . docks $ myConfig
     myMainLayout =
       renamed [Replace "Tall"] tiled
         ||| renamed [Replace "Wide"] (Mirror tiled)
-    myLayoutHook = smartBorders . avoidStruts . refocusLastLayoutHook . trackFloating . mkToggle (single FULL) $ myMainLayout
+    myLayoutHook = smartBorders . refocusLastLayoutHook . trackFloating . mkToggle (single FULL) $ myMainLayout
 
 myTerminal :: String
 myTerminal = "kitty"
@@ -142,16 +131,16 @@ myStartupHook :: X ()
 myStartupHook = do
   setWMName "LG3D"
   spawn "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
-  DSB.dynStatusBarStartup myDynamicStatusBar myDynamicStatusBarCleanup
-  addEWMHFullscreen
   whenX isWork $ spawnOnce "rambox"
 
-myDynamicStatusBar :: MonadIO m => ScreenId -> m Handle
-myDynamicStatusBar (S i) = spawnPipe $ "xmonadFifo.sh " ++ show i
+myDynamicStatusBar :: ScreenId -> IO StatusBarConfig
+myDynamicStatusBar (S i) = statusBarPipe command $ pure pp
+  where
+    command = "xmonadFifo.sh " ++ show i
+    pp = filterOutWsPP [scratchpadWorkspaceTag] myLogHook
 
-myDynamicStatusBarCleanup :: MonadIO m => m ()
-myDynamicStatusBarCleanup = do
-  spawn "systemctl --user restart polybar"
+restartPolybar :: MonadIO m => m ()
+restartPolybar = spawn "systemctl --user restart polybar"
 
 myManageHook :: ManageHook
 myManageHook =
@@ -331,28 +320,6 @@ myScratchpads =
       (appName =? "scratchpad" <&&> className =? "kitty")
       doFloat
   ]
-
-addNETSupported :: Atom -> X ()
-addNETSupported x = withDisplay $ \dpy -> do
-  r <- asks theRoot
-  a_NET_SUPPORTED <- getAtom "_NET_SUPPORTED"
-  a <- getAtom "ATOM"
-  liftIO $ do
-    sup <- join . maybeToList <$> getWindowProperty32 dpy a_NET_SUPPORTED r
-    when (fromIntegral x `notElem` sup) $
-      changeProperty32
-        dpy
-        r
-        a_NET_SUPPORTED
-        a
-        propModeAppend
-        [fromIntegral x]
-
-addEWMHFullscreen :: X ()
-addEWMHFullscreen = do
-  wms <- getAtom "_NET_WM_STATE"
-  wfs <- getAtom "_NET_WM_STATE_FULLSCREEN"
-  mapM_ addNETSupported [wms, wfs]
 
 isWork :: MonadIO m => m Bool
 isWork = io $ (== "adomas-jatuzis-nixos") <$> getHostName

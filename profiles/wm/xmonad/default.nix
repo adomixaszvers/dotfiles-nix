@@ -24,9 +24,15 @@ in {
       tail = true;
     };
   };
-  xsession.windowManager.xmonad = {
+  xsession.windowManager.xmonad-17 = {
     inherit extraPackages;
     enable = true;
     config = ./xmonad.hs;
+    haskellPackages = pkgs.nixos-unstable.haskellPackages.override {
+      overrides = _: super: {
+        xmonad = super.xmonad_0_17_0;
+        xmonad-contrib = super.xmonad-contrib_0_17_0;
+      };
+    };
   };
 }
