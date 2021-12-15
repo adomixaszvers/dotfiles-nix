@@ -24,7 +24,7 @@ in {
       tail = true;
     };
   };
-  xsession.windowManager.xmonad-17 = {
+  xsession.windowManager.xmonad = {
     inherit extraPackages;
     enable = true;
     config = ./xmonad.hs;
