@@ -1,20 +1,14 @@
 {-# OPTIONS_GHC -Wall -Werror -fno-warn-missing-signatures #-}
 
 import Control.Exception (bracket)
-import Control.Monad.Cont (lift)
-import Control.Monad.Writer ( WriterT, execWriterT, Last(getLast) )
-import Data.Foldable (traverse_)
-import Data.IORef (newIORef, readIORef, writeIORef)
-import Data.List (elemIndex)
-import Data.Monoid (Last (Last))
-import GHC.IO.Handle (Handle)
+import Data.List (elemIndex, intersperse)
+import Data.Maybe (catMaybes)
 import Graphics.X11.ExtraTypes
 import Network.HostName (getHostName)
 import System.Exit (exitSuccess)
 import System.IO
   ( hClose,
     hPutStr,
-    hPutStrLn,
   )
 import XMonad
 import XMonad.Actions.PhysicalScreens
@@ -22,7 +16,6 @@ import XMonad.Actions.PhysicalScreens
     sendToScreen,
     viewScreen,
   )
-import XMonad.Hooks.DynamicLog (dynamicLogString)
 import XMonad.Hooks.DynamicProperty (dynamicPropertyChange)
 import XMonad.Hooks.EwmhDesktops
   ( ewmh,
@@ -40,18 +33,16 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.RefocusLast (isFloat, refocusLastLayoutHook, refocusLastWhen)
 import XMonad.Hooks.Rescreen (addAfterRescreenHook)
 import XMonad.Hooks.SetWMName (setWMName)
-import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, sbCleanupHook, sbLogHook, sbStartupHook)
+import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, statusBarPipe)
 import XMonad.Hooks.StatusBar.PP
   ( PP (..),
     filterOutWsPP,
     ppCurrent,
     ppHidden,
     ppSep,
-    ppTitle,
     ppUrgent,
     ppVisible,
     ppWsSep,
-    shorten,
     wrap,
   )
 import XMonad.Layout.MultiToggle (Toggle (..), mkToggle, single)
@@ -67,6 +58,7 @@ import XMonad.Layout.Spacing
   )
 import XMonad.Layout.TrackFloating (trackFloating)
 import qualified XMonad.StackSet as W
+import XMonad.Util.Loggers (Logger, logConst, logCurrentOnScreen, logLayoutOnScreen, logTitleOnScreen, shortenL, wrapL)
 import XMonad.Util.NamedActions
   ( NamedAction (..),
     addDescrKeys',
@@ -87,7 +79,6 @@ import XMonad.Util.Run
   ( spawnPipe,
   )
 import XMonad.Util.SpawnOnce (spawnOnce)
-import Control.Monad.Writer.Lazy (tell)
 
 main :: IO ()
 main = xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook restartPolybar . dynamicEasySBs myDynamicStatusBar $ myConfig
@@ -144,11 +135,11 @@ myStartupHook = do
   spawnOnce "systemctl --user restart polybar"
 
 myDynamicStatusBar :: ScreenId -> IO StatusBarConfig
-myDynamicStatusBar sc@(S i) = myStatusBarPipe command pp ppUnfocused sc
+myDynamicStatusBar sc@(S i) = statusBarPipe command $ ppOn i
   where
     command = "xmonadFifo.sh " ++ show i
-    pp = filterOutWsPP [scratchpadWorkspaceTag] myLogHook
-    ppUnfocused = filterOutWsPP [scratchpadWorkspaceTag] $ darkerPP myLogHook
+    ppOn 0 = pure mainPP
+    ppOn _ = pure . secondaryPP $ sc
 
 restartPolybar :: MonadIO m => m ()
 restartPolybar = spawn "systemctl --user restart polybar"
@@ -299,23 +290,62 @@ showKeybindings x =
         hClose
         (\h -> hPutStr h (unlines $ showKm x))
 
-myLogHook :: PP
-myLogHook =
-  def
-    { ppCurrent = wrap "[" "]",
-      ppVisible = wrap "|" "|" . clickableWS,
-      ppUrgent = wrap "{" "}" . clickableWS,
-      ppHidden = wrap "" "" . clickableWS,
-      ppWsSep = " ",
-      ppSep = " : ",
-      ppTitle = shorten 100
-    }
+logWhenNotActive :: ScreenId -> Logger -> Logger
+logWhenNotActive n l = do
+  c <- withWindowSet $ return . W.screen . W.current
+  if n /= c then l else return Nothing
+
+extrasPrefix, extrasPostfix :: ScreenId -> Logger
+extrasPrefix s = logWhenNotActive s $ logConst "%{F#4c566a}"
+extrasPostfix s = logWhenNotActive s $ logConst "%{F-}"
+
+mainPP :: PP
+mainPP =
+  filterOutWsPP [scratchpadWorkspaceTag] $
+    def
+      { ppCurrent = wrap "[" "]",
+        ppVisible = wrap "|" "|" . clickableWS,
+        ppUrgent = wrap "{" "}" . clickableWS,
+        ppHidden = wrap "" "" . clickableWS,
+        ppWsSep = " ",
+        ppSep = " ",
+        ppExtras =
+          pure $
+            concatLoggers
+              0
+              [ logLayoutOnScreen 0,
+                wrapL ": " "" . shortenL 100 $ logTitleOnScreen 0
+              ],
+        ppOrder = \(ws : _ : _ : extras) -> ws : extras
+      }
   where
     clickableWS ws =
       maybe
         ws
         (\i -> "%{A1:xdotool set_desktop " ++ show i ++ ":}" ++ ws ++ "%{A}")
         $ elemIndex ws myWorkspaces
+
+secondaryPP :: ScreenId -> PP
+secondaryPP s =
+  def
+    { ppOrder = \(_ : _ : _ : extras) -> extras,
+      ppSep = " ",
+      ppExtras =
+        pure $
+          concatLoggers
+            s
+            [ logCurrentOnScreen s,
+              logLayoutOnScreen s,
+              wrapL ": " "" . shortenL 100 $ logTitleOnScreen s
+            ]
+    }
+
+concatLoggers :: ScreenId -> [Logger] -> Logger
+concatLoggers sc ll = do
+  output <- mconcat . catMaybes <$> mapM (userCodeDef Nothing) (extrasPrefix sc : intersperse sep ll ++ [extrasPostfix sc])
+  return $ if null output then Nothing else Just output
+  where
+    sep = logConst " "
 
 nsEmacs, nsTerminal :: String
 nsEmacs = "emacs"
@@ -337,47 +367,3 @@ myScratchpads =
 
 isWork :: MonadIO m => m Bool
 isWork = io $ (== "adomas-jatuzis-nixos") <$> getHostName
-
-myStatusBarPipe ::
-  -- | The command to launch the status bar
-  String ->
-  -- | The pretty printing options when the screen is focused
-  PP ->
-  -- | The pretty printing options when the screen is unfocused
-  PP ->
-  -- | ScreenId
-  ScreenId ->
-  IO StatusBarConfig
-myStatusBarPipe cmd fpp upp sc = do
-  href <- newIORef Nothing
-  return $
-    def
-      { sbStartupHook = io (writeIORef href . Just =<< spawnPipe cmd),
-        sbLogHook = do
-          h' <- io (readIORef href)
-          whenJust h' $ \h -> multiPP dynamicLogString fpp upp h sc,
-        sbCleanupHook = io $ readIORef href >>= (`whenJust` hClose) >> writeIORef href Nothing
-      }
-
-multiPP :: (PP -> X String) -> PP -> PP -> Handle -> ScreenId -> X ()
-multiPP dynlStr focusPP unfocusPP handle sc = do
-  st <- get
-  let pickPP :: WorkspaceId -> WriterT (Last XState) X String
-      pickPP ws = do
-        let isFoc = (ws ==) . W.tag . W.workspace . W.current $ windowset st
-        put st {windowset = W.view ws $ windowset st}
-        out <- lift $ dynlStr $ if isFoc then focusPP else unfocusPP
-        (if isFoc then get else pure st) >>= tell . Last . Just
-        return out
-  ws' <- screenWorkspace sc
-  whenJust ws' $ \ws -> traverse_ put . getLast =<< execWriterT (pickPP ws >>= io . hPutStrLn handle)
-
-darkerPP :: PP -> PP
-darkerPP pp =
-  myLogHook
-    { ppSep = darker . ppSep $ pp,
-      ppLayout = darker,
-      ppTitle = darker
-    }
-  where
-    darker = wrap "%{F#4c566a}" "%{F-}"

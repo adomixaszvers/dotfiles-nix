@@ -49,7 +49,7 @@ in {
       };
       "bar/top-extra" = defaultBar // {
         modules-center = "";
-        modules-right = "date divider time";
+        modules-right = "date divider time divider";
       };
       "module/cpu" = module "﬙" {
         type = "internal/cpu";
