@@ -1,6 +1,8 @@
 {-# OPTIONS_GHC -Wall -Werror -fno-warn-missing-signatures #-}
 
 import Control.Exception (bracket)
+-- TODO fix lsp module finding
+import qualified Colors as C
 import Data.Foldable (find)
 import Data.List (elemIndex, intersperse)
 import Data.Maybe (catMaybes)
@@ -92,7 +94,8 @@ main = xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook restartPolybar . dy
         myKeysDescr
         def
           { terminal = myTerminal,
-            focusedBorderColor = "#8BE9FD",
+            normalBorderColor = C.white,
+            focusedBorderColor = C.cyan,
             modMask = mod4Mask,
             borderWidth = 2,
             handleEventHook = dynamicHook <+> refocusLastWhen isFloat <+> handleEventHook def,
@@ -299,7 +302,7 @@ logWhenNotActive n l = do
   if n /= c then l else return Nothing
 
 extrasPrefix, extrasPostfix :: ScreenId -> Logger
-extrasPrefix s = logWhenNotActive s $ logConst "%{F#4c566a}"
+extrasPrefix s = logWhenNotActive s . logConst $ "%{F" ++ C.blackb ++  "}"
 extrasPostfix s = logWhenNotActive s $ logConst "%{F-}"
 
 mainPP :: PP
@@ -376,7 +379,7 @@ lowerDock :: ManageHook
 lowerDock =
   checkDock --> do
     w <- ask
-    mlw <- liftX $ findLowest
+    mlw <- liftX findLowest
     case mlw of
       Just lw -> liftX $ do
         d <- asks display

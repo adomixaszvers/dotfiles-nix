@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   extraPackages = import ./extraPackages.nix;
   xmonadFifo = pkgs.writeShellScriptBin "xmonadFifo.sh" ''
@@ -33,6 +33,16 @@ in {
         xmonad = super.xmonad_0_17_0;
         xmonad-contrib = super.xmonad-contrib_0_17_0;
       };
+    };
+    libFiles = {
+      "Colors.hs" = pkgs.writeText "Colors.hs" ''
+        module Colors where
+
+        ${builtins.concatStringsSep "\n" (builtins.attrValues (builtins.mapAttrs
+          (name: value: ''
+            ${name} :: String
+            ${name} = "${value}"
+          '') config.colors))}'';
     };
   };
 }
