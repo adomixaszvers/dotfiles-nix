@@ -1,6 +1,7 @@
 {-# OPTIONS_GHC -Wall -Werror -fno-warn-missing-signatures #-}
 
 import Control.Exception (bracket)
+import Data.Foldable (find)
 import Data.List (elemIndex, intersperse)
 import Data.Maybe (catMaybes)
 import Graphics.X11.ExtraTypes
@@ -23,6 +24,7 @@ import XMonad.Hooks.EwmhDesktops
   )
 import XMonad.Hooks.ManageDocks
   ( ToggleStruts (ToggleStruts),
+    checkDock,
   )
 import XMonad.Hooks.ManageHelpers
   ( composeOne,
@@ -148,6 +150,7 @@ myManageHook :: ManageHook
 myManageHook =
   composeAll
     [ spawnHook,
+      lowerDock,
       className =? "lxqt-openssh-askpass" --> doCenterFloat,
       namedScratchpadManageHook myScratchpads,
       manageHook def
@@ -367,3 +370,24 @@ myScratchpads =
 
 isWork :: MonadIO m => m Bool
 isWork = io $ (== "adomas-jatuzis-nixos") <$> getHostName
+
+-- | Restack dock under lowest managed window.
+lowerDock :: ManageHook
+lowerDock =
+  checkDock --> do
+    w <- ask
+    mlw <- liftX $ findLowest
+    case mlw of
+      Just lw -> liftX $ do
+        d <- asks display
+        liftIO $ restackWindows d [lw, w]
+        return idHook
+      Nothing -> return idHook
+
+-- | Find lowest managed window.
+findLowest :: X (Maybe Window)
+findLowest = withWindowSet $ \ws -> do
+  d <- asks display
+  r <- asks theRoot
+  (_, _, ts) <- liftIO $ queryTree d r
+  return (find (`W.member` ws) ts)
