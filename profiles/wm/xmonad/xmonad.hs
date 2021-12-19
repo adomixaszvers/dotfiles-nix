@@ -1,11 +1,7 @@
 {-# OPTIONS_GHC -Wall -Werror -fno-warn-missing-signatures #-}
 
 import Control.Exception (bracket)
--- TODO fix lsp module finding
 import qualified Colors as C
-import Data.Foldable (find)
-import Data.List (elemIndex, intersperse)
-import Data.Maybe (catMaybes)
 import Graphics.X11.ExtraTypes
 import Network.HostName (getHostName)
 import System.Exit (exitSuccess)
@@ -61,6 +57,7 @@ import XMonad.Layout.Spacing
     spacingRaw,
   )
 import XMonad.Layout.TrackFloating (trackFloating)
+import XMonad.Prelude
 import qualified XMonad.StackSet as W
 import XMonad.Util.Loggers (Logger, logConst, logCurrentOnScreen, logLayoutOnScreen, logTitleOnScreen, shortenL, wrapL)
 import XMonad.Util.NamedActions
