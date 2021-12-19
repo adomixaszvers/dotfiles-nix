@@ -1,0 +1,12 @@
+cabal-version:      2.4
+name:               my-colors
+version:            0.1.0.0
+author:             Adomas Jatužis
+maintainer:         adomixaszvers@gmail.com
+extra-source-files: CHANGELOG.md
+
+library
+    exposed-modules:  Colors
+    build-depends:    base ^>=4.14.3.0
+    hs-source-dirs:   src
+    default-language: Haskell2010
