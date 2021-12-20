@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wall -Werror -fno-warn-missing-signatures #-}
 
-import Control.Exception (bracket)
 import qualified Colors as C
+import Control.Exception (bracket)
 import Graphics.X11.ExtraTypes
 import Network.HostName (getHostName)
 import System.Exit (exitSuccess)
@@ -80,6 +80,7 @@ import XMonad.Util.Run
   ( spawnPipe,
   )
 import XMonad.Util.SpawnOnce (spawnOnce)
+import XMonad.Util.WorkspaceCompare (getSortByXineramaPhysicalRule)
 
 main :: IO ()
 main = xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook restartPolybar . dynamicEasySBs myDynamicStatusBar $ myConfig
@@ -299,7 +300,7 @@ logWhenNotActive n l = do
   if n /= c then l else return Nothing
 
 extrasPrefix, extrasPostfix :: ScreenId -> Logger
-extrasPrefix s = logWhenNotActive s . logConst $ "%{F" ++ C.blackb ++  "}"
+extrasPrefix s = logWhenNotActive s . logConst $ "%{F" ++ C.blackb ++ "}"
 extrasPostfix s = logWhenNotActive s $ logConst "%{F-}"
 
 mainPP :: PP
@@ -312,6 +313,7 @@ mainPP =
         ppHidden = wrap "" "" . clickableWS,
         ppWsSep = " ",
         ppSep = " ",
+        ppSort = getSortByXineramaPhysicalRule def,
         ppExtras =
           pure $
             concatLoggers
