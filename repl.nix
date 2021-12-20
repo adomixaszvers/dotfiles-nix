@@ -1,5 +1,5 @@
 let
-  flake = builtins.getFlake (toString ./.);
+  flake = builtins.getFlake ("git+file://" + toString ./.);
   nixpkgs = import flake.inputs.nixpkgs { };
 in {
   inherit flake;
