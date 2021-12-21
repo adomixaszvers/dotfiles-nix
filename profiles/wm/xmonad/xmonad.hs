@@ -45,9 +45,10 @@ import XMonad.Hooks.StatusBar.PP
     ppWsSep,
     wrap,
   )
-import XMonad.Layout.MultiToggle (Toggle (..), mkToggle, single)
+import XMonad.Layout.MultiToggle (Toggle (..), mkToggle1)
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.Renamed
   ( Rename (..),
     renamed,
@@ -112,10 +113,10 @@ main = xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook (restartPolybar >> 
         $ Tall 1 (3 / 100) (1 / 2)
     outer = 3
     inner = 5
-    myMainLayout =
-      renamed [Replace "Tall"] tiled
-        ||| renamed [Replace "Wide"] (Mirror tiled)
-    myLayoutHook = smartBorders . refocusLastLayoutHook . trackFloating . mkToggle (single FULL) $ myMainLayout
+    tall = renamed [Replace "Tall"] tiled
+    wide = renamed [Replace "Wide"] (Mirror tiled)
+    myMainLayout = onWorkspace ws3 (Full ||| tall ||| wide) (mkToggle1 FULL $ tall ||| wide)
+    myLayoutHook = smartBorders . refocusLastLayoutHook . trackFloating $ myMainLayout
 
 myTerminal :: String
 myTerminal = "kitty"
