@@ -5,6 +5,7 @@
     ./direnv
     ./git.nix
     ./gpg-agent.nix
+    ./flakeInputs.nix
     ./neovim
     ./kakoune
     ./registry.nix
