@@ -83,7 +83,7 @@ import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Util.WorkspaceCompare (getSortByXineramaPhysicalRule)
 
 main :: IO ()
-main = xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook restartPolybar . dynamicEasySBs myDynamicStatusBar $ myConfig
+main = xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook (restartPolybar >> spawnFeh) . dynamicEasySBs myDynamicStatusBar $ myConfig
   where
     dynamicHook = dynamicPropertyChange "WM_NAME" (className =? "Spotify" --> doShift ws0)
     myConfig =
@@ -133,7 +133,7 @@ myWorkspaces = [ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0]
 myStartupHook :: X ()
 myStartupHook = do
   setWMName "LG3D"
-  spawn "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
+  spawnFeh
   whenX isWork $ spawnOnce "rambox"
   spawnOnce "systemctl --user restart polybar"
 
@@ -146,6 +146,9 @@ myDynamicStatusBar sc@(S i) = statusBarPipe command $ ppOn i
 
 restartPolybar :: MonadIO m => m ()
 restartPolybar = spawn "systemctl --user restart polybar"
+
+spawnFeh :: MonadIO m => m ()
+spawnFeh = spawn "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
 
 myManageHook :: ManageHook
 myManageHook =
