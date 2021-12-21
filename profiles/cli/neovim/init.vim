@@ -50,6 +50,7 @@ augroup nix-flakes
 augroup END
 
 let g:suda_smart_edit = 1
+let g:ale_disable_lsp = 1
 
 lua <<EOF
     require'nvim-treesitter.configs'.setup {

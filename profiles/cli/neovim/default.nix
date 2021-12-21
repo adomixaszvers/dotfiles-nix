@@ -1,7 +1,8 @@
 { pkgs, lib, ... }: {
   programs.neovim = {
     enable = true;
-    plugins = with pkgs.vimPlugins;
+    package = pkgs.nixos-unstable.neovim-unwrapped;
+    plugins = with pkgs.nixos-unstable.vimPlugins;
       let telescope-dependencies = [ plenary-nvim telescope-nvim ];
       in [
         ale
@@ -9,6 +10,10 @@
         fugitive
         neoformat
         (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+        {
+          plugin = nvim-lspconfig;
+          config = builtins.readFile ./lspconfig.vim;
+        }
         playground
         rainbow
         repeat
