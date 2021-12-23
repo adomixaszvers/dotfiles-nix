@@ -60,7 +60,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.TrackFloating (trackFloating)
 import XMonad.Prelude
 import qualified XMonad.StackSet as W
-import XMonad.Util.Loggers (Logger, logConst, logCurrentOnScreen, logLayoutOnScreen, logTitleOnScreen, shortenL, wrapL)
+import XMonad.Util.Loggers (Logger, logCurrentOnScreen, logLayoutOnScreen, logTitleOnScreen, shortenL, wrapL)
 import XMonad.Util.NamedActions
   ( NamedAction (..),
     addDescrKeys',
@@ -298,14 +298,11 @@ showKeybindings x =
         hClose
         (\h -> hPutStr h (unlines $ showKm x))
 
-logWhenNotActive :: ScreenId -> Logger -> Logger
-logWhenNotActive n l = do
+myLogTitleOnScreen :: ScreenId -> Logger
+myLogTitleOnScreen n = do
   c <- withWindowSet $ return . W.screen . W.current
-  if n /= c then l else return Nothing
-
-extrasPrefix, extrasPostfix :: ScreenId -> Logger
-extrasPrefix s = logWhenNotActive s . logConst $ "%{F" ++ C.blackb ++ "}"
-extrasPostfix s = logWhenNotActive s $ logConst "%{F-}"
+  let f = if n == c then id else wrapL ("%{F" ++ C.blackb ++ "}") "%{F-}"
+  f . wrapL ": " "" . shortenL 100 . logTitleOnScreen $ n
 
 mainPP :: PP
 mainPP =
@@ -319,12 +316,9 @@ mainPP =
         ppSep = " ",
         ppSort = getSortByXineramaPhysicalRule def,
         ppExtras =
-          pure $
-            concatLoggers
-              0
-              [ logLayoutOnScreen 0,
-                wrapL ": " "" . shortenL 100 $ logTitleOnScreen 0
-              ],
+          [ logLayoutOnScreen 0,
+            myLogTitleOnScreen 0
+          ],
         ppOrder = \(ws : _ : _ : extras) -> ws : extras
       }
   where
@@ -340,21 +334,11 @@ secondaryPP s =
     { ppOrder = \(_ : _ : _ : extras) -> extras,
       ppSep = " ",
       ppExtras =
-        pure $
-          concatLoggers
-            s
-            [ logCurrentOnScreen s,
-              logLayoutOnScreen s,
-              wrapL ": " "" . shortenL 100 $ logTitleOnScreen s
-            ]
+        [ logCurrentOnScreen s,
+          logLayoutOnScreen s,
+          myLogTitleOnScreen s
+        ]
     }
-
-concatLoggers :: ScreenId -> [Logger] -> Logger
-concatLoggers sc ll = do
-  output <- mconcat . catMaybes <$> mapM (userCodeDef Nothing) (extrasPrefix sc : intersperse sep ll ++ [extrasPostfix sc])
-  return $ if null output then Nothing else Just output
-  where
-    sep = logConst " "
 
 nsEmacs, nsTerminal :: String
 nsEmacs = "emacs"
