@@ -3,8 +3,8 @@
 {
   imports = [
     ./alacritty
-    # ./chemacs
-    ./nix-doom-emacs.nix
+    ./chemacs
+    ./doom-emacs.nix
     ./fonts.nix
     ./keepass
     ./kitty.nix
