@@ -1,4 +1,4 @@
-{ pkgs, myPkgs, inputs, ... }:
+{ pkgs, myPkgs, ... }:
 let unstable = pkgs.nixos-unstable;
 in {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
@@ -13,7 +13,6 @@ in {
     mpv
     playerctl
     qbittorrent
-    inputs.nixos-2009.legacyPackages.x86_64-linux.remmina
     spotify
     torbrowser
     keepassxc
