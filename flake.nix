@@ -29,7 +29,6 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
-    flake-utils = { url = "github:numtide/flake-utils"; };
     fz = {
       url = "github:changyuheng/fz";
       flake = false;
@@ -58,61 +57,63 @@
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-21.11"; };
     pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
   };
-  outputs = { self, nixpkgs, ani-cli, bumblebee-status, flake-utils
-    , home-manager, nixos-hardware, pre-commit-hooks, gitignore, ... }@inputs:
+  outputs = { self, nixpkgs, ani-cli, bumblebee-status, home-manager
+    , nixos-hardware, pre-commit-hooks, gitignore, ... }@inputs:
     let
       config = import ./config.nix;
-      mkPkgs = system:
-        let
-          gitignoreSource = _: _: { inherit (gitignore.lib) gitignoreSource; };
-          nixos-unstable = _: _: {
-            nixos-unstable =
-              import inputs.nixos-unstable { inherit system config; };
-          };
-        in rec {
-          overlays = [ gitignoreSource nixos-unstable ];
-          pkgs = import nixpkgs { inherit system overlays config; };
-        };
-    in (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
-      let pkgs = (mkPkgs system).pkgs;
-      in rec {
-        packages = import ./pkgs {
-          inherit pkgs;
-          ani-cli-source = ani-cli;
-          bumblebee-status-source = bumblebee-status;
-          home-manager = home-manager.packages.${system}.home-manager;
-        };
-        checks = {
-          pre-commit-check = pre-commit-hooks.lib.${system}.run {
-            src = builtins.filterSource (path: _type:
-              !builtins.any (sufix: nixpkgs.lib.hasSuffix sufix path) [
+      system = "x86_64-linux";
+      nixos-unstable-overlay = _: _: {
+        nixos-unstable =
+          import inputs.nixos-unstable { inherit system config; };
+      };
+      overlays = [ nixos-unstable-overlay ];
+      pkgs = import nixpkgs { inherit system overlays config; };
+    in {
+      packages."${system}" = import ./pkgs {
+        inherit pkgs;
+        inherit (home-manager.packages."${system}") home-manager;
+        ani-cli-source = ani-cli;
+        bumblebee-status-source = bumblebee-status;
+      };
+      checks."${system}" = {
+        pre-commit-check = pre-commit-hooks.lib."${system}".run {
+          src = let
+            inherit (gitignore.lib) gitignoreFilter;
+            inherit (nixpkgs.lib) hasSuffix cleanSourceWith;
+            currentDir = ./.;
+            sourceIgnored = gitignoreFilter currentDir;
+            customFilter = path: type:
+              sourceIgnored path type
+              && !builtins.any (sufix: hasSuffix sufix path) [
                 "pkgs/lua-fmt/default.nix"
                 "pkgs/lua-fmt/node-env.nix"
                 "pkgs/lua-fmt/node-packages.nix"
                 "pkgs/vimgolf/gemset.nix"
                 "profiles/wm/penrose/my-penrose-config/Cargo.nix"
-              ]) ./.;
-            hooks = {
-              nixfmt.enable = true;
-              nix-linter.enable = true;
-              shellcheck.enable = true;
-            };
+              ];
+          in cleanSourceWith {
+            filter = customFilter;
+            src = currentDir;
+            name = "my-home-manager-config-source";
+          };
+          hooks = {
+            nixfmt.enable = true;
+            nix-linter.enable = true;
+            shellcheck.enable = true;
           };
         };
-        devShell = nixpkgs.legacyPackages.${system}.mkShell {
-          buildInputs =
-            [ packages.hm-switch home-manager.packages.${system}.home-manager ];
-          inherit (checks.pre-commit-check) shellHook;
-        };
-      })) // {
-        nixosConfigurations = import ./nixos/configurations.nix {
-          inherit nixpkgs nixos-hardware inputs;
-        };
-        homeConfigurations = with (mkPkgs "x86_64-linux");
-          import ./homes.nix {
-            inherit home-manager pkgs system overlays inputs;
-            nixpkgs-config = config;
-            myPkgs = self.packages.x86_64-linux;
-          };
       };
+      devShell."${system}" = pkgs.mkShell {
+        buildInputs = [ home-manager.packages."${system}".home-manager ];
+        inherit (self.checks."${system}".pre-commit-check) shellHook;
+      };
+      nixosConfigurations = import ./nixos/configurations.nix {
+        inherit nixpkgs nixos-hardware inputs;
+      };
+      homeConfigurations = import ./homes.nix {
+        inherit home-manager pkgs system overlays inputs;
+        nixpkgs-config = config;
+        myPkgs = self.packages.x86_64-linux;
+      };
+    };
 }
