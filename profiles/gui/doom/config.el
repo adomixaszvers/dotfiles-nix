@@ -30,3 +30,7 @@
   (let ((my-init (expand-file-name "init.el" "~/.config/nixpkgs/profiles/gui/doom"))
         (upstream-init (expand-file-name "init.example.el" doom-emacs-dir)))
     (ediff-files my-init upstream-init)))
+
+;; see https://github.com/hlissner/doom-emacs/issues/5904#issuecomment-997045485
+(after! lsp-mode
+  (advice-remove #'lsp #'+lsp-dont-prompt-to-install-servers-maybe-a))

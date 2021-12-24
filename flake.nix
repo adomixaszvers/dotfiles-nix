@@ -50,7 +50,7 @@
       url = "github:Delapouite/kakoune-text-objects";
       flake = false;
     };
-    nix-doom-emacs = { url = "github:vlaci/nix-doom-emacs"; };
+    nix-doom-emacs = { url = "github:nix-community/nix-doom-emacs"; };
     emacs-overlay = { url = "github:nix-community/emacs-overlay"; };
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };

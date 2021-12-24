@@ -5,6 +5,7 @@
     ./alacritty
     ./chemacs
     ./doom-emacs.nix
+    # ./nix-doom-emacs.nix
     ./fonts.nix
     ./keepass
     ./kitty.nix
