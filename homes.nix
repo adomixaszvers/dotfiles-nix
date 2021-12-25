@@ -16,6 +16,8 @@ in rec {
   work = buildHomeManager ./profiles/work.nix;
   work-remote = buildHomeManager ./profiles/work-remote.nix;
   home = buildHomeManager ./profiles/home.nix;
+  foreign = buildHomeManager ./profiles/foreign.nix;
   "adomas@adomo-nixos" = home;
+  "adomas@arch-vm" = foreign;
   "adomas@adomas-jatuzis-nixos" = work-remote;
 }
