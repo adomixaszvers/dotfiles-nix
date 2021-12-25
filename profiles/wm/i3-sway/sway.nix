@@ -21,7 +21,7 @@ in {
       inherit (common.config)
         bars colors fonts gaps modifier assigns window keycodebindings;
       keybindings = let
-        modifier = common.config.modifier;
+        inherit (common.config) modifier;
         combined = common.config.keybindings // {
           "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";
           "${modifier}+Shift+d" = "exec ${pkgs.wofi}/bin/wofi --show run";

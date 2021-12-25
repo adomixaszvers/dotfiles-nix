@@ -10,7 +10,7 @@
   in {
     "bar/top" = common;
     "bar/top-extra" = common;
-    "module/bspwm" = let colors = config.colors;
+    "module/bspwm" = let inherit (config) colors;
     in {
       type = "internal/bspwm";
       pin-workspaces = true;

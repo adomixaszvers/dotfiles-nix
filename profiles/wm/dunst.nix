@@ -1,9 +1,9 @@
 { pkgs, config, ... }:
-let colors = config.colors;
+let inherit (config) colors;
 in {
   home.packages = with pkgs; [ dunst ];
   services.dunst = {
-    enable = config.xsession.enable;
+    inherit (config.xsession) enable;
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
@@ -48,7 +48,7 @@ in {
         timeout = 10;
       };
       urgency_normal = {
-        background = colors.background;
+        inherit (colors) background;
         foreground = colors.whiteb;
         timeout = 900;
       };

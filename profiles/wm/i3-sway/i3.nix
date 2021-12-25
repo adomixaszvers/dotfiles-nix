@@ -4,7 +4,7 @@ in {
   imports = [ ../picom.nix ../dunst.nix ];
   xsession.windowManager.i3 = {
     enable = true;
-    config = let modifier = common.config.modifier;
+    config = let inherit (common.config) modifier;
     in common.config // {
       inherit (common.config)
         bars colors fonts gaps modifier assigns window keycodebindings;

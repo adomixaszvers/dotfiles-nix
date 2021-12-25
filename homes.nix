@@ -7,7 +7,7 @@ let
     home-manager.lib.homeManagerConfiguration {
       inherit system homeDirectory username pkgs;
       extraSpecialArgs = { inherit inputs myPkgs; };
-      configuration = { ... }: {
+      configuration = {
         imports = [ inputs.nix-doom-emacs.hmModule config ];
         nixpkgs = {
           inherit overlays;
