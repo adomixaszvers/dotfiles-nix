@@ -1,6 +1,4 @@
-{ pkgs, myPkgs, ... }:
-let unstable = pkgs.nixos-unstable;
-in {
+{ pkgs, unstable, myPkgs, ... }: {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
   home.packages = (with pkgs; [

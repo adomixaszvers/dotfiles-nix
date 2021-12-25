@@ -1,8 +1,8 @@
-{ pkgs, lib, ... }: {
+{ pkgs, unstable, lib, ... }: {
   programs.neovim = {
     enable = true;
-    package = pkgs.nixos-unstable.neovim-unwrapped;
-    plugins = with pkgs.nixos-unstable.vimPlugins;
+    package = unstable.neovim-unwrapped;
+    plugins = with unstable.vimPlugins;
       let telescope-dependencies = [ plenary-nvim telescope-nvim ];
       in [
         ale

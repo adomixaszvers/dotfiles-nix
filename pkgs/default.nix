@@ -1,13 +1,16 @@
-{ pkgs, ani-cli-source, bumblebee-status-source, home-manager }:
+{ pkgs, system, inputs }:
 
 {
-  ani-cli = pkgs.callPackage ./ani-cli { ani-cli = ani-cli-source; };
+  ani-cli = pkgs.callPackage ./ani-cli { ani-cli = inputs.ani-cli.outPath; };
   bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
   bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
-  bumblebee-status =
-    pkgs.callPackage ./bumblebee-status { inherit bumblebee-status-source; };
+  bumblebee-status = pkgs.callPackage ./bumblebee-status {
+    bumblebee-status-source = inputs.bumblebee-status.outPath;
+  };
   dbvisualizer = pkgs.callPackage ./dbvisualizer.nix { };
-  hm-switch = pkgs.callPackage ./hm-switch.nix { inherit home-manager; };
+  hm-switch = pkgs.callPackage ./hm-switch.nix {
+    inherit (inputs.home-manager.packages."${system}") home-manager;
+  };
   kaknix = pkgs.callPackage ./kaknix.nix { };
   inherit (import ./lua-fmt { inherit pkgs; }) lua-fmt;
   maimpick = pkgs.callPackage ./maimpick.nix { };

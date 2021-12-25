@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, unstable, config, ... }:
 let
   extraPackages = import ./extraPackages.nix;
   xmonadFifo = pkgs.writeShellScriptBin "xmonadFifo.sh" ''
@@ -28,7 +28,7 @@ in {
     inherit extraPackages;
     enable = true;
     config = ./xmonad.hs;
-    haskellPackages = pkgs.nixos-unstable.haskellPackages.override {
+    haskellPackages = unstable.haskellPackages.override {
       overrides = _: super: {
         xmonad = super.xmonad_0_17_0;
         xmonad-contrib = super.xmonad-contrib_0_17_0;

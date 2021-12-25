@@ -57,24 +57,15 @@
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-21.11"; };
     pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
   };
-  outputs = { self, nixpkgs, ani-cli, bumblebee-status, home-manager
-    , nixos-hardware, pre-commit-hooks, gitignore, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, pre-commit-hooks
+    , gitignore, ... }@inputs:
     let
       config = import ./config.nix;
       system = "x86_64-linux";
-      nixos-unstable-overlay = _: _: {
-        nixos-unstable =
-          import inputs.nixos-unstable { inherit system config; };
-      };
-      overlays = [ nixos-unstable-overlay ];
-      pkgs = import nixpkgs { inherit system overlays config; };
+      pkgs = import nixpkgs { inherit system config; };
+      unstable = import inputs.nixos-unstable { inherit system config; };
     in {
-      packages."${system}" = import ./pkgs {
-        inherit pkgs;
-        inherit (home-manager.packages."${system}") home-manager;
-        ani-cli-source = ani-cli;
-        bumblebee-status-source = bumblebee-status;
-      };
+      packages."${system}" = import ./pkgs { inherit pkgs system inputs; };
       checks."${system}" = {
         pre-commit-check = pre-commit-hooks.lib."${system}".run {
           src = let
@@ -111,7 +102,7 @@
         inherit nixpkgs nixos-hardware inputs;
       };
       homeConfigurations = import ./homes.nix {
-        inherit home-manager pkgs system overlays inputs;
+        inherit home-manager pkgs system inputs unstable;
         nixpkgs-config = config;
         myPkgs = self.packages.x86_64-linux;
       };

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-let unstable = pkgs.nixos-unstable;
-in {
+{ pkgs, unstable, ... }: {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
