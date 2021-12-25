@@ -31,10 +31,12 @@
     ncdu
     niv
     nixfmt
+    nix-linter
     p7zip
     patchelf
     ripgrep
     shellcheck
+    statix
     tree
     unzip
     wol
