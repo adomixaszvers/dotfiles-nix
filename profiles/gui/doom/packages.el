@@ -5,3 +5,5 @@
 ;; (package! some-package)
 ;; (package! another-package :recipe (:fetcher github :repo "username/repo"))
 ;; (package! builtin-package :disable t)
+(package! tree-sitter)
+(package! tree-sitter-langs)
