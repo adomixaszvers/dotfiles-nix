@@ -1,4 +1,4 @@
-{ pkgs, unstable, lib, ... }: {
+{ pkgs, unstable, ... }: {
   programs.neovim = {
     enable = true;
     package = unstable.neovim-unwrapped;
@@ -28,6 +28,7 @@
         vim-unimpaired
         vinegar
       ] ++ telescope-dependencies;
-    extraConfig = lib.readFile ./init.vim + lib.readFile ./playground.vim;
+    extraConfig = builtins.readFile ./init.vim
+      + builtins.readFile ./playground.vim;
   };
 }
