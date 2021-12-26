@@ -65,6 +65,24 @@
       pkgs = import nixpkgs { inherit system config; };
       unstable = import inputs.nixos-unstable { inherit system config; };
     in {
+      apps."${system}".my-neovim = let
+        inherit ((home-manager.lib.homeManagerConfiguration {
+          pkgs = unstable;
+          inherit system;
+          extraSpecialArgs = { inherit unstable; };
+          username = "nobody";
+          homeDirectory = "/dev/null";
+          configuration = { imports = [ ./profiles/cli/neovim ]; };
+        }).config.programs.neovim)
+          finalPackage generatedConfigViml;
+        initNvim = unstable.writeText "init.nvim" generatedConfigViml;
+        wrapper = unstable.writeShellScript "my-neovim-wrapped" ''
+          exec ${finalPackage}/bin/nvim -u ${initNvim} "$@"
+        '';
+      in {
+        type = "app";
+        program = "${wrapper}";
+      };
       packages."${system}" = import ./pkgs { inherit pkgs system inputs; };
       checks."${system}" = {
         pre-commit-check = pre-commit-hooks.lib."${system}".run {
