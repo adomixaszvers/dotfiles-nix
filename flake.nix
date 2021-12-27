@@ -56,6 +56,7 @@
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-21.11"; };
     pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
+    xmonad-dbus = { url = "github:adomixaszvers/xmonad-dbus"; };
   };
   outputs = { self, nixpkgs, home-manager, nixos-hardware, pre-commit-hooks
     , gitignore, ... }@inputs:

@@ -1,1 +1,1 @@
-hs: with hs; [ xmonad xmonad-contrib hostname ]
+hs: with hs; [ xmonad xmonad-contrib hostname dbus ]

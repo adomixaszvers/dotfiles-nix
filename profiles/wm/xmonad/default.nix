@@ -1,28 +1,19 @@
-{ pkgs, unstable, config, ... }:
-let
-  extraPackages = import ./extraPackages.nix;
-  xmonadFifo = pkgs.writeShellScriptBin "xmonadFifo.sh" ''
-    set -e
-    FIFO_FILE=/run/user/$UID/xmonad-fifo-$1
-    [ -p $FIFO_FILE ] || mkfifo -m 600 "$FIFO_FILE"
-    # Open file descriptor (fd) 3 for read/write on a text file.
-    exec 3<> "$FIFO_FILE"
-    tee "$FIFO_FILE" 1>/dev/null
-    # Close fd 3
-    exec 3>&-
-  '';
+{ pkgs, unstable, inputs, config, ... }:
+let extraPackages = import ./extraPackages.nix;
 in {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ];
-  home.packages = with pkgs; [ pamixer xdotool gnome3.zenity xmonadFifo ];
+  home.packages = with pkgs; [ pamixer xdotool gnome3.zenity ];
   services.volnoti.enable = true;
   services.polybar.config = {
     "bar/top".modules-left = "xmonad";
     "bar/top-extra".modules-left = "xmonad";
-    "module/xmonad" = {
-      type = "custom/script";
-      exec = "cat /run/user/$UID/xmonad-fifo-$SCREEN_ID";
-      tail = true;
-    };
+    "module/xmonad" =
+      let inherit (inputs.xmonad-dbus.packages.x86_64-linux) xmonad-dbus;
+      in {
+        type = "custom/script";
+        exec = "${xmonad-dbus}/bin/xmonad-dbus -p /org/xmonad/Log/$SCREEN_ID";
+        tail = true;
+      };
   };
   xsession.windowManager.xmonad = {
     inherit extraPackages;

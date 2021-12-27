@@ -2,6 +2,8 @@
 
 import qualified Colors as C
 import Control.Exception (bracket)
+import qualified DBus as D
+import qualified DBus.Client as D
 import Graphics.X11.ExtraTypes
 import Network.HostName (getHostName)
 import System.Exit (exitSuccess)
@@ -33,9 +35,10 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.RefocusLast (isFloat, refocusLastLayoutHook, refocusLastWhen)
 import XMonad.Hooks.Rescreen (addAfterRescreenHook)
 import XMonad.Hooks.SetWMName (setWMName)
-import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, statusBarPipe)
+import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, sbLogHook)
 import XMonad.Hooks.StatusBar.PP
   ( PP (..),
+    dynamicLogString,
     filterOutWsPP,
     ppCurrent,
     ppHidden,
@@ -84,7 +87,15 @@ import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Util.WorkspaceCompare (getSortByXineramaPhysicalRule)
 
 main :: IO ()
-main = xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook (restartPolybar >> spawnFeh) . dynamicEasySBs myDynamicStatusBar $ myConfig
+main = do
+  dbus <- D.connectSession
+  -- Request access to the DBus name
+  _ <-
+    D.requestName
+      dbus
+      (D.busName_ "org.xmonad.Log")
+      [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+  xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook (restartPolybar >> spawnFeh) . dynamicEasySBs (myDynamicStatusBar dbus) $ myConfig
   where
     dynamicHook = dynamicPropertyChange "WM_NAME" (className =? "Spotify" --> doShift ws0)
     myConfig =
@@ -97,7 +108,7 @@ main = xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook (restartPolybar >> 
             focusedBorderColor = C.cyan,
             modMask = mod4Mask,
             borderWidth = 2,
-            handleEventHook = dynamicHook <+> refocusLastWhen isFloat <+> handleEventHook def,
+            handleEventHook = mconcat [handleEventHook def, refocusLastWhen isFloat, dynamicHook],
             layoutHook = myLayoutHook,
             manageHook = myManageHook,
             startupHook = myStartupHook,
@@ -138,10 +149,9 @@ myStartupHook = do
   whenX isWork $ spawnOnce "rambox"
   spawnOnce "systemctl --user restart polybar"
 
-myDynamicStatusBar :: ScreenId -> IO StatusBarConfig
-myDynamicStatusBar sc@(S i) = statusBarPipe command $ ppOn i
+myDynamicStatusBar :: D.Client -> ScreenId -> IO StatusBarConfig
+myDynamicStatusBar dbus sc@(S i) = pure . dbusStatusBarConfig sc dbus $ ppOn i
   where
-    command = "xmonadFifo.sh " ++ show i
     ppOn 0 = pure mainPP
     ppOn _ = pure . secondaryPP $ sc
 
@@ -267,9 +277,9 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
         ((0, xF86XK_AudioRaiseVolume), addName "Increase volume" $ spawn "pamixer -i 5 && volnoti-show $(pamixer --get-volume)")
       ]
         ++ subtitle "switching workspaces" :
-      [ ((m .|. modm, k), addName (n ++ i) $ windows $ f i)
-        | (f, m, n) <-
-            [ (W.greedyView, 0, "Switch to workspace "),
+      [ ((modm .|. mask, k), addName (name ++ i) $ windows $ f i)
+        | (f, mask, name) <-
+            [ (W.greedyView, noModMask, "Switch to workspace "),
               (W.shift, shiftMask, "Move client to workspace ")
             ],
           (i, k) <-
@@ -281,7 +291,7 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
       [ ((modm .|. mask, key), addName (name ++ show sc) $ f def (P sc))
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0 ..],
           (f, mask, name) <-
-            [ (viewScreen, 0, "View screen "),
+            [ (viewScreen, noModMask, "View screen "),
               (sendToScreen, shiftMask, "Move to screen ")
             ]
       ]
@@ -319,7 +329,7 @@ mainPP =
           [ logLayoutOnScreen 0,
             myLogTitleOnScreen 0
           ],
-        ppOrder = \(ws : _ : _ : extras) -> ws : extras
+        ppOrder = \(ws : _layout : _title : extras) -> ws : extras
       }
   where
     clickableWS ws =
@@ -331,7 +341,7 @@ mainPP =
 secondaryPP :: ScreenId -> PP
 secondaryPP s =
   def
-    { ppOrder = \(_ : _ : _ : extras) -> extras,
+    { ppOrder = \(_ws : _layout : _title : extras) -> extras,
       ppSep = " ",
       ppExtras =
         [ logCurrentOnScreen s,
@@ -381,3 +391,23 @@ findLowest = withWindowSet $ \ws -> do
   r <- asks theRoot
   (_, _, ts) <- liftIO $ queryTree d r
   return (find (`W.member` ws) ts)
+
+-- | Emit a DBus signal on log updates
+dbusOutput :: D.Client -> D.ObjectPath -> String -> IO ()
+dbusOutput dbus objectPath str = do
+  let signal =
+        (D.signal objectPath interfaceName memberName)
+          { D.signalBody = [D.toVariant str]
+          }
+  D.emit dbus signal
+  where
+    interfaceName = D.interfaceName_ "org.xmonad.Log"
+    memberName = D.memberName_ "Update"
+
+dbusStatusBarConfig :: ScreenId -> D.Client -> X PP -> StatusBarConfig
+dbusStatusBarConfig (S i) dbus xpp =
+  def
+    { sbLogHook = io . dbusOutput dbus objectPath =<< dynamicLogString =<< xpp
+    }
+  where
+    objectPath = D.objectPath_ $ "/org/xmonad/Log/" ++ show i
