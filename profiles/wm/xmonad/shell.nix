@@ -11,6 +11,8 @@ mkShell {
         my-colors = self.callPackage colors { };
         xmonad = super.xmonad_0_17_0;
         xmonad-contrib = super.xmonad-contrib_0_17_0;
+        xmonad-dbus =
+          haskell.lib.dontCheck (haskell.lib.unmarkBroken super.xmonad-dbus);
       };
     };
   in [

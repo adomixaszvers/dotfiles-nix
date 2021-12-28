@@ -2,7 +2,6 @@
 
 import qualified Colors as C
 import Control.Exception (bracket)
-import qualified DBus as D
 import qualified DBus.Client as D
 import Graphics.X11.ExtraTypes
 import Network.HostName (getHostName)
@@ -17,6 +16,7 @@ import XMonad.Actions.PhysicalScreens
     sendToScreen,
     viewScreen,
   )
+import qualified XMonad.DBus as XD
 import XMonad.Hooks.DynamicProperty (dynamicPropertyChange)
 import XMonad.Hooks.EwmhDesktops
   ( ewmh,
@@ -88,13 +88,8 @@ import XMonad.Util.WorkspaceCompare (getSortByXineramaPhysicalRule)
 
 main :: IO ()
 main = do
-  dbus <- D.connectSession
-  -- Request access to the DBus name
-  _ <-
-    D.requestName
-      dbus
-      (D.busName_ "org.xmonad.Log")
-      [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+  dbus <- XD.connect
+  _ <- XD.requestAccess dbus
   xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook (restartPolybar >> spawnFeh) . dynamicEasySBs (myDynamicStatusBar dbus) $ myConfig
   where
     dynamicHook = dynamicPropertyChange "WM_NAME" (className =? "Spotify" --> doShift ws0)
@@ -392,22 +387,8 @@ findLowest = withWindowSet $ \ws -> do
   (_, _, ts) <- liftIO $ queryTree d r
   return (find (`W.member` ws) ts)
 
--- | Emit a DBus signal on log updates
-dbusOutput :: D.Client -> D.ObjectPath -> String -> IO ()
-dbusOutput dbus objectPath str = do
-  let signal =
-        (D.signal objectPath interfaceName memberName)
-          { D.signalBody = [D.toVariant str]
-          }
-  D.emit dbus signal
-  where
-    interfaceName = D.interfaceName_ "org.xmonad.Log"
-    memberName = D.memberName_ "Update"
-
 dbusStatusBarConfig :: ScreenId -> D.Client -> X PP -> StatusBarConfig
 dbusStatusBarConfig (S i) dbus xpp =
   def
-    { sbLogHook = io . dbusOutput dbus objectPath =<< dynamicLogString =<< xpp
+    { sbLogHook = io . XD.sendToPath dbus (show i) =<< dynamicLogString =<< xpp
     }
-  where
-    objectPath = D.objectPath_ $ "/org/xmonad/Log/" ++ show i

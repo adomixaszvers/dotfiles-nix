@@ -258,22 +258,6 @@
         "type": "github"
       }
     },
-    "flake-compat_2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1627913399,
-        "narHash": "sha256-hY8g6H2KFL8ownSiFeMOjwPC8P0ueXpCVEbxgda3pko=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "12c64ca55c1014cdc1b16ed5a804aa8576601ff2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "locked": {
         "lastModified": 1638122382,
@@ -555,22 +539,6 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_4": {
-      "locked": {
-        "lastModified": 1640531271,
-        "narHash": "sha256-WsUVTlPu1k3rXg3dyA0KMNvM9rnCEU0Fx4W0QI4rsXE=",
-        "owner": "Nixos",
-        "repo": "nixpkgs",
-        "rev": "04bd2d1a4700907997be007a2a8f39edd59dac24",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Nixos",
-        "ref": "nixos-21.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nose": {
       "flake": false,
       "locked": {
@@ -722,8 +690,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs_2",
-        "pre-commit-hooks": "pre-commit-hooks",
-        "xmonad-dbus": "xmonad-dbus"
+        "pre-commit-hooks": "pre-commit-hooks"
       }
     },
     "rotate-text": {
@@ -739,25 +706,6 @@
       "original": {
         "owner": "debug-ito",
         "repo": "rotate-text.el",
-        "type": "github"
-      }
-    },
-    "xmonad-dbus": {
-      "inputs": {
-        "flake-compat": "flake-compat_2",
-        "nixpkgs": "nixpkgs_4"
-      },
-      "locked": {
-        "lastModified": 1640646849,
-        "narHash": "sha256-G7zjGDnckof77Uw540W5LtwEb/jwNPSxJ/6Tf1wlpag=",
-        "owner": "adomixaszvers",
-        "repo": "xmonad-dbus",
-        "rev": "1bbee7963e923f9aedf5af03550daae0304957f5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "adomixaszvers",
-        "repo": "xmonad-dbus",
         "type": "github"
       }
     }
