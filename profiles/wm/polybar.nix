@@ -30,7 +30,7 @@ let
     font-0 =
       "NotoMono Nerd Font:fontformat=truetype:pixelsize=8:antialias=true;1";
     font-1 = "NotoMono Nerd Font:fontformat=truetype:size=10:antialias=true;1";
-    font-3 = "Noto Color Emoji:fontformat=truetype:scale=10:antialias=true;1";
+    font-2 = "Noto Color Emoji:fontformat=truetype:scale=12:antialias=true;1";
 
     line-size = 1;
   };
