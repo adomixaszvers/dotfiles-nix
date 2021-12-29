@@ -19,8 +19,7 @@ in {
     "bar/top-extra".modules-left = "xmonad";
     "module/xmonad" = {
       type = "custom/script";
-      exec =
-        "${haskellPackages.xmonad-dbus}/bin/xmonad-dbus /org/XMonad/$SCREEN_ID";
+      exec = "${haskellPackages.xmonad-dbus}/bin/xmonad-dbus $SCREEN_ID";
       tail = true;
     };
   };
