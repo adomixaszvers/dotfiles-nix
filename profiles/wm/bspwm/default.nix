@@ -65,20 +65,8 @@
       }
 
       arrange_desktops () {
-        set -x
         # xrandr outputs a heading
         local monitors=($(xrandr --listactivemonitors| awk 'NR!=1 { print $4 }' ))
-        local bsp_monitors=($(bspc query -M --names))
-
-        readarray -t orphans < <( \
-          comm -23 \
-            <(printf '%s\n' "''${bsp_monitors[@]}" | sort) \
-            <(printf '%s\n' "''${monitors[@]}" | sort) \
-        )
-
-        for orphan in "''${orphans[@]}"; do
-          bspc monitor $orphan -r
-        done
 
         case "''${#monitors[@]}" in
           2)
@@ -96,8 +84,6 @@
         esac
 
         bspc wm -o
-
-        set +x
       }
 
       bspc subscribe monitor_add monitor_geometry | while read -r line; do
@@ -136,6 +122,8 @@
       split_ratio = 0.52;
       top_padding = 16;
       window_gap = 7;
+      remove_unplugged_monitors = true;
+      remove_disabled_monitors = true;
     };
   };
 }
