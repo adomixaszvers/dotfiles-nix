@@ -46,8 +46,49 @@
     enable = true;
     extraConfig = ''
       wmname LG3D
-      feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png
-      systemctl --user restart polybar.service
+
+      declare -i last_called=0
+      declare -i throttle_by=2
+
+      throttle() {
+        local -i now=$SECONDS
+        if ((now - last_called >= throttle_by))
+        then
+          "$@"
+        fi
+        last_called=$SECONDS
+      }
+
+      refresh () {
+        feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png
+        systemctl --user restart polybar.service
+      }
+
+      arrange_desktops () {
+        case "$(bspc query -M | wc -l)" in
+          1)
+            bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+            ;;
+          2)
+            bspc monitor ^1 -d 1 2 3 4 5
+            bspc monitor ^2 -d 6 7 8 9 10
+            ;;
+          3)
+            bspc monitor ^1 -d 1 2 3 4
+            bspc monitor ^2 -d 5 6 7
+            bspc monitor ^3 -d 8 9 10
+            ;;
+          *)
+            ;;
+        esac
+      }
+
+      refresh
+
+      bspc subscribe monitor_add monitor_remove monitor_geometry | while read -r line; do
+        [ ! "$line" =~ ^monitor_geometry.* ] && arrange_desktops
+        throttle refresh
+      done &
     '';
     monitors =
       lib.mkDefault { "^1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" ]; };
