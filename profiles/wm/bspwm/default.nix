@@ -1,4 +1,4 @@
-{ pkgs, myPkgs, config, lib, ... }: {
+{ pkgs, myPkgs, config, ... }: {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ./sxhkd.nix ];
   home.packages = (with pkgs; [ bspwm tdrop wmname ])
     ++ (with myPkgs; [ bspwm-reorder-desktops bspwm-greedy-focus ]);
@@ -65,33 +65,50 @@
       }
 
       arrange_desktops () {
-        case "$(bspc query -M | wc -l)" in
-          1)
-            bspc monitor -d 1 2 3 4 5 6 7 8 9 10
-            ;;
+        set -x
+        # xrandr outputs a heading
+        local monitors=($(xrandr --listactivemonitors| awk 'NR!=1 { print $4 }' ))
+        local bsp_monitors=($(bspc query -M --names))
+
+        readarray -t orphans < <( \
+          comm -23 \
+            <(printf '%s\n' "''${bsp_monitors[@]}" | sort) \
+            <(printf '%s\n' "''${monitors[@]}" | sort) \
+        )
+
+        for orphan in "''${orphans[@]}"; do
+          bspc monitor $orphan -r
+        done
+
+        case "''${#monitors[@]}" in
           2)
-            bspc monitor ^1 -d 1 2 3 4 5
-            bspc monitor ^2 -d 6 7 8 9 10
+            bspc monitor ''${monitors[0]} -d 1 2 3 4 5
+            bspc monitor ''${monitors[1]} -d 6 7 8 9 10
             ;;
           3)
-            bspc monitor ^1 -d 1 2 3 4
-            bspc monitor ^2 -d 5 6 7
-            bspc monitor ^3 -d 8 9 10
+            bspc monitor ''${monitors[0]} -d 1 2 3 4
+            bspc monitor ''${monitors[1]} -d 5 6 7
+            bspc monitor ''${monitors[2]} -d 8 9 10
             ;;
           *)
+            bspc monitor ''${monitors[0]} -d 1 2 3 4 5 6 7 8 9 10
             ;;
         esac
+
+        bspc wm -o
+
+        set +x
       }
 
-      refresh
-
-      bspc subscribe monitor_add monitor_remove monitor_geometry | while read -r line; do
-        [ ! "$line" =~ ^monitor_geometry.* ] && arrange_desktops
+      bspc subscribe monitor_add monitor_geometry | while read -r line; do
         throttle refresh
+        arrange_desktops
       done &
+
+      sleep 2
+      arrange_desktops
+      throttle refresh
     '';
-    monitors =
-      lib.mkDefault { "^1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" ]; };
     rules = {
       Google-chrome = { desktop = "1"; };
       Firefox = { desktop = "1"; };

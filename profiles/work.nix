@@ -83,7 +83,6 @@
             mode = "1920x1200";
           };
         };
-        hooks.postswitch = "systemctl --user restart picom.service";
       };
     };
   };
