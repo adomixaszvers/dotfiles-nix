@@ -27,7 +27,7 @@
         freetype
         gdk_pixbuf
         glib
-        gnome3.gtk
+        gnome.gtk
         lsb-release
         pango
         xorg.libxcb

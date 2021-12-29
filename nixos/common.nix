@@ -64,7 +64,7 @@
 
   services.acpid.enable = true;
   services.colord.enable = true;
-  services.dbus.packages = with pkgs; [ gnome3.dconf ];
+  services.dbus.packages = with pkgs; [ gnome.dconf ];
 
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = lib.mkDefault true;

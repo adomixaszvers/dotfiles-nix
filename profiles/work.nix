@@ -18,8 +18,8 @@
     firefox
     gimp
     gitAndTools.gitflow
-    gnome3.libsecret
-    gnome3.nautilus
+    gnome.libsecret
+    gnome.nautilus
     gnumake
     google-chrome
     html-tidy

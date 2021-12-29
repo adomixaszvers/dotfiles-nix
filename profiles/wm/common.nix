@@ -24,7 +24,7 @@
   };
   home.packages = with myPkgs; [ maimpick rofi-powermenu ];
   home.sessionVariables =
-    let askpass = "${pkgs.gnome3.seahorse}/libexec/seahorse/ssh-askpass";
+    let askpass = "${pkgs.gnome.seahorse}/libexec/seahorse/ssh-askpass";
     in {
       SSH_ASKPASS = askpass;
       SUDO_ASKPASS = askpass;

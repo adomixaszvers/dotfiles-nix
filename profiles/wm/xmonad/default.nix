@@ -11,7 +11,7 @@ let
   };
 in {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ];
-  home.packages = with pkgs; [ pamixer xdotool gnome3.zenity ];
+  home.packages = with pkgs; [ pamixer xdotool gnome.zenity ];
   services.volnoti.enable = true;
   services.polybar.config = {
     "bar/top".modules-left = "xmonad";
