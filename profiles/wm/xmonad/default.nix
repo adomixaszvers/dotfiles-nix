@@ -1,12 +1,13 @@
 { pkgs, unstable, config, ... }:
 let
   extraPackages = import ./extraPackages.nix;
-  haskellPackages = unstable.haskellPackages.override {
+  haskellPackages = let inherit (unstable) haskellPackages haskell;
+  in haskellPackages.override {
     overrides = _: super: {
       xmonad = super.xmonad_0_17_0;
       xmonad-contrib = super.xmonad-contrib_0_17_0;
-      xmonad-dbus = unstable.haskell.lib.dontCheck
-        (unstable.haskell.lib.unmarkBroken super.xmonad-dbus);
+      xmonad-dbus =
+        haskell.lib.dontCheck (haskell.lib.unmarkBroken super.xmonad-dbus);
     };
   };
 in {
