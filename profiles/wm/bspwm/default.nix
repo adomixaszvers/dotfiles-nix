@@ -64,7 +64,7 @@
         systemctl --user restart polybar.service
       }
 
-      arrange_desktops () {
+      init_desktops () {
         # xrandr outputs a heading
         local monitors=($(xrandr --listactivemonitors| awk 'NR!=1 { print $4 }' ))
 
@@ -86,13 +86,22 @@
         bspc wm -o
       }
 
-      bspc subscribe monitor_add monitor_geometry | while read -r line; do
+      bspc subscribe monitor_geometry | while read -r geometry_event; do
         throttle refresh
-        arrange_desktops
+      done &
+
+      bspc subscribe monitor_add | while read -r add_event; do
+        bspc desktop 'any.!active' -m "$( echo $add_event | awk '{ print $2 }')"
+        bspc desktop Desktop -r
+        bspwm-reorder-desktops
+      done &
+
+      bspc subscribe monitor_remove | while read -r remove_monitor; do
+        bspwm-reorder-desktops
       done &
 
       sleep 2
-      arrange_desktops
+      init_desktops
       throttle refresh
     '';
     rules = {
