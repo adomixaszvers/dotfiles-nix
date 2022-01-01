@@ -21,10 +21,6 @@
       url = "github:plexus/chemacs2";
       flake = false;
     };
-    credentials = {
-      url = "git+file:///home/adomas/credentials-nix";
-      flake = false;
-    };
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
