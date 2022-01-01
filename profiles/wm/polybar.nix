@@ -168,7 +168,7 @@ in {
       "module/title" = {
         type = "internal/xwindow";
         label = "%{T2}%title%%{T-}";
-        label-maxlen = 50;
+        label-maxlen = 75;
       };
     };
     script = ''
