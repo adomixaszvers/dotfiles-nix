@@ -82,9 +82,10 @@
             bspc monitor ''${monitors[0]} -d 1 2 3 4 5 6 7 8 9 10
             ;;
         esac
-
-        bspc wm -o
       }
+
+      init_desktops
+      refresh
 
       bspc subscribe monitor_geometry | while read -r geometry_event; do
         throttle refresh
@@ -96,13 +97,9 @@
         bspwm-reorder-desktops
       done &
 
-      bspc subscribe monitor_remove | while read -r remove_monitor; do
+      bspc subscribe monitor_remove | while read -r remove_event; do
         bspwm-reorder-desktops
       done &
-
-      sleep 2
-      init_desktops
-      throttle refresh
     '';
     rules = {
       Google-chrome = { desktop = "1"; };
