@@ -1,10 +1,12 @@
-{ pkgs, lib, ... }: {
+{ pkgs, config, lib, ... }: {
   services.unclutter = {
     enable = true;
     timeout = 10;
   };
   services.screen-locker = {
-    lockCmd = lib.mkDefault "i3lock -n -t -f";
+    lockCmd = lib.mkDefault "${pkgs.i3lock}/bin/i3lock -n -t -c ${
+        builtins.substring 1 6 config.colors.background
+      } -f";
     xautolock.extraOptions = [ "-corners" "--00" ];
   };
   xsession.enable = lib.mkDefault true;

@@ -106,8 +106,6 @@
   services.screen-locker = {
     enable = true;
     inactiveInterval = 5;
-    lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
-    xss-lock.extraOptions = [ "-n ${pkgs.xsecurelock}/libexec/dimmer" ];
   };
   services.syncthing = { enable = true; };
   xsession.windowManager.i3.config.startup = [{

@@ -32,7 +32,6 @@
     font-manager
     gnome.adwaita-icon-theme
     hicolor-icon-theme
-    i3lock
     meld
     pavucontrol
     pcmanfm
