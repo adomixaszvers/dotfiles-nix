@@ -107,7 +107,6 @@
     enable = true;
     inactiveInterval = 5;
   };
-  services.syncthing = { enable = true; };
   xsession.windowManager.i3.config.startup = [{
     command = "rambox";
     notification = false;
