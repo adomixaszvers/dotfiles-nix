@@ -1,7 +1,9 @@
 { pkgs, lib, ... }:
 
 {
-  imports = [ ./work.nix ];
+  imports =
+    [ ./work-common.nix ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
+  colors = import ./gui/colors/dracula.nix;
   home.file."startwm.sh".source = pkgs.writeShellScript "startwm.sh" ''
     source /etc/profile
     # fixes AltGr producing Left Arrow input on kitty
@@ -17,7 +19,6 @@
   programs.rofi.theme = lib.mkForce "Arc";
   services.gpg-agent.enable = lib.mkForce false;
   services.picom.enable = false;
-  services.screen-locker.enable = lib.mkForce false;
   services.sxhkd.keybindings = {
     "super + ctrl + r" = "bspc wm -r; bspc wm -o";
   };
