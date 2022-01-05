@@ -1,6 +1,6 @@
 { pkgs, myPkgs, config, ... }: {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ./sxhkd.nix ];
-  home.packages = (with pkgs; [ bspwm tdrop wmname ])
+  home.packages = (with pkgs; [ tdrop wmname ])
     ++ (with myPkgs; [ bspwm-reorder-desktops bspwm-greedy-focus ]);
   services.polybar.config = let
     common = {
