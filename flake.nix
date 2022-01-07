@@ -21,6 +21,10 @@
       url = "github:plexus/chemacs2";
       flake = false;
     };
+    comma = {
+      url = "github:nix-community/comma";
+      flake = false;
+    };
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;

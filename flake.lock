@@ -82,6 +82,22 @@
         "type": "github"
       }
     },
+    "comma": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1641144881,
+        "narHash": "sha256-WBIQmwlkb/GMoOq+Dnyrk8YmgiM/wJnc5HYZP8Uw72E=",
+        "owner": "nix-community",
+        "repo": "comma",
+        "rev": "02e3e5545b0c62595a77f3d5de1223c536af0614",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "comma",
+        "type": "github"
+      }
+    },
     "doom-emacs": {
       "flake": false,
       "locked": {
@@ -661,6 +677,7 @@
         "awesome-sharedtags": "awesome-sharedtags",
         "bumblebee-status": "bumblebee-status",
         "chemacs": "chemacs",
+        "comma": "comma",
         "emacs-overlay": "emacs-overlay",
         "flake-compat": "flake-compat",
         "fz": "fz",
