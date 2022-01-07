@@ -28,17 +28,16 @@ in {
           "${modifier}+Tab" = "exec ${wofi-windows}";
         };
       in lib.mkOptionDefault combined;
-      input = {
-        "1133:49948:Logitech_USB_Keyboard" = {
-          xkb_layout = "lt,us";
-          xkb_numlock = "enabled";
-        };
-      };
+      startup = [
+        { command = "mako"; }
+        { command = "${pkgs.autotiling}/bin/autotiling"; }
+      ];
     };
     extraSessionCommands = ''
       export MOZ_ENABLE_WAYLAND=1
       export _JAVA_AWT_WM_NONREPARENTING=1
       export BROWSER=firefox
     '';
+    wrapperFeatures.gtk = true;
   };
 }

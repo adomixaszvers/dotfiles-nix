@@ -56,4 +56,12 @@
   xsession.initExtra = ''
     autorandr --change
   '';
+  wayland.windowManager.sway = {
+    config.input = {
+      "1133:49948:Logitech_USB_Keyboard" = {
+        xkb_layout = "lt,us";
+        xkb_numlock = "enabled";
+      };
+    };
+  };
 }
