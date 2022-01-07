@@ -17,15 +17,5 @@ jobs:
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-      - name: Flake Updates
-        run: |
-          git config user.name 'github-actions'
-          git config user.email 'github-actions@users.noreply.github.com'
-          nix flake update --commit-lock-file
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          commit-message: update flake.lock
-          branch: automatic-flake-updates
-          delete-branch: true
-          title: Automatic flake updates
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@v3
