@@ -6,7 +6,7 @@
 
       enable_audio_bell = false;
 
-      font_family = "FiraCode Nerd Font Mono";
+      font_family = "JetBrainsMono Nerd Font Mono";
       font_size = "9.0";
 
       inherit foreground background;
