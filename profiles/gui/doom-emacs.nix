@@ -25,6 +25,6 @@ in {
   home.sessionVariables.DOOMDIR = "~/.config/nixpkgs/profiles/gui/doom";
   programs.emacs = {
     enable = true;
-    package = ePkgs.emacsGcc;
+    package = ePkgs.emacsPgtkGcc;
   };
 }
