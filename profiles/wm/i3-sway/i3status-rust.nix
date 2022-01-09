@@ -8,7 +8,7 @@
         blocks = [
           {
             block = "focused_window";
-            max_width = 50;
+            max_width = 75;
             show_marks = "visible";
           }
           {

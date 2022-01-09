@@ -34,5 +34,6 @@
         zlib
       ];
   };
+  sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
   vimgolf = pkgs.callPackage ./vimgolf { };
 }
