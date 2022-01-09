@@ -13,13 +13,13 @@ let
         sha512 = "0QEFiR8ljcHp9bAbWxecjVRuAMr16ivPiGOw6KFQBVrVd0RQIcM3xKdRisH2EDWgVWujiYtHwhSkSUoAAGzH7Q==";
       };
     };
-    "@types/diff-3.5.4" = {
+    "@types/diff-3.5.5" = {
       name = "_at_types_slash_diff";
       packageName = "@types/diff";
-      version = "3.5.4";
+      version = "3.5.5";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/diff/-/diff-3.5.4.tgz";
-        sha512 = "/eg1PwPsu0YWSRDM0SIUSOEA70LNPRsO+wt+jzYEN3n5fRbHKsaqYfbWDfcL4Wscez/9ar9U4UypDzBU8n/evg==";
+        url = "https://registry.npmjs.org/@types/diff/-/diff-3.5.5.tgz";
+        sha512 = "aqcrAbqT/0+ULJJ73bwKWsiFkBh3ZnAelj9u+iI5/cr4Nz3yXGf3w4glx5am6uvvgBbKinK1PAqSJs7fSKD6ig==";
       };
     };
     "@types/get-stdin-5.0.1" = {
@@ -31,13 +31,13 @@ let
         sha1 = "46afbcaf09e94fe025afa07ae994ac3168adbdf3";
       };
     };
-    "@types/node-16.10.2" = {
+    "@types/node-17.0.8" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "16.10.2";
+      version = "17.0.8";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-16.10.2.tgz";
-        sha512 = "zCclL4/rx+W5SQTzFs9wyvvyCwoK9QtBpratqz2IYJ3O8Umrn0m3nsTv0wQBk9sRGpvUe9CwPDrQFB10f1FIjQ==";
+        url = "https://registry.npmjs.org/@types/node/-/node-17.0.8.tgz";
+        sha512 = "YofkM6fGv4gDJq78g4j0mMuGMkZVxZDgtU0JRdx6FgiJDG+0fY0GKVolOV8WqVmEhLCXkQRjwDdKyPxJp/uucg==";
       };
     };
     "commander-2.20.3" = {
@@ -90,9 +90,9 @@ in
     };
     dependencies = [
       sources."@types/commander-2.12.2"
-      sources."@types/diff-3.5.4"
+      sources."@types/diff-3.5.5"
       sources."@types/get-stdin-5.0.1"
-      sources."@types/node-16.10.2"
+      sources."@types/node-17.0.8"
       sources."commander-2.20.3"
       sources."diff-3.5.0"
       sources."get-stdin-5.0.1"
