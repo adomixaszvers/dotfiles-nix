@@ -29,12 +29,13 @@ let
       '';
 in {
   imports = [ ./i3status-rust.nix ];
-  home.packages = with pkgs; [ wofi swaylock swayidle wl-clipboard ];
+  home.packages = (with pkgs; [ wofi swaylock swayidle wl-clipboard ])
+    ++ [ myPkgs.sway-greedy-focus ];
   programs.mako.enable = true;
   wayland.windowManager.sway = {
     enable = true;
     config = {
-      inherit (common.config) bars colors fonts gaps modifier assigns window;
+      inherit (common.config) bars colors fonts gaps modifier assigns;
       keybindings = let
         inherit (common.config) modifier;
         combined = common.config.keybindings // {
@@ -46,41 +47,42 @@ in {
           "${modifier}+Ctrl+s" = ''
             exec swaymsg "[app_id=kitty_scratch] scratchpad show, fullscreen enable" || exec kitty --class kitty_scratch'';
         };
-      in lib.mkOptionDefault combined;
+      in combined;
       keycodebindings = let
         inherit (common.config) modifier;
         combined = common.config.keycodebindings // {
-          "${modifier}+10" =
-            "exec ${myPkgs.sway-greedy-focus}/bin/sway-greedy-focus 1";
-          "${modifier}+11" =
-            "exec ${myPkgs.sway-greedy-focus}/bin/sway-greedy-focus 2";
-          "${modifier}+12" =
-            "exec ${myPkgs.sway-greedy-focus}/bin/sway-greedy-focus 3";
-          "${modifier}+13" =
-            "exec ${myPkgs.sway-greedy-focus}/bin/sway-greedy-focus 4";
-          "${modifier}+14" =
-            "exec ${myPkgs.sway-greedy-focus}/bin/sway-greedy-focus 5";
-          "${modifier}+15" =
-            "exec ${myPkgs.sway-greedy-focus}/bin/sway-greedy-focus 6";
-          "${modifier}+16" =
-            "exec ${myPkgs.sway-greedy-focus}/bin/sway-greedy-focus 7";
-          "${modifier}+17" =
-            "exec ${myPkgs.sway-greedy-focus}/bin/sway-greedy-focus 8";
-          "${modifier}+18" =
-            "exec ${myPkgs.sway-greedy-focus}/bin/sway-greedy-focus 9";
-          "${modifier}+19" =
-            "exec ${myPkgs.sway-greedy-focus}/bin/sway-greedy-focus 10";
+          "${modifier}+10" = "exec sway-greedy-focus 1";
+          "${modifier}+11" = "exec sway-greedy-focus 2";
+          "${modifier}+12" = "exec sway-greedy-focus 3";
+          "${modifier}+13" = "exec sway-greedy-focus 4";
+          "${modifier}+14" = "exec sway-greedy-focus 5";
+          "${modifier}+15" = "exec sway-greedy-focus 6";
+          "${modifier}+16" = "exec sway-greedy-focus 7";
+          "${modifier}+17" = "exec sway-greedy-focus 8";
+          "${modifier}+18" = "exec sway-greedy-focus 9";
+          "${modifier}+19" = "exec sway-greedy-focus 10";
         };
-      in lib.mkOptionDefault combined;
+      in combined;
       startup = [
         { command = "mako"; }
         { command = "${pkgs.autotiling}/bin/autotiling"; }
       ];
+      window = lib.mkMerge [
+        common.config.window
+        {
+          commands = [
+            {
+              criteria = { app_id = "emacs_scratch"; };
+              command = "move scratchpad, fullscreen enable, scratchpad show";
+            }
+            {
+              criteria = { app_id = "kitty_scratch"; };
+              command = "move scratchpad, fullscreen enable, scratchpad show";
+            }
+          ];
+        }
+      ];
     };
-    extraConfig = ''
-      for_window [app_id="emacs_scratch"] move scratchpad, fullscreen enable, scratchpad show
-      for_window [app_id="kitty_scratch"] move scratchpad, fullscreen enable, scratchpad show
-    '';
     extraSessionCommands = ''
       export MOZ_ENABLE_WAYLAND=1
       export _JAVA_AWT_WM_NONREPARENTING=1
