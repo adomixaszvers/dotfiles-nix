@@ -44,13 +44,33 @@ let
       '';
 in {
   imports = [ ./i3status-rust.nix ];
-  home.packages = (with pkgs; [ wofi swaylock swayidle wl-clipboard ])
+  home.packages =
+    (with pkgs; [ wofi swaylock swayidle wl-clipboard font-awesome_5 ])
     ++ [ myPkgs.sway-greedy-focus ];
   programs.mako.enable = true;
+  programs.waybar = {
+    enable = true;
+    settings = [{
+      layer = "top";
+      position = "top";
+      height = 16;
+      modules-left = [ "sway/workspaces" "sway/mode" ];
+      modules-center = [ "sway/window" ];
+      modules-right = [ "pulseaudio" "cpu" "memory" "temperature" "clock" ];
+      modules = {
+        "sway/workspaces" = {
+          disable-scroll = true;
+          all-outputs = false;
+        };
+        "clock" = { format = "{:%Y-%m-%d %H:%M}"; };
+        "pulseaudio" = { scroll-step = "5.0"; };
+      };
+    }];
+  };
   wayland.windowManager.sway = {
     enable = true;
     config = {
-      inherit (common.config) bars colors fonts gaps modifier assigns;
+      inherit (common.config) colors fonts gaps modifier assigns;
       keybindings = let
         inherit (common.config) modifier;
         combined = common.config.keybindings // {
@@ -79,6 +99,7 @@ in {
           "${modifier}+19" = "exec sway-greedy-focus 10";
         };
       in combined;
+      bars = [{ command = "waybar"; }];
       startup = [
         { command = "mako"; }
         { command = "${pkgs.autotiling}/bin/autotiling"; }
