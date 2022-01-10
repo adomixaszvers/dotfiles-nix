@@ -1,8 +1,8 @@
-{ jq, writeShellScriptBin, lib }:
+{ jq, writeShellScriptBin, coreutils, lib }:
 writeShellScriptBin "sway-greedy-focus" ''
-  PATH=$PATH:${lib.makeBinPath [ jq ]}
+  PATH=${lib.makeBinPath [ coreutils jq ]}:$PATH
 
-  PROG=$0
+  PROG=$(basename $0)
 
   set -ep
 
