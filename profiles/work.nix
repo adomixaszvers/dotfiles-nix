@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports =
     [ ./work-common.nix ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
@@ -48,6 +48,10 @@
     autorandr --change
   '';
   wayland.windowManager.sway.config = {
+    startup = [{
+      command =
+        "${pkgs.swayidle}/bin/swayidle -w timeout 300 '${pkgs.swaylock-effects}/bin/swaylock --clock --screenshots --effect-blur 7x5 --effect-vignette 0.5:0.5'";
+    }];
     output = {
       DP-1 = { pos = "0 0"; };
       DP-2 = { pos = "1920 0"; };

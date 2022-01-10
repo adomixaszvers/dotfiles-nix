@@ -1,9 +1,24 @@
 { pkgs, config, lib, myPkgs, ... }:
 let
   common = import ./common.nix { inherit config; };
+  wofi-powermenu = pkgs.writeShellScript "wofi-powermenu" ''
+    PATH=$PATH:${lib.makeBinPath [ pkgs.wofi pkgs.procps ]}
+
+    wofi-question () {
+      local question=$1
+      [ $(printf "No\\nYes" | wofi -dmenu -L 2 -i -p "$question") == Yes ]
+    }
+
+    case "$(printf "lock session\\nlogout\\npoweroff\\nreboot"| wofi -dmenu -L 4 -i -p "Power menu")" in
+      "lock session") pkill -USR1 swayidle ;;
+      "logout") wofi-question "Are you sure you want to logout?" && loginctl kill-session $XDG_SESSION_ID ;;
+      "poweroff") wofi-question "Are you sure you want to power off the computer?" && systemctl poweroff ;;
+      "reboot") wofi-question "Are you sure you want to reboot the computer?" && systemctl reboot ;;
+    esac
+  '';
   wofi-windows = pkgs.writeShellScript "wofi-windows" ''
         PATH=${lib.makeBinPath (with pkgs; [ sway jq wofi ])}
-    		swaymsg -t get_tree | jq -r '
+        swaymsg -t get_tree | jq -r '
             # descend to workspace or scratchpad
             .nodes[].nodes[]
             # save workspace name as .w
@@ -39,6 +54,7 @@ in {
       keybindings = let
         inherit (common.config) modifier;
         combined = common.config.keybindings // {
+          "${modifier}+F4" = "exec ${wofi-powermenu}";
           "${modifier}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";
           "${modifier}+Shift+d" = "exec ${pkgs.wofi}/bin/wofi --show run";
           "${modifier}+Tab" = "exec ${wofi-windows}";
