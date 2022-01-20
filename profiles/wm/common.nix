@@ -1,7 +1,6 @@
 { lib, pkgs, myPkgs, ... }:
 
 {
-  imports = [ ./sx.nix ];
   gtk = {
     enable = lib.mkDefault true;
     iconTheme = {
