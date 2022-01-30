@@ -15,6 +15,7 @@
     xset s off -dpms
     dbus-update-activation-environment --systemd DISPLAY
   '';
+  xsession.numlock.enable = true;
   xsession.pointerCursor = {
     name = "capitaine-cursors";
     package = pkgs.capitaine-cursors;

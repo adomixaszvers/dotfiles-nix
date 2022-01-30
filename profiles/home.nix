@@ -1,20 +1,24 @@
-{ pkgs, unstable, myPkgs, ... }: {
-  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/bspwm ];
+{ pkgs, unstable, inputs, myPkgs, ... }: {
+  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
   home.packages = (with pkgs; [
+    bitwarden
     borgbackup
     compsize
     unstable.discord
     exercism
+    gnome.nautilus
     firefox
     gtypist
     mpv
     playerctl
+    inputs.nixos-2009.legacyPackages."${system}".remmina
     qbittorrent
     spotify
     torbrowser
     keepassxc
-  ]) ++ (with myPkgs; [ ani-cli steam ]);
+    xpraGtk3
+  ]) ++ (with myPkgs; [ ani-cli ]);
   home.sessionVariables = { BROWSER = "firefox"; };
   programs.autorandr = {
     enable = true;
@@ -50,7 +54,7 @@
   programs.xmobar.thermal-zone = 1;
   services.network-manager-applet.enable = false;
   services.screen-locker = {
-    enable = true;
+    # enable = true;
     inactiveInterval = 60;
   };
   xsession.initExtra = ''

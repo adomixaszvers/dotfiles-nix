@@ -22,6 +22,7 @@
       focus-exclude = [
          "class_g ?= 'plasmashell'"
       ];
+      unredir-if-possible = true
     '';
     opacityRule = [
       "95:class_g = 'URxvt' && !_NET_WM_STATE@:32a"

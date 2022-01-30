@@ -17,6 +17,9 @@
   otpauth = pkgs.callPackage ./otpauth { };
   rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
   sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
+  sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
+  vimgolf = pkgs.callPackage ./vimgolf { };
+} // (pkgs.lib.attrsets.optionalAttrs (system == "x86_64-linux") {
   steam = pkgs.steam.override {
     extraPkgs = ps:
       with ps; [
@@ -34,6 +37,4 @@
         zlib
       ];
   };
-  sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
-  vimgolf = pkgs.callPackage ./vimgolf { };
-}
+})

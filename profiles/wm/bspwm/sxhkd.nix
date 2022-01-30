@@ -85,7 +85,7 @@
         "bspc node -f @{parent,brother,first,second}";
 
       # focus the next/previous node in the current desktop
-      "super + {_,shift + }c" = "bspc node -f {next,prev}.local";
+      "super + {_,shift + }c" = "bspc node -f {next,prev}.local.leaf";
 
       # focus the next/previous desktop in the current monitor
       "super + bracket{left,right}" = "bspc desktop -f {prev,next}.local";

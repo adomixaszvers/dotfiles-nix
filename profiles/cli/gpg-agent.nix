@@ -1,6 +1,7 @@
+{ lib, ... }:
 {
   services.gpg-agent = {
-    enable = true;
+    enable = lib.mkDefault true;
     enableSshSupport = true;
     enableExtraSocket = true;
   };
