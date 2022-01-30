@@ -46,4 +46,9 @@
 
     };
   };
+  programs.zsh.initExtra = ''
+    if [ "$TERM" = 'xterm-kitty' ] && [ -x "$(command -v kitty)" ] && [ -n "$DISPLAY" ]; then
+      alias ssh='kitty +kitten ssh'
+    fi
+  '';
 }
