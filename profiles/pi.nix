@@ -1,5 +1,5 @@
 { lib, pkgs, ... }: {
-  imports = [ ../modules ./cli ];
+  imports = [ ./cli ];
   services.gpg-agent.enable = false;
   xdg = { enable = true; };
 }

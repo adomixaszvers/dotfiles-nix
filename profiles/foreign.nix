@@ -1,5 +1,5 @@
 { lib, pkgs, ... }: {
-  imports = [ ../modules ./cli ];
+  imports = [ ./cli ];
   home = {
     stateVersion = "20.09";
     packages = with pkgs; [ hostname nix_2_4 ];

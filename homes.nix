@@ -15,9 +15,10 @@ let
     home-manager.lib.homeManagerConfiguration {
       inherit system homeDirectory username pkgs;
       stateVersion = "21.11";
+      extraModules = [ inputs.nix-doom-emacs.hmModule ./modules ];
       extraSpecialArgs = { inherit inputs myPkgs unstable; };
       configuration = {
-        imports = [ inputs.nix-doom-emacs.hmModule config ];
+        imports = [ config ];
         nixpkgs = { config = nixpkgs-config; };
       };
     };
