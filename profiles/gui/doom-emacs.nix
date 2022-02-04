@@ -25,6 +25,8 @@ in {
   home.sessionVariables.DOOMDIR = "~/.config/nixpkgs/profiles/gui/doom";
   programs.emacs = {
     enable = true;
-    package = ePkgs.emacsPgtkGcc;
+    # binary cache does not work
+    # see https://github.com/nix-community/emacs-overlay/issues/206
+    # package = ePkgs.emacsPgtkGcc;
   };
 }
