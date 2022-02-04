@@ -28,4 +28,10 @@ in {
     ];
     extraModules = [ sops-nix.nixosModules.sops ];
   };
+  raspberrypi-nixos = nixpkgs.lib.nixosSystem {
+    system = "aarch64-linux";
+    specialArgs = { inherit inputs; };
+    modules = [ nixRegistry sops-common ./pi/configuration.nix ];
+    extraModules = [ sops-nix.nixosModules.sops ];
+  };
 }
