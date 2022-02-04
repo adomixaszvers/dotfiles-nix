@@ -49,7 +49,7 @@ augroup nix-flakes
     autocmd BufNewFile,BufRead flake.lock set filetype=json
 augroup END
 
-let g:suda_smart_edit = 1
+let g:suda_smart_edit = 0
 let g:ale_disable_lsp = 1
 
 lua <<EOF
