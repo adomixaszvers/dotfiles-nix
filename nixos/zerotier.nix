@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }: {
+{ lib, config, ... }: {
   sops.secrets."zerotier/networks" = {
     sopsFile = ./common-secrets/zerotier.yaml;
   };

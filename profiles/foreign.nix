@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [ ./cli ];
   home = {
     stateVersion = "20.09";

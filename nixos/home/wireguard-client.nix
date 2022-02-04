@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, ... }: {
   sops.secrets."wireguard/presharedKeys/laptop" = {
     sopsFile = ../common-secrets/wireguard.yaml;
   };

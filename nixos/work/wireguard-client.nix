@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ config, ... }: {
   sops.secrets = {
     "wireguard/privateKey".sopsFile = ./secrets/wireguard.yaml;
     "wireguard/endpoint".sopsFile = ./secrets/wireguard.yaml;

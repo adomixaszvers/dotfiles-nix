@@ -68,8 +68,8 @@
       inputs.flake-utils.follows = "flake-utils";
     };
   };
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, pre-commit-hooks
-    , gitignore, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, pre-commit-hooks, gitignore
+    , flake-utils, ... }@inputs:
     let config = import ./config.nix;
     in flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
       let
