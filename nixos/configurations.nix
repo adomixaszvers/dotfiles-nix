@@ -28,6 +28,16 @@ in {
     ];
     extraModules = [ sops-nix.nixosModules.sops ];
   };
+  adomas-jatuzis-nixos = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
+    modules = common ++ [
+      nixpkgs.nixosModules.notDetected
+      nixos-hardware.nixosModules.common-cpu-intel
+      ./work/configuration.nix
+    ];
+    extraModules = [ sops-nix.nixosModules.sops ];
+  };
   raspberrypi-nixos = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     specialArgs = { inherit inputs; };
