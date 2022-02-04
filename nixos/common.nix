@@ -2,7 +2,7 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    binaryCaches = [
+    binaryCaches = lib.mkAfter [
       "https://pre-commit-hooks.cachix.org"
       "https://nix-community.cachix.org"
       "https://adomixaszvers.cachix.org"
@@ -44,8 +44,8 @@
     enableDefaultFonts = true;
   };
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  # sound.enable = true;
+  # hardware.pulseaudio.enable = true;
 
   console = {
     font = "Lat2-Terminus16";
@@ -57,6 +57,7 @@
 
   programs.command-not-found.enable = true;
   programs.dconf.enable = true;
+  programs.ssh.startAgent = false;
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;

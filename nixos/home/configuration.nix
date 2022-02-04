@@ -2,21 +2,32 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
-    ./bumblebee.nix
-    # ./nvidia.nix
+  imports = [
+    # ./bumblebee.nix
+    # ./gnome.nix
+    # ./kde.nix
+    ../aarch64.nix
+    ../avahi.nix
+    ../pipewire.nix
+    ../syncthing.nix
+    ../yubikey.nix
+    ../zerotier.nix
+    ./bumblebee-nvidia.nix
     ./hardware-configuration.nix
+    ./remote-build.nix
     ./static-ip.nix
+    ./steam.nix
     ./wakeonlan.nix
+    ./wireguard-client.nix
   ];
 
-  # boot.kernelParams = [ "scsi_mod.use_blk_mq=1" "dm_mod.use_blk_mq=y" ];
   boot = {
     blacklistedKernelModules = [ "ath9k" ];
     cleanTmpDir = true;
+    kernelParams = [ "nohibernate" ];
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -52,33 +63,19 @@
     options = [ "noauto" "x-systemd.automount" ];
   };
 
+  networking.domain = "lan";
   networking.hostName = "adomo-nixos"; # Define your hostname.
   networking.hostId = "6665bed8";
 
   programs.adb.enable = true;
   programs.bash.enableCompletion = true;
   programs.mosh.enable = true;
-  programs.ssh.startAgent = true;
-  services.avahi = {
-    enable = true;
-    interfaces = [ "enp5s0" ];
-    nssmdns = true;
-    publish = {
-      enable = true;
-      addresses = true;
-    };
-  };
+  programs.ssh.startAgent = false;
+  programs.sway.enable = true;
+  services.xserver.displayManager = { lightdm.enable = false; };
   services.flatpak.enable = true;
   xdg.portal.enable = true;
   services.journald.extraConfig = "SystemMaxUse=500M";
-  services.kmscon = {
-    enable = false;
-    extraConfig = ''
-      font-name=FiraMono Nerd Font
-      font-size=9
-    '';
-    hwRender = true;
-  };
   services.atd.enable = true;
   services.fstrim.enable = true;
   services.xserver.deviceSection = ''
@@ -89,10 +86,7 @@
     passwordAuthentication = false;
   };
   services.teamviewer.enable = false;
-  # services.udev.extrarules = ''
-  #   action=="add|change", kernel=="[sv]d[a-z]", attr{queue/rotational}=="1", attr{queue/scheduler}="bfq"
-  #   action=="add|change", kernel=="[sv]d[a-z]", attr{queue/rotational}=="0", attr{queue/scheduler}="bfq"
-  # '';
+  services.thermald.enable = true;
 
   services.zfs = {
     autoScrub = {
@@ -109,10 +103,22 @@
   };
   hardware.pulseaudio.support32Bit = true;
 
-  users.users.adomas = {
-    openssh.authorizedKeys.keyFiles = [ ./juice_rsa.pub ./yubikey.pub ];
-    extraGroups = [ "docker" "libvirtd" "adbusers" ];
+  sops.secrets."adomas/password" = {
+    sopsFile = ./secrets/passwords.yaml;
+    neededForUsers = true;
   };
+  sops.secrets."root/password" = {
+    sopsFile = ./secrets/passwords.yaml;
+    neededForUsers = true;
+  };
+
+  users.users.adomas = {
+    openssh.authorizedKeys.keyFiles =
+      [ ../keys/juice_rsa.pub ../keys/yubikey.pub ];
+    extraGroups = [ "docker" "libvirtd" "adbusers" ];
+    passwordFile = config.sops.secrets."adomas/password".path;
+  };
+  users.users.root.passwordFile = config.sops.secrets."root/password".path;
 
   services.xserver.libinput.enable = true;
 
@@ -122,6 +128,6 @@
     virtualbox.host.enable = false;
   };
 
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "21.11"; # Did you read the comment?
 
 }

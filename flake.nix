@@ -59,6 +59,10 @@
     nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-21.11"; };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.flake-utils.follows = "flake-utils";
@@ -120,13 +124,13 @@
           };
         };
         devShell = pkgs.mkShell {
-          buildInputs = [ home-manager.packages."${system}".home-manager ];
+          buildInputs =
+            [ home-manager.packages."${system}".home-manager pkgs.sops ];
           inherit (self.checks."${system}".pre-commit-check) shellHook;
         };
       }) // {
-        nixosConfigurations = import ./nixos/configurations.nix {
-          inherit nixpkgs nixos-hardware inputs;
-        };
+        nixosConfigurations =
+          import ./nixos/configurations.nix { inherit inputs; };
         homeConfigurations = import ./homes.nix { inherit inputs; };
       };
 }

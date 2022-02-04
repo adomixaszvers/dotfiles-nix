@@ -7,6 +7,7 @@
   bumblebee-status = pkgs.callPackage ./bumblebee-status {
     bumblebee-status-source = inputs.bumblebee-status.outPath;
   };
+  custom-xrdp = pkgs.callPackage ./custom-xrdp { };
   dbvisualizer = pkgs.callPackage ./dbvisualizer.nix { };
   hm-switch = pkgs.callPackage ./hm-switch.nix {
     inherit (inputs.home-manager.packages."${system}") home-manager;
