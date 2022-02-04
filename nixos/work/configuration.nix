@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -269,7 +269,7 @@
       sopsFile = ./secrets/passwords.yaml;
       neededForUsers = true;
     };
-    "root/password" = { 
+    "root/password" = {
       sopsFile = ./secrets/passwords.yaml;
       neededForUsers = true;
     };
@@ -278,8 +278,15 @@
   users.users.adomas.passwordFile = config.sops.secrets."adomas/password".path;
   users.users.root.passwordFile = config.sops.secrets."root/password".path;
 
-  users.users.adomas.extraGroups =
-    [ "docker" "audio" "adbusers" "libvirtd" "qemu-libvirtd" "podman" "wireshark" ];
+  users.users.adomas.extraGroups = [
+    "docker"
+    "audio"
+    "adbusers"
+    "libvirtd"
+    "qemu-libvirtd"
+    "podman"
+    "wireshark"
+  ];
   users.users.adomas.openssh.authorizedKeys.keyFiles =
     [ ../keys/laptop.pub ../keys/juice_rsa.pub ../keys/yubikey.pub ];
 

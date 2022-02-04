@@ -1,4 +1,4 @@
-{ lib, config, ... }: {
+{ config, ... }: {
   networking.domain = "lan";
   networking.nameservers = [ "127.0.0.1" "1.1.1.1" ];
   networking.firewall = {
@@ -101,9 +101,7 @@
       [{ url = "http://127.0.0.1:5080"; }];
   };
 
-  sops.secrets."pihole/environment" = {
-    sopsFile = ./secrets/pihole.yaml;
-  };
+  sops.secrets."pihole/environment" = { sopsFile = ./secrets/pihole.yaml; };
   virtualisation.oci-containers.containers.pihole = {
     autoStart = true;
     image = "pihole/pihole:latest";

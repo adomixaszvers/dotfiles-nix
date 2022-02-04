@@ -28,39 +28,38 @@
           traefik-https-redirect.redirectScheme = { scheme = "https"; };
           sslheader.headers.customRequestHeaders."X-Forwarded-Proto" = "https";
         };
-        routers = let
-          rule = 
-            "HostRegexp(`traefik.{net:(lan|wg|zt)}.beastade.top`)";
-        in {
-          traefik = {
-            inherit rule;
-            entrypoints = "web";
-            middlewares = "traefik-https-redirect";
-            service = "api@internal";
-          };
-          traefik-secure = {
-            inherit rule;
-            entrypoints = "websecure";
-            service = "api@internal";
-            tls = {
-              certResolver = "namesilo";
-              domains = [
-                {
-                  main = "lan.beastade.top";
-                  sans = [ "*.lan.beastade.top" ];
-                }
-                {
-                  main = "wg.beastade.top";
-                  sans = [ "*.wg.beastade.top" ];
-                }
-                {
-                  main = "zt.beastade.top";
-                  sans = [ "*.zt.beastade.top" ];
-                }
-              ];
+        routers =
+          let rule = "HostRegexp(`traefik.{net:(lan|wg|zt)}.beastade.top`)";
+          in {
+            traefik = {
+              inherit rule;
+              entrypoints = "web";
+              middlewares = "traefik-https-redirect";
+              service = "api@internal";
+            };
+            traefik-secure = {
+              inherit rule;
+              entrypoints = "websecure";
+              service = "api@internal";
+              tls = {
+                certResolver = "namesilo";
+                domains = [
+                  {
+                    main = "lan.beastade.top";
+                    sans = [ "*.lan.beastade.top" ];
+                  }
+                  {
+                    main = "wg.beastade.top";
+                    sans = [ "*.wg.beastade.top" ];
+                  }
+                  {
+                    main = "zt.beastade.top";
+                    sans = [ "*.zt.beastade.top" ];
+                  }
+                ];
+              };
             };
           };
-        };
       };
     };
   };
