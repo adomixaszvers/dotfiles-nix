@@ -1,12 +1,8 @@
 {
-  networking.firewall.allowedTCPPorts = [ 8384 ];
   # see https://github.com/lucas-clemente/quic-go/wiki/UDP-Receive-Buffer-Size#non-bsd
   boot.kernel.sysctl."net.core.rmem_max" = 2500000;
   services.syncthing = {
     enable = true;
-    user = "pi";
-    group = "users";
-    dataDir = "/home/pi";
     openDefaultPorts = true;
     guiAddress = "0.0.0.0:8384";
   };

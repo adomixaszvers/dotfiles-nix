@@ -101,6 +101,17 @@
       [{ url = "http://127.0.0.1:5080"; }];
   };
 
+  users = {
+    users.pihole = {
+      isSystemUser = true;
+      group = "pihole";
+      home = "/var/lib/pihole";
+      createHome = true;
+      description = "Pihole daemon user";
+    };
+    groups.pihole = { };
+  };
+
   sops.secrets."pihole/environment" = { sopsFile = ./secrets/pihole.yaml; };
   virtualisation.oci-containers.containers.pihole = {
     autoStart = true;
@@ -108,13 +119,14 @@
     environment = {
       TZ = "Europe/Vilnius";
       "PIHOLE_DNS_" = "192.168.20.1#5335";
+      ServerIP = "192.168.1.207";
     };
     environmentFiles = [ config.sops.secrets."pihole/environment".path ];
     ports = [ "5080:80" "53:53" "53:53/udp" ];
     extraOptions = [ "--network=proxy" ];
     volumes = [
-      "/home/pi/pihole/etc-pihole/:/etc/pihole/"
-      "/home/pi/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/"
+      "/var/lib/pihole/etc-pihole/:/etc/pihole/"
+      "/var/lib/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/"
     ];
   };
 }
