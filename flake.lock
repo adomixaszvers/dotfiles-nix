@@ -333,11 +333,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1640001503,
-        "narHash": "sha256-L8qZQVScHTl+ljAI/g60w/5NpMgZeSRKzNj40MFohYA=",
+        "lastModified": 1644099524,
+        "narHash": "sha256-ssaG1p6hd3LJ19AjSIgODR3SLPCt57GBfgVj4/o74Qs=",
         "owner": "adomixaszvers",
         "repo": "home-manager",
-        "rev": "d0c6244377da9c0d0b5a2ef5e289a21ed04bde9e",
+        "rev": "5b5f5ba89c3b2845c1e8c06a521716eeb590d299",
         "type": "github"
       },
       "original": {
