@@ -66,9 +66,6 @@
   services.acpid.enable = true;
   services.colord.enable = true;
   services.dbus.packages = with pkgs; [ gnome.dconf ];
-
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.lightdm.enableGnomeKeyring = lib.mkDefault true;
   programs.seahorse.enable = true;
 
   services.xserver = {
@@ -76,7 +73,7 @@
     exportConfiguration = true;
     layout = "lt,us";
     desktopManager.xterm.enable = true;
-    displayManager.lightdm.enable = lib.mkDefault true;
+    displayManager.sx.enable = lib.mkDefault true;
   };
 
   time.timeZone = "Europe/Vilnius";

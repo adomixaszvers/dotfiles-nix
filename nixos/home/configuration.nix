@@ -72,7 +72,6 @@
   programs.mosh.enable = true;
   programs.ssh.startAgent = false;
   programs.sway.enable = true;
-  services.xserver.displayManager = { lightdm.enable = false; };
   services.flatpak.enable = true;
   xdg.portal.enable = true;
   services.journald.extraConfig = "SystemMaxUse=500M";

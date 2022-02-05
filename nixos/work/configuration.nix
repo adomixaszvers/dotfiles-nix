@@ -161,7 +161,6 @@
     '';
   };
   services.gvfs.enable = true;
-  # security.pam.services.lightdm.enableGnomeKeyring = true;
   services.flatpak = { enable = true; };
   xdg.portal = { enable = true; };
   services.fstrim = {
@@ -228,26 +227,6 @@
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
-
-  # KDE
-  # services.xserver = {
-  #   displayManager.lightdm.enable = false;
-  #   displayManager.sddm.enable = true;
-  #   desktopManager.plasma5.enable = true;
-  # };
-
-  # Gnome
-  # services.xserver = {
-  #   displayManager.lightdm.enable = false;
-  #   displayManager.gdm.enable = true;
-  #   desktopManager.gnome3.enable = true;
-  # };
-
-  # Pantheon
-  # services.xserver = {
-  #   displayManager.lightdm.enable = true;
-  #   desktopManager.pantheon.enable = true;
-  # };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.guest = {
