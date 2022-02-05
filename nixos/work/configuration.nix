@@ -33,7 +33,6 @@
   };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.enableUnstable = true;
   services.zfs = {
     autoScrub = {
       enable = true;
