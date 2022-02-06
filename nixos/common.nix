@@ -66,6 +66,7 @@
   services.acpid.enable = true;
   services.colord.enable = true;
   services.dbus.packages = with pkgs; [ gnome.dconf ];
+  services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
 
   services.xserver = {
