@@ -1,6 +1,6 @@
 {
   # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
-  #sound.enable = false;
+  sound.enable = false;
 
   # rtkit is optional but recommended
   security.rtkit.enable = true;
@@ -16,5 +16,4 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-  sound.enable = false;
 }

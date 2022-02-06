@@ -34,12 +34,6 @@
         efiSysMountPoint = "/boot/efi";
       };
       systemd-boot.enable = true;
-      grub = {
-        enable = false;
-        device = "/dev/sda";
-        efiSupport = true;
-        useOSProber = true;
-      };
     };
     supportedFilesystems = [ "zfs" ];
     zfs = {
@@ -84,7 +78,6 @@
     enable = true;
     passwordAuthentication = false;
   };
-  services.teamviewer.enable = false;
   services.thermald.enable = true;
 
   services.zfs = {
@@ -121,11 +114,7 @@
 
   services.xserver.libinput.enable = true;
 
-  virtualisation = {
-    docker.enable = false;
-    libvirtd.enable = true;
-    virtualbox.host.enable = false;
-  };
+  virtualisation = { libvirtd.enable = true; };
 
   system.stateVersion = "21.11"; # Did you read the comment?
 

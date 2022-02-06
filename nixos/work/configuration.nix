@@ -59,31 +59,8 @@
     algorithm = "zstd";
   };
 
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n = {
-  #   consoleFont = "Lat2-Terminus16";
-  #   consoleKeyMap = "us";
-  #   defaultLocale = "en_US.UTF-8";
-  # };
-
-  # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [ wget vim virtmanager ];
 
-  # musnix.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -91,16 +68,10 @@
   programs.adb.enable = true;
   programs.mosh.enable = true;
   programs.sway.enable = true;
-  services.x2goserver = {
-    enable = false;
-    settings = { log.loglevel = "info"; };
-  };
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark-qt;
   };
-
-  # List services that you want to enable:
 
   virtualisation.docker = {
     enable = true;
@@ -127,10 +98,6 @@
   #     };
   #   };
   # };
-  virtualisation.virtualbox.host = {
-    enable = false;
-    # enableExtensionPack = true;
-  };
   services.dante = {
     enable = true;
     config = ''
@@ -177,62 +144,16 @@
     ports = [ 9222 22 ];
   };
   services.printing.enable = true;
-  services.postgresql.enable = false;
-  services.rabbitmq = {
-    enable = false;
-    # plugins = [ "rabbitmq_management" ];
-  };
   services.squid.enable = true;
-  services.teamviewer.enable = false;
   services.thermald.enable = true;
   services.vnstat.enable = true;
-  services.vsftpd = {
-    anonymousUser = true;
-    anonymousUploadEnable = true;
-    enable = true;
-  };
 
   services.xrdp.enable = true;
   services.xrdp.package = inputs.self.packages.x86_64-linux.custom-xrdp;
-  # services.xrdp.defaultWindowManager = "${pkgs.icewm}/bin/icewm";
-  # networking.firewall.allowedTCPPorts = [ 3389 ];
   networking.firewall.interfaces.ztzlgoe57z.allowedTCPPorts = [ 3389 ];
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable touchpad support.
-  # services.xserver.libinput.enable = true;
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.guest = {
-  #   isNormalUser = true;
-  #   uid = 1000;
-  # };
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
