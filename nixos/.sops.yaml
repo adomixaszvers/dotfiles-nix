@@ -24,7 +24,7 @@ creation_rules:
           - *adomas
         age:
           - *work
-  - path_regex: pi/secrets/[^/]+\.yaml$
+  - path_regex: pi/secrets/([^/]+\.yaml|acmeCredentials)$
     key_groups:
       - pgp:
           - *adomas

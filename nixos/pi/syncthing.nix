@@ -6,25 +6,21 @@
     openDefaultPorts = true;
     guiAddress = "0.0.0.0:8384";
   };
-  services.traefik.dynamicConfigOptions.http = {
-    middlewares.syncthing-https-redirect.redirectScheme.scheme = "https";
-    routers =
-      let rule = "HostRegexp(`syncthing.{net:(lan|wg|zt)}.beastade.top`)";
-      in {
-        syncthing = {
-          inherit rule;
-          entrypoints = "web";
-          middlewares = "syncthing-https-redirect";
-          service = "syncthing";
-        };
-        syncthing-secure = {
-          inherit rule;
-          entrypoints = "websecure";
-          service = "syncthing";
-          tls = { };
-        };
-      };
-    services.syncthing.loadBalancer.servers =
-      [{ url = "http://127.0.0.1:8384"; }];
+  services.nginx.virtualHosts = let
+    locations = { "/" = { proxyPass = "http://127.0.0.1:8384"; }; };
+    forceSSL = true;
+  in {
+    "syncthing.lan.beastade.top" = {
+      useACMEHost = "lan.beastade.top";
+      inherit forceSSL locations;
+    };
+    "syncthing.wg.beastade.top" = {
+      useACMEHost = "wg.beastade.top";
+      inherit forceSSL locations;
+    };
+    "syncthing.zt.beastade.top" = {
+      useACMEHost = "zt.beastade.top";
+      inherit forceSSL locations;
+    };
   };
 }

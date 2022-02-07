@@ -80,25 +80,22 @@
       ];
     };
   };
-  services.traefik.dynamicConfigOptions.http = {
-    middlewares.pihole-https-redirect.redirectScheme.scheme = "https";
-    routers = let rule = "HostRegexp(`pihole.{net:(lan|wg|zt)}.beastade.top`)";
-    in {
-      pihole = {
-        inherit rule;
-        entrypoints = "web";
-        middlewares = "pihole-https-redirect";
-        service = "pihole-admin";
-      };
-      pihole-secure = {
-        inherit rule;
-        entrypoints = "websecure";
-        service = "pihole-admin";
-        tls = { };
-      };
+  services.nginx.virtualHosts = let
+    locations = { "/" = { proxyPass = "http://127.0.0.1:5080"; }; };
+    forceSSL = true;
+  in {
+    "pihole.lan.beastade.top" = {
+      useACMEHost = "lan.beastade.top";
+      inherit forceSSL locations;
     };
-    services.pihole-admin.loadBalancer.servers =
-      [{ url = "http://127.0.0.1:5080"; }];
+    "pihole.wg.beastade.top" = {
+      useACMEHost = "wg.beastade.top";
+      inherit forceSSL locations;
+    };
+    "pihole.zt.beastade.top" = {
+      useACMEHost = "zt.beastade.top";
+      inherit forceSSL locations;
+    };
   };
 
   users = {
