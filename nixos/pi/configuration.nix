@@ -26,6 +26,8 @@
     '';
   };
 
+  programs.mosh.enable = true;
+
   services.udev.extraRules = ''
     SUBSYSTEM=="vchiq",KERNEL=="vchiq",GROUP="video",MODE="0660"
   '';
