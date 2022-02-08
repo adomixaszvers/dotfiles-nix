@@ -32,3 +32,13 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 bindkey '^e' edit-command-line
+
+autoload -U promptinit; promptinit
+prompt pure
+if [ "$TERM" = linux ]; then
+  PURE_PROMPT_SYMBOL=">"
+  PURE_PROMPT_VICMD_SYMBOL="<"
+  PURE_GIT_DOWN_ARROW="↓"
+  PURE_GIT_UP_ARROW="↑"
+  PURE_GIT_STASH_SYMBOL="#"
+fi

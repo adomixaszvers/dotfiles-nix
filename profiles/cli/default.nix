@@ -68,7 +68,6 @@
     enableZshIntegration = true;
     fileWidgetCommand = "fd --type f";
   };
-  programs.starship.enable = true;
   programs.tmux = {
     enable = true;
     extraConfig = ''
