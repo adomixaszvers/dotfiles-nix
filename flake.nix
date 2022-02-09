@@ -96,6 +96,13 @@
         };
         packages = import ./pkgs { inherit pkgs system inputs; };
         checks = {
+          hm-check = let
+            inherit (nixpkgs) lib;
+            hmDrvs = lib.mapAttrs' (name: value:
+              lib.nameValuePair name (builtins.unsafeDiscardStringContext
+                value.activationPackage.drvPath)) self.homeConfigurations;
+            json = builtins.toJSON hmDrvs;
+          in pkgs.writeText "hm-check" json;
           pre-commit-check = pre-commit-hooks.lib."${system}".run {
             src = let
               inherit (gitignore.lib) gitignoreFilter;
