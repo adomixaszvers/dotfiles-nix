@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   networking.domain = "lan";
   networking.nameservers = [ "127.0.0.1" "1.1.1.1" ];
   networking.firewall = {
@@ -81,7 +81,7 @@
     };
   };
   services.nginx.virtualHosts = let
-    locations = { "/" = { proxyPass = "http://127.0.0.1:5080"; }; };
+    locations = { "/" = { proxyPass = "http://192.168.20.2:80"; }; };
     forceSSL = true;
   in {
     "pihole.lan.beastade.top" = {
@@ -109,6 +109,28 @@
     groups.pihole = { };
   };
 
+  systemd.services = let name = "proxy";
+  in {
+    "podman-network-${name}" = rec {
+      wantedBy = [ "multi-user.target" ];
+      after = [ "podman.service" "podman.socket" ];
+      before = [ "podman-pihole.service" ];
+      requires = after;
+      serviceConfig = {
+        ExecStart = pkgs.writeShellScript "podman-network-create-${name}" ''
+          if [ -z "$(${pkgs.podman}/bin/podman network ls -q | grep ${name})" ]; then
+             ${pkgs.podman}/bin/podman network create --gateway=192.168.20.1 --subnet=192.168.20.0/24 ${name}
+          fi
+        '';
+        ExecStop = ''
+          ${pkgs.podman}/bin/podman network rm ${name}
+        '';
+        RemainAfterExit = "true";
+        Type = "oneshot";
+      };
+    };
+  };
+
   sops.secrets."pihole/environment" = { sopsFile = ./secrets/pihole.yaml; };
   virtualisation.oci-containers.containers.pihole = {
     autoStart = true;
@@ -119,8 +141,8 @@
       ServerIP = "192.168.1.207";
     };
     environmentFiles = [ config.sops.secrets."pihole/environment".path ];
-    ports = [ "5080:80" "53:53" "53:53/udp" ];
-    extraOptions = [ "--network=proxy" ];
+    ports = [ "53:53" "53:53/udp" ];
+    extraOptions = [ "--network=proxy" "--ip=192.168.20.2" ];
     volumes = [
       "/var/lib/pihole/etc-pihole/:/etc/pihole/"
       "/var/lib/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/"
