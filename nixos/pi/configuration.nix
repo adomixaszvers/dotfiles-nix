@@ -17,6 +17,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  boot.tmpOnTmpfs = true;
   boot.loader.raspberryPi = {
     enable = true;
     version = 4;
