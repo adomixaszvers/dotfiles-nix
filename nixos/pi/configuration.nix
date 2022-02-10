@@ -66,8 +66,15 @@
     '';
   };
 
-  environment.systemPackages =
-    [ pkgs.bind pkgs.git pkgs.wol pkgs.nixfmt pkgs.neovim pkgs.libraspberrypi ];
+  environment.systemPackages = with pkgs; [
+    bind
+    git
+    libraspberrypi
+    lm_sensors
+    neovim
+    nixfmt
+    wol
+  ];
   networking = { hostName = "raspberrypi-nixos"; };
   services.openssh = {
     enable = true;
