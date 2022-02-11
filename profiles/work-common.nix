@@ -19,7 +19,7 @@
     gnome.libsecret
     gnome.nautilus
     gnumake
-    (google-chrome.override { commandLineArgs = "--ozone-platform-hint=auto"; })
+    google-chrome
     html-tidy
     jetbrains.idea-ultimate
     jmeter
