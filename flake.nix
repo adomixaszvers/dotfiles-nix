@@ -54,7 +54,6 @@
       url = "github:nix-community/nix-doom-emacs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    emacs-overlay = { url = "github:nix-community/emacs-overlay"; };
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
