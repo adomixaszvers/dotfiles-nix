@@ -1,6 +1,8 @@
 let
   flake = builtins.getFlake ("git+file://" + toString ./.);
-  nixpkgs = import flake.inputs.nixpkgs { };
-in {
-  inherit flake;
-} // flake // builtins // nixpkgs // nixpkgs.lib // flake.nixosConfigurations
+  inherit (flake.inputs) nixpkgs;
+  pkgs = import flake.inputs.nixpkgs { };
+in flake // {
+  inherit flake pkgs;
+  inherit (nixpkgs) lib;
+}

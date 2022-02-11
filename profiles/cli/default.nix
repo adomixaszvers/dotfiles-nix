@@ -41,7 +41,7 @@
     unzip
     wol
     xdg-user-dirs
-  ]) ++ (with myPkgs; [ hm-switch ]) ++ [
+  ]) ++ (with myPkgs; [ hm-repl hm-switch ]) ++ [
     (import inputs.comma {
       inherit pkgs;
       nix = pkgs.nix_2_4;

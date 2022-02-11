@@ -9,6 +9,7 @@
   };
   custom-xrdp = pkgs.callPackage ./custom-xrdp { };
   dbvisualizer = pkgs.callPackage ./dbvisualizer.nix { };
+  hm-repl = pkgs.callPackage ./hm-repl.nix { };
   hm-switch = pkgs.callPackage ./hm-switch.nix {
     inherit (inputs.home-manager.packages."${system}") home-manager;
   };
