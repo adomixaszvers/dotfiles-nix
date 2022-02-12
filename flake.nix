@@ -94,14 +94,7 @@
           program = "${wrapper}";
         };
         packages = import ./pkgs { inherit pkgs system inputs; };
-        checks = let
-          inherit (nixpkgs) lib;
-          hmChecks = lib.mapAttrs' (name: value:
-            lib.nameValuePair ("hm-check-" + name)
-            (pkgs.writeText ("hm-check-" + name)
-              (builtins.unsafeDiscardStringContext
-                value.activationPackage.drvPath))) self.homeConfigurations;
-        in {
+        checks = {
           pre-commit-check = pre-commit-hooks.lib."${system}".run {
             src = let
               inherit (gitignore.lib) gitignoreFilter;
@@ -128,7 +121,7 @@
               shellcheck.enable = true;
             };
           };
-        } // hmChecks;
+        };
         devShell = pkgs.mkShell {
           buildInputs =
             [ home-manager.packages."${system}".home-manager pkgs.sops ];
