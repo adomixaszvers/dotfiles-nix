@@ -1,47 +1,43 @@
 { inputs }:
 let
   inherit (inputs) nixpkgs nixos-hardware sops-nix;
-  sops-common = { sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ]; };
-  nixRegistry = {
-    nix = {
-      nixPath = [
-        "nixpkgs=${nixpkgs}"
-        "nixos-hardware=${nixos-hardware}"
-        "sops-nix=${sops-nix}"
-      ];
-      registry = {
-        nixpkgs.flake = nixpkgs;
-        nixos-hardware.flake = nixos-hardware;
-        sops-nix.flake = sops-nix;
-      };
-    };
-  };
-  common = [ sops-common nixRegistry ./common.nix ./flakes.nix ];
+  specialArgs = { inherit inputs; };
 in {
   adomo-nixos = nixpkgs.lib.nixosSystem {
+    inherit specialArgs;
     system = "x86_64-linux";
-    specialArgs = { inherit inputs; };
-    modules = common ++ [
-      nixpkgs.nixosModules.notDetected
-      nixos-hardware.nixosModules.common-cpu-intel
+    modules = [
+      ./common.nix
+      ./flakes.nix
       ./home/configuration.nix
+      ./nix-registry.nix
+      sops-nix.nixosModules.sops
+      nixos-hardware.nixosModules.common-cpu-intel
+      nixpkgs.nixosModules.notDetected
     ];
-    extraModules = [ sops-nix.nixosModules.sops ];
   };
   adomas-jatuzis-nixos = nixpkgs.lib.nixosSystem {
+    inherit specialArgs;
     system = "x86_64-linux";
-    specialArgs = { inherit inputs; };
-    modules = common ++ [
-      nixpkgs.nixosModules.notDetected
-      nixos-hardware.nixosModules.common-cpu-intel
+    modules = [
+      ./common.nix
+      ./flakes.nix
+      ./nix-registry.nix
       ./work/configuration.nix
+      sops-nix.nixosModules.sops
+      nixos-hardware.nixosModules.common-cpu-intel
+      nixpkgs.nixosModules.notDetected
     ];
-    extraModules = [ sops-nix.nixosModules.sops ];
   };
   raspberrypi-nixos = nixpkgs.lib.nixosSystem {
+    inherit specialArgs;
     system = "aarch64-linux";
-    specialArgs = { inherit inputs; };
-    modules = [ nixRegistry sops-common ./pi/configuration.nix ];
-    extraModules = [ sops-nix.nixosModules.sops ];
+    modules = [
+      ./flakes.nix
+      ./nix-registry.nix
+      ./pi/configuration.nix
+      sops-nix.nixosModules.sops
+      nixos-hardware.nixosModules.raspberry-pi-4
+    ];
   };
 }

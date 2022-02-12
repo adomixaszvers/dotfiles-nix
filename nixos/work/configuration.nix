@@ -7,8 +7,6 @@
 {
   imports = [
     ../avahi.nix
-    ../common.nix
-    ../flakes.nix
     ../pipewire.nix
     ../syncthing.nix
     ../yubikey.nix

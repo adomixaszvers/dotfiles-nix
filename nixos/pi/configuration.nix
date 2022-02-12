@@ -1,10 +1,8 @@
-{ pkgs, lib, inputs, ... }: {
+{ pkgs, lib, ... }: {
   imports = [
-    inputs.nixos-hardware.nixosModules.raspberry-pi-4
     ./acme.nix
     ./dns.nix
     ./fail2ban.nix
-    ../flakes.nix
     ./static-ip.nix
     ./syncthing.nix
     ./users.nix
