@@ -19,7 +19,6 @@
     dnsutils
     fd
     file
-    gdb
     git
     github-cli
     htop
