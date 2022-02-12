@@ -3,7 +3,7 @@ let nixPackage = pkgs.nix_2_4;
 in {
   nix = {
     extraOptions = ''
-      experimental-features = nix-command flakes ca-derivations ca-references
+      experimental-features = nix-command flakes
     '';
     package = nixPackage;
   };
