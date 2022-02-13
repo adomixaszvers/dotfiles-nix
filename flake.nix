@@ -76,22 +76,10 @@
         unstable = import inputs.nixos-unstable { inherit system config; };
       in {
         apps.my-neovim = let
-          inherit ((home-manager.lib.homeManagerConfiguration {
-            pkgs = unstable;
-            inherit system;
-            extraSpecialArgs = { inherit unstable; };
-            username = "nobody";
-            homeDirectory = "/dev/null";
-            configuration = { imports = [ ./profiles/cli/neovim ]; };
-          }).config.programs.neovim)
-            finalPackage generatedConfigViml;
-          initNvim = unstable.writeText "init.nvim" generatedConfigViml;
-          wrapper = unstable.writeShellScript "my-neovim-wrapped" ''
-            exec ${finalPackage}/bin/nvim -u ${initNvim} "$@"
-          '';
+          myNeovim = unstable.callPackage ./profiles/cli/neovim/package.nix { };
         in {
           type = "app";
-          program = "${wrapper}";
+          program = "${myNeovim}/bin/nvim";
         };
         packages = import ./pkgs { inherit pkgs system inputs; };
         checks = {
