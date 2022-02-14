@@ -18,6 +18,7 @@
     torbrowser
     keepassxc
     xpraGtk3
+    protonup
   ]) ++ (with myPkgs; [ ani-cli ]);
   home.sessionVariables = { BROWSER = "firefox"; };
   programs.autorandr = {
