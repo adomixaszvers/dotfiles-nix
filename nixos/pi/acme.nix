@@ -1,6 +1,6 @@
 { config, ... }: {
-  sops.secrets."acmeCredentials" = {
-    sopsFile = ./secrets/acmeCredentials;
+  sops.secrets."acme.env" = {
+    sopsFile = ./secrets/acme.env;
     format = "binary";
   };
   security.acme = {
@@ -9,7 +9,7 @@
     certs = let
       dnsProvider = "namesilo";
       dnsResolver = "ns1.dnsowl.com:53";
-      credentialsFile = config.sops.secrets."acmeCredentials".path;
+      credentialsFile = config.sops.secrets."acme.env".path;
     in {
       "lan.beastade.top" = {
         inherit dnsProvider dnsResolver credentialsFile;

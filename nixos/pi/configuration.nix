@@ -9,6 +9,7 @@
     ./nginx.nix
     # ./vaultwarden.nix
     ./wireguard.nix
+    ./webdav.nix
     ../zerotier.nix
     ./zsh.nix
   ];
