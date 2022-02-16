@@ -7,7 +7,7 @@
       address = "192.168.1.105";
       prefixLength = 24;
     }];
-    nameservers = [ "192.168.1.207" "1.1.1.1" ];
+    nameservers = [ "192.168.1.207" "9.9.9.9" ];
     networkmanager.enable = false;
   };
 }
