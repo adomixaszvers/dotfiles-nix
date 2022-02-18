@@ -7,6 +7,7 @@
 {
   imports = [
     ../avahi.nix
+    ../aarch64.nix
     ../pipewire.nix
     ../syncthing.nix
     ../yubikey.nix

@@ -1,10 +1,10 @@
 {
   nix.buildMachines = [{
     hostName = "builder";
-    system = "x86_64-linux";
+    # system = "x86_64-linux";
     # if the builder supports building for multiple architectures, 
     # replace the previous line by, e.g.,
-    # systems = ["x86_64-linux" "aarch64-linux"];
+    systems = [ "i686-linux" "x86_64-linux" "aarch64-linux" ];
     maxJobs = 12;
     speedFactor = 2;
     supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];

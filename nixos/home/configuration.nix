@@ -9,7 +9,6 @@
     # ./bumblebee.nix
     # ./gnome.nix
     # ./kde.nix
-    ../aarch64.nix
     ../avahi.nix
     ../pipewire.nix
     ../syncthing.nix
