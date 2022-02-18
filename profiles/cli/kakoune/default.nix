@@ -2,15 +2,36 @@
   home.packages = with pkgs; [ kak-lsp myPkgs.kaknix ];
   programs.kakoune = {
     enable = true;
-    plugins = with pkgs;
-      let
-        kakouneTextObjects = callPackage (import ./kakoune-text-objects.nix) {
-          kakoune-text-objects-source = inputs.kakoune-text-objects;
+    plugins = let
+      inherit (pkgs) lib;
+      inherit (pkgs.kakouneUtils) buildKakounePluginFrom2Nix;
+      kakouneTextObjects = let input = inputs.kakoune-text-objects;
+      in buildKakounePluginFrom2Nix {
+        pname = "kakoune-text-objects";
+        version = input.shortRev;
+        src = input.outPath;
+        meta = with lib; {
+          description = "kakoune plugin providing extra text-objects";
+          homepage = "https://github.com/Delapouite/kakoune-text-objects";
+          license = licenses.mit;
+          platform = platforms.all;
         };
-        sudoWrite = callPackage (import ./sudo-write.nix) {
-          kakoune-sudo-write-source = inputs.kakoune-sudo-write;
+
+      };
+      sudoWrite = let input = inputs.kakoune-sudo-write;
+      in buildKakounePluginFrom2Nix {
+        pname = "kakoune-sudo-write";
+        version = input.shortRev;
+        src = input.outPath;
+        meta = with lib; {
+          description = "Write to files using 'sudo'";
+          homepage = "https://github.com/occivink/kakoune-sudo-write";
+          license = licenses.unlicense;
+          platform = platforms.all;
         };
-      in [ kakounePlugins.kak-fzf kakouneTextObjects sudoWrite ];
+
+      };
+    in [ pkgs.kakounePlugins.kak-fzf kakouneTextObjects sudoWrite ];
     config = {
       tabStop = 4;
       scrollOff = {
