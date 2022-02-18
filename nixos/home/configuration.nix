@@ -15,6 +15,7 @@
     ../syncthing.nix
     ../yubikey.nix
     ../zerotier.nix
+    ../gc.nix
     ./bumblebee-nvidia.nix
     ./hardware-configuration.nix
     ./remote-build.nix

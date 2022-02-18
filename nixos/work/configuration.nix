@@ -11,7 +11,7 @@
     ../syncthing.nix
     ../yubikey.nix
     ../zerotier.nix
-    ./gc.nix
+    ../gc.nix
     ./hardware-configuration.nix
     ./iperf3.nix
     ./ltXkb.nix
