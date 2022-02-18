@@ -2,17 +2,21 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
-
-{
+{ config, pkgs, ... }@args:
+let inputs = if args ? inputs then args.inputs else import ../../inputs.nix;
+in {
+  _module.args.inputs = inputs;
   imports = [
-    ../avahi.nix
     ../aarch64.nix
+    ../avahi.nix
+    ../common.nix
+    ../flakes.nix
+    ../gc.nix
+    ../nix-registry.nix
     ../pipewire.nix
     ../syncthing.nix
     ../yubikey.nix
     ../zerotier.nix
-    ../gc.nix
     ./hardware-configuration.nix
     ./iperf3.nix
     ./ltXkb.nix
@@ -21,6 +25,9 @@
     ./unbound.nix
     ./vnc.nix
     ./wireguard-client.nix
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixpkgs.nixosModules.notDetected
+    inputs.sops-nix.nixosModules.sops
   ];
 
   # Use the systemd-boot EFI boot loader.

@@ -2,19 +2,23 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }@args:
+let inputs = if args ? inputs then args.inputs else import ../../inputs.nix;
+in {
+  _module.args.inputs = inputs;
   imports = [
     # ./bumblebee.nix
     # ./gnome.nix
     # ./kde.nix
     ../avahi.nix
+    ../common.nix
+    ../flakes.nix
+    ../gc.nix
+    ../nix-registry.nix
     ../pipewire.nix
     ../syncthing.nix
     ../yubikey.nix
     ../zerotier.nix
-    ../gc.nix
     ./bumblebee-nvidia.nix
     ./hardware-configuration.nix
     ./remote-build.nix
@@ -22,6 +26,9 @@
     ./steam.nix
     ./wakeonlan.nix
     ./wireguard-client.nix
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixpkgs.nixosModules.notDetected
+    inputs.sops-nix.nixosModules.sops
   ];
 
   boot = {

@@ -1,17 +1,24 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }@args:
+let inputs = if args ? inputs then args.inputs else import ../../inputs.nix;
+in {
+  _module.args.inputs = inputs;
   imports = [
+    # ./vaultwarden.nix
+    ../flakes.nix
+    ../nix-registry.nix
+    ../zerotier.nix
     ./acme.nix
     ./dns.nix
     ./fail2ban.nix
+    ./nginx.nix
     ./static-ip.nix
     ./syncthing.nix
     ./users.nix
-    ./nginx.nix
-    # ./vaultwarden.nix
-    ./wireguard.nix
     ./webdav.nix
-    ../zerotier.nix
+    ./wireguard.nix
     ./zsh.nix
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+    inputs.sops-nix.nixosModules.sops
   ];
 
   nixpkgs.config.allowUnfree = true;
