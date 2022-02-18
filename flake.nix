@@ -50,10 +50,6 @@
       flake = false;
     };
     flake-utils.url = "github:numtide/flake-utils";
-    nix-doom-emacs = {
-      url = "github:nix-community/nix-doom-emacs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
