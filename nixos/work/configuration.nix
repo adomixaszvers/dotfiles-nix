@@ -7,7 +7,6 @@ let inputs = if args ? inputs then args.inputs else import ../../inputs.nix;
 in {
   _module.args.inputs = inputs;
   imports = [
-    ../aarch64.nix
     ../avahi.nix
     ../common.nix
     ../flakes.nix
