@@ -9,12 +9,12 @@ in {
     ../zerotier.nix
     ./acme.nix
     ./dns.nix
-    ./fail2ban.nix
+    # ./fail2ban.nix
     ./nginx.nix
     ./static-ip.nix
     ./syncthing.nix
     ./users.nix
-    ./webdav.nix
+    # ./webdav.nix
     ./wireguard.nix
     ./zsh.nix
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
