@@ -16,3 +16,6 @@ jobs:
         run: 'find -name "*.nix" -exec nix-instantiate --parse 1>/dev/null {} +'
       - name: Check the flake
         run: 'nix flake check'
+      - name: Check home-manager configurations
+        run: |-
+          nix eval --json --expr 'let flake = builtins.getFlake (toString ./.); in builtins.mapAttrs (_n: v: v.activationPackage.drvPath) flake.homeConfigurations' --impure
