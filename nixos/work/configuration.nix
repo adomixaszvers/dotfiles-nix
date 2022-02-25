@@ -19,6 +19,7 @@ in {
     ./hardware-configuration.nix
     ./iperf3.nix
     ./ltXkb.nix
+    ./prebuild-configs.nix
     ./samba.nix
     ./turbovnc.nix
     ./unbound.nix
