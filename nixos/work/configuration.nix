@@ -150,7 +150,6 @@ in {
     ports = [ 9222 22 ];
   };
   services.printing.enable = true;
-  services.squid.enable = true;
   services.thermald.enable = true;
   services.vnstat.enable = true;
 
