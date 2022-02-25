@@ -16,7 +16,7 @@ let
       inherit system homeDirectory username pkgs;
       stateVersion = "21.11";
       extraModules = [ ./modules ];
-      extraSpecialArgs = { inherit inputs myPkgs unstable; };
+      extraSpecialArgs = { inherit inputs myPkgs unstable system; };
       configuration = {
         imports = [ config ];
         nixpkgs = { config = nixpkgs-config; };

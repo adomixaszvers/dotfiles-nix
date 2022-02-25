@@ -1,11 +1,11 @@
-{ pkgs, unstable, config, ... }:
+{ pkgs, system, inputs, config, ... }:
 let
   extraPackages = import ./extraPackages.nix;
-  haskellPackages = let inherit (unstable) haskellPackages haskell;
+  haskellPackages = let
+    inherit (builtins.getAttr system inputs.nixpkgs-hs.legacyPackages)
+      haskellPackages haskell;
   in haskellPackages.override {
     overrides = _: super: {
-      xmonad = super.xmonad_0_17_0;
-      xmonad-contrib = super.xmonad-contrib_0_17_0;
       xmonad-dbus =
         haskell.lib.dontCheck (haskell.lib.unmarkBroken super.xmonad-dbus);
     };

@@ -1,5 +1,5 @@
-{ pkgs ? (builtins.getFlake
-  "nixos-unstable").legacyPackages."${builtins.currentSystem}" }:
+{ pkgs ?
+  (builtins.getFlake "nixpkgs-hs").legacyPackages."${builtins.currentSystem}" }:
 let
   extraPackages = import ./extraPackages.nix;
   colors = import ./my-colors.nix;
@@ -9,8 +9,6 @@ mkShell {
     myHaskellPackages = pkgs.haskellPackages.override {
       overrides = self: super: {
         my-colors = self.callPackage colors { };
-        xmonad = super.xmonad_0_17_0;
-        xmonad-contrib = super.xmonad-contrib_0_17_0;
         xmonad-dbus =
           haskell.lib.dontCheck (haskell.lib.unmarkBroken super.xmonad-dbus);
       };
