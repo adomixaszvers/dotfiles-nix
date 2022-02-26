@@ -192,6 +192,6 @@ in {
     "wireshark"
   ];
   users.users.adomas.openssh.authorizedKeys.keyFiles =
-    [ ../keys/laptop.pub ../keys/juice_rsa.pub ../keys/yubikey.pub ];
+    [ ../keys/laptop.pub ../keys/juice_ed25519.pub ../keys/yubikey.pub ];
 
 }

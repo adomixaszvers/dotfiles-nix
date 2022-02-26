@@ -113,7 +113,7 @@ in {
 
   users.users.adomas = {
     openssh.authorizedKeys.keyFiles =
-      [ ../keys/juice_rsa.pub ../keys/yubikey.pub ];
+      [ ../keys/juice_ed25519.pub ../keys/yubikey.pub ];
     extraGroups = [ "docker" "libvirtd" "adbusers" ];
     passwordFile = config.sops.secrets."adomas/password".path;
   };

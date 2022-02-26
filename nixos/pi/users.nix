@@ -21,7 +21,7 @@
       extraGroups = [ "video" "wheel" ];
       shell = pkgs.zsh;
       openssh.authorizedKeys.keyFiles =
-        [ ../keys/juice_rsa.pub ../keys/laptop.pub ../keys/yubikey.pub ];
+        [ ../keys/juice_ed25519.pub ../keys/laptop.pub ../keys/yubikey.pub ];
     };
   };
 }
