@@ -10,6 +10,8 @@
     "wireguard/presharedKeys/work".sopsFile = ../common-secrets/wireguard.yaml;
     "wireguard/presharedKeys/laptop".sopsFile =
       ../common-secrets/wireguard.yaml;
+    "wireguard/presharedKeys/samsung".sopsFile =
+      ../common-secrets/wireguard.yaml;
   };
   networking.firewall.interfaces.eth0 = {
     allowedTCPPorts = [ 51820 ];
@@ -67,6 +69,13 @@
           presharedKeyFile =
             config.sops.secrets."wireguard/presharedKeys/laptop".path;
           allowedIPs = [ "10.6.0.7/32" ];
+        }
+        {
+          # samsung
+          publicKey = "RRUoaihwS9llZeUYLQUvWc2B+ND25leP6hW+As5Hsw4=";
+          presharedKeyFile =
+            config.sops.secrets."wireguard/presharedKeys/samsung".path;
+          allowedIPs = [ "10.6.0.10/32" ];
         }
       ];
     };
