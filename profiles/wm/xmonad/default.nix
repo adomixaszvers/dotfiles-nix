@@ -1,15 +1,8 @@
 { pkgs, system, inputs, config, ... }:
 let
   extraPackages = import ./extraPackages.nix;
-  haskellPackages = let
-    inherit (builtins.getAttr system inputs.nixpkgs-hs.legacyPackages)
-      haskellPackages haskell;
-  in haskellPackages.override {
-    overrides = _: super: {
-      xmonad-dbus =
-        haskell.lib.dontCheck (haskell.lib.unmarkBroken super.xmonad-dbus);
-    };
-  };
+  inherit (builtins.getAttr system inputs.nixpkgs-hs.legacyPackages)
+    haskellPackages;
 in {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ];
   home.packages = with pkgs; [ pamixer xdotool gnome.zenity ];

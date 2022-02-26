@@ -7,11 +7,7 @@ in with pkgs;
 mkShell {
   buildInputs = let
     myHaskellPackages = pkgs.haskellPackages.override {
-      overrides = self: super: {
-        my-colors = self.callPackage colors { };
-        xmonad-dbus =
-          haskell.lib.dontCheck (haskell.lib.unmarkBroken super.xmonad-dbus);
-      };
+      overrides = self: _super: { my-colors = self.callPackage colors { }; };
     };
   in [
     (myHaskellPackages.ghcWithHoogle
