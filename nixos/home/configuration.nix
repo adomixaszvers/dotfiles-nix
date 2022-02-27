@@ -51,6 +51,7 @@ in {
   };
 
   environment.systemPackages = with pkgs; [ nixfmt virtmanager ];
+  environment.variables.LIBVA_DRIVER_NAME = "i965";
 
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/423B-2D62";
