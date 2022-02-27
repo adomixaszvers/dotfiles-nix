@@ -16,7 +16,7 @@
     firefox
     gimp
     gitAndTools.gitflow
-    gnome.libsecret
+    libsecret
     gnome.nautilus
     gnumake
     google-chrome
