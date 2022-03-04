@@ -8,7 +8,6 @@
   home.file."tomcat-native".source = pkgs.tomcat-native;
   home.packages = with pkgs; [
     asciinema
-    calibre
     docker-compose
     dos2unix
     evince
