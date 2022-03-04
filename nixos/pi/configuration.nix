@@ -4,6 +4,7 @@ in {
   _module.args.inputs = inputs;
   imports = [
     # ./vaultwarden.nix
+    not-feel-good
     ../flakes.nix
     ../nix-registry.nix
     ../zerotier.nix
