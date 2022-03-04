@@ -45,7 +45,7 @@
     teams
     traceroute
     unrar
-    unstable.torbrowser
+    unstable.tor-browser-bundle-bin
     unzip
     whois
     zip
