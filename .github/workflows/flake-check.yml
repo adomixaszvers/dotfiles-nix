@@ -1,6 +1,7 @@
 name: Flake checks
 on:
   - push
+  - pull_request
 jobs:
   flake-checker:
     runs-on: ubuntu-latest
