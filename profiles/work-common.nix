@@ -55,7 +55,7 @@
 
   programs.rofi.extraConfig.dpi = 120;
   xresources.properties."Xft.dpi" = 120;
-  services.polybar.settings."bar/top".dpi = 120;
+  services.polybar.config."bar/top".dpi = 120;
 
   programs.autorandr = {
     enable = true;
@@ -68,6 +68,7 @@
         config = {
           eDP-1 = {
             enable = true;
+            crtc = 0;
             position = "0x0";
             primary = true;
             rate = "60.01";
@@ -129,6 +130,7 @@
   }];
   xsession.initExtra = ''
     autorandr --change
+    xrandr --output eDP-1 --dpi 120
   '';
   xsession.windowManager.bspwm = {
     extraConfig = ''

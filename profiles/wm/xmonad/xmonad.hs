@@ -9,8 +9,6 @@ import System.IO
   ( hClose,
     hPutStr,
   )
-import System.Posix (getEnv)
-import System.Process (readProcess)
 import XMonad
 import XMonad.Actions.PhysicalScreens
   ( PhysicalScreen (..),
@@ -142,7 +140,6 @@ myStartupHook :: X ()
 myStartupHook = do
   setWMName "LG3D"
   spawnFeh
-  whenX isWork $ spawnOnce "rambox"
   spawnOnce "systemctl --user restart polybar"
 
 myDynamicStatusBar :: D.Client -> ScreenId -> IO StatusBarConfig
@@ -363,11 +360,6 @@ myScratchpads =
       (appName =? "scratchpad" <&&> className =? "kitty")
       doFloat
   ]
-
-isWork :: MonadIO m => m Bool
-isWork = io $ do
-  Just dataHome <- getEnv "XDG_DATA_HOME"
-  ("thinkpad-work" ==) <$> readProcess (dataHome ++ "/bin/detect-hm-config") [] ""
 
 -- | Restack dock under lowest managed window.
 lowerDock :: ManageHook

@@ -34,7 +34,7 @@ in {
 
   # Use the systemd-boot EFI boot loader.
   boot.cleanTmpDir = true;
-  boot.kernelParams = [ "consoleblank=60" ];
+  # boot.kernelParams = [ "consoleblank=60" ];
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.loader.systemd-boot = {
     enable = true;
