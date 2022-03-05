@@ -1,7 +1,7 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
-(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 12.0))
+(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 9.0))
 (setq doom-unicode-font doom-font)
 (setq! display-line-numbers-type 'visual)
 (when (display-graphic-p)
