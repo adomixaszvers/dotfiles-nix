@@ -33,6 +33,8 @@ in rec {
   };
   "adomas@adomo-nixos" = home;
   "adomas@arch-vm" = foreign;
-  "adomas@adomas-jatuzis-nixos" = work-remote;
+  "adomas@adomas-jatuzis-nixos" = work;
   "pi@raspberrypi-nixos" = pi;
+  thinkpad-home = work-remote;
+  thinkpad-work = work;
 }

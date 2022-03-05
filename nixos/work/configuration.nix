@@ -22,10 +22,12 @@ in {
     ./prebuild-configs.nix
     ./samba.nix
     ./turbovnc.nix
-    ./unbound.nix
+    # ./unbound.nix
     ./vnc.nix
     ./wireguard-client.nix
+    ./fprintd.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad
     inputs.nixpkgs.nixosModules.notDetected
     inputs.sops-nix.nixosModules.sops
   ];
@@ -33,6 +35,7 @@ in {
   # Use the systemd-boot EFI boot loader.
   boot.cleanTmpDir = true;
   boot.kernelParams = [ "consoleblank=60" ];
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.loader.systemd-boot = {
     enable = true;
     consoleMode = "auto";
@@ -51,21 +54,15 @@ in {
     hostId = "d864861a";
     hostName = "adomas-jatuzis-nixos"; # Define your hostname.
     domain = "x.insoft.lt";
-    defaultGateway = "192.168.34.1";
     dhcpcd.enable = false;
-    interfaces.eno1.ipv4.addresses = [{
-      address = "192.168.33.105";
-      prefixLength = 22;
-    }];
     networkmanager.enable = true;
   };
 
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-  };
-
   environment.systemPackages = with pkgs; [ wget vim virtmanager ];
+  environment.variables = {
+    VK_ICD_FILENAMES =
+      "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json";
+  };
 
   programs.gnupg.agent = {
     enable = true;
@@ -73,11 +70,13 @@ in {
   };
   programs.adb.enable = true;
   programs.mosh.enable = true;
+  programs.steam.enable = true;
   programs.sway.enable = true;
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark-qt;
   };
+  services.xserver.libinput.enable = true;
 
   virtualisation.docker = {
     enable = true;
@@ -105,7 +104,7 @@ in {
   #   };
   # };
   services.dante = {
-    enable = true;
+    enable = false;
     config = ''
       internal: 10.6.0.6 port = 1080
       external: eno1

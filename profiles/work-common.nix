@@ -35,6 +35,7 @@
     rambox
     remmina
     samba
+    protonup
     soapui
     spotify
     sqldeveloper
@@ -44,12 +45,66 @@
     teams
     traceroute
     unrar
+    unstable.discord
     unstable.tor-browser-bundle-bin
     unzip
     whois
     zip
     zoom-us
   ];
+
+  programs.rofi.extraConfig.dpi = 120;
+  xresources.properties."Xft.dpi" = 120;
+  services.polybar.settings."bar/top".dpi = 120;
+
+  programs.autorandr = {
+    enable = true;
+    profiles = {
+      work-single = {
+        fingerprint = {
+          eDP-1 =
+            "00ffffffffffff000daee71500000000211a0104a52213780228659759548e271e505400000001010101010101010101010101010101b43b804a713834405036680058c110000018000000fe004e3135364843412d4541420a20000000fe00434d4e0a202020202020202020000000fe004e3135364843412d4541420a2000b2";
+        };
+        config = {
+          eDP-1 = {
+            enable = true;
+            position = "0x0";
+            primary = true;
+            rate = "60.01";
+            mode = "1920x1080";
+          };
+        };
+      };
+      work = {
+        fingerprint = {
+          DP-1 =
+            "00ffffffffffff0022f06e32010101010e1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e433631343036364d0a20200020";
+          DP-2 =
+            "00ffffffffffff0022f06e32010101012b1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e43363433303832370a20200019";
+        };
+        config = {
+          HDMI1.enable = false;
+          HDMI2.enable = false;
+          VGA1.enable = false;
+          VIRTUAL1.enable = false;
+          DP-1 = {
+            enable = true;
+            position = "0x0";
+            rate = "59.95";
+            mode = "1920x1200";
+          };
+          DP-2 = {
+            enable = true;
+            position = "1920x0";
+            primary = true;
+            rate = "59.95";
+            mode = "1920x1200";
+          };
+        };
+      };
+    };
+  };
+
   home.sessionVariables = { BROWSER = "google-chrome-stable"; };
   programs.git.includes = [
     {
@@ -72,6 +127,9 @@
     command = "rambox";
     notification = false;
   }];
+  xsession.initExtra = ''
+    autorandr --change
+  '';
   xsession.windowManager.bspwm = {
     extraConfig = ''
       bspc desktop 3 -l monocle

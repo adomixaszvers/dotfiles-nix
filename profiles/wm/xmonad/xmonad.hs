@@ -4,12 +4,13 @@ import qualified Colors as C
 import Control.Exception (bracket)
 import qualified DBus.Client as D
 import Graphics.X11.ExtraTypes
-import Network.HostName (getHostName)
 import System.Exit (exitSuccess)
 import System.IO
   ( hClose,
     hPutStr,
   )
+import System.Posix (getEnv)
+import System.Process (readProcess)
 import XMonad
 import XMonad.Actions.PhysicalScreens
   ( PhysicalScreen (..),
@@ -364,7 +365,9 @@ myScratchpads =
   ]
 
 isWork :: MonadIO m => m Bool
-isWork = io $ (== "adomas-jatuzis-nixos") <$> getHostName
+isWork = io $ do
+  Just dataHome <- getEnv "XDG_DATA_HOME"
+  ("thinkpad-work" ==) <$> readProcess (dataHome ++ "/bin/detect-hm-config") [] ""
 
 -- | Restack dock under lowest managed window.
 lowerDock :: ManageHook

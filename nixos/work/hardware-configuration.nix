@@ -4,8 +4,15 @@
 { lib, ... }:
 
 {
-  boot.initrd.availableKernelModules =
-    [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "thunderbolt"
+    "nvme"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+    "rtsx_pci_sdmmc"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -16,7 +23,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/87A6-8D18";
+    device = "/dev/disk/by-uuid/2641-D99C";
     fsType = "vfat";
   };
 
@@ -51,7 +58,7 @@
   };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/ed377faf-6991-47fb-be47-21af0c05caff"; }];
+    [{ device = "/dev/disk/by-uuid/2d0b3a0d-d438-4c12-b14d-8b879d9777b4"; }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
