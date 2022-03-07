@@ -28,6 +28,7 @@ in {
     ./fprintd.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad
+    inputs.nixos-hardware.nixosModules.common-pc-laptop-acpi_call
     inputs.nixpkgs.nixosModules.notDetected
     inputs.sops-nix.nixosModules.sops
   ];
@@ -75,6 +76,10 @@ in {
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark-qt;
+  };
+  services.autorandr = {
+    enable = true;
+    defaultTarget = "work-single";
   };
   services.xserver.libinput.enable = true;
 

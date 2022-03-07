@@ -17,6 +17,7 @@ let
     } // other;
   defaultBar = {
     modules-left = lib.mkDefault "ewmh";
+    modules-center = lib.mkDefault "";
 
     monitor = ''
       ''${env:MONITOR}
@@ -40,16 +41,14 @@ in {
     package = pkgs.polybarFull;
     config = {
       "bar/top" = defaultBar // {
-        modules-center = "";
-        modules-right =
+        modules-right = lib.mkDefault
           "memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider";
         tray-position = "right";
         tray-max-size = 16;
         tray-background = colors.custom-background-dark;
       };
       "bar/top-extra" = defaultBar // {
-        modules-center = "";
-        modules-right = "date divider time divider";
+        modules-right = lib.mkDefault "date divider time divider";
       };
       "module/cpu" = module "﬙" {
         type = "internal/cpu";
@@ -71,7 +70,6 @@ in {
       "module/disk" = {
         type = "internal/fs";
         mount-0 = "/";
-        mount-1 = "/home";
 
         label-mounted = " %mountpoint% %free%";
         label-mounted-foreground = colors.custom-foreground;
