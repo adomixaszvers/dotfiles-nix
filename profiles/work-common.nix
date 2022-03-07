@@ -56,6 +56,7 @@
   programs.rofi.extraConfig.dpi = 120;
   xresources.properties."Xft.dpi" = 120;
   services.polybar.config = {
+    "bar/top-extra".dpi = 120;
     "bar/top" = {
       dpi = 120;
       modules-right =
@@ -80,6 +81,7 @@
 
   programs.autorandr = {
     enable = true;
+    hooks.postswitch.restart-picom = "systemctl --user restart picom.service";
     profiles = {
       work-single = {
         fingerprint = {
@@ -109,15 +111,16 @@
         config = {
           DP-2-2 = {
             enable = true;
-            crtc = 1;
+            crtc = 2;
             position = "0x0";
             rate = "59.95";
             mode = "1920x1200";
             transform = [ [ 1.25 0.0 0.0 ] [ 0.0 1.25 0.0 ] [ 0.0 0.0 1.0 ] ];
           };
           DP-2-3 = {
+            primary = true;
             enable = true;
-            crtc = 2;
+            crtc = 0;
             position = "2400x0";
             rate = "59.95";
             mode = "1920x1200";
@@ -125,10 +128,9 @@
           };
           eDP-1 = {
             enable = true;
-            crtc = 0;
+            crtc = 1;
             mode = "1920x1080";
             position = "4800x0";
-            primary = true;
             rate = "60.01";
           };
         };
