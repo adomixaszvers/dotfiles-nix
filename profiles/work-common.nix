@@ -1,4 +1,5 @@
 { pkgs, unstable, ... }: {
+  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = unstable.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
@@ -53,12 +54,8 @@
     zoom-us
   ];
 
-  programs.rofi.extraConfig.dpi = 120;
-  xresources.properties."Xft.dpi" = 120;
   services.polybar.config = {
-    "bar/top-extra".dpi = 120;
     "bar/top" = {
-      dpi = 120;
       modules-right =
         "battery divider memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider";
     };
@@ -80,7 +77,6 @@
   };
 
   programs.autorandr = {
-    enable = true;
     hooks.postswitch.restart-picom = "systemctl --user restart picom.service";
     profiles = {
       work-single = {
@@ -115,27 +111,46 @@
             position = "0x0";
             rate = "59.95";
             mode = "1920x1200";
-            transform = [ [ 1.25 0.0 0.0 ] [ 0.0 1.25 0.0 ] [ 0.0 0.0 1.0 ] ];
           };
           DP-2-3 = {
             primary = true;
             enable = true;
             crtc = 0;
-            position = "2400x0";
+            position = "1920x0";
             rate = "59.95";
             mode = "1920x1200";
-            transform = [ [ 1.25 0.0 0.0 ] [ 0.0 1.25 0.0 ] [ 0.0 0.0 1.0 ] ];
           };
           eDP-1 = {
             enable = true;
             crtc = 1;
             mode = "1920x1080";
-            position = "4800x0";
+            position = "3840x0";
             rate = "60.01";
           };
         };
       };
     };
+  };
+
+  services.kanshi.profiles = {
+    docked.outputs = [
+      {
+        criteria = "Hewlett Packard HP E242 CNC614066M";
+        position = "0,0";
+      }
+      {
+        criteria = "Hewlett Packard HP E242 CNC6430827";
+        position = "1920,0";
+      }
+      {
+        criteria = "Chimei Innolux Corporation 0x15E7 0x00000000";
+        position = "3840,0";
+      }
+    ];
+    undocked.outputs = [{
+      criteria = "Chimei Innolux Corporation 0x15E7 0x00000000";
+      position = "0,0";
+    }];
   };
 
   home.sessionVariables = { BROWSER = "google-chrome-stable"; };
@@ -149,25 +164,33 @@
       path = "~/projektai/git_work.inc";
     }
   ];
-  programs.xmobar.thermal-zone = 2;
+  programs.xmobar.thermal-zone = 1;
   programs.zsh.shellAliases = {
     imvn = "mvn -s ~/.m2/insoft-settings.xml";
     amvn = "mvn -s ~/.m2/kazan-settings.xml";
   };
   services.network-manager-applet.enable = true;
-  services.polybar.config."module/temperature".thermal-zone = 2;
+  services.polybar.config."module/temperature".thermal-zone = 1;
   xsession.windowManager.i3.config.startup = [{
     command = "rambox";
     notification = false;
   }];
-  xsession.initExtra = ''
-    autorandr --change
-    xrandr --output eDP-1 --dpi 120
-  '';
   xsession.windowManager.bspwm = {
     extraConfig = ''
       bspc desktop 3 -l monocle
     '';
     startupPrograms = [ "rambox" ];
+  };
+  wayland.windowManager.sway.config = {
+    input = {
+      "6127:24729:Lenovo_Lenovo_Traditional_USB_Keyboard" = {
+        xkb_layout = "lt,us";
+        xkb_numlock = "enabled";
+      };
+      "1:1:AT_Translated_Set_2_keyboard" = {
+        xkb_layout = "lt,us";
+        xkb_numlock = "enabled";
+      };
+    };
   };
 }

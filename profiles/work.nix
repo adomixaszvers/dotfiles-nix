@@ -1,9 +1,8 @@
-{ pkgs, ... }: {
-  imports =
-    [ ./work-common.nix ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
+{ pkgs, config, lib, ... }: {
+  imports = [ ./work-common.nix ];
   colors = import ./gui/colors/nord.nix;
   services.screen-locker = {
-    enable = true;
+    enable = lib.mkDefault config.xsession.enable;
     inactiveInterval = 5;
   };
   xsession.windowManager.bspwm = {
@@ -18,13 +17,11 @@
         "${pkgs.swayidle}/bin/swayidle -w timeout 300 '${pkgs.swaylock-effects}/bin/swaylock --clock --screenshots --effect-blur 7x5 --effect-vignette 0.5:0.5'";
     }];
     output = {
-      DP-1 = { pos = "0 0"; };
-      DP-2 = { pos = "1920 0"; };
-    };
-    input = {
-      "6127:24729:Lenovo_Lenovo_Traditional_USB_Keyboard" = {
-        xkb_layout = "lt,us";
-        xkb_numlock = "enabled";
+      "Hewlett Packard HP E242 CNC614066M" = { pos = "0 0"; };
+      "Hewlett Packard HP E242 CNC6430827" = { pos = "1920 0"; };
+      "Chimei Innolux Corporation 0x15E7 0x00000000" = {
+        pos = "3840 0";
+        scale = "1.25";
       };
     };
   };

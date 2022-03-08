@@ -64,9 +64,11 @@ in {
         };
         "clock" = { format = "{:%Y-%m-%d %H:%M}"; };
         "pulseaudio" = { scroll-step = "5.0"; };
+        temperature.thermal-zone = 1;
       };
     }];
   };
+  services.kanshi.enable = true;
   wayland.windowManager.sway = {
     enable = true;
     config = {
@@ -123,7 +125,6 @@ in {
     extraSessionCommands = ''
       export MOZ_ENABLE_WAYLAND=1
       export _JAVA_AWT_WM_NONREPARENTING=1
-      export BROWSER=firefox
     '';
     wrapperFeatures.gtk = true;
   };

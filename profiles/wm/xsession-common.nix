@@ -1,5 +1,6 @@
 { pkgs, config, lib, ... }: {
   imports = [ ./sx.nix ];
+  programs.autorandr.enable = true;
   services.unclutter = {
     enable = true;
     timeout = 10;
@@ -12,6 +13,7 @@
   };
   xsession.enable = lib.mkDefault true;
   xsession.initExtra = ''
+    autorandr --change
     xset s off -dpms
     dbus-update-activation-environment --systemd DISPLAY
   '';

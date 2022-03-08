@@ -59,9 +59,6 @@
     # enable = true;
     inactiveInterval = 60;
   };
-  xsession.initExtra = ''
-    autorandr --change
-  '';
   wayland.windowManager.sway = {
     config.input = {
       "1133:49948:Logitech_USB_Keyboard" = {
