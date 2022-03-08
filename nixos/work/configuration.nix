@@ -81,6 +81,7 @@ in {
     enable = true;
     defaultTarget = "work-single";
   };
+  services.throttled.enable = true;
   services.xserver.libinput.enable = true;
 
   virtualisation.docker = {
@@ -154,7 +155,6 @@ in {
     ports = [ 9222 22 ];
   };
   services.printing.enable = true;
-  services.thermald.enable = true;
   services.vnstat.enable = true;
 
   services.xrdp.enable = true;
