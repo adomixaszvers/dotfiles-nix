@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }@args:
+{ config, pkgs, lib, ... }@args:
 let inputs = if args ? inputs then args.inputs else import ../../inputs.nix;
 in {
   _module.args.inputs = inputs;
@@ -56,7 +56,34 @@ in {
     hostName = "adomas-jatuzis-nixos"; # Define your hostname.
     domain = "x.insoft.lt";
     dhcpcd.enable = false;
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      dispatcherScripts = [{
+        type = "basic";
+        source = pkgs.writeText "wifi-wired-exclusive" ''
+          export LC_ALL=C
+          PATH=${lib.makeBinPath [ pkgs.networkmanager ]}:$PATH
+
+          enable_disable_wifi ()
+          {
+              result=$(nmcli dev | grep "ethernet" | grep -w "connected")
+              if [ -n "$result" ]; then
+                  nmcli radio wifi off
+              else
+                  nmcli radio wifi on
+              fi
+          }
+
+          if [ "$2" = "up" ]; then
+              enable_disable_wifi
+          fi
+
+          if [ "$2" = "down" ]; then
+              enable_disable_wifi
+          fi
+        '';
+      }];
+    };
   };
 
   environment.systemPackages = with pkgs; [ wget vim virtmanager ];
