@@ -269,6 +269,10 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
         ((0, xF86XK_AudioMute), addName "Toggle mute volume" $ spawn "pamixer -t && volnoti-show $(pamixer --get-volume)"),
         ((0, xF86XK_AudioRaiseVolume), addName "Increase volume" $ spawn "pamixer -i 5 && volnoti-show $(pamixer --get-volume)")
       ]
+        ++ subtitle "brightness controls" :
+      [ ((0, xF86XK_MonBrightnessUp), addName "Increase brightness" $ spawn "brightnessctl set +5% && volnoti-show $(brightnessctl -m| cut -f4 -d,|tr -d %)"),
+        ((0, xF86XK_MonBrightnessDown), addName "Decrease brightness" $ spawn "brightnessctl set 5%- && volnoti-show $(brightnessctl -m| cut -f4 -d,|tr -d %)")
+      ]
         ++ subtitle "switching workspaces" :
       [ ((modm .|. mask, k), addName (name ++ i) $ windows $ f i)
         | (f, mask, name) <-

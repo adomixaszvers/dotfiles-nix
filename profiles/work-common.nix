@@ -9,6 +9,7 @@
   home.file."tomcat-native".source = pkgs.tomcat-native;
   home.packages = with pkgs; [
     asciinema
+    brightnessctl
     docker-compose
     dos2unix
     evince
