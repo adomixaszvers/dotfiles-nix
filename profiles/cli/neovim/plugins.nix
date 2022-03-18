@@ -6,6 +6,7 @@ in [
   commentary
   fugitive
   neoformat
+  nord-nvim
   {
     plugin = nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars);
     config = builtins.readFile ./nvim-treesitter.vim;
@@ -20,11 +21,11 @@ in [
   }
   rainbow
   repeat
+  solarized
   suda-vim
   surround
   vim-airline
   vim-airline-themes
-  vim-colorschemes
   vim-gitgutter
   vim-polyglot
   vim-sneak

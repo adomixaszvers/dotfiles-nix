@@ -36,6 +36,7 @@ if (has("termguicolors"))
 endif
 
 if $TERM != "linux"
+    let g:nord_italic = v:false
     colorscheme nord
     let g:airline_powerline_fonts = 1
 else
