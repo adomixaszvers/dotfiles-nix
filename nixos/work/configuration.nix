@@ -36,7 +36,9 @@ in {
   # Use the systemd-boot EFI boot loader.
   boot.cleanTmpDir = true;
   # boot.kernelParams = [ "consoleblank=60" ];
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  # 5.16 does not work because mediatek wifi drivers are buggy and cause kernel panics
+  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_5_15;
   boot.loader.systemd-boot = {
     enable = true;
     consoleMode = "auto";
