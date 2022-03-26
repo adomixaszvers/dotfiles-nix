@@ -1,8 +1,8 @@
-{ unstable, ... }: {
+{ pkgs, ... }: {
   programs.neovim = {
     enable = true;
-    package = unstable.neovim-unwrapped;
-    plugins = import ./plugins.nix unstable;
+    package = pkgs.neovim-unwrapped;
+    plugins = import ./plugins.nix pkgs;
     extraConfig = builtins.readFile ./init.vim;
   };
 }

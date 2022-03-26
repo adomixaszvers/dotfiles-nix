@@ -70,14 +70,14 @@
     in flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
       let
         pkgs = import nixpkgs { inherit system config; };
-        unstable = import inputs.nixos-unstable { inherit system config; };
+        # unstable = import inputs.nixos-unstable { inherit system config; };
       in {
-        apps.my-neovim = let
-          myNeovim = unstable.callPackage ./profiles/cli/neovim/package.nix { };
-        in {
-          type = "app";
-          program = "${myNeovim}/bin/nvim";
-        };
+        apps.my-neovim =
+          let myNeovim = pkgs.callPackage ./profiles/cli/neovim/package.nix { };
+          in {
+            type = "app";
+            program = "${myNeovim}/bin/nvim";
+          };
         packages = import ./pkgs { inherit pkgs system inputs; };
         checks = {
           pre-commit-check = pre-commit-hooks.lib."${system}".run {
