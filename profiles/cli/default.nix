@@ -1,4 +1,4 @@
-{ pkgs, inputs, myPkgs, ... }:
+{ pkgs, inputs, myPkgs, system, lib, ... }:
 
 {
   imports = [
@@ -40,12 +40,11 @@
     unzip
     wol
     xdg-user-dirs
-  ]) ++ (with myPkgs; [ hm-repl hm-switch ]) ++ [
-    (import inputs.comma {
+  ]) ++ (with myPkgs; [ hm-repl hm-switch ])
+    ++ lib.optional (system == "x86_64-linux") (import inputs.comma {
       inherit pkgs;
       nix = pkgs.nix_2_4;
-    })
-  ];
+    });
   home.sessionVariables = {
     EDITOR = "nvim";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
