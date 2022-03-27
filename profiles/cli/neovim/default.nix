@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ unstable, ... }:
+let pkgs = unstable;
+in {
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-unwrapped;
