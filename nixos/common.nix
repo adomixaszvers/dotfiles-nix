@@ -74,7 +74,7 @@
     exportConfiguration = true;
     layout = "lt,us";
     desktopManager.xterm.enable = true;
-    displayManager.sx.enable = lib.mkDefault true;
+    displayManager.startx.enable = lib.mkDefault true;
   };
 
   time.timeZone = "Europe/Vilnius";

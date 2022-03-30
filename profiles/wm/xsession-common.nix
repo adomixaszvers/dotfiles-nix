@@ -1,5 +1,5 @@
 { pkgs, config, lib, ... }: {
-  imports = [ ./sx.nix ];
+  imports = [ ./xinitrc.nix ];
   programs.autorandr.enable = true;
   services.unclutter = {
     enable = true;
