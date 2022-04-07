@@ -105,8 +105,9 @@
       home = "/var/lib/pihole";
       createHome = true;
       description = "Pihole daemon user";
+      uid = 995;
     };
-    groups.pihole = { };
+    groups.pihole = { gid = 992; };
   };
 
   systemd.services = let name = "proxy";
@@ -135,10 +136,16 @@
   virtualisation.oci-containers.containers.pihole = {
     autoStart = true;
     image = "pihole/pihole:latest";
+    # user = "pihole:pihole";
     environment = {
       TZ = "Europe/Vilnius";
       "PIHOLE_DNS_" = "192.168.20.1#5335";
       ServerIP = "192.168.1.207";
+      DNSMASQ_USER = "pihole";
+      PIHOLE_UID = "995";
+      PIHOLE_GID = "992";
+      WEB_UID = "995";
+      WEB_GID = "992";
     };
     environmentFiles = [ config.sops.secrets."pihole/environment".path ];
     ports = [ "53:53" "53:53/udp" ];
