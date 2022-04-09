@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }: {
+{ pkgs, unstable, myPkgs, ... }: {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = unstable.oraclejdk8;
@@ -29,6 +29,7 @@
     libreoffice-still
     liquibase
     maven
+    myPkgs.hunspell-lt
     mercurial
     numlockx
     oracle-instantclient

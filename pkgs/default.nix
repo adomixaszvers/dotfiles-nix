@@ -9,6 +9,7 @@
   };
   custom-xrdp = pkgs.callPackage ./custom-xrdp { };
   dbvisualizer = pkgs.callPackage ./dbvisualizer.nix { };
+  hunspell-lt = pkgs.callPackage ./hunspell-lt { };
   hm-option = pkgs.callPackage ./hm-option.nix { };
   hm-repl = pkgs.callPackage ./hm-repl.nix { };
   hm-switch = pkgs.callPackage ./hm-switch.nix {
