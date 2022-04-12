@@ -6,6 +6,5 @@
     };
     nixpkgs.flake = nixpkgs;
     nixos-unstable.flake = nixos-unstable;
-    nixpkgs-hs.flake = nixpkgs-hs;
   };
 }

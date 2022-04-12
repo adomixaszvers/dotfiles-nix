@@ -1,8 +1,7 @@
-{ pkgs, system, inputs, config, ... }:
+{ config, pkgs, unstable, ... }:
 let
   extraPackages = import ./extraPackages.nix;
-  inherit (builtins.getAttr system inputs.nixpkgs-hs.legacyPackages)
-    haskellPackages;
+  inherit (unstable) haskellPackages;
 in {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ];
   home.packages = with pkgs; [ pamixer xdotool gnome.zenity ];
