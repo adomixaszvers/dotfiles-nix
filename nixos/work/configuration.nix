@@ -110,7 +110,10 @@ in {
     enable = true;
     defaultTarget = "work-single";
   };
-  services.throttled.enable = true;
+  services.throttled = {
+    enable = true;
+    extraConfig = builtins.readFile ./throttled.conf;
+  };
   services.xserver.libinput.enable = true;
 
   virtualisation.docker = {
