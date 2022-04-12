@@ -23,6 +23,8 @@ set noshowmode
 
 let g:rainbow_active = 1
 nnoremap <leader><leader> <cmd>Telescope find_files<cr>
+nnoremap <leader>/ <cmd>Telescope live_grep<cr>
+nnoremap <leader>' <cmd>Telescope resume<cr>
 nnoremap <leader>n <Plug>(ale_next_wrap)
 nnoremap <leader>p <Plug>(ale_previous_wrap)
 nnoremap <leader>l :Neoformat<CR>
