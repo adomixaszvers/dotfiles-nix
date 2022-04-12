@@ -267,32 +267,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1649117019,
-        "narHash": "sha256-ID7nw/8MDgqj/cbJ0wy6AtQ9wp58hSnE6+weZwuHnso=",
+        "lastModified": 1649675302,
+        "narHash": "sha256-joXkXjdOn73GF/1Y3mhir44aG5doekJyJwiG3DblIlo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ccb90fb9e11459aeaf83cc28d5f8910816d90dd0",
+        "rev": "a31e3437d3b5d8f0b4f3bbc3b097b15b10250dab",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "ref": "nixos-21.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-hs": {
-      "locked": {
-        "lastModified": 1649376761,
-        "narHash": "sha256-Z0WIbhWa/BnKh3G3Z5PF/eE0cPvG5nHdKHH4WIm2wAQ=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "7954a245e70238e08078baef7ff6459a67e229c3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "haskell-updates",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -351,7 +335,6 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-hs": "nixpkgs-hs",
         "pre-commit-hooks": "pre-commit-hooks",
         "sops-nix": "sops-nix"
       }

@@ -19,7 +19,7 @@ in {
     ./hardware-configuration.nix
     ./iperf3.nix
     ./ltXkb.nix
-    ./prebuild-configs.nix
+    # ./prebuild-configs.nix
     ./samba.nix
     ./turbovnc.nix
     # ./unbound.nix
@@ -36,9 +36,7 @@ in {
   # Use the systemd-boot EFI boot loader.
   boot.cleanTmpDir = true;
   # boot.kernelParams = [ "consoleblank=60" ];
-  # 5.16 does not work because mediatek wifi drivers are buggy and cause kernel panics
-  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  boot.kernelPackages = pkgs.linuxPackages_5_15;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.loader.systemd-boot = {
     enable = true;
     consoleMode = "auto";
