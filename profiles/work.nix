@@ -10,6 +10,7 @@
       "DP-1" = [ "1" "2" "3" "4" "5" ];
       "DP-2" = [ "6" "7" "8" "9" "10" ];
     };
+    startupPrograms = [ "rambox" ];
   };
   wayland.windowManager.sway.config = {
     startup = [{

@@ -215,7 +215,6 @@
     extraConfig = ''
       bspc desktop 3 -l monocle
     '';
-    startupPrograms = [ "rambox" ];
   };
   wayland.windowManager.sway.config = {
     input = {
