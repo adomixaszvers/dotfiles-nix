@@ -91,7 +91,7 @@ main = do
   _ <- XD.requestAccess dbus
   xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook (restartPolybar >> spawnFeh) . dynamicEasySBs (myDynamicStatusBar dbus) $ myConfig
   where
-    dynamicHook = dynamicPropertyChange "WM_NAME" (className =? "Spotify" --> doShift ws0)
+    dynamicHook = dynamicPropertyChange "WM_CLASS" (className =? "Spotify" --> doShift ws0)
     myConfig =
       addDescrKeys'
         ((myModMask, xK_F1), showKeybindings)
@@ -158,7 +158,6 @@ myManageHook :: ManageHook
 myManageHook =
   composeAll
     [ spawnHook,
-      lowerDock,
       className =? "lxqt-openssh-askpass" --> doCenterFloat,
       namedScratchpadManageHook myScratchpads,
       manageHook def
@@ -167,6 +166,7 @@ myManageHook =
     spawnHook =
       composeOne
         [ isDialog -?> doFloat,
+          checkDock -?> lowerDock,
           className =? "Google-chrome" <||> className =? "Firefox" -?> doShift ws1,
           className =? "jetbrains-idea" -?> doShift ws3,
           className =? "Rambox" <||> className =? "discord" -?> doShift ws4,
@@ -368,7 +368,7 @@ myScratchpads =
 -- | Restack dock under lowest managed window.
 lowerDock :: ManageHook
 lowerDock =
-  checkDock --> do
+  do
     w <- ask
     mlw <- liftX findLowest
     case mlw of
