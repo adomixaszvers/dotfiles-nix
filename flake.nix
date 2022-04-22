@@ -23,7 +23,11 @@
     };
     comma = {
       url = "github:nix-community/comma";
-      flake = false;
+      inputs = {
+        nixpkgs.follows = "nixos-unstable";
+        utils.follows = "flake-utils";
+        flake-compat.follows = "flake-compat";
+      };
     };
     flake-compat = {
       url = "github:edolstra/flake-compat";
