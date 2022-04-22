@@ -141,7 +141,10 @@ in {
   # };
   services.gvfs.enable = true;
   services.flatpak = { enable = true; };
-  xdg.portal = { enable = true; };
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+  };
   services.fstrim = {
     enable = false;
     interval = "monthly";
