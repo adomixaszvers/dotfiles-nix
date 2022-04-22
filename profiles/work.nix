@@ -12,6 +12,12 @@
     };
     startupPrograms = [ "rambox" ];
   };
+  xdg.mimeApps = {
+    defaultApplications = {
+      "x-scheme-handler/https" = [ "google-chrome.desktop" "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "google-chrome.desktop" "firefox.desktop" ];
+    };
+  };
   wayland.windowManager.sway.config = {
     startup = [{
       command =

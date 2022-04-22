@@ -216,6 +216,7 @@
       bspc desktop 3 -l monocle
     '';
   };
+  xdg.mimeApps = { enable = true; };
   wayland.windowManager.sway.config = {
     input = {
       "6127:24729:Lenovo_Lenovo_Traditional_USB_Keyboard" = {

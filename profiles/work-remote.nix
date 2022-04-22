@@ -10,4 +10,10 @@
     "bar/top-extra".dpi = 120;
     "bar/top".dpi = 120;
   };
+  xdg.mimeApps = {
+    defaultApplications = {
+      "x-scheme-handler/https" = [ "firefox.desktop" "google-chrome.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" "google-chrome.desktop" ];
+    };
+  };
 }
