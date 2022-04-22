@@ -36,6 +36,8 @@ in {
   # Use the systemd-boot EFI boot loader.
   boot.cleanTmpDir = true;
   # boot.kernelParams = [ "consoleblank=60" ];
+  boot.extraModprobeConfig =
+    "options thinkpad_acpi experimental=1 fan_control=1";
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.loader.systemd-boot = {
     enable = true;
