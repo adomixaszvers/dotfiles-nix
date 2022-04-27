@@ -6,5 +6,10 @@
     };
     nixpkgs.flake = nixpkgs;
     nixos-unstable.flake = nixos-unstable;
+    master.to = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+    };
   };
 }
