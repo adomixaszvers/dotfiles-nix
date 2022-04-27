@@ -1,14 +1,14 @@
 { lib, ... }:
-
-{
+let dpi = 120;
+in {
   imports = [ ./work-common.nix ];
   colors = import ./gui/colors/dracula.nix;
   programs.rofi.theme = lib.mkForce "Arc";
-  programs.rofi.extraConfig.dpi = 120;
-  xresources.properties."Xft.dpi" = 120;
+  programs.rofi.extraConfig = { inherit dpi; };
+  xresources.properties."Xft.dpi" = dpi;
   services.polybar.config = {
-    "bar/top-extra".dpi = 120;
-    "bar/top".dpi = 120;
+    "bar/top-extra" = { inherit dpi; };
+    "bar/top" = { inherit dpi; };
   };
   xdg.mimeApps = {
     defaultApplications = {
