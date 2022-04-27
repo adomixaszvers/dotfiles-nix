@@ -79,7 +79,7 @@ keys = [
 ]
 
 groups = [
-    Group("1", matches=[Match(wm_class=["Firefox", "Google-chrome"])]),
+    Group("1", matches=[Match(wm_class=["firefox", "Google-chrome"])]),
     Group("2"),
     Group("3", matches=[Match(wm_class=["jetbrains-idea"]), ]),
     Group("4", matches=[Match(wm_class=["rambox"])]),

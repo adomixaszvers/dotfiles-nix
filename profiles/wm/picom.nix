@@ -7,7 +7,7 @@
       "_GTK_FRAME_EXTENTS@:c"
       "class_g = 'Cairo-clock'"
       "class_g = 'Conky'"
-      "class_g = 'Firefox' && argb"
+      "class_g = 'firefox' && argb"
       "class_g ?= 'Notify-osd'"
       "class_g ?= 'plasmashell'"
       "class_g ?= 'slop'"

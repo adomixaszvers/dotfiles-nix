@@ -99,7 +99,7 @@ in {
     inherit modifier;
     assigns = {
       "${workspace1}" =
-        [ { class = "^Google-chrome$"; } { class = "^Firefox$"; } ];
+        [ { class = "^Google-chrome$"; } { class = "^firefox$"; } ];
       "${workspace3}" = [{ class = "^(Atom|jetbrains-idea)$"; }];
       "${workspace4}" = [ { class = "^Skype$"; } { class = "^rambox$"; } ];
       "${workspace5}" = [ { class = "^Steam$"; } { class = "^SmartGit"; } ];

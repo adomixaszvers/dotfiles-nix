@@ -840,7 +840,7 @@ awful.rules.rules = {
         properties = {titlebars_enabled = false}
     },
     {
-        rule_any = {class = {"Google-chrome", "Firefox"}},
+        rule_any = {class = {"Google-chrome", "firefox"}},
         properties = {tag = tags[1], maximized = false}
     },
     {

@@ -103,7 +103,7 @@
     '';
     rules = {
       Google-chrome = { desktop = "1"; };
-      Firefox = { desktop = "1"; };
+      firefox = { desktop = "1"; };
       jetbrains-idea = { desktop = "3"; };
       Rambox = { desktop = "4"; };
       discord = { desktop = "4"; };
