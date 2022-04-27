@@ -27,7 +27,7 @@ nnoremap <leader>/ <cmd>Telescope live_grep<cr>
 nnoremap <leader>' <cmd>Telescope resume<cr>
 nnoremap <leader>n <Plug>(ale_next_wrap)
 nnoremap <leader>p <Plug>(ale_previous_wrap)
-nnoremap <leader>l :Neoformat<CR>
+nnoremap <leader>f :Neoformat<CR>
 noremap - -
 set updatetime=100
 
