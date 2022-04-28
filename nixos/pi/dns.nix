@@ -2,7 +2,7 @@
   networking.domain = "lan";
   networking.nameservers = [ "127.0.0.1" "9.9.9.9" ];
   networking.firewall = {
-    allowedTCPPorts = [ 53 5080 5335 22000 ];
+    allowedTCPPorts = [ 53 5080 5335 ];
     allowedUDPPorts = [ 53 5335 ];
   };
   networking.resolvconf.useLocalResolver = false;
