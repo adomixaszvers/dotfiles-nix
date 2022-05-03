@@ -217,6 +217,7 @@
       bspc desktop 3 -l monocle
     '';
   };
+  xdg.configFile."mimeapps.list".force = true;
   xdg.mimeApps = { enable = true; };
   wayland.windowManager.sway.config = {
     input = {
