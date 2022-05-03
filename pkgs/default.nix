@@ -19,6 +19,9 @@
   inherit (import ./lua-fmt { inherit pkgs; }) lua-fmt;
   maimpick = pkgs.callPackage ./maimpick.nix { };
   otpauth = pkgs.callPackage ./otpauth { };
+  rivercarro = let
+    inherit (builtins.getAttr system inputs.nixos-unstable.legacyPackages) zig;
+  in pkgs.callPackage ./rivercarro { inherit zig; };
   rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
   sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
   sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
