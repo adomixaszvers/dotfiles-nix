@@ -186,10 +186,11 @@
     undocked.outputs = [{
       criteria = "Chimei Innolux Corporation 0x15E7 0x00000000";
       position = "0,0";
+      scale = 1.25;
     }];
   };
 
-  home.sessionVariables = { BROWSER = "google-chrome-stable"; };
+  home.sessionVariables = { BROWSER = "xdg-open"; };
   programs.git.includes = [
     {
       condition = "gitdir:~/projektai/**";
