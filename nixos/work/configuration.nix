@@ -26,6 +26,7 @@ in {
     ./vnc.nix
     ./wireguard-client.nix
     ./fprintd.nix
+    ./throttled.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad
     inputs.nixos-hardware.nixosModules.common-pc-laptop-acpi_call
@@ -109,10 +110,6 @@ in {
   services.autorandr = {
     enable = true;
     defaultTarget = "work-single";
-  };
-  services.throttled = {
-    enable = true;
-    extraConfig = builtins.readFile ./throttled.conf;
   };
   services.xserver.libinput.enable = true;
 
