@@ -1,13 +1,8 @@
-{ pkgs, ... }:
-let nixPackage = pkgs.nix_2_4;
-in {
+{ pkgs, ... }: {
   nix = {
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    package = nixPackage;
+    package = pkgs.nixFlakes;
   };
-  # programs.zsh.interactiveShellInit = ''
-  #   source ${nixPackage.src}/misc/zsh/completion.zsh
-  # '';
 }
