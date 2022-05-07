@@ -32,7 +32,7 @@
     ntfs3g
     pciutils
     psmisc
-    shared_mime_info
+    shared-mime-info
     usbutils
     wget
   ];
@@ -65,7 +65,7 @@
 
   services.acpid.enable = true;
   services.colord.enable = true;
-  services.dbus.packages = with pkgs; [ gnome.dconf ];
+  services.dbus.packages = with pkgs; [ dconf ];
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
 
