@@ -26,7 +26,7 @@ in {
     ./vnc.nix
     ./wireguard-client.nix
     ./fprintd.nix
-    ./throttled.nix
+    ./throttled
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad
     inputs.nixos-hardware.nixosModules.common-pc-laptop-acpi_call
