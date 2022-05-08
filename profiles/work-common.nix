@@ -22,7 +22,7 @@
     gnumake
     google-chrome
     html-tidy
-    jetbrains.idea-ultimate
+    myPkgs.idea-ultimate
     jmeter
     jq
     keepassxc

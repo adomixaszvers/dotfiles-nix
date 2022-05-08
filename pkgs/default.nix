@@ -44,4 +44,13 @@
         zlib
       ];
   };
+  idea-ultimate = pkgs.jetbrains.idea-ultimate.overrideAttrs (_old: rec {
+    name = "idea-ultimate-${version}";
+    version = "2022.1";
+    src = pkgs.fetchurl {
+      url =
+        "https://download.jetbrains.com/idea/ideaIU-${version}-no-jbr.tar.gz";
+      sha256 = "1dkp9hl07wkn81apyz5h5yrs4ymknx7mi5hrhzv768n8lzabp1pp";
+    };
+  });
 })
