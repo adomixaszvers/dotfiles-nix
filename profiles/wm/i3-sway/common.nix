@@ -104,7 +104,6 @@ in {
       "${workspace4}" = [ { class = "^Skype$"; } { class = "^rambox$"; } ];
       "${workspace5}" = [ { class = "^Steam$"; } { class = "^SmartGit"; } ];
       "${workspace6}" = [{ class = "^libreoffice"; }];
-      "${workspace7}" = [{ class = "^Emacs"; }];
       "${workspace10}" = [{ class = "^Spotify"; }];
     };
     keybindings = {

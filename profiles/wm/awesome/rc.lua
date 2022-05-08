@@ -67,7 +67,7 @@ beautiful.gap_single_client = false
 beautiful.useless_gap = dpi(5)
 
 -- This is used later as the default terminal and editor to run.
-local terminal = "alacritty"
+local terminal = "kitty"
 local editor = os.getenv("EDITOR") or "nano"
 local editor_cmd = terminal .. " -e " .. editor
 

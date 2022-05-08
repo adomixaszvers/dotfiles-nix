@@ -1,4 +1,5 @@
 { pkgs, myPkgs, ... }: {
+  imports = [ ../waybar ];
   home.packages = let
     launch-river = pkgs.writers.writeDashBin "launch-river" ''
       export MOZ_ENABLE_WAYLAND=1
@@ -8,13 +9,11 @@
     '';
   in [ launch-river pkgs.kanshi pkgs.river pkgs.wofi myPkgs.rivercarro ];
   programs.waybar = {
-    enable = true;
     settings = [{
       layer = "top";
       position = "top";
       height = 16;
       modules-left = [ "river/tags" ];
-      # modules-center = [ "sway/window" ];
       modules-right = [ "pulseaudio" "cpu" "memory" "temperature" "clock" ];
       modules = {
         "river/tags" = { "num-tags" = 9; };
@@ -23,7 +22,6 @@
         temperature.thermal-zone = 1;
       };
     }];
-    style = builtins.readFile ./style.css;
   };
   services.kanshi.enable = true;
   xdg.configFile."river/init" = {

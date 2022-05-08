@@ -43,7 +43,7 @@ let
     }
       '';
 in {
-  imports = [ ./i3status-rust.nix ];
+  imports = [ ../waybar ];
   home.packages =
     (with pkgs; [ wofi swaylock swayidle wl-clipboard font-awesome_5 ])
     ++ [ myPkgs.sway-greedy-focus ];
