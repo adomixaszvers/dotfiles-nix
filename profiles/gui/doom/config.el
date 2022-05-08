@@ -17,7 +17,7 @@
 ;; (setq lsp-haskell-process-path-hie "hie")
 (after! haskell
   (setq! lsp-haskell-formatting-provider "ormolu")
-  (setq! lsp-haskell-importlens-on nil))
+  (setq! lsp-haskell-plugin-import-lens-code-lens-on nil))
 
 (setq +rss-elfeed-files `(,(expand-file-name "elfeed.org" doom-private-dir)))
 (add-hook 'dired-mode-hook
