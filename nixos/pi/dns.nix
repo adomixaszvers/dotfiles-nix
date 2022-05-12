@@ -2,16 +2,15 @@
   networking.domain = "lan";
   networking.nameservers = [ "127.0.0.1" "9.9.9.9" ];
   networking.firewall = {
-    allowedTCPPorts = [ 53 5080 5335 ];
-    allowedUDPPorts = [ 53 5335 ];
+    allowedTCPPorts = [ 53 5080 ];
+    allowedUDPPorts = [ 53 ];
   };
-  networking.resolvconf.useLocalResolver = false;
   services.unbound = {
     enable = true;
     settings = {
       server = {
         # verbosity = 2;
-        interface = [ "0.0.0.0@5335" ];
+        interface = [ "127.0.0.1" "192.168.20.1" ];
         access-control = "192.168.20.0/24 allow";
         do-ip4 = "yes";
         do-udp = "yes";
@@ -139,7 +138,7 @@
     # user = "pihole:pihole";
     environment = {
       TZ = "Europe/Vilnius";
-      "PIHOLE_DNS_" = "192.168.20.1#5335";
+      "PIHOLE_DNS_" = "192.168.20.1";
       ServerIP = "192.168.1.207";
       DNSMASQ_USER = "pihole";
       PIHOLE_UID = "995";
@@ -148,7 +147,13 @@
       WEB_GID = "992";
     };
     environmentFiles = [ config.sops.secrets."pihole/environment".path ];
-    ports = [ "53:53" "53:53/udp" ];
+    ports = [
+      "10.6.0.1:53:53"
+      "10.6.0.1:53:53/udp"
+      "192.168.1.207:53:53"
+      "192.168.1.207:53:53/udp"
+      "192.168.1.207:5080:80"
+    ];
     extraOptions = [ "--network=proxy" "--ip=192.168.20.2" ];
     volumes = [
       "/var/lib/pihole/etc-pihole/:/etc/pihole/"
