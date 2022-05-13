@@ -15,6 +15,12 @@ jobs:
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - uses: cachix/cachix-action@v10
+        with:
+          name: adomixaszvers
+          # If you chose API tokens for write access OR if you have a private cache
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          extraPullNames: 'nix-community'
       - name: Check evaluation
         run: 'find -name "*.nix" -exec nix-instantiate --parse 1>/dev/null {} +'
       - name: Check the flake
