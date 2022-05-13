@@ -17,6 +17,12 @@ jobs:
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - uses: cachix/cachix-action@v10
+        with:
+          name: adomixaszvers
+          # If you chose signing key for write access
+          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+          extraPullNames: 'nix-community'
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v9
       - name: Check evaluation
