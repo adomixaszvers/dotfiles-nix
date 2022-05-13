@@ -21,7 +21,7 @@ in {
     ../zerotier.nix
     ./bumblebee-nvidia.nix
     ./hardware-configuration.nix
-    ./remote-build.nix
+    # ./remote-build.nix
     ./static-ip.nix
     ./steam.nix
     ./wakeonlan.nix
@@ -75,7 +75,10 @@ in {
   programs.ssh.startAgent = false;
   programs.sway.enable = true;
   services.flatpak.enable = true;
-  xdg.portal.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+  };
   services.autorandr = {
     enable = true;
     defaultTarget = "home-prime";
