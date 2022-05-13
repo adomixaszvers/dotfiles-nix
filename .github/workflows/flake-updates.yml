@@ -34,10 +34,10 @@ jobs:
           nix eval .\#homeConfigurations --apply 'builtins.mapAttrs (_n: v: v.activationPackage.drvPath)'
       - name: Build NixOS configs
         run: |-
-          nix build --no-link .\#nixosConfigurations.adomas-jatuzis-nixos.config.system.build.toplevel
-          nix build --no-link .\#nixosConfigurations.adomo-nixos.config.system.build.toplevel
+          nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A nixosConfigurations.adomas-jatuzis-nixos.config.system.build.toplevel
+          nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A nixosConfigurations.adomo-nixos.config.system.build.toplevel
       - name: Build home-manager configs
         run: |-
-          nix build --no-link .\#homeConfigurations.home.activationPackage
-          nix build --no-link .\#homeConfigurations.thinkpad-home.activationPackage
-          nix build --no-link .\#homeConfigurations.thinkpad-work.activationPackage
+          nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A homeConfigurations.home.activationPackage
+          nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A homeConfigurations.thinkpad-home.activationPackage
+          nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A homeConfigurations.thinkpad-work.activationPackage
