@@ -19,3 +19,10 @@ jobs:
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v9
+      - name: Check evaluation
+        run: 'find -name "*.nix" -exec nix-instantiate --parse 1>/dev/null {} +'
+      - name: Check the flake
+        run: 'nix flake check'
+      - name: Check home-manager configurations
+        run: |-
+          nix eval .\#homeConfigurations --apply 'builtins.mapAttrs (_n: v: v.activationPackage.drvPath)'
