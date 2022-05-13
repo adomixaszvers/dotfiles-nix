@@ -36,8 +36,8 @@ jobs:
         run: |-
           nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A nixosConfigurations.adomas-jatuzis-nixos.config.system.build.toplevel
           nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A nixosConfigurations.adomo-nixos.config.system.build.toplevel
-      - name: Build home-manager configs
-        run: |-
-          nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A homeConfigurations.home.activationPackage
-          nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A homeConfigurations.thinkpad-home.activationPackage
-          nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A homeConfigurations.thinkpad-work.activationPackage
+      # - name: Build home-manager configs
+      #   run: |-
+      #     nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A homeConfigurations.home.activationPackage
+      #     nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A homeConfigurations.thinkpad-home.activationPackage
+      #     nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A homeConfigurations.thinkpad-work.activationPackage
