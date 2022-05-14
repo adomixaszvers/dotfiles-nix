@@ -1,25 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, myPkgs, ... }:
 
 {
   imports = [ ../picom.nix ../dunst.nix ];
-  home.packages = let
-    unwrapped = pkgs.qtile.unwrapped.overrideAttrs (oldAttrs: {
-      propagatedBuildInputs = oldAttrs.propagatedBuildInputs
-        ++ [ pkgs.python3Packages.xlib ];
-    });
-    myQtile = (pkgs.python3.withPackages (_: [ unwrapped ])).overrideAttrs (_: {
-      # otherwise will be exported as "env", this restores `nix search` behavior
-      name = "${unwrapped.pname}-${unwrapped.version}";
-      # export underlying qtile package
-      passthru = { inherit unwrapped; };
-    });
-
-  in [ myQtile ];
-  services.pasystray.enable = true;
+  home.packages = let qtile = import ./myQtile.nix { inherit pkgs; };
+  in [ qtile pkgs.wofi myPkgs.rofi-powermenu ];
+  # services.pasystray.enable = true;
+  services.kanshi.enable = true;
   xsession.windowManager.command = "qtile start";
+  home.sessionVariables = { XKB_DEFAULT_LAYOUT = "lt,us"; };
   xdg.configFile."qtile/config.py" = {
     source = ./config.py;
-    # it tries to run a shellscript with python
-    # onChange = "qtile cmd-obj -o cmd -f restart 2>/dev/null || true";
+    onChange = "qtile cmd-obj -o cmd -f reload_config 2>/dev/null || true";
   };
+  xdg.configFile."qtile/autostart.sh".source =
+    pkgs.writers.writeDash "autostart.sh" ''
+      if [ -n "$WAYLAND_DISPLAY ]; then
+        ${pkgs.kanshi}/bin/kanshi &
+      fi
+    '';
 }

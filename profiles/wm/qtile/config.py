@@ -24,11 +24,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile.config import (
-    Key, Screen, Group, Drag, Click, Match, DropDown, ScratchPad)
+import os
+from libqtile.config import Key, Screen, Group, Drag, Click, Match, DropDown, ScratchPad
 from libqtile.command import lazy
-from libqtile import layout, bar, widget
+from libqtile import layout, bar, widget, qtile
 from libqtile.log_utils import logger
+from libqtile.backend.wayland import InputConfig
+
 # this import requires python-xlib to be installed
 from Xlib import display as xdisplay
 
@@ -44,6 +46,8 @@ keys = [
     Key([mod], "l", lazy.layout.right()),
     Key([mod], "j", lazy.layout.down()),
     Key([mod], "k", lazy.layout.up()),
+    Key([mod], "c", lazy.group.next_window()),
+    Key([mod, "shift"], "c", lazy.group.prev_window()),
     Key([mod, "shift"], "h", lazy.layout.swap_left()),
     Key([mod, "shift"], "l", lazy.layout.swap_right()),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
@@ -67,35 +71,55 @@ keys = [
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod, "shift"], "q", lazy.window.kill()),
-    Key([mod, "control"], "r", lazy.restart()),
+    Key([mod], "t", lazy.window.toggle_floating()),
+    Key([mod, "control"], "r", lazy.reload_config()),
     Key([mod, "control"], "q", lazy.shutdown()),
-    Key([mod], "d", lazy.spawn("rofi -show combi -combi-modi window,drun")),
-    Key([mod, "shift"], "d", lazy.spawn("rofi -show run -sidebar-mode")),
     Key([mod], "F4", lazy.spawn("rofi-powermenu")),
-    Key([mod, "control"], "s",
-        lazy.group["scratchpad"].dropdown_toggle("term")),
-    Key([mod, "control"], "e",
-        lazy.group["scratchpad"].dropdown_toggle("emacs")),
+    Key([mod, "control"], "s", lazy.group["scratchpad"].dropdown_toggle("term")),
+    Key([mod, "control"], "e", lazy.group["scratchpad"].dropdown_toggle("emacs")),
 ]
 
 groups = [
     Group("1", matches=[Match(wm_class=["firefox", "Google-chrome"])]),
     Group("2"),
-    Group("3", matches=[Match(wm_class=["jetbrains-idea"]), ]),
+    Group(
+        "3",
+        matches=[
+            Match(wm_class=["jetbrains-idea"]),
+        ],
+    ),
     Group("4", matches=[Match(wm_class=["rambox"])]),
     Group("5", matches=[Match(wm_class=["SmartGit", "Steam"])]),
     Group("6", matches=[Match(wm_class=["libreoffice"])]),
     Group("7"),
     Group("8"),
     Group("9", matches=[Match(wm_class=["KeePassXC"])]),
-    Group("0", matches=[
-          Match(wm_class=["Google Play Music Desktop Player", "Spotify"])]),
-    ScratchPad("scratchpad", [
-        DropDown("emacs", "emacs --name scratchpad",
-                 x=0.0, y=0.0, height=1.0, width=1.0, opacity=1.0),
-        DropDown("term", "kitty --name scratchpad",
-                 x=0.0, y=0.0, height=1.0, width=1.0, opacity=1.0),
-    ]),
+    Group(
+        "0", matches=[Match(wm_class=["Google Play Music Desktop Player", "Spotify"])]
+    ),
+    ScratchPad(
+        "scratchpad",
+        [
+            DropDown(
+                "emacs",
+                "emacs --name scratchpad",
+                x=0.0,
+                y=0.0,
+                height=1.0,
+                width=1.0,
+                opacity=1.0,
+            ),
+            DropDown(
+                "term",
+                "kitty --name scratchpad",
+                x=0.0,
+                y=0.0,
+                height=1.0,
+                width=1.0,
+                opacity=1.0,
+            ),
+        ],
+    ),
 ]
 
 lt_keys = {
@@ -121,8 +145,7 @@ for group_name in "1234567890":
             # mod1 + shift + letter of group
             # = switch to & move focused window to group
             Key([mod, "shift"], group_name, lazy.window.togroup(group_name)),
-            Key([mod, "shift"], lt_key,
-                lazy.window.togroup(group_name)),
+            Key([mod, "shift"], lt_key, lazy.window.togroup(group_name)),
         ]
     )
 
@@ -139,7 +162,11 @@ layouts = [
     layout.Max(),
 ]
 
-widget_defaults = dict(font="sans", fontsize=12, padding=3,)
+widget_defaults = dict(
+    font="sans",
+    fontsize=12,
+    padding=3,
+)
 extension_defaults = widget_defaults.copy()
 
 
@@ -151,8 +178,7 @@ def get_num_monitors():
         resources = screen.root.xrandr_get_screen_resources()
 
         for output in resources.outputs:
-            monitor = display.xrandr_get_output_info(
-                output, resources.config_timestamp)
+            monitor = display.xrandr_get_output_info(output, resources.config_timestamp)
             preferred = False
             if hasattr(monitor, "preferred"):
                 preferred = monitor.preferred
@@ -168,7 +194,25 @@ def get_num_monitors():
         return num_monitors
 
 
-num_monitors = get_num_monitors()
+if qtile.core.name == "x11":
+    num_monitors = get_num_monitors()
+    keys.extend(
+        [
+            Key([mod], "d", lazy.spawn("rofi -show combi -combi-modi window,drun")),
+            Key([mod, "shift"], "d", lazy.spawn("rofi -show run -sidebar-mode")),
+        ]
+    )
+elif qtile.core.name == "wayland":
+    num_monitors = 1
+    keys.extend(
+        [
+            Key([mod], "d", lazy.spawn("wofi --show drun")),
+            Key([mod, "shift"], "d", lazy.spawn("wofi --show run")),
+        ]
+    )
+    os.environ["MOZ_ENABLE_WAYLAND"] = "1"
+    os.environ["_JAVA_AWT_WM_NONREPARENTING"] = "1"
+    qtile.core.cmd_set_keymap(layout="lt")
 
 
 screens = [
@@ -179,9 +223,44 @@ screens = [
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.CurrentLayoutIcon(),
-                widget.KeyboardLayout(configured_keyboards=['lt', 'us'], option='grp:caps_toggle'),
+                widget.KeyboardLayout(
+                    configured_keyboards=["lt", "us"], option="grp:caps_toggle"
+                ),
                 widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
-                widget.Systray(),
+                widget.StatusNotifier(),
+                widget.PulseVolume(),
+            ],
+            24,
+        ),
+    ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(hide_unused=True),
+                widget.Prompt(),
+                widget.WindowName(),
+                widget.CurrentLayoutIcon(),
+                widget.KeyboardLayout(
+                    configured_keyboards=["lt", "us"], option="grp:caps_toggle"
+                ),
+                widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
+                widget.PulseVolume(),
+            ],
+            24,
+        ),
+    ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(hide_unused=True),
+                widget.Prompt(),
+                widget.WindowName(),
+                widget.CurrentLayoutIcon(),
+                widget.KeyboardLayout(
+                    configured_keyboards=["lt", "us"], option="grp:caps_toggle"
+                ),
+                widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
+                widget.PulseVolume(),
             ],
             24,
         ),
@@ -215,8 +294,7 @@ mouse = [
         start=lazy.window.get_position(),
     ),
     Drag(
-        [mod], "Button3", lazy.window.set_size_floating(),
-        start=lazy.window.get_size()
+        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
     ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
@@ -228,19 +306,23 @@ follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
-        float_rules=[
-                    # Run the utility of `xprop` to see the wm class and name of an X client.
-                    *layout.Floating.default_float_rules,
-                    Match(wm_class="confirmreset"),  # gitk
-                    Match(wm_class="makebranch"),  # gitk
-                    Match(wm_class="maketag"),  # gitk
-                    Match(wm_class="ssh-askpass"),  # ssh-askpass
-                    Match(title="branchdialog"),  # gitk
-                    Match(title="pinentry"),  # GPG key password entry
-                ]
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="makebranch"),  # gitk
+        Match(wm_class="maketag"),  # gitk
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
+    ]
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+
+wl_input_rules = {
+    "type:keyboard": InputConfig(xkb_layout="lt")
+}
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the

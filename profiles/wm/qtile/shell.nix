@@ -1,6 +1,7 @@
 { pkgs ?
   (builtins.getFlake "nixpkgs").legacyPackages."${builtins.currentSystem}" }:
-pkgs.mkShell {
+let qtile = import ./myQtile.nix { inherit pkgs; };
+in pkgs.mkShell {
   name = "qtile-shell";
   buildInputs = [
     (pkgs.python3.withPackages (ps:
@@ -8,7 +9,7 @@ pkgs.mkShell {
         xlib
         python-lsp-server
         python-lsp-black
-        pkgs.qtile.unwrapped
+        qtile.unwrapped
       ]))
   ];
 }
