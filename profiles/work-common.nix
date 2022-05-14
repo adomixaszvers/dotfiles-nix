@@ -1,5 +1,5 @@
 { pkgs, unstable, myPkgs, ... }: {
-  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
+  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ./wm/xrdp.nix ];
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = unstable.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
