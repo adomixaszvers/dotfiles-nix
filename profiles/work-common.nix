@@ -7,6 +7,9 @@
   home.file."nodejs/12".source = pkgs.nodejs-12_x;
   home.file."maven".source = pkgs.maven;
   home.file."tomcat-native".source = pkgs.tomcat-native;
+  home.file."tomcats/tomcat9".source = pkgs.tomcat9;
+  home.file."pythons/python3".source =
+    pkgs.python3.withPackages (ps: with ps; [ cython setuptools ]);
   home.packages = with pkgs; [
     asciinema
     brightnessctl
@@ -20,7 +23,7 @@
     libsecret
     gnome.nautilus
     gnumake
-    google-chrome
+    (google-chrome.override { commandLineArgs = "--ozone-platform-hint=auto"; })
     html-tidy
     myPkgs.idea-ultimate
     jmeter
@@ -186,7 +189,7 @@
     undocked.outputs = [{
       criteria = "Chimei Innolux Corporation 0x15E7 0x00000000";
       position = "0,0";
-      scale = 1.25;
+      # scale = 1.25;
     }];
   };
 
