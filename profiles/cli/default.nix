@@ -4,7 +4,7 @@
   imports = [
     ./direnv
     ./git.nix
-    ./gpg-agent.nix
+    ./gnupg.nix
     ./flakeInputs.nix
     ./neovim
     ./kakoune

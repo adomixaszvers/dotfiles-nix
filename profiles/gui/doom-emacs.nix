@@ -3,7 +3,6 @@
     emacs-all-the-icons-fonts
     fd
     gcc
-    gnupg # for ghub .authinfo.gpg
     gnutls
     mdl
     multimarkdown
