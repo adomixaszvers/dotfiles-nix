@@ -8,8 +8,10 @@
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Restart = "always";
-      ExecStart = pkgs.writers.writeRust "set20watts" { strip = true; }
-        (builtins.readFile ./helper.rs);
+      ExecStart = let
+        set20watts = pkgs.writers.writeRustBin "set20watts" { strip = true; }
+          (builtins.readFile ./helper.rs);
+      in "${set20watts}/bin/set20watts";
     };
   };
 }
