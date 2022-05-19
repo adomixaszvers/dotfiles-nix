@@ -32,10 +32,10 @@ jobs:
       - name: Check home-manager configurations
         run: |-
           nix eval .\#homeConfigurations --apply 'builtins.mapAttrs (_n: v: v.activationPackage.drvPath)'
-      - name: Build NixOS configs
-        run: |-
-          nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A nixosConfigurations.adomas-jatuzis-nixos.config.system.build.toplevel
-          nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A nixosConfigurations.adomo-nixos.config.system.build.toplevel
+      # - name: Build NixOS configs
+      #   run: |-
+      #     nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A nixosConfigurations.adomas-jatuzis-nixos.config.system.build.toplevel
+      #     nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A nixosConfigurations.adomo-nixos.config.system.build.toplevel
       # - name: Build home-manager configs
       #   run: |-
       #     nix shell nixpkgs\#nix-build-uncached -c nix-build-uncached ./default.nix -A homeConfigurations.home.activationPackage
