@@ -3,6 +3,7 @@ keys:
   - &laptop age1x2y06lakj45fatncs8clsnzzkrsj3hl4vdut9qwsd0epuveusqyqk3h26u
   - &work age1davevp82crerwkczlus55cehpr48e3mmpmyx2g6gxg37a8257uasndwpvu
   - &pi age1n7jt7lxh9u26u25ggaltvt3xsjqg8rsaakjcm4lrykzn70l40s0qjp9vqu
+  - &t14 age18shz3w4pvxqvagegx50dq8ujcjaq6xa56ptqlqna255xxx4jp9lsu6qjna
 creation_rules:
   - path_regex: common-secrets/(zerotier|wireguard)\.yaml$
     key_groups:
@@ -12,12 +13,19 @@ creation_rules:
           - *laptop
           - *work
           - *pi
+          - *t14
   - path_regex: home/secrets/[^/]+\.yaml$
     key_groups:
       - pgp:
           - *adomas
         age:
           - *laptop
+  - path_regex: t14/secrets/[^/]+\.yaml$
+    key_groups:
+      - pgp:
+          - *adomas
+        age:
+          - *t14
   - path_regex: work/secrets/[^/]+\.yaml$
     key_groups:
       - pgp:
