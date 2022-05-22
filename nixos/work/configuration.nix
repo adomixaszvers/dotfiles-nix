@@ -200,7 +200,11 @@ in {
     "podman"
     "wireshark"
   ];
-  users.users.adomas.openssh.authorizedKeys.keyFiles =
-    [ ../keys/laptop.pub ../keys/juice_ed25519.pub ../keys/yubikey.pub ];
+  users.users.adomas.openssh.authorizedKeys.keyFiles = [
+    ../keys/laptop.pub
+    ../keys/juice_ed25519.pub
+    ../keys/yubikey.pub
+    ../t14.pub
+  ];
 
 }
