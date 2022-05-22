@@ -15,6 +15,7 @@ in {
     ../pipewire.nix
     ../syncthing.nix
     ../yubikey.nix
+    ../xdg-portal.nix
     ../zerotier.nix
     ./hardware-configuration.nix
     ./powermanagement.nix
@@ -42,20 +43,15 @@ in {
 
   networking.domain = "lan";
   networking.hostName = "adomo-t14"; # Define your hostname.
-  networking.hostId = "6665bed8";
+  networking.hostId = "81046d10";
 
   programs.adb.enable = true;
   programs.bash.enableCompletion = true;
   programs.mosh.enable = true;
   programs.ssh.startAgent = false;
-  programs.sway.enable = true;
   services.flatpak.enable = true;
   services.fprintd.enable = true;
   services.fwupd.enable = true;
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-  };
   services.autorandr = {
     enable = true;
     defaultTarget = "home-prime";
