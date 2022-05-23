@@ -115,6 +115,18 @@
             [ home-manager.packages."${system}".home-manager pkgs.sops ];
           inherit (self.checks."${system}".pre-commit-check) shellHook;
         };
+        devShells = {
+          xmonad = import ./profiles/wm/xmonad/shell.nix { pkgs = unstable; };
+          my-penrose =
+            import ./profiles/wm/penrose/my-penrose-config/shell.nix {
+              inherit pkgs;
+            };
+          qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
+          awesomewm = import ./profiles/wm/awesome/shell.nix {
+            inherit pkgs system;
+            mine = self;
+          };
+        };
       }) // {
         nixosConfigurations =
           import ./nixos/configurations.nix { inherit inputs; };
