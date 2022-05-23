@@ -110,12 +110,12 @@
             };
           };
         };
-        devShell = pkgs.mkShell {
-          buildInputs =
-            [ home-manager.packages."${system}".home-manager pkgs.sops ];
-          inherit (self.checks."${system}".pre-commit-check) shellHook;
-        };
         devShells = {
+          default = pkgs.mkShell {
+            buildInputs =
+              [ home-manager.packages."${system}".home-manager pkgs.sops ];
+            inherit (self.checks."${system}".pre-commit-check) shellHook;
+          };
           xmonad = import ./profiles/wm/xmonad/shell.nix { pkgs = unstable; };
           my-penrose =
             import ./profiles/wm/penrose/my-penrose-config/shell.nix {
