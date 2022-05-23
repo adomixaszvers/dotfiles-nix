@@ -221,7 +221,15 @@
     '';
   };
   xdg.configFile."mimeapps.list".force = true;
-  xdg.mimeApps = { enable = true; };
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/https" = [ "firefox.desktop" "google-chrome.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" "google-chrome.desktop" ];
+      "text/html" = [ "firefox.desktop" "google-chrome.desktop" ];
+      "inode/directory" = "org.gnome.Nautilus.desktop";
+    };
+  };
   wayland.windowManager.sway.config = {
     input = {
       "6127:24729:Lenovo_Lenovo_Traditional_USB_Keyboard" = {
