@@ -7,6 +7,7 @@
     ./gnupg.nix
     ./flakeInputs.nix
     ./neovim
+    ./nix-index.nix
     ./kakoune
     ./registry.nix
     ./zsh
