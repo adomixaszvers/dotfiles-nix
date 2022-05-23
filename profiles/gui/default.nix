@@ -1,14 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./alacritty
-    ./chemacs
-    ./doom-emacs.nix
-    ./fonts.nix
-    ./keepass
-    ./kitty.nix
-  ];
+  imports = [ ./alacritty ./chemacs ./doom-emacs.nix ./fonts.nix ./kitty.nix ];
   home.keyboard = {
     layout = "lt,us";
     options = [ "grp:caps_toggle" ];
