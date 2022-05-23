@@ -14,6 +14,7 @@ in {
         alignment = "center";
         allow_markup = true;
         bounce_freq = 0;
+        browser = "${pkgs.xdg-utils}/bin/xdg-open";
         dmenu = "${pkgs.rofi}/bin/rofi -dmenu -p dunst";
         follow = "keyboard";
         font = "NotoMono Nerd Font 8";
