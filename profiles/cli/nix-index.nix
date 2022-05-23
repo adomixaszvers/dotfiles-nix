@@ -1,12 +1,20 @@
-{ config, inputs, ... }: {
+{ pkgs, lib, system, ... }:
+{
   programs.nix-index.enable = true;
-  systemd.user.services.nix-index.Service = {
-    ExecStart =
-      "${config.programs.nix-index.package}/bin/nix-index -f ${inputs.nixpkgs}";
+} // (lib.mkIf (system == "x86_64-linux") {
+  systemd.user.services.update-nix-index.Service = {
+    ExecStart = (pkgs.writers.writeDash "update-nix-index-cache" ''
+      filename="index-x86_64-linux"
+      mkdir -p ~/.cache/nix-index
+      cd ~/.cache/nix-index
+      # -N will only download a new version if there is an update.
+      wget -q -N https://github.com/Mic92/nix-index-database/releases/latest/download/$filename
+      ln -f $filename files
+    '').outPath;
     ProtectHome = false;
-    StandardOutput = "null";
+    Environment = "PATH=${lib.makeBinPath (with pkgs; [ wget coreutils ])}";
   };
-  systemd.user.timers.nix-index = {
+  systemd.user.timers.update-nix-index = {
     Unit.description = "Index nix store";
     Timer = {
       OnCalendar = "weekly";
@@ -14,4 +22,4 @@
     };
     Install.WantedBy = [ "timers.target" ];
   };
-}
+})
