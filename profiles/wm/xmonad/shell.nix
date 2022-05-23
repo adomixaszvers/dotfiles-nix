@@ -5,6 +5,7 @@ let
   colors = import ./my-colors.nix;
 in with pkgs;
 mkShell {
+  name = "xmonad-shell";
   buildInputs = let
     myHaskellPackages = pkgs.haskellPackages.override {
       overrides = self: _super: { my-colors = self.callPackage colors { }; };

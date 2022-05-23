@@ -2,6 +2,7 @@
   (builtins.getFlake "nixpkgs").legacyPackages."${builtins.currentSystem}" }:
 with pkgs;
 mkShell {
+  name = "my-penrose-shell";
   buildInputs = [
     cargo
     cargo-edit
