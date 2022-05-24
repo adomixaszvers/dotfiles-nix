@@ -204,7 +204,7 @@ in {
     ../keys/laptop.pub
     ../keys/juice_ed25519.pub
     ../keys/yubikey.pub
-    ../t14.pub
+    ../keys/t14.pub
   ];
 
 }
