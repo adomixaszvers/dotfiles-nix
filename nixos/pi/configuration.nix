@@ -95,6 +95,7 @@ in {
     wol
   ];
   networking = { hostName = "raspberrypi-nixos"; };
+  services.fstrim.enable = true;
   services.openssh = {
     enable = true;
     passwordAuthentication = false;
