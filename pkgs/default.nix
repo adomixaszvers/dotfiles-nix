@@ -1,4 +1,4 @@
-{ pkgs, system, inputs }:
+{ pkgs, unstable, system, inputs }:
 
 {
   ani-cli = pkgs.callPackage ./ani-cli { ani-cli = inputs.ani-cli.outPath; };
@@ -18,9 +18,9 @@
   kaknix = pkgs.callPackage ./kaknix.nix { };
   inherit (import ./lua-fmt { inherit pkgs; }) lua-fmt;
   maimpick = pkgs.callPackage ./maimpick.nix { };
+  neovim = pkgs.callPackage ../profiles/cli/neovim/package.nix { };
   otpauth = pkgs.callPackage ./otpauth { };
-  rivercarro = let
-    inherit (builtins.getAttr system inputs.nixos-unstable.legacyPackages) zig;
+  rivercarro = let inherit (unstable) zig;
   in pkgs.callPackage ./rivercarro { inherit zig; };
   rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
   sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });

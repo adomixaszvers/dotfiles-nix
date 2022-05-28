@@ -75,13 +75,13 @@
         pkgs = import nixpkgs { inherit system config; };
         unstable = import inputs.nixos-unstable { inherit system config; };
       in {
-        apps.my-neovim = let
-          myNeovim = unstable.callPackage ./profiles/cli/neovim/package.nix { };
-        in {
-          type = "app";
-          program = "${myNeovim}/bin/nvim";
-        };
-        packages = import ./pkgs { inherit pkgs system inputs; };
+        apps.my-neovim =
+          let myNeovim = (builtins.getAttr system self.packages).neovim;
+          in {
+            type = "app";
+            program = "${myNeovim}/bin/nvim";
+          };
+        packages = import ./pkgs { inherit pkgs unstable system inputs; };
         checks = {
           pre-commit-check = pre-commit-hooks.lib."${system}".run {
             src = let
