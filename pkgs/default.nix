@@ -16,7 +16,6 @@
     inherit (inputs.home-manager.packages."${system}") home-manager;
   };
   kaknix = pkgs.callPackage ./kaknix.nix { };
-  inherit (import ./lua-fmt { inherit pkgs; }) lua-fmt;
   maimpick = pkgs.callPackage ./maimpick.nix { };
   neovim = pkgs.callPackage ../profiles/cli/neovim/package.nix { };
   otpauth = pkgs.callPackage ./otpauth { };

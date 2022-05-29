@@ -122,10 +122,8 @@
               inherit pkgs;
             };
           qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
-          awesomewm = import ./profiles/wm/awesome/shell.nix {
-            inherit pkgs system;
-            mine = self;
-          };
+          awesomewm =
+            import ./profiles/wm/awesome/shell.nix { inherit pkgs system; };
         };
       }) // {
         nixosConfigurations =
