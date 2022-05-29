@@ -31,6 +31,7 @@ in {
   };
   home.packages = (with pkgs; [
     bitwarden
+    brightnessctl
     borgbackup
     compsize
     unstable.discord
