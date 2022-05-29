@@ -34,9 +34,9 @@
         dbus
         fontconfig
         freetype
-        gdk_pixbuf
+        gdk-pixbuf
         glib
-        gnome.gtk
+        gtk3
         lsb-release
         pango
         xorg.libxcb

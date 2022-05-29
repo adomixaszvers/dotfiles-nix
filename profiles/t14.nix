@@ -43,9 +43,9 @@ in {
     inputs.nixos-2009.legacyPackages."${system}".remmina
     qbittorrent
     spotify
-    torbrowser
+    tor-browser-bundle-bin
     keepassxc
-    xpraGtk3
+    xpra
     protonup
   ]) ++ (with myPkgs; [ ani-cli ]);
   home.sessionVariables = { BROWSER = "firefox"; };

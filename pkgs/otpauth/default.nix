@@ -12,7 +12,7 @@ buildGoModule rec {
 
   vendorSha256 = "s0pcm3fO50cuMEJ6Pp7qay6BGGa+FCiBegUbQlB0OnY=";
 
-  runVend = true;
+  proxyVendor = true;
 
   meta = with lib; {
     description = "Google Authenticator migration decoder";
