@@ -38,6 +38,8 @@ in {
     supportedFilesystems = [ "zfs" ];
     zfs = { requestEncryptionCredentials = false; };
   };
+  # it fails on zfs
+  systemd.generators = { systemd-gpt-auto-generator = "/dev/null"; };
 
   environment.systemPackages = with pkgs; [ nixfmt virtmanager ];
 
@@ -99,6 +101,6 @@ in {
 
   virtualisation = { libvirtd.enable = true; };
 
-  system.stateVersion = "21.11"; # Did you read the comment?
+  system.stateVersion = "22.05"; # Did you read the comment?
 
 }

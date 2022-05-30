@@ -26,14 +26,14 @@ in {
   nixpkgs.config.allowUnfree = true;
 
   boot.tmpOnTmpfs = true;
-  boot.loader.raspberryPi = {
-    enable = true;
-    version = 4;
-    firmwareConfig = ''
-      dtoverlay=disable-wifi
-      dtoverlay=disable-bt
-    '';
-  };
+  # boot.loader.raspberryPi = {
+  #   enable = true;
+  #   version = 4;
+  #   firmwareConfig = ''
+  #     dtoverlay=disable-wifi
+  #     dtoverlay=disable-bt
+  #   '';
+  # };
 
   programs.mosh.enable = true;
 
@@ -105,5 +105,5 @@ in {
 
   powerManagement.cpuFreqGovernor = "schedutil";
 
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
 }
