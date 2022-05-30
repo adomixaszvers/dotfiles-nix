@@ -5,7 +5,7 @@
   };
   security.acme = {
     acceptTerms = true;
-    email = "adomixaszvers@gmail.com";
+    defaults.email = "adomixaszvers@gmail.com";
     certs = let
       dnsProvider = "namesilo";
       dnsResolver = "ns1.dnsowl.com:53";
