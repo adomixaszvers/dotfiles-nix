@@ -1,1 +1,1 @@
-{ imports = [ ./colors.nix ./nix-registry.nix ./thermal-zone.nix ]; }
+{ imports = [ ./colors.nix ./thermal-zone.nix ]; }

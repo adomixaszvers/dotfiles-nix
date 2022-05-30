@@ -42,7 +42,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:adomixaszvers/home-manager/release-21.11";
+      url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     kakoune-sudo-write = {
@@ -57,7 +57,7 @@
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
-    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-21.11"; };
+    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-22.05"; };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -73,7 +73,7 @@
     in flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
       let
         pkgs = import nixpkgs { inherit system config; };
-        unstable = import inputs.nixos-unstable { inherit system config; };
+        # unstable = import inputs.nixos-unstable { inherit system config; };
       in {
         apps.my-neovim =
           let myNeovim = (builtins.getAttr system self.packages).neovim;
@@ -81,7 +81,7 @@
             type = "app";
             program = "${myNeovim}/bin/nvim";
           };
-        packages = import ./pkgs { inherit pkgs unstable system inputs; };
+        packages = import ./pkgs { inherit pkgs system inputs; };
         checks = {
           pre-commit-check = pre-commit-hooks.lib."${system}".run {
             src = let
@@ -116,7 +116,7 @@
               [ home-manager.packages."${system}".home-manager pkgs.sops ];
             inherit (self.checks."${system}".pre-commit-check) shellHook;
           };
-          xmonad = import ./profiles/wm/xmonad/shell.nix { pkgs = unstable; };
+          xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
           my-penrose =
             import ./profiles/wm/penrose/my-penrose-config/shell.nix {
               inherit pkgs;

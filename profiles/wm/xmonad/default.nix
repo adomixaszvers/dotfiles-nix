@@ -1,7 +1,7 @@
-{ config, pkgs, unstable, ... }:
+{ config, pkgs, ... }:
 let
   extraPackages = import ./extraPackages.nix;
-  inherit (unstable) haskellPackages;
+  inherit (pkgs) haskellPackages;
 in {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ];
   home.packages = with pkgs; [ pamixer xdotool gnome.zenity ];

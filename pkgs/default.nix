@@ -1,4 +1,4 @@
-{ pkgs, unstable, system, inputs }:
+{ pkgs, system, inputs }:
 
 {
   ani-cli = pkgs.callPackage ./ani-cli { ani-cli = inputs.ani-cli.outPath; };
@@ -19,8 +19,7 @@
   maimpick = pkgs.callPackage ./maimpick.nix { };
   neovim = pkgs.callPackage ../profiles/cli/neovim/package.nix { };
   otpauth = pkgs.callPackage ./otpauth { };
-  rivercarro = let inherit (unstable) zig;
-  in pkgs.callPackage ./rivercarro { inherit zig; };
+  rivercarro = pkgs.callPackage ./rivercarro { };
   rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
   sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
   sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };

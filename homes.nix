@@ -14,7 +14,7 @@ let
     }, myPkgs ? builtins.getAttr system self.packages }:
     home-manager.lib.homeManagerConfiguration {
       inherit system homeDirectory username pkgs;
-      stateVersion = "21.11";
+      stateVersion = "22.05";
       extraModules = [ ./modules ];
       extraSpecialArgs = { inherit inputs myPkgs unstable system; };
       configuration = {

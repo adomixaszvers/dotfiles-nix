@@ -1,5 +1,5 @@
-{ pkgs ? (builtins.getFlake
-  "nixos-unstable").legacyPackages."${builtins.currentSystem}" }:
+{ pkgs ?
+  (builtins.getFlake "nixpkgs").legacyPackages."${builtins.currentSystem}" }:
 let
   extraPackages = import ./extraPackages.nix;
   colors = import ./my-colors.nix;
