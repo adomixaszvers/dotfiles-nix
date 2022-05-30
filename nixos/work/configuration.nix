@@ -26,7 +26,8 @@ in {
     ./vnc.nix
     ./wireguard-client.nix
     ./fprintd.nix
-    ./throttled
+    # ./throttled
+    ./tlp.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad
     inputs.nixos-hardware.nixosModules.common-pc-laptop-acpi_call
@@ -36,7 +37,7 @@ in {
 
   # Use the systemd-boot EFI boot loader.
   boot.cleanTmpDir = true;
-  # boot.kernelParams = [ "consoleblank=60" ];
+  boot.kernelParams = [ "consoleblank=60" ];
   boot.extraModprobeConfig =
     "options thinkpad_acpi experimental=1 fan_control=1";
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
@@ -115,6 +116,7 @@ in {
   };
   services.gnome.glib-networking.enable = true;
   services.xserver.libinput.enable = true;
+  hardware.acpilight.enable = true;
 
   virtualisation.docker = {
     enable = true;

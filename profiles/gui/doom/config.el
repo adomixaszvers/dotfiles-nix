@@ -19,6 +19,9 @@
   (setq! lsp-haskell-formatting-provider "ormolu")
   (setq! lsp-haskell-plugin-import-lens-code-lens-on nil))
 
+(set-formatter! 'stylua '("stylua" "-") :modes '(lua-mode))
+(setq-hook! 'lua-mode-hook +format-with 'stylua)
+
 (setq +rss-elfeed-files `(,(expand-file-name "elfeed.org" doom-private-dir)))
 (add-hook 'dired-mode-hook
           (lambda ()
@@ -31,10 +34,6 @@
   (let ((my-init (expand-file-name "init.el" "~/.config/nixpkgs/profiles/gui/doom"))
         (upstream-init (expand-file-name "init.example.el" doom-emacs-dir)))
     (ediff-files my-init upstream-init)))
-
-;; see https://github.com/hlissner/doom-emacs/issues/5904#issuecomment-997045485
-(after! lsp-mode
-  (advice-remove #'lsp #'+lsp-dont-prompt-to-install-servers-maybe-a))
 
 (use-package! tree-sitter
   :config
