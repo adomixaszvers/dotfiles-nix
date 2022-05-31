@@ -21,5 +21,7 @@
   home.pointerCursor = {
     name = "capitaine-cursors";
     package = pkgs.capitaine-cursors;
+    gtk.enable = true;
+    x11.enable = true;
   };
 }
