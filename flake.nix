@@ -114,7 +114,14 @@
           default = pkgs.mkShell {
             buildInputs =
               [ home-manager.packages."${system}".home-manager pkgs.sops ];
-            inherit (self.checks."${system}".pre-commit-check) shellHook;
+            shellHook = let
+              precommitShellHook =
+                self.checks."${system}".pre-commit-check.shellHook;
+            in ''
+              if [ -f ./flake.nix ]; then
+                ${precommitShellHook}
+              fi
+            '';
           };
           xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
           my-penrose =
