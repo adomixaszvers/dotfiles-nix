@@ -83,12 +83,20 @@
 
   programs.autorandr = {
     hooks.postswitch.restart-picom = "systemctl --user restart picom.service";
-    profiles = {
+    profiles = let
+      fingerprints = rec {
+        eDP-1 =
+          "00ffffffffffff000daee71500000000211a0104a52213780228659759548e271e505400000001010101010101010101010101010101b43b804a713834405036680058c110000018000000fe004e3135364843412d4541420a20000000fe00434d4e0a202020202020202020000000fe004e3135364843412d4541420a2000b2";
+        DP-2-2 =
+          "00ffffffffffff0022f06e32010101010e1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e433631343036364d0a20200020";
+        DP-2-3 =
+          "00ffffffffffff0022f06e32010101012b1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e43363433303832370a20200019";
+        DP-3-2 = DP-2-2;
+        DP-3-3 = DP-2-3;
+      };
+    in {
       work-single = {
-        fingerprint = {
-          eDP-1 =
-            "00ffffffffffff000daee71500000000211a0104a52213780228659759548e271e505400000001010101010101010101010101010101b43b804a713834405036680058c110000018000000fe004e3135364843412d4541420a20000000fe00434d4e0a202020202020202020000000fe004e3135364843412d4541420a2000b2";
-        };
+        fingerprint = { inherit (fingerprints) eDP-1; };
         config = {
           eDP-1 = {
             enable = true;
@@ -100,13 +108,8 @@
           };
         };
       };
-      work = {
-        fingerprint = {
-          DP-2-2 =
-            "00ffffffffffff0022f06e32010101010e1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e433631343036364d0a20200020";
-          DP-2-3 =
-            "00ffffffffffff0022f06e32010101012b1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e43363433303832370a20200019";
-        };
+      work-duo = {
+        fingerprint = { inherit (fingerprints) DP-2-2 DP-2-3; };
         config = {
           DP-2-2 = {
             enable = true;
@@ -132,13 +135,8 @@
           };
         };
       };
-      work-prime = {
-        fingerprint = {
-          DP-3-2 =
-            "00ffffffffffff0022f06e32010101010e1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e433631343036364d0a20200020";
-          DP-3-3 =
-            "00ffffffffffff0022f06e32010101012b1a0104a5342078224ca5a7554da226105054210800b30095008100d1c0a9c081c0a9408180283c80a070b023403020360006442100001a000000fd00323c1e5011010a202020202020000000fc00485020453234320a2020202020000000ff00434e43363433303832370a20200019";
-        };
+      work-duo-prime = {
+        fingerprint = { inherit (fingerprints) DP-3-2 DP-3-3; };
         config = {
           DP-3-2 = {
             enable = true;
@@ -157,6 +155,60 @@
           };
           eDP-1 = {
             enable = false;
+            crtc = 1;
+            mode = "1920x1080";
+            position = "3840x0";
+            rate = "60.01";
+          };
+        };
+      };
+      work-trio = {
+        fingerprint = { inherit (fingerprints) eDP-1 DP-2-2 DP-2-3; };
+        config = {
+          DP-2-2 = {
+            enable = true;
+            crtc = 2;
+            position = "0x0";
+            rate = "59.95";
+            mode = "1920x1200";
+          };
+          DP-2-3 = {
+            primary = true;
+            enable = true;
+            crtc = 0;
+            position = "1920x0";
+            rate = "59.95";
+            mode = "1920x1200";
+          };
+          eDP-1 = {
+            enable = true;
+            crtc = 1;
+            mode = "1920x1080";
+            position = "3840x0";
+            rate = "60.01";
+          };
+        };
+      };
+      work-trio-prime = {
+        fingerprint = { inherit (fingerprints) eDP-1 DP-3-2 DP-3-3; };
+        config = {
+          DP-3-2 = {
+            enable = true;
+            crtc = 2;
+            position = "0x0";
+            rate = "59.95";
+            mode = "1920x1200";
+          };
+          DP-3-3 = {
+            primary = true;
+            enable = true;
+            crtc = 0;
+            position = "1920x0";
+            rate = "59.95";
+            mode = "1920x1200";
+          };
+          eDP-1 = {
+            enable = true;
             crtc = 1;
             mode = "1920x1080";
             position = "3840x0";
