@@ -50,6 +50,7 @@
           "'zt.beastade.top' redirect"
         ];
         local-data = [
+          "'api2.branch.io 43200 IN A 0.0.0.0'"
           "'lan.beastade.top A 192.168.1.207'"
           "'wg.beastade.top A 10.6.0.1'"
           "'zt.beastade.top A 10.147.17.157'"
