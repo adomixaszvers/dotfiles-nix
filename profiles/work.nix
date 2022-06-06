@@ -1,6 +1,4 @@
-{ pkgs, config, lib, ... }:
-let dpi = 96;
-in {
+{ pkgs, config, lib, ... }: {
   imports = [ ./work-common.nix ];
   colors = import ./gui/colors/nord.nix;
   services.screen-locker = {
@@ -27,11 +25,5 @@ in {
         scale = "1.25";
       };
     };
-  };
-  programs.rofi.extraConfig = { inherit dpi; };
-  xresources.properties."Xft.dpi" = dpi;
-  services.polybar.config = {
-    "bar/top-extra" = { inherit dpi; };
-    "bar/top" = { inherit dpi; };
   };
 }

@@ -19,6 +19,10 @@ let
     modules-left = lib.mkDefault "ewmh";
     modules-center = lib.mkDefault "";
 
+    dpi = ''
+      ''${xrdb:Xft.dpi:96}
+    '';
+
     monitor = ''
       ''${env:MONITOR}
     '';

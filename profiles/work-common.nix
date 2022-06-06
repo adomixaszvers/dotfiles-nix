@@ -82,7 +82,17 @@
   };
 
   programs.autorandr = {
+    hooks.preswitch.set-dpi = ''
+      if [ "$AUTORANDR_CURRENT_PROFILE" = work-single ]; then
+        DPI=120
+      else
+        DPI=96
+      fi
+      echo "Xft.dpi: $DPI\nrofi.dpi: $DPI"| ${pkgs.xorg.xrdb}/bin/xrdb -merge
+    '';
     hooks.postswitch.restart-picom = "systemctl --user restart picom.service";
+    hooks.postswitch.notify = ''
+      ${pkgs.libnotify}/bin/notify-send -i display "Display profile" "$AUTORANDR_CURRENT_PROFILE"'';
     profiles = let
       fingerprints = rec {
         eDP-1 =

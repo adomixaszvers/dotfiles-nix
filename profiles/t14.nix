@@ -1,14 +1,13 @@
-{ pkgs, unstable, inputs, myPkgs, ... }:
-let dpi = 120;
-in {
+{ pkgs, unstable, inputs, myPkgs, ... }: {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
-  programs.rofi.extraConfig = { inherit dpi; };
-  xresources.properties."Xft.dpi" = dpi;
+  xresources.properties = let dpi = 120;
+  in {
+    "Xft.dpi" = dpi;
+    "rofi.dpi" = dpi;
+  };
   services.polybar.config = {
-    "bar/top-extra" = { inherit dpi; };
     "bar/top" = {
-      inherit dpi;
       modules-right =
         "battery divider memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider";
 
