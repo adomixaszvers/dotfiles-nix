@@ -38,7 +38,10 @@
   programs.feh.enable = true;
   programs.rofi = {
     enable = true;
-    extraConfig = { modi = "drun,window,run,ssh"; };
+    extraConfig = {
+      modi = "drun,window,run,ssh";
+      dpi = 1; # autodetect dpi based on monitor size
+    };
     theme = "Pop-Dark";
   };
   services.gnome-keyring = {
