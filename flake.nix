@@ -96,7 +96,6 @@
                   "pkgs/lua-fmt/node-env.nix"
                   "pkgs/lua-fmt/node-packages.nix"
                   "pkgs/vimgolf/gemset.nix"
-                  "profiles/wm/penrose/my-penrose-config/Cargo.nix"
                 ];
             in cleanSourceWith {
               filter = customFilter;
@@ -124,10 +123,6 @@
             '';
           };
           xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
-          my-penrose =
-            import ./profiles/wm/penrose/my-penrose-config/shell.nix {
-              inherit pkgs;
-            };
           qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
           awesomewm =
             import ./profiles/wm/awesome/shell.nix { inherit pkgs system; };
