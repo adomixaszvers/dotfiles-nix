@@ -7,7 +7,7 @@
   };
   services.screen-locker = {
     lockCmd = let
-      dpmsTimeoutSeconds = 10;
+      dpmsTimeoutSeconds = 60;
       lockScreen = pkgs.writers.writeDash "lock-screen.sh" ''
         PATH=${lib.makeBinPath [ pkgs.i3lock pkgs.xorg.xset ]}:$PATH
         DPMS_TIMEOUT=${toString dpmsTimeoutSeconds}
