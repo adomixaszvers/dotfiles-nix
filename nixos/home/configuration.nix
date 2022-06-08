@@ -2,10 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }@args:
-let inputs = if args ? inputs then args.inputs else import ../../inputs.nix;
-in {
-  _module.args.inputs = inputs;
+{ config, pkgs, inputs, ... }: {
   imports = [
     # ./bumblebee.nix
     # ./gnome.nix

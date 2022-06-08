@@ -1,7 +1,4 @@
-{ pkgs, lib, ... }@args:
-let inputs = if args ? inputs then args.inputs else import ../../inputs.nix;
-in {
-  _module.args.inputs = inputs;
+{ pkgs, lib, inputs, ... }: {
   imports = [
     # ./vaultwarden.nix
     ../flakes.nix
