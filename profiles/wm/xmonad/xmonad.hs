@@ -293,6 +293,7 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
             ]
       ]
         ++ [ subtitle "extra",
+             ((modm, xK_F2), addName "Run autorandr --change" $ spawn "autorandr --change"),
              ((0, xK_Print), addName "Make screenshot" $ spawn "maimpick")
            ]
 
