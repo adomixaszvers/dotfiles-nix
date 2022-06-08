@@ -1,1 +1,1 @@
-{ imports = [ ./colors.nix ./thermal-zone.nix ]; }
+{ imports = [ ./colors.nix ./kbdd.nix ./thermal-zone.nix ]; }

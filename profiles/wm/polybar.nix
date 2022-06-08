@@ -52,7 +52,8 @@ in {
         tray-background = colors.custom-background-dark;
       };
       "bar/top-extra" = defaultBar // {
-        modules-right = lib.mkDefault "date divider time divider";
+        modules-right =
+          lib.mkDefault "keyboard divider date divider time divider";
       };
       "module/cpu" = module "﬙" {
         type = "internal/cpu";

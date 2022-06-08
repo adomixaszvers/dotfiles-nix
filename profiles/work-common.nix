@@ -59,6 +59,7 @@
     zoom-us
   ];
 
+  services.kbdd.enable = true;
   services.polybar.config = {
     "bar/top" = {
       modules-right =
