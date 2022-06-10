@@ -47,6 +47,7 @@ import XMonad.Hooks.StatusBar.PP
     ppWsSep,
     wrap,
   )
+import XMonad.Hooks.WindowSwallowing (swallowEventHook)
 import XMonad.Layout.MultiToggle (Toggle (..), mkToggle1)
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
@@ -102,7 +103,7 @@ main = do
             focusedBorderColor = C.cyan,
             modMask = mod4Mask,
             borderWidth = 2,
-            handleEventHook = mconcat [handleEventHook def, refocusLastWhen isFloat, dynamicHook],
+            handleEventHook = mconcat [handleEventHook def, refocusLastWhen isFloat, swallowEventHook (className =? "kitty") (return True), dynamicHook],
             layoutHook = myLayoutHook,
             manageHook = myManageHook,
             startupHook = myStartupHook,
