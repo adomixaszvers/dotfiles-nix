@@ -12,6 +12,7 @@
     pkgs.python3.withPackages (ps: with ps; [ cython setuptools ]);
   home.packages = with pkgs; [
     asciinema
+    bless
     brightnessctl
     docker-compose
     dos2unix
