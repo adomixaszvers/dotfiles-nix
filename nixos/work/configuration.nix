@@ -122,7 +122,14 @@
   };
   virtualisation.libvirtd = {
     enable = true;
-    qemu.runAsRoot = false;
+    qemu = {
+      runAsRoot = false;
+      ovmf = {
+        enable = true;
+        package = pkgs.OVMFFull;
+      };
+      swtpm.enable = true;
+    };
   };
   # virtualisation.podman = {
   #   enable = true;
