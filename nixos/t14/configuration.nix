@@ -37,6 +37,7 @@
   };
   # it fails on zfs
   systemd.generators = { systemd-gpt-auto-generator = "/dev/null"; };
+  hardware.video.hidpi.enable = true;
 
   environment.systemPackages = with pkgs; [ nixfmt virtmanager ];
 

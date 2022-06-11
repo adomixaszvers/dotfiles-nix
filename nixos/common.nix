@@ -47,10 +47,6 @@
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
 
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
   i18n = { defaultLocale = "lt_LT.UTF-8"; };
 
   networking.networkmanager.enable = lib.mkDefault true;
