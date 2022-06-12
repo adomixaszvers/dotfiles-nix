@@ -8,6 +8,7 @@
     ../common.nix
     ../flakes.nix
     ../gc.nix
+    ../libvirtd.nix
     ../nix-registry.nix
     ../pipewire.nix
     ../syncthing.nix
@@ -119,17 +120,6 @@
     enable = true;
     storageDriver = "zfs";
     # listenOptions = [ "/var/run/docker.sock" "2375" ];
-  };
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      runAsRoot = false;
-      ovmf = {
-        enable = true;
-        package = pkgs.OVMFFull;
-      };
-      swtpm.enable = true;
-    };
   };
   # virtualisation.podman = {
   #   enable = true;

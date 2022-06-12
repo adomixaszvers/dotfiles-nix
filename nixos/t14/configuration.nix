@@ -8,6 +8,7 @@
     ../common.nix
     ../flakes.nix
     ../gc.nix
+    ../libvirtd.nix
     ../nix-registry.nix
     ../pipewire.nix
     ../syncthing.nix
@@ -96,8 +97,6 @@
   users.users.root.passwordFile = config.sops.secrets."root/password".path;
 
   services.xserver.libinput.enable = true;
-
-  virtualisation = { libvirtd.enable = true; };
 
   system.stateVersion = "22.05"; # Did you read the comment?
 
