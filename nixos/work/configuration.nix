@@ -108,10 +108,6 @@
     enable = true;
     package = pkgs.wireshark-qt;
   };
-  services.autorandr = {
-    enable = true;
-    defaultTarget = "work-single";
-  };
   services.gnome.glib-networking.enable = true;
   services.xserver.libinput.enable = true;
   hardware.acpilight.enable = true;
