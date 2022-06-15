@@ -36,8 +36,13 @@
   # Use the systemd-boot EFI boot loader.
   boot.cleanTmpDir = true;
   boot.kernelParams = [ "consoleblank=60" ];
-  boot.extraModprobeConfig =
-    "options thinkpad_acpi experimental=1 fan_control=1";
+  boot.extraModprobeConfig = ''
+    options thinkpad_acpi experimental=1 fan_control=1
+
+    # set minimum sys free memory to 3GB
+    # it avoids problems like firefox unloading tabs
+    options zfs zfs_arc_sys_free=3221225472
+  '';
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.loader.systemd-boot = {
     enable = true;
