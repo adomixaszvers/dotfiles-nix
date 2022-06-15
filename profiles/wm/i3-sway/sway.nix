@@ -41,7 +41,7 @@ let
         read -r id name
         swaymsg "[con_id=$id]" focus
     }
-      '';
+  '';
 in {
   imports = [ ../waybar ];
   home.packages =
@@ -50,23 +50,23 @@ in {
   programs.mako.enable = true;
   programs.waybar = {
     enable = true;
-    settings = [{
-      layer = "top";
-      position = "top";
-      height = 16;
-      modules-left = [ "sway/workspaces" "sway/mode" ];
-      modules-center = [ "sway/window" ];
-      modules-right = [ "pulseaudio" "cpu" "memory" "temperature" "clock" ];
-      modules = {
-        "sway/workspaces" = {
-          disable-scroll = true;
-          all-outputs = false;
-        };
-        "clock" = { format = "{:%Y-%m-%d %H:%M}"; };
-        "pulseaudio" = { scroll-step = "5.0"; };
-        temperature.thermal-zone = 1;
+    settings = {
+      "sway/workspaces" = {
+        disable-scroll = true;
+        all-outputs = false;
       };
-    }];
+      "clock" = { format = "{:%Y-%m-%d %H:%M}"; };
+      "pulseaudio" = { scroll-step = "5.0"; };
+      temperature.thermal-zone = 1;
+      mainbar = {
+        layer = "top";
+        position = "top";
+        height = 16;
+        modules-left = [ "sway/workspaces" "sway/mode" ];
+        modules-center = [ "sway/window" ];
+        modules-right = [ "pulseaudio" "cpu" "memory" "temperature" "clock" ];
+      };
+    };
   };
   services.kanshi.enable = true;
   wayland.windowManager.sway = {

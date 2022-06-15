@@ -20,10 +20,6 @@
     output = {
       "Hewlett Packard HP E242 CNC614066M" = { pos = "0 0"; };
       "Hewlett Packard HP E242 CNC6430827" = { pos = "1920 0"; };
-      "Chimei Innolux Corporation 0x15E7 0x00000000" = {
-        pos = "3840 0";
-        scale = "1.25";
-      };
     };
   };
 }

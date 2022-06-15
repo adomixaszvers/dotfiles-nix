@@ -241,10 +241,6 @@
         criteria = "Hewlett Packard HP E242 CNC6430827";
         position = "1920,0";
       }
-      {
-        criteria = "Chimei Innolux Corporation 0x15E7 0x00000000";
-        position = "3840,0";
-      }
     ];
     undocked.outputs = [{
       criteria = "Chimei Innolux Corporation 0x15E7 0x00000000";
@@ -295,10 +291,12 @@
       "6127:24729:Lenovo_Lenovo_Traditional_USB_Keyboard" = {
         xkb_layout = "lt,us";
         xkb_numlock = "enabled";
+        xkb_options = "grp:caps_toggle";
       };
       "1:1:AT_Translated_Set_2_keyboard" = {
         xkb_layout = "lt,us";
         xkb_numlock = "enabled";
+        xkb_options = "grp:caps_toggle";
       };
     };
   };
