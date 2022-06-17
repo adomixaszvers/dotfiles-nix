@@ -95,6 +95,8 @@
     };
   };
 
+  security.pki.certificateFiles = [ ./insoft-ca.crt ];
+
   environment.systemPackages = with pkgs; [ wget vim virtmanager ];
   environment.variables = {
     VK_ICD_FILENAMES =
