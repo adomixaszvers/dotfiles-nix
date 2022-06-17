@@ -4,7 +4,7 @@
   home.file."jdks/oraclejdk8".source = unstable.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
   home.file."nodejs/latest".source = pkgs.nodejs_latest;
-  # home.file."nodejs/12".source = pkgs.nodejs-12_x;
+  home.file."nodejs/14".source = pkgs.nodejs-14_x;
   home.file."maven".source = pkgs.maven;
   home.file."tomcat-native".source = pkgs.tomcat-native;
   home.file."tomcats/tomcat9".source = pkgs.tomcat9;
