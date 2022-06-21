@@ -68,11 +68,16 @@
     };
   };
   outputs = { self, nixpkgs, home-manager, pre-commit-hooks, gitignore
-    , flake-utils, ... }@inputs:
-    let config = import ./config.nix;
-    in flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
+    , flake-utils, nixos-unstable, ... }@inputs:
+    let
+      config = import ./config.nix;
+      systems = [ "x86_64-linux" "aarch64-linux" ];
+      mkPkgs = nixpkgs: system: import nixpkgs { inherit system config; };
+      allPkgs = nixpkgs.lib.genAttrs systems (mkPkgs nixpkgs);
+      allUnstablePkgs = nixpkgs.lib.genAttrs systems (mkPkgs nixos-unstable);
+    in flake-utils.lib.eachSystem systems (system:
       let
-        pkgs = import nixpkgs { inherit system config; };
+        pkgs = builtins.getAttr system allPkgs;
         # unstable = import inputs.nixos-unstable { inherit system config; };
       in {
         apps.my-neovim =
@@ -130,6 +135,7 @@
       }) // {
         nixosConfigurations =
           import ./nixos/configurations.nix { inherit inputs; };
-        homeConfigurations = import ./homes.nix { inherit inputs; };
+        homeConfigurations =
+          import ./homes.nix { inherit inputs allPkgs allUnstablePkgs; };
       };
 }
