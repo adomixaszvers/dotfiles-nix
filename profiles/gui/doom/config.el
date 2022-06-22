@@ -34,9 +34,3 @@
   (let ((my-init (expand-file-name "init.el" "~/.config/nixpkgs/profiles/gui/doom"))
         (upstream-init (expand-file-name "init.example.el" doom-emacs-dir)))
     (ediff-files my-init upstream-init)))
-
-(use-package! tree-sitter
-  :config
-  (require 'tree-sitter-langs)
-  (global-tree-sitter-mode)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
