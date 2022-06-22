@@ -3,6 +3,7 @@
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = unstable.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
+  home.file."jdks/openjdk17".source = pkgs.openjdk17;
   home.file."nodejs/latest".source = pkgs.nodejs_latest;
   home.file."nodejs/14".source = pkgs.nodejs-14_x;
   home.file."maven".source = pkgs.maven;
