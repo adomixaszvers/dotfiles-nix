@@ -44,11 +44,11 @@
   };
   idea-ultimate = pkgs.jetbrains.idea-ultimate.overrideAttrs (_old: rec {
     name = "idea-ultimate-${version}";
-    version = "2022.1.2";
+    version = "2022.1.3";
     src = pkgs.fetchurl {
       url =
         "https://download.jetbrains.com/idea/ideaIU-${version}-no-jbr.tar.gz";
-      sha256 = "1lh9v82h0gj2b0wp4jhhallijfbq96ggg3in96pqgcg8igxxis74";
+      sha256 = "00hds8wvi6k68fafbixg15fapdd9jryj4c7cnhg70x6gvb98qx4p";
     };
   });
 })
