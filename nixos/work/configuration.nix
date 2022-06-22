@@ -108,6 +108,13 @@
     enableSSHSupport = true;
   };
   programs.adb.enable = true;
+  programs.ssh = {
+    extraConfig = ''
+      Host github
+        HostName github.com
+        ProxyCommand nc -x 10.6.0.1:1080 %h %p
+    '';
+  };
   programs.mosh.enable = true;
   programs.steam.enable = true;
   programs.sway.enable = true;
