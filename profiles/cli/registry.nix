@@ -1,8 +1,8 @@
-{ inputs, ... }: {
+{ inputs, config, ... }: {
   nix.registry = with inputs; {
     mine.to = {
       type = "git";
-      url = "file:///home/adomas/.config/nixpkgs";
+      url = "file://${config.home.homeDirectory}/.config/nixpkgs";
     };
     nixpkgs.flake = nixpkgs;
     nixos-unstable.flake = nixos-unstable;
