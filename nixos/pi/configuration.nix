@@ -3,6 +3,7 @@
     # ./vaultwarden.nix
     ../flakes.nix
     ../nix-registry.nix
+    ../gc.nix
     ../zerotier.nix
     ./acme.nix
     ./dns.nix
@@ -69,11 +70,6 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "adomixaszvers.cachix.org-1:r3/lrlbDE7o/Vjk/muEU2iLIiCEZMbC09ZqiwAs64so="
     ];
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
     # Free up to 1GiB whenever there is less than 100MiB left.
     extraOptions = ''
       keep-outputs = true
