@@ -23,6 +23,7 @@
   rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
   sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
   sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
+  toggle-touchpad = pkgs.callPackage ./toggle-touchpad.nix { };
   vimgolf = pkgs.callPackage ./vimgolf { };
 } // (pkgs.lib.attrsets.optionalAttrs (system == "x86_64-linux") {
   steam = pkgs.steam.override {
