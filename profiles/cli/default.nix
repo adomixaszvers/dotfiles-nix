@@ -31,6 +31,7 @@
     ncdu
     niv
     nixfmt
+    nix-index
     nix-linter
     p7zip
     patchelf
