@@ -2,21 +2,17 @@
 
 let
   inherit (inputs) home-manager nixpkgs nixos-unstable self;
-  buildHomeManager = config:
+  buildHomeManager = configuration:
     { system ? "x86_64-linux", username ? "adomas"
-    , homeDirectory ? "/home/${username}", nixpkgs-config ? import ./config.nix
+    , homeDirectory ? "/home/${username}"
     , pkgs ? builtins.getAttr system allPkgs
     , unstable ? builtins.getAttr system allUnstablePkgs
     , myPkgs ? builtins.getAttr system self.packages }:
     home-manager.lib.homeManagerConfiguration {
-      inherit system homeDirectory username pkgs;
+      inherit system homeDirectory username pkgs configuration;
       stateVersion = "22.05";
       extraModules = [ ./modules ];
       extraSpecialArgs = { inherit inputs myPkgs unstable system; };
-      configuration = {
-        imports = [ config ];
-        nixpkgs = { config = nixpkgs-config; };
-      };
     };
 in rec {
   work = buildHomeManager ./profiles/work.nix { };
