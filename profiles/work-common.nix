@@ -36,11 +36,11 @@
     maven
     myPkgs.hunspell-lt
     mercurial
+    nodePackages.pnpm
     numlockx
     oracle-instantclient
     playerctl
     postman
-    rambox
     remmina
     samba
     protonup
