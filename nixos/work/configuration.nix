@@ -38,27 +38,24 @@
   boot.kernelParams = [ "consoleblank=60" ];
   boot.extraModprobeConfig = ''
     options thinkpad_acpi experimental=1 fan_control=1
-
-    # set minimum sys free memory to 3GB
-    # it avoids problems like firefox unloading tabs
-    options zfs zfs_arc_sys_free=3221225472
   '';
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot = {
     enable = true;
     consoleMode = "auto";
   };
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "zfs" ];
-  services.zfs = {
-    autoScrub = {
-      enable = true;
-      interval = "monthly";
+  boot.supportedFilesystems = [ "btrfs" ];
+  services.btrfs.autoScrub.enable = true;
+
+  services.beesd.filesystems = {
+    rpool = {
+      spec = "LABEL=rpool";
+      hashTableSizeMB = 2048;
+      verbosity = "crit";
+      extraOptions = [ "--loadavg-target" "5.0" ];
     };
-    trim.enable = true;
   };
-  # it fails on zfs
-  systemd.generators = { systemd-gpt-auto-generator = "/dev/null"; };
 
   networking = {
     hostId = "d864861a";
@@ -116,7 +113,6 @@
     '';
   };
   programs.mosh.enable = true;
-  programs.steam.enable = true;
   programs.sway.enable = true;
   programs.wireshark = {
     enable = true;
@@ -128,7 +124,7 @@
 
   virtualisation.docker = {
     enable = true;
-    storageDriver = "zfs";
+    storageDriver = "btrfs";
     # listenOptions = [ "/var/run/docker.sock" "2375" ];
   };
   # virtualisation.podman = {
