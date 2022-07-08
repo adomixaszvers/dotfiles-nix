@@ -1,11 +1,6 @@
 { writeShellScriptBin, lib, coreutils, maim, xdotool, xclip }:
 writeShellScriptBin "maimpick" ''
   PATH=$PATH:${lib.makeBinPath [ coreutils maim xdotool xclip ]}
-  systemctl --user is-active picom.service
-  WAS_PICOM_ACTIVE=$?
-  if [ "$WAS_PICOM_ACTIVE" = 0 ]; then
-    systemctl --user stop picom.service
-  fi
   case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | rofi -dmenu -l 6 -i -p "Screenshot which area?")" in
     "a selected area") maim -s pic-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
     "current window") maim -i "$(xdotool getactivewindow)" pic-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
@@ -14,7 +9,4 @@ writeShellScriptBin "maimpick" ''
     "current window (copy)") maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png ;;
     "full screen (copy)") maim | xclip -selection clipboard -t image/png ;;
   esac
-  if [ "$WAS_PICOM_ACTIVE" = 0 ]; then
-    systemctl --user start picom.service
-  fi
 ''

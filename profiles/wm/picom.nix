@@ -10,7 +10,7 @@
       "class_g = 'firefox' && argb"
       "class_g ?= 'Notify-osd'"
       "class_g ?= 'plasmashell'"
-      "class_g ?= 'slop'"
+      "class_g *= 'slop'"
       "class_g ?= 'VirtualBoxVM'"
       "name = 'Notification'"
     ];
@@ -20,7 +20,8 @@
       shadow-radius = 7;
 
       focus-exclude = [
-         "class_g ?= 'plasmashell'"
+         "class_g ?= 'plasmashell'",
+         "class_g *= 'slop'"
       ];
       unredir-if-possible = true
     '';
