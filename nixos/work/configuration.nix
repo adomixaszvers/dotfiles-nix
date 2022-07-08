@@ -15,6 +15,7 @@
     ../yubikey.nix
     ../zerotier.nix
     ./hardware-configuration.nix
+    ./btrfs.nix
     ./iperf3.nix
     ./ltXkb.nix
     # ./prebuild-configs.nix
@@ -45,17 +46,6 @@
     consoleMode = "auto";
   };
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "btrfs" ];
-  services.btrfs.autoScrub.enable = true;
-
-  services.beesd.filesystems = {
-    rpool = {
-      spec = "LABEL=rpool";
-      hashTableSizeMB = 2048;
-      verbosity = "crit";
-      extraOptions = [ "--loadavg-target" "5.0" ];
-    };
-  };
 
   networking = {
     hostId = "d864861a";
