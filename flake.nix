@@ -38,10 +38,6 @@
       url = "github:changyuheng/fz";
       flake = false;
     };
-    gitignore = {
-      url = "github:hercules-ci/gitignore";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,8 +64,8 @@
       inputs.flake-utils.follows = "flake-utils";
     };
   };
-  outputs = { self, nixpkgs, home-manager, pre-commit-hooks, gitignore
-    , flake-utils, nixos-unstable, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, pre-commit-hooks, flake-utils
+    , nixos-unstable, ... }@inputs:
     let
       config = import ./config.nix;
       systems = [ "x86_64-linux" "aarch64-linux" ];
@@ -90,24 +86,9 @@
         packages = import ./pkgs { inherit pkgs system inputs; };
         checks = {
           pre-commit-check = pre-commit-hooks.lib."${system}".run {
-            src = let
-              inherit (gitignore.lib) gitignoreFilter;
-              inherit (nixpkgs.lib) hasSuffix cleanSourceWith;
-              currentDir = ./.;
-              sourceIgnored = gitignoreFilter currentDir;
-              customFilter = path: type:
-                sourceIgnored path type
-                && !builtins.any (sufix: hasSuffix sufix path) [
-                  "pkgs/lua-fmt/default.nix"
-                  "pkgs/lua-fmt/node-env.nix"
-                  "pkgs/lua-fmt/node-packages.nix"
-                  "pkgs/vimgolf/gemset.nix"
-                ];
-            in cleanSourceWith {
-              filter = customFilter;
-              src = currentDir;
-              name = "my-home-manager-config-source";
-            };
+            src = pkgs.nix-gitignore.gitignoreSourcePure ''
+              pkgs/vimgolf/gemset.nix
+            '' ./.;
             hooks = {
               nixfmt.enable = true;
               nix-linter.enable = true;
