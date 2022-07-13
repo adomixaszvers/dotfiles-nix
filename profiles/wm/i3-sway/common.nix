@@ -98,8 +98,11 @@ in {
     };
     inherit modifier;
     assigns = {
-      "${workspace1}" =
-        [ { class = "^Google-chrome$"; } { class = "^firefox$"; } ];
+      "${workspace1}" = [
+        { class = "^Google-chrome$"; }
+        { app_id = "^firefox$"; }
+        { class = "^firefox$"; }
+      ];
       "${workspace3}" = [{ class = "^(Atom|jetbrains-idea)$"; }];
       "${workspace4}" = [ { class = "^Skype$"; } { class = "^rambox$"; } ];
       "${workspace5}" = [ { class = "^Steam$"; } { class = "^SmartGit"; } ];
@@ -156,6 +159,28 @@ in {
         "gaps inner current set 0; gaps outer current set 0";
 
       "Print" = "exec --no-startup-id maimpick";
+
+      "${modifier}+F5" = "exec --no-startup-id playerctl play-pause";
+      "XF86AudioPlay" = "exec --no-startup-id playerctl play-pause";
+      "${modifier}+F6" = "exec --no-startup-id playerctl previous";
+      "XF86AudioPrev" = "exec --no-startup-id playerctl previous";
+      "${modifier}+F7" = "exec --no-startup-id playerctl next";
+      "XF86AudioNext" = "exec --no-startup-id playerctl next";
+
+      "${modifier}+F9" = "exec --no-startup-id dunstctl close";
+      "Shift+${modifier}+F9" = "exec --no-startup-id dunstctl close-all";
+      "${modifier}+F10" = "exec --no-startup-id dunstctl history-pop";
+      "${modifier}+F11" = "exec --no-startup-id dunstctl context";
+
+      "XF86AudioRaiseVolume" =
+        "exec --no-startup-id pamixer -i 5 && volnoti-show $(pamixer --get-volume)";
+      "XF86AudioLowerVolume" =
+        "exec --no-startup-id pamixer -d 5 && volnoti-show $(pamixer --get-volume)";
+      "XF86AudioMute" = "exec --no-startup-id pamixer -t";
+      "XF86MonBrightnessUp" = ''
+        exec --no-startup-id "brightnessctl set +5% && volnoti-show $(brightnessctl -m| cut -f4 -d,|tr -d %)"'';
+      "XF86MonBrightnessDown" = ''
+        exec --no-startup-id "brightnessctl set 5%- && volnoti-show $(brightnessctl -m| cut -f4 -d,|tr -d %)"'';
     };
 
     keycodebindings = {
@@ -180,6 +205,11 @@ in {
       "Shift+${modifier}+17" = "move container to workspace ${workspace8}";
       "Shift+${modifier}+18" = "move container to workspace ${workspace9}";
       "Shift+${modifier}+19" = "move container to workspace ${workspace10}";
+
+      "${modifier}+20" =
+        "exec pamixer -d 5 && volnoti-show $(pamixer --get-volume)";
+      "${modifier}+21" =
+        "exec pamixer -i 5 && volnoti-show $(pamixer --get-volume)";
     };
     modes = {
       resize = {

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [ ./alacritty ./chemacs ./doom-emacs.nix ./fonts.nix ./kitty.nix ];
@@ -39,7 +39,7 @@
   programs.rofi = {
     enable = true;
     extraConfig = {
-      modi = "drun,window,run,ssh";
+      modi = lib.mkDefault "drun,window,run,ssh";
       dpi = 1; # autodetect dpi based on monitor size
     };
     theme = "Pop-Dark";

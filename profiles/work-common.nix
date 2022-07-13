@@ -242,6 +242,10 @@
         criteria = "Hewlett Packard HP E242 CNC6430827";
         position = "1920,0";
       }
+      {
+        criteria = "Chimei Innolux Corporation 0x15E7 0x00000000";
+        status = "disable";
+      }
     ];
     undocked.outputs = [{
       criteria = "Chimei Innolux Corporation 0x15E7 0x00000000";

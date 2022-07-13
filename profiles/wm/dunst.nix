@@ -3,7 +3,7 @@ let inherit (config) colors;
 in {
   home.packages = with pkgs; [ dunst ];
   services.dunst = {
-    inherit (config.xsession) enable;
+    enable = true;
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
@@ -15,7 +15,7 @@ in {
         allow_markup = true;
         bounce_freq = 0;
         browser = "${pkgs.xdg-utils}/bin/xdg-open";
-        dmenu = "${pkgs.rofi}/bin/rofi -dmenu -p dunst";
+        dmenu = "${config.programs.rofi.finalPackage}/bin/rofi -dmenu -p dunst";
         follow = "keyboard";
         font = "NotoMono Nerd Font 8";
         format = "<b>%s</b>\\n%b";

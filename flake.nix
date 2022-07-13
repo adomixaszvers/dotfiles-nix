@@ -29,6 +29,7 @@
         flake-compat.follows = "flake-compat";
       };
     };
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
