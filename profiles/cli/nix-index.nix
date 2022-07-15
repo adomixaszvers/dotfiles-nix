@@ -15,7 +15,7 @@
     Environment = "PATH=${lib.makeBinPath (with pkgs; [ wget coreutils ])}";
   };
   systemd.user.timers.update-nix-index = {
-    Unit.description = "Index nix store";
+    Unit.Description = "Index nix store";
     Timer = {
       OnCalendar = "weekly";
       Persistent = true;
