@@ -14,6 +14,7 @@
     ../syncthing.nix
     ../yubikey.nix
     ../zerotier.nix
+    ./dante.nix
     ./hardware-configuration.nix
     ./btrfs.nix
     ./iperf3.nix
