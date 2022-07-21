@@ -265,6 +265,7 @@
       path = "~/projektai/git_work.inc";
     }
   ];
+  programs.go.enable = true;
   programs.xmobar.thermal-zone = 1;
   programs.zsh.shellAliases = {
     imvn = "mvn -s ~/.m2/insoft-settings.xml";
