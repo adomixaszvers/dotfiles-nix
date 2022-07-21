@@ -54,6 +54,10 @@
   services.flatpak.enable = true;
   services.fprintd.enable = true;
   services.fwupd.enable = true;
+  services.autorandr = {
+    enable = true;
+    defaultTarget = "home-prime";
+  };
   services.journald.extraConfig = "SystemMaxUse=500M";
   services.atd.enable = true;
   services.fstrim.enable = true;

@@ -78,6 +78,10 @@
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   };
+  services.autorandr = {
+    enable = true;
+    defaultTarget = "home-prime";
+  };
   services.journald.extraConfig = "SystemMaxUse=500M";
   services.atd.enable = true;
   services.fstrim.enable = true;
