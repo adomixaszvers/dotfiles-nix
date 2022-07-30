@@ -15,6 +15,6 @@ let
   neovimConfig = neovimUtils.makeNeovimConfig {
     inherit plugins;
     configure = moduleConfigure;
-    customRC = builtins.readFile ./init.vim;
+    customRC = import ./customRc.nix;
   };
 in wrapNeovimUnstable neovim-unwrapped neovimConfig

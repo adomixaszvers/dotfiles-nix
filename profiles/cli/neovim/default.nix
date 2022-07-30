@@ -1,8 +1,9 @@
 { pkgs, ... }: {
+  home.packages = with pkgs; [ sumneko-lua-language-server ];
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-unwrapped;
     plugins = import ./plugins.nix pkgs;
-    extraConfig = builtins.readFile ./init.vim;
+    extraConfig = import ./customRc.nix;
   };
 }
