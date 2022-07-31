@@ -34,10 +34,9 @@ vim.g.suda_smart_edit = 0
 vim.g.ale_disable_lsp = 1
 
 
--- if (has("termguicolors"))
---   set termguicolors
--- endif
-vim.g.termguicolors = true
+if vim.fn.has("termguicolors") then
+    vim.o.termguicolors = true
+end
 
 if vim.env.TERM ~= "linux" then
     vim.g.nord_italic = false
