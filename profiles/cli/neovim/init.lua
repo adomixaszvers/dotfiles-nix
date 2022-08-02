@@ -49,10 +49,10 @@ else
 end
 
 local nix_flakes_ag = vim.api.nvim_create_augroup('nix-flakes', { clear = true })
-vim.api.nvim_create_autocmd('BufNewFile,BufRead', {
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
     pattern = 'flake.lock',
     group = nix_flakes_ag,
     callback = function()
-        vim.wo.filetype = 'json'
+        vim.bo.filetype = 'json'
     end
 })
