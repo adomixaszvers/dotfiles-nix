@@ -43,13 +43,16 @@
         zlib
       ];
   };
-  idea-ultimate = pkgs.jetbrains.idea-ultimate.overrideAttrs (_old: rec {
-    name = "idea-ultimate-${version}";
-    version = "2022.1.4";
-    src = pkgs.fetchurl {
-      url =
-        "https://download.jetbrains.com/idea/ideaIU-${version}-no-jbr.tar.gz";
-      sha256 = "14x59nx3yj41xfiksvhlgjvidg53x7i0zh5110lfyxx532n3dsiv";
-    };
-  });
+  idea-ultimate =
+    let jdk = pkgs.callPackage ./idea-ultimate/jetbrains-jdk.nix { };
+    in (pkgs.jetbrains.idea-ultimate.override { inherit jdk; }).overrideAttrs
+    (_old: rec {
+      name = "idea-ultimate-${version}";
+      version = "2022.2";
+      src = pkgs.fetchurl {
+        url =
+          "https://download.jetbrains.com/idea/ideaIU-${version}-no-jbr.tar.gz";
+        sha256 = "1qvgac89psc9szri0c4c8aky4nf7f138h4flb9hzn8zpqwkx1v6w";
+      };
+    });
 })
