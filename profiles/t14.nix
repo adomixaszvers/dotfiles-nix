@@ -55,6 +55,7 @@
     inactiveInterval = 60;
   };
   xsession.initExtra = ''
+    xset s off -dpms
     xrandr --output eDP --set TearFree on
   '';
   wayland.windowManager.sway = {
