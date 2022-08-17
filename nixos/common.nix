@@ -49,7 +49,10 @@
 
   i18n = { defaultLocale = "lt_LT.UTF-8"; };
 
-  networking.networkmanager.enable = lib.mkDefault true;
+  networking.networkmanager = {
+    enable = lib.mkDefault true;
+    unmanaged = [ "driver:wireguard" "interface-name:ztz*" ];
+  };
 
   programs.command-not-found.enable = true;
   programs.dconf.enable = true;
