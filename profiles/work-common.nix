@@ -178,54 +178,54 @@
       work-trio = {
         fingerprint = { inherit (fingerprints) eDP-1 DP-2-2 DP-2-3; };
         config = {
-          DP-2-2 = {
-            enable = true;
-            crtc = 2;
-            position = "0x0";
-            rate = "59.95";
-            mode = "1920x1200";
-          };
-          DP-2-3 = {
-            primary = true;
-            enable = true;
-            crtc = 0;
-            position = "1920x0";
-            rate = "59.95";
-            mode = "1920x1200";
-          };
           eDP-1 = {
             enable = true;
             crtc = 1;
             mode = "1920x1080";
-            position = "3840x0";
+            position = "0x0";
             rate = "60.01";
+          };
+          DP-2-2 = {
+            enable = true;
+            primary = true;
+            crtc = 2;
+            position = "1920x0";
+            rate = "59.95";
+            mode = "1920x1200";
+          };
+          DP-2-3 = {
+            enable = true;
+            crtc = 0;
+            position = "3840x0";
+            rate = "59.95";
+            mode = "1920x1200";
           };
         };
       };
       work-trio-prime = {
         fingerprint = { inherit (fingerprints) eDP-1 DP-3-2 DP-3-3; };
         config = {
-          DP-3-2 = {
-            enable = true;
-            crtc = 2;
-            position = "0x0";
-            rate = "59.95";
-            mode = "1920x1200";
-          };
-          DP-3-3 = {
-            primary = true;
-            enable = true;
-            crtc = 0;
-            position = "1920x0";
-            rate = "59.95";
-            mode = "1920x1200";
-          };
           eDP-1 = {
             enable = true;
             crtc = 1;
             mode = "1920x1080";
-            position = "3840x0";
+            position = "0x0";
             rate = "60.01";
+          };
+          DP-3-2 = {
+            enable = true;
+            primary = true;
+            crtc = 2;
+            position = "1920x0";
+            rate = "59.95";
+            mode = "1920x1200";
+          };
+          DP-3-3 = {
+            enable = true;
+            crtc = 0;
+            position = "3840x0";
+            rate = "59.95";
+            mode = "1920x1200";
           };
         };
       };
