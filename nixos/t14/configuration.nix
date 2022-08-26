@@ -39,6 +39,10 @@
   };
   # it fails on zfs
   systemd.generators = { systemd-gpt-auto-generator = "/dev/null"; };
+  hardware.bluetooth.enable = true;
+  powerManagement.resumeCommands = ''
+    /run/current-system/sw/bin/bluetoothctl discoverable on
+  '';
   hardware.video.hidpi.enable = true;
   hardware.xone.enable = true;
 
