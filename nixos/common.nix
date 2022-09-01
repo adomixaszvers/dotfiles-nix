@@ -51,7 +51,12 @@
 
   networking.networkmanager = {
     enable = lib.mkDefault true;
-    unmanaged = [ "driver:wireguard" "interface-name:ztz*" ];
+    unmanaged = [
+      "driver:wireguard"
+      "interface-name:ztz*"
+      "interface-name:br-*"
+      "interface-name:docker*"
+    ];
   };
 
   programs.command-not-found.enable = true;
