@@ -4,7 +4,7 @@ with (lib.mapAttrs (_: builtins.replaceStrings [ "#" ] [ "0x" ])
     programs.alacritty = {
       enable = true;
       settings = {
-        background_opacity = 1.0;
+        window.opacity = 1.0;
         colors = {
           primary = { inherit background foreground; };
           cursor = { cursor = cursorColor; };
