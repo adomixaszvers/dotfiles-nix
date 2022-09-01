@@ -1,6 +1,6 @@
 {
   services = {
     fwupd.enable = true;
-    # fprintd = { enable = true; };
+    fprintd = { enable = true; };
   };
 }
