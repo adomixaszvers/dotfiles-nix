@@ -2,14 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, inputs, ... }: {
   imports = [
     ../avahi.nix
     ../common.nix
     ../flakes.nix
     ../gc.nix
     ../libvirtd.nix
-    ../mt7921e-crash-fix.nix
+    # ../mt7921e-crash-fix.nix
     ../nix-registry.nix
     ../pipewire.nix
     ../syncthing.nix
@@ -28,8 +28,8 @@
   boot = {
     cleanTmpDir = true;
     kernelParams = [ "nohibernate" ];
-    kernelPackages =
-      lib.mkForce config.boot.zfs.package.latestCompatibleLinuxPackages;
+    # kernelPackages =
+    #   lib.mkForce config.boot.zfs.package.latestCompatibleLinuxPackages;
     loader = {
       efi = { canTouchEfiVariables = true; };
       systemd-boot.enable = true;
