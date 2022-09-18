@@ -1,11 +1,11 @@
-{ pkgs, unstable, inputs, myPkgs, ... }: {
+{ pkgs, inputs, myPkgs, ... }: {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
   home.packages = (with pkgs; [
     bitwarden
     borgbackup
     compsize
-    unstable.discord
+    discord
     exercism
     gnome.nautilus
     firefox

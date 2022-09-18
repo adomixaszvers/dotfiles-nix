@@ -1,7 +1,7 @@
-{ pkgs, unstable, myPkgs, ... }: {
+{ pkgs, myPkgs, ... }: {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ./wm/xrdp.nix ];
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
-  home.file."jdks/oraclejdk8".source = unstable.oraclejdk8;
+  home.file."jdks/oraclejdk8".source = pkgs.oraclejdk8;
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
   home.file."jdks/openjdk17".source = pkgs.openjdk17;
   home.file."nodejs/latest".source = pkgs.nodejs_latest;
@@ -53,8 +53,8 @@
     teams
     traceroute
     unrar
-    unstable.discord
-    unstable.tor-browser-bundle-bin
+    discord
+    tor-browser-bundle-bin
     unzip
     whois
     zip
