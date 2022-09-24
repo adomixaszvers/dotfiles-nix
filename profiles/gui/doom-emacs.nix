@@ -1,4 +1,5 @@
-{ pkgs, inputs, system, ... }: {
+{ pkgs, # inputs, system,
+... }: {
   home.packages = with pkgs; [
     emacs-all-the-icons-fonts
     fd
@@ -17,11 +18,11 @@
   home.sessionVariables.DOOMDIR = "~/.config/nixpkgs/profiles/gui/doom";
   programs.emacs = {
     enable = true;
-    package = let
-      emacsNixpkgs = import inputs.nixpkgs {
-        inherit system;
-        overlays = [ inputs.emacs-overlay.overlay ];
-      };
-    in emacsNixpkgs.emacsPgtk;
+    # package = let
+    #   emacsNixpkgs = import inputs.nixpkgs {
+    #     inherit system;
+    #     overlays = [ inputs.emacs-overlay.overlay ];
+    #   };
+    # in emacsNixpkgs.emacsPgtk;
   };
 }
