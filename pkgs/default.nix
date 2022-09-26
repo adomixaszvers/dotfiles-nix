@@ -48,11 +48,11 @@
     in (pkgs.jetbrains.idea-ultimate.override { inherit jdk; }).overrideAttrs
     (_old: rec {
       name = "idea-ultimate-${version}";
-      version = "2022.2.1";
+      version = "2022.2.2";
       src = pkgs.fetchurl {
         url =
           "https://download.jetbrains.com/idea/ideaIU-${version}-no-jbr.tar.gz";
-        sha256 = "0fn8xiggaqjlidgap6sag0lricrjfag6h8r84l0pdvcsxawy9vj3";
+        sha256 = "12zvjmszssrn5l10p3h49fxxfjny1m2r18lmqr5gz6dkzkna46fc";
       };
     });
 })
