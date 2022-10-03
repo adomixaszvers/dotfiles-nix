@@ -21,7 +21,10 @@ in {
 
   boot.supportedFilesystems = [ "btrfs" ];
 
-  services.btrfs.autoScrub.enable = true;
+  services.btrfs.autoScrub = {
+    enable = true;
+    fileSystems = [ "/" ];
+  };
   services.beesd.filesystems = {
     rpool = {
       spec = "LABEL=rpool";
