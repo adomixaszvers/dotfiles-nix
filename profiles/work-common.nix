@@ -27,7 +27,7 @@
     gnumake
     (google-chrome.override { commandLineArgs = "--ozone-platform-hint=auto"; })
     html-tidy
-    myPkgs.idea-ultimate
+    jetbrains.idea-ultimate
     jmeter
     jq
     keepassxc
@@ -35,6 +35,7 @@
     liquibase
     maven
     myPkgs.hunspell-lt
+    myPkgs.keystore-explorer
     mercurial
     nodePackages.pnpm
     numlockx

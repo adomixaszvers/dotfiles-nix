@@ -69,6 +69,6 @@
   swapDevices =
     [{ device = "/dev/disk/by-uuid/4de0a2d5-e10f-4975-a15a-4b0ec944cecf"; }];
 
-  nix.maxJobs = lib.mkDefault 8;
+  nix.settings.max-jobs = lib.mkDefault 8;
   # powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
 }

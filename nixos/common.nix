@@ -2,20 +2,20 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    binaryCaches = lib.mkAfter [
-      "https://pre-commit-hooks.cachix.org"
-      "https://nix-community.cachix.org"
-      "https://adomixaszvers.cachix.org"
-    ];
-    binaryCachePublicKeys = [
-      "pre-commit-hooks.cachix.org-1:Pkk3Panw5AW24TOv6kz3PvLhlH8puAsJTBbOPmBo7Rc="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "adomixaszvers.cachix.org-1:r3/lrlbDE7o/Vjk/muEU2iLIiCEZMbC09ZqiwAs64so="
-    ];
-    extraOptions = ''
-      keep-outputs = true
-    '';
-    autoOptimiseStore = true;
+    settings = {
+      keep-outputs = true;
+      substituters = lib.mkAfter [
+        "https://pre-commit-hooks.cachix.org"
+        "https://nix-community.cachix.org"
+        "https://adomixaszvers.cachix.org"
+      ];
+      trusted-public-keys = [
+        "pre-commit-hooks.cachix.org-1:Pkk3Panw5AW24TOv6kz3PvLhlH8puAsJTBbOPmBo7Rc="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "adomixaszvers.cachix.org-1:r3/lrlbDE7o/Vjk/muEU2iLIiCEZMbC09ZqiwAs64so="
+      ];
+      auto-optimise-store = true;
+    };
   };
 
   documentation = { enable = true; };

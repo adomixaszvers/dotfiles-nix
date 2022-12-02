@@ -6,6 +6,8 @@
   };
   nixpkgs.overlays = [
     (_self: super: {
+      bumblebee = super.bumblebee.overrideAttrs
+        (oldAttrs: { meta = oldAttrs.meta // { broken = false; }; });
       linuxPackages = super.linuxPackages.extend
         (_lpself: lpsuper: { nvidia_x11 = lpsuper.nvidia_x11_legacy390; });
       steam = super.steam.override {

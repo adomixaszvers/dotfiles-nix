@@ -9,9 +9,17 @@ let
     , unstable ? builtins.getAttr system allUnstablePkgs
     , myPkgs ? builtins.getAttr system self.packages }:
     home-manager.lib.homeManagerConfiguration {
-      inherit system homeDirectory username pkgs configuration;
-      stateVersion = "22.05";
-      extraModules = [ ./modules ];
+      inherit pkgs;
+      modules = [
+        ./modules
+        {
+          home = {
+            inherit username homeDirectory;
+            stateVersion = "22.05";
+          };
+        }
+        configuration
+      ];
       extraSpecialArgs = { inherit inputs myPkgs unstable system; };
     };
 in rec {

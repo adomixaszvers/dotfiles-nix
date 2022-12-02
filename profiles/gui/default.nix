@@ -42,7 +42,7 @@
       modi = lib.mkDefault "drun,window,run,ssh";
       dpi = 1; # autodetect dpi based on monitor size
     };
-    theme = "Pop-Dark";
+    theme = "solarized";
   };
   services.gnome-keyring = {
     enable = true;

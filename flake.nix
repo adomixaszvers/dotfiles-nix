@@ -39,7 +39,7 @@
       flake = false;
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.05";
+      url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     kakoune-sudo-write = {
@@ -54,7 +54,7 @@
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
-    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-22.05"; };
+    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-22.11"; };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";

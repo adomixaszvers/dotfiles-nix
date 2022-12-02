@@ -5,7 +5,7 @@
       runAsRoot = false;
       ovmf = {
         enable = true;
-        package = pkgs.OVMFFull;
+        packages = [ pkgs.OVMFFull.fd ];
       };
       swtpm.enable = true;
     };
