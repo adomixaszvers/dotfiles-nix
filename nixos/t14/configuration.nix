@@ -7,6 +7,7 @@
     ../avahi.nix
     ../common.nix
     ../flakes.nix
+    ../fprintd.nix
     ../gc.nix
     ../libvirtd.nix
     # ../mt7921e-crash-fix.nix
@@ -56,8 +57,6 @@
   programs.mosh.enable = true;
   programs.ssh.startAgent = false;
   services.flatpak.enable = true;
-  services.fprintd.enable = true;
-  services.fwupd.enable = true;
   services.autorandr = {
     enable = true;
     defaultTarget = "home-prime";

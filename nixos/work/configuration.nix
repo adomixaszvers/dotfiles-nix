@@ -26,7 +26,7 @@
     # ./unbound.nix
     ./vnc.nix
     ./wireguard-client.nix
-    ./fprintd.nix
+    ../fprintd.nix
     # ./throttled
     ./tlp.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
