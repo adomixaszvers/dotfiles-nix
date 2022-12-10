@@ -25,6 +25,7 @@
   sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
   toggle-touchpad = pkgs.callPackage ./toggle-touchpad.nix { };
   vimgolf = pkgs.callPackage ./vimgolf { };
+  keystore-explorer = pkgs.keystore-explorer.override { jdk = pkgs.openjdk8; };
 } // (pkgs.lib.attrsets.optionalAttrs (system == "x86_64-linux") {
   steam = pkgs.steam.override {
     extraPkgs = ps:
