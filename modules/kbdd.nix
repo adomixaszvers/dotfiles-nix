@@ -8,6 +8,8 @@ in with lib; {
         Description = "XKB daemon";
         After = [ "graphical-session-pre.target" ];
         PartOf = [ "graphical-session.target" ];
+        StartLimitBurst = 3;
+        StartLimitIntervalSec = 60;
       };
 
       Install = { WantedBy = [ "graphical-session.target" ]; };
