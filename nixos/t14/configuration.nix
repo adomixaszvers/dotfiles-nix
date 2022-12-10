@@ -28,8 +28,7 @@
   boot = {
     cleanTmpDir = true;
     kernelParams = [ "nohibernate" ];
-    # kernelPackages =
-    #   lib.mkForce config.boot.zfs.package.latestCompatibleLinuxPackages;
+    kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
     loader = {
       efi = { canTouchEfiVariables = true; };
       systemd-boot.enable = true;
