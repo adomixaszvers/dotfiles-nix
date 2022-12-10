@@ -38,6 +38,9 @@
     gnome.nautilus
     firefox
     gtypist
+    jetbrains.gateway
+    libreoffice-still
+    lutris
     mpv
     playerctl
     inputs.nixos-2009.legacyPackages."${system}".remmina
