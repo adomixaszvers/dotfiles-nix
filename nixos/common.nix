@@ -71,6 +71,7 @@
   services.colord.enable = true;
   services.dbus.packages = with pkgs; [ dconf ];
   services.gnome.gnome-keyring.enable = true;
+  services.udisks2.enable = true;
   programs.seahorse.enable = true;
 
   services.xserver = {
