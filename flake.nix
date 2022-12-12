@@ -21,14 +21,6 @@
       url = "github:plexus/chemacs2";
       flake = false;
     };
-    comma = {
-      url = "github:nix-community/comma";
-      inputs = {
-        nixpkgs.follows = "nixos-unstable";
-        utils.follows = "flake-utils";
-        flake-compat.follows = "flake-compat";
-      };
-    };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-compat = {
       url = "github:edolstra/flake-compat";

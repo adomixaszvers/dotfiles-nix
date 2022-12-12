@@ -1,4 +1,4 @@
-{ pkgs, inputs, myPkgs, system, ... }:
+{ pkgs, myPkgs, ... }:
 
 {
   imports = [
@@ -17,6 +17,7 @@
     bfs
     binutils
     cachix
+    comma
     dnsutils
     fd
     file
@@ -42,9 +43,7 @@
     unzip
     wol
     xdg-user-dirs
-  ]) ++ (with myPkgs; [ hm-repl hm-switch ])
-    ++ (let inherit (builtins.getAttr system inputs.comma.packages) comma;
-    in [ comma ]);
+  ]) ++ (with myPkgs; [ hm-repl hm-switch ]);
   home.sessionVariables = {
     EDITOR = "nvim";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
