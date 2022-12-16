@@ -2,7 +2,8 @@
   description = "My dotfiles";
   inputs = {
     ani-cli = {
-      url = "github:pystardust/ani-cli";
+      url =
+        "github:pystardust/ani-cli/5ff7b0d8d1e6dd1bf772580b6e280bf38346a9d9";
       flake = false;
     };
     awesome-copycats = {
