@@ -5,7 +5,7 @@
     enable = true;
     path = inputs.home-manager.outPath;
   };
-  systemd.user = { startServices = true; };
+  systemd.user = { startServices = "sd-switch"; };
 
   xdg = { enable = true; };
 }
