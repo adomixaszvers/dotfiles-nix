@@ -115,6 +115,10 @@
   services.gnome.glib-networking.enable = true;
   services.xserver.libinput.enable = true;
   hardware.acpilight.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    package = pkgs.bluezFull;
+  };
 
   virtualisation.docker = {
     enable = true;
