@@ -259,8 +259,13 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
       [ ( (modm, xK_F5),
           addName "Player play-pause" $ spawn "playerctl play-pause"
         ),
+        ( (0, xF86XK_AudioPlay),
+          addName "Player play-pause" $ spawn "playerctl play-pause"
+        ),
         ((modm, xK_F6), addName "Player previous" $ spawn "playerctl previous"),
-        ((modm, xK_F7), addName "Player next" $ spawn "playerctl next")
+        ((0, xF86XK_AudioPrev), addName "Player previous" $ spawn "playerctl previous"),
+        ((modm, xK_F7), addName "Player next" $ spawn "playerctl next"),
+        ((0, xF86XK_AudioNext), addName "Player next" $ spawn "playerctl next")
       ]
         ++ subtitle "sound controls" :
       [ ((modm, xK_minus), addName "Decrease volume" $ spawn "pamixer -d 5 && volnoti-show $(pamixer --get-volume)"),
