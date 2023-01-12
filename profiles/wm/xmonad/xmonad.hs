@@ -166,6 +166,7 @@ myManageHook =
     spawnHook =
       composeOne
         [ isDialog -?> doFloat,
+          className =? "trayer" -?> doIgnore,
           className =? "Vampire_Survivors" -?> doFloat,
           checkDock -?> lowerDock,
           className =? "Google-chrome" <||> className =? "firefox" -?> doShift ws1,

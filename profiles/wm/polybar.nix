@@ -40,16 +40,28 @@ let
     line-size = 1;
   };
 in {
+  services.trayer = {
+    enable = true;
+    settings = {
+      monitor = "primary";
+      distance = 18;
+      tint = builtins.replaceStrings [ "#" ] [ "0x" ] colors.background;
+      edge = "top";
+      align = "right";
+      expand = false;
+      transparent = true;
+      widthtype = "request";
+      height = 16;
+    };
+  };
   services.polybar = {
     enable = lib.mkDefault true;
     package = pkgs.polybarFull;
     config = {
       "bar/top" = defaultBar // {
+        enable-ipc = true;
         modules-right = lib.mkDefault
-          "memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider";
-        tray-position = "right";
-        tray-max-size = 16;
-        tray-background = colors.custom-background-dark;
+          "memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider trayer";
       };
       "bar/top-extra" = defaultBar // {
         modules-right =
@@ -172,6 +184,23 @@ in {
         type = "internal/xwindow";
         label = "%{T2}%title%%{T-}";
         label-maxlen = 75;
+      };
+      "module/trayer" = {
+        type = "custom/ipc";
+        hook-0 = ''echo " "'';
+        hook-1 = ''echo " "'';
+        click-left = let
+          script = pkgs.writeShellScript "systray.sh" ''
+            PATH=$PATH:${lib.makeBinPath [ pkgs.xdotool ]}
+
+            if xdotool search --onlyvisible --classname panel windowunmap; then
+              polybar-msg action "#trayer.hook.1"
+            elif xdotool search --classname panel windowmap windowraise; then
+              polybar-msg action "#trayer.hook.0"
+            fi
+          '';
+        in toString script;
+        initial = 1;
       };
     };
     script = ''
