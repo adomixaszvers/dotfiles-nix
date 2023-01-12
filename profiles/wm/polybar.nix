@@ -186,43 +186,35 @@ in {
         label-maxlen = 75;
       };
       "module/trayer" = let
-        find-trayer = pkgs.writeShellScriptBin "find-trayer" ''
-          PATH=$PATH:${lib.makeBinPath [ pkgs.xdotool ]}
-            if [ "$1" = "--onlyvisible" ]; then
-              window_ids="$(xdotool search --onlyvisible --class trayer)"
-            else
-              window_ids="$(xdotool search --class trayer)"
-            fi
-
-            if [ -z "$window_ids" ]; then
-              exit 1
-            fi
-
-            echo "$window_ids"| while read -r i; do
-              if [ "$(xdotool getwindowclassname $i)" = trayer ]; then
-                echo $i
-                break
-              fi
-            done
-        '';
         script = pkgs.writeShellScript "toggle-trayer" ''
-          PATH=$PATH:${lib.makeBinPath [ pkgs.xdotool find-trayer ]}
+          PATH=$PATH:${lib.makeBinPath [ pkgs.xdo ]}
 
-          if id=$(find-trayer --onlyvisible); then
-            xdotool windowunmap $id
+          filename="$XDG_RUNTIME_DIR/trayer-hidden$DISPLAY"
+
+          if [ ! -f "$filename" ]; then
+            touch "$filename"
+            xdo hide -N trayer
             polybar-msg action "#trayer.hook.1"
-          elif id=$(find-trayer); then
-            xdotool windowmap $id
-            xdotool windowraise $id
+          else
+            rm "$filename"
+            xdo show -N trayer 
+            xdo raise -N trayer 
             polybar-msg action "#trayer.hook.0"
+          fi
+        '';
+        trayer-init = pkgs.writeShellScript "trayer-init" ''
+          if [ -f "$XDG_RUNTIME_DIR/trayer-hidden$DISPLAY" ]; then
+            echo " "
+            ${pkgs.xdo}/bin/xdo hide -N trayer
+          else
+            echo " "
           fi
         '';
       in {
         type = "custom/ipc";
         hook-0 = ''echo " "'';
         hook-1 = ''echo " "'';
-        hook-2 = ''
-          ${find-trayer}/bin/find-trayer --onlyvisible && echo " " || echo " "'';
+        hook-2 = toString trayer-init;
         click-left = toString script;
         initial = 2;
       };
