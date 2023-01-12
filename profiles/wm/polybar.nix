@@ -185,22 +185,46 @@ in {
         label = "%{T2}%title%%{T-}";
         label-maxlen = 75;
       };
-      "module/trayer" = {
+      "module/trayer" = let
+        find-trayer = pkgs.writeShellScriptBin "find-trayer" ''
+          PATH=$PATH:${lib.makeBinPath [ pkgs.xdotool ]}
+            if [ "$1" = "--onlyvisible" ]; then
+              window_ids="$(xdotool search --onlyvisible --class trayer)"
+            else
+              window_ids="$(xdotool search --class trayer)"
+            fi
+
+            if [ -z "$window_ids" ]; then
+              exit 1
+            fi
+
+            echo "$window_ids"| while read -r i; do
+              if [ "$(xdotool getwindowclassname $i)" = trayer ]; then
+                echo $i
+                break
+              fi
+            done
+        '';
+        script = pkgs.writeShellScript "toggle-trayer" ''
+          PATH=$PATH:${lib.makeBinPath [ pkgs.xdotool find-trayer ]}
+
+          if id=$(find-trayer --onlyvisible); then
+            xdotool windowunmap $id
+            polybar-msg action "#trayer.hook.1"
+          elif id=$(find-trayer); then
+            xdotool windowmap $id
+            xdotool windowraise $id
+            polybar-msg action "#trayer.hook.0"
+          fi
+        '';
+      in {
         type = "custom/ipc";
         hook-0 = ''echo " "'';
         hook-1 = ''echo " "'';
-        click-left = let
-          script = pkgs.writeShellScript "systray.sh" ''
-            PATH=$PATH:${lib.makeBinPath [ pkgs.xdotool ]}
-
-            if xdotool search --onlyvisible --classname panel windowunmap; then
-              polybar-msg action "#trayer.hook.1"
-            elif xdotool search --classname panel windowmap windowraise; then
-              polybar-msg action "#trayer.hook.0"
-            fi
-          '';
-        in toString script;
-        initial = 1;
+        hook-2 = ''
+          ${find-trayer}/bin/find-trayer --onlyvisible && echo " " || echo " "'';
+        click-left = toString script;
+        initial = 2;
       };
     };
     script = ''
