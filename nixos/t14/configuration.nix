@@ -16,6 +16,7 @@
     ../syncthing.nix
     ../yubikey.nix
     ../xdg-portal.nix
+    ../thinkfan.nix
     ../zerotier.nix
     ./hardware-configuration.nix
     ./powermanagement.nix

@@ -15,6 +15,7 @@
     ../pipewire.nix
     ../syncthing.nix
     ../yubikey.nix
+    ../thinkfan.nix
     ../zerotier.nix
     ./bitburner.nix
     ./dante.nix
@@ -41,9 +42,6 @@
   # Use the systemd-boot EFI boot loader.
   boot.cleanTmpDir = true;
   boot.kernelParams = [ "consoleblank=60" ];
-  boot.extraModprobeConfig = ''
-    options thinkpad_acpi experimental=1 fan_control=1
-  '';
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot = {
     enable = true;
