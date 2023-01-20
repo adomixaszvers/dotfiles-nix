@@ -84,7 +84,7 @@
             '' ./.;
             hooks = {
               nixfmt.enable = true;
-              nix-linter.enable = true;
+              statix.enable = true;
               shellcheck.enable = true;
             };
           };
