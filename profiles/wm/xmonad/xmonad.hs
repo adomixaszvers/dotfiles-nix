@@ -194,6 +194,9 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
           0xafe, -- „
           0xad2 -- “
         ]
+      volumeCommand, brightnessCommand :: String -> X ()
+      volumeCommand cmd = spawn $ cmd ++ "&& dunstify -i audio-card -t 2000 -h string:x-dunst-stack-tag:volume \"Volume $(pamixer --get-volume)\""
+      brightnessCommand cmd = spawn $ cmd ++ "&& dunstify -i video-display -t 2000 -h string:x-dunst-stack-tag:brightness \"Brightness $(brightnessctl -m| cut -f4 -d,|tr -d %)\""
    in [ subtitle "launching and killing programs",
         ( (modm, xK_Return),
           addName "Launch Terminal" $ spawn $ XMonad.terminal conf
@@ -269,16 +272,16 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
         ((0, xF86XK_AudioNext), addName "Player next" $ spawn "playerctl next")
       ]
         ++ subtitle "sound controls" :
-      [ ((modm, xK_minus), addName "Decrease volume" $ spawn "pamixer -d 5 && volnoti-show $(pamixer --get-volume)"),
-        ((0, xF86XK_AudioLowerVolume), addName "Decrease volume" $ spawn "pamixer -d 5 && volnoti-show $(pamixer --get-volume)"),
-        ((modm, 0x1be), addName "Increase volume" $ spawn "pamixer -i 5 && volnoti-show $(pamixer --get-volume)"),
-        ((modm, xK_equal), addName "Increase volume" $ spawn "pamixer -i 5 && volnoti-show $(pamixer --get-volume)"),
-        ((0, xF86XK_AudioMute), addName "Toggle mute volume" $ spawn "pamixer -t && volnoti-show $(pamixer --get-volume)"),
-        ((0, xF86XK_AudioRaiseVolume), addName "Increase volume" $ spawn "pamixer -i 5 && volnoti-show $(pamixer --get-volume)")
+      [ ((modm, xK_minus), addName "Decrease volume" $ volumeCommand "pamixer -d 5"),
+        ((0, xF86XK_AudioLowerVolume), addName "Decrease volume" $ volumeCommand "pamixer -d 5"),
+        ((modm, 0x1be), addName "Increase volume" $ volumeCommand "pamixer -i 5"),
+        ((modm, xK_equal), addName "Increase volume" $ volumeCommand "pamixer -i 5"),
+        ((0, xF86XK_AudioMute), addName "Toggle mute volume" $ volumeCommand "pamixer -t"),
+        ((0, xF86XK_AudioRaiseVolume), addName "Increase volume" $ volumeCommand "pamixer -i 5")
       ]
         ++ subtitle "brightness controls" :
-      [ ((0, xF86XK_MonBrightnessUp), addName "Increase brightness" $ spawn "brightnessctl set +5% && volnoti-show $(brightnessctl -m| cut -f4 -d,|tr -d %)"),
-        ((0, xF86XK_MonBrightnessDown), addName "Decrease brightness" $ spawn "brightnessctl set 5%- && volnoti-show $(brightnessctl -m| cut -f4 -d,|tr -d %)")
+      [ ((0, xF86XK_MonBrightnessUp), addName "Increase brightness" $ brightnessCommand "brightnessctl set +5%"),
+        ((0, xF86XK_MonBrightnessDown), addName "Decrease brightness" $ brightnessCommand "brightnessctl set 5%-")
       ]
         ++ subtitle "switching workspaces" :
       [ ((modm .|. mask, k), addName (name ++ i) $ windows $ f i)
