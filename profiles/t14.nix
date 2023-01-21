@@ -43,7 +43,7 @@
     lutris
     mpv
     playerctl
-    inputs.nixos-2009.legacyPackages."${system}".remmina
+    remmina
     qbittorrent
     spotify
     tor-browser-bundle-bin
