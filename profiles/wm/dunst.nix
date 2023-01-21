@@ -51,7 +51,7 @@ in {
       urgency_normal = {
         inherit (colors) background;
         foreground = colors.whiteb;
-        timeout = 900;
+        timeout = 60;
       };
       urgency_critical = {
         background = colors.red;
