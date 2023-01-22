@@ -12,6 +12,8 @@
       ../common-secrets/wireguard.yaml;
     "wireguard/presharedKeys/samsung".sopsFile =
       ../common-secrets/wireguard.yaml;
+    "wireguard/presharedKeys/rycioKompas".sopsFile =
+      ../common-secrets/wireguard.yaml;
     "wireguard/presharedKeys/t14".sopsFile = ../common-secrets/wireguard.yaml;
   };
   networking.firewall.interfaces.eth0 = {
@@ -83,6 +85,12 @@
           presharedKeyFile =
             config.sops.secrets."wireguard/presharedKeys/t14".path;
           allowedIPs = [ "10.6.0.11/32" ];
+        }
+        {
+          publicKey = "GJFNOA0GxnOGoigrw5g5JksQhSAMRRKT6PXE2rZL7xw=";
+          presharedKeyFile =
+            config.sops.secrets."wireguard/presharedKeys/rycioKompas".path;
+          allowedIPs = [ "10.6.0.12/32" ];
         }
       ];
     };
