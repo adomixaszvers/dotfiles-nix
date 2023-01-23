@@ -23,7 +23,7 @@
     gimp
     gitAndTools.gitflow
     libsecret
-    gnome.nautilus
+    cinnamon.nemo
     gnumake
     (google-chrome.override { commandLineArgs = "--ozone-platform-hint=auto"; })
     html-tidy
