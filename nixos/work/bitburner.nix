@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  environment.systemPackages = [ pkgs.xpra ];
   systemd.services.bitburner = {
     path = with pkgs; [ xpra chromium ];
     after = [ "network.target" ];
@@ -11,7 +12,7 @@
         hash = "sha256-IGu4/GHHfE/d1OrG2d8Y5XDDTAlrSn/xbc1ory7mtAg=";
       };
     in ''
-      xpra start --session-name=bitburner --no-daemon --exit-with-children --start-child="chromium --app=file://${bitburnerSrc}/index.html --user-data-dir=/home/adomas/.bitburner-profile"
+      xpra start --printing=no --speaker=no --session-name=bitburner --no-daemon --exit-with-children --start-child="chromium --app=file://${bitburnerSrc}/index.html --user-data-dir=/home/adomas/.bitburner-profile"
     '';
     serviceConfig = { User = "adomas"; };
   };
