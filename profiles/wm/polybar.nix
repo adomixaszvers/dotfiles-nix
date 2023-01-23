@@ -44,8 +44,9 @@ in {
     enable = true;
     settings = {
       monitor = "primary";
-      distance = 18;
+      distance = 16;
       tint = builtins.replaceStrings [ "#" ] [ "0x" ] colors.background;
+      alpha = 0;
       edge = "top";
       align = "right";
       expand = false;
