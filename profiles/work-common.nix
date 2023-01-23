@@ -1,4 +1,4 @@
-{ pkgs, myPkgs, ... }: {
+{ pkgs, myPkgs, unstable, ... }: {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ./wm/xrdp.nix ];
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = pkgs.oraclejdk8;
@@ -27,7 +27,7 @@
     gnumake
     (google-chrome.override { commandLineArgs = "--ozone-platform-hint=auto"; })
     html-tidy
-    jetbrains.idea-ultimate
+    unstable.jetbrains.idea-ultimate
     jmeter
     jq
     keepassxc
