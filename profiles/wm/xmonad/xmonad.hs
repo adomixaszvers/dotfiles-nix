@@ -203,7 +203,7 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
         ),
         ( (modm, xK_d),
           addName "Open DRun menu" $
-            spawn "rofi -show combi -combi-modi window,drun -show-icons"
+            spawn "rofi -show combi -combi-modi window,drun,run -show-icons"
         ),
         ( (modm .|. shiftMask, xK_d),
           addName "Open Run menu" $ spawn "rofi -show run -sidebar-mode"
