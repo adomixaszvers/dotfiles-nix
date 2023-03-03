@@ -1,6 +1,7 @@
 require'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,              -- false will disable the whole extension
+        disable = { "bash" },
     },
     incremental_selection = {
         enable = true,
