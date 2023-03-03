@@ -1,4 +1,4 @@
 { writeShellScriptBin }:
 writeShellScriptBin "hm-repl" ''
-  exec nix repl ~/.config/nixpkgs/repl.nix
+  exec nix repl --file ~/.config/nixpkgs/repl.nix
 ''
