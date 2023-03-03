@@ -17,6 +17,7 @@ vim.o.cursorline = true
 vim.o.scrolloff = 5 -- minimal lines visible above and below cursor
 
 vim.o.showmode = false
+vim.o.mouse = '';
 
 vim.g.rainbow_active = 1
 
