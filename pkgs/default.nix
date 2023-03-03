@@ -7,7 +7,8 @@
   bumblebee-status = pkgs.callPackage ./bumblebee-status {
     bumblebee-status-source = inputs.bumblebee-status.outPath;
   };
-  custom-xrdp = pkgs.callPackage ./custom-xrdp { };
+  custom-xrdp =
+    inputs.nixos-2205.legacyPackages.${system}.callPackage ./custom-xrdp { };
   dbvisualizer = pkgs.callPackage ./dbvisualizer.nix { };
   hunspell-lt = pkgs.callPackage ./hunspell-lt { };
   hm-option = pkgs.callPackage ./hm-option.nix { };

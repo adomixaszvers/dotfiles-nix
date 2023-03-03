@@ -46,6 +46,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
+    nixos-2205 = { url = "github:NixOS/nixpkgs/nixos-22.05"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-22.11"; };
     sops-nix = {
