@@ -35,6 +35,7 @@
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
     kakoune-sudo-write = {
       url = "github:occivink/kakoune-sudo-write";
       flake = false;

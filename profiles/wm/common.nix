@@ -1,4 +1,4 @@
-{ lib, pkgs, myPkgs, ... }:
+{ lib, pkgs, myPkgs, config, ... }:
 
 {
   gtk = {
@@ -22,7 +22,10 @@
     enable = true;
     automount = false;
   };
-  home.packages = with myPkgs; [ maimpick rofi-powermenu ];
+  home.packages = with myPkgs; [
+    maimpick
+    (rofi-powermenu.override { rofi = config.programs.rofi.finalPackage; })
+  ];
   home.sessionVariables =
     let askpass = "${pkgs.gnome.seahorse}/libexec/seahorse/ssh-askpass";
     in {
