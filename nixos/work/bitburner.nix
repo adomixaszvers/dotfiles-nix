@@ -1,19 +1,24 @@
-{ pkgs, ... }: {
-  nixpkgs.overlays = [
-    (self: super: {
-      libfakeXinerama = super.libfakeXinerama.overrideAttrs (_old: {
-        installPhase = ''
-          mkdir -p $out/lib
-          cp libfakeXinerama.so.1.0 $out/lib
-          ln -s libfakeXinerama.so.1.0 $out/lib/libXinerama.so.1.0
-          ln -s libfakeXinerama.so.1.0 $out/lib/libfakeXinerama.so.1
-          ln -s libXinerama.so.1.0 $out/lib/libXinerama.so.1
-          ln -s libXinerama.so.1 $out/lib/libXinerama.so
-        '';
-      });
-    })
-  ];
-  environment.systemPackages = [ pkgs.xpra ];
+{ pkgs, inputs, system, ... }:
+let
+  overlay = self: super: {
+    libfakeXinerama = super.libfakeXinerama.overrideAttrs (_old: {
+      installPhase = ''
+        mkdir -p $out/lib
+        cp libfakeXinerama.so.1.0 $out/lib
+        ln -s libfakeXinerama.so.1.0 $out/lib/libXinerama.so.1.0
+        ln -s libfakeXinerama.so.1.0 $out/lib/libfakeXinerama.so.1
+        ln -s libXinerama.so.1.0 $out/lib/libXinerama.so.1
+        ln -s libXinerama.so.1 $out/lib/libXinerama.so
+      '';
+    });
+  };
+  xpraPkgs = import inputs.nixos-unstable {
+    overlays = [ overlay ];
+    inherit (pkgs) system;
+  };
+  inherit (xpraPkgs) xpra;
+in {
+  environment.systemPackages = [ xpra ];
   users = {
     users.bitburner = {
       isSystemUser = true;
@@ -25,7 +30,7 @@
     groups.bitburner = { };
   };
   systemd.services.bitburner = {
-    path = with pkgs; [ xpra chromium ];
+    path = [ pkgs.chromium xpra ];
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     script = let
