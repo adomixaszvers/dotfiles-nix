@@ -27,6 +27,7 @@
   toggle-touchpad = pkgs.callPackage ./toggle-touchpad.nix { };
   vimgolf = pkgs.callPackage ./vimgolf { };
   keystore-explorer = pkgs.keystore-explorer.override { jdk = pkgs.openjdk8; };
+  tail-volume = pkgs.callPackage ./tail-volume { };
 } // (pkgs.lib.attrsets.optionalAttrs (system == "x86_64-linux") {
   steam = pkgs.steam.override {
     extraPkgs = ps:
