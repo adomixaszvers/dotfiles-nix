@@ -36,6 +36,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-contrib.url = "github:hyprwm/contrib";
     kakoune-sudo-write = {
       url = "github:occivink/kakoune-sudo-write";
       flake = false;
