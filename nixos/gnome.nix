@@ -1,5 +1,6 @@
 {
-  environment.sessionVariables.MOZ_ENABLE_WAYLAND = "1";
+  hardware.pulseaudio.enable = false;
+  services.power-profiles-daemon.enable = false;
   services.xserver = {
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
