@@ -34,7 +34,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.RefocusLast (isFloat, refocusLastLayoutHook, refocusLastWhen)
 import XMonad.Hooks.Rescreen (addAfterRescreenHook)
 import XMonad.Hooks.SetWMName (setWMName)
-import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, sbLogHook)
+import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, sbLogHook, sbStartupHook, sbCleanupHook)
 import XMonad.Hooks.StatusBar.PP
   ( PP (..),
     dynamicLogString,
@@ -89,7 +89,7 @@ main :: IO ()
 main = do
   dbus <- XD.connect
   _ <- XD.requestAccess dbus
-  xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook (restartPolybar >> spawnFeh) . dynamicEasySBs (myDynamicStatusBar dbus) $ myConfig
+  xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook (restartEww >> spawnFeh) . dynamicEasySBs (myDynamicStatusBar dbus) $ myConfig
   where
     dynamicHook = dynamicPropertyChange "WM_CLASS" (className =? "Spotify" --> doShift ws0)
     myConfig =
@@ -140,7 +140,7 @@ myStartupHook :: X ()
 myStartupHook = do
   setWMName "LG3D"
   spawnFeh
-  spawnOnce "systemctl --user restart polybar"
+  spawnOnce "eww daemon"
 
 myDynamicStatusBar :: D.Client -> ScreenId -> IO StatusBarConfig
 myDynamicStatusBar dbus sc@(S i) = pure . dbusStatusBarConfig sc dbus $ ppOn i
@@ -148,8 +148,8 @@ myDynamicStatusBar dbus sc@(S i) = pure . dbusStatusBarConfig sc dbus $ ppOn i
     ppOn 0 = pure mainPP
     ppOn _ = pure . secondaryPP $ sc
 
-restartPolybar :: MonadIO m => m ()
-restartPolybar = spawn "systemctl --user restart polybar"
+restartEww :: MonadIO m => m ()
+restartEww = spawn "eww reload"
 
 spawnFeh :: MonadIO m => m ()
 spawnFeh = spawn "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
@@ -320,16 +320,16 @@ myLogTitleOnScreen :: ScreenId -> Logger
 myLogTitleOnScreen n = do
   c <- withWindowSet $ return . W.screen . W.current
   let f = if n == c then id else wrapL ("%{F" ++ C.blackb ++ "}") "%{F-}"
-  f . wrapL ": " "" . shortenL 100 . logTitleOnScreen $ n
+  f . wrapL ": " "" . shortenL 50 . logTitleOnScreen $ n
 
 mainPP :: PP
 mainPP =
   filterOutWsPP [scratchpadWorkspaceTag] $
     def
       { ppCurrent = wrap "[" "]",
-        ppVisible = wrap "|" "|" . clickableWS,
-        ppUrgent = wrap "{" "}" . clickableWS,
-        ppHidden = wrap "" "" . clickableWS,
+        ppVisible = wrap "|" "|",
+        ppUrgent = wrap "{" "}",
+        ppHidden = wrap "" "",
         ppWsSep = " ",
         ppSep = " ",
         ppSort = getSortByXineramaPhysicalRule def,
@@ -339,12 +339,6 @@ mainPP =
           ],
         ppOrder = \(ws : _layout : _title : extras) -> ws : extras
       }
-  where
-    clickableWS ws =
-      maybe
-        ws
-        (\i -> "%{A1:xdotool set_desktop " ++ show i ++ ":}" ++ ws ++ "%{A}")
-        $ elemIndex ws myWorkspaces
 
 secondaryPP :: ScreenId -> PP
 secondaryPP s =
@@ -401,4 +395,6 @@ dbusStatusBarConfig :: ScreenId -> D.Client -> X PP -> StatusBarConfig
 dbusStatusBarConfig (S i) dbus xpp =
   def
     { sbLogHook = io . XD.sendToPath dbus (show i) =<< dynamicLogString =<< xpp
+    , sbStartupHook = spawn $ "eww open bar" ++ show i
+    , sbCleanupHook = spawn $ "eww close bar" ++ show i
     }

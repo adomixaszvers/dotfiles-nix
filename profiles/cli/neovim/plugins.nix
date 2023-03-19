@@ -31,4 +31,5 @@ in [
   vim-sneak
   vim-unimpaired
   vinegar
+  yuck-vim
 ] ++ telescope-dependencies

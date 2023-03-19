@@ -23,6 +23,7 @@
       flake = false;
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+    eww.url = "github:elkowar/eww";
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;

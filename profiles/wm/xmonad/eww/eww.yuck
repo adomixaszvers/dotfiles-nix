@@ -1,0 +1,120 @@
+(defwindow bar0
+  :monitor 0
+  :windowtype "dock"
+  :stacking "fg"
+  :reserve (struts :distance "2%" :side "top")
+  :geometry (geometry :x 0
+                      :y 0
+                      :anchor "top left"
+                      :height "2%"
+                      :width "100%")
+(box :orientation "horizontal"
+  :space-evenly true
+  (workspaces :text xmonad-ws-0)
+  (bar)))
+
+
+(defwindow bar1
+  :monitor 1
+  :windowtype "dock"
+  :stacking "fg"
+  :reserve (struts :distance "2%" :side "top")
+  :geometry (geometry :x 0
+                      :y 0
+                      :anchor "top left"
+                      :height "2%"
+                      :width "100%")
+(box :orientation "horizontal"
+  :space-evenly true
+  (workspaces :text xmonad-ws-1)
+  (secondary-bar)))
+
+(defwindow bar2
+  :monitor 2
+  :windowtype "dock"
+  :stacking "fg"
+  :reserve (struts :distance "2%" :side "top")
+  :geometry (geometry :x 0
+                      :y 0
+                      :anchor "top left"
+                      :height "2%"
+                      :width "100%")
+(box :orientation "horizontal"
+  :space-evenly true
+  (workspaces :text xmonad-ws-2)
+  (secondary-bar)))
+
+(defwidget workspaces [text]
+  (box :class "workspaces"
+    :orientation "horizontal"
+    :halign "start"
+    (label :text text)))
+
+(defwidget bar []
+  (box :class "eww_bar"
+       :orientation "horizontal"
+       :halign "end"
+       :space-evenly false
+       (battery :name "BAT0")
+       (cpu)
+       (temp :name "ACPITZ_TEMP1")
+       (ram)
+       (simple-widget :icon "/" :text "${round(EWW_DISK["/"].free / 1024 / 1024 / 1024, 0)}GiB")
+       (eventbox
+         :onscroll `[ up = {} ] && pamixer -i 5 || pamixer -d 5`
+         (volume))
+       (time)
+       (tray)))
+
+(defwidget secondary-bar []
+  (box :class "eww_bar"
+       :orientation "horizontal"
+       :halign "end"
+       :space-evenly false
+       (time)))
+
+(defwidget simple-widget [icon text]
+  (box
+    :class "simple-widget"
+    :space-evenly false
+    (box :class "icon" icon)
+    (box :class "simple-widget-text" text)))
+
+(defwidget tray []
+  (eventbox :onclick "toggle-trayer"
+    "${trayer-visible == "true" ? " " : " "}"))
+
+(defwidget battery [name]
+  (simple-widget :icon " " :text "${EWW_BATTERY[name].capacity}%"))
+
+(defwidget volume []
+  (simple-widget :icon "墳 " :text "${current-volume}%"))
+
+(defwidget time []
+  (simple-widget :icon " "  :text current-time))
+
+(defwidget ram []
+  (simple-widget :icon " " :text "${round(EWW_RAM.used_mem_perc, 0)}%"))
+
+(defwidget cpu []
+  (simple-widget :icon "﬙ " :text "${round(EWW_CPU.avg, 0)}%"))
+
+(defwidget temp [name]
+  (simple-widget :icon " " :text "${EWW_TEMPS?.[name]}C")) 
+
+(defvar trayer-visible false)
+
+(deflisten xmonad-ws-0
+  `xmonad-dbus 0`)
+
+(deflisten xmonad-ws-1
+  `xmonad-dbus 1`)
+
+(deflisten xmonad-ws-2
+  `xmonad-dbus 2`)
+
+(defpoll current-time :interval "10s"
+  `date "+%Y-%m-%d %H:%M"`)
+
+(deflisten current-volume :initial "0"
+  `tail-volume`)

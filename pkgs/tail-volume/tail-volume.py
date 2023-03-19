@@ -19,8 +19,8 @@ async def listen_events():
         default_sink_name = await get_default_sink_name(pulse)
         sink = await pulse.get_sink_by_name(default_sink_name)
         print(format_volume(sink), flush=True)
-        async for event in pulse.subscribe_events('source', 'server'):
-            if event.facility == 'source' and event.t == 'change':
+        async for event in pulse.subscribe_events('sink', 'server'):
+            if event.facility == 'sink' and event.t == 'change':
                 sink = await pulse.get_sink_by_name(default_sink_name)
                 if sink.index == event.index:
                     print(format_volume(sink), flush=True)
