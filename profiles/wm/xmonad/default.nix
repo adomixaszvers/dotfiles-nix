@@ -23,12 +23,9 @@ let
 in {
   imports = [ ../dunst.nix ../picom.nix ];
   home.packages = (with pkgs; [ pamixer xdotool gnome.zenity ])
-    ++ [ myPkgs.tail-volume trayer-toggle xmonad-dbus ];
-  programs.eww = {
-    enable = true;
-    package = eww;
-    configDir = ./eww;
-  };
+    ++ [ eww myPkgs.tail-volume trayer-toggle xmonad-dbus ];
+  xdg.configFile."eww/eww.yuck".source = ./eww/eww.yuck;
+  xdg.configFile."eww/eww.scss".source = ./eww/eww.scss;
   services.polybar.config = {
     "bar/top".modules-left = "xmonad";
     "bar/top-extra".modules-left = "xmonad";
