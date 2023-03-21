@@ -34,7 +34,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.RefocusLast (isFloat, refocusLastLayoutHook, refocusLastWhen)
 import XMonad.Hooks.Rescreen (addAfterRescreenHook)
 import XMonad.Hooks.SetWMName (setWMName)
-import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, sbLogHook, sbStartupHook, sbCleanupHook)
+import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, sbCleanupHook, sbLogHook, sbStartupHook)
 import XMonad.Hooks.StatusBar.PP
   ( PP (..),
     dynamicLogString,
@@ -319,7 +319,7 @@ showKeybindings x =
 myLogTitleOnScreen :: ScreenId -> Logger
 myLogTitleOnScreen n = do
   c <- withWindowSet $ return . W.screen . W.current
-  let f = if n == c then id else wrapL ("%{F" ++ C.blackb ++ "}") "%{F-}"
+  let f = if n == c then id else wrapL "(" ""
   f . wrapL ": " "" . shortenL 50 . logTitleOnScreen $ n
 
 mainPP :: PP

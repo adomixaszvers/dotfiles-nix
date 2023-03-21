@@ -87,23 +87,8 @@
   (simple-widget :icon " " :tooltip "battery ${EWW_BATTERY[name].status}" :text "${EWW_BATTERY[name].capacity}%"))
 
 (defwidget volume []
-  (eventbox :onhover "eww update volume-revealer-on=true"
-            :onhoverlost "eww update volume-revealer-on=false"
-    (box :class "volume"
-         :tooltip "volume"
-         :space-evenly false
-      (box :class "icon"  "墳 ")
-      (revealer :transition "slideright"
-                :reveal volume-revealer-on
-                :duration "0.2s"
-        (scale
-          :class "volume-scale"
-          :min 0
-          :max 101
-          :value current-volume
-          :onchange "pamixer --set-volume {}"
-          :orientation "h"))
-      "${current-volume}%")))
+  (eventbox :onscroll `[ up = {} ] && pamixer -i 5 || pamixer -d 5`
+      (simple-widget :icon "墳 " :tooltip "volume" :text "${current-volume}%")))
 
 (defwidget time []
   (simple-widget :icon " "  :text current-time))
@@ -133,5 +118,3 @@
 
 (deflisten current-volume :initial "0"
   `tail-volume`)
-
-(defvar volume-revealer-on "false")
