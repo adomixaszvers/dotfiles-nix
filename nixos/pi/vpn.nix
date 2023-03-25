@@ -3,9 +3,16 @@
     sopsFile = ../common-secrets/vpnc.conf;
     format = "binary";
   };
-  networking.nat.enable = true;
-  networking.nat.internalInterfaces = [ "ve-+" ];
-  networking.nat.externalInterface = "eth0";
+  networking.firewall.interfaces.eth0.allowedTCPPorts = [ 1090 ];
+  networking.nat = {
+    enable = true;
+    internalInterfaces = [ "ve-+" ];
+    externalInterface = "eth0";
+    # forwardPorts = [{
+    #   destination = "192.168.100.11:1080";
+    #   sourcePort = 1090;
+    # }];
+  };
   containers.vpnc = {
     autoStart = true;
     enableTun = true;
@@ -23,8 +30,14 @@
     hostAddress = "192.168.100.10";
     localAddress = "192.168.100.11";
     config = { pkgs, ... }: {
+      networking.nameservers = [ "9.9.9.9" ];
       environment.systemPackages = [ pkgs.kitty.terminfo ];
       networking.firewall.allowedTCPPorts = [ 1080 ];
+      networking.interfaces.eth0.ipv4.routes = [{
+        address = "192.168.1.0";
+        prefixLength = 24;
+        via = "192.168.100.10";
+      }];
       systemd.services.vpnc = {
         enable = true;
         after = [ "network-online.target" ];
@@ -37,6 +50,7 @@
       services.dante = {
         enable = true;
         config = ''
+          debug: 1
           internal: 0.0.0.0 port = 1080
           external: tun0
 
@@ -45,6 +59,11 @@
 
           client pass {
             from: 192.168.100.0/24 to: 0.0.0.0/0
+            log: error # connect disconnect
+          }
+
+          client pass {
+            from: 192.168.1.0/24 to: 0.0.0.0/0
             log: error # connect disconnect
           }
 
