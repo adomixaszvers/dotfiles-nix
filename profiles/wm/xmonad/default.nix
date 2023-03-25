@@ -25,7 +25,30 @@ in {
   home.packages = (with pkgs; [ pamixer xdotool gnome.zenity ])
     ++ [ eww myPkgs.tail-volume trayer-toggle xmonad-dbus ];
   xdg.configFile."eww/eww.yuck".source = ./eww/eww.yuck;
-  xdg.configFile."eww/eww.scss".source = ./eww/eww.scss;
+  xdg.configFile."eww/eww.scss".text = with config.colors; ''
+    * {
+      font-size: 0.9rem;
+      font-family: "NotoMono Nerd Font";
+    }
+
+    window {
+      background: ${background};
+      color: ${foreground};
+    }
+
+    .icon {
+      color: ${cyanb};
+    }
+
+    .simple-widget {
+      margin-right: 0.2rem;
+    }
+
+    .volume-scale {
+      min-width: 100px;
+    }
+
+  '';
   services.polybar.config = {
     "bar/top".modules-left = "xmonad";
     "bar/top-extra".modules-left = "xmonad";
