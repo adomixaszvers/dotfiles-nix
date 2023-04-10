@@ -7,7 +7,7 @@
       enable_audio_bell = false;
 
       font_family = "JetBrainsMono Nerd Font Mono";
-      font_size = "9.0";
+      # font_size = "9.0";
 
       inherit foreground background;
       background_opacity = "1.0";
@@ -43,6 +43,8 @@
       # white
       color7 = white;
       color15 = whiteb;
+
+      envinclude = "KITTY_CONF_*";
 
     };
   };

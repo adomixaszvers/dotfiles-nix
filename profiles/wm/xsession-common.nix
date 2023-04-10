@@ -36,4 +36,5 @@
     gtk.enable = true;
     x11.enable = true;
   };
+  home.sessionVariables.KITTY_CONF_FONT = "font_size 9";
 }
