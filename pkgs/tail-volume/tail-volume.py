@@ -1,8 +1,10 @@
 import asyncio
 import signal
+import traceback
 from contextlib import suppress
 
 import pulsectl_asyncio
+from pulsectl import PulseIndexError
 
 
 async def get_default_sink_name(pulse: pulsectl_asyncio.PulseAsync):
@@ -17,17 +19,18 @@ def format_volume(sink):
 async def listen_events():
     async with pulsectl_asyncio.PulseAsync('event-printer') as pulse:
         default_sink_name = await get_default_sink_name(pulse)
-        sink = await pulse.get_sink_by_name(default_sink_name)
-        print(format_volume(sink), flush=True)
+        try:
+            sink = await pulse.get_sink_by_name(default_sink_name)
+            print(format_volume(sink), flush=True)
+        except PulseIndexError:
+            traceback.print_exc()
         async for event in pulse.subscribe_events('sink', 'server'):
-            if event.facility == 'sink' and event.t == 'change':
-                sink = await pulse.get_sink_by_name(default_sink_name)
-                if sink.index == event.index:
-                    print(format_volume(sink), flush=True)
-            else:
-                default_sink_name = await get_default_sink_name(pulse)
+            default_sink_name = await get_default_sink_name(pulse)
+            try:
                 sink = await pulse.get_sink_by_name(default_sink_name)
                 print(format_volume(sink), flush=True)
+            except PulseIndexError:
+                traceback.print_exc()
 
 
 async def main():
