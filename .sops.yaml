@@ -4,8 +4,9 @@ keys:
   - &work age1davevp82crerwkczlus55cehpr48e3mmpmyx2g6gxg37a8257uasndwpvu
   - &pi age1n7jt7lxh9u26u25ggaltvt3xsjqg8rsaakjcm4lrykzn70l40s0qjp9vqu
   - &t14 age18shz3w4pvxqvagegx50dq8ujcjaq6xa56ptqlqna255xxx4jp9lsu6qjna
+  - &pc age1970uksmphn9sggda6mqh32g9nk9tnh6qrxg54rg3dwclrj9vugfscev2uw
 creation_rules:
-  - path_regex: common-secrets/(zerotier|wireguard)\.yaml$
+  - path_regex: nixos/common-secrets/(zerotier|wireguard)\.yaml$
     key_groups:
       - pgp:
           - *adomas
@@ -14,32 +15,38 @@ creation_rules:
           - *work
           - *pi
           - *t14
-  - path_regex: common-secrets/vpnc\.conf$
+  - path_regex: nixos/common-secrets/vpnc\.conf$
     key_groups:
       - pgp:
           - *adomas
         age:
           - *pi
           - *t14
-  - path_regex: home/secrets/[^/]+\.yaml$
+  - path_regex: nixos/home/secrets/[^/]+\.yaml$
     key_groups:
       - pgp:
           - *adomas
         age:
           - *laptop
-  - path_regex: t14/secrets/[^/]+\.yaml$
+  - path_regex: nixos/pc/secrets/[^/]+\.yaml$
+    key_groups:
+      - pgp:
+          - *adomas
+        age:
+          - *pc
+  - path_regex: nixos/t14/secrets/[^/]+\.yaml$
     key_groups:
       - pgp:
           - *adomas
         age:
           - *t14
-  - path_regex: work/secrets/[^/]+\.yaml$
+  - path_regex: nixos/work/secrets/[^/]+\.yaml$
     key_groups:
       - pgp:
           - *adomas
         age:
           - *work
-  - path_regex: pi/secrets/[^/]+\.(yaml|env)$
+  - path_regex: nixos/pi/secrets/[^/]+\.(yaml|env)$
     key_groups:
       - pgp:
           - *adomas

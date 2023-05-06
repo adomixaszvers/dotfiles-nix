@@ -17,6 +17,11 @@ in {
     system = "x86_64-linux";
     modules = [ ./work/configuration.nix ];
   };
+  adomo-pc-nixos = nixpkgs.lib.nixosSystem {
+    inherit specialArgs;
+    system = "x86_64-linux";
+    modules = [ ./pc/configuration.nix ];
+  };
   adomo-t14 = nixpkgs.lib.nixosSystem {
     inherit specialArgs;
     system = "x86_64-linux";

@@ -19,7 +19,7 @@
   };
   services.network-manager-applet.enable = lib.mkDefault true;
   services.udiskie = {
-    enable = true;
+    enable = lib.mkDefault true;
     automount = false;
   };
   home.packages = with myPkgs; [

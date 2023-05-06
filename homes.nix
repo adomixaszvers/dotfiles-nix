@@ -33,10 +33,12 @@ in rec {
     username = "pi";
     system = "aarch64-linux";
   };
+  pc = buildHomeManager ./profiles/pc.nix { };
   "adomas@adomo-nixos" = home;
   "adomas@adomo-t14" = t14;
   "adomas@arch-vm" = foreign;
   "adomas@adomas-jatuzis-nixos" = work;
+  "adomas@adomo-pc-nixos" = pc;
   "pi@raspberrypi-nixos" = pi;
   thinkpad-home = work-remote;
   thinkpad-work = work;
