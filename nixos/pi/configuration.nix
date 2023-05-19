@@ -18,7 +18,7 @@
     ./wireguard.nix
     ./zsh.nix
     ./dante.nix
-    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+    inputs.nixos-hardware-rpi4.nixosModules.raspberry-pi-4
     inputs.sops-nix.nixosModules.sops
   ];
 

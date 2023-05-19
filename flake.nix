@@ -48,6 +48,11 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
+    nixos-hardware-rpi4 = {
+      # after https://github.com/NixOS/nixos-hardware/pull/627 I cannot use 22.11 branch because it fails an assertion
+      url =
+        "github:NixOS/nixos-hardware/c84a8f242331c513a310aff7ebf83cabd11de3bc";
+    };
     nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-2205 = { url = "github:NixOS/nixpkgs/nixos-22.05"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
