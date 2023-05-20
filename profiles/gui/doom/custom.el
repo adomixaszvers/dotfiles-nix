@@ -5,8 +5,12 @@
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
    '((flycheck-disabled-checkers quote
-                                 (emacs-lisp-checkdoc))
-     (projectile-project-compilation-cmd . "hm-switch"))))
+      (emacs-lisp-checkdoc))
+     (projectile-project-compilation-cmd . "hm-switch")))
+ '(warning-suppress-types
+   '((doom-first-file-hook)
+     (doom-first-file-hook)
+     (defvaralias))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
