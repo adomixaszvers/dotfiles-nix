@@ -139,7 +139,7 @@
     environment = {
       TZ = "Europe/Vilnius";
       "PIHOLE_DNS_" = "192.168.20.1";
-      ServerIP = "192.168.1.207";
+      FTLCONF_REPLY_ADDR4 = "192.168.1.207";
       DNSMASQ_USER = "pihole";
       PIHOLE_UID = "995";
       PIHOLE_GID = "992";
