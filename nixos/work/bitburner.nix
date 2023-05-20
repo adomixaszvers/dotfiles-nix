@@ -47,6 +47,8 @@ in {
       User = "bitburner";
       RestartSec = 60;
       Restart = "always";
+      MemoryHigh = "2G";
+      MemoryMax = "4G";
     };
   };
 }
