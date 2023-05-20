@@ -5,7 +5,7 @@
     enable = true;
     config = ''
       internal: 10.6.0.6 port = 1080
-      external: 192.168.33.105
+      external: enp0s13f0u3u1
 
       clientmethod: none
       socksmethod: none
