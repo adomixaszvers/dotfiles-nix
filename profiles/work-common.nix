@@ -1,4 +1,4 @@
-{ pkgs, myPkgs, unstable, ... }: {
+{ pkgs, myPkgs, unstable, inputs, ... }: {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ./wm/xrdp.nix ];
   home.file."jdks/openjdk8".source = pkgs.openjdk8;
   home.file."jdks/oraclejdk8".source = pkgs.oraclejdk8;
@@ -6,6 +6,7 @@
   home.file."jdks/openjdk17".source = pkgs.openjdk17;
   home.file."nodejs/latest".source = pkgs.nodejs_latest;
   home.file."nodejs/14".source = pkgs.nodejs-14_x;
+  home.file."nodejs/18".source = pkgs.nodejs-18_x;
   home.file."maven".source = pkgs.maven;
   home.file."tomcat-native".source = pkgs.tomcat-native;
   home.file."tomcats/tomcat9".source = pkgs.tomcat9;
@@ -15,6 +16,7 @@
     asciinema
     bless
     brightnessctl
+    dbeaver
     docker-compose
     dos2unix
     evince
@@ -27,7 +29,7 @@
     gnumake
     (google-chrome.override { commandLineArgs = "--ozone-platform-hint=auto"; })
     html-tidy
-    unstable.jetbrains.idea-ultimate
+    jetbrains.idea-ultimate
     jmeter
     jq
     keepassxc
@@ -46,12 +48,12 @@
     samba
     protonup
     soapui
-    spotify
+    # spotify
     sqldeveloper
     sshpass
     steam-run
     subversion
-    teams
+    # teams
     traceroute
     unrar
     discord
@@ -154,15 +156,15 @@
         config = {
           DP-3-2 = {
             enable = true;
-            crtc = 2;
+            primary = true;
+            crtc = 0;
             position = "0x0";
             rate = "59.95";
             mode = "1920x1200";
           };
           DP-3-3 = {
-            primary = true;
             enable = true;
-            crtc = 0;
+            crtc = 2;
             position = "1920x0";
             rate = "59.95";
             mode = "1920x1200";

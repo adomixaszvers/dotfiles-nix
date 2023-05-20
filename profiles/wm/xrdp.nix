@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, lib, ... }: {
   home.file."startwm.sh".source = pkgs.writeShellScript "startwm.sh" ''
     source /etc/profile
 
@@ -13,8 +13,10 @@
       exec ${pkgs.dbus}/bin/dbus-run-session ${pkgs.runtimeShell} ~/.xsession
     fi
   '';
-  systemd.user.services.picom.Unit = {
-    StartLimitBurst = 3;
-    StartLimitIntervalSec = 60;
+  systemd.user.services.picom = lib.optionalAttrs config.services.picom.enable {
+    Unit = {
+      StartLimitBurst = 3;
+      StartLimitIntervalSec = 60;
+    };
   };
 }
