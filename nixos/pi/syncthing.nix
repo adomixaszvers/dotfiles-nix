@@ -11,7 +11,21 @@
     guiAddress = "0.0.0.0:8384";
   };
   services.nginx.virtualHosts = let
-    locations = { "/" = { proxyPass = "http://127.0.0.1:8384"; }; };
+    locations = {
+      "/" = {
+        proxyPass = "http://127.0.0.1:8384";
+        # see https://docs.syncthing.net/users/reverseproxy.html#nginx
+        extraConfig = ''
+          proxy_set_header        X-Real-IP $remote_addr;
+          proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header        X-Forwarded-Proto $scheme;
+          proxy_read_timeout      600s;
+          proxy_send_timeout      600s;
+          proxy_headers_hash_max_size 512;
+          proxy_headers_hash_bucket_size 128;
+        '';
+      };
+    };
     forceSSL = true;
   in {
     "syncthing.lan.beastade.top" = {
