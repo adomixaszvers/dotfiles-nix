@@ -1,6 +1,7 @@
 { config, lib, ... }: {
   systemd = {
     services.prebuild-configs = {
+      serviceConfig.User = "pi";
       description = "Prebuild personal configs";
       script = let
         nix = config.nix.package;
