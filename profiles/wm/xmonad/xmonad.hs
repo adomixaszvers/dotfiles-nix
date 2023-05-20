@@ -209,6 +209,7 @@ myKeysDescr conf@XConfig {XMonad.modMask = modm} =
           addName "Open Run menu" $ spawn "rofi -show run -sidebar-mode"
         ),
         ((modm .|. shiftMask, xK_q), addName "Close the focused window" kill),
+        ((modm .|. controlMask, xK_q), addName "Kill the focused window" killByPid),
         subtitle "changing layouts",
         ((modm, xK_space), sendMessage' NextLayout),
         ( (modm .|. shiftMask, xK_space),
@@ -398,3 +399,9 @@ dbusStatusBarConfig (S i) dbus xpp =
     , sbStartupHook = spawn $ "eww open bar" ++ show i
     , sbCleanupHook = spawn $ "eww close bar" ++ show i
     }
+
+killByPid :: X ()
+killByPid = do
+  d <- asks display
+  mw <- W.peek <$> gets windowset
+  whenJust mw (io . void . killClient d)
