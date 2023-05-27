@@ -30,7 +30,7 @@
 
   boot = {
     blacklistedKernelModules = [ "ath9k" ];
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
     kernelParams = [ "nohibernate" ];
     loader = {
       efi = {
@@ -90,7 +90,7 @@
   '';
   services.openssh = {
     enable = true;
-    passwordAuthentication = false;
+    settings.PasswordAuthentication = false;
   };
   services.thermald.enable = true;
 

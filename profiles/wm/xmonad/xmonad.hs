@@ -1,3 +1,4 @@
+{-# LANGUAGE LambdaCase #-}
 {-# OPTIONS_GHC -Wall -Werror -fno-warn-missing-signatures #-}
 
 import qualified Colors as C
@@ -130,8 +131,16 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0 :: String
-[ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0] =
-  map show ([1 .. 10] :: [Integer])
+ws1 = "1"
+ws2 = "2"
+ws3 = "3"
+ws4 = "4"
+ws5 = "5"
+ws6 = "6"
+ws7 = "7"
+ws8 = "8"
+ws9 = "9"
+ws0 = "10"
 
 myWorkspaces :: [String]
 myWorkspaces = [ws1, ws2, ws3, ws4, ws5, ws6, ws7, ws8, ws9, ws0]
@@ -338,13 +347,17 @@ mainPP =
           [ logLayoutOnScreen 0,
             myLogTitleOnScreen 0
           ],
-        ppOrder = \(ws : _layout : _title : extras) -> ws : extras
+        ppOrder = \case
+          (ws : _layout : _title : extras) -> ws : extras
+          x -> x
       }
 
 secondaryPP :: ScreenId -> PP
 secondaryPP s =
   def
-    { ppOrder = \(_ws : _layout : _title : extras) -> extras,
+    { ppOrder = \case
+        (_ws : _layout : _title : extras) -> extras
+        x -> x,
       ppSep = " ",
       ppExtras =
         [ logCurrentOnScreen s,
@@ -395,9 +408,9 @@ findLowest = withWindowSet $ \ws -> do
 dbusStatusBarConfig :: ScreenId -> D.Client -> X PP -> StatusBarConfig
 dbusStatusBarConfig (S i) dbus xpp =
   def
-    { sbLogHook = io . XD.sendToPath dbus (show i) =<< dynamicLogString =<< xpp
-    , sbStartupHook = spawn $ "eww open bar" ++ show i
-    , sbCleanupHook = spawn $ "eww close bar" ++ show i
+    { sbLogHook = io . XD.sendToPath dbus (show i) =<< dynamicLogString =<< xpp,
+      sbStartupHook = spawn $ "eww open bar" ++ show i,
+      sbCleanupHook = spawn $ "eww close bar" ++ show i
     }
 
 killByPid :: X ()

@@ -33,7 +33,7 @@
       flake = false;
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
@@ -56,7 +56,7 @@
     nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-2205 = { url = "github:NixOS/nixpkgs/nixos-22.05"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
-    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-22.11"; };
+    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-23.05"; };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";

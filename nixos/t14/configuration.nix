@@ -28,7 +28,7 @@
   ];
 
   boot = {
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
     kernelParams = [ "nohibernate" ];
     kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
     loader = {
@@ -44,8 +44,8 @@
   powerManagement.resumeCommands = ''
     /run/current-system/sw/bin/bluetoothctl discoverable on
   '';
+  console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
   hardware.trackpoint.emulateWheel = false;
-  hardware.video.hidpi.enable = true;
   hardware.xone.enable = true;
 
   environment.systemPackages = with pkgs; [ nixfmt virtmanager ];
@@ -68,7 +68,7 @@
   services.fstrim.enable = true;
   services.openssh = {
     enable = true;
-    passwordAuthentication = false;
+    settings.PasswordAuthentication = false;
   };
 
   services.zfs = {

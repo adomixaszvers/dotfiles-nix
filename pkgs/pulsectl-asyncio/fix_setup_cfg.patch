@@ -1,0 +1,11 @@
+--- a/setup.cfg	2023-05-07 23:25:20.016627300 +0300
++++ b/setup.cfg	2023-05-27 20:12:15.967164781 +0300
+@@ -27,7 +27,7 @@
+ packages = pulsectl_asyncio
+ python_requires = >=3.6
+ install_requires = 
+-	pulsectl >=22.5.0,<=22.5.1
++	pulsectl >=23.5.0,<=23.5.1
+ include_package_data = True
+ 
+ [egg_info]

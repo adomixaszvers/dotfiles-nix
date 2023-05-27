@@ -41,7 +41,7 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
   boot.kernelParams = [ "consoleblank=60" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot = {
@@ -153,11 +153,13 @@
   };
   services.openssh = {
     enable = true;
-    forwardX11 = true;
     extraConfig = ''
       StreamLocalBindUnlink yes
     '';
-    passwordAuthentication = false;
+    settings = {
+      PasswordAuthentication = false;
+      X11Forwarding = true;
+    };
     ports = [ 9222 22 ];
   };
   security.pam.services.sshd.enableGnomeKeyring = true;

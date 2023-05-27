@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    yubioath-desktop
+    yubioath-flutter
     yubikey-manager-qt
   ];
   hardware.gpgSmartcards.enable = true;

@@ -24,7 +24,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  boot.tmpOnTmpfs = true;
+  boot.tmp.useTmpfs = true;
   # boot.loader.raspberryPi = {
   #   enable = true;
   #   version = 4;
@@ -100,7 +100,7 @@
   services.fstrim.enable = true;
   services.openssh = {
     enable = true;
-    passwordAuthentication = false;
+    settings.PasswordAuthentication = false;
   };
   virtualisation.podman.enable = true;
   virtualisation.oci-containers.backend = "podman";
