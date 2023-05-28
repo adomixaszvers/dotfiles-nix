@@ -4,3 +4,5 @@
 ** Nixos :nixos:
 *** [[https://nixos.org/blogs.xml][NixOS Planet]]
 *** [[https://github.com/rycee/home-manager/commits/master.atom][home-manager master commits]]
+** Games :games:
+*** [[https://steamcommunity.com/groups/freegamesfinders/rss/][Free game deals]]

@@ -22,7 +22,7 @@
 (set-formatter! 'stylua '("stylua" "-") :modes '(lua-mode))
 (setq-hook! 'lua-mode-hook +format-with 'stylua)
 
-(setq +rss-elfeed-files `(,(expand-file-name "elfeed.org" doom-private-dir)))
+(setq rmh-elfeed-org-files `(,(expand-file-name "elfeed.org" doom-private-dir)))
 (add-hook 'dired-mode-hook
           (lambda ()
             (when (file-remote-p dired-directory)
