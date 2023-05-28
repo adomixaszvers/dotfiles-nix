@@ -82,6 +82,7 @@
     layout = "lt,us";
     desktopManager.xterm.enable = true;
     displayManager.startx.enable = lib.mkDefault true;
+    libinput.mouse.middleEmulation = lib.mkDefault false;
   };
 
   time.timeZone = "Europe/Vilnius";

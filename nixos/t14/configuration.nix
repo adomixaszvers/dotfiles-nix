@@ -44,6 +44,7 @@
   powerManagement.resumeCommands = ''
     /run/current-system/sw/bin/bluetoothctl discoverable on
   '';
+  hardware.trackpoint.emulateWheel = false;
   hardware.video.hidpi.enable = true;
   hardware.xone.enable = true;
 
