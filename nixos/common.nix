@@ -58,6 +58,7 @@
       "interface-name:ztz*"
       "interface-name:br-*"
       "interface-name:docker*"
+      "interface-name:virbr*"
     ];
   };
 
