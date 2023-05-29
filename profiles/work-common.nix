@@ -5,7 +5,6 @@
   home.file."jdks/openjdk11".source = pkgs.openjdk11;
   home.file."jdks/openjdk17".source = pkgs.openjdk17;
   home.file."nodejs/latest".source = pkgs.nodejs_latest;
-  home.file."nodejs/14".source = pkgs.nodejs-14_x;
   home.file."nodejs/18".source = pkgs.nodejs-18_x;
   home.file."maven".source = pkgs.maven;
   home.file."tomcat-native".source = pkgs.tomcat-native;
