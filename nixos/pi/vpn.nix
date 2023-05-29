@@ -30,8 +30,18 @@
     hostAddress = "192.168.100.10";
     localAddress = "192.168.100.11";
     config = { pkgs, ... }: {
-      networking.nameservers = [ "9.9.9.9" ];
+      environment.etc."resolv.conf".text = ''
+        search x.insoft.lt
+        nameserver 192.168.30.11
+        nameserver 192.168.30.12
+        nameserver 192.168.30.1
+        nameserver 9.9.9.9
+        options edns0
+      '';
       environment.systemPackages = [ pkgs.kitty.terminfo ];
+      networking.extraHosts = ''
+        88.119.198.57 vpn.insoft.lt
+      '';
       networking.firewall.allowedTCPPorts = [ 1080 ];
       networking.interfaces.eth0.ipv4.routes = [{
         address = "192.168.1.0";
@@ -43,6 +53,10 @@
         after = [ "network-online.target" ];
         requires = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Restart = "on-failure";
+          RestartSec = 30;
+        };
         script =
           "${pkgs.vpnc}/bin/vpnc /vpnc.conf --no-detach --non-inter --local-port 0";
       };
@@ -50,7 +64,6 @@
       services.dante = {
         enable = true;
         config = ''
-          debug: 1
           internal: 0.0.0.0 port = 1080
           external: tun0
 
