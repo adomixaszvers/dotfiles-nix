@@ -45,7 +45,6 @@
     playerctl
     remmina
     qbittorrent
-    spotify
     tor-browser-bundle-bin
     keepassxc
     xpra
