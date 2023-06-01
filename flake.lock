@@ -420,22 +420,6 @@
         "type": "github"
       }
     },
-    "nixos-hardware-rpi4": {
-      "locked": {
-        "lastModified": 1683271346,
-        "narHash": "sha256-ecv+VfhGmeQOBS6j9SptM0aKS25sMIEh+QbaYI4pyI0=",
-        "owner": "NixOS",
-        "repo": "nixos-hardware",
-        "rev": "c84a8f242331c513a310aff7ebf83cabd11de3bc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixos-hardware",
-        "rev": "c84a8f242331c513a310aff7ebf83cabd11de3bc",
-        "type": "github"
-      }
-    },
     "nixos-unstable": {
       "locked": {
         "lastModified": 1685576448,
@@ -640,7 +624,6 @@
         "nixos-2009": "nixos-2009",
         "nixos-2205": "nixos-2205",
         "nixos-hardware": "nixos-hardware",
-        "nixos-hardware-rpi4": "nixos-hardware-rpi4",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs_5",
         "pre-commit-hooks": "pre-commit-hooks",

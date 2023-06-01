@@ -119,7 +119,7 @@
       serviceConfig = {
         ExecStart = pkgs.writeShellScript "podman-network-create-${name}" ''
           if [ -z "$(${pkgs.podman}/bin/podman network ls -q | grep ${name})" ]; then
-             ${pkgs.podman}/bin/podman network create --gateway=192.168.20.1 --subnet=192.168.20.0/24 ${name}
+             ${pkgs.podman}/bin/podman network create --disable-dns --gateway=192.168.20.1 --subnet=192.168.20.0/24 ${name}
           fi
         '';
         ExecStop = ''
