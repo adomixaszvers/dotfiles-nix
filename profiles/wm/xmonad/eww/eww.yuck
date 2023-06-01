@@ -88,19 +88,19 @@
 
 (defwidget volume []
   (eventbox :onscroll `[ up = {} ] && pamixer -i 5 || pamixer -d 5`
-      (simple-widget :icon "墳 " :tooltip "volume" :text "${current-volume}%")))
+      (simple-widget :icon "󰕾 " :tooltip "volume" :text "${current-volume}%")))
 
 (defwidget time []
-  (simple-widget :icon " "  :text current-time))
+  (simple-widget :icon "󰃭 "  :text current-time))
 
 (defwidget ram []
-  (simple-widget :icon " " :tooltip "ram" :text "${round(EWW_RAM.used_mem_perc, 0)}%"))
+  (simple-widget :icon "󰍛 " :tooltip "ram" :text "${round(EWW_RAM.used_mem_perc, 0)}%"))
 
 (defwidget cpu []
-  (simple-widget :icon "﬙ " :tooltip "cpu" :text "${round(EWW_CPU.avg, 0)}%"))
+  (simple-widget :icon "󰘚 " :tooltip "cpu" :text "${round(EWW_CPU.avg, 0)}%"))
 
 (defwidget temp [name]
-  (simple-widget :icon " " :tooltip "temperature of ${name}" :text "${EWW_TEMPS?.[name]}C")) 
+  (simple-widget :icon "󰈸 " :tooltip "temperature of ${name}" :text "${EWW_TEMPS?.[name]}C")) 
 
 (defvar trayer-visible false)
 
