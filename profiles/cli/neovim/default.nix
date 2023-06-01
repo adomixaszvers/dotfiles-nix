@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ sumneko-lua-language-server ];
+  home.packages = with pkgs; [ lua-language-server ];
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-unwrapped;
