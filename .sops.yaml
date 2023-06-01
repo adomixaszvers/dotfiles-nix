@@ -15,6 +15,7 @@ creation_rules:
           - *work
           - *pi
           - *t14
+          - *pc
   - path_regex: nixos/common-secrets/vpnc\.conf$
     key_groups:
       - pgp:

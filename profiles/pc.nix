@@ -13,13 +13,13 @@
     gtypist
     jetbrains.gateway
     libreoffice-still
-    lutris
+    (lutris.override { extraPkgs = ps: with ps; [ wine gamescope ]; })
     mpv
     playerctl
     remmina
     qbittorrent
-    spotify
     tor-browser-bundle-bin
+    youtube-music
     keepassxc
     xpra
     protonup
