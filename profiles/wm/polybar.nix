@@ -68,16 +68,16 @@ in {
         modules-right =
           lib.mkDefault "keyboard divider date divider time divider";
       };
-      "module/cpu" = module "﬙" {
+      "module/cpu" = module "󰘚" {
         type = "internal/cpu";
         label = " %percentage:3%%";
       };
-      "module/date" = module "ﭷ" {
+      "module/date" = module "󰙹" {
         type = "internal/date";
         date = "%Y-%m-%d%";
         label = " %date%";
       };
-      "module/time" = module "" {
+      "module/time" = module "󰥔" {
         type = "internal/date";
 
         time = "%H:%M";
@@ -144,16 +144,16 @@ in {
         type = "internal/xkeyboard";
         label-indicator-on-numlock = "N";
       };
-      "module/memory" = module "" {
+      "module/memory" = module "󰍛" {
         type = "internal/memory";
         label = " %percentage_used:3%%";
       };
-      "module/temperature" = module "" {
+      "module/temperature" = module "󰈸" {
         type = "internal/temperature";
         warn-temperature = 70;
         label = " %temperature-c:3%";
 
-        format-warn-prefix = "%{T3}%{T-}";
+        format-warn-prefix = "%{T3}󰈸%{T-}";
         format-warn-prefix-foreground = colors.custom-warn;
         format-warn-prefix-background = colors.custom-background-dark;
 
@@ -164,7 +164,7 @@ in {
       "module/volume" = {
         type = "internal/pulseaudio";
 
-        format-volume-prefix = "%{T3}墳%{T-}";
+        format-volume-prefix = "%{T3}󰕾%{T-}";
         format-volume-prefix-foreground = colors.custom-primary;
         format-volume-prefix-background = colors.custom-background-dark;
 
@@ -172,7 +172,7 @@ in {
         label-volume-foreground = colors.custom-foreground;
         label-volume-background = colors.custom-background-dark;
 
-        format-muted-prefix = "%{T3}ﱝ%{T-}";
+        format-muted-prefix = "%{T3}󰝟%{T-}";
         format-muted-prefix-foreground = colors.custom-warn;
         format-muted-prefix-background = colors.custom-background-dark;
 
