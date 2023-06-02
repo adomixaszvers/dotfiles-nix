@@ -8,7 +8,7 @@ in [
   neoformat
   nord-nvim
   {
-    plugin = nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars);
+    plugin = nvim-treesitter.withAllGrammars;
     # config = builtins.readFile ./nvim-treesitter.vim;
   }
   {
