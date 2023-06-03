@@ -22,7 +22,7 @@
 (set-formatter! 'stylua '("stylua" "-") :modes '(lua-mode))
 (setq-hook! 'lua-mode-hook +format-with 'stylua)
 
-(setq rmh-elfeed-org-files `(,(expand-file-name "elfeed.org" doom-private-dir)))
+(setq rmh-elfeed-org-files `(,(expand-file-name "elfeed.org" doom-user-dir)))
 (add-hook 'dired-mode-hook
           (lambda ()
             (when (file-remote-p dired-directory)
@@ -32,5 +32,5 @@
   "Diffs init.el with init.example.el."
   (interactive)
   (let ((my-init (expand-file-name "init.el" "~/.config/nixpkgs/profiles/gui/doom"))
-        (upstream-init (expand-file-name "init.example.el" doom-emacs-dir)))
+        (upstream-init (expand-file-name "templates/init.example.el" doom-emacs-dir)))
     (ediff-files my-init upstream-init)))
