@@ -1,4 +1,4 @@
-{ pkgs, inputs, myPkgs, ... }: {
+{ pkgs, myPkgs, ... }: {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
   xresources.properties = let dpi = 120;

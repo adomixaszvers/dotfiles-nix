@@ -1,4 +1,4 @@
-{ lib, buildPythonPackage, fetchPypi, pulsectl, setuptools }:
+{ buildPythonPackage, fetchPypi, pulsectl, setuptools }:
 buildPythonPackage rec {
   format = "pyproject";
   pname = "pulsectl-asyncio";

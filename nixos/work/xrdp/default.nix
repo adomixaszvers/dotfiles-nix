@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }: {
+{ inputs, ... }: {
   services.xrdp = {
     enable = true;
     package = inputs.self.packages.x86_64-linux.custom-xrdp;

@@ -1,6 +1,6 @@
 { inputs }:
 let
-  inherit (inputs) nixpkgs nixos-hardware sops-nix;
+  inherit (inputs) nixpkgs;
   specialArgs = { inherit inputs; };
   isoSpecialArgs = {
     inherit inputs;

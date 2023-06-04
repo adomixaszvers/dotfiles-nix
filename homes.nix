@@ -1,7 +1,7 @@
 { inputs, allPkgs, allUnstablePkgs }:
 
 let
-  inherit (inputs) home-manager nixpkgs nixos-unstable self;
+  inherit (inputs) home-manager self;
   buildHomeManager = configuration:
     { system ? "x86_64-linux", username ? "adomas"
     , homeDirectory ? "/home/${username}"

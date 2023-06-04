@@ -1,4 +1,4 @@
-{ pkgs, myPkgs, unstable, inputs, ... }: {
+{ pkgs, myPkgs, ... }: {
   imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ./wm/xrdp.nix ];
   home = {
     file = {

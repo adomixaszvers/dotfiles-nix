@@ -1,6 +1,6 @@
 { pkgs, inputs, system, ... }:
 let
-  overlay = self: super: {
+  overlay = _self: super: {
     libfakeXinerama = super.libfakeXinerama.overrideAttrs (_old: {
       installPhase = ''
         mkdir -p $out/lib

@@ -1,4 +1,4 @@
-{ pkgs, inputs, myPkgs, ... }: {
+{ pkgs, myPkgs, ... }: {
   imports = [ ./common.nix ];
   colors = import ./gui/colors/nord.nix;
   home.packages = (with pkgs; [
