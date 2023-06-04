@@ -53,11 +53,13 @@
     };
   };
   programs.xmobar.thermal-zone = 1;
-  services.network-manager-applet.enable = false;
-  services.polybar.config."module/disk" = { mount-1 = "/home"; };
-  services.screen-locker = {
-    # enable = true;
-    inactiveInterval = 60;
+  services = {
+    network-manager-applet.enable = false;
+    polybar.config."module/disk" = { mount-1 = "/home"; };
+    screen-locker = {
+      # enable = true;
+      inactiveInterval = 60;
+    };
   };
   wayland.windowManager.sway = {
     config.input = {

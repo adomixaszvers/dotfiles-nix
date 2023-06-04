@@ -47,33 +47,35 @@
     EDITOR = "nvim";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
   };
-  programs.bash = {
-    enable = true;
-    historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
-  };
-  programs.broot.enable = true;
-  programs.exa = {
-    enable = true;
-    enableAliases = true;
-  };
-  programs.fzf = {
-    changeDirWidgetCommand = "bfs -type d";
-    defaultCommand = "fd --type f";
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    fileWidgetCommand = "fd --type f";
-  };
-  programs.tmux = {
-    enable = true;
-    extraConfig = ''
-      set -g mouse on
-    '';
-    keyMode = "vi";
-    terminal = "screen-256color";
-  };
-  programs.z-lua = {
-    enable = true;
-    options = [ "once" ];
+  programs = {
+    bash = {
+      enable = true;
+      historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
+    };
+    broot.enable = true;
+    exa = {
+      enable = true;
+      enableAliases = true;
+    };
+    fzf = {
+      changeDirWidgetCommand = "bfs -type d";
+      defaultCommand = "fd --type f";
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      fileWidgetCommand = "fd --type f";
+    };
+    tmux = {
+      enable = true;
+      extraConfig = ''
+        set -g mouse on
+      '';
+      keyMode = "vi";
+      terminal = "screen-256color";
+    };
+    z-lua = {
+      enable = true;
+      options = [ "once" ];
+    };
   };
 }

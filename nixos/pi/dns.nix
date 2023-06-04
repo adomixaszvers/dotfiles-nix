@@ -1,9 +1,11 @@
 { config, pkgs, ... }: {
-  networking.domain = "lan";
-  networking.nameservers = [ "127.0.0.1" "9.9.9.9" ];
-  networking.firewall = {
-    allowedTCPPorts = [ 53 5080 ];
-    allowedUDPPorts = [ 53 ];
+  networking = {
+    domain = "lan";
+    nameservers = [ "127.0.0.1" "9.9.9.9" ];
+    firewall = {
+      allowedTCPPorts = [ 53 5080 ];
+      allowedUDPPorts = [ 53 ];
+    };
   };
   services.unbound = {
     enable = true;

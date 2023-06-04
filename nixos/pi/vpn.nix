@@ -39,15 +39,17 @@
         options edns0
       '';
       environment.systemPackages = [ pkgs.kitty.terminfo ];
-      networking.extraHosts = ''
-        88.119.198.57 vpn.insoft.lt
-      '';
-      networking.firewall.allowedTCPPorts = [ 1080 ];
-      networking.interfaces.eth0.ipv4.routes = [{
-        address = "192.168.1.0";
-        prefixLength = 24;
-        via = "192.168.100.10";
-      }];
+      networking = {
+        extraHosts = ''
+          88.119.198.57 vpn.insoft.lt
+        '';
+        firewall.allowedTCPPorts = [ 1080 ];
+        interfaces.eth0.ipv4.routes = [{
+          address = "192.168.1.0";
+          prefixLength = 24;
+          via = "192.168.100.10";
+        }];
+      };
       systemd.services.vpnc = {
         enable = true;
         after = [ "network-online.target" ];

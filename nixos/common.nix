@@ -62,20 +62,24 @@
     ];
   };
 
-  programs.command-not-found.enable = true;
-  programs.dconf.enable = true;
-  programs.ssh.startAgent = false;
-  programs.zsh = {
-    enable = true;
-    syntaxHighlighting.enable = true;
+  programs = {
+    command-not-found.enable = true;
+    dconf.enable = true;
+    ssh.startAgent = false;
+    seahorse.enable = true;
+    zsh = {
+      enable = true;
+      syntaxHighlighting.enable = true;
+    };
   };
 
-  services.acpid.enable = true;
-  services.colord.enable = true;
-  services.dbus.packages = with pkgs; [ dconf ];
-  services.gnome.gnome-keyring.enable = true;
-  services.udisks2.enable = true;
-  programs.seahorse.enable = true;
+  services = {
+    acpid.enable = true;
+    colord.enable = true;
+    dbus.packages = with pkgs; [ dconf ];
+    gnome.gnome-keyring.enable = true;
+    udisks2.enable = true;
+  };
 
   services.xserver = {
     enable = true;

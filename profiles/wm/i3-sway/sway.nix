@@ -57,9 +57,11 @@ in {
     extraConfig.modi = "drun,run,ssh";
     package = pkgs.rofi-wayland;
   };
-  services.kanshi.enable = true;
-  services.dunst.waylandDisplay = "wayland-1";
-  services.volnoti.enable = true;
+  services = {
+    kanshi.enable = true;
+    dunst.waylandDisplay = "wayland-1";
+    volnoti.enable = true;
+  };
   wayland.windowManager.sway = {
     enable = true;
     config = {

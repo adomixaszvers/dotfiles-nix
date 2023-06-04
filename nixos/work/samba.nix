@@ -13,7 +13,9 @@ let
     noCheck = true;
   };
 in {
-  fileSystems."/kiti/insoft" = mkMount "//disk.insoft.lt/storage" false;
-  fileSystems."/kiti/insoft_rw" = mkMount "//disk.insoft.lt/storage" true;
-  fileSystems."/kiti/home" = mkMount "//disk.insoft.lt/home" true;
+  fileSystems = {
+    "/kiti/insoft" = mkMount "//disk.insoft.lt/storage" false;
+    "/kiti/insoft_rw" = mkMount "//disk.insoft.lt/storage" true;
+    "/kiti/home" = mkMount "//disk.insoft.lt/home" true;
+  };
 }

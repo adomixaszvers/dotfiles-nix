@@ -40,15 +40,17 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.tmp.cleanOnBoot = true;
-  boot.kernelParams = [ "consoleblank=60" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.loader.systemd-boot = {
-    enable = true;
-    consoleMode = "auto";
+  boot = {
+    # Use the systemd-boot EFI boot loader.
+    tmp.cleanOnBoot = true;
+    kernelParams = [ "consoleblank=60" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    loader.systemd-boot = {
+      enable = true;
+      consoleMode = "auto";
+    };
+    loader.efi.canTouchEfiVariables = true;
   };
-  boot.loader.efi.canTouchEfiVariables = true;
 
   networking = {
     hostId = "d864861a";
@@ -93,31 +95,49 @@
       "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json";
   };
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    adb.enable = true;
+    ssh = {
+      extraConfig = ''
+        Host github
+          HostName github.com
+          ProxyCommand nc -x 10.6.0.1:1080 %h %p
+      '';
+    };
+    mosh.enable = true;
+    sway.enable = true;
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark-qt;
+    };
   };
-  programs.adb.enable = true;
-  programs.ssh = {
-    extraConfig = ''
-      Host github
-        HostName github.com
-        ProxyCommand nc -x 10.6.0.1:1080 %h %p
-    '';
-  };
-  programs.mosh.enable = true;
-  programs.sway.enable = true;
-  programs.wireshark = {
-    enable = true;
-    package = pkgs.wireshark-qt;
-  };
-  services.autorandr.enable = true;
-  services.gnome.glib-networking.enable = true;
-  services.xserver.libinput.enable = true;
-  hardware.acpilight.enable = true;
-  hardware.bluetooth = {
-    enable = true;
-    package = pkgs.bluezFull;
+  services = {
+    autorandr.enable = true;
+    gnome.glib-networking.enable = true;
+    xserver.libinput.enable = true;
+    gvfs.enable = true;
+    flatpak = { enable = true; };
+    fstrim = {
+      enable = false;
+      interval = "monthly";
+    };
+    openssh = {
+      enable = true;
+      extraConfig = ''
+        StreamLocalBindUnlink yes
+      '';
+      settings = {
+        PasswordAuthentication = false;
+        X11Forwarding = true;
+      };
+      ports = [ 9222 22 ];
+    };
+    printing.enable = true;
+    vnstat.enable = true;
   };
 
   virtualisation.docker = {
@@ -141,42 +161,28 @@
   #     };
   #   };
   # };
-  services.gvfs.enable = true;
-  services.flatpak = { enable = true; };
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   };
-  services.fstrim = {
-    enable = false;
-    interval = "monthly";
-  };
-  services.openssh = {
-    enable = true;
-    extraConfig = ''
-      StreamLocalBindUnlink yes
-    '';
-    settings = {
-      PasswordAuthentication = false;
-      X11Forwarding = true;
-    };
-    ports = [ 9222 22 ];
-  };
   security.pam.services.sshd.enableGnomeKeyring = true;
-  services.printing.enable = true;
-  services.vnstat.enable = true;
 
-  hardware.opengl.driSupport32Bit = true;
-  hardware.pulseaudio.support32Bit = true;
-  hardware.usbWwan.enable = true;
+  hardware = {
+    opengl.driSupport32Bit = true;
+    pulseaudio.support32Bit = true;
+    usbWwan.enable = true;
+    acpilight.enable = true;
+    bluetooth = {
+      enable = true;
+      package = pkgs.bluezFull;
+    };
+  };
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "22.05"; # Did you read the comment?
-
-  users.extraGroups.vboxusers.members = [ "adomas" ];
 
   sops.secrets = {
     "adomas/password" = {
@@ -189,23 +195,29 @@
     };
   };
 
-  users.users.adomas.passwordFile = config.sops.secrets."adomas/password".path;
-  users.users.root.passwordFile = config.sops.secrets."root/password".path;
-
-  users.users.adomas.extraGroups = [
-    "docker"
-    "audio"
-    "adbusers"
-    "libvirtd"
-    "qemu-libvirtd"
-    "podman"
-    "wireshark"
-  ];
-  users.users.adomas.openssh.authorizedKeys.keyFiles = [
-    ../keys/laptop.pub
-    ../keys/juice_ed25519.pub
-    ../keys/yubikey.pub
-    ../keys/t14.pub
-  ];
+  users = {
+    extraGroups.vboxusers.members = [ "adomas" ];
+    users = {
+      adomas = {
+        passwordFile = config.sops.secrets."adomas/password".path;
+        extraGroups = [
+          "docker"
+          "audio"
+          "adbusers"
+          "libvirtd"
+          "qemu-libvirtd"
+          "podman"
+          "wireshark"
+        ];
+        openssh.authorizedKeys.keyFiles = [
+          ../keys/laptop.pub
+          ../keys/juice_ed25519.pub
+          ../keys/yubikey.pub
+          ../keys/t14.pub
+        ];
+      };
+      root.passwordFile = config.sops.secrets."root/password".path;
+    };
+  };
 
 }

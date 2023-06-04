@@ -40,50 +40,57 @@
   };
   # it fails on zfs
   systemd.generators = { systemd-gpt-auto-generator = "/dev/null"; };
-  hardware.bluetooth.enable = true;
   powerManagement.resumeCommands = ''
     /run/current-system/sw/bin/bluetoothctl discoverable on
   '';
   console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
-  hardware.trackpoint.emulateWheel = false;
-  hardware.xone.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    trackpoint.emulateWheel = false;
+    xone.enable = true;
+    opengl = {
+      enable = true;
+      driSupport32Bit = true;
+    };
+    pulseaudio.support32Bit = true;
+  };
 
   environment.systemPackages = with pkgs; [ nixfmt virtmanager ];
 
-  networking.domain = "lan";
-  networking.hostName = "adomo-t14"; # Define your hostname.
-  networking.hostId = "81046d10";
-
-  programs.adb.enable = true;
-  programs.bash.enableCompletion = true;
-  programs.mosh.enable = true;
-  programs.ssh.startAgent = false;
-  services.flatpak.enable = true;
-  services.autorandr = {
-    enable = true;
-    defaultTarget = "home-prime";
-  };
-  services.journald.extraConfig = "SystemMaxUse=500M";
-  services.atd.enable = true;
-  services.fstrim.enable = true;
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
+  networking = {
+    domain = "lan";
+    hostName = "adomo-t14"; # Define your hostname.
+    hostId = "81046d10";
   };
 
-  services.zfs = {
-    autoScrub = {
+  programs = {
+    adb.enable = true;
+    bash.enableCompletion = true;
+    mosh.enable = true;
+    ssh.startAgent = false;
+  };
+  services = {
+    flatpak.enable = true;
+    autorandr = {
       enable = true;
-      interval = "monthly";
+      defaultTarget = "home-prime";
     };
-    trim.enable = true;
-  };
+    journald.extraConfig = "SystemMaxUse=500M";
+    atd.enable = true;
+    fstrim.enable = true;
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+    };
 
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
+    zfs = {
+      autoScrub = {
+        enable = true;
+        interval = "monthly";
+      };
+      trim.enable = true;
+    };
   };
-  hardware.pulseaudio.support32Bit = true;
 
   sops.secrets."adomas/password" = {
     sopsFile = ./secrets/passwords.yaml;

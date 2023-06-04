@@ -23,24 +23,30 @@
     kernelPackages = pkgs.linuxPackages_xanmod;
   };
 
-  networking.hostName = "adomo-pc-nixos"; # Define your hostname.
-  networking.hostId = "92b8e669";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "adomo-pc-nixos"; # Define your hostname.
+    hostId = "92b8e669";
+    networkmanager.enable = true;
+  };
 
-  hardware.opengl.enable = true;
-
-  services.fwupd.enable = true;
-
-  hardware.xone.enable = true;
+  hardware = {
+    opengl.enable = true;
+    xone.enable = true;
+  };
 
   programs.ssh.askPassword =
     "${pkgs.plasma5Packages.ksshaskpass.out}/bin/ksshaskpass";
   programs.steam.enable = true;
 
-  services.xserver.enable = true;
-
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services = {
+    fwupd.enable = true;
+    openssh.enable = true;
+    xserver = {
+      enable = true;
+      displayManager.sddm.enable = true;
+      desktopManager.plasma5.enable = true;
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -63,8 +69,6 @@
   };
 
   users.users.root.passwordFile = config.sops.secrets."root/password".path;
-
-  services.openssh.enable = true;
 
   system.stateVersion = "22.11"; # Did you read the comment?
 

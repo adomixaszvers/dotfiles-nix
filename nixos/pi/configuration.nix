@@ -36,10 +36,6 @@
 
   programs.mosh.enable = true;
 
-  services.udev.extraRules = ''
-    SUBSYSTEM=="vchiq",KERNEL=="vchiq",GROUP="video",MODE="0660"
-  '';
-
   # File systems configuration for using the installer's partition layout
   fileSystems = {
     # Prior to 19.09, the boot partition was hosted on the smaller first partition
@@ -97,10 +93,15 @@
     wol
   ];
   networking = { hostName = "raspberrypi-nixos"; };
-  services.fstrim.enable = true;
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
+  services = {
+    fstrim.enable = true;
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+    };
+    udev.extraRules = ''
+      SUBSYSTEM=="vchiq",KERNEL=="vchiq",GROUP="video",MODE="0660"
+    '';
   };
   virtualisation.podman.enable = true;
   virtualisation.oci-containers.backend = "podman";

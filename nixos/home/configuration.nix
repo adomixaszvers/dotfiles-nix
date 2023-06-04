@@ -49,65 +49,76 @@
   # it fails on zfs
   systemd.generators = { systemd-gpt-auto-generator = "/dev/null"; };
 
-  environment.systemPackages = with pkgs; [ nixfmt virtmanager ];
-  environment.variables.LIBVA_DRIVER_NAME = "i965";
-
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/423B-2D62";
-    options = [ "noauto" "x-systemd.automount" ];
-    fsType = "vfat";
+  environment = {
+    systemPackages = with pkgs; [ nixfmt virtmanager ];
+    variables.LIBVA_DRIVER_NAME = "i965";
   };
 
-  fileSystems."/kiti/media" = {
-    device = "/dev/disk/by-uuid/AE38E35B38E32157";
-    fsType = "ntfs";
-    options = [ "noauto" "x-systemd.automount" ];
+  fileSystems = {
+    "/boot/efi" = {
+      device = "/dev/disk/by-uuid/423B-2D62";
+      options = [ "noauto" "x-systemd.automount" ];
+      fsType = "vfat";
+    };
+    "/kiti/media" = {
+      device = "/dev/disk/by-uuid/AE38E35B38E32157";
+      fsType = "ntfs";
+      options = [ "noauto" "x-systemd.automount" ];
+    };
   };
 
-  networking.domain = "lan";
-  networking.hostName = "adomo-nixos"; # Define your hostname.
-  networking.hostId = "6665bed8";
+  networking = {
+    domain = "lan";
+    hostName = "adomo-nixos"; # Define your hostname.
+    hostId = "6665bed8";
+  };
 
-  programs.adb.enable = true;
-  programs.bash.enableCompletion = true;
-  programs.mosh.enable = true;
-  programs.ssh.startAgent = false;
-  programs.sway.enable = true;
-  services.flatpak.enable = true;
+  programs = {
+    adb.enable = true;
+    bash.enableCompletion = true;
+    mosh.enable = true;
+    ssh.startAgent = false;
+    sway.enable = true;
+  };
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   };
-  services.autorandr = {
-    enable = true;
-    defaultTarget = "home-prime";
-  };
-  services.journald.extraConfig = "SystemMaxUse=500M";
-  services.atd.enable = true;
-  services.fstrim.enable = true;
-  services.xserver.deviceSection = ''
-    option "tearfree" "true"
-  '';
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
-  };
-  services.thermald.enable = true;
-
-  services.zfs = {
-    autoScrub = {
+  services = {
+    autorandr = {
       enable = true;
-      interval = "monthly";
+      defaultTarget = "home-prime";
     };
-    trim.enable = true;
+    flatpak.enable = true;
+    journald.extraConfig = "SystemMaxUse=500M";
+    atd.enable = true;
+    fstrim.enable = true;
+    xserver.deviceSection = ''
+      option "tearfree" "true"
+    '';
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+    };
+    thermald.enable = true;
+
+    zfs = {
+      autoScrub = {
+        enable = true;
+        interval = "monthly";
+      };
+      trim.enable = true;
+    };
   };
 
-  hardware.cpu.intel.updateMicrocode = true;
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    opengl = {
+      enable = true;
+      driSupport32Bit = true;
+    };
+    pulseaudio.support32Bit = true;
   };
-  hardware.pulseaudio.support32Bit = true;
 
   sops.secrets."adomas/password" = {
     sopsFile = ./secrets/passwords.yaml;
