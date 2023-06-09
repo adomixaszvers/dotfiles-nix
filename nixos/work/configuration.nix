@@ -96,10 +96,6 @@
   };
 
   programs = {
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
     adb.enable = true;
     ssh = {
       extraConfig = ''
