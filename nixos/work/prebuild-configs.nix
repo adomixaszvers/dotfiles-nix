@@ -8,9 +8,8 @@
         flakeRef = "github:adomixaszvers/dotfiles-nix/update_flake_lock_action";
       in ''
         PATH=${lib.makeBinPath [ nix pkgs.git ]}:$PATH
-        pushd ~/.config/nixpkgs
         nix flake archive --refresh '${flakeRef}'
-        nix build --no-link --inputs-from '${flakeRef}' --keep-going '.#nixosConfigurations.adomas-jatuzis-nixos.config.system.build.toplevel' '.#homeConfigurations.work.activationPackage' '.#homeConfigurations.work-remote.activationPackage' '.#devShells.x86_64-linux.default'
+        nix build --no-link --inputs-from '${flakeRef}' --keep-going 'mine#nixosConfigurations.adomas-jatuzis-nixos.config.system.build.toplevel' 'mine#homeConfigurations.work.activationPackage' 'mine#homeConfigurations.work-remote.activationPackage' 'mine#devShells.x86_64-linux.default'
       '';
       startAt = "Fri, 06:00";
     };
