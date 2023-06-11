@@ -1,22 +1,5 @@
-{ pkgs, inputs, system, ... }:
-let
-  overlay = _self: super: {
-    libfakeXinerama = super.libfakeXinerama.overrideAttrs (_old: {
-      installPhase = ''
-        mkdir -p $out/lib
-        cp libfakeXinerama.so.1.0 $out/lib
-        ln -s libfakeXinerama.so.1.0 $out/lib/libXinerama.so.1.0
-        ln -s libfakeXinerama.so.1.0 $out/lib/libfakeXinerama.so.1
-        ln -s libXinerama.so.1.0 $out/lib/libXinerama.so.1
-        ln -s libXinerama.so.1 $out/lib/libXinerama.so
-      '';
-    });
-  };
-  xpraPkgs = import inputs.nixos-unstable {
-    overlays = [ overlay ];
-    inherit (pkgs) system;
-  };
-  inherit (xpraPkgs) xpra;
+{ pkgs, ... }:
+let inherit (pkgs) xpra;
 in {
   environment.systemPackages = [ xpra ];
   users = {
