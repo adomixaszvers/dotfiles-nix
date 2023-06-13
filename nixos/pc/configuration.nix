@@ -48,7 +48,11 @@
     trim.enable = true;
   };
 
-  programs.steam.enable = true;
+  programs = {
+    steam.enable = true;
+    # nix flake check doesn't complain but nixos-rebuild does
+    ssh.askPassword = "${pkgs.plasma5Packages.ksshaskpass.out}/bin/ksshaskpass";
+  };
 
   services = {
     fwupd.enable = true;
