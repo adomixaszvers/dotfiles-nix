@@ -56,7 +56,10 @@
 
   services = {
     fwupd.enable = true;
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+    };
     xserver = {
       enable = true;
       displayManager.sddm.enable = true;
@@ -84,7 +87,7 @@
   users.users.adomas = {
     passwordFile = config.sops.secrets."adomas/password".path;
     openssh.authorizedKeys.keyFiles =
-      [ ../keys/juice_ed25519.pub ../keys/yubikey.pub ];
+      [ ../keys/juice_ed25519.pub ../keys/yubikey.pub ../keys/t14.pub ];
   };
 
   users.users.root.passwordFile = config.sops.secrets."root/password".path;
