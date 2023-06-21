@@ -852,7 +852,7 @@ awful.rules.rules = {
         properties = {tag = tags[4], maximized = false}
     },
     {
-        rule_any = {class = {"Steam", "SmartGit"}},
+        rule_any = {class = {"steam", "SmartGit"}},
         properties = {tag = tags[5], maximized = false}
     },
     {

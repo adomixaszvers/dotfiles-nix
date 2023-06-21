@@ -181,7 +181,7 @@ myManageHook =
           className =? "Google-chrome" <||> className =? "firefox" -?> doShift ws1,
           className =? "jetbrains-idea" -?> doShift ws3,
           className =? "Rambox" <||> className =? "discord" -?> doShift ws4,
-          className =? "Steam" <||> className =? "SmartGit" <||> className =? "Microsoft Teams - Preview" -?> doShift ws5,
+          className =? "steam" <||> className =? "SmartGit" <||> className =? "Microsoft Teams - Preview" -?> doShift ws5,
           className =? "libreoffice" -?> doShift ws6,
           className =? "Eclipse" -?> doShift ws7,
           className =? "org.remmina.Remmina" -?> doShift ws8,

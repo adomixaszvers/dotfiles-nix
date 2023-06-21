@@ -108,7 +108,7 @@
       Rambox = { desktop = "4"; };
       discord = { desktop = "4"; };
       SmartGit = { desktop = "5"; };
-      Steam = { desktop = "5"; };
+      steam = { desktop = "5"; };
       "*:libreoffice" = { desktop = "6"; };
       "org.remmina.Remmina" = { desktop = "8"; };
       KeePassXC = { desktop = "9"; };

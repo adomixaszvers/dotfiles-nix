@@ -105,7 +105,7 @@ in {
       ];
       "${workspace3}" = [{ class = "^(Atom|jetbrains-idea)$"; }];
       "${workspace4}" = [ { class = "^Skype$"; } { class = "^rambox$"; } ];
-      "${workspace5}" = [ { class = "^Steam$"; } { class = "^SmartGit"; } ];
+      "${workspace5}" = [ { class = "^steam$"; } { class = "^SmartGit"; } ];
       "${workspace6}" = [{ class = "^libreoffice"; }];
       "${workspace10}" = [{ class = "^Spotify"; }];
     };

@@ -89,7 +89,7 @@ groups = [
         ],
     ),
     Group("4", matches=[Match(wm_class=["rambox"])]),
-    Group("5", matches=[Match(wm_class=["SmartGit", "Steam"])]),
+    Group("5", matches=[Match(wm_class=["SmartGit", "steam"])]),
     Group("6", matches=[Match(wm_class=["libreoffice"])]),
     Group("7"),
     Group("8"),
