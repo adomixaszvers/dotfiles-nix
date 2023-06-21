@@ -30,5 +30,6 @@ in [
   vim-sneak
   vim-unimpaired
   vinegar
+  which-key-nvim
   yuck-vim
 ] ++ telescope-dependencies
