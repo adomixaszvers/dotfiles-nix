@@ -1,5 +1,4 @@
-{ pkgs, # inputs, system,
-... }: {
+{ pkgs, ... }: {
   home = {
     packages = with pkgs; [
       emacs-all-the-icons-fonts
@@ -20,11 +19,6 @@
   };
   programs.emacs = {
     enable = true;
-    # package = let
-    #   emacsNixpkgs = import inputs.nixpkgs {
-    #     inherit system;
-    #     overlays = [ inputs.emacs-overlay.overlay ];
-    #   };
-    # in emacsNixpkgs.emacsPgtk;
+    # package = pkgs.emacs29-pgtk;
   };
 }

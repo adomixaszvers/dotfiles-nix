@@ -22,7 +22,6 @@
       url = "github:plexus/chemacs2";
       flake = false;
     };
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
     eww.url = "github:elkowar/eww/c72b881c3f8f2d2ad8d7a6c337ab3f55ff73ef4b";
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -49,8 +48,6 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixd.url = "github:nix-community/nixd";
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
-    nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
-    nixos-2205 = { url = "github:NixOS/nixpkgs/nixos-22.05"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-23.05"; };
     sops-nix = {

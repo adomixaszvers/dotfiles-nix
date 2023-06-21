@@ -1,15 +1,10 @@
-{ pkgs, system, inputs }:
-
-{
+{ pkgs, system, inputs }: {
   ani-cli = pkgs.callPackage ./ani-cli { ani-cli = inputs.ani-cli.outPath; };
   bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
   bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
   bumblebee-status = pkgs.callPackage ./bumblebee-status {
     bumblebee-status-source = inputs.bumblebee-status.outPath;
   };
-  custom-xrdp =
-    inputs.nixos-2205.legacyPackages.${system}.callPackage ./custom-xrdp { };
-  dbvisualizer = pkgs.callPackage ./dbvisualizer.nix { };
   hunspell-lt = pkgs.callPackage ./hunspell-lt { };
   hm-option = pkgs.callPackage ./hm-option.nix { };
   hm-repl = pkgs.callPackage ./hm-repl.nix { };
@@ -28,34 +23,4 @@
   vimgolf = pkgs.callPackage ./vimgolf { };
   keystore-explorer = pkgs.keystore-explorer.override { jdk = pkgs.openjdk8; };
   tail-volume = pkgs.callPackage ./tail-volume { };
-} // (pkgs.lib.attrsets.optionalAttrs (system == "x86_64-linux") {
-  steam = pkgs.steam.override {
-    extraPkgs = ps:
-      with ps; [
-        atk
-        cairo
-        dbus
-        fontconfig
-        freetype
-        gdk-pixbuf
-        glib
-        gtk3
-        lsb-release
-        pango
-        xorg.libxcb
-        zlib
-      ];
-  };
-  idea-ultimate =
-    let jdk = pkgs.callPackage ./idea-ultimate/jetbrains-jdk.nix { };
-    in (pkgs.jetbrains.idea-ultimate.override { inherit jdk; }).overrideAttrs
-    (_old: rec {
-      name = "idea-ultimate-${version}";
-      version = "2022.2.2";
-      src = pkgs.fetchurl {
-        url =
-          "https://download.jetbrains.com/idea/ideaIU-${version}-no-jbr.tar.gz";
-        sha256 = "12zvjmszssrn5l10p3h49fxxfjny1m2r18lmqr5gz6dkzkna46fc";
-      };
-    });
-})
+}

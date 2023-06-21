@@ -25,7 +25,7 @@
     ./ltXkb.nix
     ./prebuild-configs.nix
     ./samba.nix
-    ./xrdp
+    ./xrdp/current.nix
     ./turbovnc.nix
     # ./unbound.nix
     ./vnc.nix
@@ -118,7 +118,7 @@
     gvfs.enable = true;
     flatpak = { enable = true; };
     fstrim = {
-      enable = false;
+      enable = true;
       interval = "monthly";
     };
     openssh = {
