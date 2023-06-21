@@ -23,6 +23,8 @@
 (setq-hook! 'lua-mode-hook +format-with 'stylua)
 
 (setq rmh-elfeed-org-files `(,(expand-file-name "elfeed.org" doom-user-dir)))
+(add-hook 'elfeed-search-mode-hook #'elfeed-update)
+
 (add-hook 'dired-mode-hook
           (lambda ()
             (when (file-remote-p dired-directory)
