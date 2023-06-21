@@ -47,6 +47,7 @@
       flake = false;
     };
     flake-utils.url = "github:numtide/flake-utils";
+    nixd.url = "github:nix-community/nixd";
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-2009 = { url = "github:NixOS/nixpkgs/nixos-20.09"; };
     nixos-2205 = { url = "github:NixOS/nixpkgs/nixos-22.05"; };

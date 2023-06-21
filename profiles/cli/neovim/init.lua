@@ -24,15 +24,12 @@ vim.g.rainbow_active = 1
 vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope find_files<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>/', '<cmd>Telescope live_grep<cr>', { noremap = true })
 vim.keymap.set('n', "<leader>'", '<cmd>Telescope resume<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>n', '<Plug>(ale_next_wrap)', { noremap = true })
-vim.keymap.set('n', '<leader>p', '<Plug>(ale_previous_wrap)', { noremap = true })
 vim.keymap.set('n', '<leader>f', '<cmd>Neoformat<cr>', { noremap = true })
 vim.keymap.set('n', '-', '-', { noremap = true })
 
 vim.o.updatetime = 100
 vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
 vim.g.suda_smart_edit = 0
-vim.g.ale_disable_lsp = 1
 
 
 if vim.fn.has("termguicolors") then

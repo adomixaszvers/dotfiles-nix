@@ -2,7 +2,6 @@ pkgs:
 with pkgs.vimPlugins;
 let telescope-dependencies = [ plenary-nvim telescope-nvim ];
 in [
-  ale
   commentary
   fugitive
   neoformat
