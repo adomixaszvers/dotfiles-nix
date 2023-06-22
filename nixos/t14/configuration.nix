@@ -29,7 +29,7 @@
   boot = {
     tmp.cleanOnBoot = true;
     kernelParams = [ "nohibernate" ];
-    kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
+    # kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
     loader = {
       efi = { canTouchEfiVariables = true; };
       systemd-boot.enable = true;

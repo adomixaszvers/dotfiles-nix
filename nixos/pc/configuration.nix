@@ -21,7 +21,7 @@
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "zfs" ];
-    kernelPackages = pkgs.linuxPackages_xanmod;
+    # kernelPackages = pkgs.linuxPackages_xanmod;
     kernel.sysctl."vm.max_map_count" = 2147483642;
   };
 
