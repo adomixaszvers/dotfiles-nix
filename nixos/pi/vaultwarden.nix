@@ -19,9 +19,5 @@
       useACMEHost = "wg.beastade.top";
       inherit forceSSL locations;
     };
-    "vaultwarden.zt.beastade.top" = {
-      useACMEHost = "zt.beastade.top";
-      inherit forceSSL locations;
-    };
   };
 }

@@ -4,7 +4,6 @@
     ../flakes.nix
     ../nix-registry.nix
     ../gc.nix
-    ../zerotier.nix
     ./acme.nix
     ./dns.nix
     ./vpn.nix

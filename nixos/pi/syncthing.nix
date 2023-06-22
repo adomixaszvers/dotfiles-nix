@@ -36,9 +36,5 @@
       useACMEHost = "wg.beastade.top";
       inherit forceSSL locations;
     };
-    "syncthing.zt.beastade.top" = {
-      useACMEHost = "zt.beastade.top";
-      inherit forceSSL locations;
-    };
   };
 }

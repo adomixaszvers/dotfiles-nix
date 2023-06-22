@@ -15,10 +15,6 @@
       useACMEHost = "wg.beastade.top";
       inherit forceSSL locations;
     };
-    "webdav.zt.beastade.top" = {
-      useACMEHost = "zt.beastade.top";
-      inherit forceSSL locations;
-    };
   };
   services.webdav = {
     enable = true;

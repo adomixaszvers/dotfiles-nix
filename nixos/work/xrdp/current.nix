@@ -40,5 +40,4 @@
     enableGnomeKeyring = true;
     fprintAuth = false;
   };
-  networking.firewall.interfaces.ztzlgoe57z.allowedTCPPorts = [ 3389 ];
 }

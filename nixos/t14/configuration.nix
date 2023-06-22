@@ -17,7 +17,6 @@
     ../yubikey.nix
     ../xdg-portal.nix
     ../thinkfan.nix
-    ../zerotier.nix
     ./hardware-configuration.nix
     ./powermanagement.nix
     ./steam.nix

@@ -15,7 +15,6 @@
     ../pipewire.nix
     ../syncthing.nix
     ../yubikey.nix
-    ../zerotier.nix
     ./bumblebee-nvidia.nix
     ./hardware-configuration.nix
     # ./remote-build.nix

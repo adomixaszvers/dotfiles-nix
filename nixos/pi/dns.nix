@@ -46,15 +46,11 @@
           "fe80::/10"
         ];
 
-        local-zone = [
-          "'lan.beastade.top' redirect"
-          "'wg.beastade.top' redirect"
-          "'zt.beastade.top' redirect"
-        ];
+        local-zone =
+          [ "'lan.beastade.top' redirect" "'wg.beastade.top' redirect" ];
         local-data = [
           "'lan.beastade.top A 192.168.1.207'"
           "'wg.beastade.top A 10.6.0.1'"
-          "'zt.beastade.top A 10.147.17.157'"
         ];
 
         # Send minimum amount of information to upstream servers to enhance
@@ -91,10 +87,6 @@
     };
     "pihole.wg.beastade.top" = {
       useACMEHost = "wg.beastade.top";
-      inherit forceSSL locations;
-    };
-    "pihole.zt.beastade.top" = {
-      useACMEHost = "zt.beastade.top";
       inherit forceSSL locations;
     };
   };

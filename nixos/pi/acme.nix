@@ -19,10 +19,6 @@
         inherit dnsProvider dnsResolver credentialsFile;
         extraDomainNames = [ "*.wg.beastade.top" ];
       };
-      "zt.beastade.top" = {
-        inherit dnsProvider dnsResolver credentialsFile;
-        extraDomainNames = [ "*.zt.beastade.top" ];
-      };
     };
   };
 }

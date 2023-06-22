@@ -16,7 +16,6 @@
     ../syncthing.nix
     ../yubikey.nix
     ../thinkfan.nix
-    ../zerotier.nix
     ./bitburner.nix
     ./dante.nix
     ./hardware-configuration.nix
