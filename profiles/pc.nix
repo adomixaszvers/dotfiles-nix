@@ -1,7 +1,7 @@
-{ pkgs, myPkgs, ... }: {
+{ pkgs, ... }: {
   imports = [ ./common.nix ];
   colors = import ./gui/colors/nord.nix;
-  home.packages = (with pkgs; [
+  home.packages = with pkgs; [
     bitwarden
     brightnessctl
     borgbackup
@@ -23,7 +23,7 @@
     keepassxc
     xpra
     protonup
-  ]) ++ (with myPkgs; [ ani-cli ]);
+  ];
   home.sessionVariables = { BROWSER = "firefox"; };
   gtk.enable = false;
   qt.enable = false;

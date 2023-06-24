@@ -1,5 +1,4 @@
 { pkgs, system, inputs }: {
-  ani-cli = pkgs.callPackage ./ani-cli { ani-cli = inputs.ani-cli.outPath; };
   bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
   bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
   bumblebee-status = pkgs.callPackage ./bumblebee-status {
@@ -20,7 +19,6 @@
   sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
   sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
   toggle-touchpad = pkgs.callPackage ./toggle-touchpad.nix { };
-  vimgolf = pkgs.callPackage ./vimgolf { };
   keystore-explorer = pkgs.keystore-explorer.override { jdk = pkgs.openjdk8; };
   tail-volume = pkgs.callPackage ./tail-volume { };
 }

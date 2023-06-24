@@ -49,7 +49,7 @@
     keepassxc
     xpra
     protonup
-  ]) ++ (with myPkgs; [ ani-cli toggle-touchpad ]);
+  ]) ++ (with myPkgs; [ toggle-touchpad ]);
   home.sessionVariables = { BROWSER = "firefox"; };
   programs.xmobar.thermal-zone = 1;
   services.screen-locker = {

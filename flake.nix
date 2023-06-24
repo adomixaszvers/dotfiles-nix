@@ -1,11 +1,6 @@
 {
   description = "My dotfiles";
   inputs = {
-    ani-cli = {
-      url =
-        "github:pystardust/ani-cli/5ff7b0d8d1e6dd1bf772580b6e280bf38346a9d9";
-      flake = false;
-    };
     awesome-copycats = {
       url = "github:lcpz/awesome-copycats";
       flake = false;
@@ -81,9 +76,7 @@
         packages = import ./pkgs { inherit pkgs system inputs; };
         checks = {
           pre-commit-check = pre-commit-hooks.lib."${system}".run {
-            src = pkgs.nix-gitignore.gitignoreSourcePure ''
-              pkgs/vimgolf/gemset.nix
-            '' ./.;
+            src = ./.;
             hooks = {
               nixfmt.enable = true;
               statix.enable = true;
