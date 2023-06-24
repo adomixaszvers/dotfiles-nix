@@ -84,14 +84,7 @@
               shellcheck.enable = true;
             };
           };
-        } // (let
-          inherit (flake-utils.lib.check-utils system) hasKey;
-          inherit (nixpkgs.lib) filterAttrs mapAttrs' nameValuePair;
-          validHmConfig = hmConfig: hasKey hmConfig "activationPackage";
-          systemHmConfigs = filterAttrs (_n: v: v.pkgs.system == system)
-            self.homeConfigurations;
-        in mapAttrs' (n: v: nameValuePair "hm-check-${n}" (validHmConfig v))
-        systemHmConfigs);
+        };
         devShells = {
           default = pkgs.mkShell {
             buildInputs =
