@@ -1,6 +1,8 @@
 pkgs:
 with pkgs.vimPlugins;
-let telescope-dependencies = [ plenary-nvim telescope-nvim ];
+let
+  telescope-dependencies =
+    [ plenary-nvim telescope-nvim telescope-fzf-native-nvim ];
 in [
   commentary
   fugitive

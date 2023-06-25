@@ -58,3 +58,5 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 require('which-key').setup {}
+
+require('telescope').load_extension('fzf')
