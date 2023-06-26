@@ -17,7 +17,6 @@ import XMonad.Actions.PhysicalScreens
     viewScreen,
   )
 import qualified XMonad.DBus as XD
-import XMonad.Hooks.DynamicProperty (dynamicPropertyChange)
 import XMonad.Hooks.EwmhDesktops
   ( ewmh,
     ewmhFullscreen,
@@ -92,7 +91,6 @@ main = do
   _ <- XD.requestAccess dbus
   xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook (restartEww >> spawnFeh) . dynamicEasySBs (myDynamicStatusBar dbus) $ myConfig
   where
-    dynamicHook = dynamicPropertyChange "WM_CLASS" (className =? "Spotify" --> doShift ws0)
     myConfig =
       addDescrKeys'
         ((myModMask, xK_F1), showKeybindings)
@@ -103,7 +101,7 @@ main = do
             focusedBorderColor = C.cyan,
             modMask = mod4Mask,
             borderWidth = 2,
-            handleEventHook = mconcat [handleEventHook def, refocusLastWhen isFloat, dynamicHook],
+            handleEventHook = mconcat [handleEventHook def, refocusLastWhen isFloat],
             layoutHook = myLayoutHook,
             manageHook = myManageHook,
             startupHook = myStartupHook,
