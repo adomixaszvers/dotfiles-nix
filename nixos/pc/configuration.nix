@@ -62,7 +62,10 @@
     };
     xserver = {
       enable = true;
-      displayManager.sddm.enable = true;
+      displayManager.sddm = {
+        enable = true;
+        autoNumlock = true;
+      };
       screenSection = ''
         Option         "metamodes" "DP-2: nvidia-auto-select +1920+0, DP-0: nvidia-auto-select +0+0 {AllowGSYNCCompatible=On}"
       '';
