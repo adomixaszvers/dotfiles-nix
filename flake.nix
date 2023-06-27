@@ -17,7 +17,6 @@
       url = "github:plexus/chemacs2";
       flake = false;
     };
-    eww.url = "github:elkowar/eww/c72b881c3f8f2d2ad8d7a6c337ab3f55ff73ef4b";
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;

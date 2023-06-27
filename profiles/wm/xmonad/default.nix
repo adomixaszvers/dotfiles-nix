@@ -1,9 +1,9 @@
-{ config, pkgs, lib, myPkgs, inputs, system, ... }:
+{ config, pkgs, lib, myPkgs, unstable, ... }:
 let
   extraPackages = import ./extraPackages.nix;
   inherit (pkgs) haskellPackages;
   inherit (haskellPackages) xmonad-dbus;
-  inherit (inputs.eww.packages.${system}) eww;
+  inherit (unstable) eww;
   trayer-toggle = pkgs.writeShellScriptBin "toggle-trayer" ''
     PATH=$PATH:${lib.makeBinPath [ pkgs.xdo eww ]}
 
