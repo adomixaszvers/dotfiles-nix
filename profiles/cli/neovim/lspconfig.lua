@@ -25,56 +25,9 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
 
 end
-
-local configs = require 'lspconfig.configs'
-
-if not configs.nixd then
-  configs.nixd = {
-    default_config = {
-      cmd = { 'nixd' },
-      filetypes = { 'nix' },
-      single_file_support = true,
-      root_dir = function(fname)
-        local util = require 'lspconfig.util'
-        return util.root_pattern(unpack { 'nixd.json', 'flake.nix' })(fname) or util.find_git_ancestor(fname)
-      end,
-    },
-    docs = {
-      description = [[
-      https://github.com/nix-community/nixd
-
-      Nix language server, based on nix libraries.
-
-      If you are using Nix with Flakes support, run `nix profile install github:nix-community/nixd` to install.
-      Check the repository README for more information.
-      ]],
-      default_config = {
-        root_dir = [[root_pattern(".nixd.json", "flake.nix",".git")]],
-      },
-    },
-  }
-end
-
-nvim_lsp.nixd.setup {
-  on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  settings = {
-    nixd = {
-      formatting = {
-        command = 'nixfmt',
-      },
-    },
-  },
-}
 
 nvim_lsp.lua_ls.setup {
   on_attach = on_attach,

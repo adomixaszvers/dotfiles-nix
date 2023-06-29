@@ -1,6 +1,5 @@
-{ pkgs, inputs, ... }: {
-  home.packages = (with pkgs; [ lua-language-server ])
-    ++ [ inputs.nixd.packages.${pkgs.system}.nixd ];
+{ pkgs, ... }: {
+  home.packages = with pkgs; [ lua-language-server ];
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-unwrapped;

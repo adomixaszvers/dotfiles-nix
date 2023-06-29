@@ -4,6 +4,7 @@ let
   telescope-dependencies =
     [ plenary-nvim telescope-nvim telescope-fzf-native-nvim ];
 in [
+  ale
   commentary
   fugitive
   neoformat
