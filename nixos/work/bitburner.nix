@@ -19,9 +19,9 @@ in {
     script = let
       bitburnerSrc = pkgs.fetchzip {
         url =
-          "https://github.com/bitburner-official/bitburner-src/releases/download/v2.2.2/Release2.2.2.zip";
+          "https://github.com/bitburner-official/bitburner-src/releases/download/v2.3.1/bitburner.2.3.1.zip";
         stripRoot = false;
-        hash = "sha256-tXchK+emZKNhjIyrNI9g0oUymRVKt5XTkSJYh6BFsNc=";
+        sha256 = "01cnwqhh64kkfnfy6zyzpg35r775f03irfx1f0cjxq2n3yzsr2p4";
       };
     in ''
       xpra start :99 --bind-tcp=10.6.0.6:9292 --bind-tcp=127.0.0.1:9292 --daemon=no --notifications=no --printing=no --speaker=no --session-name=bitburner --exit-with-children --start-child="chromium --app=file://${bitburnerSrc}/index.html --user-data-dir=/var/lib/bitburner/.bitburner-profile"
