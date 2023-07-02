@@ -29,7 +29,6 @@
     };
   };
   home.packages = (with pkgs; [
-    bitwarden
     brightnessctl
     borgbackup
     compsize
@@ -38,7 +37,6 @@
     gnome.nautilus
     firefox
     gtypist
-    jetbrains.gateway
     libreoffice-still
     lutris
     mpv

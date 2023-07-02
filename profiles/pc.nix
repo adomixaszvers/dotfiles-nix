@@ -2,7 +2,6 @@
   imports = [ ./common.nix ];
   colors = import ./gui/colors/nord.nix;
   home.packages = with pkgs; [
-    bitwarden
     brightnessctl
     borgbackup
     compsize
@@ -11,7 +10,6 @@
     gnome.nautilus
     firefox
     gtypist
-    jetbrains.gateway
     libreoffice-still
     (lutris.override { extraPkgs = ps: with ps; [ wine gamescope ]; })
     mpv

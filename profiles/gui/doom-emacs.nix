@@ -7,7 +7,6 @@
       gnutls
       mdl
       multimarkdown
-      nodePackages.prettier
       ripgrep
       sqlite
       wordnet
