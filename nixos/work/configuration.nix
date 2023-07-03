@@ -10,7 +10,6 @@
     ../gc.nix
     ../ld-link.nix
     ../libvirtd.nix
-    # ../mt7921e-crash-fix.nix
     ../nix-registry.nix
     ../pipewire.nix
     ../syncthing.nix
