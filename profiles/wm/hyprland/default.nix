@@ -4,12 +4,7 @@
     (with pkgs; [ gamescope pamixer swaylock swayidle wl-clipboard wdisplays ])
     ++ [ inputs.hyprland-contrib.packages.${system}.grimblast ];
   programs = {
-    emacs.package = let
-      emacsNixpkgs = import inputs.nixpkgs {
-        inherit system;
-        overlays = [ inputs.emacs-overlay.overlay ];
-      };
-    in emacsNixpkgs.emacsPgtk;
+    emacs.package = pkgs.emacs29-pgtk;
     rofi = {
       package = pkgs.rofi-wayland;
       extraConfig.modi = "drun,run,ssh";

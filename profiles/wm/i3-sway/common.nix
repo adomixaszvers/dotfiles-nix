@@ -18,44 +18,7 @@ in {
     workspace9 = "9";
     workspace10 = "10";
   in {
-
-    bars = [{
-      statusCommand = ''
-        i3status-rs ${
-          config.home.file."/home/adomas/.config/i3status-rust/config-default.toml".source
-        }
-      '';
-      fonts = {
-        names = [ "NotoMono Nerd Font" ];
-        size = 9.0;
-      };
-      colors = with config.colors; {
-        inherit background;
-        activeWorkspace = {
-          inherit background;
-          border = background;
-          text = whiteb;
-        };
-        focusedWorkspace = {
-          background = blackb;
-          border = background;
-          text = whiteb;
-        };
-        inactiveWorkspace = {
-          inherit background;
-          border = background;
-          text = white;
-        };
-        statusline = white;
-        urgentWorkspace = {
-          background = redb;
-          border = red;
-          text = whiteb;
-        };
-      };
-      position = "top";
-    }];
-    # bars = [];
+    bars = [ ];
     colors = with config.colors; {
       background = black;
       focused = {

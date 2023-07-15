@@ -44,7 +44,7 @@ let
     }
   '';
 in {
-  imports = [ ./i3status-rust.nix ../dunst.nix ];
+  imports = [ ../dunst.nix ../waybar ];
   home.packages = (with pkgs; [
     pamixer
     swaylock
@@ -53,9 +53,29 @@ in {
     font-awesome_5
     wdisplays
   ]) ++ [ myPkgs.sway-greedy-focus ];
-  programs.rofi = {
-    extraConfig.modi = "drun,run,ssh";
-    package = pkgs.rofi-wayland;
+  programs = {
+    emacs.package = pkgs.emacs29-pgtk;
+    rofi = {
+      package = pkgs.rofi-wayland;
+      extraConfig.modi = "drun,run,ssh";
+    };
+    waybar = {
+      settings.mainbar = {
+        layer = "top";
+        position = "top";
+        height = 16;
+        modules-left = [ "sway/workspaces" "sway/mode" ];
+        modules-right =
+          [ "pulseaudio" "cpu" "memory" "temperature" "clock" "tray" ];
+        "clock" = { format = "{:%Y-%m-%d %H:%M}"; };
+        "pulseaudio" = { scroll-step = "5.0"; };
+        temperature.thermal-zone = 0;
+      };
+      systemd = {
+        enable = true;
+        target = "sway-session.target";
+      };
+    };
   };
   services = {
     kanshi.enable = true;
