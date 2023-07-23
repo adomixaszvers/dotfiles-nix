@@ -41,5 +41,7 @@ in rec {
   "adomas@adomo-pc-nixos" = pc;
   "pi@raspberrypi-nixos" = pi;
   thinkpad-home = work-remote;
+  "deck@steamdeck" =
+    buildHomeManager ./profiles/steamdeck.nix { username = "deck"; };
   thinkpad-work = work;
 }

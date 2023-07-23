@@ -51,6 +51,18 @@
     bash = {
       enable = true;
       historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
+      initExtra = ''
+        hcd () {
+          cd ~/.config/nixpkgs || exit 1
+        }
+        he () {
+          (
+            local FILES
+            hcd && readarray -t FILES <<< "$(fzf --multi)" && [ -n "''${FILES[*]}" ] && "$EDITOR" "''${FILES[@]}"
+            )
+          }
+
+      '';
     };
     broot.enable = true;
     exa = {
