@@ -15,6 +15,8 @@
     "wireguard/presharedKeys/rycioKompas".sopsFile =
       ../common-secrets/wireguard.yaml;
     "wireguard/presharedKeys/t14".sopsFile = ../common-secrets/wireguard.yaml;
+    "wireguard/presharedKeys/steamdeck".sopsFile =
+      ../common-secrets/wireguard.yaml;
   };
   networking.firewall.interfaces.eth0 = {
     allowedTCPPorts = [ 51820 ];
@@ -91,6 +93,12 @@
           presharedKeyFile =
             config.sops.secrets."wireguard/presharedKeys/rycioKompas".path;
           allowedIPs = [ "10.6.0.12/32" ];
+        }
+        {
+          publicKey = "jntAqEorAVCP3Z9MbecPE8MiWi4q4Ay+Ue9UtrD2Hwc=";
+          presharedKeyFile =
+            config.sops.secrets."wireguard/presharedKeys/steamdeck".path;
+          allowedIPs = [ "10.6.0.13/32" ];
         }
       ];
     };

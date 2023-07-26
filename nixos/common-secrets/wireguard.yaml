@@ -8,6 +8,7 @@ wireguard:
         samsung: ENC[AES256_GCM,data:N9zdgWPSkCuPmP3aYdWs//R7v8bG0VEC9vNxQ3BmMNGgr3+024gr4im6OZA=,iv:J7gN4IxFLd2toLZtvHf13KVmP7TmOoKSBP8unmev8dI=,tag:opjRBNE1n/+BECCfDlBJzQ==,type:str]
         t14: ENC[AES256_GCM,data:hEwpyVdnu32UgqLDdqoHg/RirTsuOLUyge71hZn8q+ex1HCq+4NKmLUq8LI=,iv:EtsU8hXcCPaNpV6zS58EK2vJoCZbrw6n6hgHYS12OPM=,tag:X27FprBUfMRW34b0iGp5zQ==,type:str]
         rycioKompas: ENC[AES256_GCM,data:FakyA1U0i6NryD9eF0FmJOWMzqa2+/AaaG1kddFuI97vChJx8Kx2/msClOw=,iv:aRtIKFT1U75xA2oNX5ENgah/MllEZzL5ktmwQykcjjY=,tag:+UnCV+JoxKShjDJgVyI5dQ==,type:str]
+        steamdeck: ENC[AES256_GCM,data:asyNbOwR8pT2bKx5tOF5pQdNA0ODXoNeqwJcwo9jk74+DjaZ5a/Gyw19uQU=,iv:A8JYQohTRjSsv9vyGUKK45mMUvM0t8NHqUMJIPGqYa0=,tag:SG2Wp357OWdzSGclT9AXig==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -59,8 +60,8 @@ sops:
             d2hjNThPK2E2ekNCOVY4NXlvS3U0eVEK969b8w25Cef3eMc/fZ8mQdoCj8GjgyIt
             0JoT9wH5/nbeKSYTi3VQfcoWpjg3uRNuUF3ioi+BMrDqbjAdeskIlA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-01-22T08:42:58Z"
-    mac: ENC[AES256_GCM,data:dywss1ev0NC256BKcVRcEfQjtEVOG927dObMG1g45SG1LsJNRLglXo5TFtiJbvJE1BFmsbd7x915EuERfbLkjhDXwLJPI3R9iCnFeeRBH+qhzH5fHqNieHaH2SStjyw0PrywHcWoYVIOk8qtIQVDHIi7uuxBymkwxf2mqnzp124=,iv:mGH+UlILLYYyDD08BQY270UQPpKVLaYOMKfnLWqB3Q0=,tag:m53N2DkfW1QywL2v1s8KDA==,type:str]
+    lastmodified: "2023-07-26T08:33:45Z"
+    mac: ENC[AES256_GCM,data:LXgQMZrlrswNoK8iIFUz44atr3Uh0/W2LtbPKBHToyVWe/lfQYkC8O3kdlcuc28U+0lSJciv33orCur1mKF6t/D4z7pX4jpMP93g8JPe+1byak7eeNQk22iswDGnuzguwxsD+jTFn4xKmkto5OFk9Sdhv0r5/k4Jo7RKmUJ8n6E=,iv:Fj163Fe4fORObNofk7PB+dChZIofmPV3bgC1ADDHBe4=,tag:jK+yqOMRxG/lCoBhlxiT0A==,type:str]
     pgp:
         - created_at: "2023-05-30T07:32:30Z"
           enc: |
