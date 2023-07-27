@@ -23,7 +23,7 @@ let
 in {
   imports = [ ../dunst.nix ../picom.nix ];
   home.packages = (with pkgs; [ pamixer xdotool gnome.zenity ])
-    ++ [ eww myPkgs.tail-volume trayer-toggle xmonad-dbus ];
+    ++ [ eww myPkgs.tail-volume myPkgs.restart-eww trayer-toggle xmonad-dbus ];
   xdg.configFile."eww/eww.yuck".source = ./eww/eww.yuck;
   xdg.configFile."eww/eww.scss".text = with config.colors; ''
     * {

@@ -156,7 +156,7 @@ myDynamicStatusBar dbus sc@(S i) = pure . dbusStatusBarConfig sc dbus $ ppOn i
     ppOn _ = pure . secondaryPP $ sc
 
 restartEww :: MonadIO m => m ()
-restartEww = spawn "eww reload"
+restartEww = spawn "restart-eww"
 
 spawnFeh :: MonadIO m => m ()
 spawnFeh = spawn "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
