@@ -1,9 +1,8 @@
 { pkgs, myPkgs, ... }:
 
 {
-  imports = [ ../picom.nix ../dunst.nix ];
-  home.packages = let qtile = import ./myQtile.nix { inherit pkgs; };
-  in [ qtile pkgs.wofi myPkgs.rofi-powermenu ];
+  imports = [ ../dunst.nix ];
+  home.packages = [ pkgs.qtile pkgs.wofi myPkgs.rofi-powermenu ];
   # services.pasystray.enable = true;
   services.kanshi.enable = true;
   xsession.windowManager.command = "qtile start";
@@ -14,7 +13,7 @@
   };
   xdg.configFile."qtile/autostart.sh".source =
     pkgs.writers.writeDash "autostart.sh" ''
-      if [ -n "$WAYLAND_DISPLAY ]; then
+      if [ -n "$WAYLAND_DISPLAY" ]; then
         ${pkgs.kanshi}/bin/kanshi &
       fi
     '';

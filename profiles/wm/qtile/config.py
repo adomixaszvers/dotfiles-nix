@@ -31,9 +31,6 @@ from libqtile import layout, bar, widget, qtile
 from libqtile.log_utils import logger
 from libqtile.backend.wayland import InputConfig
 
-# this import requires python-xlib to be installed
-from Xlib import display as xdisplay
-
 try:
     from typing import List  # noqa: F401
 except ImportError:
@@ -170,51 +167,26 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 
-def get_num_monitors():
-    num_monitors = 0
-    try:
-        display = xdisplay.Display()
-        screen = display.screen()
-        resources = screen.root.xrandr_get_screen_resources()
-
-        for output in resources.outputs:
-            monitor = display.xrandr_get_output_info(output, resources.config_timestamp)
-            preferred = False
-            if hasattr(monitor, "preferred"):
-                preferred = monitor.preferred
-            elif hasattr(monitor, "num_preferred"):
-                preferred = monitor.num_preferred
-            if preferred:
-                num_monitors += 1
-    except Exception as e:
-        logger.exception(e)
-        # always setup at least one monitor
-        return 1
-    else:
-        return num_monitors
-
-
 if qtile.core.name == "x11":
-    num_monitors = get_num_monitors()
     keys.extend(
         [
-            Key([mod], "d", lazy.spawn("rofi -show combi -combi-modi window,drun")),
+            Key([mod], "d", lazy.spawn("rofi -show combi -combi-modi window,drun,run")),
             Key([mod, "shift"], "d", lazy.spawn("rofi -show run -sidebar-mode")),
         ]
     )
 elif qtile.core.name == "wayland":
-    num_monitors = 1
     keys.extend(
         [
-            Key([mod], "d", lazy.spawn("wofi --show drun")),
+            Key([mod], "d", lazy.spawn("rofi -show combi -combi-modi drun,run")),
             Key([mod, "shift"], "d", lazy.spawn("wofi --show run")),
         ]
     )
     os.environ["MOZ_ENABLE_WAYLAND"] = "1"
     os.environ["_JAVA_AWT_WM_NONREPARENTING"] = "1"
-    qtile.core.cmd_set_keymap(layout="lt")
+    os.environ["KITTY_CONF_FONT"] = "font_size 9"
 
 
+pulse_step = 5
 screens = [
     Screen(
         top=bar.Bar(
@@ -228,7 +200,7 @@ screens = [
                 ),
                 widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
                 widget.StatusNotifier(),
-                widget.PulseVolume(),
+                widget.PulseVolume(step=pulse_step),
             ],
             24,
         ),
@@ -244,7 +216,7 @@ screens = [
                     configured_keyboards=["lt", "us"], option="grp:caps_toggle"
                 ),
                 widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
-                widget.PulseVolume(),
+                widget.PulseVolume(step=pulse_step),
             ],
             24,
         ),
@@ -260,29 +232,12 @@ screens = [
                     configured_keyboards=["lt", "us"], option="grp:caps_toggle"
                 ),
                 widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
-                widget.PulseVolume(),
+                widget.PulseVolume(step=pulse_step),
             ],
             24,
         ),
     ),
 ]
-
-if num_monitors > 1:
-    for m in range(num_monitors - 1):
-        screens.append(
-            Screen(
-                top=bar.Bar(
-                    [
-                        widget.GroupBox(hide_unused=True),
-                        widget.Prompt(),
-                        widget.WindowName(),
-                        widget.CurrentLayoutIcon(),
-                        widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
-                    ],
-                    24,
-                ),
-            )
-        )
 
 
 # Drag floating layouts.
@@ -321,7 +276,7 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 
 wl_input_rules = {
-    "type:keyboard": InputConfig(xkb_layout="lt")
+    "type:keyboard": InputConfig(kb_layout="lt,us",kb_options="grp:caps_toggle")
 }
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
