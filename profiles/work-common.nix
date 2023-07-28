@@ -45,7 +45,6 @@
       mercurial
       nodePackages.pnpm
       numlockx
-      oracle-instantclient
       playerctl
       postman
       remmina
@@ -232,7 +231,6 @@
         path = "~/projektai/git_work.inc";
       }
     ];
-    go.enable = true;
     xmobar.thermal-zone = 1;
     zsh.shellAliases = {
       imvn = "mvn -s ~/.m2/insoft-settings.xml";
