@@ -24,9 +24,9 @@
     ./prebuild-configs.nix
     ./samba.nix
     ./xrdp/current.nix
-    ./turbovnc.nix
+    # ./turbovnc.nix
     # ./unbound.nix
-    ./vnc.nix
+    # ./vnc.nix
     ./wireguard-client.nix
     ../fprintd.nix
     # ./throttled
