@@ -1,4 +1,4 @@
-{ pkgs, myPkgs, ... }: {
+{ pkgs, myPkgs, config, ... }: {
   imports = [ ../waybar ];
   home.packages = let
     launch-river = pkgs.writers.writeDashBin "launch-river" ''
@@ -19,7 +19,7 @@
         "river/tags" = { "num-tags" = 9; };
         "clock" = { format = "{:%Y-%m-%d %H:%M}"; };
         "pulseaudio" = { scroll-step = "5.0"; };
-        temperature.thermal-zone = 1;
+        temperature.thermal-zone = config.gui.thermal-zone;
       };
     }];
   };

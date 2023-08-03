@@ -50,7 +50,7 @@
       };
     };
   };
-  programs.xmobar.thermal-zone = 1;
+  gui.thermal-zone = 1;
   services = {
     network-manager-applet.enable = false;
     polybar.config."module/disk" = { mount-1 = "/home"; };

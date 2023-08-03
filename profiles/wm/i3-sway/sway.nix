@@ -69,7 +69,7 @@ in {
           [ "pulseaudio" "cpu" "memory" "temperature" "clock" "tray" ];
         "clock" = { format = "{:%Y-%m-%d %H:%M}"; };
         "pulseaudio" = { scroll-step = "5.0"; };
-        temperature.thermal-zone = 0;
+        temperature.thermal-zone = config.gui.thermal-zone;
       };
       systemd = {
         enable = true;

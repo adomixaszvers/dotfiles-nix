@@ -1,5 +1,6 @@
-{ pkgs, myPkgs, ... }: {
+{ pkgs, myPkgs, config, ... }: {
   imports = [ ./common.nix ./wm/xrdp.nix ];
+  gui.thermal-zone = 1;
   home = {
     file = {
       "jdks/openjdk8".source = pkgs.openjdk8;
@@ -231,7 +232,6 @@
         path = "~/projektai/git_work.inc";
       }
     ];
-    xmobar.thermal-zone = 1;
     zsh.shellAliases = {
       imvn = "mvn -s ~/.m2/insoft-settings.xml";
       amvn = "mvn -s ~/.m2/kazan-settings.xml";
@@ -262,7 +262,7 @@
     };
     network-manager-applet.enable = true;
     polybar.config = {
-      "module/temperature".thermal-zone = 1;
+      "module/temperature".thermal-zone = config.gui.thermal-zone;
       "bar/top" = {
         modules-right =
           "battery divider memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider trayer";

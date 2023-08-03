@@ -25,7 +25,7 @@
   home.sessionVariables = { BROWSER = "firefox"; };
   gtk.enable = false;
   qt.enable = false;
-  programs.xmobar.thermal-zone = 1;
+  gui.thermal-zone = 1;
   services.network-manager-applet.enable = false;
   services.udiskie.enable = false;
   xsession.initExtra = ''

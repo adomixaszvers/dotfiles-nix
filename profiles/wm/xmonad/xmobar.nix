@@ -11,7 +11,7 @@ let
     chmod u+x $out
     patchShebangs $out
   '';
-  makeConfig = let thermalZone = toString config.programs.xmobar.thermal-zone;
+  makeConfig = let thermalZone = toString config.gui.thermal-zone;
   in hasTray:
   with config.colors; ''
     Config { font = "xft:NotoMono Nerd Font:fontformat=truetype:pixelsize=10:antialias=true"

@@ -49,7 +49,7 @@
     protonup
   ]) ++ (with myPkgs; [ toggle-touchpad ]);
   home.sessionVariables = { BROWSER = "firefox"; };
-  programs.xmobar.thermal-zone = 1;
+  gui.thermal-zone = 1;
   services.screen-locker = {
     # enable = true;
     inactiveInterval = 60;

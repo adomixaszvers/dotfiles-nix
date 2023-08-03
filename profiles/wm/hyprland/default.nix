@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, ... }: {
+{ pkgs, inputs, system, config, ... }: {
   imports = [ ../waybar ../dunst.nix ];
   home.packages =
     (with pkgs; [ gamescope pamixer swaylock swayidle wl-clipboard wdisplays ])
@@ -21,7 +21,7 @@
           [ "pulseaudio" "cpu" "memory" "temperature" "clock" "tray" ];
         "clock" = { format = "{:%Y-%m-%d %H:%M}"; };
         "pulseaudio" = { scroll-step = "5.0"; };
-        temperature.thermal-zone = 0;
+        temperature.thermal-zone = config.gui.thermal-zone;
       };
       systemd = {
         enable = true;
