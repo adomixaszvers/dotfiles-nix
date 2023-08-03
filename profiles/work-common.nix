@@ -1,5 +1,5 @@
 { pkgs, myPkgs, ... }: {
-  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ./wm/xrdp.nix ];
+  imports = [ ./common.nix ./wm/xrdp.nix ];
   home = {
     file = {
       "jdks/openjdk8".source = pkgs.openjdk8;

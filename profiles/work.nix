@@ -1,5 +1,5 @@
 { pkgs, config, lib, ... }: {
-  imports = [ ./work-common.nix ];
+  imports = [ ./work-common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   colors = import ./gui/colors/nord.nix;
   services.screen-locker = {
     enable = lib.mkDefault config.xsession.enable;
