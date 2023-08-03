@@ -77,6 +77,7 @@
       enableZshIntegration = true;
       fileWidgetCommand = "fd --type f";
     };
+    lazygit.enable = true;
     tmux = {
       enable = true;
       extraConfig = ''
