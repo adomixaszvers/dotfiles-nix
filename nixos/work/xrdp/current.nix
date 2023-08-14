@@ -1,5 +1,8 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, ... }:
+let package = pkgs.callPackage ./fixed-xrdp.nix { };
+in {
   services.xrdp = {
+    inherit package;
     enable = true;
     confDir = let
       inherit (inputs) self;
@@ -7,7 +10,7 @@
     in pkgs.runCommand "xrdp.conf" { preferLocalBuild = true; } ''
       mkdir $out
 
-      cp ${cfg.package}/etc/xrdp/{km-*,xrdp,sesman}.ini $out
+      cp ${package}/etc/xrdp/{km-*,xrdp,sesman}.ini $out
       cp ${self}/pkgs/custom-xrdp/km-00010427.ini $out
       cp ${self}/pkgs/custom-xrdp/xrdp_keyboard.ini $out
 
