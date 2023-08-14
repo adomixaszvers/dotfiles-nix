@@ -134,6 +134,13 @@
     vnstat.enable = true;
   };
 
+  systemd.services.check-internet = {
+    unitConfig.FailureAction = "reboot";
+    description = "Check if internet connection is still working";
+    script = "/run/wrappers/bin/ping -c5 google.lt";
+    startAt = "Mon-Fri 02:00";
+  };
+
   virtualisation.docker = {
     enable = true;
     storageDriver = "btrfs";
