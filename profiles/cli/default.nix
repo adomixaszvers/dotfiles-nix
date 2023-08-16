@@ -25,7 +25,6 @@
     github-cli
     htop
     icdiff
-    iotop
     jq
     lf
     lsof

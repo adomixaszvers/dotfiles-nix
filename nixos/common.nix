@@ -28,7 +28,6 @@
     git
     vim
     gparted
-    iotop
     lm_sensors
     neovim
     ntfs3g
@@ -64,6 +63,7 @@
   programs = {
     command-not-found.enable = true;
     dconf.enable = true;
+    iotop.enable = true;
     ssh.startAgent = false;
     seahorse.enable = true;
     zsh = {
