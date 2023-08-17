@@ -6,6 +6,7 @@ let
 in [
   ale
   commentary
+  direnv-vim
   fugitive
   neoformat
   nord-nvim
