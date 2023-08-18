@@ -4,6 +4,6 @@
     enableBashIntegration = true;
     enableZshIntegration = true;
     nix-direnv = { enable = true; };
-    stdlib = builtins.readFile ./stdlib.sh;
+    stdlib = builtins.readFile ./stdlib.bash;
   };
 }

@@ -86,7 +86,13 @@
               nixfmt.enable = true;
               statix.enable = true;
               deadnix.enable = true;
-              shellcheck.enable = true;
+              shellcheck = {
+                enable = true;
+                # shellcheck does not support zsh files but after
+                # https://github.com/cachix/pre-commit-hooks.nix/commit/61bda56530889b4acf6c935d832f219b6c0ebd83
+                # it is run on initExtra.zsh and it fails on pre-commit
+                excludes = [ "\\.zsh$" ];
+              };
             };
           };
         };
