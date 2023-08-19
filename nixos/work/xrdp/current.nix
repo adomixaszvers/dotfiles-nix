@@ -1,5 +1,7 @@
 { config, pkgs, inputs, ... }:
-let package = pkgs.callPackage ./fixed-xrdp.nix { };
+let
+  package = pkgs.callPackage
+    "${inputs.nixpkgs-chvp}/pkgs/applications/networking/remote/xrdp" { };
 in {
   services.xrdp = {
     inherit package;

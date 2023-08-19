@@ -50,6 +50,10 @@
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-unstable = { url = "github:NixOS/nixpkgs/nixos-unstable-small"; };
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-23.05"; };
+    nixpkgs-chvp = {
+      url = "github:chvp/nixpkgs/fix/xorgxrdp-sources";
+      flake = false;
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
