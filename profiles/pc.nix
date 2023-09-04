@@ -2,21 +2,32 @@
   imports = [ ./common.nix ];
   colors = import ./gui/colors/nord.nix;
   home.packages = with pkgs; [
-    brightnessctl
-    borgbackup
-    compsize
     discord
-    exercism
-    gnome.nautilus
     firefox
-    gtypist
+    # gamescope
     libreoffice-still
-    (lutris.override { extraPkgs = ps: with ps; [ wine gamescope ]; })
+    (lutris.override {
+      extraPkgs = ps:
+        with ps; [
+          wine
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
+          libpng
+          # libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+          mangohud
+        ];
+    })
     mpv
+    obs-studio
     playerctl
     remmina
     qbittorrent
-    tor-browser-bundle-bin
     youtube-music
     keepassxc
     xpra

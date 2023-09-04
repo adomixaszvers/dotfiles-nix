@@ -50,7 +50,27 @@
   };
 
   programs = {
-    steam.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      package = pkgs.steam.override {
+        extraPkgs = pkgs:
+          with pkgs; [
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+            libpng
+            # libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib
+            libkrb5
+            keyutils
+            mangohud
+          ];
+      };
+    };
+    gamescope = { enable = true; };
     # nix flake check doesn't complain but nixos-rebuild does
     ssh.askPassword = "${pkgs.plasma5Packages.ksshaskpass.out}/bin/ksshaskpass";
   };
