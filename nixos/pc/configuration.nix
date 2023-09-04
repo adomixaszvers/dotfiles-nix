@@ -12,7 +12,7 @@
     ../syncthing.nix
     ../yubikey.nix
     ./wireguard-client.nix
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+    inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.sops-nix.nixosModules.sops
   ];
 
@@ -67,9 +67,6 @@
         enable = true;
         autoNumlock = true;
       };
-      screenSection = ''
-        Option         "metamodes" "DP-2: nvidia-auto-select +1920+0, DP-0: nvidia-auto-select +0+0 {AllowGSYNCCompatible=On}"
-      '';
       desktopManager.plasma5.enable = true;
     };
   };
