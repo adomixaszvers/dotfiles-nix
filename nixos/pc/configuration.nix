@@ -8,6 +8,7 @@
     ../gc.nix
     ../nix-registry.nix
     ../pipewire.nix
+    ../realtime.nix
     ../syncthing.nix
     ../yubikey.nix
     ./wireguard-client.nix
