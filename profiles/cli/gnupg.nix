@@ -1,6 +1,7 @@
 { lib, ... }: {
   programs.gpg = {
     enable = true;
+    settings.keyserver = "keyserver.ubuntu.com";
     scdaemonSettings = {
       reader-port = "Yubico Yubi";
       disable-ccid = true;
