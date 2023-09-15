@@ -1,7 +1,7 @@
 { config, pkgs, inputs, ... }:
 let
   package = pkgs.callPackage
-    "${inputs.nixpkgs-chvp}/pkgs/applications/networking/remote/xrdp" { };
+    "${inputs.nixos-2205}/pkgs/applications/networking/remote/xrdp" { };
 in {
   services.xrdp = {
     inherit package;
@@ -32,7 +32,9 @@ in {
 
       substituteInPlace $out/sesman.ini \
         --replace LogFile=xrdp-sesman.log LogFile=/dev/null \
-        --replace EnableSyslog=true EnableSyslog=false
+        --replace EnableSyslog=true EnableSyslog=true \
+        --replace 'FuseMountName=thinclient_drives' '#FuseMountName=thinclient_drives' \
+        --replace '#FuseMountName=/run/user/%u/thinclient_drives' 'FuseMountName=/run/user/%u/thinclient_drives'
 
       # Ensure that clipboard works for non-ASCII characters
       sed -i -e '/.*SessionVariables.*/ a\
