@@ -12,6 +12,7 @@
     ../libvirtd.nix
     ../nix-registry.nix
     ../pipewire.nix
+    ../realtime.nix
     ../syncthing.nix
     ../yubikey.nix
     ../xdg-portal.nix

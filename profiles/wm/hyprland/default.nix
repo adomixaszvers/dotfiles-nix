@@ -1,7 +1,7 @@
 { pkgs, inputs, system, config, ... }: {
   imports = [ ../waybar ../dunst.nix ];
   home.packages =
-    (with pkgs; [ gamescope pamixer swaylock swayidle wl-clipboard wdisplays ])
+    (with pkgs; [ pamixer swaylock swayidle wl-clipboard wdisplays ])
     ++ [ inputs.hyprland-contrib.packages.${system}.grimblast ];
   programs = {
     emacs.package = pkgs.emacs29-pgtk;
