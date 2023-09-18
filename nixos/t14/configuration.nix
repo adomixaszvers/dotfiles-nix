@@ -19,7 +19,7 @@
     ../thinkfan.nix
     ./hardware-configuration.nix
     ./powermanagement.nix
-    ./steam.nix
+    ../steam.nix
     ./wireguard-client.nix
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
     inputs.nixpkgs.nixosModules.notDetected
@@ -65,6 +65,7 @@
   programs = {
     adb.enable = true;
     bash.enableCompletion = true;
+    gamescope.args = [ "--adaptive-sync" ];
     mosh.enable = true;
     ssh.startAgent = false;
   };

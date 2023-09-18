@@ -42,7 +42,3 @@ if [ "$TERM" = linux ]; then
   PURE_GIT_UP_ARROW="↑"
   PURE_GIT_STASH_SYMBOL="#"
 fi
-
-if command -v gamescope 1>/dev/null; then
-  alias launch_gamescope='XKB_DEFAULT_LAYOUT=us gamescope -e -f --adaptive-sync -- steam -tenfoot & (sleep 2; renice -n -11 -p $(pgrep gamescope))& fg %1'
-fi

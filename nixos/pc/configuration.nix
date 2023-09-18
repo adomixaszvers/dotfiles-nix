@@ -11,6 +11,7 @@
     ../realtime.nix
     ../syncthing.nix
     ../yubikey.nix
+    ../steam.nix
     ./wireguard-client.nix
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.sops-nix.nixosModules.sops
@@ -51,27 +52,7 @@
   };
 
   programs = {
-    steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-      package = pkgs.steam.override {
-        extraPkgs = pkgs:
-          with pkgs; [
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXScrnSaver
-            libpng
-            # libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib
-            libkrb5
-            keyutils
-            mangohud
-          ];
-      };
-    };
-    gamescope = { enable = true; };
+    gamescope.args = [ "--adaptive-sync" "-W 1920 -H 1080" ];
     # nix flake check doesn't complain but nixos-rebuild does
     ssh.askPassword = "${pkgs.plasma5Packages.ksshaskpass.out}/bin/ksshaskpass";
   };
