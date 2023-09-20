@@ -11,6 +11,7 @@
     ./kakoune
     ./registry.nix
     ./zsh
+    ./nushell
   ];
   home.packages = (with pkgs; [
     bat

@@ -37,7 +37,7 @@
     usbutils
     wget
   ];
-  environment.shells = [ pkgs.zsh ];
+  environment.shells = [ pkgs.zsh pkgs.nushell ];
 
   fonts = {
     fontDir.enable = true;
@@ -98,7 +98,7 @@
       isNormalUser = true;
       uid = 1000;
       extraGroups = [ "networkmanager" "video" "wheel" ];
-      shell = pkgs.zsh;
+      shell = pkgs.nushell;
     };
   };
 }
