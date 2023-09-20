@@ -1,10 +1,18 @@
-{ pkgs, myPkgs, config, ... }: {
+{ pkgs, myPkgs, config, inputs, ... }: {
   imports = [ ./common.nix ./wm/xrdp.nix ];
   gui.thermal-zone = 1;
   home = {
     file = {
       "jdks/openjdk8".source = pkgs.openjdk8;
-      "jdks/oraclejdk8".source = pkgs.oraclejdk8;
+      "jdks/oraclejdk8".source = pkgs.callPackage (import
+        "${inputs.nixpkgs}/pkgs/development/compilers/oraclejdk/jdk-linux-base.nix" {
+          productVersion = "8";
+          patchVersion = "202";
+          jceName = "jce_policy-8.zip";
+          sha256JCE = "19n5wadargg3v8x76r7ayag6p2xz1bwhrgdzjs9f4i6fvxz9jr4w";
+          sha256.x86_64-linux =
+            "1q4l8pymjvsvxfwaw0rdcnhryh1la2bvg5f4d4my41ka390k4p4s";
+        }) { };
       "jdks/openjdk11".source = pkgs.openjdk11;
       "jdks/openjdk17".source = pkgs.openjdk17;
       "nodejs/latest".source = pkgs.nodejs_latest;
