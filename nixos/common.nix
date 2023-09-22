@@ -98,7 +98,7 @@
       isNormalUser = true;
       uid = 1000;
       extraGroups = [ "networkmanager" "video" "wheel" ];
-      shell = pkgs.nushell;
+      shell = pkgs.zsh;
     };
   };
 }
