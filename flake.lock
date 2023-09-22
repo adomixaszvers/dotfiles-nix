@@ -357,23 +357,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-chvp": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1693485138,
-        "narHash": "sha256-aam37J/wYN8wynNHBUgUVzbdm6wVXP+uq9CaOq1gscg=",
-        "owner": "chvp",
-        "repo": "nixpkgs",
-        "rev": "56d50b35b99e6c624933ad1d267aca23b49ae79c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "chvp",
-        "ref": "fix/xorgxrdp-sources",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1685801374,
@@ -497,7 +480,6 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-chvp": "nixpkgs-chvp",
         "pre-commit-hooks": "pre-commit-hooks",
         "sops-nix": "sops-nix"
       }
