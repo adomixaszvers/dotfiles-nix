@@ -1,11 +1,62 @@
 { pkgs, ... }: {
   programs = {
     nushell = {
-      enable = true;
+      enable = false;
       configFile.text = ''
-        let carapace_completer = {|spans|
-          ${pkgs.carapace}/bin/carapace $spans.0 nushell $spans | from json
+        let carapace_completer = {|spans: list<string>|
+            ${pkgs.carapace}/bin/carapace $spans.0 nushell $spans
+            | from json
+            | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
         }
+        let zoxide_completer = {|spans|
+            $spans | skip 1 | zoxide query -l $in | lines | where {|x| $x != $env.PWD}
+        }
+        let fish_completer = {|spans|
+            ${pkgs.fish}/bin/fish --command $'complete "--do-complete=($spans | str join " ")"'
+            | $"value(char tab)description(char newline)" + $in
+            | from tsv --flexible --no-infer
+        }
+
+
+        let external_completer = {|spans|
+          let expanded_alias = (scope alias-completions
+          | where name == $spans.0
+          | get -i 0.expansion)
+
+          let spans = (if $expanded_alias != null {
+              $spans
+              | skip 1
+              | prepend ($expanded_alias | split row ' ')
+          } else {
+              $spans
+          })
+
+          match $spans.0 {
+              z => $zoxide_completer
+              zi => $zoxide_completer
+              _ => $carapace_completer
+          } | do $in $spans
+        }
+
+        use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/git/git-completions.nu *
+        use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/nix/nix-completions.nu *
+
+        def "manpages" [] {
+
+            ^man -w
+          | str trim
+            | split row (char esep)
+          | par-each { glob $'($in)/man?' }
+          | flatten
+          | par-each { ls $in | get name }
+            | flatten
+          | path basename
+          | str replace -s ".gz" ""
+        }
+
+        export extern "man" [
+            ...targets: string@"manpages"
+        ]
 
         alias hcd = cd ~/.config/nixpkgs
 
@@ -25,10 +76,13 @@
           completions: {
             external: {
               enable: true
-              completer: $carapace_completer
+              completer: $external_completer
             }
           }
         }
+
+        use ${pkgs.nu_scripts}/share/nu_scripts/themes/themes/nord.nu
+        let-env config = ($env.config | merge {color_config: (nord)})
       '';
     };
     starship = {

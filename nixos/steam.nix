@@ -28,7 +28,6 @@
     gamescope = {
       enable = true;
       env.XKB_LAYOUT = "us";
-      args = [ "--adaptive-sync" "-W 1920 -H 1080" ];
     };
   };
 }
