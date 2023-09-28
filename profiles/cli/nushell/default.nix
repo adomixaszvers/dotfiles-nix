@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   programs = {
     nushell = {
-      enable = false;
       configFile.text = ''
         let carapace_completer = {|spans: list<string>|
             ${pkgs.carapace}/bin/carapace $spans.0 nushell $spans
@@ -16,30 +15,38 @@
             | $"value(char tab)description(char newline)" + $in
             | from tsv --flexible --no-infer
         }
+        let nix_completer = {|spans|
+          let current_arg = ($spans | length| $in - 1)
+          with-env { NIX_GET_COMPLETIONS: $current_arg } { $spans| skip 1| run-external --redirect-stdout nix $in }
+          | lines
+          | skip 1
+          | parse "{value}\t{description}"
+        }
 
 
         let external_completer = {|spans|
-          let expanded_alias = (scope alias-completions
-          | where name == $spans.0
-          | get -i 0.expansion)
+          # does not work with v.80
+          # let expanded_alias = (scope alias-completions
+          # | where name == $spans.0
+          # | get -i 0.expansion)
 
-          let spans = (if $expanded_alias != null {
-              $spans
-              | skip 1
-              | prepend ($expanded_alias | split row ' ')
-          } else {
-              $spans
-          })
+          # let spans = (if $expanded_alias != null {
+          #     $spans
+          #     | skip 1
+          #     | prepend ($expanded_alias | split row ' ')
+          # } else {
+          #     $spans
+          # })
 
           match $spans.0 {
               z => $zoxide_completer
               zi => $zoxide_completer
+              nix => $nix_completer
+              nu => $fish_completer
+              git => $fish_completer
               _ => $carapace_completer
           } | do $in $spans
         }
-
-        use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/git/git-completions.nu *
-        use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/nix/nix-completions.nu *
 
         def "manpages" [] {
 
@@ -96,9 +103,9 @@
         $git_branch\
         $git_state\
         $git_status\
+        $nix_shell\
         $cmd_duration\
         $line_break\
-        $python\
         $character"""
 
         [directory]
@@ -131,11 +138,6 @@
         [cmd_duration]
         format = "[$duration]($style) "
         style = "yellow"
-
-        [python]
-        format = "[$virtualenv]($style) "
-        style = "bright-black"
-
       '';
     };
     zoxide.enable = true;
