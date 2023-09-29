@@ -48,7 +48,24 @@
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
 
-  i18n = { defaultLocale = "lt_LT.UTF-8"; };
+  i18n = {
+    defaultLocale = "lt_LT.UTF-8";
+    extraLocaleSettings = {
+      LANGUAGE = "en_US:lt_LT:C";
+      LC_ADDRESS = "lt_LT.UTF-8";
+      LC_COLLATE = "C.UTF-8";
+      LC_CTYPE = "C.UTF-8";
+      LC_IDENTIFICATION = "lt_LT.UTF-8";
+      LC_MEASUREMENT = "lt_LT.UTF-8";
+      LC_MESSAGES = "lt_LT.UTF-8";
+      LC_MONETARY = "lt_LT.UTF-8";
+      LC_NAME = "lt_LT.UTF-8";
+      LC_NUMERIC = "lt_LT.UTF-8";
+      LC_PAPER = "lt_LT.UTF-8";
+      LC_TELEPHONE = "lt_LT.UTF-8";
+      LC_TIME = "lt_LT.UTF-8";
+    };
+  };
 
   networking.networkmanager = {
     enable = lib.mkDefault true;
