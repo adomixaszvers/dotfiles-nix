@@ -10,7 +10,6 @@
       extraConfig.modi = "drun,run,ssh";
     };
     waybar = {
-      package = inputs.hyprland.packages.${system}.waybar-hyprland;
       settings.mainbar = {
         layer = "top";
         position = "top";
@@ -31,10 +30,7 @@
   };
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland = {
-      enable = true;
-      hidpi = true;
-    };
+    xwayland.enable = true;
     extraConfig = builtins.readFile ./hyprland.conf;
   };
 }
