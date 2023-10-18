@@ -2,11 +2,6 @@
   programs = {
     nushell = {
       configFile.text = ''
-        let carapace_completer = {|spans: list<string>|
-            ${pkgs.carapace}/bin/carapace $spans.0 nushell $spans
-            | from json
-            | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
-        }
         let zoxide_completer = {|spans|
             $spans | skip 1 | zoxide query -l $in | lines | where {|x| $x != $env.PWD}
         }
@@ -41,10 +36,7 @@
           match $spans.0 {
               z => $zoxide_completer
               zi => $zoxide_completer
-              nix => $nix_completer
-              nu => $fish_completer
-              git => $fish_completer
-              _ => $carapace_completer
+              _ => $fish_completer
           } | do $in $spans
         }
 
