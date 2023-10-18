@@ -1,6 +1,9 @@
 {
   networking.firewall.interfaces.wg0.allowedTCPPorts = [ 1080 ];
-  systemd.services.dante.serviceConfig.RestartSec = "10";
+  systemd.services.dante = {
+    after = [ "wg-quick-wg0.service" ];
+    serviceConfig.RestartSec = "10";
+  };
   services.dante = {
     enable = true;
     config = ''

@@ -27,6 +27,7 @@
     # ./turbovnc.nix
     # ./unbound.nix
     # ./vnc.nix
+    ../xdg-portal.nix
     ./wireguard-client.nix
     ../fprintd.nix
     # ./throttled
@@ -110,7 +111,6 @@
     };
   };
   services = {
-    autorandr.enable = true;
     gnome.glib-networking.enable = true;
     xserver.libinput.enable = true;
     gvfs.enable = true;
@@ -162,10 +162,6 @@
   #     };
   #   };
   # };
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-  };
   security.pam.services.sshd.enableGnomeKeyring = true;
 
   hardware = {
