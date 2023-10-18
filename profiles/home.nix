@@ -20,7 +20,6 @@
   ];
   home.sessionVariables = { BROWSER = "firefox"; };
   programs.autorandr = {
-    enable = true;
     profiles = {
       home-prime = {
         fingerprint = {

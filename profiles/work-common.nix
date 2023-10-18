@@ -1,4 +1,4 @@
-{ pkgs, myPkgs, config, inputs, ... }: {
+{ pkgs, lib, myPkgs, config, inputs, unstable, ... }: {
   imports = [ ./common.nix ./wm/xrdp.nix ];
   gui.thermal-zone = 1;
   home = {
@@ -26,13 +26,13 @@
     packages = with pkgs; [
       asciinema
       bless
+      brave
       brightnessctl
       dbeaver
       docker-compose
       dos2unix
       evince
       filezilla
-      firefox
       gimp
       gitAndTools.gitflow
       libsecret
@@ -54,6 +54,7 @@
       mercurial
       nodePackages.pnpm
       numlockx
+      openssl
       playerctl
       postman
       remmina
@@ -72,10 +73,17 @@
       tor-browser-bundle-bin
       unzip
       whois
+      xpra
       zip
       zoom-us
+      unstable.dumpasn1
     ];
-    sessionVariables = { BROWSER = "xdg-open"; };
+    sessionVariables = {
+      BROWSER = "xdg-open";
+      CS_AUTH_KEYS = "/home/adomas/HSMrsa.pub";
+      CS_PKCS11_R2_CFG = "/home/adomas/cs_pkcs11_R2.cfg";
+      CRYPTOSERVER = "3001@localhost";
+    };
   };
 
   programs = {
@@ -240,6 +248,14 @@
         path = "~/projektai/git_work.inc";
       }
     ];
+    # kitty.settings.shell = "nu";
+    # nushell.enable = true;
+    firefox = {
+      enable = true;
+      # package = pkgs.firefox.override {
+      #   cfg = { enablePlasmaBrowserIntegration = true; };
+      # };
+    };
     zsh.shellAliases = {
       imvn = "mvn -s ~/.m2/insoft-settings.xml";
       amvn = "mvn -s ~/.m2/kazan-settings.xml";
@@ -268,7 +284,7 @@
         # scale = 1.25;
       }];
     };
-    network-manager-applet.enable = true;
+    # network-manager-applet.enable = true;
     polybar.config = {
       "module/temperature".thermal-zone = config.gui.thermal-zone;
       "bar/top" = {
@@ -291,7 +307,7 @@
         ramp-capacity-4 = "";
       };
     };
-    kbdd.enable = true;
+    kbdd.enable = lib.mkDefault true;
   };
   xsession.windowManager.i3.config.startup = [{
     command = "rambox";
