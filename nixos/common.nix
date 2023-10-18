@@ -49,12 +49,12 @@
   # hardware.pulseaudio.enable = true;
 
   i18n = {
-    defaultLocale = "lt_LT.UTF-8";
+    defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
       LANGUAGE = "en_US:lt_LT:C";
       LC_ADDRESS = "lt_LT.UTF-8";
-      LC_COLLATE = "C.UTF-8";
-      LC_CTYPE = "C.UTF-8";
+      LC_COLLATE = "lt_LT.UTF-8";
+      LC_CTYPE = "lt_LT.UTF-8";
       LC_IDENTIFICATION = "lt_LT.UTF-8";
       LC_MEASUREMENT = "lt_LT.UTF-8";
       LC_MESSAGES = "lt_LT.UTF-8";
