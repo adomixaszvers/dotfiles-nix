@@ -46,10 +46,6 @@
     };
     theme = "solarized";
   };
-  services.gnome-keyring = {
-    enable = true;
-    components = [ "pkcs11" "secrets" "ssh" ];
-  };
   xresources.properties = with config.colors; {
 
     # special
