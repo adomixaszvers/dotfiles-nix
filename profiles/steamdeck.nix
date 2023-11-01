@@ -38,7 +38,10 @@
       pkg = firefox;
     })
     keepassxc
+    xsel
   ];
+  home.sessionVariables.BROWSER = "firefox";
+  manual.html.enable = true;
   programs.gpg.enable = lib.mkForce false;
   services = {
     gpg-agent.enable = false;
