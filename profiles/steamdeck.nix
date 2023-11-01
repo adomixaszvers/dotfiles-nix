@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, lib, ... }: {
   imports = [ ./cli ];
   home.packages = let
     # see https://www.reddit.com/r/SteamDeck/comments/yxpmlq/nix_homemanager_on_steam_deck/
@@ -39,6 +39,7 @@
     })
     keepassxc
   ];
+  programs.gpg.enable = lib.mkForce false;
   services = {
     gpg-agent.enable = false;
     syncthing = {
