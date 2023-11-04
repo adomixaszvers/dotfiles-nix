@@ -80,11 +80,15 @@
     lazygit.enable = true;
     tmux = {
       enable = true;
-      extraConfig = ''
-        set -g mouse on
-      '';
       keyMode = "vi";
+      mouse = true;
       terminal = "screen-256color";
+      plugins = with pkgs.tmuxPlugins; [{
+        plugin = mode-indicator;
+        extraConfig = ''
+          set -g status-right '%Y-%m-%d %H:%M #{tmux_mode_indicator}'
+        '';
+      }];
     };
     z-lua = {
       enable = true;
