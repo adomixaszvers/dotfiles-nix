@@ -15,12 +15,13 @@
     ../realtime.nix
     ../syncthing.nix
     ../yubikey.nix
-    ../xdg-portal.nix
+    # ../xdg-portal.nix
     ../thinkfan.nix
     ./hardware-configuration.nix
-    ./powermanagement.nix
+    # ./powermanagement.nix
     ../steam.nix
     ./wireguard-client.nix
+    ../kde.nix
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
     inputs.nixpkgs.nixosModules.notDetected
     inputs.sops-nix.nixosModules.sops
@@ -72,7 +73,7 @@
   services = {
     flatpak.enable = true;
     autorandr = {
-      enable = true;
+      enable = false;
       defaultTarget = "home-prime";
     };
     journald.extraConfig = "SystemMaxUse=500M";
@@ -82,6 +83,10 @@
       enable = true;
       settings.PasswordAuthentication = false;
     };
+    udev.extraRules = ''
+      # Lenovo Lenovo Essential Wireless Keyboard and Mouse Combo
+      ACTION=="add", SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="60a9", ATTR{power/wakeup}="disabled"
+    '';
 
     zfs = {
       autoScrub = {

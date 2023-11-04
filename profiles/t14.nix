@@ -1,5 +1,12 @@
 { pkgs, myPkgs, ... }: {
-  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
+  # imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
+  imports = [ ./common.nix ];
+  gtk.enable = false;
+  qt.enable = false;
+  services = {
+    network-manager-applet.enable = false;
+    udiskie.enable = false;
+  };
   colors = import ./gui/colors/nord.nix;
   xresources.properties = let dpi = 120;
   in {
@@ -29,13 +36,13 @@
     };
   };
   home.packages = (with pkgs; [
+    brave # needed for messenger calls
     brightnessctl
     borgbackup
     compsize
     discord
     exercism
     gnome.nautilus
-    firefox
     gtypist
     libreoffice-still
     lutris
@@ -50,6 +57,15 @@
   ]) ++ (with myPkgs; [ toggle-touchpad ]);
   home.sessionVariables = { BROWSER = "firefox"; };
   gui.thermal-zone = 1;
+  programs = {
+    # kitty.settings.shell = "nu";
+    nushell.enable = true;
+    firefox = {
+      enable = true;
+      package =
+        pkgs.firefox.override { cfg.enablePlasmaBrowserIntegration = true; };
+    };
+  };
   services.screen-locker = {
     # enable = true;
     inactiveInterval = 60;
@@ -59,10 +75,24 @@
     xrandr --output eDP --set TearFree on
   '';
   wayland.windowManager.sway = {
-    config.input = {
-      "1133:49948:Logitech_USB_Keyboard" = {
-        xkb_layout = "lt,us";
-        xkb_numlock = "enabled";
+    config = {
+      input = {
+        "1133:49948:Logitech_USB_Keyboard" = {
+          xkb_layout = "lt,us";
+          xkb_numlock = "enabled";
+        };
+        "type:keyboard" = {
+          xkb_layout = "lt,us";
+          xkb_numlock = "enabled";
+        };
+      };
+      output = {
+        "eDP-1" = {
+          mode = "1920x1080";
+          pos = "0 0";
+          adaptive_sync = "on";
+          scale = "1.25";
+        };
       };
     };
   };
