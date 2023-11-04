@@ -31,6 +31,8 @@
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    extraConfig = builtins.readFile ./hyprland.conf;
+    extraConfig = builtins.readFile ./hyprland.conf + ''
+      monitor=eDP-1,1920x1080,0x0,1.25
+    '';
   };
 }
