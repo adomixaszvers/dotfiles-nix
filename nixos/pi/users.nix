@@ -11,11 +11,11 @@
     mutableUsers = false;
     # put your own configuration here, for example ssh keys:
     users.root = {
-      passwordFile = config.sops.secrets."root/password".path;
+      hashedPasswordFile = config.sops.secrets."root/password".path;
       openssh.authorizedKeys.keyFiles = [ ../keys/yubikey.pub ];
     };
     extraUsers.pi = {
-      passwordFile = config.sops.secrets."pi/password".path;
+      hashedPasswordFile = config.sops.secrets."pi/password".path;
       isNormalUser = true;
       uid = 1000;
       extraGroups = [ "video" "wheel" ];

@@ -49,7 +49,7 @@
   systemd.generators = { systemd-gpt-auto-generator = "/dev/null"; };
 
   environment = {
-    systemPackages = with pkgs; [ nixfmt virtmanager ];
+    systemPackages = with pkgs; [ nixfmt virt-manager ];
     variables.LIBVA_DRIVER_NAME = "i965";
   };
 
@@ -132,9 +132,10 @@
     openssh.authorizedKeys.keyFiles =
       [ ../keys/juice_ed25519.pub ../keys/yubikey.pub ];
     extraGroups = [ "docker" "libvirtd" "adbusers" ];
-    passwordFile = config.sops.secrets."adomas/password".path;
+    hashedPasswordFile = config.sops.secrets."adomas/password".path;
   };
-  users.users.root.passwordFile = config.sops.secrets."root/password".path;
+  users.users.root.hashedPasswordFile =
+    config.sops.secrets."root/password".path;
 
   services.xserver.libinput.enable = true;
 

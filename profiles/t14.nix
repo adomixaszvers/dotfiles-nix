@@ -62,8 +62,9 @@
     nushell.enable = true;
     firefox = {
       enable = true;
-      package =
-        pkgs.firefox.override { cfg.enablePlasmaBrowserIntegration = true; };
+      package = pkgs.firefox.override {
+        cfg = { nativeMessagingHosts = [ pkgs.plasma-shell-integration ]; };
+      };
     };
   };
   services.screen-locker = {

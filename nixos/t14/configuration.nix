@@ -30,7 +30,7 @@
   boot = {
     tmp.cleanOnBoot = true;
     kernelParams = [ "nohibernate" ];
-    # kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
+    kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
     loader = {
       efi = { canTouchEfiVariables = true; };
       systemd-boot.enable = true;
@@ -55,7 +55,7 @@
     pulseaudio.support32Bit = true;
   };
 
-  environment.systemPackages = with pkgs; [ nixfmt virtmanager ];
+  environment.systemPackages = with pkgs; [ nixfmt virt-manager ];
 
   networking = {
     domain = "lan";
@@ -110,9 +110,10 @@
     openssh.authorizedKeys.keyFiles =
       [ ../keys/juice_ed25519.pub ../keys/yubikey.pub ];
     extraGroups = [ "docker" "libvirtd" "adbusers" ];
-    passwordFile = config.sops.secrets."adomas/password".path;
+    hashedPasswordFile = config.sops.secrets."adomas/password".path;
   };
-  users.users.root.passwordFile = config.sops.secrets."root/password".path;
+  users.users.root.hashedPasswordFile =
+    config.sops.secrets."root/password".path;
 
   services = {
     xserver.libinput.enable = true;

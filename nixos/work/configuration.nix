@@ -88,7 +88,7 @@
 
   security.pki.certificateFiles = [ ./insoft-ca.crt ];
 
-  environment.systemPackages = with pkgs; [ wget vim virtmanager ];
+  environment.systemPackages = with pkgs; [ wget vim virt-manager ];
   environment.variables = {
     VK_ICD_FILENAMES =
       "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json";
@@ -196,7 +196,7 @@
     extraGroups.vboxusers.members = [ "adomas" ];
     users = {
       adomas = {
-        passwordFile = config.sops.secrets."adomas/password".path;
+        hashedPasswordFile = config.sops.secrets."adomas/password".path;
         extraGroups = [
           "docker"
           "audio"
@@ -213,7 +213,7 @@
           ../keys/t14.pub
         ];
       };
-      root.passwordFile = config.sops.secrets."root/password".path;
+      root.hashedPasswordFile = config.sops.secrets."root/password".path;
     };
   };
 

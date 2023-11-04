@@ -42,7 +42,7 @@
   fonts = {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
   };
 
   # sound.enable = true;

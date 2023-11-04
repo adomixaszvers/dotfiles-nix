@@ -253,7 +253,7 @@
     firefox = {
       enable = true;
       # package = pkgs.firefox.override {
-      #   cfg = { enablePlasmaBrowserIntegration = true; };
+      #   cfg = {nativeMessagingHosts = [pkgs.plasma-shell-integration];};
       # };
     };
     zsh.shellAliases = {

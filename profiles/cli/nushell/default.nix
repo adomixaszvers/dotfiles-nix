@@ -51,7 +51,7 @@
           | par-each { ls $in | get name }
             | flatten
           | path basename
-          | str replace -s ".gz" ""
+          | str replace ".gz" ""
         }
 
         export extern "man" [
@@ -71,7 +71,7 @@
         }
 
         use ${pkgs.nu_scripts}/share/nu_scripts/themes/themes/nord.nu
-        let-env config = ($env.config | merge {color_config: (nord)})
+        $env.config.color_config = (nord)
       '';
     };
     starship = {

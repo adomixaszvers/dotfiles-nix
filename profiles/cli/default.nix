@@ -47,6 +47,7 @@
     sessionVariables = {
       EDITOR = "nvim";
       MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+      MANROFFOPT = "-c";
     };
     shellAliases.hcd = "cd ~/.config/nixpkgs";
   };
@@ -56,7 +57,7 @@
       historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
     };
     broot.enable = true;
-    exa = {
+    eza = {
       enable = true;
       enableAliases = true;
     };

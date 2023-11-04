@@ -88,12 +88,13 @@
   };
 
   users.users.adomas = {
-    passwordFile = config.sops.secrets."adomas/password".path;
+    hashedPasswordFile = config.sops.secrets."adomas/password".path;
     openssh.authorizedKeys.keyFiles =
       [ ../keys/juice_ed25519.pub ../keys/yubikey.pub ../keys/t14.pub ];
   };
 
-  users.users.root.passwordFile = config.sops.secrets."root/password".path;
+  users.users.root.hashedPasswordFile =
+    config.sops.secrets."root/password".path;
 
   system.stateVersion = "22.11"; # Did you read the comment?
 
