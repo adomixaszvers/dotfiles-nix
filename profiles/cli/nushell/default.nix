@@ -36,6 +36,7 @@
           match $spans.0 {
               z => $zoxide_completer
               zi => $zoxide_completer
+              nix => $nix_completer
               _ => $fish_completer
           } | do $in $spans
         }
