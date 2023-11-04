@@ -67,14 +67,17 @@
     };
   };
 
-  networking.networkmanager = {
-    enable = lib.mkDefault true;
-    unmanaged = [
-      "driver:wireguard"
-      "interface-name:br-*"
-      "interface-name:docker*"
-      "interface-name:virbr*"
-    ];
+  networking = {
+    enableIPv6 = lib.mkDefault false;
+    networkmanager = {
+      enable = lib.mkDefault true;
+      unmanaged = [
+        "driver:wireguard"
+        "interface-name:br-*"
+        "interface-name:docker*"
+        "interface-name:virbr*"
+      ];
+    };
   };
 
   programs = {
