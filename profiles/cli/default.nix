@@ -13,56 +13,47 @@
     ./zsh
     ./nushell
   ];
-  home.packages = (with pkgs; [
-    bat
-    bfs
-    binutils
-    cachix
-    comma
-    dnsutils
-    fd
-    file
-    git
-    github-cli
-    htop
-    icdiff
-    jq
-    lf
-    lsof
-    ncdu
-    niv
-    nixfmt
-    nix-index
-    p7zip
-    patchelf
-    ripgrep
-    shellcheck
-    statix
-    tree
-    unzip
-    wol
-    xdg-user-dirs
-  ]) ++ (with myPkgs; [ hm-repl hm-switch ]);
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+  home = {
+    packages = (with pkgs; [
+      bat
+      bfs
+      binutils
+      cachix
+      comma
+      dnsutils
+      fd
+      file
+      git
+      github-cli
+      htop
+      icdiff
+      jq
+      lf
+      lsof
+      ncdu
+      niv
+      nixfmt
+      nix-index
+      p7zip
+      patchelf
+      ripgrep
+      shellcheck
+      statix
+      tree
+      unzip
+      wol
+      xdg-user-dirs
+    ]) ++ (with myPkgs; [ he hm-repl hm-switch ]);
+    sessionVariables = {
+      EDITOR = "nvim";
+      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    };
+    shellAliases.hcd = "cd ~/.config/nixpkgs";
   };
   programs = {
     bash = {
       enable = true;
       historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
-      initExtra = ''
-        hcd () {
-          cd ~/.config/nixpkgs || exit 1
-        }
-        he () {
-          (
-            local FILES
-            hcd && readarray -t FILES <<< "$(fzf --multi)" && [ -n "''${FILES[*]}" ] && "$EDITOR" "''${FILES[@]}"
-            )
-          }
-
-      '';
     };
     broot.enable = true;
     exa = {

@@ -5,6 +5,7 @@
     bumblebee-status-source = inputs.bumblebee-status.outPath;
   };
   hunspell-lt = pkgs.callPackage ./hunspell-lt { };
+  he = pkgs.callPackage ./he.nix { };
   hm-option = pkgs.callPackage ./hm-option.nix { };
   hm-repl = pkgs.callPackage ./hm-repl.nix { };
   hm-switch = pkgs.callPackage ./hm-switch.nix {

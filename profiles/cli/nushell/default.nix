@@ -58,17 +58,6 @@
             ...targets: string@"manpages"
         ]
 
-        alias hcd = cd ~/.config/nixpkgs
-
-        def he [] {
-          hcd
-          let files = (fzf --multi | lines)
-          if not ($files | is-empty) {
-            run-external $env.EDITOR $files
-          }
-        }
-
-
         $env.config = {
           render_right_prompt_on_last_line: true
           show_banner: false
