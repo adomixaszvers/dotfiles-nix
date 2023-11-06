@@ -60,6 +60,15 @@
     eza = {
       enable = true;
       enableAliases = true;
+      package = pkgs.eza.overrideAttrs {
+        patches = [
+          (pkgs.fetchpatch {
+            url =
+              "https://github.com/eza-community/eza/commit/4b4fd1933c637afc5ac990803c8bc11972d10cb0.patch";
+            sha256 = "0i7vl16lgz9fkv3bpdwd8krlls6ba03lrrjjwvkz6fdaa7nb2210";
+          })
+        ];
+      };
     };
     fzf = {
       changeDirWidgetCommand = "bfs -type d";
