@@ -114,7 +114,30 @@
   };
   users.users.root.passwordFile = config.sops.secrets."root/password".path;
 
-  services.xserver.libinput.enable = true;
+  services = {
+    xserver.libinput.enable = true;
+    thinkfan = {
+      sensors = [
+        {
+          type = "tpacpi";
+          query = "/proc/acpi/ibm/thermal";
+          indices = [ 0 ];
+        }
+        {
+          name = "amdgpu";
+          query = "/sys/class/hwmon";
+          type = "hwmon";
+          indices = [ 1 ];
+        }
+        {
+          name = "nvme";
+          query = "/sys/class/hwmon";
+          type = "hwmon";
+          indices = [ 1 ];
+        }
+      ];
+    };
+  };
 
   system.stateVersion = "22.05"; # Did you read the comment?
 
