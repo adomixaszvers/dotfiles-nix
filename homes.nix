@@ -12,7 +12,6 @@ let
       inherit pkgs;
       modules = [
         ./modules
-        inputs.hyprland.homeManagerModules.default
         {
           home = {
             inherit username homeDirectory;

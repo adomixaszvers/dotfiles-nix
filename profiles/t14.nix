@@ -56,7 +56,7 @@
     protonup
   ]) ++ (with myPkgs; [ toggle-touchpad ]);
   home.sessionVariables = { BROWSER = "firefox"; };
-  gui.thermal-zone = 1;
+  gui.thermal-zone = 0;
   programs = {
     # kitty.settings.shell = "nu";
     nushell.enable = true;
@@ -75,6 +75,8 @@
     xset s off -dpms
     xrandr --output eDP --set TearFree on
   '';
+  wayland.windowManager.hyprland.settings.monitor =
+    [ "eDP-1,1920x1080,0x0,1.25" ];
   wayland.windowManager.sway = {
     config = {
       input = {
