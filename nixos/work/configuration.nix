@@ -167,12 +167,9 @@
   hardware = {
     opengl.driSupport32Bit = true;
     pulseaudio.support32Bit = true;
-    usbWwan.enable = true;
+    usb-modeswitch.enable = true;
     acpilight.enable = true;
-    bluetooth = {
-      enable = true;
-      package = pkgs.bluezFull;
-    };
+    bluetooth.enable = true;
   };
 
   # This value determines the NixOS release with which your system is to be
