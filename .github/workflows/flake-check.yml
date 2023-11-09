@@ -1,8 +1,6 @@
 name: Flake checks
 on:
   push:
-      branches:
-        - master
   pull_request:
 jobs:
   flake-checker:
