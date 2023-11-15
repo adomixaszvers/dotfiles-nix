@@ -75,6 +75,8 @@
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
       };
 
+      xwayland = { force_zero_scaling = true; };
+
       general = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
