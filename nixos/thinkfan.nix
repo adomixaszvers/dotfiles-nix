@@ -4,14 +4,6 @@
   '';
   services.thinkfan = {
     enable = lib.mkDefault true;
-    levels = [
-      [ 0 0 56 ]
-      [ 1 55 66 ]
-      [ 2 65 71 ]
-      [ 3 70 76 ]
-      [ 4 75 81 ]
-      [ 5 80 86 ]
-      [ 7 85 32767 ]
-    ];
+    levels = [ [ 0 0 61 ] [ "level auto" 60 32767 ] ];
   };
 }
