@@ -54,6 +54,7 @@
     keepassxc
     xpra
     protonup
+    steamtinkerlaunch
   ]) ++ (with myPkgs; [ toggle-touchpad ]);
   home.sessionVariables = { BROWSER = "firefox"; };
   gui.thermal-zone = 0;
