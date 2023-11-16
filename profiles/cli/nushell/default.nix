@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   programs = {
     nushell = {
+      shellAliases.hcd = "cd ~/.config/nixpkgs";
       configFile.text = ''
         let zoxide_completer = {|spans|
             $spans | skip 1 | zoxide query -l $in | lines | where {|x| $x != $env.PWD}
