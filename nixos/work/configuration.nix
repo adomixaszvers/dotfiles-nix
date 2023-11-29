@@ -58,6 +58,7 @@
     dhcpcd.enable = false;
     networkmanager = {
       enable = true;
+      dns = "dnsmasq";
       dispatcherScripts = [{
         type = "basic";
         source = pkgs.writeText "wifi-wired-exclusive" ''
@@ -88,10 +89,12 @@
 
   security.pki.certificateFiles = [ ./insoft-ca.crt ];
 
-  environment.systemPackages = with pkgs; [ wget vim virt-manager ];
-  environment.variables = {
-    VK_ICD_FILENAMES =
-      "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json";
+  environment = {
+    etc."NetworkManager/dnsmasq.d/wireguard".text = ''
+      addn-hosts=/etc/hosts
+      address=/wg.beastade.top/10.6.0.1
+    '';
+    systemPackages = with pkgs; [ wget vim virt-manager ];
   };
 
   programs = {
