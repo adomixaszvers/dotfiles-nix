@@ -56,7 +56,8 @@
       numlockx
       openssl
       playerctl
-      postman
+      # volatile versions
+      # postman 
       remmina
       samba
       protonup
