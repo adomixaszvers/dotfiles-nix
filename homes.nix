@@ -18,6 +18,7 @@ let
             stateVersion = "22.05";
           };
         }
+        inputs.nix-index-database.hmModules.nix-index
         configuration
       ];
       extraSpecialArgs = { inherit inputs myPkgs unstable system; };

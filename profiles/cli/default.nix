@@ -7,7 +7,6 @@
     ./gnupg.nix
     ./flakeInputs.nix
     ./neovim
-    ./nix-index.nix
     ./kakoune
     ./registry.nix
     ./zsh
@@ -33,7 +32,6 @@
       ncdu
       niv
       nixfmt
-      nix-index
       p7zip
       patchelf
       ripgrep
