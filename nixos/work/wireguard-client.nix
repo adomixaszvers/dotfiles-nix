@@ -36,7 +36,7 @@
   systemd.services.check-wg = {
     description = "Check if WG is still working";
     script =
-      "/run/wrappers/bin/ping -c5 10.6.0.1 || ${pkgs.systemd}/bin/systemctl restart wg-quick-wg0";
+      "${pkgs.inetutils}/bin/ping -c5 10.6.0.1 || ${pkgs.systemd}/bin/systemctl restart wg-quick-wg0";
     startAt = "Mon-Fri 01:00";
   };
 }
