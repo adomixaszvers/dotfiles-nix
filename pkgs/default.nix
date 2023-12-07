@@ -14,7 +14,6 @@
   kaknix = pkgs.callPackage ./kaknix.nix { };
   maimpick = pkgs.callPackage ./maimpick.nix { };
   neovim = pkgs.callPackage ../profiles/cli/neovim/package.nix { };
-  otpauth = pkgs.callPackage ./otpauth { };
   restart-eww = pkgs.callPackage ./restart-eww.nix { };
   rivercarro = pkgs.callPackage ./rivercarro { };
   rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
