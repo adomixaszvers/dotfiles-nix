@@ -13,8 +13,12 @@ in {
       mkdir $out
 
       cp ${package}/etc/xrdp/{km-*,xrdp,sesman}.ini $out
-      cp ${self}/pkgs/custom-xrdp/km-00010427.ini $out
-      cp ${self}/pkgs/custom-xrdp/xrdp_keyboard.ini $out
+      cp ${
+        builtins.path { path = "${self}/pkgs/custom-xrdp/km-00010427.ini"; }
+      } $out
+      cp ${
+        builtins.path { path = "${self}/pkgs/custom-xrdp/xrdp_keyboard.ini"; }
+      } $out
 
       cat > $out/startwm.sh <<EOF
       #!/bin/sh
