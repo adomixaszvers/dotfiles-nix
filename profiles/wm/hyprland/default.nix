@@ -1,9 +1,8 @@
-{ pkgs, config, ... }: {
+{ pkgs, myPkgs, config, ... }: {
   imports = [ ../waybar ../dunst.nix ];
   home.packages = with pkgs; [
     grimblast
     pamixer
-    swaylock
     swayidle
     wl-clipboard
     wdisplays
@@ -59,7 +58,7 @@
       # source = ~/.config/hypr/myColors.conf
 
       # Some default env vars.
-      env = [ "XCURSOR_SIZE,24" "KITTY_CONF_FONT,font_size 12.0" ];
+      env = [ "XCURSOR_SIZE,24" "KITTY_CONF_FONT,font_size 9.0" ];
       # sets xwayland scale
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -183,30 +182,6 @@
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
 
-        # Switch workspaces with mainMod + [0-9]
-        "$mainMod, 10, workspace, 1"
-        "$mainMod, 11, workspace, 2"
-        "$mainMod, 12, workspace, 3"
-        "$mainMod, 13, workspace, 4"
-        "$mainMod, 14, workspace, 5"
-        "$mainMod, 15, workspace, 6"
-        "$mainMod, 16, workspace, 7"
-        "$mainMod, 17, workspace, 8"
-        "$mainMod, 18, workspace, 9"
-        "$mainMod, 19, workspace, 10"
-
-        # Move active window to a workspace with mainMod + SHIFT + [0-9]
-        "$mainMod SHIFT, 10, movetoworkspace, 1"
-        "$mainMod SHIFT, 11, movetoworkspace, 2"
-        "$mainMod SHIFT, 12, movetoworkspace, 3"
-        "$mainMod SHIFT, 13, movetoworkspace, 4"
-        "$mainMod SHIFT, 14, movetoworkspace, 5"
-        "$mainMod SHIFT, 15, movetoworkspace, 6"
-        "$mainMod SHIFT, 16, movetoworkspace, 7"
-        "$mainMod SHIFT, 17, movetoworkspace, 8"
-        "$mainMod SHIFT, 18, movetoworkspace, 9"
-        "$mainMod SHIFT, 19, movetoworkspace, 10"
-
         "$mainMod, bracketleft, focusmonitor, -1"
         "$mainMod, bracketright, focusmonitor, +1"
 
@@ -216,7 +191,14 @@
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
-      ];
+      ] ++ (builtins.concatMap (x:
+        let
+          ws = toString x;
+          keyCode = toString (x + 9);
+        in [
+          "$mainMod, ${keyCode}, exec, ${myPkgs.hypr-greedy-focus}/bin/hypr-greedy-focus ${ws}"
+          "$mainMod SHIFT, ${keyCode}, movetoworkspace,  ${ws}"
+        ]) (builtins.genList (x: x + 1) 10));
 
       # Move/resize windows with mainMod + LMB/RMB and dragging
       bindm = [
