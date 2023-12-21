@@ -1,8 +1,8 @@
-{ jq, writeShellScriptBin }:
-writeShellScriptBin "hypr-greedy-focus" ''
+{ jq, writers }:
+writers.writeDashBin "hypr-greedy-focus" ''
   PROG="''${0##*/}"
 
-  set -epo pipefail
+  set -e
 
   die() {
     echo "$PROG: $1" 1>&2
@@ -15,15 +15,14 @@ writeShellScriptBin "hypr-greedy-focus" ''
   MONITORS="$(hyprctl -j monitors)"
   WORKSPACES="$(hyprctl -j workspaces)"
   export MONITORS WORKSPACES
-  arr=( $(${jq}/bin/jq -rn '[
+
+  read -r WS_ACTIVE FOCUSED_OUTPUT WS_OUTPUT <<EOF
+  $(${jq}/bin/jq -rn '[
     (env.MONITORS| fromjson| .[]| select(.activeWorkspace.name == env.WS)| any),
     (env.MONITORS| fromjson| .[]| select(.focused)| .id),
     (env.WORKSPACES| fromjson| .[]| select(.name == env.WS)| .monitorID)
-  ]| @sh') )
-
-  WS_ACTIVE=''${arr[0]}
-  FOCUSED_OUTPUT=''${arr[1]}
-  WS_OUTPUT=''${arr[2]}
+  ]| @sh')
+  EOF
 
   if [ -z "$WS_OUTPUT" ] || [ "$WS_OUTPUT" = "$FOCUSED_OUTPUT" ]; then
     # same output
