@@ -166,7 +166,7 @@
         "$mainMod SHIFT, C, exit,"
         "$mainMod, E, exec, dolphin"
         "$mainMod, V, togglefloating,"
-        "$mainMod, D, exec, rofi -show drun"
+        "$mainMod, D, exec, rofi -combi-modi windows,drun,run -show combi -modi windows:${myPkgs.hypr-window-select}/bin/hypr-window-select"
         "$mainMod SHIFT, D, exec, rofi -show run"
         "$mainMod, F, fullscreen, 1"
         "$mainMod, P, pseudo," # dwindle

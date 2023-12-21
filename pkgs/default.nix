@@ -6,6 +6,7 @@
   };
   hunspell-lt = pkgs.callPackage ./hunspell-lt { };
   he = pkgs.callPackage ./he.nix { };
+  hypr-window-select = pkgs.callPackage ./hypr-window-select.nix { };
   hypr-greedy-focus = pkgs.callPackage ./hypr-greedy-focus.nix { };
   hm-option = pkgs.callPackage ./hm-option.nix { };
   hm-repl = pkgs.callPackage ./hm-repl.nix { };
