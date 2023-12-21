@@ -1,10 +1,8 @@
-{ jq, writeShellScriptBin, coreutils, lib }:
+{ jq, writeShellScriptBin }:
 writeShellScriptBin "hypr-greedy-focus" ''
-  PATH=${lib.makeBinPath [ jq ]}:$PATH
+  PROG="''${0##*/}"
 
-  PROG=$(${coreutils}/bin/basename "$0")
-
-  set -ep
+  set -epo pipefail
 
   die() {
     echo "$PROG: $1" 1>&2
@@ -14,20 +12,20 @@ writeShellScriptBin "hypr-greedy-focus" ''
   [ $# -eq 1 ] || die 'no desktop was supplied'
 
   export WS=$1
+  MONITORS="$(hyprctl -j monitors)"
+  WORKSPACES="$(hyprctl -j workspaces)"
+  export MONITORS WORKSPACES
+  arr=( $(${jq}/bin/jq -rn '[
+    (env.MONITORS| fromjson| .[]| select(.activeWorkspace.name == env.WS)| any),
+    (env.MONITORS| fromjson| .[]| select(.focused)| .id),
+    (env.WORKSPACES| fromjson| .[]| select(.name == env.WS)| .monitorID)
+  ]| @sh') )
 
-  WS_OUTPUT=$(hyprctl -j workspaces| jq -r '.[]|select(.name == env.WS)|.monitorID')
-  export WS_OUTPUT
+  WS_ACTIVE=''${arr[0]}
+  FOCUSED_OUTPUT=''${arr[1]}
+  WS_OUTPUT=''${arr[2]}
 
-  if [ -z "$WS_OUTPUT" ]; then
-    # the workspace has to be created
-    hyprctl dispatch workspace "$WS"
-    exit 0
-  fi
-
-  WS_ACTIVE=$(hyprctl -j monitors|jq -r '.[]|select(.activeWorkspace.name == env.WS)|any')
-  FOCUSED_OUTPUT=$(hyprctl -j monitors| jq -r '.[]|select(.focused)|.id')
-
-  if [ "$WS_OUTPUT" = "$FOCUSED_OUTPUT" ]; then
+  if [ -z "$WS_OUTPUT" ] || [ "$WS_OUTPUT" = "$FOCUSED_OUTPUT" ]; then
     # same output
     hyprctl dispatch workspace "$WS"
   elif [ "$WS_ACTIVE" = true ]; then
