@@ -11,20 +11,22 @@ writers.writeDashBin "hypr-greedy-focus" ''
 
   [ $# -eq 1 ] || die 'no desktop was supplied'
 
-  export WS=$1
-  MONITORS="$(hyprctl -j monitors)"
-  WORKSPACES="$(hyprctl -j workspaces)"
-  export MONITORS WORKSPACES
+  WS=$1
 
-  read -r WS_ACTIVE FOCUSED_OUTPUT WS_OUTPUT <<EOF
-  $(${jq}/bin/jq -rn '[
-    (env.MONITORS| fromjson| .[]| select(.activeWorkspace.name == env.WS)| any),
-    (env.MONITORS| fromjson| .[]| select(.focused)| .id),
-    (env.WORKSPACES| fromjson| .[]| select(.name == env.WS)| .monitorID)
-  ]| @sh')
+  read -r WS_ACTIVE FOCUSED_OUTPUT FOCUSED_WS WS_OUTPUT <<EOF
+  $(${jq}/bin/jq -rn --arg ws "$WS" --argjson workspaces "$(hyprctl -j workspaces)" --argjson monitors "$(hyprctl -j monitors)" '[
+    ($monitors| map(select(.activeWorkspace.name == $ws))| any),
+    ($monitors| .[]| select(.focused)| .id),
+    ($monitors| .[]| select(.focused)| .activeWorkspace.name),
+    ($workspaces| .[]| select(.name == $ws)| .monitorID)
+  ]| @tsv')
   EOF
 
-  if [ -z "$WS_OUTPUT" ] || [ "$WS_OUTPUT" = "$FOCUSED_OUTPUT" ]; then
+  echo "WS_ACTIVE=$WS_ACTIVE FOCUSED_OUTPUT=$FOCUSED_OUTPUT FOCUSED_WS=$FOCUSED_WS WS_OUTPUT=$WS_OUTPUT"
+
+  if [ "$WS" = "$FOCUSED_WS" ]; then
+    true
+  elif [ -z "$WS_OUTPUT" ] || [ "$WS_OUTPUT" = "$FOCUSED_OUTPUT" ]; then
     # same output
     hyprctl dispatch workspace "$WS"
   elif [ "$WS_ACTIVE" = true ]; then
