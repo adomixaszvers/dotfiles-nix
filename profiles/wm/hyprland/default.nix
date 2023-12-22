@@ -32,6 +32,15 @@
       };
     };
   };
+  services.swayidle = {
+    timeouts = let
+      hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
+    in [{
+      timeout = 360;
+      command = "${hyprctl} dispatch dpms off";
+      resumeCommand = "${hyprctl} dispatch dpms on";
+    }];
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -85,7 +94,7 @@
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
 
-        layout = "dwindle";
+        layout = "master";
       };
 
       decoration = {
@@ -132,7 +141,7 @@
 
       master = {
         # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-        new_is_master = true;
+        new_is_master = false;
         no_gaps_when_only = true;
       };
 
@@ -164,14 +173,17 @@
         "$mainMod, Return, exec, kitty"
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod SHIFT, C, exit,"
-        "$mainMod, E, exec, dolphin"
-        "$mainMod, V, togglefloating,"
-        "$mainMod, D, exec, rofi -combi-modi windows,drun,run -show combi -modi windows:${myPkgs.hypr-window-select}/bin/hypr-window-select"
+        "$mainMod, T, togglefloating,"
+        "$mainMod, D, exec, rofi -show-icons -combi-modi windows,drun,run -show combi -modi windows:${myPkgs.hypr-window-select}/bin/hypr-window-select"
         "$mainMod SHIFT, D, exec, rofi -show run"
         "$mainMod, F, fullscreen, 1"
         "$mainMod, P, pseudo," # dwindle
-        "$mainMod, J, togglesplit," # dwindle
+        "$mainMod, S, togglesplit," # dwindle
         "$mainMod, F4, exec, rofi-powermenu"
+
+        "$mainMod, W, focusmonitor, 0"
+        "$mainMod, E, focusmonitor, 1"
+        "$mainMod, R, focusmonitor, 2"
 
         ", Print, exec, grimblast copy output"
         "ALT, Print, exec, grimblast copy area"
@@ -181,6 +193,15 @@
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
+
+        "$mainMod, J, layoutmsg, cyclenext"
+        "$mainMod, K, layoutmsg, cycleprev"
+        "$mainMod SHIFT, J, layoutmsg, swapnext"
+        "$mainMod SHIFT, K, layoutmsg, swapprev"
+        "$mainMod SHIFT, Return, layoutmsg, swapwithmaster"
+        "$mainMod, SPACE, layoutmsg, orientationcycle left top"
+
+        "$mainMod, C, cyclenext"
 
         "$mainMod, bracketleft, focusmonitor, -1"
         "$mainMod, bracketright, focusmonitor, +1"
