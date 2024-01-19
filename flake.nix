@@ -97,6 +97,7 @@
                 excludes = [ "\\.zsh$" ];
               };
             };
+            settings.statix.ignore = [ "hardware-configuration.nix" ];
           };
         };
         devShells = {
