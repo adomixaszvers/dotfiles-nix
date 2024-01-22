@@ -51,6 +51,7 @@
       maven
       myPkgs.hunspell-lt
       myPkgs.keystore-explorer
+      myPkgs.sqldeveloper
       mercurial
       nodePackages.pnpm
       numlockx
@@ -63,7 +64,6 @@
       protonup
       soapui
       # spotify
-      sqldeveloper
       sshpass
       steam-run
       subversion
