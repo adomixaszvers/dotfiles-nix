@@ -18,10 +18,10 @@ in {
     wantedBy = [ "multi-user.target" ];
     script = let
       bitburnerSrc = pkgs.fetchzip {
-        url =
-          "https://github.com/bitburner-official/bitburner-src/releases/download/v2.3.1/bitburner.2.3.1.zip";
+        url = let version = "2.5.1";
+        in "https://github.com/bitburner-official/bitburner-src/releases/download/v${version}/Bitburner.${version}.zip";
         stripRoot = false;
-        sha256 = "01cnwqhh64kkfnfy6zyzpg35r775f03irfx1f0cjxq2n3yzsr2p4";
+        sha256 = "0rhg5j90k4pvvnh4006wj9z8dcbx01f7r6xf3xznlncmky5wqw98";
       };
     in ''
       xpra start :99 --bind-tcp=10.6.0.6:9292 --bind-tcp=127.0.0.1:9292 --daemon=no --notifications=no --printing=no --speaker=no --session-name=bitburner --exit-with-children --start-child="chromium --app=file://${bitburnerSrc}/index.html --user-data-dir=/var/lib/bitburner/.bitburner-profile"
