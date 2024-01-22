@@ -87,18 +87,23 @@
     };
   };
 
-  security.pki.certificateFiles = [ ./insoft-ca.crt ];
+  security = {
+    pki.certificateFiles = [ ./insoft-ca.crt ];
+    pam.services.swaylock = { };
+  };
 
   environment = {
     etc."NetworkManager/dnsmasq.d/wireguard".text = ''
       addn-hosts=/etc/hosts
       address=/wg.beastade.top/10.6.0.1
+      server=/wg/10.6.0.1
+      rev-server=10.6.0.0/24,10.6.0.1
     '';
     systemPackages = with pkgs; [ wget vim virt-manager ];
   };
 
   programs = {
-    adb.enable = true;
+    # adb.enable = true;
     ssh = {
       extraConfig = ''
         Host github
@@ -114,6 +119,7 @@
     };
   };
   services = {
+    autorandr.enable = true;
     gnome.glib-networking.enable = true;
     xserver.libinput.enable = true;
     gvfs.enable = true;
@@ -174,7 +180,6 @@
   #     };
   #   };
   # };
-  security.pam.services.sshd.enableGnomeKeyring = true;
 
   hardware = {
     opengl.driSupport32Bit = true;
