@@ -1,10 +1,8 @@
-{ config, pkgs, inputs, ... }:
-let
-  package = pkgs.callPackage
-    "${inputs.nixos-2205}/pkgs/applications/networking/remote/xrdp" { };
-in {
+{ config, pkgs, inputs, ... }: {
+  environment.etc = {
+    "xrdp/sesman.ini".source = "${config.services.xrdp.confDir}/sesman.ini";
+  };
   services.xrdp = {
-    inherit package;
     enable = true;
     confDir = let
       inherit (inputs) self;
@@ -12,7 +10,7 @@ in {
     in pkgs.runCommand "xrdp.conf" { preferLocalBuild = true; } ''
       mkdir $out
 
-      cp ${package}/etc/xrdp/{km-*,xrdp,sesman}.ini $out
+      cp ${pkgs.xrdp}/etc/xrdp/{km-*,xrdp,sesman}.ini $out
       cp ${
         builtins.path { path = "${self}/pkgs/custom-xrdp/km-00010427.ini"; }
       } $out

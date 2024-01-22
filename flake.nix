@@ -52,7 +52,6 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixos-2205.url = "github:NixOS/nixpkgs/nixos-22.05";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
