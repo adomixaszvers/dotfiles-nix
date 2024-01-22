@@ -34,3 +34,5 @@ if [ "$TERM" = linux ]; then
   PURE_GIT_UP_ARROW="↑"
   PURE_GIT_STASH_SYMBOL="#"
 fi
+
+PATH="${PATH:+${PATH}:}$HOME/.local/bin"

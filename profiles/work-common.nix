@@ -30,6 +30,7 @@
       brightnessctl
       dbeaver
       docker-compose
+      docker-credential-helpers
       dos2unix
       evince
       filezilla
@@ -257,6 +258,12 @@
       #   cfg = {nativeMessagingHosts = [pkgs.plasma-shell-integration];};
       # };
     };
+    git.package = pkgs.gitAndTools.gitFull;
+    gh = {
+      enable = true;
+      gitCredentialHelper.enable = true;
+    };
+    nushell.enable = true;
     zsh.shellAliases = {
       imvn = "mvn -s ~/.m2/insoft-settings.xml";
       amvn = "mvn -s ~/.m2/kazan-settings.xml";

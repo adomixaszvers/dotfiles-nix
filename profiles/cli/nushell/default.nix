@@ -71,7 +71,7 @@
           }
         }
 
-        use ${pkgs.nu_scripts}/share/nu_scripts/themes/themes/nord.nu
+        use ${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/nord.nu
         $env.config.color_config = (nord)
       '';
     };

@@ -22,7 +22,6 @@
       dnsutils
       fd
       file
-      git
       github-cli
       htop
       icdiff
@@ -67,6 +66,7 @@
       enableZshIntegration = true;
       fileWidgetCommand = "fd --type f";
     };
+    git.enable = true;
     lazygit.enable = true;
     tmux = {
       enable = true;
