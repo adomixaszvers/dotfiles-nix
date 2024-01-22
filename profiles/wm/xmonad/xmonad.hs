@@ -34,7 +34,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.RefocusLast (isFloat, refocusLastLayoutHook, refocusLastWhen)
 import XMonad.Hooks.Rescreen (addAfterRescreenHook)
 import XMonad.Hooks.SetWMName (setWMName)
-import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, sbCleanupHook, sbLogHook, sbStartupHook)
+import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, sbLogHook)
 import XMonad.Hooks.StatusBar.PP
   ( PP (..),
     dynamicLogString,
@@ -147,7 +147,7 @@ myStartupHook :: X ()
 myStartupHook = do
   setWMName "LG3D"
   spawnFeh
-  spawnOnce "eww daemon"
+  spawnOnce "restart-eww"
 
 myDynamicStatusBar :: D.Client -> ScreenId -> IO StatusBarConfig
 myDynamicStatusBar dbus sc@(S i) = pure . dbusStatusBarConfig sc dbus $ ppOn i
@@ -406,9 +406,7 @@ findLowest = withWindowSet $ \ws -> do
 dbusStatusBarConfig :: ScreenId -> D.Client -> X PP -> StatusBarConfig
 dbusStatusBarConfig (S i) dbus xpp =
   def
-    { sbLogHook = io . XD.sendToPath dbus (show i) =<< dynamicLogString =<< xpp,
-      sbStartupHook = spawn $ "eww open bar" ++ show i,
-      sbCleanupHook = spawn $ "eww close bar" ++ show i
+    { sbLogHook = io . XD.sendToPath dbus (show i) =<< dynamicLogString =<< xpp
     }
 
 killByPid :: X ()
