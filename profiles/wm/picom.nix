@@ -1,6 +1,8 @@
 { config, lib, ... }: {
+  systemd.user.services.picom.Service.Type = "forking";
   services.picom = {
     enable = lib.mkDefault config.xsession.enable;
+    extraArgs = [ "--daemon" ];
     shadow = true;
     shadowExclude = [
       "_GTK_FRAME_EXTENTS@:c"
