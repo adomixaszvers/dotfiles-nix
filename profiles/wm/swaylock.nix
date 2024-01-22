@@ -15,12 +15,12 @@ in {
       }
       {
         event = "lock";
-        command = "${swaylock}/bin/swaylock";
+        command = "${swaylock}/bin/swaylock -f";
       }
     ];
     timeouts = [{
       timeout = 300;
-      command = "${swaylock}/bin/swaylock";
+      command = "${swaylock}/bin/swaylock -f";
     }];
   };
 }

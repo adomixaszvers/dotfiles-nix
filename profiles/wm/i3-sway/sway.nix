@@ -45,14 +45,8 @@ let
   '';
 in {
   imports = [ ../dunst.nix ../waybar ];
-  home.packages = (with pkgs; [
-    pamixer
-    swaylock
-    swayidle
-    wl-clipboard
-    font-awesome_5
-    wdisplays
-  ]) ++ [ myPkgs.sway-greedy-focus ];
+  home.packages = (with pkgs; [ pamixer wl-clipboard font-awesome_5 wdisplays ])
+    ++ [ myPkgs.sway-greedy-focus ];
   programs = {
     emacs.package = pkgs.emacs29-pgtk;
     rofi = {
