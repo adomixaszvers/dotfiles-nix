@@ -234,6 +234,9 @@
         "workspace 3 silent,class:^(jetbrains-idea)$"
         "workspace 5 silent,class:^(steam)$"
         "workspace 9 silent,class:^(KeepassXC)$"
+        # fix steam menus
+        "stayfocused, title:^()$,class:^(steam)$"
+        "minsize 1 1, title:^()$,class:^(steam)$"
       ];
     };
   };
