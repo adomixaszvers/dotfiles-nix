@@ -47,6 +47,11 @@
     fsType = "zfs";
   };
 
+  fileSystems."/home/adomas/.local/share/Steam" = {
+    device = "rpool/adomas/steam";
+    fsType = "zfs";
+  };
+
   swapDevices = [{ device = "/dev/disk/by-label/SWAP"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
