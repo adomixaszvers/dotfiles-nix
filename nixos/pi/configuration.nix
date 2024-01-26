@@ -5,7 +5,8 @@
     ../nix-registry.nix
     ../gc.nix
     ./acme.nix
-    ./dns.nix
+    # ./dns.nix
+    ./adguard.nix
     ./vpn.nix
     # ./fail2ban.nix
     ./nginx.nix
