@@ -1,4 +1,4 @@
-{ pkgs, lib, myPkgs, config, inputs, unstable, ... }: {
+{ pkgs, lib, myPkgs, config, inputs, ... }: {
   imports = [ ./common.nix ./wm/xrdp.nix ];
   gui.thermal-zone = 1;
   home = {
@@ -78,7 +78,7 @@
       xpra
       zip
       zoom-us
-      unstable.dumpasn1
+      dumpasn1
     ];
     sessionVariables = {
       BROWSER = "xdg-open";
