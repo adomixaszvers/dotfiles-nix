@@ -18,9 +18,8 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/a3ae37a3-7e63-4d9e-ab3f-c6ff934004d0";
-    fsType = "btrfs";
-    options = [ "subvol=root/nixos/current" ];
+    device = "rpool/root/nixos";
+    fsType = "zfs";
   };
 
   fileSystems."/boot" = {
@@ -29,39 +28,38 @@
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/a3ae37a3-7e63-4d9e-ab3f-c6ff934004d0";
-    fsType = "btrfs";
-    options = [ "subvol=home/current" ];
+    device = "rpool/home";
+    fsType = "zfs";
   };
 
   fileSystems."/var/lib/docker" = {
-    device = "/dev/disk/by-uuid/a3ae37a3-7e63-4d9e-ab3f-c6ff934004d0";
-    fsType = "btrfs";
-    options = [ "subvol=root/docker/current" ];
+    device = "rpool/root/docker";
+    fsType = "zfs";
   };
 
   fileSystems."/tmp" = {
-    device = "/dev/disk/by-uuid/a3ae37a3-7e63-4d9e-ab3f-c6ff934004d0";
-    fsType = "btrfs";
-    options = [ "subvol=root/tmp/current" ];
+    device = "rpool/local/tmp";
+    fsType = "zfs";
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/a3ae37a3-7e63-4d9e-ab3f-c6ff934004d0";
-    fsType = "btrfs";
-    options = [ "subvol=local/nix/current" ];
+    device = "rpool/local/nix";
+    fsType = "zfs";
+  };
+
+  fileSystems."/home/adomas/.local/share/Steam" = {
+    device = "rpool/adomas/steam";
+    fsType = "zfs";
   };
 
   fileSystems."/home/adomas/.local/share/libvirt" = {
-    device = "/dev/disk/by-uuid/a3ae37a3-7e63-4d9e-ab3f-c6ff934004d0";
-    fsType = "btrfs";
-    options = [ "subvol=adomas/libvirt/current" ];
+    device = "rpool/adomas/libvirt";
+    fsType = "zfs";
   };
 
   fileSystems."/var/lib/libvirt" = {
-    device = "/dev/disk/by-uuid/a3ae37a3-7e63-4d9e-ab3f-c6ff934004d0";
-    fsType = "btrfs";
-    options = [ "subvol=root/libvirt/current" ];
+    device = "rpool/root/libvirt";
+    fsType = "zfs";
   };
 
   swapDevices =
@@ -75,7 +73,7 @@
   # networking.interfaces.enp0s13f0u3u1.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp9s0.useDHCP = lib.mkDefault true;
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

@@ -18,7 +18,6 @@
     # ./bitburner.nix
     ./dante.nix
     ./hardware-configuration.nix
-    ./btrfs.nix
     ./iperf3.nix
     ./ltXkb.nix
     ./prebuild-configs.nix
@@ -44,6 +43,7 @@
     tmp.cleanOnBoot = true;
     kernelParams = [ "consoleblank=60" ];
     # kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems = [ "zfs" ];
     loader.systemd-boot = {
       enable = true;
       consoleMode = "auto";
@@ -161,7 +161,7 @@
 
   virtualisation.docker = {
     enable = true;
-    storageDriver = "btrfs";
+    storageDriver = "zfs";
     # listenOptions = [ "/var/run/docker.sock" "2375" ];
   };
   # virtualisation.podman = {
