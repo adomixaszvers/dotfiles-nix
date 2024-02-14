@@ -1,12 +1,12 @@
 { pkgs, myPkgs, ... }: {
-  # imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
-  imports = [ ./common.nix ];
-  gtk.enable = false;
-  qt.enable = false;
-  services = {
-    network-manager-applet.enable = false;
-    udiskie.enable = false;
-  };
+  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
+  # imports = [ ./common.nix ];
+  # gtk.enable = false;
+  # qt.enable = false;
+  # services = {
+  #   network-manager-applet.enable = false;
+  #   udiskie.enable = false;
+  # };
   colors = import ./gui/colors/nord.nix;
   xresources.properties = let dpi = 120;
   in {

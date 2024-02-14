@@ -15,13 +15,13 @@
     ../realtime.nix
     ../syncthing.nix
     ../yubikey.nix
-    # ../xdg-portal.nix
-    ../thinkfan.nix
+    ../xdg-portal.nix
+    # ../thinkfan.nix
     ./hardware-configuration.nix
     # ./powermanagement.nix
     ../steam.nix
     ./wireguard-client.nix
-    ../kde.nix
+    # ../kde.nix
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
     inputs.nixpkgs.nixosModules.notDetected
     inputs.sops-nix.nixosModules.sops

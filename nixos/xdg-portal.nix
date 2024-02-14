@@ -1,7 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }:
+let inherit (pkgs) xdg-desktop-portal-gtk;
+in {
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    configPackages = lib.mkDefault [ xdg-desktop-portal-gtk ];
+    extraPortals = [ xdg-desktop-portal-gtk ];
     wlr.enable = true;
   };
 }
