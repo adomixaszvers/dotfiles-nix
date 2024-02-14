@@ -55,7 +55,8 @@
     pulseaudio.support32Bit = true;
   };
 
-  environment.systemPackages = with pkgs; [ nixfmt virt-manager ];
+  environment.systemPackages = (with pkgs; [ nixfmt virt-manager ])
+    ++ [ config.boot.kernelPackages.cpupower ];
 
   networking = {
     domain = "lan";
@@ -83,9 +84,13 @@
       enable = true;
       settings.PasswordAuthentication = false;
     };
-    tlp.settings = {
-      START_CHARGE_THRESH_BAT0 = 75;
-      STOP_CHARGE_THRESH_BAT0 = 80;
+    power-profiles-daemon.enable = false;
+    tlp = {
+      enable = true;
+      settings = {
+        START_CHARGE_THRESH_BAT0 = 75;
+        STOP_CHARGE_THRESH_BAT0 = 80;
+      };
     };
     udev.extraRules = ''
       # Lenovo Lenovo Essential Wireless Keyboard and Mouse Combo
