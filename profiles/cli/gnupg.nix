@@ -9,7 +9,7 @@
   };
   services.gpg-agent = {
     enable = lib.mkDefault true;
-    pinentryFlavor = "qt";
+    pinentryFlavor = "gtk2";
     enableSshSupport = true;
     enableExtraSocket = true;
   };
