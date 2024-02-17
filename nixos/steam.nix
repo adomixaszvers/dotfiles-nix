@@ -27,7 +27,10 @@
     # as launch options
     gamescope = {
       enable = true;
-      env.XKB_LAYOUT = "us";
+      env = {
+        XKB_LAYOUT = "us";
+        XKB_DEFAULT_LAYOUT = "us";
+      };
     };
   };
 }
