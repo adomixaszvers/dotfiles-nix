@@ -12,6 +12,7 @@
     ../syncthing.nix
     ../yubikey.nix
     ../steam.nix
+    ../kde.nix
     ./wireguard-client.nix
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.sops-nix.nixosModules.sops
@@ -23,8 +24,9 @@
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "zfs" ];
-    # kernelPackages = pkgs.linuxPackages_xanmod;
+    # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     kernel.sysctl."vm.max_map_count" = 2147483642;
+    zfs.requestEncryptionCredentials = false;
   };
 
   networking = {
@@ -63,14 +65,7 @@
       enable = true;
       settings.PasswordAuthentication = false;
     };
-    xserver = {
-      enable = true;
-      displayManager.sddm = {
-        enable = true;
-        autoNumlock = true;
-      };
-      desktopManager.plasma5.enable = true;
-    };
+    xserver.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
