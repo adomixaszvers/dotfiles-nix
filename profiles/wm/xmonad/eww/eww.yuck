@@ -91,7 +91,7 @@
       (simple-widget :icon "󰕾 " :tooltip "volume" :text "${current-volume}%")))
 
 (defwidget time []
-  (simple-widget :icon "󰃭 "  :text current-time))
+  (simple-widget :icon "󰃭 "  :text {formattime(EWW_TIME, "%Y-%m-%d %H:%M")}))
 
 (defwidget ram []
   (simple-widget :icon "󰍛 " :tooltip "ram" :text "${round(EWW_RAM.used_mem_perc, 0)}%"))
@@ -112,9 +112,6 @@
 
 (deflisten xmonad-ws-2
   `xmonad-dbus 2`)
-
-(defpoll current-time :interval "10s"
-  `date "+%Y-%m-%d %H:%M"`)
 
 (deflisten current-volume :initial "0"
   `tail-volume`)
