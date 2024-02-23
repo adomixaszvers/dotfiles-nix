@@ -64,8 +64,8 @@
   time.timeZone = "Europe/Vilnius";
 
   nix = {
+    optimise.automatic = true;
     settings = {
-      auto-optimise-store = true;
       substituters = lib.mkAfter [
         "https://pre-commit-hooks.cachix.org"
         "https://nix-community.cachix.org"
