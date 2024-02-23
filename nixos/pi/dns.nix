@@ -41,7 +41,7 @@
     environment = {
       TZ = "Europe/Vilnius";
       "PIHOLE_DNS_" = "9.9.9.9;149.112.112.112";
-      FTLCONF_REPLY_ADDR4 = "192.168.1.207";
+      FTLCONF_LOCAL_ADDR4 = "192.168.1.207";
       DNSMASQ_USER = "pihole";
       PIHOLE_UID = "995";
       PIHOLE_GID = "992";
@@ -49,6 +49,7 @@
       WEB_GID = "992";
       FTLCONF_BLOCK_TTL = "2400";
       IPv6 = "false";
+      FTLCONF_RATE_LIMIT = "0/0"; # disable rate limiting
     };
     environmentFiles = [ config.sops.secrets."pihole/environment".path ];
     ports = [
@@ -67,6 +68,7 @@
           address=/lan.beastade.top/192.168.1.207
           rev-server=192.168.1.0/24,192.168.1.254
           local=/lan/192.168.1.254
+          local-ttl=3600
         ''
       }:/etc/dnsmasq.d/42-reverse-proxied-subdomains.conf:ro"
     ];
