@@ -95,6 +95,7 @@
   networking = { hostName = "raspberrypi-nixos"; };
   services = {
     fstrim.enable = true;
+    journald.extraConfig = "SystemMaxUse=500M";
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
