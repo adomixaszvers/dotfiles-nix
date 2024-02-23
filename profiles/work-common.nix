@@ -52,7 +52,7 @@
       maven
       myPkgs.hunspell-lt
       myPkgs.keystore-explorer
-      myPkgs.sqldeveloper
+      sqldeveloper
       mercurial
       nodePackages.pnpm
       numlockx
