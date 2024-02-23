@@ -22,13 +22,14 @@
       protocol = "tcp";
     }];
     bindMounts.vpnc = {
-      hostPath = config.sops.secrets."vpnc/config".path;
+      hostPath = "/root/darbas-vpnc.conf";
       isReadOnly = true;
       mountPoint = "/vpnc.conf";
     };
     privateNetwork = true;
     hostAddress = "192.168.100.10";
     localAddress = "192.168.100.11";
+    ephemeral = true;
     config = { pkgs, ... }: {
       environment.etc."resolv.conf".text = ''
         search x.insoft.lt
