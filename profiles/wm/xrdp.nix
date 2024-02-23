@@ -6,7 +6,7 @@
     export XKB_DEFAULT_RULES=base
     systemctl --user import-environment XKB_DEFAULT_RULES
     systemctl --user stop picom.service # picom doesn't work right on xrdp session
-    if [ "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
       export DBUS_SESSION_BUS_ADDRESS
       exec ${pkgs.runtimeShell} ~/.xsession
     else
