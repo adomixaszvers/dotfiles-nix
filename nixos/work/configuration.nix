@@ -99,7 +99,7 @@
       server=/wg/10.6.0.1
       rev-server=10.6.0.0/24,10.6.0.1
     '';
-    systemPackages = with pkgs; [ wget vim virt-manager ];
+    systemPackages = with pkgs; [ wget vim ];
   };
 
   programs = {
@@ -113,6 +113,7 @@
     };
     mosh.enable = true;
     sway.enable = true;
+    virt-manager.enable = true;
     wireshark = {
       enable = true;
       package = pkgs.wireshark-qt;
@@ -164,6 +165,7 @@
     storageDriver = "zfs";
     # listenOptions = [ "/var/run/docker.sock" "2375" ];
   };
+  virtualisation.spiceUSBRedirection.enable = true;
   # virtualisation.podman = {
   #   enable = true;
   #   dockerCompat = true;
