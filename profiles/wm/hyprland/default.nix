@@ -23,7 +23,7 @@
         modules-right =
           [ "pulseaudio" "cpu" "memory" "temperature" "clock" "tray" ];
         "clock" = { format = "{:%Y-%m-%d %H:%M}"; };
-        "pulseaudio" = { scroll-step = "5.0"; };
+        "pulseaudio" = { scroll-step = 5.0; };
         temperature.thermal-zone = config.gui.thermal-zone;
       };
       systemd = {
@@ -177,6 +177,7 @@
         "$mainMod, D, exec, rofi -show-icons -combi-modi windows,drun,run -show combi -modi windows:${myPkgs.hypr-window-select}/bin/hypr-window-select"
         "$mainMod SHIFT, D, exec, rofi -show run"
         "$mainMod, F, fullscreen, 1"
+        "$mainMod SHIFT, F, fullscreen, 0" # true fullscreen
         "$mainMod, P, pseudo," # dwindle
         "$mainMod, S, togglesplit," # dwindle
         "$mainMod, F4, exec, rofi-powermenu"
@@ -237,6 +238,7 @@
         # fix steam menus
         "stayfocused, title:^()$,class:^(steam)$"
         "minsize 1 1, title:^()$,class:^(steam)$"
+        "fullscreen,class:^(.gamescope-wrapped)$"
       ];
     };
   };
