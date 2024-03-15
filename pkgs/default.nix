@@ -19,10 +19,6 @@
   restart-eww = pkgs.callPackage ./restart-eww.nix { };
   rivercarro = pkgs.callPackage ./rivercarro { };
   rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
-  sqldeveloper = pkgs.callPackage ./sqldeveloper.nix {
-    # WARNING, compiles JDK
-    jdk = pkgs.jdk17.override { enableJavaFX = true; };
-  };
   sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
   sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
   toggle-touchpad = pkgs.callPackage ./toggle-touchpad.nix { };
