@@ -1,9 +1,9 @@
 {-# LANGUAGE LambdaCase #-}
 {-# OPTIONS_GHC -Wall -Werror -fno-warn-missing-signatures #-}
 
-import qualified Colors as C
+import Colors qualified as C
 import Control.Exception (bracket)
-import qualified DBus.Client as D
+import DBus.Client qualified as D
 import Graphics.X11.ExtraTypes
 import System.Exit (exitSuccess)
 import System.IO
@@ -16,7 +16,7 @@ import XMonad.Actions.PhysicalScreens
     sendToScreen,
     viewScreen,
   )
-import qualified XMonad.DBus as XD
+import XMonad.DBus qualified as XD
 import XMonad.Hooks.EwmhDesktops
   ( ewmh,
     ewmhFullscreen,
@@ -34,7 +34,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.RefocusLast (isFloat, refocusLastLayoutHook, refocusLastWhen)
 import XMonad.Hooks.Rescreen (addAfterRescreenHook)
 import XMonad.Hooks.SetWMName (setWMName)
-import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, sbLogHook)
+import XMonad.Hooks.StatusBar (StatusBarConfig, dynamicEasySBs, statusBarGeneric)
 import XMonad.Hooks.StatusBar.PP
   ( PP (..),
     dynamicLogString,
@@ -61,7 +61,7 @@ import XMonad.Layout.Spacing
   )
 import XMonad.Layout.TrackFloating (trackFloating)
 import XMonad.Prelude
-import qualified XMonad.StackSet as W
+import XMonad.StackSet qualified as W
 import XMonad.Util.Loggers (Logger, logCurrentOnScreen, logLayoutOnScreen, logTitleOnScreen, shortenL, wrapL)
 import XMonad.Util.NamedActions
   ( NamedAction (..),
@@ -82,14 +82,13 @@ import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run
   ( spawnPipe,
   )
-import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Util.WorkspaceCompare (getSortByXineramaPhysicalRule)
 
 main :: IO ()
 main = do
   dbus <- XD.connect
   _ <- XD.requestAccess dbus
-  xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook (restartEww >> spawnFeh) . dynamicEasySBs (myDynamicStatusBar dbus) $ myConfig
+  xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook spawnFeh . dynamicEasySBs (myDynamicStatusBar dbus) $ myConfig
   where
     myConfig =
       addDescrKeys'
@@ -147,7 +146,6 @@ myStartupHook :: X ()
 myStartupHook = do
   setWMName "LG3D"
   spawnFeh
-  spawnOnce "restart-eww"
 
 myDynamicStatusBar :: D.Client -> ScreenId -> IO StatusBarConfig
 myDynamicStatusBar dbus sc@(S i) = pure . dbusStatusBarConfig sc dbus $ ppOn i
@@ -155,10 +153,7 @@ myDynamicStatusBar dbus sc@(S i) = pure . dbusStatusBarConfig sc dbus $ ppOn i
     ppOn 0 = pure mainPP
     ppOn _ = pure . secondaryPP $ sc
 
-restartEww :: MonadIO m => m ()
-restartEww = spawn "restart-eww"
-
-spawnFeh :: MonadIO m => m ()
+spawnFeh :: (MonadIO m) => m ()
 spawnFeh = spawn "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
 
 myManageHook :: ManageHook
@@ -405,9 +400,8 @@ findLowest = withWindowSet $ \ws -> do
 
 dbusStatusBarConfig :: ScreenId -> D.Client -> X PP -> StatusBarConfig
 dbusStatusBarConfig (S i) dbus xpp =
-  def
-    { sbLogHook = io . XD.sendToPath dbus (show i) =<< dynamicLogString =<< xpp
-    }
+  let sbLogHook = io . XD.sendToPath dbus (show i) =<< dynamicLogString =<< xpp
+   in statusBarGeneric ("launch-polybar " ++ show i) sbLogHook
 
 killByPid :: X ()
 killByPid = do

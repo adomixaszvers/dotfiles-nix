@@ -297,7 +297,7 @@
       "module/temperature".thermal-zone = config.gui.thermal-zone;
       "bar/top" = {
         modules-right =
-          "battery divider memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider trayer";
+          "battery divider memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider tray";
       };
       "module/battery" = {
         type = "internal/battery";

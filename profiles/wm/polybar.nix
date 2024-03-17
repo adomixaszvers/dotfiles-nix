@@ -40,21 +40,6 @@ let
     line-size = 1;
   };
 in {
-  services.trayer = {
-    enable = true;
-    settings = {
-      monitor = "primary";
-      distance = 16;
-      tint = builtins.replaceStrings [ "#" ] [ "0x" ] colors.background;
-      alpha = 0;
-      edge = "top";
-      align = "right";
-      expand = false;
-      transparent = true;
-      widthtype = "request";
-      height = 16;
-    };
-  };
   services.polybar = {
     enable = lib.mkDefault true;
     package = pkgs.polybarFull;
@@ -62,7 +47,7 @@ in {
       "bar/top" = defaultBar // {
         enable-ipc = true;
         modules-right = lib.mkDefault
-          "memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider trayer";
+          "memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider tray";
       };
       "bar/top-extra" = defaultBar // {
         modules-right =
@@ -105,7 +90,7 @@ in {
       };
       "module/divider" = {
         type = "custom/text";
-        content = "|";
+        format = "|";
         content-foreground = colors.custom-background-light;
         content-background = colors.custom-background-dark;
       };
@@ -186,38 +171,10 @@ in {
         label = "%{T2}%title%%{T-}";
         label-maxlen = 75;
       };
-      "module/trayer" = let
-        script = pkgs.writeShellScript "toggle-trayer" ''
-          PATH=$PATH:${lib.makeBinPath [ pkgs.xdo ]}
-
-          filename="$XDG_RUNTIME_DIR/trayer-hidden$DISPLAY"
-
-          if [ ! -f "$filename" ]; then
-            touch "$filename"
-            xdo hide -N trayer
-            polybar-msg action "#trayer.hook.1"
-          else
-            rm "$filename"
-            xdo show -N trayer 
-            xdo raise -N trayer 
-            polybar-msg action "#trayer.hook.0"
-          fi
-        '';
-        trayer-init = pkgs.writeShellScript "trayer-init" ''
-          if [ -f "$XDG_RUNTIME_DIR/trayer-hidden$DISPLAY" ]; then
-            echo " "
-            ${pkgs.xdo}/bin/xdo hide -N trayer
-          else
-            echo " "
-          fi
-        '';
-      in {
-        type = "custom/ipc";
-        hook-0 = ''echo " "'';
-        hook-1 = ''echo " "'';
-        hook-2 = toString trayer-init;
-        click-left = toString script;
-        initial = 2;
+      "module/tray" = {
+        type = "internal/tray";
+        format-margin = "8px";
+        tray-spacing = "8px";
       };
     };
     script = ''

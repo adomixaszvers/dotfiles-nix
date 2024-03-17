@@ -1,53 +1,26 @@
-{ config, pkgs, lib, myPkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   extraPackages = import ./extraPackages.nix;
-  inherit (pkgs) eww haskellPackages;
+  inherit (pkgs) haskellPackages;
   inherit (haskellPackages) xmonad-dbus;
-  trayer-toggle = pkgs.writeShellScriptBin "toggle-trayer" ''
-    PATH=$PATH:${lib.makeBinPath [ pkgs.xdo eww ]}
+  launch-polybar = pkgs.writeShellScriptBin "launch-polybar" ''
+    PATH=$PATH:${with pkgs; lib.makeBinPath [ coreutils gnugrep xorg.xrandr ]}
 
-    filename="$XDG_RUNTIME_DIR/trayer-hidden$DISPLAY"
-
-    if [ ! -f "$filename" ]; then
-      touch "$filename"
-      xdo hide -N trayer
-      eww update trayer-visible=false
+    SCREEN_ID="$1"
+    MONITOR="$(xrandr --listactivemonitors | grep "''${SCREEN_ID}:" | cut -d' ' -f6)"
+    if [ "$SCREEN_ID" = 0 ]; then
+      BAR=top
     else
-      rm "$filename"
-      xdo show -N trayer 
-      xdo raise -N trayer 
-      eww update trayer-visible=true
+      BAR=top-extra
     fi
+    SCREEN_ID="$SCREEN_ID" MONITOR="$MONITOR" polybar "$BAR"
   '';
 in {
-  imports = [ ../dunst.nix ../picom.nix ];
+  imports = [ ../dunst.nix ../picom.nix ../polybar.nix ];
   home.packages = (with pkgs; [ pamixer xdotool gnome.zenity ])
-    ++ [ eww myPkgs.tail-volume myPkgs.restart-eww trayer-toggle xmonad-dbus ];
-  xdg.configFile."eww/eww.yuck".source = ./eww/eww.yuck;
-  xdg.configFile."eww/eww.scss".text = with config.colors; ''
-    * {
-      font-size: 0.9rem;
-      font-family: "NotoMono Nerd Font";
-    }
-
-    window {
-      background: ${background};
-      color: ${foreground};
-    }
-
-    .icon {
-      color: ${cyanb};
-    }
-
-    .simple-widget {
-      margin-right: 0.2rem;
-    }
-
-    .volume-scale {
-      min-width: 100px;
-    }
-
-  '';
+    ++ [ xmonad-dbus launch-polybar ];
+  programs.polybar.enable = true;
+  services.polybar.enable = false;
   services.polybar.config = {
     "bar/top".modules-left = "xmonad";
     "bar/top-extra".modules-left = "xmonad";
@@ -55,21 +28,6 @@ in {
       type = "custom/script";
       exec = "${xmonad-dbus}/bin/xmonad-dbus $SCREEN_ID";
       tail = true;
-    };
-  };
-  services.trayer = {
-    enable = true;
-    settings = {
-      monitor = "primary";
-      distance = 20;
-      tint = builtins.replaceStrings [ "#" ] [ "0x" ] config.colors.background;
-      alpha = 0;
-      edge = "top";
-      align = "right";
-      expand = false;
-      transparent = true;
-      widthtype = "request";
-      height = 16;
     };
   };
   xsession.windowManager.xmonad = {
