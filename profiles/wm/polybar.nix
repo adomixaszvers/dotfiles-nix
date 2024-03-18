@@ -9,7 +9,7 @@ let
   });
   module = icon: other:
     {
-      format-prefix = "%{T2}${icon}%{T-}";
+      format-prefix = icon;
       format-prefix-foreground = colors.custom-primary;
       format-prefix-background = colors.custom-background-dark;
       label-foreground = colors.custom-foreground;
@@ -26,18 +26,18 @@ let
     monitor = ''
       ''${env:MONITOR}
     '';
-    height = 16;
+    height = 20;
     bottom = false;
     fixed-center = true;
 
     inherit (colors) background foreground;
 
-    font-0 =
-      "NotoMono Nerd Font:fontformat=truetype:pixelsize=8:antialias=true;1";
-    font-1 = "NotoMono Nerd Font:fontformat=truetype:size=10:antialias=true;1";
-    font-2 = "Noto Color Emoji:fontformat=truetype:scale=12:antialias=true;1";
+    font-0 = "NotoMono Nerd Font:fontformat=truetype:size=9:antialias=true;1";
+    font-1 = "Noto Color Emoji:fontformat=truetype:scale=12:antialias=true;1";
 
     line-size = 1;
+
+    separator = " ";
   };
 in {
   services.polybar = {
@@ -46,12 +46,11 @@ in {
     config = {
       "bar/top" = defaultBar // {
         enable-ipc = true;
-        modules-right = lib.mkDefault
-          "memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider tray";
+        modules-right =
+          lib.mkDefault "disk memory cpu temperature volume keyboard date tray";
       };
       "bar/top-extra" = defaultBar // {
-        modules-right =
-          lib.mkDefault "keyboard divider date divider time divider";
+        modules-right = lib.mkDefault "keyboard date time";
       };
       "module/cpu" = module "󰘚" {
         type = "internal/cpu";
@@ -60,15 +59,9 @@ in {
       "module/date" = module "󰙹" {
         type = "internal/date";
         date = "%Y-%m-%d%";
-        label = " %date%";
-      };
-      "module/time" = module "󰥔" {
-        type = "internal/date";
-
         time = "%H:%M";
         time-alt = "%H:%M:%S";
-
-        label = " %time%";
+        label = " %date% %time%";
       };
       "module/disk" = {
         type = "internal/fs";
@@ -87,12 +80,6 @@ in {
         label-occupied-padding = 1;
         label-empty = "%name%";
         label-empty-padding = 1;
-      };
-      "module/divider" = {
-        type = "custom/text";
-        format = "|";
-        content-foreground = colors.custom-background-light;
-        content-background = colors.custom-background-dark;
       };
       "module/left_end" = {
         type = "custom/text";
@@ -168,13 +155,13 @@ in {
 
       "module/title" = {
         type = "internal/xwindow";
-        label = "%{T2}%title%%{T-}";
+        label = "%title%";
         label-maxlen = 75;
       };
       "module/tray" = {
         type = "internal/tray";
-        format-margin = "8px";
-        tray-spacing = "8px";
+        format-margin = "1px";
+        tray-spacing = "1px";
       };
     };
     script = ''

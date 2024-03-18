@@ -66,8 +66,13 @@ in {
   options.programs.polybar.enable = mkEnableOption "Polybar status bar";
   config = mkIf config.programs.polybar.enable {
     home.packages = [ cfg.package ];
-    xdg.configFile."polybar/config.ini" =
-      mkIf (configFile != null) { source = configFile; };
+    xdg.configFile."polybar/config.ini" = mkIf (configFile != null) {
+      source = configFile;
+      onChange = ''
+        ${pkgs.procps}/bin/pkill -USR1 -u $USER .polybar-wrappe || true
+      '';
+
+    };
   };
 
 }

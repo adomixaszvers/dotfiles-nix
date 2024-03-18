@@ -88,7 +88,7 @@ main :: IO ()
 main = do
   dbus <- XD.connect
   _ <- XD.requestAccess dbus
-  xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook spawnFeh . dynamicEasySBs (myDynamicStatusBar dbus) $ myConfig
+  xmonad . ewmhFullscreen . ewmh . addAfterRescreenHook (spawnFeh >> reloadPolybar) . dynamicEasySBs (myDynamicStatusBar dbus) $ myConfig
   where
     myConfig =
       addDescrKeys'
@@ -155,6 +155,9 @@ myDynamicStatusBar dbus sc@(S i) = pure . dbusStatusBarConfig sc dbus $ ppOn i
 
 spawnFeh :: (MonadIO m) => m ()
 spawnFeh = spawn "feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png"
+
+reloadPolybar :: X ()
+reloadPolybar = spawn "pkill -USR1 -u $USER .polybar-wrappe"
 
 myManageHook :: ManageHook
 myManageHook =

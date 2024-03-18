@@ -16,7 +16,7 @@
   services.polybar.config = {
     "bar/top" = {
       modules-right =
-        "battery divider memory divider disk divider cpu divider temperature divider volume divider keyboard divider date divider time divider tray";
+        "battery disk memory cpu temperature volume keyboard date tray";
 
     };
     "module/battery" = {
