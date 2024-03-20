@@ -1,4 +1,4 @@
-{ pkgs, myPkgs, config, ... }: {
+{ pkgs, config, ... }: {
   imports = [ ../waybar ];
   home.packages = let
     launch-river = pkgs.writers.writeDashBin "launch-river" ''
@@ -7,7 +7,7 @@
       export XKB_DEFAULT_LAYOUT=lt,us
       exec river
     '';
-  in [ launch-river pkgs.kanshi pkgs.river pkgs.wofi myPkgs.rivercarro ];
+  in [ launch-river pkgs.kanshi pkgs.river pkgs.wofi pkgs.rivercarro ];
   programs.waybar = {
     settings = [{
       layer = "top";
@@ -15,12 +15,10 @@
       height = 16;
       modules-left = [ "river/tags" ];
       modules-right = [ "pulseaudio" "cpu" "memory" "temperature" "clock" ];
-      modules = {
-        "river/tags" = { "num-tags" = 9; };
-        "clock" = { format = "{:%Y-%m-%d %H:%M}"; };
-        "pulseaudio" = { scroll-step = "5.0"; };
-        temperature.thermal-zone = config.gui.thermal-zone;
-      };
+      "river/tags" = { "num-tags" = 9; };
+      "clock" = { format = "{:%Y-%m-%d %H:%M}"; };
+      "pulseaudio" = { scroll-step = "5.0"; };
+      temperature.thermal-zone = config.gui.thermal-zone;
     }];
   };
   services.kanshi.enable = true;
