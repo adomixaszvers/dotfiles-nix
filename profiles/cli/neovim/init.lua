@@ -26,6 +26,7 @@ do
     vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope find_files<cr>', opts)
     vim.keymap.set('n', '<leader>/', '<cmd>Telescope live_grep<cr>', opts)
     vim.keymap.set('n', "<leader>'", '<cmd>Telescope resume<cr>', opts)
+    vim.keymap.set('n', "<leader>,", '<cmd>Telescope buffers<cr>', opts)
     vim.keymap.set('n', '<leader>f', '<cmd>Neoformat<cr>', opts)
     vim.keymap.set('n', '-', '-', opts)
     vim.keymap.set('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
@@ -46,8 +47,7 @@ if vim.fn.has("termguicolors") then
 end
 
 if vim.env.TERM ~= "linux" then
-    vim.g.nord_italic = false
-    vim.cmd('colorscheme nord')
+    vim.cmd('colorscheme nordic')
     vim.g.airline_powerline_fonts = 1
 else
     vim.cmd('colorscheme solarized')

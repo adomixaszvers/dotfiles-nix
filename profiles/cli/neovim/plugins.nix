@@ -9,7 +9,7 @@ in [
   direnv-vim
   fugitive
   neoformat
-  nord-nvim
+  nordic-nvim
   {
     plugin = nvim-treesitter.withAllGrammars;
     # config = builtins.readFile ./nvim-treesitter.vim;
