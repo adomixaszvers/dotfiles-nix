@@ -34,6 +34,12 @@
   #   '';
   # };
 
+  documentation = {
+    enable = true;
+    doc.enable = false;
+    info.enable = false;
+  };
+
   programs.mosh.enable = true;
 
   # File systems configuration for using the installer's partition layout
