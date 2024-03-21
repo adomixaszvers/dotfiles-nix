@@ -21,6 +21,7 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+    flake-parts.url = "github:hercules-ci/flake-parts";
     fz = {
       url = "github:changyuheng/fz";
       flake = false;
@@ -38,13 +39,9 @@
       url = "github:Delapouite/kakoune-text-objects";
       flake = false;
     };
-    flake-utils.url = "github:numtide/flake-utils";
     nixGL = {
       url = "github:guibou/nixGL";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
+      inputs = { nixpkgs.follows = "nixpkgs"; };
     };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -57,71 +54,67 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      inputs.flake-utils.follows = "flake-utils";
-    };
+    pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
   };
-  outputs = { self, nixpkgs, home-manager, pre-commit-hooks, flake-utils
-    , nixos-unstable, ... }@inputs:
-    let
-      config = import ./config.nix;
+  outputs =
+    { nixpkgs, pre-commit-hooks, nixos-unstable, flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" ];
-      mkPkgs = nixpkgs: system: import nixpkgs { inherit system config; };
-      allPkgs = nixpkgs.lib.genAttrs systems (mkPkgs nixpkgs);
-      allUnstablePkgs = nixpkgs.lib.genAttrs systems (mkPkgs nixos-unstable);
-    in flake-utils.lib.eachSystem systems (system:
-      let
-        pkgs = builtins.getAttr system allPkgs;
-        # unstable = import inputs.nixos-unstable { inherit system config; };
-      in {
-        apps.my-neovim =
-          let myNeovim = (builtins.getAttr system self.packages).neovim;
-          in {
-            type = "app";
-            program = "${myNeovim}/bin/nvim";
+      imports = [
+        pre-commit-hooks.flakeModule
+        ./pkgs
+        ./nixos/configurations.nix
+        ./homes.nix
+      ];
+      perSystem = { pkgs, system, self', inputs', config, ... }: {
+        _module.args = {
+          pkgs = import nixpkgs {
+            inherit system;
+            config = import ./config.nix;
           };
-        packages = import ./pkgs { inherit pkgs system inputs; };
-        checks = {
-          pre-commit-check = pre-commit-hooks.lib."${system}".run {
-            src = ./.;
-            hooks = {
-              nixfmt.enable = true;
-              statix.enable = true;
-              deadnix.enable = true;
-              shellcheck = {
-                enable = true;
-                # shellcheck does not support zsh files but after
-                # https://github.com/cachix/pre-commit-hooks.nix/commit/61bda56530889b4acf6c935d832f219b6c0ebd83
-                # it is run on initExtra.zsh and it fails on pre-commit
-                excludes = [ "\\.zsh$" ];
-              };
+          unstable = import nixos-unstable {
+            inherit system;
+            config = import ./config.nix;
+          };
+        };
+        apps.my-neovim = let myNeovim = self'.packages.neovim;
+        in {
+          type = "app";
+          program = "${myNeovim}/bin/nvim";
+        };
+        pre-commit.settings = {
+          src = ./.;
+          hooks = {
+            nixfmt.enable = true;
+            statix.enable = true;
+            deadnix.enable = true;
+            shellcheck = {
+              enable = true;
+              # shellcheck does not support zsh files but after
+              # https://github.com/cachix/pre-commit-hooks.nix/commit/61bda56530889b4acf6c935d832f219b6c0ebd83
+              # it is run on initExtra.zsh and it fails on pre-commit
+              excludes = [ "\\.zsh$" ];
             };
-            settings.statix.ignore = [ "hardware-configuration.nix" ];
           };
+          settings.statix.ignore = [ "hardware-configuration.nix" ];
         };
         devShells = {
           default = pkgs.mkShell {
             buildInputs =
-              [ home-manager.packages."${system}".home-manager pkgs.sops ];
-            shellHook = let
-              precommitShellHook =
-                self.checks."${system}".pre-commit-check.shellHook;
-            in ''
-              if [ -f ./flake.nix ]; then
-                ${precommitShellHook}
-              fi
-            '';
+              [ inputs'.home-manager.packages.home-manager pkgs.sops ];
+            shellHook =
+              let precommitShellHook = config.pre-commit.installationScript;
+              in ''
+                if [ -f ./flake.nix ]; then
+                  ${precommitShellHook}
+                fi
+              '';
           };
           xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
           qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
           awesomewm =
             import ./profiles/wm/awesome/shell.nix { inherit pkgs system; };
         };
-      }) // {
-        nixosConfigurations =
-          import ./nixos/configurations.nix { inherit inputs; };
-        homeConfigurations =
-          import ./homes.nix { inherit inputs allPkgs allUnstablePkgs; };
       };
+    };
 }
