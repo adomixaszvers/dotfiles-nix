@@ -1,7 +1,12 @@
-{ stdenv, lib, python3, bumblebee-status-source }:
+{ stdenv, lib, python3, fetchFromGitHub }:
 let
-  src = bumblebee-status-source;
   version = "v2.0.5";
+  src = fetchFromGitHub {
+    owner = "tobi-wan-kenobi";
+    repo = "bumblebee-status";
+    rev = "227a23fdb539ff4170e747add2d594e860c0c801";
+    hash = "sha256-oedFzB/eDn0HKq8+hkv0naXDT5RiTit7Rl0YGTHIG8U=";
+  };
 
 in stdenv.mkDerivation {
   name = "bumblebee-status-${version}";

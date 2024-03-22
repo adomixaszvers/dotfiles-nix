@@ -1,38 +1,5 @@
 {
   "nodes": {
-    "awesome-copycats": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1689704523,
-        "narHash": "sha256-8CGjbUpfyj2eOu+r87gyOG03FBtY4tvUgMwCl9ohT9E=",
-        "owner": "lcpz",
-        "repo": "awesome-copycats",
-        "rev": "16c16bb16eb1f2d272d6bd85872a05c8c958aeb6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lcpz",
-        "repo": "awesome-copycats",
-        "type": "github"
-      }
-    },
-    "awesome-sharedtags": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1707637786,
-        "narHash": "sha256-Aqf44l3efSbABobWXdC3w34lhHMMzbBFZyfw0Ix/7mw=",
-        "owner": "Drauthius",
-        "repo": "awesome-sharedtags",
-        "rev": "346ec10905a38c7a68504ccc3322fb98f95d70fc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Drauthius",
-        "ref": "v4.0",
-        "repo": "awesome-sharedtags",
-        "type": "github"
-      }
-    },
     "base16-schemes": {
       "flake": false,
       "locked": {
@@ -46,39 +13,6 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-schemes",
-        "type": "github"
-      }
-    },
-    "bumblebee-status": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1593454044,
-        "narHash": "sha256-oedFzB/eDn0HKq8+hkv0naXDT5RiTit7Rl0YGTHIG8U=",
-        "owner": "tobi-wan-kenobi",
-        "repo": "bumblebee-status",
-        "rev": "227a23fdb539ff4170e747add2d594e860c0c801",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tobi-wan-kenobi",
-        "ref": "v2.0.5",
-        "repo": "bumblebee-status",
-        "type": "github"
-      }
-    },
-    "chemacs": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1674216959,
-        "narHash": "sha256-/WtacZPr45lurS0hv+W8UGzsXY3RujkU5oGGGqjqG0Q=",
-        "owner": "plexus",
-        "repo": "chemacs2",
-        "rev": "c2d700b784c793cc82131ef86323801b8d6e67bb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "plexus",
-        "repo": "chemacs2",
         "type": "github"
       }
     },
@@ -165,22 +99,6 @@
         "type": "github"
       }
     },
-    "fz": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1708904663,
-        "narHash": "sha256-M//pvh8WS0gsypfJzC1LRb7qdCxIdZWCgpIyh3/awh4=",
-        "owner": "changyuheng",
-        "repo": "fz",
-        "rev": "fa41aa22abac86db1d1e9dd858d689d1c009aefa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "changyuheng",
-        "repo": "fz",
-        "type": "github"
-      }
-    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -220,38 +138,6 @@
         "owner": "nix-community",
         "ref": "release-23.11",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "kakoune-sudo-write": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1629101282,
-        "narHash": "sha256-O+yw8upyYnQThDoWKnFbjrjthPTCm6EaBUoJNqpUPLA=",
-        "owner": "occivink",
-        "repo": "kakoune-sudo-write",
-        "rev": "ec0d6d26ceaadd93d6824630ba587b31e442214d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "occivink",
-        "repo": "kakoune-sudo-write",
-        "type": "github"
-      }
-    },
-    "kakoune-text-objects": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1628261929,
-        "narHash": "sha256-kuef+hxz/QisHL1UL6XKMcPq+OAq09wUT8thDhqee8Q=",
-        "owner": "Delapouite",
-        "repo": "kakoune-text-objects",
-        "rev": "da9a268c3f239e40e0ca4665faa17f709563795b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Delapouite",
-        "repo": "kakoune-text-objects",
         "type": "github"
       }
     },
@@ -467,16 +353,9 @@
     },
     "root": {
       "inputs": {
-        "awesome-copycats": "awesome-copycats",
-        "awesome-sharedtags": "awesome-sharedtags",
-        "bumblebee-status": "bumblebee-status",
-        "chemacs": "chemacs",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
-        "fz": "fz",
         "home-manager": "home-manager",
-        "kakoune-sudo-write": "kakoune-sudo-write",
-        "kakoune-text-objects": "kakoune-text-objects",
         "nix-colors": "nix-colors",
         "nix-index-database": "nix-index-database",
         "nixGL": "nixGL",

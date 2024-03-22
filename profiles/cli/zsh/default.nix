@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, ... }: {
+{ lib, pkgs, ... }: {
   home.file.".zshrc".text = lib.mkBefore ''
     # fix hanging on emacs tramp
     # see: https://www.emacswiki.org/emacs/TrampMode#h5o-9
@@ -12,7 +12,12 @@
     defaultKeymap = "viins";
     plugins = [{
       name = "fz";
-      src = inputs.fz;
+      src = pkgs.fetchFromGitHub {
+        owner = "changyuheng";
+        repo = "fz";
+        rev = "fa41aa22abac86db1d1e9dd858d689d1c009aefa";
+        hash = "sha256-M//pvh8WS0gsypfJzC1LRb7qdCxIdZWCgpIyh3/awh4=";
+      };
     }];
     sessionVariables = { FZ_HISTORY_CD_CMD = "_zlua"; };
     shellAliases = {

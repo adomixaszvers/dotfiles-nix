@@ -1,44 +1,16 @@
 {
   description = "My dotfiles";
   inputs = {
-    awesome-copycats = {
-      url = "github:lcpz/awesome-copycats";
-      flake = false;
-    };
-    awesome-sharedtags = {
-      url = "github:Drauthius/awesome-sharedtags/v4.0";
-      flake = false;
-    };
-    bumblebee-status = {
-      url = "github:tobi-wan-kenobi/bumblebee-status/v2.0.5";
-      flake = false;
-    };
-    chemacs = {
-      url = "github:plexus/chemacs2";
-      flake = false;
-    };
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
-    fz = {
-      url = "github:changyuheng/fz";
-      flake = false;
-    };
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
-    kakoune-sudo-write = {
-      url = "github:occivink/kakoune-sudo-write";
-      flake = false;
-    };
-    kakoune-text-objects = {
-      url = "github:Delapouite/kakoune-text-objects";
-      flake = false;
-    };
     nixGL = {
       url = "github:guibou/nixGL";
       inputs = { nixpkgs.follows = "nixpkgs"; };

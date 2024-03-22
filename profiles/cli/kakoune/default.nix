@@ -1,15 +1,19 @@
-{ pkgs, myPkgs, inputs, ... }: {
+{ pkgs, myPkgs, ... }: {
   home.packages = with pkgs; [ kak-lsp myPkgs.kaknix ];
   programs.kakoune = {
     enable = true;
     plugins = let
       inherit (pkgs) lib;
       inherit (pkgs.kakouneUtils) buildKakounePluginFrom2Nix;
-      kakouneTextObjects = let input = inputs.kakoune-text-objects;
-      in buildKakounePluginFrom2Nix {
+      kakouneTextObjects = buildKakounePluginFrom2Nix {
         pname = "kakoune-text-objects";
-        version = input.shortRev;
-        src = input.outPath;
+        version = "20210806";
+        src = pkgs.fetchFromGitHub {
+          owner = "Delapouite";
+          repo = "kakoune-text-objects";
+          rev = "da9a268c3f239e40e0ca4665faa17f709563795b";
+          hash = "sha256-kuef+hxz/QisHL1UL6XKMcPq+OAq09wUT8thDhqee8Q=";
+        };
         meta = with lib; {
           description = "kakoune plugin providing extra text-objects";
           homepage = "https://github.com/Delapouite/kakoune-text-objects";
@@ -18,11 +22,15 @@
         };
 
       };
-      sudoWrite = let input = inputs.kakoune-sudo-write;
-      in buildKakounePluginFrom2Nix {
+      sudoWrite = buildKakounePluginFrom2Nix {
         pname = "kakoune-sudo-write";
-        version = input.shortRev;
-        src = input.outPath;
+        version = "20210816";
+        src = pkgs.fetchFromGitHub {
+          owner = "occivink";
+          repo = "kakoune-sudo-write";
+          rev = "ec0d6d26ceaadd93d6824630ba587b31e442214d";
+          hash = "sha256-O+yw8upyYnQThDoWKnFbjrjthPTCm6EaBUoJNqpUPLA=";
+        };
         meta = with lib; {
           description = "Write to files using 'sudo'";
           homepage = "https://github.com/occivink/kakoune-sudo-write";
