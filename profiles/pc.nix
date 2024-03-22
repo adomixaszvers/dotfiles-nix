@@ -36,10 +36,6 @@
   gtk.enable = false;
   qt.enable = false;
   gui.thermal-zone = 2;
-  programs = {
-    # kitty.settings.shell = "nu";
-    nushell.enable = true;
-  };
   services.network-manager-applet.enable = false;
   services.udiskie.enable = false;
   xsession.initExtra = ''

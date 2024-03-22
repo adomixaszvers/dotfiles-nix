@@ -7,10 +7,8 @@
     ./gnupg.nix
     ./flakeInputs.nix
     ./neovim
-    ./kakoune
     ./registry.nix
     ./zsh
-    ./nushell
   ];
   home = {
     packages = (with pkgs; [
@@ -29,8 +27,8 @@
       lf
       lsof
       ncdu
-      niv
       nixfmt
+      nix-tree
       p7zip
       patchelf
       ripgrep

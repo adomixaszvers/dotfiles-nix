@@ -59,8 +59,6 @@
   home.sessionVariables = { BROWSER = "firefox"; };
   gui.thermal-zone = 0;
   programs = {
-    # kitty.settings.shell = "nu";
-    nushell.enable = true;
     firefox = {
       enable = true;
       package = pkgs.firefox.override {
