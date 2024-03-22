@@ -86,7 +86,10 @@
           src = ./.;
           hooks = {
             nixfmt.enable = true;
-            statix.enable = true;
+            statix = {
+              enable = true;
+              settings.ignore = [ "hardware-configuration.nix" ];
+            };
             deadnix.enable = true;
             shellcheck = {
               enable = true;
@@ -96,7 +99,6 @@
               excludes = [ "\\.zsh$" ];
             };
           };
-          settings.statix.ignore = [ "hardware-configuration.nix" ];
         };
         devShells = {
           default = pkgs.mkShell {
