@@ -37,6 +37,7 @@
       wrapper = "${nixGLMesa}/bin/nixGLMesa";
       pkg = firefox;
     })
+    glibc_multi
     keepassxc
     xsel
   ];
@@ -51,6 +52,22 @@
     syncthing = {
       enable = true;
       # tray.enable = true;
+    };
+  };
+  systemd.user = {
+    services.nix-gc = {
+      Unit.Description = "Nix Garbage Collector";
+      Service.ExecStart =
+        "${pkgs.nix}/bin/nix-collect-garbage -d --delete-older-than 14d";
+    };
+    timers.nix-gc = {
+      Unit.Description = "Nix periodic Garbage Collector";
+      Timer = {
+        Unit = "nix-gc.service";
+        OnCalendar = "daily";
+        Persistent = true;
+      };
+      Install.WantedBy = [ "timers.target" ];
     };
   };
   xdg = { enable = true; };

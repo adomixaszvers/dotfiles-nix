@@ -3,6 +3,7 @@
 {
   imports = [
     ./direnv
+    ./expire-hm.nix
     ./git.nix
     ./gnupg.nix
     ./flakeInputs.nix
