@@ -1,9 +1,8 @@
-{ system ? builtins.currentSystem
-, pkgs ? (builtins.getFlake "nixpkgs").legacyPackages."${system}" }:
+{ pkgs ? import <nixpkgs> { } }:
 
 with pkgs;
 
-mkShell {
+mkShellNoCC {
   name = "awesomewm-shell";
   buildInputs = [ luaPackages.luacheck stylua ];
 }

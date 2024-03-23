@@ -73,7 +73,7 @@
           };
         };
         devShells = {
-          default = pkgs.mkShell {
+          default = pkgs.mkShellNoCC {
             buildInputs =
               [ inputs'.home-manager.packages.home-manager pkgs.sops ];
             shellHook =
@@ -86,8 +86,7 @@
           };
           xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
           qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
-          awesomewm =
-            import ./profiles/wm/awesome/shell.nix { inherit pkgs system; };
+          awesomewm = import ./profiles/wm/awesome/shell.nix { inherit pkgs; };
         };
       };
     };

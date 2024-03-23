@@ -1,6 +1,5 @@
-{ pkgs ?
-  (builtins.getFlake "nixpkgs").legacyPackages."${builtins.currentSystem}" }:
-pkgs.mkShell {
+{ pkgs ? import <nixpkgs> { } }:
+pkgs.mkShellNoCC {
   name = "qtile-shell";
   buildInputs = [
     (pkgs.python3.withPackages

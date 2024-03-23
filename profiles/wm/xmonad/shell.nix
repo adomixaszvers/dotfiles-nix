@@ -1,7 +1,6 @@
-{ pkgs ?
-  (builtins.getFlake "nixpkgs").legacyPackages."${builtins.currentSystem}" }:
+{ pkgs ? import <nixpkgs> { } }:
 with pkgs;
-mkShell {
+mkShellNoCC {
   name = "xmonad-shell";
   buildInputs = [
     (haskellPackages.ghcWithHoogle (hs:
