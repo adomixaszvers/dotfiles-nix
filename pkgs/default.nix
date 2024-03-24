@@ -17,8 +17,14 @@
       kaknix = pkgs.callPackage ./kaknix.nix { };
       maimpick = pkgs.callPackage ./maimpick.nix { };
       neovim = pkgs.callPackage ../profiles/cli/neovim/package.nix { };
-      nixvim = inputs'.nixvim.legacyPackages.makeNixvimWithModule
-        (import ./nixvim { inherit pkgs; });
+      nixvim = inputs'.nixvim.legacyPackages.makeNixvimWithModule {
+        inherit pkgs;
+        module = { imports = [ ./nixvim/base.nix ]; };
+      };
+      nixvimLsp = inputs'.nixvim.legacyPackages.makeNixvimWithModule {
+        inherit pkgs;
+        module = { imports = [ ./nixvim/base.nix ./nixvim/lsp.nix ]; };
+      };
       restart-eww = pkgs.callPackage ./restart-eww.nix { };
       rivercarro = pkgs.callPackage ./rivercarro { };
       rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
