@@ -11,6 +11,5 @@
     };
     desktopManager.plasma5.enable = true;
   };
-  security.pam.services.sddm.enableGnomeKeyring = true;
-  security.pam.services.sddm.fprintAuth = false;
+  security.pam.services.kde.enableGnomeKeyring = true;
 }
