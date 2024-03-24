@@ -18,13 +18,10 @@
       maimpick = pkgs.callPackage ./maimpick.nix { };
       neovim = pkgs.callPackage ../profiles/cli/neovim/package.nix { };
       restart-eww = pkgs.callPackage ./restart-eww.nix { };
-      rivercarro = pkgs.callPackage ./rivercarro { };
       rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
       sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
       sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
       toggle-touchpad = pkgs.callPackage ./toggle-touchpad.nix { };
-      keystore-explorer =
-        pkgs.keystore-explorer.override { jdk = pkgs.openjdk8; };
       tail-volume = pkgs.callPackage ./tail-volume { };
     };
   };
