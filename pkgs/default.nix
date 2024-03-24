@@ -75,7 +75,21 @@
         maimpick = pkgs.callPackage ./maimpick.nix { };
         neovim = nixCatsBuilder "nixCats";
         neovim-nix = nixCatsBuilder "nixCats-small";
-        nixvim = inputs'.nixvim.legacyPackages.makeNixvimWithModule (import ./nixvim { inherit pkgs; });
+        nixvim = inputs'.nixvim.legacyPackages.makeNixvimWithModule {
+          inherit pkgs;
+          module = {
+            imports = [ ./nixvim/base.nix ];
+          };
+        };
+        nixvimLsp = inputs'.nixvim.legacyPackages.makeNixvimWithModule {
+          inherit pkgs;
+          module = {
+            imports = [
+              ./nixvim/base.nix
+              ./nixvim/lsp.nix
+            ];
+          };
+        };
         networkmanager-vpnc = pkgs.callPackage ./networkmanager-vpnc { };
         niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
         restart-eww = pkgs.callPackage ./restart-eww.nix { };
