@@ -18,6 +18,7 @@
       binutils
       cachix
       comma
+      deadnix
       dnsutils
       fd
       file
