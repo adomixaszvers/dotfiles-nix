@@ -51,7 +51,7 @@
       liquibase
       maven
       myPkgs.hunspell-lt
-      myPkgs.keystore-explorer
+      keystore-explorer
       sqldeveloper
       mercurial
       nodePackages.pnpm
