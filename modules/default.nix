@@ -1,4 +1,9 @@
 {
-  imports =
-    [ ./colors.nix ./kbdd.nix ./polybar-program.nix ./thermal-zone.nix ];
+  imports = [
+    ./colors.nix
+    ./kbdd.nix
+    ./nix-gc.nix
+    ./polybar-program.nix
+    ./thermal-zone.nix
+  ];
 }

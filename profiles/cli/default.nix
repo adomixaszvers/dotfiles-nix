@@ -3,7 +3,6 @@
 {
   imports = [
     ./direnv
-    ./expire-hm.nix
     ./git.nix
     ./gnupg.nix
     ./flakeInputs.nix
@@ -47,6 +46,11 @@
       MANROFFOPT = "-c";
     };
     shellAliases.hcd = "cd ~/.config/nixpkgs";
+  };
+  nix.gc = {
+    automatic = true;
+    frequency = "weekly";
+    options = "-d --delete-older-than 14d";
   };
   programs = {
     bash = {
