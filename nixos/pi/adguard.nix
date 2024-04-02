@@ -68,7 +68,7 @@
         {
           enabled = true;
           url =
-            "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling/hosts";
+            "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts";
           name = "Unified hosts file with base extensions";
         }
       ];
