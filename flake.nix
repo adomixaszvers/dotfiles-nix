@@ -72,14 +72,9 @@
         devShells = {
           default = pkgs.mkShellNoCC {
             buildInputs =
-              [ inputs'.home-manager.packages.home-manager pkgs.sops ];
-            shellHook =
-              let precommitShellHook = config.pre-commit.installationScript;
-              in ''
-                if [ -f ./flake.nix ]; then
-                  ${precommitShellHook}
-                fi
-              '';
+              [ inputs'.home-manager.packages.home-manager pkgs.sops ]
+              ++ config.pre-commit.settings.enabledPackages;
+            shellHook = config.pre-commit.installationScript;
           };
           xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
           qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
