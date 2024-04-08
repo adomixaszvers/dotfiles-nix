@@ -46,5 +46,8 @@
       dpi = 1; # autodetect dpi based on monitor size
     };
   };
-  stylix.targets.xresources.enable = true;
+  stylix.targets = {
+    rofi.enable = true;
+    xresources.enable = true;
+  };
 }
