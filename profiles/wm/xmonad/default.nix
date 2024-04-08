@@ -39,11 +39,10 @@ in {
       "Colors.hs" = pkgs.writeText "Colors.hs" ''
         module Colors where
 
-        ${builtins.concatStringsSep "\n" (builtins.attrValues (builtins.mapAttrs
-          (name: value: ''
-            ${name} :: String
-            ${name} = "${value}"
-          '') config.colors))}'';
+        white, cyan :: String
+        white = "#${config.lib.stylix.colors.base00}"
+        cyan = "#${config.lib.stylix.colors.cyan}"
+      '';
     };
   };
 }

@@ -2,7 +2,6 @@
 
 {
   gtk = {
-    enable = lib.mkDefault true;
     cursorTheme = {
       package = pkgs.vanilla-dmz;
       name = "Vanilla-DMZ";
@@ -11,10 +10,6 @@
     iconTheme = {
       name = "Arc";
       package = pkgs.arc-icon-theme;
-    };
-    theme = {
-      name = "Arc-Darker";
-      package = pkgs.arc-theme;
     };
     gtk3.extraConfig = { gtk-application-prefer-dark-theme = true; };
   };
@@ -27,6 +22,7 @@
     enable = lib.mkDefault true;
     automount = false;
   };
+  stylix.targets.gtk.enable = lib.mkDefault true;
   home.packages = with myPkgs; [
     maimpick
     (rofi-powermenu.override { rofi = config.programs.rofi.finalPackage; })

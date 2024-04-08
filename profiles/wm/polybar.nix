@@ -1,11 +1,14 @@
 { pkgs, config, lib, ... }:
 let
-  colors = config.colors // (with config.colors; {
-    custom-foreground = foreground;
-    custom-background-dark = background;
-    custom-background-light = blackb;
-    custom-primary = cyanb;
-    custom-warn = redb;
+  colors = let inherit (config.lib.stylix) colors;
+  in colors // (with colors; {
+    foreground = base05;
+    background = base00;
+    custom-foreground = base05;
+    custom-background-dark = base00;
+    custom-background-light = base01;
+    custom-primary = bright-cyan;
+    custom-warn = bright-red;
   });
   module = icon: other:
     {
@@ -106,7 +109,7 @@ in {
         label-unfocused-padding = 1;
 
         label-focused-background = colors.background;
-        label-focused-foreground = colors.whiteb;
+        label-focused-foreground = colors.base04;
         label-focused-padding = 1;
 
         label-seperator-padding = 0;

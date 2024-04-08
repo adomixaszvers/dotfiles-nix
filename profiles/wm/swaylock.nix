@@ -1,10 +1,9 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let swaylock = pkgs.swaylock-effects;
 in {
   programs.swaylock = {
     enable = true;
     package = swaylock;
-    settings.color = builtins.substring 1 6 config.colors.background;
   };
   services.swayidle = {
     enable = true;
@@ -23,4 +22,5 @@ in {
       command = "${swaylock}/bin/swaylock -f";
     }];
   };
+  stylix.targets.swaylock.enable = true;
 }

@@ -1,6 +1,5 @@
-{ lib, ... }: {
+{ pkgs, ... }: {
   imports = [ ./work-common.nix ./wm/xsession-common.nix ./wm/xmonad ];
-  colors = import ./gui/colors/dracula.nix;
-  programs.rofi.theme = lib.mkForce "Arc";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
   services.picom.enable = false;
 }

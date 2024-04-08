@@ -7,7 +7,6 @@
   #   network-manager-applet.enable = false;
   #   udiskie.enable = false;
   # };
-  colors = import ./gui/colors/nord.nix;
   xresources.properties = let dpi = 120;
   in {
     "Xft.dpi" = dpi;

@@ -7,7 +7,6 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-colors.url = "github:misterio77/nix-colors";
     nixGL = {
       url = "github:guibou/nixGL";
       inputs = { nixpkgs.follows = "nixpkgs"; };
@@ -22,6 +21,14 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:danth/stylix/release-23.11";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
   };

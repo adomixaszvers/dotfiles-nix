@@ -1,6 +1,5 @@
 { pkgs, config, lib, ... }: {
   imports = [ ./work-common.nix ./wm/xsession-common.nix ./wm/xmonad ];
-  colors = import ./gui/colors/nord.nix;
   # gtk.enable = false;
   # qt.enable = false;
   services = {

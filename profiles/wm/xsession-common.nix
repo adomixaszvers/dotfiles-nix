@@ -17,9 +17,7 @@
           }
           trap revert HUP INT TERM
           xset +dpms dpms $DPMS_TIMEOUT $DPMS_TIMEOUT $DPMS_TIMEOUT
-          i3lock-color -n -t -c ${
-            builtins.substring 1 6 config.colors.background
-          } -f --pass-media-keys
+          i3lock-color -n -t -c ${config.lib.stylix.colors.base00} -f --pass-media-keys
           revert
         '';
       in lib.mkDefault lockScreen.outPath;
@@ -35,8 +33,6 @@
     numlock.enable = true;
   };
   home.pointerCursor = {
-    name = "capitaine-cursors";
-    package = pkgs.capitaine-cursors;
     gtk.enable = true;
     x11.enable = true;
   };

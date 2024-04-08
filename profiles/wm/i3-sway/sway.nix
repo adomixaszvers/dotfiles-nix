@@ -76,6 +76,7 @@ in {
     dunst.waylandDisplay = "wayland-1";
     volnoti.enable = true;
   };
+  stylix.targets.sway.enable = true;
   wayland.windowManager.sway = {
     enable = true;
     config = {

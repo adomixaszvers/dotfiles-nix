@@ -42,6 +42,7 @@
       label-marked = "%{T2}m%{T-}";
     };
   };
+  stylix.targets.bspwm.enable = true;
   xsession.windowManager.bspwm = {
     enable = true;
     extraConfig = ''
@@ -121,7 +122,6 @@
       border_width = 2;
       borderless_monocle = true;
       focus_follows_pointer = true;
-      focused_border_color = config.colors.cyanb;
       gapless_monocle = true;
       pointer_follows_monitor = true;
       single_monocle = true;

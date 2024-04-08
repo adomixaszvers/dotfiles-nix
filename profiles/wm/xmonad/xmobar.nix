@@ -11,13 +11,14 @@ let
     chmod u+x $out
     patchShebangs $out
   '';
-  makeConfig = let thermalZone = toString config.gui.thermal-zone;
-  in hasTray:
-  with config.colors; ''
+  makeConfig = let
+    thermalZone = toString config.gui.thermal-zone;
+    inherit (config.lib.stylix) base00 base05 green red;
+  in hasTray: ''
     Config { font = "xft:NotoMono Nerd Font:fontformat=truetype:pixelsize=10:antialias=true"
           , additionalFonts = []
-          , bgColor = "${background}"
-          , fgColor = "${foreground}"
+          , bgColor = "#${base00}"
+          , fgColor = "#${base05}"
           , alpha = 255
           , position = Top
           , textOffset = -1
@@ -30,7 +31,7 @@ let
           , allDesktops = False
           , overrideRedirect = True
           , commands = [ Run Cpu ["-L","3","-H","50",
-                                  "--normal","${green}","--high","${red}"] 10
+                                  "--normal","#${green}","--high","#${red}"] 10
                         , Run Memory ["-t","Mem: <usedratio>%"] 10
                         , Run Swap [] 10
                         , Run Date "%a %b %d %Y %H:%M" "date" 10
@@ -63,8 +64,7 @@ in {
       alpha = 0;
       transparent = true;
       monitor = "primary";
-      tint =
-        builtins.replaceStrings [ "#" ] [ "0xff" ] config.colors.background;
+      tint = "0xff${config.lib.stylix.base00}";
     };
   };
   xdg.configFile."xmobar/xmobarrc".text = makeConfig true;

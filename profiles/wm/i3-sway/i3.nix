@@ -2,6 +2,7 @@
 let common = import ./common.nix { inherit pkgs config; };
 in {
   imports = [ ../picom.nix ../dunst.nix ];
+  stylix.targets.i3.enable = true;
   xsession.windowManager.i3 = {
     enable = true;
     config = let inherit (common.config) modifier;

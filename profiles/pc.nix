@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   imports = [ ./common.nix ];
-  colors = import ./gui/colors/nord.nix;
   home.packages = with pkgs; [
     discord
     firefox
@@ -33,7 +32,7 @@
     protonup-qt
   ];
   home.sessionVariables = { BROWSER = "firefox"; };
-  gtk.enable = false;
+  stylix.targets.gtk.enable = false;
   qt.enable = false;
   gui.thermal-zone = 2;
   services.network-manager-applet.enable = false;

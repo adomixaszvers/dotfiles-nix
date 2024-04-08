@@ -1,6 +1,4 @@
-{ pkgs, config, ... }:
-let inherit (config) colors;
-in {
+{ pkgs, config, ... }: {
   home.packages = with pkgs; [ dunst ];
   services.dunst = {
     enable = true;
@@ -17,7 +15,6 @@ in {
         browser = "${pkgs.xdg-utils}/bin/xdg-open";
         dmenu = "${config.programs.rofi.finalPackage}/bin/rofi -dmenu -p dunst";
         follow = "keyboard";
-        font = "NotoMono Nerd Font 8";
         format = "<b>%s</b>\\n%b";
         geometry = "300x5-30+20";
         horizontal_padding = 8;
@@ -28,7 +25,6 @@ in {
         markup = "full";
         monitor = 0;
         padding = 8;
-        separator_color = "#585858";
         separator_height = 2;
         show_age_threshold = 60;
         sort = true;
@@ -39,25 +35,11 @@ in {
         icon_position = "left";
         max_icon_size = "32";
       };
-      frame = {
-        width = 1;
-        color = colors.foreground;
-      };
-      urgency_low = {
-        background = colors.black;
-        foreground = colors.white;
-        timeout = 10;
-      };
-      urgency_normal = {
-        inherit (colors) background;
-        foreground = colors.whiteb;
-        timeout = 60;
-      };
-      urgency_critical = {
-        background = colors.red;
-        foreground = colors.whiteb;
-        timeout = 0;
-      };
+      frame = { width = 1; };
+      urgency_low = { timeout = 10; };
+      urgency_normal = { timeout = 60; };
+      urgency_critical = { timeout = 0; };
     };
   };
+  stylix.targets.dunst.enable = true;
 }

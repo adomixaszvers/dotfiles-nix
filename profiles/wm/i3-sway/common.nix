@@ -19,37 +19,6 @@ in {
     workspace10 = "10";
   in {
     bars = [ ];
-    colors = with config.colors; {
-      background = black;
-      focused = {
-        inherit background;
-        border = background;
-        text = whiteb;
-        indicator = blackb;
-        childBorder = cyan;
-      };
-      unfocused = {
-        background = black;
-        border = black;
-        text = white;
-        indicator = blackb;
-        childBorder = blackb;
-      };
-      focusedInactive = {
-        background = black;
-        border = black;
-        text = white;
-        indicator = blackb;
-        childBorder = blackb;
-      };
-      urgent = {
-        background = redb;
-        border = redb;
-        text = black;
-        indicator = redb;
-        childBorder = redb;
-      };
-    };
     fonts = {
       names = [ "NotoMono Nerd Font" ];
       size = 8.0;
