@@ -7,8 +7,8 @@ let
     custom-foreground = base05;
     custom-background-dark = base00;
     custom-background-light = base01;
-    custom-primary = bright-cyan;
-    custom-warn = bright-red;
+    custom-primary = base0C;
+    custom-warn = base08;
   });
   module = icon: other:
     {
