@@ -17,7 +17,6 @@ let
             };
           }
           inputs.nix-index-database.hmModules.nix-index
-          inputs.stylix.homeManagerModules.stylix
           configuration
         ];
         extraSpecialArgs = {

@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, inputs, ... }: {
+  imports = [ inputs.stylix.homeManagerModules.stylix ];
   stylix = {
     autoEnable = false;
     image = pkgs.fetchurl {
