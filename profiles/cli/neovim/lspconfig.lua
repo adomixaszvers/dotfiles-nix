@@ -28,7 +28,10 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
 end
 
+local cmp_lsp = require("cmp_nvim_lsp")
+
 nvim_lsp.lua_ls.setup {
+  capabilities = cmp_lsp.default_capabilities(),
   on_attach = on_attach,
   flags = {
     debounce_text_changes = 150,
@@ -62,6 +65,7 @@ nvim_lsp.lua_ls.setup {
 local servers = { 'hls', 'pylsp', 'rust_analyzer', }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
+    capabilities = cmp_lsp.default_capabilities(),
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
