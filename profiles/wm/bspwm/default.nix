@@ -1,6 +1,6 @@
 { pkgs, myPkgs, config, ... }: {
   imports = [ ../polybar.nix ../dunst.nix ../picom.nix ./sxhkd.nix ];
-  home.packages = (with pkgs; [ tdrop wmname ])
+  home.packages = (with pkgs; [ pamixer tdrop wmname ])
     ++ (with myPkgs; [ bspwm-reorder-desktops bspwm-greedy-focus ]);
   services.polybar.config = let
     common = {
@@ -10,8 +10,7 @@
   in {
     "bar/top" = common;
     "bar/top-extra" = common;
-    "module/bspwm" = let inherit (config) colors;
-    in {
+    "module/bspwm" = {
       type = "internal/bspwm";
       pin-workspaces = true;
       enable-click = false;
@@ -24,7 +23,7 @@
       label-occupied = "%name%";
 
       label-empty = "%name%";
-      label-empty-foreground = colors.cyanb;
+      label-empty-foreground = config.lib.stylix.colors.base0C;
 
       label-separator = " ";
 

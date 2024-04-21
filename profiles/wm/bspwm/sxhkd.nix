@@ -26,9 +26,9 @@
       "super + shift + d" = "rofi -show run -sidebar-mode";
 
       # music hotkeys
-      "super + F5" = "playerctl play-pause";
-      "super + F6" = "playerctl previous";
-      "super + F7" = "playerctl next";
+      "{XF86AudioPlay,XF86AudioPrev,XF86AudioNext}" =
+        "playerctl {play-pause,previous,next}";
+      "super + {F5,F6,F7}" = "playerctl {play-pause,previous,next}";
 
       # dunst
       "super + {_,shift + } + F9" = "dunstctl close{_,-all}";
@@ -46,7 +46,7 @@
       #
 
       # quit bspwm normally
-      "super + alt + Escape" = "bspc quit";
+      "super + shift + c" = "bspc quit";
 
       # close and kill
       "super + {shift,ctrl} + q" = "bspc node -{c,k}";
@@ -145,6 +145,15 @@
 
       # move a floating window
       "super + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}";
+
+      # volume controls
+      "{XF86AudioMute,XF86AudioLowerVolume,XF86AudioRaiseVolume}" =
+        "pamixer {-t,-d 5,-i 5}";
+      "super + {minus,equal,zcaron}" = "pamixer {-d 5,-i 5,-i 5}";
+
+      # brightness controls
+      "{XF86MonBrightnessDown,XF86MonBrightnessUp}" =
+        "brightnessctl set {5%-,5%+}";
     };
   };
 }

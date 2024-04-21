@@ -19,7 +19,8 @@
       neovim = pkgs.callPackage ../profiles/cli/neovim/package.nix { };
       restart-eww = pkgs.callPackage ./restart-eww.nix { };
       rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
-      sxhkd = pkgs.sxhkd.overrideAttrs (_: { patches = [ ./sxhkd.patch ]; });
+      sxhkd = pkgs.sxhkd.overrideAttrs
+        (old: { patches = old.patches ++ [ ./sxhkd.patch ]; });
       sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
       toggle-touchpad = pkgs.callPackage ./toggle-touchpad.nix { };
       tail-volume = pkgs.callPackage ./tail-volume { };
