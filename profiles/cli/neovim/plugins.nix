@@ -3,7 +3,8 @@ with pkgs.vimPlugins;
 let
   telescope-dependencies =
     [ plenary-nvim telescope-nvim telescope-fzf-native-nvim ];
-  cmp-dependencies = [ cmp-nvim-lsp cmp-buffer cmp-path cmp-cmdline nvim-cmp ];
+  cmp-dependencies =
+    [ cmp-nvim-lsp cmp-buffer cmp-path cmp-cmdline nvim-cmp vim-vsnip ];
 in [
   ale
   commentary
