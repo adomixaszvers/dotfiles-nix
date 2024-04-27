@@ -21,7 +21,10 @@
     };
     includes = [{
       condition = "gitdir:~/.config/nixpkgs/";
-      contents.rebase.autoStash = "true";
+      contents.rebase = {
+        autoStash = "true";
+        autoSquash = "true";
+      };
     }];
   };
 }
