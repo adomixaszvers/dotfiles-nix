@@ -68,31 +68,33 @@ nvim_lsp.lua_ls.setup {
   },
 }
 
-nvim_lsp.nixd.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  settings = {
-    nixd = {
-      nixpkgs = {
-        expr = 'import (builtins.getFlake ("git+file://" + toString ./.)).inputs.nixpkgs { }',
-      },
-      formatting = {
-        command = { "nixfmt" },
-      },
-      options = {
-        nixos = {
-          expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.adomo-t14.options',
+if vim.fn.executable('nixd') == 1 then
+  nvim_lsp.nixd.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    settings = {
+      nixd = {
+        nixpkgs = {
+          expr = 'import (builtins.getFlake ("git+file://" + toString ./.)).inputs.nixpkgs { }',
         },
-        home_manager = {
-          expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations.t14.options',
+        formatting = {
+          command = { "nixfmt" },
         },
-      },
+        options = {
+          nixos = {
+            expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.adomo-t14.options',
+          },
+          home_manager = {
+            expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations.t14.options',
+          },
+        },
+      }
     }
   }
-}
+end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
