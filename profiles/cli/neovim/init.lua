@@ -48,10 +48,20 @@ end
 
 if vim.env.TERM ~= "linux" then
     vim.cmd('colorscheme nordic')
-    vim.g.airline_powerline_fonts = 1
+    require('lualine').setup({
+        options = {
+            -- disabling section separators fixes
+            -- the disappearing start screen issue
+            section_separators = '',
+        },
+        sections = {
+            lualine_x = {
+                { "require('lsp-status').status()", 'location' },
+            }
+        }
+    })
 else
     vim.cmd('colorscheme solarized')
-    vim.g.airline_symbols_ascii = 1
     vim.g.guicursor = ''
 end
 

@@ -10,7 +10,10 @@ in [
   commentary
   direnv-vim
   fugitive
+  lsp-status-nvim
+  lualine-nvim
   neoformat
+  nvim-web-devicons
   nordic-nvim
   {
     plugin = nvim-treesitter.withAllGrammars;
@@ -29,8 +32,6 @@ in [
   solarized
   suda-vim
   surround
-  vim-airline
-  vim-airline-themes
   vim-gitgutter
   vim-polyglot
   vim-sneak
