@@ -129,6 +129,7 @@
       enable = true;
       interval = "monthly";
     };
+    logind.lidSwitchExternalPower = "ignore";
     openssh = {
       enable = true;
       extraConfig = ''
