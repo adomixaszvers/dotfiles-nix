@@ -1,4 +1,4 @@
-{ pkgs, lib, myPkgs, config, inputs, ... }: {
+{ pkgs, unstable, lib, myPkgs, config, inputs, ... }: {
   imports = [ ./common.nix ./wm/xrdp.nix ];
   gui.thermal-zone = 1;
   home = {
@@ -15,6 +15,7 @@
         }) { };
       "jdks/openjdk11".source = pkgs.openjdk11;
       "jdks/openjdk17".source = pkgs.openjdk17;
+      "jdks/openjdk21".source = pkgs.openjdk21;
       "nodejs/latest".source = pkgs.nodejs_latest;
       "nodejs/18".source = pkgs.nodejs-18_x;
       "maven".source = pkgs.maven;
@@ -32,6 +33,7 @@
       docker-compose
       docker-credential-helpers
       dos2unix
+      myPkgs.eclipse-activiti
       evince
       filezilla
       gimp
@@ -39,11 +41,9 @@
       libsecret
       cinnamon.nemo
       gnumake
-      (google-chrome.override {
-        commandLineArgs = "--ozone-platform-hint=auto";
-      })
+      google-chrome
       html-tidy
-      jetbrains.idea-ultimate
+      unstable.jetbrains.idea-ultimate
       jmeter
       jq
       keepassxc
