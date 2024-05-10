@@ -1,5 +1,7 @@
 { config, lib, ... }: {
-  systemd.user.services.picom.Service.Type = "forking";
+  systemd.user.services = lib.optionalAttrs config.services.picom.enable {
+    picom.Service.Type = "forking";
+  };
   services.picom = {
     enable = lib.mkDefault config.xsession.enable;
     extraArgs = [ "--daemon" ];
