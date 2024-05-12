@@ -1,10 +1,10 @@
 vim.g.mapleader = " "
 
 -- Tab specific options
-vim.o.tabstop = 8 -- A tab is 8 spaces
-vim.o.expandtab = true -- Always uses spaces instead of tabs
-vim.o.softtabstop = 4 -- Insert 4 spaces when tab is pressed
-vim.o.shiftwidth = 4 -- An indent is 4 spaces
+vim.o.tabstop = 8       -- A tab is 8 spaces
+vim.o.expandtab = true  -- Always uses spaces instead of tabs
+vim.o.softtabstop = 4   -- Insert 4 spaces when tab is pressed
+vim.o.shiftwidth = 4    -- An indent is 4 spaces
 vim.o.shiftround = true -- Round indent to nearest shiftwidth multiple
 
 vim.o.number = true
@@ -22,7 +22,7 @@ vim.o.mouse = '';
 vim.g.rainbow_active = 1
 
 do
-    local opts = { noremap=true, silent=true }
+    local opts = { noremap = true, silent = true }
     vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope find_files<cr>', opts)
     vim.keymap.set('n', '<leader>/', '<cmd>Telescope live_grep<cr>', opts)
     vim.keymap.set('n', "<leader>'", '<cmd>Telescope resume<cr>', opts)
@@ -48,17 +48,24 @@ end
 
 if vim.env.TERM ~= "linux" then
     vim.cmd('colorscheme nordic')
+    local sections
+    local has_lsp_status = pcall(require, 'lsp-status')
+    if has_lsp_status then
+        sections = {
+            lualine_x = {
+                { "require('lsp-status').status()", 'location' },
+            }
+        }
+    else
+        sections = {}
+    end
     require('lualine').setup({
         options = {
             -- disabling section separators fixes
             -- the disappearing start screen issue
             section_separators = '',
         },
-        sections = {
-            lualine_x = {
-                { "require('lsp-status').status()", 'location' },
-            }
-        }
+        sections = sections
     })
 else
     vim.cmd('colorscheme solarized')

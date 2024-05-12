@@ -44,6 +44,7 @@
       kaknix = pkgs.callPackage ./kaknix.nix { };
       maimpick = pkgs.callPackage ./maimpick.nix { };
       neovim = pkgs.callPackage ../profiles/cli/neovim/package.nix { };
+      neovim-nix = pkgs.callPackage ../profiles/cli/neovim/nvim-nix.nix { };
       restart-eww = pkgs.callPackage ./restart-eww.nix { };
       rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
       sxhkd = pkgs.sxhkd.overrideAttrs
