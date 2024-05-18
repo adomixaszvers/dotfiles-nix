@@ -130,10 +130,11 @@ in {
         }
       ];
     };
-    extraSessionCommands = ''
-      export MOZ_ENABLE_WAYLAND=1
-      export _JAVA_AWT_WM_NONREPARENTING=1
-    '';
+    extraSessionCommands = # bash
+      ''
+        export MOZ_ENABLE_WAYLAND=1
+        export _JAVA_AWT_WM_NONREPARENTING=1
+      '';
     wrapperFeatures.gtk = true;
   };
 }

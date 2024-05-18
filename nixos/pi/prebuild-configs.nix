@@ -6,6 +6,7 @@
       script = let
         nix = config.nix.package;
         flakeRef = "github:adomixaszvers/dotfiles-nix/update_flake_lock_action";
+        # bash
       in ''
         PATH=${lib.makeBinPath [ nix ]}:$PATH
         nix flake archive --refresh '${flakeRef}'

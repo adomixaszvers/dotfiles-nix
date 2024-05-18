@@ -37,10 +37,11 @@ let
     withNode = false;
     withRuby = false;
     configure = moduleConfigure;
-    customRC = ''
-      luafile ${./nvim-treesitter.lua}
-      luafile ${./init.lua}
-    '';
+    customRC = # vim
+      ''
+        luafile ${./nvim-treesitter.lua}
+        luafile ${./init.lua}
+      '';
   };
   extraWrapperArgs = let extraPackages = [ nixfmt ripgrep deadnix statix ];
   in ''--suffix PATH : "${lib.makeBinPath extraPackages}"'';

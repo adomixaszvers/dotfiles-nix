@@ -1,3 +1,4 @@
+# vim
 ''
   luafile ${./nvim-treesitter.lua}
   luafile ${./lspconfig.lua}

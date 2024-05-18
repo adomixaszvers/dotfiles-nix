@@ -69,10 +69,11 @@
     # enable = true;
     inactiveInterval = 60;
   };
-  xsession.initExtra = ''
-    xset s off -dpms
-    xrandr --output eDP --set TearFree on
-  '';
+  xsession.initExtra = # bash
+    ''
+      xset s off -dpms
+      xrandr --output eDP --set TearFree on
+    '';
   wayland.windowManager.hyprland.settings.monitor =
     [ "eDP-1,1920x1080,0x0,1.25" ];
   wayland.windowManager.sway = {

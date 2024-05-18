@@ -26,10 +26,11 @@
   };
   xsession = {
     enable = lib.mkDefault true;
-    initExtra = ''
-      autorandr --change
-      dbus-update-activation-environment --systemd DISPLAY
-    '';
+    initExtra = # bash
+      ''
+        autorandr --change
+        dbus-update-activation-environment --systemd DISPLAY
+      '';
     numlock.enable = true;
   };
   home.pointerCursor = {

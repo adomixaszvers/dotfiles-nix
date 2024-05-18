@@ -37,8 +37,9 @@
   gui.thermal-zone = 2;
   services.network-manager-applet.enable = false;
   services.udiskie.enable = false;
-  xsession.initExtra = ''
-    xset s off -dpms
-    xrandr --output eDP --set TearFree on
-  '';
+  xsession.initExtra = # bash
+    ''
+      xset s off -dpms
+      xrandr --output eDP --set TearFree on
+    '';
 }

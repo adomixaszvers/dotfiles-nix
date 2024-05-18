@@ -44,63 +44,64 @@
   stylix.targets.bspwm.enable = true;
   xsession.windowManager.bspwm = {
     enable = true;
-    extraConfig = ''
-      wmname LG3D
+    extraConfig = # bash
+      ''
+        wmname LG3D
 
-      declare -i last_called=0
-      declare -i throttle_by=2
+        declare -i last_called=0
+        declare -i throttle_by=2
 
-      throttle() {
-        local -i now=$SECONDS
-        if ((now - last_called >= throttle_by))
-        then
-          "$@"
-        fi
-        last_called=$SECONDS
-      }
+        throttle() {
+          local -i now=$SECONDS
+          if ((now - last_called >= throttle_by))
+          then
+            "$@"
+          fi
+          last_called=$SECONDS
+        }
 
-      refresh () {
-        feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png
-        systemctl --user restart polybar.service
-      }
+        refresh () {
+          feh --bg-max --image-bg white --no-fehbg ~/wallpaper.png
+          systemctl --user restart polybar.service
+        }
 
-      init_desktops () {
-        # xrandr outputs a heading
-        local monitors=($(xrandr --listactivemonitors| awk 'NR!=1 { print $4 }' ))
+        init_desktops () {
+          # xrandr outputs a heading
+          local monitors=($(xrandr --listactivemonitors| awk 'NR!=1 { print $4 }' ))
 
-        case "''${#monitors[@]}" in
-          2)
-            bspc monitor ''${monitors[0]} -d 1 2 3 4 5
-            bspc monitor ''${monitors[1]} -d 6 7 8 9 10
-            ;;
-          3)
-            bspc monitor ''${monitors[0]} -d 1 2 3 4
-            bspc monitor ''${monitors[1]} -d 5 6 7
-            bspc monitor ''${monitors[2]} -d 8 9 10
-            ;;
-          *)
-            bspc monitor ''${monitors[0]} -d 1 2 3 4 5 6 7 8 9 10
-            ;;
-        esac
-      }
+          case "''${#monitors[@]}" in
+            2)
+              bspc monitor ''${monitors[0]} -d 1 2 3 4 5
+              bspc monitor ''${monitors[1]} -d 6 7 8 9 10
+              ;;
+            3)
+              bspc monitor ''${monitors[0]} -d 1 2 3 4
+              bspc monitor ''${monitors[1]} -d 5 6 7
+              bspc monitor ''${monitors[2]} -d 8 9 10
+              ;;
+            *)
+              bspc monitor ''${monitors[0]} -d 1 2 3 4 5 6 7 8 9 10
+              ;;
+          esac
+        }
 
-      init_desktops
-      refresh
+        init_desktops
+        refresh
 
-      bspc subscribe monitor_geometry | while read -r geometry_event; do
-        throttle refresh
-      done &
+        bspc subscribe monitor_geometry | while read -r geometry_event; do
+          throttle refresh
+        done &
 
-      bspc subscribe monitor_add | while read -r add_event; do
-        bspc desktop 'any.!active' -m "$( echo $add_event | awk '{ print $2 }')"
-        bspc desktop Desktop -r
-        bspwm-reorder-desktops
-      done &
+        bspc subscribe monitor_add | while read -r add_event; do
+          bspc desktop 'any.!active' -m "$( echo $add_event | awk '{ print $2 }')"
+          bspc desktop Desktop -r
+          bspwm-reorder-desktops
+        done &
 
-      bspc subscribe monitor_remove | while read -r remove_event; do
-        bspwm-reorder-desktops
-      done &
-    '';
+        bspc subscribe monitor_remove | while read -r remove_event; do
+          bspwm-reorder-desktops
+        done &
+      '';
     rules = {
       Google-chrome = { desktop = "1"; };
       firefox = { desktop = "1"; };

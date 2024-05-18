@@ -36,13 +36,14 @@ in {
     config = ./xmonad.hs;
     inherit haskellPackages;
     libFiles = {
-      "Colors.hs" = pkgs.writeText "Colors.hs" ''
-        module Colors where
+      "Colors.hs" = pkgs.writeText "Colors.hs" # haskell
+        ''
+          module Colors where
 
-        white, cyan :: String
-        white = "#${config.lib.stylix.colors.base00}"
-        cyan = "#${config.lib.stylix.colors.cyan}"
-      '';
+          white, cyan :: String
+          white = "#${config.lib.stylix.colors.base00}"
+          cyan = "#${config.lib.stylix.colors.cyan}"
+        '';
     };
   };
 }

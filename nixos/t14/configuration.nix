@@ -40,9 +40,10 @@
   };
   # it fails on zfs
   systemd.generators = { systemd-gpt-auto-generator = "/dev/null"; };
-  powerManagement.resumeCommands = ''
-    /run/current-system/sw/bin/bluetoothctl discoverable on
-  '';
+  powerManagement.resumeCommands = # bash
+    ''
+      /run/current-system/sw/bin/bluetoothctl discoverable on
+    '';
   console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
   hardware = {
     bluetooth.enable = true;
@@ -62,6 +63,9 @@
     domain = "lan";
     hostName = "adomo-t14"; # Define your hostname.
     hostId = "81046d10";
+    wireless.extraConfig = ''
+      p2p_disabled=1
+    '';
   };
 
   programs = {
@@ -92,10 +96,11 @@
         STOP_CHARGE_THRESH_BAT0 = 80;
       };
     };
-    udev.extraRules = ''
-      # Lenovo Lenovo Essential Wireless Keyboard and Mouse Combo
-      ACTION=="add", SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="60a9", ATTR{power/wakeup}="disabled"
-    '';
+    udev.extraRules = # udev
+      ''
+        # Lenovo Lenovo Essential Wireless Keyboard and Mouse Combo
+        ACTION=="add", SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="60a9", ATTR{power/wakeup}="disabled"
+      '';
 
     zfs = {
       autoScrub = {

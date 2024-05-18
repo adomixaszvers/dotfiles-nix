@@ -13,8 +13,9 @@
     }];
     distributedBuilds = true;
     # optional, useful when the builder has a faster internet connection than yours
-    extraOptions = ''
-      builders-use-substitutes = true
-    '';
+    extraOptions = # ini
+      ''
+        builders-use-substitutes = true
+      '';
   };
 }

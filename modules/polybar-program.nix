@@ -68,9 +68,10 @@ in {
     home.packages = [ cfg.package ];
     xdg.configFile."polybar/config.ini" = mkIf (configFile != null) {
       source = configFile;
-      onChange = ''
-        ${pkgs.procps}/bin/pkill -USR1 -u $USER .polybar-wrappe || true
-      '';
+      onChange = # bash
+        ''
+          ${pkgs.procps}/bin/pkill -USR1 -u $USER .polybar-wrappe || true
+        '';
 
     };
   };

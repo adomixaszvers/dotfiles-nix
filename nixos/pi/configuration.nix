@@ -106,9 +106,10 @@
       enable = true;
       settings.PasswordAuthentication = false;
     };
-    udev.extraRules = ''
-      SUBSYSTEM=="vchiq",KERNEL=="vchiq",GROUP="video",MODE="0660"
-    '';
+    udev.extraRules = # udev
+      ''
+        SUBSYSTEM=="vchiq",KERNEL=="vchiq",GROUP="video",MODE="0660"
+      '';
   };
   virtualisation.podman.enable = true;
   virtualisation.oci-containers.backend = "podman";

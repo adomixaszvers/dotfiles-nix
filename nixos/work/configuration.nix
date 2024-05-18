@@ -61,28 +61,29 @@
       dns = "dnsmasq";
       dispatcherScripts = [{
         type = "basic";
-        source = pkgs.writeText "wifi-wired-exclusive" ''
-          export LC_ALL=C
-          PATH=${lib.makeBinPath [ pkgs.networkmanager ]}:$PATH
+        source = pkgs.writeText "wifi-wired-exclusive" # bash
+          ''
+            export LC_ALL=C
+            PATH=${lib.makeBinPath [ pkgs.networkmanager ]}:$PATH
 
-          enable_disable_wifi ()
-          {
-              result=$(nmcli dev | grep "ethernet" | grep -w "connected")
-              if [ -n "$result" ]; then
-                  nmcli radio wifi off
-              else
-                  nmcli radio wifi on
-              fi
-          }
+            enable_disable_wifi ()
+            {
+                result=$(nmcli dev | grep "ethernet" | grep -w "connected")
+                if [ -n "$result" ]; then
+                    nmcli radio wifi off
+                else
+                    nmcli radio wifi on
+                fi
+            }
 
-          if [ "$2" = "up" ]; then
-              enable_disable_wifi
-          fi
+            if [ "$2" = "up" ]; then
+                enable_disable_wifi
+            fi
 
-          if [ "$2" = "down" ]; then
-              enable_disable_wifi
-          fi
-        '';
+            if [ "$2" = "down" ]; then
+                enable_disable_wifi
+            fi
+          '';
       }];
     };
   };
@@ -93,12 +94,13 @@
   };
 
   environment = {
-    etc."NetworkManager/dnsmasq.d/wireguard".text = ''
-      addn-hosts=/etc/hosts
-      address=/wg.beastade.top/10.6.0.1
-      server=/wg/10.6.0.1
-      rev-server=10.6.0.0/24,10.6.0.1
-    '';
+    etc."NetworkManager/dnsmasq.d/wireguard".text = # ini
+      ''
+        addn-hosts=/etc/hosts
+        address=/wg.beastade.top/10.6.0.1
+        server=/wg/10.6.0.1
+        rev-server=10.6.0.0/24,10.6.0.1
+      '';
     systemPackages = with pkgs; [ wget vim ];
   };
 

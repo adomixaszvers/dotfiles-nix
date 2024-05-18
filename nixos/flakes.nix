@@ -1,7 +1,8 @@
 {
   nix = {
-    extraOptions = ''
-      experimental-features = nix-command flakes repl-flake
-    '';
+    extraOptions = # ini
+      ''
+        experimental-features = nix-command flakes repl-flake
+      '';
   };
 }

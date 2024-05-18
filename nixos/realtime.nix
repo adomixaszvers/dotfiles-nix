@@ -4,9 +4,10 @@
     users.adomas.extraGroups = [ "realtime" ];
     groups.realtime = { };
   };
-  services.udev.extraRules = ''
-    KERNEL=="cpu_dma_latency", GROUP="realtime"
-  '';
+  services.udev.extraRules = # udev
+    ''
+      KERNEL=="cpu_dma_latency", GROUP="realtime"
+    '';
   security.pam.loginLimits = [
     {
       domain = "@realtime";

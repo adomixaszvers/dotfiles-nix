@@ -91,18 +91,20 @@
   programs = {
     autorandr = {
       hooks = {
-        preswitch.set-dpi = ''
-          if [ "$AUTORANDR_CURRENT_PROFILE" = work-single ]; then
-            DPI=120
-          else
-            DPI=96
-          fi
-          echo "Xft.dpi: $DPI"| ${pkgs.xorg.xrdb}/bin/xrdb -merge
-        '';
+        preswitch.set-dpi = # bash
+          ''
+            if [ "$AUTORANDR_CURRENT_PROFILE" = work-single ]; then
+              DPI=120
+            else
+              DPI=96
+            fi
+            echo "Xft.dpi: $DPI"| ${pkgs.xorg.xrdb}/bin/xrdb -merge
+          '';
         postswitch = {
           restart-picom = "systemctl --user restart picom.service";
-          notify = ''
-            ${pkgs.libnotify}/bin/notify-send -i display "Display profile" "$AUTORANDR_CURRENT_PROFILE"'';
+          notify = # bash
+            ''
+              ${pkgs.libnotify}/bin/notify-send -i display "Display profile" "$AUTORANDR_CURRENT_PROFILE"'';
         };
       };
       profiles = let
@@ -320,9 +322,10 @@
   }];
 
   xsession.windowManager.bspwm = {
-    extraConfig = ''
-      bspc desktop 3 -l monocle
-    '';
+    extraConfig = # bash
+      ''
+        bspc desktop 3 -l monocle
+      '';
   };
   xdg.configFile."mimeapps.list".force = true;
   xdg.mimeApps = {
