@@ -12,7 +12,7 @@ let
       lualine-nvim
       neoformat
       nordic-nvim
-      (nvim-treesitter.withPlugins (p: [ p.bash p.nix ]))
+      (nvim-treesitter.withPlugins (p: with p; [ bash c lua nix vim ]))
       repeat
       suda-vim
       surround
