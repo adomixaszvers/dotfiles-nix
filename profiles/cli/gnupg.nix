@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   programs.gpg = {
     enable = true;
     settings.keyserver = "keyserver.ubuntu.com";
@@ -9,7 +9,7 @@
   };
   services.gpg-agent = {
     enable = lib.mkDefault true;
-    pinentryFlavor = "gtk2";
+    pinentryPackage = pkgs.pinentry-gtk2;
     enableSshSupport = true;
     enableExtraSocket = true;
   };
