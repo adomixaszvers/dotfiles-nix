@@ -1,6 +1,6 @@
 {
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "lt,us";
-    xkbOptions = "grp:caps_toggle";
+    options = "grp:caps_toggle";
   };
 }

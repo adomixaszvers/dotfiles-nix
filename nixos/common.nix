@@ -100,13 +100,18 @@
     udisks2.enable = true;
   };
 
-  services.xserver = {
-    enable = true;
-    exportConfiguration = true;
-    layout = "lt,us";
-    desktopManager.xterm.enable = true;
-    displayManager.startx.enable = lib.mkDefault true;
-    libinput.mouse.middleEmulation = lib.mkDefault false;
+  services = {
+    xserver = {
+      enable = true;
+      exportConfiguration = true;
+      xkb.layout = "lt,us";
+      desktopManager.xterm.enable = true;
+      displayManager.startx.enable = lib.mkDefault true;
+    };
+    libinput = {
+      enable = true;
+      mouse.middleEmulation = lib.mkDefault false;
+    };
   };
 
   time.timeZone = "Europe/Vilnius";

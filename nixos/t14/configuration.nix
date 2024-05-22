@@ -153,7 +153,6 @@
     config.sops.secrets."root/password".path;
 
   services = {
-    xserver.libinput.enable = true;
     thinkfan = {
       sensors = [
         {

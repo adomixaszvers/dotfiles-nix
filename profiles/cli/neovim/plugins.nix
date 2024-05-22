@@ -30,7 +30,7 @@ in [
   rainbow
   repeat
   solarized
-  suda-vim
+  vim-suda
   surround
   vim-gitgutter
   vim-polyglot
