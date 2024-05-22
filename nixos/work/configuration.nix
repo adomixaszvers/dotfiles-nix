@@ -19,6 +19,7 @@
     ./dante.nix
     ./hardware-configuration.nix
     ./iperf3.nix
+    ./kerberos.nix
     ./ltXkb.nix
     ./prebuild-configs.nix
     ./samba.nix
