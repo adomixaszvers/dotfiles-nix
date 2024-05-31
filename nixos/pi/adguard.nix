@@ -29,7 +29,9 @@
       dns = {
         bind_hosts = [ "10.6.0.1" "192.168.1.207" ];
         blocked_response_ttl = 7200;
+        ratelimit = 0;
         upstream_dns = [ "9.9.9.9" "149.112.112.112" "[/lan/]192.168.1.254" ];
+        aaaa_disabled = true;
         local_ptr_upstreams = [ "192.168.1.254" ];
         rewrites = [
           {
