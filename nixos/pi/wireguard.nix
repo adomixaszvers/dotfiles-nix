@@ -19,6 +19,7 @@
       ../common-secrets/wireguard.yaml;
   };
   networking = {
+    nat.enable = true;
     firewall.interfaces.eth0 = {
       allowedTCPPorts = [ 51820 ];
       allowedUDPPorts = [ 51820 ];
