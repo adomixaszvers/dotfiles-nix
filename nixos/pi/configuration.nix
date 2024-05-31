@@ -7,7 +7,7 @@
     ./acme.nix
     # ./dns.nix
     ./adguard.nix
-    ./vpn.nix
+    # ./vpn.nix
     # ./fail2ban.nix
     ./nginx.nix
     ./static-ip.nix
