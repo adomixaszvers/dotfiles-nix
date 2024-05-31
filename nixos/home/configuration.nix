@@ -137,8 +137,6 @@
   users.users.root.hashedPasswordFile =
     config.sops.secrets."root/password".path;
 
-  services.xserver.libinput.enable = true;
-
   virtualisation = { libvirtd.enable = true; };
 
   system.stateVersion = "22.05"; # Did you read the comment?

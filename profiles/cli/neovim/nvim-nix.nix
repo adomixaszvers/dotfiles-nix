@@ -14,7 +14,7 @@ let
       nordic-nvim
       (nvim-treesitter.withPlugins (p: with p; [ bash c lua nix vim ]))
       repeat
-      suda-vim
+      vim-suda
       surround
       vim-gitgutter
       vim-polyglot

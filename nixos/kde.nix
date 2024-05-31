@@ -1,15 +1,15 @@
 { pkgs, ... }: {
   programs.ssh.askPassword =
-    "${pkgs.plasma5Packages.ksshaskpass.out}/bin/ksshaskpass";
-  services.xserver = {
+    "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
+  services = {
     displayManager = {
       sddm = {
         enable = true;
         autoNumlock = true;
       };
-      defaultSession = "plasmawayland";
+      defaultSession = "plasma";
     };
-    desktopManager.plasma5.enable = true;
+    desktopManager.plasma6.enable = true;
   };
   security.pam.services.kde.enableGnomeKeyring = true;
 }

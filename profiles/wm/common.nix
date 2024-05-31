@@ -15,7 +15,7 @@
   };
   qt = {
     enable = lib.mkDefault true;
-    platformTheme = "gtk";
+    platformTheme.name = "gtk";
   };
   services.network-manager-applet.enable = lib.mkDefault true;
   services.udiskie = {

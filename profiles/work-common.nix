@@ -29,7 +29,7 @@
       bless
       brave
       brightnessctl
-      dbeaver
+      dbeaver-bin
       docker-compose
       docker-credential-helpers
       dos2unix

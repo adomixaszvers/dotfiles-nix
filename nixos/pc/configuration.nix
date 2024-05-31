@@ -56,7 +56,6 @@
   programs = {
     gamescope.args = [ "--adaptive-sync" "-W 1920 -H 1080" ];
     # nix flake check doesn't complain but nixos-rebuild does
-    ssh.askPassword = "${pkgs.plasma5Packages.ksshaskpass.out}/bin/ksshaskpass";
   };
 
   services = {

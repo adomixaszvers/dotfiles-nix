@@ -58,10 +58,7 @@
       historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
     };
     broot.enable = true;
-    eza = {
-      enable = true;
-      enableAliases = true;
-    };
+    eza.enable = true;
     fzf = {
       changeDirWidgetCommand = "bfs -type d";
       defaultCommand = "fd --type f";

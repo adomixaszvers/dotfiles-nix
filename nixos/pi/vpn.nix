@@ -54,6 +54,7 @@
       systemd.services.vpnc = {
         enable = true;
         after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
         requires = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {

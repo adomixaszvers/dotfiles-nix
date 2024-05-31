@@ -1,11 +1,13 @@
 {
-  krb5 = {
+  security.krb5 = {
     enable = true;
-    libdefaults = {
-      default_realm = "X.INSOFT.LT";
-      default_ccache_name = "/home/%{username}/.cache/krb5cc";
+    settings = {
+      libdefaults = {
+        default_realm = "X.INSOFT.LT";
+        default_ccache_name = "/home/%{username}/.cache/krb5cc";
+      };
+      realms."X.INSOFT.LT".pkinit_anchors = "FILE:${./insoft-ca.crt}";
     };
-    realms."X.INSOFT.LT".pkinit_anchors = "FILE:${./insoft-ca.crt}";
   };
   programs = {
     chromium = {

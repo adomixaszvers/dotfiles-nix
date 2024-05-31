@@ -7,7 +7,7 @@
   home.packages = [ pkgs.pure-prompt ];
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     defaultKeymap = "viins";
     plugins = [{

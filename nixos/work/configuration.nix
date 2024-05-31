@@ -125,7 +125,6 @@
   services = {
     autorandr.enable = true;
     gnome.glib-networking.enable = true;
-    xserver.libinput.enable = true;
     gvfs.enable = true;
     flatpak = { enable = true; };
     fstrim = {
