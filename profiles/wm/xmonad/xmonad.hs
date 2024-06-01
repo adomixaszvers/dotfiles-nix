@@ -47,6 +47,7 @@ import XMonad.Hooks.StatusBar.PP
     ppWsSep,
     wrap,
   )
+import XMonad.Layout.FocusTracking (focusTracking)
 import XMonad.Layout.MultiToggle (Toggle (..), mkToggle1)
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
@@ -59,7 +60,6 @@ import XMonad.Layout.Spacing
   ( Border (..),
     spacingRaw,
   )
-import XMonad.Layout.TrackFloating (trackFloating)
 import XMonad.Prelude
 import XMonad.StackSet qualified as W
 import XMonad.Util.Loggers (Logger, logCurrentOnScreen, logLayoutOnScreen, logTitleOnScreen, shortenL, wrapL)
@@ -119,7 +119,7 @@ main = do
     tall = renamed [Replace "Tall"] tiled
     wide = renamed [Replace "Wide"] (Mirror tiled)
     myMainLayout = onWorkspace ws3 (Full ||| tall ||| wide) (mkToggle1 FULL $ tall ||| wide)
-    myLayoutHook = smartBorders . refocusLastLayoutHook . trackFloating $ myMainLayout
+    myLayoutHook = smartBorders . refocusLastLayoutHook . focusTracking $ myMainLayout
 
 myTerminal :: String
 myTerminal = "kitty"
