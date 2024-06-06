@@ -18,7 +18,6 @@
     # ./bitburner.nix
     ./dante.nix
     ./hardware-configuration.nix
-    ./iperf3.nix
     ./kerberos.nix
     ./ltXkb.nix
     ./prebuild-configs.nix
@@ -141,7 +140,7 @@
         PasswordAuthentication = false;
         X11Forwarding = true;
       };
-      ports = [ 9222 22 ];
+      ports = [ 22 ];
     };
     printing.enable = true;
     thinkfan.levels = [
