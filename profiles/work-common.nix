@@ -1,6 +1,7 @@
 { pkgs, unstable, lib, myPkgs, config, inputs, ... }: {
   imports = [ ./common.nix ./wm/xrdp.nix ./work/kerberos.nix ];
   gui.thermal-zone = 1;
+  stylix.enable = true;
   home = {
     file = {
       "jdks/openjdk8".source = pkgs.openjdk8;

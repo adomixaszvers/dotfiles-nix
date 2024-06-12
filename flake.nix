@@ -23,7 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
-      url = "github:danth/stylix/master";
+      url = "github:danth/stylix/release-24.05";
       inputs = {
         flake-compat.follows = "flake-compat";
         home-manager.follows = "home-manager";

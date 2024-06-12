@@ -7,6 +7,7 @@
   #   network-manager-applet.enable = false;
   #   udiskie.enable = false;
   # };
+  stylix.enable = true;
   xresources.properties = let dpi = 120;
   in {
     "Xft.dpi" = dpi;
