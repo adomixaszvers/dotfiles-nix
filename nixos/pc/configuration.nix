@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -25,6 +25,7 @@
     };
     supportedFilesystems = [ "zfs" ];
     # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_1;
     kernel.sysctl."vm.max_map_count" = 2147483642;
     zfs.requestEncryptionCredentials = false;
   };
@@ -33,6 +34,10 @@
     hostName = "adomo-pc-nixos"; # Define your hostname.
     hostId = "92b8e669";
     networkmanager.enable = true;
+  };
+
+  specialisation.latest-kernel.configuration = {
+    boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   };
 
   hardware = {
