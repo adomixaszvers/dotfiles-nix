@@ -5,6 +5,6 @@
     supportedFilesystems = [ "zfs" ];
   };
   environment.systemPackages = [ myPkgs.neovim ]
-    ++ (with pkgs; [ fd ripgrep nixfmt ]);
+    ++ (with pkgs; [ fd git ripgrep nixfmt ]);
   users.users.nixos.openssh.authorizedKeys.keyFiles = [ ../keys/yubikey.pub ];
 }
