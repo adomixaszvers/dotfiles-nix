@@ -79,6 +79,11 @@
       ];
     };
   };
+  systemd.services.NetworkManager-wait-online = {
+    serviceConfig = {
+      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+    };
+  };
 
   programs = {
     command-not-found.enable = true;
