@@ -71,7 +71,6 @@
   programs = {
     adb.enable = true;
     bash.enableCompletion = true;
-    gamescope.args = [ "--adaptive-sync" ];
     mosh.enable = true;
     ssh.startAgent = false;
   };
