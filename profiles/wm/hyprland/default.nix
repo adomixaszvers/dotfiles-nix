@@ -100,7 +100,7 @@
       decoration = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-        rounding = 10;
+        rounding = 5;
         blur = {
           enabled = true;
           size = 3;
@@ -114,22 +114,7 @@
         "col.shadow" = "rgba(1a1a1aee)";
       };
 
-      animations = {
-        enabled = true;
-
-        # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-
-        animation = [
-          "windows, 1, 7, myBezier   "
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default    "
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default       "
-          "workspaces, 1, 6, default "
-        ];
-      };
+      animations = { enabled = true; };
 
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
@@ -149,10 +134,6 @@
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
         workspace_swipe = false;
       };
-
-      # Example per-device config
-      # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-      "device:epic mouse V1" = { sensitivity = -0.5; };
 
       misc = {
         vrr = 1;
