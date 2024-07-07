@@ -35,6 +35,7 @@
       efi = { canTouchEfiVariables = true; };
       systemd-boot.enable = true;
     };
+    initrd.systemd.enable = true;
     supportedFilesystems = [ "zfs" ];
     zfs = { requestEncryptionCredentials = false; };
   };
