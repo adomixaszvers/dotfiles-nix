@@ -10,6 +10,7 @@ in [
   commentary
   direnv-vim
   fugitive
+  gitsigns-nvim
   lsp-status-nvim
   lualine-nvim
   neoformat
@@ -32,7 +33,6 @@ in [
   solarized
   vim-suda
   surround
-  vim-gitgutter
   vim-polyglot
   vim-sneak
   vim-unimpaired

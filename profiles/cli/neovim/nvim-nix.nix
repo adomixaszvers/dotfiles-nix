@@ -9,6 +9,7 @@ let
       ale
       commentary
       fugitive
+      gitsigns-nvim
       lualine-nvim
       neoformat
       nordic-nvim
@@ -16,7 +17,6 @@ let
       repeat
       vim-suda
       surround
-      vim-gitgutter
       vim-polyglot
       vim-sneak
       vim-unimpaired
