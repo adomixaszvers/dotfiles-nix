@@ -21,14 +21,6 @@
         package = pkgs.nerdfonts;
         name = "JetBrainsMono Nerd Font Mono";
       };
-      sansSerif = {
-        package = pkgs.nerdfonts;
-        name = "NotoSans Nerd Font";
-      };
-      serif = {
-        package = pkgs.nerdfonts;
-        name = "NotoSerif Nerd Font";
-      };
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
