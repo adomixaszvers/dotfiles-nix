@@ -57,7 +57,7 @@
     pulseaudio.support32Bit = true;
   };
 
-  environment.systemPackages = (with pkgs; [ nixfmt virt-manager ])
+  environment.systemPackages = (with pkgs; [ nixfmt-classic virt-manager ])
     ++ [ config.boot.kernelPackages.cpupower ];
 
   networking = {

@@ -95,7 +95,7 @@
     libraspberrypi
     lm_sensors
     neovim
-    nixfmt
+    nixfmt-classic
     wol
   ];
   networking = { hostName = "raspberrypi-nixos"; };

@@ -49,7 +49,7 @@
   systemd.generators = { systemd-gpt-auto-generator = "/dev/null"; };
 
   environment = {
-    systemPackages = with pkgs; [ nixfmt virt-manager ];
+    systemPackages = with pkgs; [ nixfmt-classic virt-manager ];
     variables.LIBVA_DRIVER_NAME = "i965";
   };
 
