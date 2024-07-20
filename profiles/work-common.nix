@@ -58,10 +58,12 @@
       nodePackages.pnpm
       numlockx
       openssl
+      oracle-instantclient
       playerctl
       # volatile versions
       # postman 
       remmina
+      rlwrap
       samba
       protonup
       soapui
