@@ -2,7 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   imports = [
     ../avahi.nix
     ../common.nix
@@ -32,15 +38,21 @@
     kernelParams = [ "nohibernate" ];
     kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
     loader = {
-      efi = { canTouchEfiVariables = true; };
+      efi = {
+        canTouchEfiVariables = true;
+      };
       systemd-boot.enable = true;
     };
     initrd.systemd.enable = true;
     supportedFilesystems = [ "zfs" ];
-    zfs = { requestEncryptionCredentials = false; };
+    zfs = {
+      requestEncryptionCredentials = false;
+    };
   };
   # it fails on zfs
-  systemd.generators = { systemd-gpt-auto-generator = "/dev/null"; };
+  systemd.generators = {
+    systemd-gpt-auto-generator = "/dev/null";
+  };
   powerManagement.resumeCommands = # bash
     ''
       /run/current-system/sw/bin/bluetoothctl discoverable on
@@ -57,7 +69,11 @@
     pulseaudio.support32Bit = true;
   };
 
-  environment.systemPackages = (with pkgs; [ nixfmt-rfc-style virt-manager ])
+  environment.systemPackages =
+    (with pkgs; [
+      nixfmt-rfc-style
+      virt-manager
+    ])
     ++ [ config.boot.kernelPackages.cpupower ];
 
   networking = {
@@ -144,13 +160,18 @@
   };
 
   users.users.adomas = {
-    openssh.authorizedKeys.keyFiles =
-      [ ../keys/juice_ed25519.pub ../keys/yubikey.pub ];
-    extraGroups = [ "docker" "libvirtd" "adbusers" ];
+    openssh.authorizedKeys.keyFiles = [
+      ../keys/juice_ed25519.pub
+      ../keys/yubikey.pub
+    ];
+    extraGroups = [
+      "docker"
+      "libvirtd"
+      "adbusers"
+    ];
     hashedPasswordFile = config.sops.secrets."adomas/password".path;
   };
-  users.users.root.hashedPasswordFile =
-    config.sops.secrets."root/password".path;
+  users.users.root.hashedPasswordFile = config.sops.secrets."root/password".path;
 
   services = {
     thinkfan = {

@@ -1,6 +1,8 @@
 { pkgs, ... }:
-let inherit (pkgs) xdg-desktop-portal-gtk;
-in {
+let
+  inherit (pkgs) xdg-desktop-portal-gtk;
+in
+{
   xdg.portal = {
     enable = true;
     config.common.default = "gtk";

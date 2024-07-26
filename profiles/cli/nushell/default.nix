@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs = {
     nushell = {
       shellAliases.hcd = "cd ~/.config/nixpkgs";

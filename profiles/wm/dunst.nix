@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   home.packages = with pkgs; [ dunst ];
   services.dunst = {
     enable = true;
@@ -35,10 +36,18 @@
         icon_position = "left";
         max_icon_size = "32";
       };
-      frame = { width = 1; };
-      urgency_low = { timeout = 10; };
-      urgency_normal = { timeout = 60; };
-      urgency_critical = { timeout = 0; };
+      frame = {
+        width = 1;
+      };
+      urgency_low = {
+        timeout = 10;
+      };
+      urgency_normal = {
+        timeout = 60;
+      };
+      urgency_critical = {
+        timeout = 0;
+      };
     };
   };
   stylix.targets.dunst.enable = true;

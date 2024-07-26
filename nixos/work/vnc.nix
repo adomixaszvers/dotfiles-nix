@@ -1,1 +1,4 @@
-{ pkgs, ... }: { environment.systemPackages = with pkgs; [ tigervnc ]; }
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [ tigervnc ];
+}

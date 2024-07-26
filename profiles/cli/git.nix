@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.git = {
     enable = true;
     delta.enable = true;
@@ -9,22 +10,36 @@
     userEmail = "adomixaszvers@gmail.com";
     userName = "Adomas Jatužis";
     extraConfig = {
-      core = { autocrlf = "input"; };
-      init = { defaultBranch = "master"; };
-      merge = { tool = "nvim"; };
-      "mergetool \"nvim\"" = { cmd = ''nvim -f -c "Gdiff" "$MERGED"''; };
+      core = {
+        autocrlf = "input";
+      };
+      init = {
+        defaultBranch = "master";
+      };
+      merge = {
+        tool = "nvim";
+      };
+      "mergetool \"nvim\"" = {
+        cmd = ''nvim -f -c "Gdiff" "$MERGED"'';
+      };
       credential = {
         helper = "${pkgs.gitAndTools.gitFull}/bin/git-credential-libsecret";
       };
-      github = { user = "adomixaszvers"; };
-      pull = { rebase = true; };
-    };
-    includes = [{
-      condition = "gitdir:~/.config/nixpkgs/";
-      contents.rebase = {
-        autoStash = "true";
-        autoSquash = "true";
+      github = {
+        user = "adomixaszvers";
       };
-    }];
+      pull = {
+        rebase = true;
+      };
+    };
+    includes = [
+      {
+        condition = "gitdir:~/.config/nixpkgs/";
+        contents.rebase = {
+          autoStash = "true";
+          autoSquash = "true";
+        };
+      }
+    ];
   };
 }

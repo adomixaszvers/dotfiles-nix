@@ -4,8 +4,7 @@
   home.packages = with pkgs; [ rxvt_unicode-with-plugins ];
   xresources.properties = {
     "URxvt*font" = "xft:FiraCode Nerd Font Mono:size=9";
-    "URxvt.perl-ext-common" =
-      "default,matcher,selection-to-clipboard,font-size";
+    "URxvt.perl-ext-common" = "default,matcher,selection-to-clipboard,font-size";
     "URxvt.url-launcher" = "${pkgs.xdg_utils}/xdg-open";
     "URxvt.matcher.button" = "1";
     "URxvt.letterSpace" = "-1";

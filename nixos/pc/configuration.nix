@@ -1,7 +1,13 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common.nix
     ../flakes.nix
@@ -54,7 +60,10 @@
   };
 
   programs = {
-    gamescope.args = [ "--adaptive-sync" "-W 1920 -H 1080" ];
+    gamescope.args = [
+      "--adaptive-sync"
+      "-W 1920 -H 1080"
+    ];
     # nix flake check doesn't complain but nixos-rebuild does
   };
 
@@ -83,12 +92,14 @@
 
   users.users.adomas = {
     hashedPasswordFile = config.sops.secrets."adomas/password".path;
-    openssh.authorizedKeys.keyFiles =
-      [ ../keys/juice_ed25519.pub ../keys/yubikey.pub ../keys/t14.pub ];
+    openssh.authorizedKeys.keyFiles = [
+      ../keys/juice_ed25519.pub
+      ../keys/yubikey.pub
+      ../keys/t14.pub
+    ];
   };
 
-  users.users.root.hashedPasswordFile =
-    config.sops.secrets."root/password".path;
+  users.users.root.hashedPasswordFile = config.sops.secrets."root/password".path;
 
   system.stateVersion = "22.11"; # Did you read the comment?
 

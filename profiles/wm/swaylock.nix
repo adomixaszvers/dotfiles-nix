@@ -1,6 +1,8 @@
 { pkgs, ... }:
-let swaylock = pkgs.swaylock-effects;
-in {
+let
+  swaylock = pkgs.swaylock-effects;
+in
+{
   programs.swaylock = {
     enable = true;
     package = swaylock;
@@ -17,10 +19,12 @@ in {
         command = "${swaylock}/bin/swaylock -f";
       }
     ];
-    timeouts = [{
-      timeout = 300;
-      command = "${swaylock}/bin/swaylock -f";
-    }];
+    timeouts = [
+      {
+        timeout = 300;
+        command = "${swaylock}/bin/swaylock -f";
+      }
+    ];
   };
   stylix.targets.swaylock.enable = true;
 }

@@ -1,11 +1,21 @@
 pkgs:
 with pkgs.vimPlugins;
 let
-  telescope-dependencies =
-    [ plenary-nvim telescope-nvim telescope-fzf-native-nvim ];
-  cmp-dependencies =
-    [ cmp-nvim-lsp cmp-buffer cmp-path cmp-cmdline nvim-cmp vim-vsnip ];
-in [
+  telescope-dependencies = [
+    plenary-nvim
+    telescope-nvim
+    telescope-fzf-native-nvim
+  ];
+  cmp-dependencies = [
+    cmp-nvim-lsp
+    cmp-buffer
+    cmp-path
+    cmp-cmdline
+    nvim-cmp
+    vim-vsnip
+  ];
+in
+[
   ale
   commentary
   direnv-vim
@@ -39,4 +49,6 @@ in [
   vinegar
   which-key-nvim
   yuck-vim
-] ++ telescope-dependencies ++ cmp-dependencies
+]
+++ telescope-dependencies
+++ cmp-dependencies

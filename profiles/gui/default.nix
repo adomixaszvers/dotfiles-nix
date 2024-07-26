@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -36,7 +41,9 @@
       xsel
       zathura
     ];
-    sessionVariables = { TERMINAL = "kitty"; };
+    sessionVariables = {
+      TERMINAL = "kitty";
+    };
   };
   programs.feh.enable = true;
   programs.rofi = {

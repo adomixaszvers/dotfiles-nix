@@ -1,25 +1,35 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   networking = {
     domain = "lan";
     nameservers = [ "9.9.9.9" ];
     firewall = {
-      allowedTCPPorts = [ 53 5080 ];
+      allowedTCPPorts = [
+        53
+        5080
+      ];
       allowedUDPPorts = [ 53 ];
     };
   };
-  services.nginx.virtualHosts = let
-    locations = { "/" = { proxyPass = "http://192.168.1.207:5080"; }; };
-    forceSSL = true;
-  in {
-    "pihole.lan.beastade.top" = {
-      useACMEHost = "lan.beastade.top";
-      inherit forceSSL locations;
+  services.nginx.virtualHosts =
+    let
+      locations = {
+        "/" = {
+          proxyPass = "http://192.168.1.207:5080";
+        };
+      };
+      forceSSL = true;
+    in
+    {
+      "pihole.lan.beastade.top" = {
+        useACMEHost = "lan.beastade.top";
+        inherit forceSSL locations;
+      };
+      "pihole.wg.beastade.top" = {
+        useACMEHost = "wg.beastade.top";
+        inherit forceSSL locations;
+      };
     };
-    "pihole.wg.beastade.top" = {
-      useACMEHost = "wg.beastade.top";
-      inherit forceSSL locations;
-    };
-  };
 
   users = {
     users.pihole = {
@@ -30,10 +40,14 @@
       description = "Pihole daemon user";
       uid = 995;
     };
-    groups.pihole = { gid = 992; };
+    groups.pihole = {
+      gid = 992;
+    };
   };
 
-  sops.secrets."pihole/environment" = { sopsFile = ./secrets/pihole.yaml; };
+  sops.secrets."pihole/environment" = {
+    sopsFile = ./secrets/pihole.yaml;
+  };
   virtualisation.oci-containers.containers.pihole = {
     autoStart = true;
     image = "pihole/pihole:latest";
@@ -62,15 +76,13 @@
     volumes = [
       "/var/lib/pihole/etc-pihole/:/etc/pihole/"
       "/var/lib/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/"
-      "${
-        pkgs.writeText "42-reverse-proxied-subdomains.conf" ''
-          address=/wg.beastade.top/10.6.0.1
-          address=/lan.beastade.top/192.168.1.207
-          rev-server=192.168.1.0/24,192.168.1.254
-          local=/lan/192.168.1.254
-          local-ttl=3600
-        ''
-      }:/etc/dnsmasq.d/42-reverse-proxied-subdomains.conf:ro"
+      "${pkgs.writeText "42-reverse-proxied-subdomains.conf" ''
+        address=/wg.beastade.top/10.6.0.1
+        address=/lan.beastade.top/192.168.1.207
+        rev-server=192.168.1.0/24,192.168.1.254
+        local=/lan/192.168.1.254
+        local-ttl=3600
+      ''}:/etc/dnsmasq.d/42-reverse-proxied-subdomains.conf:ro"
     ];
   };
 }

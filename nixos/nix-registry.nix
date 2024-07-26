@@ -1,6 +1,8 @@
 { inputs, ... }:
-let inherit (inputs) nixpkgs nixos-hardware sops-nix;
-in {
+let
+  inherit (inputs) nixpkgs nixos-hardware sops-nix;
+in
+{
   nix = {
     nixPath = [
       "nixpkgs=${nixpkgs}"

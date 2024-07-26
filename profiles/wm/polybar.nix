@@ -1,23 +1,34 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
-  colors = let inherit (config.lib.stylix) colors;
-  in colors // (with colors; {
-    foreground = base05;
-    background = base00;
-    custom-foreground = base05;
-    custom-background-dark = base00;
-    custom-background-light = base01;
-    custom-primary = base0C;
-    custom-warn = base08;
-  });
-  module = icon: other:
+  colors =
+    let
+      inherit (config.lib.stylix) colors;
+    in
+    colors
+    // (with colors; {
+      foreground = base05;
+      background = base00;
+      custom-foreground = base05;
+      custom-background-dark = base00;
+      custom-background-light = base01;
+      custom-primary = base0C;
+      custom-warn = base08;
+    });
+  module =
+    icon: other:
     {
       format-prefix = icon;
       format-prefix-foreground = colors.custom-primary;
       format-prefix-background = colors.custom-background-dark;
       label-foreground = colors.custom-foreground;
       label-background = colors.custom-background-dark;
-    } // other;
+    }
+    // other;
   defaultBar = {
     modules-left = lib.mkDefault "ewmh";
     modules-center = lib.mkDefault "";
@@ -42,15 +53,15 @@ let
 
     separator = " ";
   };
-in {
+in
+{
   services.polybar = {
     enable = lib.mkDefault true;
     package = pkgs.polybarFull;
     config = {
       "bar/top" = defaultBar // {
         enable-ipc = true;
-        modules-right =
-          lib.mkDefault "disk memory cpu temperature volume keyboard date tray";
+        modules-right = lib.mkDefault "disk memory cpu temperature volume keyboard date tray";
       };
       "bar/top-extra" = defaultBar // {
         modules-right = lib.mkDefault "keyboard date time";

@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   systemd.user.services = lib.optionalAttrs config.services.picom.enable {
     picom.Service.Type = "forking";
   };
@@ -17,7 +18,10 @@
       "class_g ?= 'VirtualBoxVM'"
       "name = 'Notification'"
     ];
-    shadowOffsets = [ (-7) (-7) ];
+    shadowOffsets = [
+      (-7)
+      (-7)
+    ];
     shadowOpacity = 0.9;
     opacityRules = [
       "95:class_g = 'URxvt' && !_NET_WM_STATE@:32a"
@@ -31,7 +35,10 @@
     settings = {
       inactive-dim = 0.1;
       shadow-radius = 7;
-      focus-exclude = [ "class_g ?= 'plasmashell'" "class_g *= 'slop'" ];
+      focus-exclude = [
+        "class_g ?= 'plasmashell'"
+        "class_g *= 'slop'"
+      ];
       unredir-if-possible = true;
     };
   };

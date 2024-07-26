@@ -1,1 +1,7 @@
-{ imports = [ ./kbdd.nix ./polybar-program.nix ./thermal-zone.nix ]; }
+{
+  imports = [
+    ./kbdd.nix
+    ./polybar-program.nix
+    ./thermal-zone.nix
+  ];
+}

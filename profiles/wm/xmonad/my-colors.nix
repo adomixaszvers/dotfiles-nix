@@ -1,4 +1,8 @@
-{ mkDerivation, base, lib }:
+{
+  mkDerivation,
+  base,
+  lib,
+}:
 mkDerivation {
   pname = "my-colors";
   version = "0.1.0.0";

@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   sops.secrets."pi/password" = {
     sopsFile = ./secrets/passwords.yaml;
     neededForUsers = true;
@@ -18,7 +19,10 @@
       hashedPasswordFile = config.sops.secrets."pi/password".path;
       isNormalUser = true;
       uid = 1000;
-      extraGroups = [ "video" "wheel" ];
+      extraGroups = [
+        "video"
+        "wheel"
+      ];
       shell = pkgs.zsh;
       openssh.authorizedKeys.keyFiles = [
         ../keys/juice_ed25519.pub

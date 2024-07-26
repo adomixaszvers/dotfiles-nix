@@ -1,7 +1,12 @@
 let
-  commonBtrfsOptions =
-    [ "compress=zstd" "relatime" "discard=async" "commit=120" ];
-in {
+  commonBtrfsOptions = [
+    "compress=zstd"
+    "relatime"
+    "discard=async"
+    "commit=120"
+  ];
+in
+{
 
   fileSystems = {
     "/".options = commonBtrfsOptions;
@@ -10,9 +15,18 @@ in {
 
     "/var/lib/docker".options = commonBtrfsOptions;
 
-    "/tmp".options = [ "compress=zstd" "relatime" "nosuid" "nodev" ];
+    "/tmp".options = [
+      "compress=zstd"
+      "relatime"
+      "nosuid"
+      "nodev"
+    ];
 
-    "/nix".options = [ "noatime" "discard=async" "commit=120" ];
+    "/nix".options = [
+      "noatime"
+      "discard=async"
+      "commit=120"
+    ];
 
     "/home/adomas/.local/share/libvirt".options = commonBtrfsOptions;
 
@@ -30,7 +44,10 @@ in {
       spec = "LABEL=rpool";
       hashTableSizeMB = 512;
       verbosity = "crit";
-      extraOptions = [ "--loadavg-target" "5.0" ];
+      extraOptions = [
+        "--loadavg-target"
+        "5.0"
+      ];
     };
   };
 

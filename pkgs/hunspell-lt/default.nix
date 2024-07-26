@@ -1,8 +1,13 @@
-{ stdenv, fetchFromGitHub, python3 }:
+{
+  stdenv,
+  fetchFromGitHub,
+  python3,
+}:
 let
   dictFileName = "lt_LT";
   readmeFile = "README";
-in stdenv.mkDerivation rec {
+in
+stdenv.mkDerivation rec {
   pname = "hunspell-dict-lt";
   version = "1.3.2";
   src = fetchFromGitHub {

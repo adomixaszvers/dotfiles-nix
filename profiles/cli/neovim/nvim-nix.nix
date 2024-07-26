@@ -1,11 +1,25 @@
-{ neovimUtils, wrapNeovimUnstable, neovim-unwrapped, vimPlugins, lib, nixfmt
-, ripgrep, statix, deadnix }:
+{
+  neovimUtils,
+  wrapNeovimUnstable,
+  neovim-unwrapped,
+  vimPlugins,
+  lib,
+  nixfmt,
+  ripgrep,
+  statix,
+  deadnix,
+}:
 let
-  plugins = with vimPlugins;
+  plugins =
+    with vimPlugins;
     let
-      telescope-dependencies =
-        [ plenary-nvim telescope-nvim telescope-fzf-native-nvim ];
-    in [
+      telescope-dependencies = [
+        plenary-nvim
+        telescope-nvim
+        telescope-fzf-native-nvim
+      ];
+    in
+    [
       ale
       commentary
       fugitive
@@ -13,7 +27,15 @@ let
       lualine-nvim
       neoformat
       nordic-nvim
-      (nvim-treesitter.withPlugins (p: with p; [ bash c lua nix vim ]))
+      (nvim-treesitter.withPlugins (
+        p: with p; [
+          bash
+          c
+          lua
+          nix
+          vim
+        ]
+      ))
       repeat
       vim-suda
       surround
@@ -22,7 +44,8 @@ let
       vim-unimpaired
       vinegar
       which-key-nvim
-    ] ++ telescope-dependencies;
+    ]
+    ++ telescope-dependencies;
   moduleConfigure = {
     packages.neovim-nix = {
       start = plugins;
@@ -43,9 +66,20 @@ let
         luafile ${./init.lua}
       '';
   };
-  extraWrapperArgs = let extraPackages = [ nixfmt ripgrep deadnix statix ];
-  in ''--suffix PATH : "${lib.makeBinPath extraPackages}"'';
-in wrapNeovimUnstable neovim-unwrapped (neovimConfig // {
-  wrapperArgs = (lib.escapeShellArgs neovimConfig.wrapperArgs) + " "
-    + extraWrapperArgs;
-})
+  extraWrapperArgs =
+    let
+      extraPackages = [
+        nixfmt
+        ripgrep
+        deadnix
+        statix
+      ];
+    in
+    ''--suffix PATH : "${lib.makeBinPath extraPackages}"'';
+in
+wrapNeovimUnstable neovim-unwrapped (
+  neovimConfig
+  // {
+    wrapperArgs = (lib.escapeShellArgs neovimConfig.wrapperArgs) + " " + extraWrapperArgs;
+  }
+)
