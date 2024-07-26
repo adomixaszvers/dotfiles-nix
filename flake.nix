@@ -20,7 +20,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "";
+      };
     };
     stylix = {
       url = "github:danth/stylix/release-24.05";
@@ -30,7 +33,14 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    pre-commit-hooks = { url = "github:cachix/pre-commit-hooks.nix"; };
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "";
+      };
+    };
   };
   outputs =
     { nixpkgs, pre-commit-hooks, nixos-unstable, flake-parts, ... }@inputs:
