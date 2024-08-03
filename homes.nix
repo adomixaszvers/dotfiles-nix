@@ -13,7 +13,7 @@ let
           {
             home = {
               inherit username homeDirectory;
-              stateVersion = "22.05";
+              stateVersion = "24.05";
             };
           }
           inputs.nix-index-database.hmModules.nix-index
