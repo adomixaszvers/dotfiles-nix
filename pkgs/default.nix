@@ -5,6 +5,8 @@
       bspwm-reorder-desktops =
         pkgs.callPackage ./bspwm-reorder-desktops.nix { };
       bumblebee-status = pkgs.callPackage ./bumblebee-status { };
+      # does not work because it depends on OPENSSL_1.0.0
+      # dokobit-plugin = pkgs.callPackage ./dokobit-plugin { };
       eclipse-activiti = pkgs.eclipses.eclipseWithPlugins {
         eclipse = pkgs.callPackage
           "${inputs.nixpkgs}/pkgs/applications/editors/eclipse/build-eclipse.nix" {
@@ -43,6 +45,7 @@
       };
       kaknix = pkgs.callPackage ./kaknix.nix { };
       maimpick = pkgs.callPackage ./maimpick.nix { };
+      mcard-toolbox = pkgs.callPackage ./mcard-toolbox { };
       neovim = pkgs.callPackage ../profiles/cli/neovim/package.nix { };
       neovim-nix = pkgs.callPackage ../profiles/cli/neovim/nvim-nix.nix {
         nixfmt = pkgs.nixfmt-classic;
