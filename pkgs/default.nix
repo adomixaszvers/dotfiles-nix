@@ -11,7 +11,7 @@
           name = "eclipse-java-4.4.2";
           description = "Eclipse IDE for Java Developers";
           productVersion = "4.4.2";
-          src = builtins.fetchurl {
+          src = pkgs.fetchurl {
             url =
               "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR2/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz";
             sha256 = "13s88vlqd45yh8vkj51q6nrwxwj8nbss6aaniqg6bl2y43xkizdr";
