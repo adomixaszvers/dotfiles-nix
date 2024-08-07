@@ -55,6 +55,7 @@
       driSupport32Bit = true;
     };
     pulseaudio.support32Bit = true;
+    usb-modeswitch.enable = true;
   };
 
   environment.systemPackages = (with pkgs; [ nixfmt-classic virt-manager ])
