@@ -2,6 +2,7 @@ local nvim_lsp = require('lspconfig')
 local lsp_status = require('lsp-status')
 lsp_status.config({
   diagnostics = false,
+  status_symbol = ' ✔',
 })
 lsp_status.register_progress()
 

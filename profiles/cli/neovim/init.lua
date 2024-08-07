@@ -53,7 +53,7 @@ if vim.env.TERM ~= "linux" then
     if has_lsp_status then
         sections = {
             lualine_x = {
-                { "require('lsp-status').status()", 'location' },
+                "require('lsp-status').status()", 'encoding', 'fileformat', 'filetype',
             }
         }
     else
