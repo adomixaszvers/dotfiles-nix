@@ -48,24 +48,12 @@ end
 
 if vim.env.TERM ~= "linux" then
     vim.cmd('colorscheme nordic')
-    local sections
-    local has_lsp_status = pcall(require, 'lsp-status')
-    if has_lsp_status then
-        sections = {
-            lualine_x = {
-                "require('lsp-status').status()", 'encoding', 'fileformat', 'filetype',
-            }
-        }
-    else
-        sections = {}
-    end
     require('lualine').setup({
         options = {
             -- disabling section separators fixes
             -- the disappearing start screen issue
             section_separators = '',
         },
-        sections = sections
     })
 else
     vim.cmd('colorscheme solarized')
@@ -83,6 +71,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 
 vim.o.timeout = true
 vim.o.timeoutlen = 300
+require('fidget').setup({})
 require('which-key').setup {}
 
 require('telescope').load_extension('fzf')

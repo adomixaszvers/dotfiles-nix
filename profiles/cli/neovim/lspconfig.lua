@@ -1,10 +1,4 @@
 local nvim_lsp = require('lspconfig')
-local lsp_status = require('lsp-status')
-lsp_status.config({
-  diagnostics = false,
-  status_symbol = ' ✔',
-})
-lsp_status.register_progress()
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -32,12 +26,10 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
-  lsp_status.on_attach(client)
 end
 
 local cmp_lsp = require("cmp_nvim_lsp")
 local capabilities = cmp_lsp.default_capabilities()
-vim.tbl_extend("keep", capabilities, lsp_status.capabilities)
 
 nvim_lsp.lua_ls.setup {
   capabilities = capabilities,

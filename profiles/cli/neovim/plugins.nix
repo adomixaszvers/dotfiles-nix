@@ -9,9 +9,9 @@ in [
   ale
   commentary
   direnv-vim
+  fidget-nvim
   fugitive
   gitsigns-nvim
-  lsp-status-nvim
   lualine-nvim
   neoformat
   nvim-web-devicons
