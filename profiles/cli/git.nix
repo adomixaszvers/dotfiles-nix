@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   programs.git = {
     enable = true;
+    package = pkgs.gitAndTools.gitFull;
     delta.enable = true;
     signing = {
       signByDefault = false;
@@ -11,8 +12,7 @@
     extraConfig = {
       core = { autocrlf = "input"; };
       init = { defaultBranch = "master"; };
-      merge = { tool = "nvim"; };
-      "mergetool \"nvim\"" = { cmd = ''nvim -f -c "Gdiff" "$MERGED"''; };
+      merge.tool = "nvimdiff";
       credential = {
         helper = "${pkgs.gitAndTools.gitFull}/bin/git-credential-libsecret";
       };

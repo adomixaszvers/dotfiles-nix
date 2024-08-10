@@ -261,7 +261,6 @@
       #   cfg = {nativeMessagingHosts = [pkgs.plasma-shell-integration];};
       # };
     };
-    git.package = pkgs.gitAndTools.gitFull;
     gh = {
       enable = true;
       gitCredentialHelper.enable = true;
