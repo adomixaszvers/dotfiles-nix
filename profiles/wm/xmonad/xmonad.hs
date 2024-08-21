@@ -147,7 +147,7 @@ myStartupHook = do
   setWMName "LG3D"
   spawnFeh
 
-myDynamicStatusBar :: D.Client -> ScreenId -> IO StatusBarConfig
+myDynamicStatusBar :: (MonadIO m) => D.Client -> ScreenId -> m StatusBarConfig
 myDynamicStatusBar dbus sc@(S i) = pure . dbusStatusBarConfig sc dbus $ ppOn i
   where
     ppOn 0 = pure mainPP

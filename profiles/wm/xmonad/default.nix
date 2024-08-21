@@ -1,7 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, system, ... }:
 let
   extraPackages = import ./extraPackages.nix;
-  inherit (pkgs) haskellPackages;
+  xPkgs = import inputs.nixpkgs {
+    inherit system;
+    overlays = [ inputs.xmonad.overlay inputs.xmonad-contrib.overlay ];
+  };
+  inherit (xPkgs) haskellPackages;
   inherit (haskellPackages) xmonad-dbus;
   launch-polybar = pkgs.writeShellScriptBin "launch-polybar" ''
     PATH=$PATH:${with pkgs; lib.makeBinPath [ coreutils gnugrep xorg.xrandr ]}

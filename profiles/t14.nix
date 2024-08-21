@@ -1,5 +1,5 @@
 { pkgs, myPkgs, ... }: {
-  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/bspwm ];
+  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
   # imports = [ ./common.nix ];
   # gtk.enable = false;
   # qt.enable = false;
