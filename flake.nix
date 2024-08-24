@@ -122,14 +122,8 @@
               ++ config.pre-commit.settings.enabledPackages;
             shellHook = config.pre-commit.installationScript;
           };
-          xmonad = import ./profiles/wm/xmonad/shell.nix {
-            xmonad-contrib-flake = inputs.xmonad-contrib;
-            pkgs = import nixpkgs {
-              inherit system;
-              overlays =
-                [ inputs.xmonad.overlay inputs.xmonad-contrib.overlay ];
-            };
-          };
+          xmonad =
+            import ./profiles/wm/xmonad/shell.nix { inherit inputs system; };
           qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
           awesomewm = import ./profiles/wm/awesome/shell.nix { inherit pkgs; };
         };
