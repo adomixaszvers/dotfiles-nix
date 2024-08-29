@@ -181,26 +181,6 @@
         "type": "github"
       }
     },
-    "git-ignore-nix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1709087332,
-        "narHash": "sha256-HG2cCnktfHsKV0s4XW83gU3F57gaTljL9KNSuG6bnQs=",
-        "owner": "hercules-ci",
-        "repo": "gitignore.nix",
-        "rev": "637db329424fd7e46cf4185293b9cc8c88c95394",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "gitignore.nix",
-        "type": "github"
-      }
-    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -392,7 +372,6 @@
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
-        "git-ignore-nix": "git-ignore-nix",
         "home-manager": "home-manager",
         "nix-index-database": "nix-index-database",
         "nixGL": "nixGL",
@@ -401,9 +380,7 @@
         "nixpkgs": "nixpkgs",
         "pre-commit-hooks": "pre-commit-hooks",
         "sops-nix": "sops-nix",
-        "stylix": "stylix",
-        "xmonad": "xmonad",
-        "xmonad-contrib": "xmonad-contrib"
+        "stylix": "stylix"
       }
     },
     "sops-nix": {
@@ -474,66 +451,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "xmonad": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "git-ignore-nix": [
-          "git-ignore-nix"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "unstable": [
-          "nixos-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1706972471,
-        "narHash": "sha256-bM2pHSelf0hVhKbYwYatnAo92NNsh9rl6ywrWSwwjEo=",
-        "owner": "xmonad",
-        "repo": "xmonad",
-        "rev": "1396343a58c9cd205457a5658ec18a20e91e49b1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xmonad",
-        "ref": "v0.18.0",
-        "repo": "xmonad",
-        "type": "github"
-      }
-    },
-    "xmonad-contrib": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "git-ignore-nix": [
-          "git-ignore-nix"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "xmonad": [
-          "xmonad"
-        ]
-      },
-      "locked": {
-        "lastModified": 1724170917,
-        "narHash": "sha256-CggQ5ykKltTZLZEy02bv8dkGynZb4c5IUmq9GE4dKUQ=",
-        "owner": "xmonad",
-        "repo": "xmonad-contrib",
-        "rev": "f5f99c8abf225b6a6f705add858578bad2384912",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xmonad",
-        "ref": "v0.18.1",
-        "repo": "xmonad-contrib",
         "type": "github"
       }
     }

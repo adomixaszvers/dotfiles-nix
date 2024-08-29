@@ -4,10 +4,6 @@
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";
-    git-ignore-nix = {
-      url = "github:hercules-ci/gitignore.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,24 +43,6 @@
         flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
         nixpkgs-stable.follows = "";
-      };
-    };
-    xmonad = {
-      url = "github:xmonad/xmonad/v0.18.0";
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        git-ignore-nix.follows = "git-ignore-nix";
-        nixpkgs.follows = "nixpkgs";
-        unstable.follows = "nixos-unstable";
-      };
-    };
-    xmonad-contrib = {
-      url = "github:xmonad/xmonad-contrib/v0.18.1";
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        git-ignore-nix.follows = "git-ignore-nix";
-        nixpkgs.follows = "nixpkgs";
-        xmonad.follows = "xmonad";
       };
     };
   };
@@ -122,8 +100,7 @@
               ++ config.pre-commit.settings.enabledPackages;
             shellHook = config.pre-commit.installationScript;
           };
-          xmonad =
-            import ./profiles/wm/xmonad/shell.nix { inherit inputs system; };
+          xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
           qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
           awesomewm = import ./profiles/wm/awesome/shell.nix { inherit pkgs; };
         };
