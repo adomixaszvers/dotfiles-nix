@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   security.pam.yubico = {
     enable = true;
     mode = "challenge-response";

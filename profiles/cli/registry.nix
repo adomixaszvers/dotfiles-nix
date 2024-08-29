@@ -1,4 +1,5 @@
-{ inputs, config, ... }: {
+{ inputs, config, ... }:
+{
   nix.registry = with inputs; {
     mine.to = {
       type = "git";

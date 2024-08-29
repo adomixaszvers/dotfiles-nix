@@ -47,63 +47,85 @@
     };
   };
   outputs =
-    { nixpkgs, pre-commit-hooks, nixos-unstable, flake-parts, ... }@inputs:
+    {
+      nixpkgs,
+      pre-commit-hooks,
+      nixos-unstable,
+      flake-parts,
+      ...
+    }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
       imports = [
         pre-commit-hooks.flakeModule
         ./pkgs
         ./nixos/configurations.nix
         ./homes.nix
       ];
-      perSystem = { pkgs, system, self', inputs', config, ... }: {
-        _module.args = {
-          pkgs = import nixpkgs {
-            inherit system;
-            config = import ./config.nix;
-          };
-          unstable = import nixos-unstable {
-            inherit system;
-            config = import ./config.nix;
-          };
-        };
-        apps.my-neovim = let myNeovim = self'.packages.neovim;
-        in {
-          type = "app";
-          program = "${myNeovim}/bin/nvim";
-        };
-        pre-commit.settings = {
-          src = ./.;
-          hooks = {
-            nixfmt = {
-              enable = true;
-              package = pkgs.nixfmt-rfc-style;
+      perSystem =
+        {
+          pkgs,
+          system,
+          self',
+          inputs',
+          config,
+          ...
+        }:
+        {
+          _module.args = {
+            pkgs = import nixpkgs {
+              inherit system;
+              config = import ./config.nix;
             };
-            statix = {
-              enable = true;
-              settings.ignore = [ "hardware-configuration.nix" ];
-            };
-            deadnix.enable = true;
-            shellcheck = {
-              enable = true;
-              # shellcheck does not support zsh files but after
-              # https://github.com/cachix/pre-commit-hooks.nix/commit/61bda56530889b4acf6c935d832f219b6c0ebd83
-              # it is run on initExtra.zsh and it fails on pre-commit
-              excludes = [ "\\.zsh$" ];
+            unstable = import nixos-unstable {
+              inherit system;
+              config = import ./config.nix;
             };
           };
-        };
-        devShells = {
-          default = pkgs.mkShellNoCC {
-            buildInputs =
-              [ inputs'.home-manager.packages.home-manager pkgs.sops ]
-              ++ config.pre-commit.settings.enabledPackages;
-            shellHook = config.pre-commit.installationScript;
+          apps.my-neovim =
+            let
+              myNeovim = self'.packages.neovim;
+            in
+            {
+              type = "app";
+              program = "${myNeovim}/bin/nvim";
+            };
+          pre-commit.settings = {
+            src = ./.;
+            hooks = {
+              nixfmt = {
+                enable = true;
+                package = pkgs.nixfmt-rfc-style;
+              };
+              statix = {
+                enable = true;
+                settings.ignore = [ "hardware-configuration.nix" ];
+              };
+              deadnix.enable = true;
+              shellcheck = {
+                enable = true;
+                # shellcheck does not support zsh files but after
+                # https://github.com/cachix/pre-commit-hooks.nix/commit/61bda56530889b4acf6c935d832f219b6c0ebd83
+                # it is run on initExtra.zsh and it fails on pre-commit
+                excludes = [ "\\.zsh$" ];
+              };
+            };
           };
-          xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
-          qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
-          awesomewm = import ./profiles/wm/awesome/shell.nix { inherit pkgs; };
+          devShells = {
+            default = pkgs.mkShellNoCC {
+              buildInputs = [
+                inputs'.home-manager.packages.home-manager
+                pkgs.sops
+              ] ++ config.pre-commit.settings.enabledPackages;
+              shellHook = config.pre-commit.installationScript;
+            };
+            xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
+            qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
+            awesomewm = import ./profiles/wm/awesome/shell.nix { inherit pkgs; };
+          };
         };
-      };
     };
 }

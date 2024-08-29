@@ -1,12 +1,15 @@
 { inputs, ... }:
 let
   inherit (inputs) nixpkgs;
-  specialArgs = { inherit inputs; };
+  specialArgs = {
+    inherit inputs;
+  };
   isoSpecialArgs = {
     inherit inputs;
     myPkgs = inputs.self.packages.x86_64-linux;
   };
-in {
+in
+{
   flake.nixosConfigurations = {
     adomo-nixos = nixpkgs.lib.nixosSystem {
       inherit specialArgs;

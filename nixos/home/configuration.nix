@@ -2,7 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   imports = [
     # ./bumblebee.nix
     # ./gnome.nix
@@ -46,7 +52,9 @@
     };
   };
   # it fails on zfs
-  systemd.generators = { systemd-gpt-auto-generator = "/dev/null"; };
+  systemd.generators = {
+    systemd-gpt-auto-generator = "/dev/null";
+  };
 
   environment = {
     systemPackages = with pkgs; [ virt-manager ];
@@ -56,13 +64,19 @@
   fileSystems = {
     "/boot/efi" = {
       device = "/dev/disk/by-uuid/423B-2D62";
-      options = [ "noauto" "x-systemd.automount" ];
+      options = [
+        "noauto"
+        "x-systemd.automount"
+      ];
       fsType = "vfat";
     };
     "/kiti/media" = {
       device = "/dev/disk/by-uuid/AE38E35B38E32157";
       fsType = "ntfs";
-      options = [ "noauto" "x-systemd.automount" ];
+      options = [
+        "noauto"
+        "x-systemd.automount"
+      ];
     };
   };
 
@@ -129,15 +143,22 @@
   };
 
   users.users.adomas = {
-    openssh.authorizedKeys.keyFiles =
-      [ ../keys/juice_ed25519.pub ../keys/yubikey.pub ];
-    extraGroups = [ "docker" "libvirtd" "adbusers" ];
+    openssh.authorizedKeys.keyFiles = [
+      ../keys/juice_ed25519.pub
+      ../keys/yubikey.pub
+    ];
+    extraGroups = [
+      "docker"
+      "libvirtd"
+      "adbusers"
+    ];
     hashedPasswordFile = config.sops.secrets."adomas/password".path;
   };
-  users.users.root.hashedPasswordFile =
-    config.sops.secrets."root/password".path;
+  users.users.root.hashedPasswordFile = config.sops.secrets."root/password".path;
 
-  virtualisation = { libvirtd.enable = true; };
+  virtualisation = {
+    libvirtd.enable = true;
+  };
 
   system.stateVersion = "24.05"; # Did you read the comment?
 

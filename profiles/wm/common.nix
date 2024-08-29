@@ -1,4 +1,10 @@
-{ lib, pkgs, myPkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  myPkgs,
+  config,
+  ...
+}:
 
 {
   gtk = {
@@ -11,7 +17,9 @@
       name = "Arc";
       package = pkgs.arc-icon-theme;
     };
-    gtk3.extraConfig = { gtk-application-prefer-dark-theme = true; };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
   };
   qt = {
     enable = lib.mkDefault true;
@@ -28,8 +36,10 @@
     (rofi-powermenu.override { rofi = config.programs.rofi.finalPackage; })
   ];
   home.sessionVariables =
-    let askpass = "${pkgs.gnome.seahorse}/libexec/seahorse/ssh-askpass";
-    in {
+    let
+      askpass = "${pkgs.gnome.seahorse}/libexec/seahorse/ssh-askpass";
+    in
+    {
       SSH_ASKPASS = askpass;
       SUDO_ASKPASS = askpass;
     };

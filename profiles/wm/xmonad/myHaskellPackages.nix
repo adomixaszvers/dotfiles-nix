@@ -1,4 +1,8 @@
-{ haskellPackages, haskell, lib }:
+{
+  haskellPackages,
+  haskell,
+  lib,
+}:
 haskellPackages.override {
   overrides = _: super: {
     xmonad = super.xmonad_0_18_0;

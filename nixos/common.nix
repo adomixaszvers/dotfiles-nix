@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   nixpkgs.config.allowUnfree = true;
 
   nix = {
@@ -20,7 +21,9 @@
     };
   };
 
-  documentation = { enable = true; };
+  documentation = {
+    enable = true;
+  };
   environment.systemPackages = with pkgs; [
     acpi
     efibootmgr
@@ -38,7 +41,10 @@
     usbutils
     wget
   ];
-  environment.shells = [ pkgs.zsh pkgs.nushell ];
+  environment.shells = [
+    pkgs.zsh
+    pkgs.nushell
+  ];
 
   fonts = {
     fontDir.enable = true;
@@ -82,7 +88,10 @@
   };
   systemd.services.NetworkManager-wait-online = {
     serviceConfig = {
-      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+      ExecStart = [
+        ""
+        "${pkgs.networkmanager}/bin/nm-online -q"
+      ];
     };
   };
 
@@ -128,7 +137,11 @@
     extraUsers.adomas = {
       isNormalUser = true;
       uid = 1000;
-      extraGroups = [ "networkmanager" "video" "wheel" ];
+      extraGroups = [
+        "networkmanager"
+        "video"
+        "wheel"
+      ];
       shell = pkgs.zsh;
     };
   };

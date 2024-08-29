@@ -2,7 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+{
   imports = [
     ../avahi.nix
     ../common.nix
@@ -59,32 +66,35 @@
     networkmanager = {
       enable = true;
       dns = "dnsmasq";
-      dispatcherScripts = [{
-        type = "basic";
-        source = pkgs.writeText "wifi-wired-exclusive" # bash
-          ''
-            export LC_ALL=C
-            PATH=${lib.makeBinPath [ pkgs.networkmanager ]}:$PATH
+      dispatcherScripts = [
+        {
+          type = "basic";
+          source =
+            pkgs.writeText "wifi-wired-exclusive" # bash
+              ''
+                export LC_ALL=C
+                PATH=${lib.makeBinPath [ pkgs.networkmanager ]}:$PATH
 
-            enable_disable_wifi ()
-            {
-                result=$(nmcli dev | grep "ethernet" | grep -w "connected")
-                if [ -n "$result" ]; then
-                    nmcli radio wifi off
-                else
-                    nmcli radio wifi on
+                enable_disable_wifi ()
+                {
+                    result=$(nmcli dev | grep "ethernet" | grep -w "connected")
+                    if [ -n "$result" ]; then
+                        nmcli radio wifi off
+                    else
+                        nmcli radio wifi on
+                    fi
+                }
+
+                if [ "$2" = "up" ]; then
+                    enable_disable_wifi
                 fi
-            }
 
-            if [ "$2" = "up" ]; then
-                enable_disable_wifi
-            fi
-
-            if [ "$2" = "down" ]; then
-                enable_disable_wifi
-            fi
-          '';
-      }];
+                if [ "$2" = "down" ]; then
+                    enable_disable_wifi
+                fi
+              '';
+        }
+      ];
     };
   };
 
@@ -101,7 +111,10 @@
         server=/wg/10.6.0.1
         rev-server=10.6.0.0/24,10.6.0.1
       '';
-    systemPackages = with pkgs; [ wget vim ];
+    systemPackages = with pkgs; [
+      wget
+      vim
+    ];
   };
 
   programs = {
@@ -125,7 +138,9 @@
     autorandr.enable = true;
     gnome.glib-networking.enable = true;
     gvfs.enable = true;
-    flatpak = { enable = true; };
+    flatpak = {
+      enable = true;
+    };
     fstrim = {
       enable = true;
       interval = "monthly";
@@ -144,13 +159,41 @@
     };
     printing.enable = true;
     thinkfan.levels = [
-      [ 0 0 56 ]
-      [ 1 55 66 ]
-      [ 2 65 71 ]
-      [ 3 70 76 ]
-      [ 4 75 81 ]
-      [ 5 80 86 ]
-      [ 7 85 32767 ]
+      [
+        0
+        0
+        56
+      ]
+      [
+        1
+        55
+        66
+      ]
+      [
+        2
+        65
+        71
+      ]
+      [
+        3
+        70
+        76
+      ]
+      [
+        4
+        75
+        81
+      ]
+      [
+        5
+        80
+        86
+      ]
+      [
+        7
+        85
+        32767
+      ]
     ];
     vnstat.enable = true;
   };

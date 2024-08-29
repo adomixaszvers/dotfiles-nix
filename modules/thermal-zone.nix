@@ -1,5 +1,6 @@
 { lib, ... }:
-with lib; {
+with lib;
+{
   options.gui.thermal-zone = mkOption {
     type = types.ints.unsigned;
     default = 0;

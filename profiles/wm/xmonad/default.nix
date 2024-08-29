@@ -1,12 +1,22 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   extraPackages = import ./extraPackages.nix;
-  haskellPackages = import ./myHaskellPackages.nix {
-    inherit (pkgs) haskellPackages lib haskell;
-  };
+  haskellPackages = import ./myHaskellPackages.nix { inherit (pkgs) haskellPackages lib haskell; };
   inherit (haskellPackages) xmonad-dbus;
   launch-polybar = pkgs.writeShellScriptBin "launch-polybar" ''
-    PATH=$PATH:${with pkgs; lib.makeBinPath [ coreutils gnugrep xorg.xrandr ]}
+    PATH=$PATH:${
+      with pkgs;
+      lib.makeBinPath [
+        coreutils
+        gnugrep
+        xorg.xrandr
+      ]
+    }
 
     SCREEN_ID="$1"
     MONITOR="$(xrandr --listactivemonitors | grep "''${SCREEN_ID}:" | cut -d' ' -f6)"
@@ -17,10 +27,23 @@ let
     fi
     SCREEN_ID="$SCREEN_ID" MONITOR="$MONITOR" polybar "$BAR"
   '';
-in {
-  imports = [ ../dunst.nix ../picom.nix ../polybar.nix ];
-  home.packages = (with pkgs; [ pamixer xdotool gnome.zenity ])
-    ++ [ xmonad-dbus launch-polybar ];
+in
+{
+  imports = [
+    ../dunst.nix
+    ../picom.nix
+    ../polybar.nix
+  ];
+  home.packages =
+    (with pkgs; [
+      pamixer
+      xdotool
+      gnome.zenity
+    ])
+    ++ [
+      xmonad-dbus
+      launch-polybar
+    ];
   programs.polybar.enable = true;
   services.polybar.enable = false;
   services.polybar.config = {
@@ -38,14 +61,15 @@ in {
     config = ./xmonad.hs;
     inherit haskellPackages;
     libFiles = {
-      "Colors.hs" = pkgs.writeText "Colors.hs" # haskell
-        ''
-          module Colors where
+      "Colors.hs" =
+        pkgs.writeText "Colors.hs" # haskell
+          ''
+            module Colors where
 
-          white, cyan :: String
-          white = "#${config.lib.stylix.colors.base00}"
-          cyan = "#${config.lib.stylix.colors.cyan}"
-        '';
+            white, cyan :: String
+            white = "#${config.lib.stylix.colors.base00}"
+            cyan = "#${config.lib.stylix.colors.cyan}"
+          '';
     };
   };
 }

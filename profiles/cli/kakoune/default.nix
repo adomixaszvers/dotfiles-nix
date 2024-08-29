@@ -1,45 +1,55 @@
-{ pkgs, myPkgs, ... }: {
-  home.packages = with pkgs; [ kak-lsp myPkgs.kaknix ];
+{ pkgs, myPkgs, ... }:
+{
+  home.packages = with pkgs; [
+    kak-lsp
+    myPkgs.kaknix
+  ];
   programs.kakoune = {
     enable = true;
-    plugins = let
-      inherit (pkgs) lib;
-      inherit (pkgs.kakouneUtils) buildKakounePluginFrom2Nix;
-      kakouneTextObjects = buildKakounePluginFrom2Nix {
-        pname = "kakoune-text-objects";
-        version = "20210806";
-        src = pkgs.fetchFromGitHub {
-          owner = "Delapouite";
-          repo = "kakoune-text-objects";
-          rev = "da9a268c3f239e40e0ca4665faa17f709563795b";
-          hash = "sha256-kuef+hxz/QisHL1UL6XKMcPq+OAq09wUT8thDhqee8Q=";
-        };
-        meta = with lib; {
-          description = "kakoune plugin providing extra text-objects";
-          homepage = "https://github.com/Delapouite/kakoune-text-objects";
-          license = licenses.mit;
-          platform = platforms.all;
-        };
+    plugins =
+      let
+        inherit (pkgs) lib;
+        inherit (pkgs.kakouneUtils) buildKakounePluginFrom2Nix;
+        kakouneTextObjects = buildKakounePluginFrom2Nix {
+          pname = "kakoune-text-objects";
+          version = "20210806";
+          src = pkgs.fetchFromGitHub {
+            owner = "Delapouite";
+            repo = "kakoune-text-objects";
+            rev = "da9a268c3f239e40e0ca4665faa17f709563795b";
+            hash = "sha256-kuef+hxz/QisHL1UL6XKMcPq+OAq09wUT8thDhqee8Q=";
+          };
+          meta = with lib; {
+            description = "kakoune plugin providing extra text-objects";
+            homepage = "https://github.com/Delapouite/kakoune-text-objects";
+            license = licenses.mit;
+            platform = platforms.all;
+          };
 
-      };
-      sudoWrite = buildKakounePluginFrom2Nix {
-        pname = "kakoune-sudo-write";
-        version = "20210816";
-        src = pkgs.fetchFromGitHub {
-          owner = "occivink";
-          repo = "kakoune-sudo-write";
-          rev = "ec0d6d26ceaadd93d6824630ba587b31e442214d";
-          hash = "sha256-O+yw8upyYnQThDoWKnFbjrjthPTCm6EaBUoJNqpUPLA=";
         };
-        meta = with lib; {
-          description = "Write to files using 'sudo'";
-          homepage = "https://github.com/occivink/kakoune-sudo-write";
-          license = licenses.unlicense;
-          platform = platforms.all;
-        };
+        sudoWrite = buildKakounePluginFrom2Nix {
+          pname = "kakoune-sudo-write";
+          version = "20210816";
+          src = pkgs.fetchFromGitHub {
+            owner = "occivink";
+            repo = "kakoune-sudo-write";
+            rev = "ec0d6d26ceaadd93d6824630ba587b31e442214d";
+            hash = "sha256-O+yw8upyYnQThDoWKnFbjrjthPTCm6EaBUoJNqpUPLA=";
+          };
+          meta = with lib; {
+            description = "Write to files using 'sudo'";
+            homepage = "https://github.com/occivink/kakoune-sudo-write";
+            license = licenses.unlicense;
+            platform = platforms.all;
+          };
 
-      };
-    in [ pkgs.kakounePlugins.kak-fzf kakouneTextObjects sudoWrite ];
+        };
+      in
+      [
+        pkgs.kakounePlugins.kak-fzf
+        kakouneTextObjects
+        sudoWrite
+      ];
     config = {
       tabStop = 4;
       scrollOff = {

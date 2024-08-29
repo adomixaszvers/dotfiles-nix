@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   services.throttled = {
     enable = true;
     extraConfig = builtins.readFile ./throttled.conf;
@@ -8,10 +9,13 @@
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Restart = "always";
-      ExecStart = let
-        set20watts = pkgs.writers.writeRustBin "set20watts" { strip = true; }
-          (builtins.readFile ./helper.rs);
-      in "${set20watts}/bin/set20watts";
+      ExecStart =
+        let
+          set20watts = pkgs.writers.writeRustBin "set20watts" { strip = true; } (
+            builtins.readFile ./helper.rs
+          );
+        in
+        "${set20watts}/bin/set20watts";
     };
   };
 }

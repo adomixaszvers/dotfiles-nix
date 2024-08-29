@@ -1,5 +1,14 @@
-{ pkgs, myPkgs, config, ... }: {
-  imports = [ ../waybar ../dunst.nix ];
+{
+  pkgs,
+  myPkgs,
+  config,
+  ...
+}:
+{
+  imports = [
+    ../waybar
+    ../dunst.nix
+  ];
   home.packages = with pkgs; [
     grimblast
     pamixer
@@ -20,10 +29,20 @@
         height = 16;
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
-        modules-right =
-          [ "pulseaudio" "cpu" "memory" "temperature" "clock" "tray" ];
-        "clock" = { format = "{:%Y-%m-%d %H:%M}"; };
-        "pulseaudio" = { scroll-step = 5.0; };
+        modules-right = [
+          "pulseaudio"
+          "cpu"
+          "memory"
+          "temperature"
+          "clock"
+          "tray"
+        ];
+        "clock" = {
+          format = "{:%Y-%m-%d %H:%M}";
+        };
+        "pulseaudio" = {
+          scroll-step = 5.0;
+        };
         temperature.thermal-zone = config.gui.thermal-zone;
       };
       systemd = {
@@ -33,13 +52,17 @@
     };
   };
   services.swayidle = {
-    timeouts = let
-      hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
-    in [{
-      timeout = 360;
-      command = "${hyprctl} dispatch dpms off";
-      resumeCommand = "${hyprctl} dispatch dpms on";
-    }];
+    timeouts =
+      let
+        hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
+      in
+      [
+        {
+          timeout = 360;
+          command = "${hyprctl} dispatch dpms off";
+          resumeCommand = "${hyprctl} dispatch dpms on";
+        }
+      ];
   };
   wayland.windowManager.hyprland = {
     enable = true;
@@ -67,7 +90,10 @@
       # source = ~/.config/hypr/myColors.conf
 
       # Some default env vars.
-      env = [ "XCURSOR_SIZE,24" "KITTY_CONF_FONT,font_size 9.0" ];
+      env = [
+        "XCURSOR_SIZE,24"
+        "KITTY_CONF_FONT,font_size 9.0"
+      ];
       # sets xwayland scale
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -78,12 +104,16 @@
 
         follow_mouse = 1;
 
-        touchpad = { natural_scroll = false; };
+        touchpad = {
+          natural_scroll = false;
+        };
 
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
       };
 
-      xwayland = { force_zero_scaling = true; };
+      xwayland = {
+        force_zero_scaling = true;
+      };
 
       general = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -114,12 +144,13 @@
         "col.shadow" = "rgba(1a1a1aee)";
       };
 
-      animations = { enabled = true; };
+      animations = {
+        enabled = true;
+      };
 
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-        pseudotile =
-          true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+        pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
         preserve_split = true; # you probably want this
         no_gaps_when_only = true;
       };
@@ -150,58 +181,63 @@
       "$mainMod" = "SUPER";
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-      bind = [
-        "$mainMod, Return, exec, kitty"
-        "$mainMod SHIFT, Q, killactive,"
-        "$mainMod SHIFT, C, exit,"
-        "$mainMod, T, togglefloating,"
-        "$mainMod, D, exec, rofi -show-icons -combi-modi windows,drun,run -show combi -modi windows:${myPkgs.hypr-window-select}/bin/hypr-window-select"
-        "$mainMod SHIFT, D, exec, rofi -show run"
-        "$mainMod, F, fullscreen, 1"
-        "$mainMod SHIFT, F, fullscreen, 0" # true fullscreen
-        "$mainMod, P, pseudo," # dwindle
-        "$mainMod, S, togglesplit," # dwindle
-        "$mainMod, F4, exec, rofi-powermenu"
+      bind =
+        [
+          "$mainMod, Return, exec, kitty"
+          "$mainMod SHIFT, Q, killactive,"
+          "$mainMod SHIFT, C, exit,"
+          "$mainMod, T, togglefloating,"
+          "$mainMod, D, exec, rofi -show-icons -combi-modi windows,drun,run -show combi -modi windows:${myPkgs.hypr-window-select}/bin/hypr-window-select"
+          "$mainMod SHIFT, D, exec, rofi -show run"
+          "$mainMod, F, fullscreen, 1"
+          "$mainMod SHIFT, F, fullscreen, 0" # true fullscreen
+          "$mainMod, P, pseudo," # dwindle
+          "$mainMod, S, togglesplit," # dwindle
+          "$mainMod, F4, exec, rofi-powermenu"
 
-        "$mainMod, W, focusmonitor, 0"
-        "$mainMod, E, focusmonitor, 1"
-        "$mainMod, R, focusmonitor, 2"
+          "$mainMod, W, focusmonitor, 0"
+          "$mainMod, E, focusmonitor, 1"
+          "$mainMod, R, focusmonitor, 2"
 
-        ", Print, exec, grimblast copy output"
-        "ALT, Print, exec, grimblast copy area"
+          ", Print, exec, grimblast copy output"
+          "ALT, Print, exec, grimblast copy area"
 
-        # Move focus with mainMod + arrow keys
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
+          # Move focus with mainMod + arrow keys
+          "$mainMod, left, movefocus, l"
+          "$mainMod, right, movefocus, r"
+          "$mainMod, up, movefocus, u"
+          "$mainMod, down, movefocus, d"
 
-        "$mainMod, J, layoutmsg, cyclenext"
-        "$mainMod, K, layoutmsg, cycleprev"
-        "$mainMod SHIFT, J, layoutmsg, swapnext"
-        "$mainMod SHIFT, K, layoutmsg, swapprev"
-        "$mainMod SHIFT, Return, layoutmsg, swapwithmaster"
-        "$mainMod, SPACE, layoutmsg, orientationcycle left top"
+          "$mainMod, J, layoutmsg, cyclenext"
+          "$mainMod, K, layoutmsg, cycleprev"
+          "$mainMod SHIFT, J, layoutmsg, swapnext"
+          "$mainMod SHIFT, K, layoutmsg, swapprev"
+          "$mainMod SHIFT, Return, layoutmsg, swapwithmaster"
+          "$mainMod, SPACE, layoutmsg, orientationcycle left top"
 
-        "$mainMod, C, cyclenext"
+          "$mainMod, C, cyclenext"
 
-        "$mainMod, bracketleft, focusmonitor, -1"
-        "$mainMod, bracketright, focusmonitor, +1"
+          "$mainMod, bracketleft, focusmonitor, -1"
+          "$mainMod, bracketright, focusmonitor, +1"
 
-        "$mainMod CTRL, bracketleft, swapactiveworkspaces, current -1"
-        "$mainMod CTRL, bracketright, swapactiveworkspaces, current +1"
+          "$mainMod CTRL, bracketleft, swapactiveworkspaces, current -1"
+          "$mainMod CTRL, bracketright, swapactiveworkspaces, current +1"
 
-        # Scroll through existing workspaces with mainMod + scroll
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
-      ] ++ (builtins.concatMap (x:
-        let
-          ws = toString x;
-          keyCode = toString (x + 9);
-        in [
-          "$mainMod, ${keyCode}, exec, ${myPkgs.hypr-greedy-focus}/bin/hypr-greedy-focus ${ws}"
-          "$mainMod SHIFT, ${keyCode}, movetoworkspace,  ${ws}"
-        ]) (builtins.genList (x: x + 1) 10));
+          # Scroll through existing workspaces with mainMod + scroll
+          "$mainMod, mouse_down, workspace, e+1"
+          "$mainMod, mouse_up, workspace, e-1"
+        ]
+        ++ (builtins.concatMap (
+          x:
+          let
+            ws = toString x;
+            keyCode = toString (x + 9);
+          in
+          [
+            "$mainMod, ${keyCode}, exec, ${myPkgs.hypr-greedy-focus}/bin/hypr-greedy-focus ${ws}"
+            "$mainMod SHIFT, ${keyCode}, movetoworkspace,  ${ws}"
+          ]
+        ) (builtins.genList (x: x + 1) 10));
 
       # Move/resize windows with mainMod + LMB/RMB and dragging
       bindm = [

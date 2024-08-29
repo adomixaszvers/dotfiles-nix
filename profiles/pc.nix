@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [ ./common.nix ];
   home.packages = with pkgs; [
     discord
@@ -6,8 +7,8 @@
     # gamescope
     libreoffice-still
     (lutris.override {
-      extraPkgs = ps:
-        with ps; [
+      extraPkgs =
+        ps: with ps; [
           wine
           xorg.libXcursor
           xorg.libXi
@@ -31,7 +32,9 @@
     xpra
     protonup-qt
   ];
-  home.sessionVariables = { BROWSER = "firefox"; };
+  home.sessionVariables = {
+    BROWSER = "firefox";
+  };
   stylix.targets.gtk.enable = false;
   qt.enable = false;
   gui.thermal-zone = 2;

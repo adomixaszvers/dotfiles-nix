@@ -1,4 +1,8 @@
-{ writeShellScriptBin, rofi, lib }:
+{
+  writeShellScriptBin,
+  rofi,
+  lib,
+}:
 writeShellScriptBin "rofi-powermenu" ''
   PATH=$PATH:${lib.makeBinPath [ rofi ]}
 

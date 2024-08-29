@@ -11,35 +11,41 @@
     ./zsh
   ];
   home = {
-    packages = (with pkgs; [
-      bat
-      bfs
-      binutils
-      cachix
-      comma
-      deadnix
-      dnsutils
-      fd
-      file
-      github-cli
-      htop
-      icdiff
-      jq
-      lf
-      lsof
-      ncdu
-      nixfmt-rfc-style
-      nix-tree
-      p7zip
-      patchelf
-      ripgrep
-      shellcheck
-      statix
-      tree
-      unzip
-      wol
-      xdg-user-dirs
-    ]) ++ (with myPkgs; [ he hm-repl hm-switch ]);
+    packages =
+      (with pkgs; [
+        bat
+        bfs
+        binutils
+        cachix
+        comma
+        deadnix
+        dnsutils
+        fd
+        file
+        github-cli
+        htop
+        icdiff
+        jq
+        lf
+        lsof
+        ncdu
+        nixfmt-rfc-style
+        nix-tree
+        p7zip
+        patchelf
+        ripgrep
+        shellcheck
+        statix
+        tree
+        unzip
+        wol
+        xdg-user-dirs
+      ])
+      ++ (with myPkgs; [
+        he
+        hm-repl
+        hm-switch
+      ]);
     sessionVariables = {
       EDITOR = "nvim";
       MANPAGER = "sh -c 'col -bx | bat -l man -p'";
@@ -55,7 +61,11 @@
   programs = {
     bash = {
       enable = true;
-      historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
+      historyControl = [
+        "erasedups"
+        "ignoredups"
+        "ignorespace"
+      ];
     };
     broot.enable = true;
     eza.enable = true;
@@ -74,12 +84,14 @@
       keyMode = "vi";
       mouse = true;
       terminal = "screen-256color";
-      plugins = with pkgs.tmuxPlugins; [{
-        plugin = mode-indicator;
-        extraConfig = ''
-          set -g status-right '%Y-%m-%d %H:%M #{tmux_mode_indicator}'
-        '';
-      }];
+      plugins = with pkgs.tmuxPlugins; [
+        {
+          plugin = mode-indicator;
+          extraConfig = ''
+            set -g status-right '%Y-%m-%d %H:%M #{tmux_mode_indicator}'
+          '';
+        }
+      ];
     };
     z-lua = {
       enable = true;

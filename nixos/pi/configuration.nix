@@ -1,4 +1,10 @@
-{ pkgs, lib, inputs, ... }: {
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+{
   imports = [
     # ./vaultwarden.nix
     ../flakes.nix
@@ -47,10 +53,11 @@
     # Prior to 19.09, the boot partition was hosted on the smaller first partition
     # Starting with 19.09, the /boot folder is on the main bigger partition.
     # The following is to be used only with older images.
-    /* "/boot" = {
-         device = "/dev/disk/by-label/NIXOS_BOOT";
-         fsType = "vfat";
-       };
+    /*
+      "/boot" = {
+        device = "/dev/disk/by-label/NIXOS_BOOT";
+        fsType = "vfat";
+      };
     */
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
@@ -63,7 +70,10 @@
       # Alternatively, this could be removed from the configuration.
       # The filesystem is not needed at runtime, it could be treated
       # as an opaque blob instead of a discrete FAT32 filesystem.
-      options = [ "nofail" "noauto" ];
+      options = [
+        "nofail"
+        "noauto"
+      ];
     };
   };
 
@@ -98,7 +108,9 @@
     nixfmt-rfc-style
     wol
   ];
-  networking = { hostName = "raspberrypi-nixos"; };
+  networking = {
+    hostName = "raspberrypi-nixos";
+  };
   services = {
     fstrim.enable = true;
     journald.extraConfig = "SystemMaxUse=500M";

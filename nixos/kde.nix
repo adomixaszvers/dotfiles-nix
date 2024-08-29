@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
-  programs.ssh.askPassword =
-    "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
+{ pkgs, ... }:
+{
+  programs.ssh.askPassword = "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
   services = {
     displayManager = {
       sddm = {

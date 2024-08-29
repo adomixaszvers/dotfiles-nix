@@ -2,10 +2,20 @@
 
 let
   inherit (inputs) home-manager;
-  buildHomeManager = configuration:
-    { system ? "x86_64-linux", username ? "adomas"
-    , homeDirectory ? "/home/${username}" }:
-    withSystem system ({ pkgs, unstable, self', ... }:
+  buildHomeManager =
+    configuration:
+    {
+      system ? "x86_64-linux",
+      username ? "adomas",
+      homeDirectory ? "/home/${username}",
+    }:
+    withSystem system (
+      {
+        pkgs,
+        unstable,
+        self',
+        ...
+      }:
       home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
@@ -23,8 +33,10 @@ let
           inherit inputs unstable system;
           myPkgs = self'.packages;
         };
-      });
-in {
+      }
+    );
+in
+{
   flake.homeConfigurations = rec {
     work = buildHomeManager ./profiles/work.nix { };
     work-remote = buildHomeManager ./profiles/work-remote.nix { };
@@ -43,8 +55,7 @@ in {
     "adomas@adomo-pc-nixos" = pc;
     "pi@raspberrypi-nixos" = pi;
     thinkpad-home = work-remote;
-    "deck@steamdeck" =
-      buildHomeManager ./profiles/steamdeck.nix { username = "deck"; };
+    "deck@steamdeck" = buildHomeManager ./profiles/steamdeck.nix { username = "deck"; };
     thinkpad-work = work;
   };
 }

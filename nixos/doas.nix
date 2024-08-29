@@ -1,9 +1,11 @@
 {
   security.doas = {
     enable = true;
-    extraRules = [{
-      users = [ "adomas" ];
-      keepEnv = true;
-    }];
+    extraRules = [
+      {
+        users = [ "adomas" ];
+        keepEnv = true;
+      }
+    ];
   };
 }

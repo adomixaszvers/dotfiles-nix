@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # TODO make it a proper module
   home.file.".emacs.d" = {
     source = pkgs.fetchFromGitHub {

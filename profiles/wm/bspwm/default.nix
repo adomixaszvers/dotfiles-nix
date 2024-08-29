@@ -1,46 +1,67 @@
-{ pkgs, myPkgs, config, ... }: {
-  imports = [ ../polybar.nix ../dunst.nix ../picom.nix ./sxhkd.nix ];
-  home.packages = (with pkgs; [ pamixer tdrop wmname ])
-    ++ (with myPkgs; [ bspwm-reorder-desktops bspwm-greedy-focus ]);
-  services.polybar.config = let
-    common = {
-      modules-left = "bspwm divider title";
-      wm-restack = "bspwm";
+{
+  pkgs,
+  myPkgs,
+  config,
+  ...
+}:
+{
+  imports = [
+    ../polybar.nix
+    ../dunst.nix
+    ../picom.nix
+    ./sxhkd.nix
+  ];
+  home.packages =
+    (with pkgs; [
+      pamixer
+      tdrop
+      wmname
+    ])
+    ++ (with myPkgs; [
+      bspwm-reorder-desktops
+      bspwm-greedy-focus
+    ]);
+  services.polybar.config =
+    let
+      common = {
+        modules-left = "bspwm divider title";
+        wm-restack = "bspwm";
+      };
+    in
+    {
+      "bar/top" = common;
+      "bar/top-extra" = common;
+      "module/bspwm" = {
+        type = "internal/bspwm";
+        pin-workspaces = true;
+        enable-click = false;
+
+        format = "<label-state> <label-mode>";
+
+        label = "%{T2}%title%%{T-}";
+        label-focused = "[%name%]";
+
+        label-occupied = "%name%";
+
+        label-empty = "%name%";
+        label-empty-foreground = config.lib.stylix.colors.base0C;
+
+        label-separator = " ";
+
+        label-monocle = "%{T2}M%{T-}";
+        label-tiled = "%{T2}t%{T-}";
+        label-fullscreen = "%{T2}F%{T-}";
+        label-floating = "%{T2}f%{T-}";
+        label-pseudotiled = "%{T2}P%{T-}";
+        label-locked = "%{T2}L%{T-}";
+        label-locked-foreground = "#bd2c40";
+        label-sticky = "%{T2}s%{T-}";
+        label-sticky-foreground = "#fba922";
+        label-private = "%{T2}p%{T-}";
+        label-private-foreground = "#bd2c40";
+        label-marked = "%{T2}m%{T-}";
+      };
     };
-  in {
-    "bar/top" = common;
-    "bar/top-extra" = common;
-    "module/bspwm" = {
-      type = "internal/bspwm";
-      pin-workspaces = true;
-      enable-click = false;
-
-      format = "<label-state> <label-mode>";
-
-      label = "%{T2}%title%%{T-}";
-      label-focused = "[%name%]";
-
-      label-occupied = "%name%";
-
-      label-empty = "%name%";
-      label-empty-foreground = config.lib.stylix.colors.base0C;
-
-      label-separator = " ";
-
-      label-monocle = "%{T2}M%{T-}";
-      label-tiled = "%{T2}t%{T-}";
-      label-fullscreen = "%{T2}F%{T-}";
-      label-floating = "%{T2}f%{T-}";
-      label-pseudotiled = "%{T2}P%{T-}";
-      label-locked = "%{T2}L%{T-}";
-      label-locked-foreground = "#bd2c40";
-      label-sticky = "%{T2}s%{T-}";
-      label-sticky-foreground = "#fba922";
-      label-private = "%{T2}p%{T-}";
-      label-private-foreground = "#bd2c40";
-      label-marked = "%{T2}m%{T-}";
-    };
-  };
   stylix.targets.bspwm.enable = true;
   xsession.windowManager.bspwm = {
     enable = true;
@@ -103,20 +124,48 @@
         done &
       '';
     rules = {
-      Google-chrome = { desktop = "1"; };
-      firefox = { desktop = "1"; };
-      jetbrains-idea = { desktop = "3"; };
-      Rambox = { desktop = "4"; };
-      discord = { desktop = "4"; };
-      SmartGit = { desktop = "5"; };
-      steam = { desktop = "5"; };
-      "*:libreoffice" = { desktop = "6"; };
-      "org.remmina.Remmina" = { desktop = "8"; };
-      KeePassXC = { desktop = "9"; };
-      "Google Play Music Desktop Player" = { desktop = "10"; };
-      Spotify = { desktop = "10"; };
-      "*:scratchpad" = { state = "fullscreen"; };
-      lxqt-openssh-askpass = { state = "floating"; };
+      Google-chrome = {
+        desktop = "1";
+      };
+      firefox = {
+        desktop = "1";
+      };
+      jetbrains-idea = {
+        desktop = "3";
+      };
+      Rambox = {
+        desktop = "4";
+      };
+      discord = {
+        desktop = "4";
+      };
+      SmartGit = {
+        desktop = "5";
+      };
+      steam = {
+        desktop = "5";
+      };
+      "*:libreoffice" = {
+        desktop = "6";
+      };
+      "org.remmina.Remmina" = {
+        desktop = "8";
+      };
+      KeePassXC = {
+        desktop = "9";
+      };
+      "Google Play Music Desktop Player" = {
+        desktop = "10";
+      };
+      Spotify = {
+        desktop = "10";
+      };
+      "*:scratchpad" = {
+        state = "fullscreen";
+      };
+      lxqt-openssh-askpass = {
+        state = "floating";
+      };
     };
     settings = {
       border_width = 2;

@@ -5,8 +5,13 @@
 
 {
 
-  boot.initrd.availableKernelModules =
-    [ "ehci_pci" "ahci" "xhci_pci" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [
+    "ehci_pci"
+    "ahci"
+    "xhci_pci"
+    "usbhid"
+    "sd_mod"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -66,8 +71,7 @@
     fsType = "ext4";
   };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/4de0a2d5-e10f-4975-a15a-4b0ec944cecf"; }];
+  swapDevices = [ { device = "/dev/disk/by-uuid/4de0a2d5-e10f-4975-a15a-4b0ec944cecf"; } ];
 
   nix.settings.max-jobs = lib.mkDefault 8;
   # powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";

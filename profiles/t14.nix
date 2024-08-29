@@ -1,5 +1,10 @@
-{ pkgs, myPkgs, ... }: {
-  imports = [ ./common.nix ./wm/xsession-common.nix ./wm/xmonad ];
+{ pkgs, myPkgs, ... }:
+{
+  imports = [
+    ./common.nix
+    ./wm/xsession-common.nix
+    ./wm/xmonad
+  ];
   # imports = [ ./common.nix ];
   # gtk.enable = false;
   # qt.enable = false;
@@ -8,15 +13,17 @@
   #   udiskie.enable = false;
   # };
   stylix.enable = true;
-  xresources.properties = let dpi = 120;
-  in {
-    "Xft.dpi" = dpi;
-    "rofi.dpi" = dpi;
-  };
+  xresources.properties =
+    let
+      dpi = 120;
+    in
+    {
+      "Xft.dpi" = dpi;
+      "rofi.dpi" = dpi;
+    };
   services.polybar.config = {
     "bar/top" = {
-      modules-right =
-        "battery disk memory cpu temperature volume keyboard date tray";
+      modules-right = "battery disk memory cpu temperature volume keyboard date tray";
 
     };
     "module/battery" = {
@@ -35,34 +42,40 @@
       ramp-capacity-4 = "";
     };
   };
-  home.packages = (with pkgs; [
-    brave # needed for messenger calls
-    brightnessctl
-    borgbackup
-    compsize
-    discord
-    exercism
-    gnome.nautilus
-    gtypist
-    libreoffice-still
-    lutris
-    mpv
-    playerctl
-    remmina
-    qbittorrent
-    tor-browser-bundle-bin
-    keepassxc
-    xpra
-    protonup
-    steamtinkerlaunch
-  ]) ++ (with myPkgs; [ toggle-touchpad ]);
-  home.sessionVariables = { BROWSER = "firefox"; };
+  home.packages =
+    (with pkgs; [
+      brave # needed for messenger calls
+      brightnessctl
+      borgbackup
+      compsize
+      discord
+      exercism
+      gnome.nautilus
+      gtypist
+      libreoffice-still
+      lutris
+      mpv
+      playerctl
+      remmina
+      qbittorrent
+      tor-browser-bundle-bin
+      keepassxc
+      xpra
+      protonup
+      steamtinkerlaunch
+    ])
+    ++ (with myPkgs; [ toggle-touchpad ]);
+  home.sessionVariables = {
+    BROWSER = "firefox";
+  };
   gui.thermal-zone = 0;
   programs = {
     firefox = {
       enable = true;
       package = pkgs.firefox.override {
-        cfg = { nativeMessagingHosts = [ pkgs.plasma-shell-integration ]; };
+        cfg = {
+          nativeMessagingHosts = [ pkgs.plasma-shell-integration ];
+        };
       };
     };
   };
@@ -75,8 +88,7 @@
       xset s off -dpms
       xrandr --output eDP --set TearFree on
     '';
-  wayland.windowManager.hyprland.settings.monitor =
-    [ "eDP-1,1920x1080,0x0,1.25" ];
+  wayland.windowManager.hyprland.settings.monitor = [ "eDP-1,1920x1080,0x0,1.25" ];
   wayland.windowManager.sway = {
     config = {
       input = {

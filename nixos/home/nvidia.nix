@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     displayManager.sddm.enable = true;
