@@ -77,7 +77,7 @@
           hooks = {
             nixfmt = {
               enable = true;
-              package = pkgs.nixfmt-classic;
+              package = pkgs.nixfmt-rfc-style;
             };
             statix = {
               enable = true;

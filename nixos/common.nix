@@ -30,6 +30,7 @@
     gparted
     lm_sensors
     neovim
+    nixfmt-rfc-style
     ntfs3g
     pciutils
     psmisc

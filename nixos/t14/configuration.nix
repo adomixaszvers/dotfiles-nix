@@ -58,7 +58,7 @@
     usb-modeswitch.enable = true;
   };
 
-  environment.systemPackages = (with pkgs; [ nixfmt-classic virt-manager ])
+  environment.systemPackages = (with pkgs; [ virt-manager ])
     ++ [ config.boot.kernelPackages.cpupower ];
 
   networking = {
