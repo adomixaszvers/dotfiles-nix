@@ -96,10 +96,7 @@
           pre-commit.settings = {
             src = ./.;
             hooks = {
-              nixfmt = {
-                enable = true;
-                package = pkgs.nixfmt-rfc-style;
-              };
+              nixfmt-rfc-style.enable = true;
               statix = {
                 enable = true;
                 settings.ignore = [ "hardware-configuration.nix" ];
