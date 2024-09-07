@@ -68,26 +68,31 @@
           enabled = true;
           url = "https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt";
           name = "Disconnect.me SimpleAd";
+          id = 1;
         }
         {
           enabled = true;
           url = "https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt";
           name = "Disconnect.me SimpleTracking";
+          id = 2;
         }
         {
           enabled = true;
           url = "http://sysctl.org/cameleon/hosts";
           name = "sysctl";
+          id = 3;
         }
         {
           enabled = true;
           url = "https://raw.githubusercontent.com/kevinle-1/Windows-telemetry-blocklist/master/windowsblock.txt";
           name = "Windows Telemetry BlockList";
+          id = 4;
         }
         {
           enabled = true;
           url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts";
           name = "Unified hosts file with base extensions";
+          id = 5;
         }
       ];
     };
