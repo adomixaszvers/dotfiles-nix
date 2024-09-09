@@ -33,6 +33,17 @@
         ];
       };
       mcard-toolbox = pkgs.callPackage ./mcard-toolbox { };
+      soapui =
+        let
+          version = "5.6.1";
+        in
+        pkgs.soapui.overrideAttrs (_old: {
+          inherit version;
+          src = pkgs.fetchurl {
+            url = "https://s3.amazonaws.com/downloads.eviware/soapuios/${version}/SoapUI-${version}-linux-bin.tar.gz";
+            sha256 = "sha256-c13iRcceMtLILlw6ockB9bMf7EVBeAATFy/Ln5ezy3c=";
+          };
+        });
     }
   );
   perSystem =

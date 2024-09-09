@@ -84,7 +84,7 @@
       rlwrap
       samba
       protonup
-      soapui
+      myPkgs.soapui
       # spotify
       sshpass
       steam-run
