@@ -24,6 +24,7 @@
     ];
     shadowOpacity = 0.9;
     opacityRules = [
+      "100:class_g = 'pinentry'"
       "95:class_g = 'URxvt' && !_NET_WM_STATE@:32a"
       "0:_NET_WM_STATE@[0]:32a *= '_NET_WM_STATE_HIDDEN'"
       "0:_NET_WM_STATE@[1]:32a *= '_NET_WM_STATE_HIDDEN'"
