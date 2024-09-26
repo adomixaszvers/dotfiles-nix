@@ -1,6 +1,5 @@
 {
   pkgs,
-  unstable,
   lib,
   myPkgs,
   config,
@@ -62,7 +61,7 @@
       gnumake
       google-chrome
       html-tidy
-      unstable.jetbrains.idea-ultimate
+      jetbrains.idea-ultimate
       jmeter
       jq
       keepassxc
