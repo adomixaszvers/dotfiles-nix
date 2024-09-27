@@ -3,7 +3,7 @@
     enable = true;
     nssmdns4 = true;
     publish = {
-      enable = true;
+      enable = false;
       addresses = true;
       domain = true;
       userServices = true;
