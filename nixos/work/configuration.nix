@@ -157,7 +157,10 @@
       };
       ports = [ 22 ];
     };
-    printing.enable = true;
+    printing = {
+      enable = true;
+      browsed.enable = false;
+    };
     thinkfan.levels = [
       [
         0
