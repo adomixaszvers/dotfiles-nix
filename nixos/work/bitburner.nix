@@ -23,18 +23,17 @@ in
     wantedBy = [ "multi-user.target" ];
     script =
       let
+        version = "2.6.2";
         bitburnerSrc = pkgs.fetchzip {
-          url =
-            let
-              version = "2.5.1";
-            in
-            "https://github.com/bitburner-official/bitburner-src/releases/download/v${version}/Bitburner.${version}.zip";
+          url = "https://github.com/bitburner-official/bitburner-src/releases/download/v${version}/${
+            builtins.replaceStrings [ "." ] [ "_" ] version
+          }_Web.zip";
           stripRoot = false;
-          sha256 = "0rhg5j90k4pvvnh4006wj9z8dcbx01f7r6xf3xznlncmky5wqw98";
+          sha256 = "11pkmxsbmihz3skl29qx1s51qabwil9ayzkf3y5zv6dq7mairldn";
         };
       in
       ''
-        xpra start :99 --bind-tcp=10.6.0.6:9292 --bind-tcp=127.0.0.1:9292 --daemon=no --notifications=no --printing=no --speaker=no --session-name=bitburner --exit-with-children --start-child="chromium --app=file://${bitburnerSrc}/index.html --user-data-dir=/var/lib/bitburner/.bitburner-profile"
+        xpra start :99 --bind-tcp=10.6.0.6:9292 --bind-tcp=127.0.0.1:9292 --daemon=no --notifications=no --printing=no --speaker=no --session-name=bitburner --exit-with-children --start-child="chromium --app=file://${bitburnerSrc}/Bitburner\ ${version}/index.html --user-data-dir=/var/lib/bitburner/.bitburner-profile"
       '';
     serviceConfig = {
       User = "bitburner";
