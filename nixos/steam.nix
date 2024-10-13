@@ -18,7 +18,7 @@
             mangohud
             (writeShellScriptBin "launch-gamescope" ''
               (sleep 1; pgrep gamescope| xargs renice -n -11 -p)&
-              exec gamescope "$@"
+              exec env LD_PRELOAD="" gamescope "$@"
             '')
           ];
       };
