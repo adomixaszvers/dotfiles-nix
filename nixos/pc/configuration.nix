@@ -43,6 +43,11 @@
     networkmanager.enable = true;
   };
 
+  systemd.tmpfiles.rules = [
+    "w+ /sys/class/drm/card1/device/power_dpm_force_performance_level - - - - manual"
+    "w+ /sys/class/drm/card1/device/pp_power_profile_mode - - - - 1"
+  ];
+
   specialisation.latest-kernel.configuration = {
     boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   };
@@ -64,6 +69,7 @@
     };
     xone.enable = true;
   };
+  powerManagement.cpuFreqGovernor = "performance";
 
   services.zfs = {
     autoScrub = {
