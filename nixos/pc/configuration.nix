@@ -81,7 +81,7 @@
 
   programs = {
     gamescope.args = [
-      "--adaptive-sync"
+      "-r 144"
       "-W 1920 -H 1080"
     ];
     # nix flake check doesn't complain but nixos-rebuild does
