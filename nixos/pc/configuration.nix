@@ -14,7 +14,7 @@
     ../flakes.nix
     ../gc.nix
     ../nix-registry.nix
-    ../pipewire.nix
+    # ../pipewire.nix
     ../realtime.nix
     ../syncthing.nix
     ../yubikey.nix
@@ -53,6 +53,14 @@
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = true;
+    };
+    pulseaudio = {
+      enable = true;
+      support32Bit = true;
+      configFile = pkgs.runCommand "default.pa" { } ''
+        sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
+          ${pkgs.pulseaudio}/etc/pulse/default.pa > $out
+      '';
     };
     xone.enable = true;
   };
