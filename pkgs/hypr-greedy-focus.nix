@@ -14,11 +14,11 @@ writers.writeDashBin "hypr-greedy-focus" ''
   WS=$1
 
   read -r WS_ACTIVE FOCUSED_OUTPUT FOCUSED_WS WS_OUTPUT <<EOF
-  $(${jq}/bin/jq -rn --arg ws "$WS" --argjson workspaces "$(hyprctl -j workspaces)" --argjson monitors "$(hyprctl -j monitors)" '[
-    ($monitors| map(select(.activeWorkspace.name == $ws))| any),
-    ($monitors| .[]| select(.focused)| .id),
-    ($monitors| .[]| select(.focused)| .activeWorkspace.name),
-    ($workspaces| .[]| select(.name == $ws)| .monitorID)
+  $(hyprctl --batch -j 'monitors; workspaces' | ${jq}/bin/jq --raw-output --slurp --arg ws "$WS" '[
+    (.[0]| map(select(.activeWorkspace.name == $ws))| any),
+    (.[0]| .[]| select(.focused)| .id),
+    (.[0]| .[]| select(.focused)| .activeWorkspace.name),
+    (.[1]| .[]| select(.name == $ws)| .monitorID)
   ]| @tsv')
   EOF
 
