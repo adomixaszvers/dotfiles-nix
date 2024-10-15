@@ -1,20 +1,8 @@
-{
-  jq,
-  writeShellScriptBin,
-  coreutils,
-  lib,
-}:
-writeShellScriptBin "sway-greedy-focus" ''
-  PATH=${
-    lib.makeBinPath [
-      coreutils
-      jq
-    ]
-  }:$PATH
+{ jq, writers }:
+writers.writeDashBin "sway-greedy-focus" ''
+  PROG="''${0##*/}"
 
-  PROG=$(basename $0)
-
-  set -ep
+  set -e
 
   die() {
     echo "$PROG: $1" 1>&2
@@ -25,19 +13,22 @@ writeShellScriptBin "sway-greedy-focus" ''
 
   export WS=$1
 
-  export SWAY_STATE=$(swaymsg -t get_tree)
-
-  export WS_OUTPUT=$(jq -nr 'env.SWAY_STATE | fromjson | .nodes[].nodes[] | select(.name == env.WS) | .output')
+  read -r WS_ACTIVE WS_OUTPUT FOCUSED_WS FOCUSED_OUTPUT <<EOF
+    $(swaymsg -t get_tree| ${jq}/bin/jq --raw-output '(.nodes[].nodes[] | select(.name == env.WS) | .output ) as $ws_output|
+      (.nodes[] | select(.name == $ws_output)| .current_workspace == env.WS) as $ws_active|
+      (.nodes[].nodes[] | select(.. | .focused?)) as $focused | [
+      $ws_active,
+      $ws_output,
+      ($focused| .name),
+      ($focused| .output)
+      ]| @tsv')
+  EOF
 
   if [ -z "$WS_OUTPUT" ]; then
     # the workspace has to be created
     swaymsg workspace "$WS"
     exit 0
   fi
-
-  WS_ACTIVE=$(jq -nr 'env.SWAY_STATE | fromjson | .nodes[] | select(.name == env.WS_OUTPUT)| .current_workspace == env.WS')
-  FOCUSED_WS=$(jq -nr 'env.SWAY_STATE | fromjson | .nodes[].nodes[] | select(.. | .focused?) | .name')
-  FOCUSED_OUTPUT=$(jq -nr 'env.SWAY_STATE | fromjson | .nodes[].nodes[] | select(.. | .focused?) | .output')
 
   # the workspace is already focused
   [ "$WS" = "$FOCUSED_WS" ] && exit 0
