@@ -52,7 +52,6 @@
       packages = {
         bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
         bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
-        bumblebee-status = pkgs.callPackage ./bumblebee-status { };
         hunspell-lt = pkgs.callPackage ./hunspell-lt { };
         he = pkgs.callPackage ./he.nix { };
         hypr-window-select = pkgs.callPackage ./hypr-window-select.nix { };
