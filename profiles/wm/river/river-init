@@ -70,34 +70,49 @@ riverctl map-pointer normal $mod BTN_LEFT move-view
 # Mod + Right Mouse Button to resize views
 riverctl map-pointer normal $mod BTN_RIGHT resize-view
 
-ltkeys=("aogonek" "ccaron" "eogonek" "eabovedot" "iogonek" "scaron" "uogonek" "umacron" "doublelowquotemark" "leftdoublequotemark")
-for i in $(seq 1 9)
+get_ltkey() {
+    case $1 in
+        1) echo aogonek ;;
+        2) echo ccaron ;;
+        3) echo eogonek ;;
+        4) echo eabovedot ;;
+        5) echo iogonek ;;
+        6) echo scaron ;;
+        7) echo uogonek ;;
+        8) echo umacron ;;
+        9) echo doublelowquotemark ;;
+        10) echo leftdoublequotemark ;;
+    esac
+}
+
+for i in $(seq 1 10)
 do
-    tags=$((1 << ($i - 1)))
-    ltkey=${ltkeys[$((i-1))]}
+    tags=$((1 << (i - 1)))
+    key=$((i % 10))
+    ltkey="$(get_ltkey "$i")"
 
     # Mod+[1-9] to focus tag [0-8]
-    riverctl map normal $mod $i set-focused-tags $tags
-    riverctl map normal $mod $ltkey set-focused-tags $tags
+    riverctl map normal $mod "$key" set-focused-tags $tags
+    riverctl map normal $mod "$ltkey" set-focused-tags $tags
 
     # Mod+Shift+[1-9] to tag focused view with tag [0-8]
-    riverctl map normal $mod+Shift $i set-view-tags $tags
-    riverctl map normal $mod+Shift $ltkey set-view-tags $tags
+    riverctl map normal $mod+Shift "$key" set-view-tags $tags
+    riverctl map normal $mod+Shift "$ltkey" set-view-tags $tags
 
     # Mod+Ctrl+[1-9] to toggle focus of tag [0-8]
-    riverctl map normal $mod+Control $i toggle-focused-tags $tags
-    riverctl map normal $mod+Control $ltkey toggle-focused-tags $tags
+    riverctl map normal $mod+Control "$key" toggle-focused-tags $tags
+    riverctl map normal $mod+Control "$ltkey" toggle-focused-tags $tags
 
     # Mod+Shift+Ctrl+[1-9] to toggle tag [0-8] of focused view
-    riverctl map normal $mod+Shift+Control $i toggle-view-tags $tags
-    riverctl map normal $mod+Shift+Control $ltkey toggle-view-tags $tags
+    riverctl map normal $mod+Shift+Control "$key" toggle-view-tags $tags
+    riverctl map normal $mod+Shift+Control "$ltkey" toggle-view-tags $tags
 done
 
 # Mod+0 to focus all tags
 # Mod+Shift+0 to tag focused view with all tags
 all_tags=$(((1 << 32) - 1))
-riverctl map normal $mod 0 set-focused-tags $all_tags
-riverctl map normal $mod+Shift 0 set-view-tags $all_tags
+riverctl map normal $mod grave set-focused-tags $all_tags
+riverctl map normal $mod+Shift grave set-view-tags $all_tags
 
 # Mod+Space to toggle float
 riverctl map normal $mod Space toggle-float

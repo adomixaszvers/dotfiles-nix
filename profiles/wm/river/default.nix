@@ -16,6 +16,8 @@
       pkgs.river
       pkgs.wofi
       pkgs.rivercarro
+      pkgs.wl-clipboard
+      pkgs.wdisplays
     ];
   programs.waybar = {
     settings = [
@@ -32,7 +34,7 @@
           "clock"
         ];
         "river/tags" = {
-          "num-tags" = 9;
+          "num-tags" = 10;
         };
         "clock" = {
           format = "{:%Y-%m-%d %H:%M}";
