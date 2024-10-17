@@ -3,78 +3,78 @@
   programs = {
     nushell = {
       shellAliases.hcd = "cd ~/.config/nixpkgs";
-      configFile.text = ''
-        let zoxide_completer = {|spans|
-            $spans | skip 1 | zoxide query -l $in | lines | where {|x| $x != $env.PWD}
-        }
-        let fish_completer = {|spans|
-            ${pkgs.fish}/bin/fish --command $'complete "--do-complete=($spans | str join " ")"'
-            | $"value(char tab)description(char newline)" + $in
-            | from tsv --flexible --no-infer
-        }
-        let nix_completer = {|spans|
-          let current_arg = ($spans | length| $in - 1)
-          with-env { NIX_GET_COMPLETIONS: $current_arg } { $spans| skip 1| run-external --redirect-stdout nix $in }
-          | lines
-          | skip 1
-          | parse "{value}\t{description}"
-        }
+      configFile.text = # nu
+        ''
+          let zoxide_completer = {|spans|
+              $spans | skip 1 | zoxide query -l $in | lines | where {|x| $x != $env.PWD}
+          }
+          let fish_completer = {|spans|
+              ${pkgs.fish}/bin/fish --command $'complete "--do-complete=($spans | str join " ")"'
+              | $"value(char tab)description(char newline)" + $in
+              | from tsv --flexible --no-infer
+          }
+          let nix_completer = {|spans|
+            if ($spans | length | $in == 1) {
+              return []
+            }
+            let current_arg = ($spans | length| $in - 1)
+            with-env { NIX_GET_COMPLETIONS: $current_arg } { $spans| skip 1| run-external nix ...$in }
+            | lines
+            | skip 1
+            | parse "{value}\t{description}"
+          }
 
 
-        let external_completer = {|spans|
-          # does not work with v.80
-          # let expanded_alias = (scope alias-completions
-          # | where name == $spans.0
-          # | get -i 0.expansion)
+          let external_completer = {|spans|
+            # if the current command is an alias, get it's expansion
+            let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
 
-          # let spans = (if $expanded_alias != null {
-          #     $spans
-          #     | skip 1
-          #     | prepend ($expanded_alias | split row ' ')
-          # } else {
-          #     $spans
-          # })
+            # overwrite
+            let spans = (if $expanded_alias != null  {
+                # put the first word of the expanded alias first in the span
+                $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1)
+            } else { $spans })
 
-          match $spans.0 {
-              z => $zoxide_completer
-              zi => $zoxide_completer
-              nix => $nix_completer
-              _ => $fish_completer
-          } | do $in $spans
-        }
+            match $spans.0 {
+                z => $zoxide_completer
+                zi => $zoxide_completer
+                nix => $nix_completer
+                _ => $fish_completer
+            } | do $in $spans
+          }
 
-        def "manpages" [] {
+          def "manpages" [] {
 
-            ^man -w
-          | str trim
-            | split row (char esep)
-          | par-each { glob $'($in)/man?' }
-          | flatten
-          | par-each { ls $in | get name }
+              ^man -w
+            | str trim
+              | split row (char esep)
+            | par-each { glob $'($in)/man?' }
             | flatten
-          | path basename
-          | str replace ".gz" ""
-        }
+            | par-each { ls $in | get name }
+              | flatten
+            | path basename
+            | str replace ".gz" ""
+          }
 
-        export extern "man" [
-            ...targets: string@"manpages"
-        ]
+          export extern "man" [
+              ...targets: string@"manpages"
+          ]
 
-        $env.config = {
-          render_right_prompt_on_last_line: true
-          show_banner: false
-          edit_mode: vi
-          completions: {
-            external: {
-              enable: true
-              completer: $external_completer
+          $env.config = {
+            render_right_prompt_on_last_line: true
+            show_banner: false
+            edit_mode: vi
+            completions: {
+              external: {
+                enable: true
+                completer: $external_completer
+              }
             }
           }
-        }
 
-        use ${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/nord.nu
-        $env.config.color_config = (nord)
-      '';
+          use ${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/nord.nu
+          $env.config.color_config = (nord)
+        '';
     };
     starship = {
       enable = true;
