@@ -15,6 +15,7 @@
     swayidle
     wl-clipboard
     wdisplays
+    xwayland
   ];
   programs = {
     emacs.package = pkgs.emacs29-pgtk;
@@ -145,7 +146,7 @@
       };
 
       animations = {
-        enabled = true;
+        enabled = false;
       };
 
       dwindle = {
@@ -157,7 +158,7 @@
 
       master = {
         # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-        new_is_master = false;
+        new_status = "master";
         no_gaps_when_only = true;
       };
 
