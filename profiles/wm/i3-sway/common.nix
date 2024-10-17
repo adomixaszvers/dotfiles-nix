@@ -24,7 +24,7 @@ in
       bars = [ ];
       fonts = {
         names = [ "NotoMono Nerd Font" ];
-        size = 8.0;
+        # size = 8.0;
       };
       gaps = {
         inherit (gaps) inner outer;

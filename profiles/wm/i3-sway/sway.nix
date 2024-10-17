@@ -125,7 +125,6 @@ in
     config = {
       inherit (common.config)
         bars
-        colors
         fonts
         gaps
         modifier
