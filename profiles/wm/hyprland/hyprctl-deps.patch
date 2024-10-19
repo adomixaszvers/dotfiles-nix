@@ -1,0 +1,30 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e8f203b4..ede08ce2 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -108,6 +108,12 @@ else()
+ endif()
+ find_package(OpenGL REQUIRED COMPONENTS ${GLES_VERSION})
+ 
++pkg_check_modules(
++  hyprctl_deps
++  REQUIRED
++  IMPORTED_TARGET
++  hyprutils>=0.1.5)
++
+ pkg_check_modules(deps REQUIRED IMPORTED_TARGET
+     xkbcommon uuid
+     wayland-server wayland-client wayland-cursor wayland-protocols
+diff --git a/hyprctl/CMakeLists.txt b/hyprctl/CMakeLists.txt
+index 64b983e6..aaffe411 100644
+--- a/hyprctl/CMakeLists.txt
++++ b/hyprctl/CMakeLists.txt
+@@ -9,7 +9,7 @@ pkg_check_modules(deps REQUIRED IMPORTED_TARGET hyprutils>=0.1.1)
+ 
+ add_executable(hyprctl "main.cpp")
+ 
+-target_link_libraries(hyprctl PUBLIC PkgConfig::deps)
++target_link_libraries(hyprctl PUBLIC PkgConfig::hyprctl_deps)
+ 
+ # binary
+ install(TARGETS hyprctl)

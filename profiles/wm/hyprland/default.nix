@@ -67,6 +67,9 @@
   };
   wayland.windowManager.hyprland = {
     enable = true;
+    package = pkgs.hyprland.overrideAttrs (_old: {
+      patches = [ (builtins.path { path = ./hyprctl-deps.patch; }) ];
+    });
     xwayland.enable = true;
     settings = {
 
