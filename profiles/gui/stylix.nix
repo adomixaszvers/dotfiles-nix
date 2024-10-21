@@ -17,8 +17,8 @@
     base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/nord.yaml";
 
     cursor = {
-      name = "capitaine-cursors";
-      package = pkgs.capitaine-cursors;
+      name = "Banana";
+      package = pkgs.banana-cursor;
     };
     fonts = {
       monospace = {
