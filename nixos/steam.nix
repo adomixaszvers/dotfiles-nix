@@ -18,7 +18,11 @@
             mangohud
             (writeShellScriptBin "launch-gamescope" ''
               (sleep 1; pgrep gamescope| xargs renice -n -11 -p)&
-              exec env LD_PRELOAD="" gamescope "$@"
+              if [ -z "$WAYLAND_DISPLAY" ]; then
+                exec gamescope "$@"
+              else
+                exec env LD_PRELOAD="" gamescope "$@"
+              fi
             '')
           ];
       };
