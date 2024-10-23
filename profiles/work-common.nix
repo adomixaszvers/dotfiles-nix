@@ -83,13 +83,14 @@
       rlwrap
       samba
       protonup
-      myPkgs.soapui
+      soapui
       # spotify
       sshpass
       steam-run
       subversion
       # teams
       traceroute
+      thunderbird
       unrar
       discord
       tor-browser-bundle-bin
