@@ -15,7 +15,7 @@
     ../common.nix
     ../flakes.nix
     ../gc.nix
-    ../ld-link.nix
+    # ../ld-link.nix
     ../libvirtd.nix
     ../nix-registry.nix
     ../pipewire.nix
@@ -119,6 +119,7 @@
 
   programs = {
     # adb.enable = true;
+    nix-ld.enable = true;
     ssh = {
       extraConfig = ''
         Host github
