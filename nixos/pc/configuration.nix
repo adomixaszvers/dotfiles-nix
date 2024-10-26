@@ -27,7 +27,10 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        netbootxyz.enable = true;
+      };
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "zfs" ];
@@ -48,8 +51,13 @@
     "w+ /sys/class/drm/card1/device/pp_power_profile_mode - - - - 1"
   ];
 
-  specialisation.latest-kernel.configuration = {
-    boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  specialisation = {
+    latest-kernel.configuration = {
+      boot = {
+        kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+        kernelParams = [ "earlyprintk=efi,keep" ];
+      };
+    };
   };
 
   hardware = {
@@ -84,7 +92,6 @@
       "-r 144"
       "-W 1920 -H 1080"
     ];
-    # nix flake check doesn't complain but nixos-rebuild does
   };
 
   services = {
@@ -93,7 +100,14 @@
       enable = true;
       settings.PasswordAuthentication = false;
     };
-    xserver.enable = true;
+    xserver = {
+      enable = true;
+      deviceSection = ''
+        Option "TearFree" "False"
+        Option "VariableRefresh" "True"
+        Option "AsyncFlipSecondaries" "true"
+      '';
+    };
   };
 
   environment.systemPackages = with pkgs; [
