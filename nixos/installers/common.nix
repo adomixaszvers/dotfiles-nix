@@ -1,7 +1,7 @@
 {
-  config,
   myPkgs,
   pkgs,
+  lib,
   ...
 }:
 {
@@ -9,8 +9,8 @@
     ../flakes.nix
     ../nix-registry.nix
   ];
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   boot = {
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     supportedFilesystems = [ "zfs" ];
   };
   environment.systemPackages =

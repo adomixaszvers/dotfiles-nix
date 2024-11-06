@@ -75,4 +75,5 @@
 
   nix.settings.max-jobs = lib.mkDefault 8;
   # powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

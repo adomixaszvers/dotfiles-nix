@@ -28,7 +28,10 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    hostPlatform = lib.mkDefault "aarch64-linux";
+  };
 
   boot.tmp.useTmpfs = true;
   # boot.loader.raspberryPi = {
