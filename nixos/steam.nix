@@ -18,11 +18,10 @@
             keyutils
             mangohud
             (writeShellScriptBin "launch-gamescope" ''
-              (sleep 1; pgrep gamescope| xargs renice -n -11 -p)&
               if [ -z "$WAYLAND_DISPLAY" ]; then
-                exec gamescope "$@"
+                exec nice -n -11 -- gamescope "$@"
               else
-                exec env LD_PRELOAD="" gamescope "$@"
+                exec env LD_PRELOAD="" nice -n -11 -- gamescope "$@"
               fi
             '')
           ];
