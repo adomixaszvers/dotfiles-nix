@@ -57,7 +57,6 @@
       mpv
       playerctl
       remmina
-      qbittorrent
       tor-browser-bundle-bin
       keepassxc
       xpra

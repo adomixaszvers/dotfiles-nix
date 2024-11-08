@@ -28,7 +28,6 @@
     obs-studio
     playerctl
     remmina
-    qbittorrent
     keepassxc
     xpra
     protonup-qt
