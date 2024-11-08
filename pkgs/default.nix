@@ -1,7 +1,7 @@
 { inputs, withSystem, ... }:
 {
   flake.packages.x86_64-linux = withSystem "x86_64-linux" (
-    { pkgs, ... }:
+    { pkgs, self', ... }:
     {
       # does not work because it depends on OPENSSL_1.0.0
       # dokobit-plugin = pkgs.callPackage ./dokobit-plugin { };
@@ -32,17 +32,15 @@
           })
         ];
       };
-      oraclejdk8 = pkgs.callPackage (import
-        "${inputs.nixpkgs}/pkgs/development/compilers/oraclejdk/jdk-linux-base.nix"
-        {
-          productVersion = "8";
-          patchVersion = "202";
-          jceName = "jce_policy-8.zip";
-          sha256JCE = "19n5wadargg3v8x76r7ayag6p2xz1bwhrgdzjs9f4i6fvxz9jr4w";
-          sha256.x86_64-linux = "1q4l8pymjvsvxfwaw0rdcnhryh1la2bvg5f4d4my41ka390k4p4s";
-        }
-      ) { };
+      oraclejdk8 = pkgs.callPackage (import ./oraclejdk-linux-base.nix {
+        productVersion = "8";
+        patchVersion = "202";
+        jceName = "jce_policy-8.zip";
+        sha256JCE = "19n5wadargg3v8x76r7ayag6p2xz1bwhrgdzjs9f4i6fvxz9jr4w";
+        sha256.x86_64-linux = "1q4l8pymjvsvxfwaw0rdcnhryh1la2bvg5f4d4my41ka390k4p4s";
+      }) { };
       mcard-toolbox = pkgs.callPackage ./mcard-toolbox { };
+      sqldeveloper = pkgs.callPackage ./sqldeveloper { jdk = self'.packages.oraclejdk8; };
       soapui =
         let
           version = "5.6.1";
