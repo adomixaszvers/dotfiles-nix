@@ -62,7 +62,10 @@
 
   hardware = {
     bluetooth.enable = true;
-    opengl.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = true;
@@ -99,6 +102,12 @@
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
+    };
+    pipewire = {
+      # conflicts with pulseaudio
+      audio.enable = false;
+      alsa.enable = false;
+      pulse.enable = false;
     };
     xserver = {
       enable = true;
