@@ -3,7 +3,6 @@
   lib,
   myPkgs,
   config,
-  inputs,
   ...
 }:
 {
@@ -17,16 +16,7 @@
   home = {
     file = {
       "jdks/openjdk8".source = pkgs.openjdk8;
-      "jdks/oraclejdk8".source = pkgs.callPackage (import
-        "${inputs.nixpkgs}/pkgs/development/compilers/oraclejdk/jdk-linux-base.nix"
-        {
-          productVersion = "8";
-          patchVersion = "202";
-          jceName = "jce_policy-8.zip";
-          sha256JCE = "19n5wadargg3v8x76r7ayag6p2xz1bwhrgdzjs9f4i6fvxz9jr4w";
-          sha256.x86_64-linux = "1q4l8pymjvsvxfwaw0rdcnhryh1la2bvg5f4d4my41ka390k4p4s";
-        }
-      ) { };
+      "jdks/oraclejdk8".source = myPkgs.oraclejdk8;
       "jdks/openjdk11".source = pkgs.openjdk11;
       "jdks/openjdk17".source = pkgs.openjdk17;
       "jdks/openjdk21".source = pkgs.openjdk21;
@@ -70,7 +60,7 @@
       maven
       myPkgs.hunspell-lt
       keystore-explorer
-      sqldeveloper
+      (sqldeveloper.override { jdk = myPkgs.oraclejdk8; })
       mercurial
       nodePackages.pnpm
       numlockx
