@@ -29,7 +29,7 @@
     packages = with pkgs; [
       arandr
       font-manager
-      gnome.adwaita-icon-theme
+      adwaita-icon-theme
       hicolor-icon-theme
       meld
       pavucontrol

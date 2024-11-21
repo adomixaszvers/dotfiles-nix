@@ -38,7 +38,7 @@ in
     (with pkgs; [
       pamixer
       xdotool
-      gnome.zenity
+      zenity
     ])
     ++ [
       xmonad-dbus
