@@ -34,7 +34,7 @@
     };
     packages = with pkgs; [
       asciinema
-      bless
+      ghex
       brave
       brightnessctl
       dbeaver-bin
