@@ -9,8 +9,6 @@
 }:
 
 let
-  version = "20.4.0.379.2205";
-
   desktopItem = makeDesktopItem {
     name = "sqldeveloper";
     exec = "sqldeveloper";
@@ -21,20 +19,20 @@ let
     categories = [ "Development" ];
   };
 in
-stdenv.mkDerivation {
+stdenv.mkDerivation (finalAttrs: {
 
-  inherit version;
+  version = "24.3.0.284.2209";
   pname = "sqldeveloper";
 
   src = requireFile rec {
-    name = "sqldeveloper-${version}-no-jre.zip";
+    name = "sqldeveloper-${finalAttrs.version}-no-jre.zip";
     url = "https://www.oracle.com/tools/downloads/sqldev-downloads.html";
     message = ''
       This Nix expression requires that ${name} already be part of the store. To
       obtain it you need to
 
       - navigate to ${url}
-      - make sure that it says "Version ${version}" above the list of downloads
+      - make sure that it says "Version ${finalAttrs.version}" above the list of downloads
         - if it does not, click on the "Previous Version" link below the downloads
           and repeat until the version is correct. This is necessarry because as the
           time of this writing there exists no permanent link for the current version
@@ -54,7 +52,7 @@ stdenv.mkDerivation {
 
         nix-prefetch-url --type sha256 file:///path/to/${name}
     '';
-    sha256 = "1h53gl41ydr7kim6q9ckg3xyhb0rhmwj7jnis0xz6vms52b3h59k";
+    sha256 = "1lhxcklk3wcgp9mlyzkwn33nd4yr0ypadjjdplq377x9jalix4zx";
   };
 
   nativeBuildInputs = [
@@ -70,6 +68,7 @@ stdenv.mkDerivation {
 
     mv $out/libexec/icon.png $out/share/pixmaps/sqldeveloper.png
     cp ${desktopItem}/share/applications/* $out/share/applications
+    echo 'AddLinuxVM9OrHigherOption --add-exports=java.desktop/com.sun.java.swing.plaf.gtk=ALL-UNNAMED' >> $out/libexec/ide/bin/jdk.conf
 
     makeWrapper $out/libexec/sqldeveloper/bin/sqldeveloper $out/bin/sqldeveloper \
       --set JAVA_HOME ${jdk.home} \
@@ -92,4 +91,4 @@ stdenv.mkDerivation {
     platforms = [ "x86_64-linux" ];
     maintainers = with maintainers; [ ardumont ];
   };
-}
+})

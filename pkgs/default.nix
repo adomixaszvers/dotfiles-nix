@@ -1,7 +1,7 @@
 { inputs, withSystem, ... }:
 {
   flake.packages.x86_64-linux = withSystem "x86_64-linux" (
-    { pkgs, self', ... }:
+    { pkgs, ... }:
     {
       # does not work because it depends on OPENSSL_1.0.0
       # dokobit-plugin = pkgs.callPackage ./dokobit-plugin { };
@@ -40,7 +40,9 @@
         sha256.x86_64-linux = "1q4l8pymjvsvxfwaw0rdcnhryh1la2bvg5f4d4my41ka390k4p4s";
       }) { };
       mcard-toolbox = pkgs.callPackage ./mcard-toolbox { };
-      sqldeveloper = pkgs.callPackage ./sqldeveloper { jdk = self'.packages.oraclejdk8; };
+      sqldeveloper = pkgs.callPackage ./sqldeveloper {
+        jdk = pkgs.openjdk17.override { enableJavaFX = true; };
+      };
       soapui =
         let
           version = "5.6.1";
