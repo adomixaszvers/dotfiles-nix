@@ -6,7 +6,7 @@ mkShellNoCC {
   name = "xmonad-shell";
   buildInputs =
     let
-      myHaskellPackages = import ./myHaskellPackages.nix { inherit haskellPackages lib haskell; };
+      myHaskellPackages = import ./myHaskellPackages.nix { inherit haskellPackages; };
     in
     [
       (myHaskellPackages.ghcWithHoogle (
