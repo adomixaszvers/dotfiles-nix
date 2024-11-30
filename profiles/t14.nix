@@ -50,7 +50,7 @@
       compsize
       discord
       exercism
-      gnome.nautilus
+      nautilus
       gtypist
       libreoffice-still
       lutris

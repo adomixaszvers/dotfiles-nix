@@ -6,7 +6,7 @@
 }:
 let
   extraPackages = import ./extraPackages.nix;
-  haskellPackages = import ./myHaskellPackages.nix { inherit (pkgs) haskellPackages lib haskell; };
+  haskellPackages = import ./myHaskellPackages.nix { inherit (pkgs) haskellPackages; };
   inherit (haskellPackages) xmonad-dbus;
   launch-polybar = pkgs.writeShellScriptBin "launch-polybar" ''
     PATH=$PATH:${
@@ -38,7 +38,7 @@ in
     (with pkgs; [
       pamixer
       xdotool
-      gnome.zenity
+      zenity
     ])
     ++ [
       xmonad-dbus

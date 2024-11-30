@@ -34,7 +34,7 @@
     };
     packages = with pkgs; [
       asciinema
-      bless
+      ghex
       brave
       brightnessctl
       dbeaver-bin
@@ -60,7 +60,7 @@
       maven
       myPkgs.hunspell-lt
       keystore-explorer
-      (sqldeveloper.override { jdk = myPkgs.oraclejdk8; })
+      myPkgs.sqldeveloper
       mercurial
       nodePackages.pnpm
       numlockx

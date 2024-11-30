@@ -233,7 +233,10 @@
   # };
 
   hardware = {
-    opengl.driSupport32Bit = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
     pulseaudio.support32Bit = true;
     usb-modeswitch.enable = true;
     acpilight.enable = true;

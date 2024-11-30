@@ -5,7 +5,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixGL = {
@@ -21,7 +21,7 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs = {
@@ -29,7 +29,8 @@
       };
     };
     stylix = {
-      url = "github:danth/stylix/release-24.05";
+      # TODO fix the reference when 24.11 released
+      url = "github:danth/stylix/master";
       inputs = {
         flake-compat.follows = "flake-compat";
         home-manager.follows = "home-manager";

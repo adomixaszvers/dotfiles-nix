@@ -88,7 +88,7 @@
 
   programs = {
     adb.enable = true;
-    bash.enableCompletion = true;
+    bash.completion.enable = true;
     mosh.enable = true;
     ssh.startAgent = false;
     sway.enable = true;
@@ -126,9 +126,9 @@
 
   hardware = {
     cpu.intel.updateMicrocode = true;
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
     };
     pulseaudio.support32Bit = true;
   };

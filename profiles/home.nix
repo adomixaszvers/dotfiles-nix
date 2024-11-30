@@ -10,7 +10,7 @@
     compsize
     discord
     exercism
-    gnome.nautilus
+    nautilus
     firefox
     gtypist
     mpv

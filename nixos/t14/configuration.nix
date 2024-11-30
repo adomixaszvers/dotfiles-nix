@@ -36,7 +36,6 @@
   boot = {
     tmp.cleanOnBoot = true;
     kernelParams = [ "nohibernate" ];
-    kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -62,9 +61,9 @@
     bluetooth.enable = true;
     trackpoint.emulateWheel = false;
     xone.enable = true;
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
     };
     pulseaudio.support32Bit = true;
     usb-modeswitch.enable = true;
@@ -85,7 +84,7 @@
 
   programs = {
     adb.enable = true;
-    bash.enableCompletion = true;
+    bash.completion.enable = true;
     mosh.enable = true;
     ssh.startAgent = false;
   };

@@ -37,7 +37,7 @@
   ];
   home.sessionVariables =
     let
-      askpass = "${pkgs.gnome.seahorse}/libexec/seahorse/ssh-askpass";
+      askpass = "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
     in
     {
       SSH_ASKPASS = askpass;
