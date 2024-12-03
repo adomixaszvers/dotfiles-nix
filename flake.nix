@@ -29,8 +29,7 @@
       };
     };
     stylix = {
-      # TODO fix the reference when 24.11 released
-      url = "github:danth/stylix/master";
+      url = "github:danth/stylix/release-24.11";
       inputs = {
         flake-compat.follows = "flake-compat";
         home-manager.follows = "home-manager";
