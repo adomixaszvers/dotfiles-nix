@@ -68,7 +68,7 @@
       oracle-instantclient
       playerctl
       # volatile versions
-      # postman 
+      # postman
       remmina
       rlwrap
       samba
