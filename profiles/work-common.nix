@@ -47,7 +47,7 @@
       gimp
       gitAndTools.gitflow
       libsecret
-      cinnamon.nemo
+      nemo
       gnumake
       google-chrome
       html-tidy
