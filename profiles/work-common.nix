@@ -20,6 +20,13 @@
       "jdks/openjdk11".source = pkgs.openjdk11;
       "jdks/openjdk17".source = pkgs.openjdk17;
       "jdks/openjdk21".source = pkgs.openjdk21;
+      "nodejs/12".source =
+        let
+          # nixos-20.09
+          oldNixpkgs = builtins.getFlake "github:NixOS/nixpkgs/1c1f5649bb9c1b0d98637c8c365228f57126f361";
+          oldPkgs = builtins.getAttr pkgs.system oldNixpkgs.legacyPackages;
+        in
+        oldPkgs.nodejs-12_x;
       "nodejs/latest".source = pkgs.nodejs_latest;
       "nodejs/18".source = pkgs.nodejs-18_x;
       "maven".source = pkgs.maven;
