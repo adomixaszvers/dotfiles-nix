@@ -102,10 +102,12 @@
 
         # focus or send to the given desktop
         "super + {1-9,0}" = "bspwm-greedy-focus '{1-9,10}' && bspwm-reorder-desktops";
-        "super + {aogonek,ccaron,eogonek,eabovedot,iogonek,scaron,uogonek,umacron,doublelowquotemark,leftdoublequotemark}" = "bspwm-greedy-focus '{1,2,3,4,5,6,7,8,9,10}' && bspwm-reorder-desktops";
+        "super + {aogonek,ccaron,eogonek,eabovedot,iogonek,scaron,uogonek,umacron,doublelowquotemark,leftdoublequotemark}" =
+          "bspwm-greedy-focus '{1,2,3,4,5,6,7,8,9,10}' && bspwm-reorder-desktops";
 
         "super + shift {1-9,0}" = "bspc node -d '{1-9,10}'";
-        "super + shift {aogonek,ccaron,eogonek,eabovedot,iogonek,scaron,uogonek,umacron,doublelowquotemark,leftdoublequotemark}" = "bspc node -d '{1,2,3,4,5,6,7,8,9,10}'";
+        "super + shift {aogonek,ccaron,eogonek,eabovedot,iogonek,scaron,uogonek,umacron,doublelowquotemark,leftdoublequotemark}" =
+          "bspc node -d '{1,2,3,4,5,6,7,8,9,10}'";
 
         #
         # preselect
@@ -115,7 +117,8 @@
         "super + ctrl + {h,j,k,l}" = "bspc node -p {west,south,north,east}";
 
         # preselect the ratio
-        "super + ctrl + {aogonek,ccaron,eogonek,eabovedot,iogonek,scaron,uogonek,umacron,doublelowquotemark}" = "bspc node -o 0.{1-9}";
+        "super + ctrl + {aogonek,ccaron,eogonek,eabovedot,iogonek,scaron,uogonek,umacron,doublelowquotemark}" =
+          "bspc node -o 0.{1-9}";
         "super + ctrl + {1-9}" = "bspc node -o 0.{1-9}";
 
         # cancel the preselection for the focused node

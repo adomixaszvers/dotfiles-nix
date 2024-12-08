@@ -11,5 +11,6 @@
       source = v.outPath;
     };
   }) (builtins.removeAttrs inputs [ "self" ]);
-  home.sessionVariables."NIX_PATH" = "${config.home.sessionVariables.XDG_CONFIG_HOME}/flakeInputs\${NIX_PATH:+:}$NIX_PATH";
+  home.sessionVariables."NIX_PATH" =
+    "${config.home.sessionVariables.XDG_CONFIG_HOME}/flakeInputs\${NIX_PATH:+:}$NIX_PATH";
 }

@@ -93,7 +93,8 @@ in
         "${modifier}+r" = "mode resize";
         "${modifier}+m" = "move workspace to output left";
 
-        "${modifier}+g" = "gaps inner current set ${toString gaps.inner}; gaps outer current set ${toString gaps.outer}";
+        "${modifier}+g" =
+          "gaps inner current set ${toString gaps.inner}; gaps outer current set ${toString gaps.outer}";
         "${modifier}+Shift+g" = "gaps inner current set 0; gaps outer current set 0";
 
         "Print" = "exec --no-startup-id maimpick";
@@ -110,11 +111,15 @@ in
         "${modifier}+F10" = "exec --no-startup-id dunstctl history-pop";
         "${modifier}+F11" = "exec --no-startup-id dunstctl context";
 
-        "XF86AudioRaiseVolume" = "exec --no-startup-id pamixer -i 5 && volnoti-show $(pamixer --get-volume)";
-        "XF86AudioLowerVolume" = "exec --no-startup-id pamixer -d 5 && volnoti-show $(pamixer --get-volume)";
+        "XF86AudioRaiseVolume" =
+          "exec --no-startup-id pamixer -i 5 && volnoti-show $(pamixer --get-volume)";
+        "XF86AudioLowerVolume" =
+          "exec --no-startup-id pamixer -d 5 && volnoti-show $(pamixer --get-volume)";
         "XF86AudioMute" = "exec --no-startup-id pamixer -t";
-        "XF86MonBrightnessUp" = ''exec --no-startup-id "brightnessctl set +5% && volnoti-show $(brightnessctl -m| cut -f4 -d,|tr -d %)"'';
-        "XF86MonBrightnessDown" = ''exec --no-startup-id "brightnessctl set 5%- && volnoti-show $(brightnessctl -m| cut -f4 -d,|tr -d %)"'';
+        "XF86MonBrightnessUp" =
+          ''exec --no-startup-id "brightnessctl set +5% && volnoti-show $(brightnessctl -m| cut -f4 -d,|tr -d %)"'';
+        "XF86MonBrightnessDown" =
+          ''exec --no-startup-id "brightnessctl set 5%- && volnoti-show $(brightnessctl -m| cut -f4 -d,|tr -d %)"'';
       };
 
       keycodebindings = {

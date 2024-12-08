@@ -138,8 +138,10 @@ in
             "${modifier}+d" = "exec rofi -show drun -show-icons";
             "${modifier}+Shift+d" = "exec rofi -show run";
             "${modifier}+Tab" = "exec ${rofi-windows}";
-            "${modifier}+Ctrl+e" = ''exec swaymsg "[app_id=emacs_scratch] scratchpad show, fullscreen enable" || exec emacs --name emacs_scratch'';
-            "${modifier}+Ctrl+s" = ''exec swaymsg "[app_id=kitty_scratch] scratchpad show, fullscreen enable" || exec kitty --class kitty_scratch'';
+            "${modifier}+Ctrl+e" =
+              ''exec swaymsg "[app_id=emacs_scratch] scratchpad show, fullscreen enable" || exec emacs --name emacs_scratch'';
+            "${modifier}+Ctrl+s" =
+              ''exec swaymsg "[app_id=kitty_scratch] scratchpad show, fullscreen enable" || exec kitty --class kitty_scratch'';
           };
         in
         combined;
