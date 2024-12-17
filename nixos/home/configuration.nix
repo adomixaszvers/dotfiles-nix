@@ -12,7 +12,7 @@
   imports = [
     # ./bumblebee.nix
     # ./gnome.nix
-    # ./kde.nix
+    # ../kde.nix
     ../avahi.nix
     ../common.nix
     ../flakes.nix
@@ -21,10 +21,10 @@
     ../pipewire.nix
     ../syncthing.nix
     ../yubikey.nix
-    ./bumblebee-nvidia.nix
+    ./bumblebee.nix
     ./hardware-configuration.nix
     # ./remote-build.nix
-    ./static-ip.nix
+    # ./static-ip.nix
     ./steam.nix
     ./wakeonlan.nix
     ./wireguard-client.nix
