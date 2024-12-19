@@ -133,7 +133,7 @@
 
   users = {
     defaultUserShell = pkgs.zsh;
-    mutableUsers = false;
+    mutableUsers = lib.mkDefault false;
     extraUsers.adomas = {
       isNormalUser = true;
       uid = 1000;

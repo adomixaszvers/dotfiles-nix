@@ -48,11 +48,13 @@ in
       system = "aarch64-linux";
     };
     pc = buildHomeManager ./profiles/pc.nix { };
+    m75s = buildHomeManager ./profiles/m75s.nix { };
     "adomas@adomo-nixos" = home;
     "adomas@adomo-t14" = t14;
     "adomas@arch-vm" = foreign;
     "adomas@adomas-jatuzis-nixos" = work;
     "adomas@adomo-pc-nixos" = pc;
+    "adomas@m75s" = m75s;
     "pi@raspberrypi-nixos" = pi;
     thinkpad-home = work-remote;
     "deck@steamdeck" = buildHomeManager ./profiles/steamdeck.nix { username = "deck"; };
