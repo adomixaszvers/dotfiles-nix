@@ -35,6 +35,9 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/NIXOS-BOOT";
     fsType = "vfat";
+    options = [
+      "umask=077"
+    ];
   };
 
   fileSystems."/var/lib/libvirt" = {
