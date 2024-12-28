@@ -11,6 +11,7 @@
     ./chemacs
     ./doom-emacs.nix
     ./fonts.nix
+    ./ghostty.nix
     ./kitty.nix
     ./stylix.nix
   ];
