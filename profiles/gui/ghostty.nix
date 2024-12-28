@@ -21,6 +21,7 @@
       font-family = ${fonts.emoji.name}
       font-size = ${toString fonts.sizes.terminal}
       background-opacity = ${toString opacity.terminal}
+      gtk-titlebar = false
       window-decoration = false
       theme = ${scheme.slug}
     '';
