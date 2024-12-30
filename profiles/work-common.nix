@@ -268,6 +268,12 @@
           };
         };
     };
+    ghostty = {
+      settings = {
+        gtk-titlebar = false;
+        with-decoration = false;
+      };
+    };
     git.includes = [
       {
         condition = "gitdir:~/projektai/**";

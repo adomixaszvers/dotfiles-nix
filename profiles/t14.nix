@@ -77,6 +77,12 @@
         };
       };
     };
+    ghostty = {
+      settings = {
+        gtk-titlebar = false;
+        window-decoration = false;
+      };
+    };
   };
   services.screen-locker = {
     # enable = true;
