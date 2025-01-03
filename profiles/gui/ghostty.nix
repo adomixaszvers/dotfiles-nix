@@ -19,6 +19,9 @@
         font-size = fonts.sizes.terminal;
         background-opacity = opacity.terminal;
         theme = scheme.slug;
+        keybind = [
+          "ctrl+shift+s=paste_from_selection"
+        ];
       };
   };
 }

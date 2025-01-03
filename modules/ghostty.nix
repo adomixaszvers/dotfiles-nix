@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  inputs,
   lib,
   ...
 }:
@@ -18,11 +17,7 @@ in
     enable = lib.mkEnableOption "Enable ghostty";
     package = lib.mkOption {
       type = lib.types.package;
-      default =
-        let
-          ghosttyPkgs = builtins.getAttr pkgs.hostPlatform.system inputs.ghostty.packages;
-        in
-        ghosttyPkgs.ghostty;
+      default = pkgs.ghostty;
       defaultText = lib.literalExpression "pkgs.ghostty";
       description = ''
         Ghostty package to install.
