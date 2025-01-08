@@ -4,7 +4,14 @@
   home.packages = with pkgs; [
     corefonts
     material-icons
-    nerdfonts
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "FiraMono"
+        "JetBrainsMono"
+        "Noto"
+      ];
+    })
     noto-fonts-emoji
   ];
 }

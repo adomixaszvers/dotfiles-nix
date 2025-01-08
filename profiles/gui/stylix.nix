@@ -22,7 +22,7 @@
     };
     fonts = {
       monospace = {
-        package = pkgs.nerdfonts;
+        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
         name = "JetBrainsMono Nerd Font Mono";
       };
       emoji = {
