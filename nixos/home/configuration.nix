@@ -91,7 +91,6 @@
     bash.completion.enable = true;
     mosh.enable = true;
     ssh.startAgent = false;
-    sway.enable = true;
   };
   xdg.portal = {
     enable = true;

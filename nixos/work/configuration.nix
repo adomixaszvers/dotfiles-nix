@@ -127,7 +127,6 @@
       '';
     };
     mosh.enable = true;
-    sway.enable = true;
     virt-manager.enable = true;
     wireshark = {
       enable = true;
