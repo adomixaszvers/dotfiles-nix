@@ -55,6 +55,10 @@
       consoleMode = "auto";
     };
     loader.efi.canTouchEfiVariables = true;
+    # leave 3 GB free for avoiding systemd-oomd
+    extraModprobeConfig = ''
+      options zfs zfs_arc_sys_free=${toString (3 * 1024 * 1024 * 1024)}
+    '';
   };
 
   networking = {
