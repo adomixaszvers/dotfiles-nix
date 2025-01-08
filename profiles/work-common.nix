@@ -271,7 +271,7 @@
     ghostty = {
       settings = {
         gtk-titlebar = false;
-        with-decoration = false;
+        window-decoration = false;
       };
     };
     git.includes = [

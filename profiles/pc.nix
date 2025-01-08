@@ -35,7 +35,6 @@
   home.sessionVariables = {
     BROWSER = "firefox";
   };
-  programs.ghostty.enable = true;
 
   stylix = {
     enable = true;

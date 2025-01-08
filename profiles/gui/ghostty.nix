@@ -5,7 +5,7 @@
 }:
 {
   programs.ghostty = {
-    enable = lib.mkDefault true;
+    enable = lib.mkDefault false;
     settings =
       let
         inherit (config.stylix) fonts opacity;
