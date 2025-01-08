@@ -20,6 +20,7 @@
     ../nix-registry.nix
     ../pipewire.nix
     ../syncthing.nix
+    ../xdg-portal.nix
     ../yubikey.nix
     ./bumblebee.nix
     ./hardware-configuration.nix
@@ -91,10 +92,6 @@
     bash.completion.enable = true;
     mosh.enable = true;
     ssh.startAgent = false;
-  };
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   };
   services = {
     autorandr = {
