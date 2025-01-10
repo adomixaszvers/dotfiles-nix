@@ -33,13 +33,13 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         flake-utils.follows = "flake-utils";
-        git-hooks.follows = "pre-commit-hooks";
+        git-hooks.follows = "git-hooks";
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
     };
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
       inputs = {
         flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
@@ -49,7 +49,7 @@
   outputs =
     {
       nixpkgs,
-      pre-commit-hooks,
+      git-hooks,
       nixos-unstable,
       flake-parts,
       ...
@@ -60,7 +60,7 @@
         "aarch64-linux"
       ];
       imports = [
-        pre-commit-hooks.flakeModule
+        git-hooks.flakeModule
         ./pkgs
         ./nixos/configurations.nix
         ./homes.nix
@@ -105,7 +105,7 @@
               shellcheck = {
                 enable = true;
                 # shellcheck does not support zsh files but after
-                # https://github.com/cachix/pre-commit-hooks.nix/commit/61bda56530889b4acf6c935d832f219b6c0ebd83
+                # https://github.com/cachix/git-hooks.nix/commit/61bda56530889b4acf6c935d832f219b6c0ebd83
                 # it is run on initExtra.zsh and it fails on pre-commit
                 excludes = [ "\\.zsh$" ];
               };
