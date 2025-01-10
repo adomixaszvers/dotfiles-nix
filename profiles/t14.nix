@@ -79,6 +79,7 @@
     };
     ghostty = {
       settings = {
+        gtk-adwaita = false;
         gtk-titlebar = false;
         window-decoration = false;
       };
