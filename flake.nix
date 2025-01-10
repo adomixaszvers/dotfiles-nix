@@ -32,6 +32,8 @@
       url = "github:danth/stylix/release-24.11";
       inputs = {
         flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+        git-hooks.follows = "pre-commit-hooks";
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
@@ -41,7 +43,6 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
-        nixpkgs-stable.follows = "";
       };
     };
   };
