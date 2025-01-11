@@ -47,8 +47,11 @@ if vim.env.TERM == 'linux' then
 elseif vim.env.TERM == 'xterm' then
     vim.cmd('colorscheme default')
 else
-    vim.cmd('colorscheme nordic')
-    vim.cmd('packadd lualine-nvim')
+    vim.cmd([[
+        colorscheme nordic
+        packadd lualine.nvim
+        packadd nvim-web-devicons
+    ]])
     require('lualine').setup({
         options = {
             -- disabling section separators fixes
@@ -56,7 +59,6 @@ else
             section_separators = '',
         },
     })
-    vim.cmd('packadd nvim-web-devicons')
 end
 
 local nix_flakes_ag = vim.api.nvim_create_augroup('nix-flakes', { clear = true })
