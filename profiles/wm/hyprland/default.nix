@@ -67,9 +67,6 @@
   };
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland.overrideAttrs (_old: {
-      patches = [ (builtins.path { path = ./hyprctl-deps.patch; }) ];
-    });
     xwayland.enable = true;
     settings = {
 
@@ -129,6 +126,7 @@
         "col.inactive_border" = "rgba(595959aa)";
 
         layout = "master";
+        allow_tearing = true;
       };
 
       decoration = {
@@ -142,10 +140,13 @@
           new_optimizations = true;
         };
 
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+          color = "rgba(1a1a1aee)";
+        };
+
       };
 
       animations = {
@@ -156,13 +157,11 @@
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
         pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
         preserve_split = true; # you probably want this
-        no_gaps_when_only = true;
       };
 
       master = {
         # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
         new_status = "master";
-        no_gaps_when_only = true;
       };
 
       gestures = {
@@ -260,6 +259,24 @@
         "stayfocused, title:^()$,class:^(steam)$"
         "minsize 1 1, title:^()$,class:^(steam)$"
         "fullscreen,class:^(.gamescope-wrapped)$"
+
+        # smart gaps
+        # see https://wiki.hyprland.org/0.45.0/Configuring/Workspace-Rules/#smart-gaps
+        # damn you, Vaxry
+        # no_gaps_when_only was good enough :/
+        "bordersize 0, floating:0, onworkspace:w[t1]"
+        "rounding 0, floating:0, onworkspace:w[t1]"
+        "bordersize 0, floating:0, onworkspace:w[tg1]"
+        "rounding 0, floating:0, onworkspace:w[tg1]"
+        "bordersize 0, floating:0, onworkspace:f[1]"
+        "rounding 0, floating:0, onworkspace:f[1]"
+      ];
+
+      # for smart gaps
+      workspace = [
+        "w[t1], gapsout:0, gapsin:0"
+        "w[tg1], gapsout:0, gapsin:0"
+        "f[1], gapsout:0, gapsin:0"
       ];
     };
   };
