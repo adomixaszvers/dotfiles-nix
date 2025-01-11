@@ -22,9 +22,15 @@ in
   fidget-nvim
   fugitive
   gitsigns-nvim
-  lualine-nvim
+  {
+    plugin = lualine-nvim;
+    optional = true;
+  }
   neoformat
-  nvim-web-devicons
+  {
+    plugin = nvim-web-devicons;
+    optional = true;
+  }
   nordic-nvim
   {
     plugin = nvim-treesitter.withAllGrammars;
