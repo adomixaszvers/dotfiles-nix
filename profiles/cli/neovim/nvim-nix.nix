@@ -22,9 +22,11 @@ let
     [
       ale
       commentary
+      fidget-nvim
       fugitive
       gitsigns-nvim
       lualine-nvim
+      nvim-web-devicons
       neoformat
       nordic-nvim
       (nvim-treesitter.withPlugins (
