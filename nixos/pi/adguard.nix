@@ -43,9 +43,13 @@
         ];
         ratelimit = 0;
         upstream_dns = [
+          "https://cloudflare-dns.com/dns-query"
+          # "https://dns.quad9.net/dns-query"
+          "[/lan/]192.168.1.254"
+        ];
+        bootstrap_dns = [
           "9.9.9.9"
           "149.112.112.112"
-          "[/lan/]192.168.1.254"
         ];
         aaaa_disabled = true;
         local_ptr_upstreams = [ "192.168.1.254" ];
