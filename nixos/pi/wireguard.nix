@@ -95,7 +95,7 @@
             allowedIPs = [ "10.6.0.12/32" ];
           }
           {
-            publicKey = "jntAqEorAVCP3Z9MbecPE8MiWi4q4Ay+Ue9UtrD2Hwc=";
+            publicKey = "r0v6/SesQlu9ZubRzeEkKFC3pBQLH4XePaCZojA3oGY=";
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/steamdeck".path;
             allowedIPs = [ "10.6.0.13/32" ];
           }
