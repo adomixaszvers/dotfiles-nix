@@ -27,6 +27,7 @@ in
     optional = true;
   }
   neoformat
+  nvim-sops
   {
     plugin = nvim-web-devicons;
     optional = true;

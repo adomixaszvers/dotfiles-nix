@@ -4,12 +4,12 @@
     "wireguard/privateKey".sopsFile = ./secrets/wireguard.yaml;
     "wireguard/presharedKeys/telefonas".sopsFile = ../common-secrets/wireguard.yaml;
     "wireguard/presharedKeys/rutosKompas".sopsFile = ../common-secrets/wireguard.yaml;
-    "wireguard/presharedKeys/windowsNew".sopsFile = ../common-secrets/wireguard.yaml;
-    "wireguard/presharedKeys/work".sopsFile = ../common-secrets/wireguard.yaml;
-    "wireguard/presharedKeys/laptop".sopsFile = ../common-secrets/wireguard.yaml;
+    "wireguard/presharedKeys/pc".sopsFile = ../common-secrets/wireguard/pc.yaml;
+    "wireguard/presharedKeys/work".sopsFile = ../common-secrets/wireguard/work.yaml;
+    "wireguard/presharedKeys/laptop".sopsFile = ../common-secrets/wireguard/laptop.yaml;
     "wireguard/presharedKeys/samsung".sopsFile = ../common-secrets/wireguard.yaml;
     "wireguard/presharedKeys/rycioKompas".sopsFile = ../common-secrets/wireguard.yaml;
-    "wireguard/presharedKeys/t14".sopsFile = ../common-secrets/wireguard.yaml;
+    "wireguard/presharedKeys/t14".sopsFile = ../common-secrets/wireguard/t14.yaml;
     "wireguard/presharedKeys/steamdeck".sopsFile = ../common-secrets/wireguard.yaml;
   };
   networking = {
@@ -63,7 +63,7 @@
           {
             # windows-new
             publicKey = "eJvrBUU4+8zPRm/k/BgZTzimrZk97pKxz/GvVApBohE=";
-            presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/windowsNew".path;
+            presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/pc".path;
             allowedIPs = [ "10.6.0.5/32" ];
           }
           {

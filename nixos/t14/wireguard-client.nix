@@ -1,7 +1,7 @@
 { config, ... }:
 {
   sops.secrets = {
-    "wireguard/presharedKeys/t14".sopsFile = ../common-secrets/wireguard.yaml;
+    "wireguard/presharedKeys/t14".sopsFile = ../common-secrets/wireguard/t14.yaml;
     "wireguard/privateKey".sopsFile = ./secrets/wireguard.yaml;
     "wireguard/endpoint".sopsFile = ./secrets/wireguard.yaml;
   };

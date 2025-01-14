@@ -3,7 +3,7 @@
   sops.secrets = {
     "wireguard/privateKey".sopsFile = ./secrets/wireguard.yaml;
     "wireguard/endpoint".sopsFile = ./secrets/wireguard.yaml;
-    "wireguard/presharedKeys/work".sopsFile = ../common-secrets/wireguard.yaml;
+    "wireguard/presharedKeys/work".sopsFile = ../common-secrets/wireguard/work.yaml;
   };
   networking = {
     firewall = {
