@@ -48,11 +48,9 @@ let
       which-key-nvim
     ]
     ++ telescope-dependencies;
+  normalizedPlugins = neovimUtils.normalizePlugins plugins;
   moduleConfigure = {
-    packages.neovim-nix = {
-      start = plugins;
-      opt = [ ];
-    };
+    packages.neovim-nix = neovimUtils.normalizedPluginsToVimPackage normalizedPlugins;
     beforePlugins = "";
   };
 
@@ -62,10 +60,10 @@ let
     withNode = false;
     withRuby = false;
     configure = moduleConfigure;
-    customRC = # vim
+    luaRcContent = # lua
       ''
-        luafile ${./nvim-treesitter.lua}
-        luafile ${./init.lua}
+        dofile '${./nvim-treesitter.lua}'
+        dofile '${./init.lua}'
       '';
   };
   extraWrapperArgs =

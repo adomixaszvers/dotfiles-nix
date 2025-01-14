@@ -1,8 +1,8 @@
-# vim
+# lua
 ''
-  luafile ${./nvim-treesitter.lua}
-  luafile ${./lspconfig.lua}
-  luafile ${./cmp.lua}
-  luafile ${./playground.lua}
-  luafile ${./init.lua}
+  dofile '${./nvim-treesitter.lua}'
+  dofile '${./lspconfig.lua}'
+  dofile '${./cmp.lua}'
+  dofile '${./playground.lua}'
+  dofile '${./init.lua}'
 ''
