@@ -62,8 +62,8 @@ let
     configure = moduleConfigure;
     luaRcContent = # lua
       ''
-        dofile '${./nvim-treesitter.lua}'
-        dofile '${./init.lua}'
+        dofile '${./lua/nvim-treesitter.lua}'
+        dofile '${./lua/init.lua}'
       '';
   };
   extraWrapperArgs =
