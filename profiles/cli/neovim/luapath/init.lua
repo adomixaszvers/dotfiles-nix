@@ -72,6 +72,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 
 vim.o.timeout = true
 vim.o.timeoutlen = 300
+vim.cmd.packadd('fidget.nvim')
 require('fidget').setup({})
 require('which-key').setup {}
 
@@ -122,3 +123,11 @@ require('gitsigns').setup({
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
     end
 })
+
+require('myConfig.cmp')
+require('myConfig.nvim-treesitter')
+require('myConfig.playground')
+local nixCats = require('nixCats')
+if nixCats('lsp') then
+    require('myConfig.lspconfig')
+end

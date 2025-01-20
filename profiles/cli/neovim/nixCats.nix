@@ -1,4 +1,3 @@
-{ pkgs, inputs }:
 {
   categoryDefinitions =
     {
@@ -9,38 +8,41 @@
       # name,
       # mkNvimPlugin,
       ...
-    }@packageDef:
+    }:
     {
       lspsAndRuntimeDeps = {
         general = with pkgs; [
-          nixfmt
+          nixfmt-rfc-style
           ripgrep
           deadnix
           statix
+        ];
+        lsp = with pkgs; [
+          lua-language-server
         ];
       };
       startupPlugins = {
         general = with pkgs.vimPlugins; [
           ale
           commentary
-          direnv-vim
           fugitive
           gitsigns-nvim
           neoformat
           nvim-sops
-          nordic-nvim
           playground
           rainbow
           repeat
-          solarized
           vim-suda
           surround
-          vim-polyglot
           vim-sneak
           vim-unimpaired
           vinegar
           which-key-nvim
           yuck-vim
+        ];
+        extra = with pkgs.vimPlugins; [
+          direnv-vim
+          vim-polyglot
         ];
         themer = with pkgs.vimPlugins; [
           nordic-nvim
@@ -62,8 +64,7 @@
         ];
         treesitter-full = [ pkgs.vimPlugins.nvim-treesitter.withAllGrammars ];
         treesitter-small = [
-          pkgs.vimPlugins.nvim-treesitter.withPlugins
-          (
+          (pkgs.vimPlugins.nvim-treesitter.withPlugins (
             p: with p; [
               bash
               c
@@ -71,7 +72,7 @@
               nix
               vim
             ]
-          )
+          ))
         ];
       };
       optionalPlugins = {
@@ -81,63 +82,52 @@
           nvim-web-devicons
         ];
       };
-      # shared libraries to be added to LD_LIBRARY_PATH
-      # variable available to nvim runtime
-      sharedLibraries = {
-        general = with pkgs; [
-          # libgit2
-        ];
+    };
+  packageDefinitions = {
+    # the name here is the name of the package
+    # and also the default command name for it.
+    nvim = _: {
+      # these also recieve our pkgs variable
+      # see :help nixCats.flake.outputs.packageDefinitions
+      settings = {
+        # explained below in the `regularCats` package's definition
+        # OR see :help nixCats.flake.outputs.settings for all of the settings available
+        wrapRc = true;
       };
-      environmentVariables = {
-        # test = {
-        #   CATTESTVAR = "It worked!";
-        # };
-      };
-      extraWrapperArgs = {
-        # test = [
-        #   ''--set CATTESTVAR2 "It worked again!"''
-        # ];
-      };
-      # lists of the functions you would have passed to
-      # python.withPackages or lua.withPackages
-
-      # get the path to this python environment
-      # in your lua config via
-      # vim.g.python3_host_prog
-      # or run from nvim terminal via :!<packagename>-python3
-      extraPython3Packages = {
-        test = _: [ ];
-      };
-      # populates $LUA_PATH and $LUA_CPATH
-      extraLuaPackages = {
-        test = [ (_: [ ]) ];
+      # enable the categories you want from categoryDefinitions
+      categories = {
+        general = true;
+        themer = true;
+        lsp = true;
+        cmp = true;
+        extra = true;
+        telescope = true;
+        treesitter-full = true;
+        treesitter-small = false;
       };
     };
-     packageDefinitions = {
-      # the name here is the name of the package
-      # and also the default command name for it.
-      nixCats = { pkgs, ... }@misc: {
-        # these also recieve our pkgs variable
-        # see :help nixCats.flake.outputs.packageDefinitions
-        settings = {
-          aliases = [];
-
-          # explained below in the `regularCats` package's definition
-          # OR see :help nixCats.flake.outputs.settings for all of the settings available
-          wrapRc = true;
-          configDirName = "nixCats-nvim";
-          # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-        };
-        # enable the categories you want from categoryDefinitions
-        categories = {
-          general = true;
-          themer = true;
-          lsp = true;
-          cmp = true;
-          telescope = true;
-          treesitter-full = true;
-          treesitter-small = false;
-        };
+    neovim-nix = _: {
+      # these also recieve our pkgs variable
+      # see :help nixCats.flake.outputs.packageDefinitions
+      settings = {
+        # explained below in the `regularCats` package's definition
+        # OR see :help nixCats.flake.outputs.settings for all of the settings available
+        wrapRc = true;
+        withPython3 = false;
+        withNode = false;
+        withRuby = false;
+      };
+      # enable the categories you want from categoryDefinitions
+      categories = {
+        general = true;
+        themer = true;
+        extra = false;
+        lsp = false;
+        cmp = true;
+        telescope = true;
+        treesitter-full = false;
+        treesitter-small = true;
       };
     };
+  };
 }

@@ -57,7 +57,18 @@
     }
   );
   perSystem =
-    { pkgs, inputs', ... }:
+    {
+      pkgs,
+      inputs',
+      system,
+      ...
+    }:
+    let
+      nixCatsBuilder = import ../profiles/cli/neovim/nixCatsBuilder.nix {
+        inherit (inputs) nixpkgs nixCats;
+        inherit system;
+      };
+    in
     {
       packages = {
         bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
@@ -73,10 +84,8 @@
         };
         kaknix = pkgs.callPackage ./kaknix.nix { };
         maimpick = pkgs.callPackage ./maimpick.nix { };
-        neovim = pkgs.callPackage ../profiles/cli/neovim/package.nix { };
-        neovim-nix = pkgs.callPackage ../profiles/cli/neovim/nvim-nix.nix {
-          nixfmt = pkgs.nixfmt-rfc-style;
-        };
+        neovim = nixCatsBuilder "nvim";
+        neovim-nix = nixCatsBuilder "neovim-nix";
         restart-eww = pkgs.callPackage ./restart-eww.nix { };
         rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
         sxhkd = pkgs.sxhkd.overrideAttrs (old: {
