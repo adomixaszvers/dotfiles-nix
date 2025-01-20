@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 {
   imports = [ inputs.nixCats.homeModule ];
   nixCats =
@@ -7,8 +7,11 @@
     in
     {
       enable = true;
-      luaPath = ./luapath;
-      packageNames = [ "nvim" ];
+      luaPath = builtins.path {
+        name = "my-neovim-config";
+        path = ./luapath;
+      };
+      packageNames = lib.mkDefault [ "nixCats" ];
       categoryDefinitions.replace = categoryDefinitions;
       packageDefinitions.replace = packageDefinitions;
     };
