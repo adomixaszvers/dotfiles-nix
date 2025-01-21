@@ -30,12 +30,12 @@
       systemd-boot = {
         enable = true;
         netbootxyz.enable = true;
+        memtest86.enable = true;
       };
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "zfs" ];
-    # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_1;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
     kernel.sysctl."vm.max_map_count" = 2147483642;
     zfs.requestEncryptionCredentials = false;
   };
@@ -52,10 +52,9 @@
   ];
 
   specialisation = {
-    latest-kernel.configuration = {
+    old-kernel.configuration = {
       boot = {
-        kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-        kernelParams = [ "earlyprintk=efi,keep" ];
+        kernelPackages = pkgs.linuxPackages_6_1;
       };
     };
   };
