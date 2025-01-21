@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   myPkgs,
   config,
   ...
@@ -65,6 +66,15 @@
         }
       ];
   };
+  stylix.targets = {
+    hyprland.enable = true;
+    waybar = {
+      enable = true;
+      enableCenterBackColors = true;
+      enableLeftBackColors = true;
+      enableRightBackColors = true;
+    };
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -122,8 +132,6 @@
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
 
         layout = "master";
         allow_tearing = true;
@@ -134,17 +142,16 @@
 
         rounding = 5;
         blur = {
-          enabled = true;
+          enabled = lib.mkDefault true;
           size = 3;
           passes = 1;
           new_optimizations = true;
         };
 
         shadow = {
-          enabled = true;
+          enabled = lib.mkDefault true;
           range = 4;
           render_power = 3;
-          color = "rgba(1a1a1aee)";
         };
 
       };
