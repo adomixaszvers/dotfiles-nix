@@ -98,6 +98,7 @@
 
   services = {
     fwupd.enable = true;
+    gnome.gnome-keyring.enable = false;
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;

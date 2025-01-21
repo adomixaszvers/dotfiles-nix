@@ -109,7 +109,7 @@
     acpid.enable = true;
     colord.enable = true;
     dbus.packages = with pkgs; [ dconf ];
-    gnome.gnome-keyring.enable = true;
+    gnome.gnome-keyring.enable = lib.mkDefault true;
     udisks2.enable = true;
   };
 
