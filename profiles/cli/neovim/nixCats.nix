@@ -107,10 +107,11 @@
         treesitter-small = false;
       };
     };
-    nvim = _: {
+    nixCats-small = _: {
       # these also recieve our pkgs variable
       # see :help nixCats.flake.outputs.packageDefinitions
       settings = {
+        aliases = [ "nvim" ];
         # explained below in the `regularCats` package's definition
         # OR see :help nixCats.flake.outputs.settings for all of the settings available
         wrapRc = true;
