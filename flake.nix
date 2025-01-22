@@ -70,7 +70,6 @@
         {
           pkgs,
           system,
-          self',
           inputs',
           config,
           ...
@@ -86,14 +85,6 @@
               config = import ./config.nix;
             };
           };
-          apps.my-neovim =
-            let
-              myNeovim = self'.packages.neovim;
-            in
-            {
-              type = "app";
-              program = "${myNeovim}/bin/nvim";
-            };
           pre-commit.settings = {
             src = ./.;
             hooks = {
