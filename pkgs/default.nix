@@ -63,6 +63,10 @@
       ...
     }:
     let
+      home-manager = pkgs.home-manager.overrideAttrs (_old: {
+        src = inputs.home-manager;
+        version = builtins.substring 0 8 inputs.home-manager.lastModifiedDate;
+      });
       nixCatsBuilder = import ../profiles/cli/neovim/nixCatsBuilder.nix {
         inherit (inputs) nixpkgs nixCats;
         inherit system;
@@ -70,6 +74,7 @@
     in
     {
       packages = {
+        inherit home-manager;
         bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
         bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
         hunspell-lt = pkgs.callPackage ./hunspell-lt { };
@@ -78,7 +83,7 @@
         hypr-greedy-focus = pkgs.callPackage ./hypr-greedy-focus.nix { };
         hm-option = pkgs.callPackage ./hm-option.nix { };
         hm-repl = pkgs.callPackage ./hm-repl.nix { };
-        hm-switch = pkgs.callPackage ./hm-switch.nix { };
+        hm-switch = pkgs.callPackage ./hm-switch.nix { inherit home-manager; };
         kaknix = pkgs.callPackage ./kaknix.nix { };
         maimpick = pkgs.callPackage ./maimpick.nix { };
         neovim = nixCatsBuilder "nixCats";
