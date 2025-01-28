@@ -59,7 +59,6 @@
   perSystem =
     {
       pkgs,
-      inputs',
       system,
       ...
     }:
@@ -79,9 +78,7 @@
         hypr-greedy-focus = pkgs.callPackage ./hypr-greedy-focus.nix { };
         hm-option = pkgs.callPackage ./hm-option.nix { };
         hm-repl = pkgs.callPackage ./hm-repl.nix { };
-        hm-switch = pkgs.callPackage ./hm-switch.nix {
-          inherit (inputs'.home-manager.packages) home-manager;
-        };
+        hm-switch = pkgs.callPackage ./hm-switch.nix { };
         kaknix = pkgs.callPackage ./kaknix.nix { };
         maimpick = pkgs.callPackage ./maimpick.nix { };
         neovim = nixCatsBuilder "nixCats";
