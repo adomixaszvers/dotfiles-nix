@@ -63,10 +63,12 @@
       ...
     }:
     let
-      home-manager = pkgs.home-manager.overrideAttrs (_old: {
-        src = inputs.home-manager;
-        version = builtins.substring 0 8 inputs.home-manager.lastModifiedDate;
-      });
+      home-manager = pkgs.callPackage "${inputs.home-manager}/home-manager" {
+        # home-manager sets `path = "${./.} and it creates store path
+        # hash-hash-source
+        # builtins.path recreates that
+        path = builtins.path { path = inputs.home-manager; };
+      };
       nixCatsBuilder = import ../profiles/cli/neovim/nixCatsBuilder.nix {
         inherit (inputs) nixpkgs nixCats;
         inherit system;
