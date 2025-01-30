@@ -8,7 +8,7 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixCats.url = "github:BirdeeHub/nixCats-nvim/v6.1.0";
+    nixCats.url = "github:BirdeeHub/nixCats-nvim/v6.2.4";
     nixGL = {
       url = "github:guibou/nixGL";
       inputs = {
