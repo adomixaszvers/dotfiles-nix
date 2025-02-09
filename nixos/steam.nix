@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs = {
     steam = {
       enable = true;
-      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      extraCompatPackages = lib.mkDefault [ pkgs.proton-ge-bin ];
       package = pkgs.steam.override {
         extraPkgs =
           pkgs: with pkgs; [

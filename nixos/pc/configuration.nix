@@ -11,10 +11,11 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common.nix
+    ../cachyos.nix
     ../flakes.nix
     ../gc.nix
     ../nix-registry.nix
-    # ../pipewire.nix
+    ../pipewire.nix
     ../realtime.nix
     ../syncthing.nix
     ../yubikey.nix
@@ -46,17 +47,17 @@
     networkmanager.enable = true;
   };
 
-  systemd.tmpfiles.rules = [
-    "w+ /sys/class/drm/card1/device/power_dpm_force_performance_level - - - - manual"
-    "w+ /sys/class/drm/card1/device/pp_power_profile_mode - - - - 1"
-  ];
+  # systemd.tmpfiles.rules = [
+  #   "w+ /sys/class/drm/card1/device/power_dpm_force_performance_level - - - - high"
+  #   "w+ /sys/class/drm/card1/device/pp_power_profile_mode - - - - 1"
+  # ];
 
   specialisation = {
-    old-kernel.configuration = {
-      boot = {
-        kernelPackages = pkgs.linuxPackages_6_1;
-      };
-    };
+    # old-kernel.configuration = {
+    #   boot = {
+    #     kernelPackages = pkgs.linuxPackages_6_1;
+    #   };
+    # };
   };
 
   hardware = {
@@ -70,7 +71,7 @@
       powerManagement.enable = true;
     };
     pulseaudio = {
-      enable = true;
+      enable = false;
       support32Bit = true;
       configFile = pkgs.runCommand "default.pa" { } ''
         sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
@@ -102,12 +103,6 @@
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
-    };
-    pipewire = {
-      # conflicts with pulseaudio
-      audio.enable = false;
-      alsa.enable = false;
-      pulse.enable = false;
     };
     xserver = {
       enable = true;
