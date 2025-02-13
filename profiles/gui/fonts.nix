@@ -10,6 +10,7 @@
         "FiraMono"
         "JetBrainsMono"
         "Noto"
+        "NerdFontsSymbolsOnly"
       ];
     })
     noto-fonts-emoji
