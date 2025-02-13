@@ -156,10 +156,6 @@
 
       };
 
-      animations = {
-        enabled = false;
-      };
-
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
         pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
@@ -192,6 +188,12 @@
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind =
+        let
+          volumeCommand =
+            cmd:
+            cmd
+            + ''&& dunstify -i audio-card -t 2000 -h string:x-dunst-stack-tag:volume "Volume $(pamixer --get-volume)"'';
+        in
         [
           "$mainMod, Return, exec, kitty"
           "$mainMod SHIFT, Q, killactive,"
@@ -236,6 +238,21 @@
           # Scroll through existing workspaces with mainMod + scroll
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
+
+          "$mainMod, minus, exec, ${volumeCommand "pamixer -d 5"}"
+          "$mainMod, minus, exec, ${volumeCommand "pamixer -d 5"}"
+          ", XF86AudioLowerVolume, exec, ${volumeCommand "pamixer -d 5"}"
+          "$mainMod, equal, exec, ${volumeCommand "pamixer -i 5"}"
+          "$mainMod, zcaron, exec, ${volumeCommand "pamixer -i 5"}"
+          ", XF86AudioRaiseVolume, exec, ${volumeCommand "pamixer -i 5"}"
+          ", XF86AudioMute, exec, ${volumeCommand "pamixer -t"}"
+
+          ", XF86AudioPlay, exec, playerctl play-pause"
+          "$mainMod, F5, exec, playerctl play-pause"
+          ", XF86AudioPrev, exec, playerctl previous"
+          "$mainMod, F6, exec, playerctl previous"
+          ", XF86AudioNext, exec, playerctl next"
+          "$mainMod, F7, exec, playerctl next"
         ]
         ++ (builtins.concatMap (
           x:
