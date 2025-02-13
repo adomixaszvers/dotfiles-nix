@@ -103,7 +103,12 @@
 
   security = {
     pki.certificateFiles = [ ./insoft-ca.crt ];
-    pam.services.swaylock = { };
+    pam.services = {
+      hyprlock = {
+        fprintAuth = false;
+      };
+      swaylock = { };
+    };
   };
 
   environment = {

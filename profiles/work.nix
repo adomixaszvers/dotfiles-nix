@@ -7,8 +7,9 @@
 {
   imports = [
     ./work-common.nix
-    ./wm/xsession-common.nix
-    ./wm/xmonad
+    # ./wm/xsession-common.nix
+    # ./wm/xmonad
+    ./wm/hyprland
   ];
   # gtk.enable = false;
   # qt.enable = false;
@@ -21,7 +22,59 @@
       enable = lib.mkDefault config.xsession.enable;
       inactiveInterval = 5;
     };
+    hypridle = {
+      enable = lib.mkDefault config.wayland.windowManager.hyprland.enable;
+      settings = {
+        general = {
+          before_sleep_cmd = "loginctl lock-session";
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+          lock_cmd = "pidof hyprlock || hyprlock";
+        };
+        listener = [
+          {
+            timeout = 300;
+            on-timeout = "loginctl lock-session";
+          }
+          {
+            timeout = 330;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+        ];
+      };
+    };
 
+  };
+  programs = {
+    hyprlock = {
+      enable = lib.mkDefault config.wayland.windowManager.hyprland.enable;
+      settings = {
+        general = {
+          enable_fingerprint = true;
+        };
+        background = {
+          path = "screenshot";
+          color = "rgba(25, 20, 20, 1.0)";
+          blur_passes = 2;
+        };
+        input-field = [
+          {
+            size = "200, 50";
+            position = "0, -80";
+            monitor = "";
+            dots_center = true;
+            fade_on_empty = false;
+            font_color = "rgb(202, 211, 245)";
+            inner_color = "rgb(91, 96, 120)";
+            outer_color = "rgb(24, 25, 38)";
+            outline_thickness = 5;
+            # placeholder_text = # html
+            #   ''<span foreground="##cad3f5">Password...</span>'';
+            shadow_passes = 2;
+          }
+        ];
+      };
+    };
   };
   xsession.windowManager.bspwm = {
     monitors = {
