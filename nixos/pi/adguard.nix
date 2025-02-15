@@ -98,6 +98,12 @@
           name = "Unified hosts file with base extensions";
           id = 5;
         }
+        {
+          enabled = true;
+          url = "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/refs/heads/main/noai_hosts.txt";
+          name = "Main AI blocklist";
+          id = 6;
+        }
       ];
     };
   };
