@@ -11,7 +11,10 @@
     ./wm/xrdp.nix
     ./work/kerberos.nix
   ];
-  gui.thermal-zone = 1;
+  gui = {
+    hasBattery = true;
+    thermal-zone = 1;
+  };
   stylix.enable = true;
   home = {
     file = {

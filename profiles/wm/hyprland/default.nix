@@ -31,7 +31,7 @@
         height = 16;
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [
+        modules-right = (lib.optional config.gui.hasBattery "battery") ++ [
           "pulseaudio"
           "cpu"
           "memory"
@@ -280,8 +280,9 @@
         "workspace 5 silent,class:^(steam)$"
         "workspace 9 silent,class:^(KeepassXC)$"
         # fix steam menus
-        "stayfocused, title:^()$,class:^(steam)$"
-        "minsize 1 1, title:^()$,class:^(steam)$"
+        # "stayfocused, title:^()$,class:^(steam)$"
+        # "minsize 1 1, title:^()$,class:^(steam)$"
+        "noanim,floating:1"
         "fullscreen,class:^(.gamescope-wrapped)$"
 
         # smart gaps

@@ -67,7 +67,10 @@
   home.sessionVariables = {
     BROWSER = "firefox";
   };
-  gui.thermal-zone = 0;
+  gui = {
+    thermal-zone = 0;
+    hasBattery = true;
+  };
   programs = {
     firefox = {
       enable = true;
