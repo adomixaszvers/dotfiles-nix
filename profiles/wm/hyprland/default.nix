@@ -102,7 +102,6 @@
 
       # Some default env vars.
       env = [
-        "XCURSOR_SIZE,24"
         "KITTY_CONF_FONT,font_size 9.0"
       ];
       # sets xwayland scale

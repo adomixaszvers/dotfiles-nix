@@ -8,11 +8,6 @@
 
 {
   gtk = {
-    cursorTheme = {
-      package = pkgs.vanilla-dmz;
-      name = "Vanilla-DMZ";
-      size = 32;
-    };
     iconTheme = {
       name = "Arc";
       package = pkgs.arc-icon-theme;
