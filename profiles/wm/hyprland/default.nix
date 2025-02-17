@@ -32,6 +32,7 @@
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
         modules-right = (lib.optional config.gui.hasBattery "battery") ++ [
+          "hyprland/language"
           "pulseaudio"
           "cpu"
           "memory"
@@ -44,6 +45,10 @@
         };
         "pulseaudio" = {
           scroll-step = 5.0;
+        };
+        "hyprland/language" = {
+          format-lt = "lt";
+          format-en = "us";
         };
         temperature.thermal-zone = config.gui.thermal-zone;
       };
@@ -72,7 +77,7 @@
       enable = true;
       enableCenterBackColors = true;
       enableLeftBackColors = true;
-      enableRightBackColors = true;
+      enableRightBackColors = false;
     };
   };
   wayland.windowManager.hyprland = {
