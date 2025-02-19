@@ -40,12 +40,6 @@
           "clock"
           "tray"
         ];
-        "clock" = {
-          format = "{:%Y-%m-%d %H:%M}";
-        };
-        "pulseaudio" = {
-          scroll-step = 5.0;
-        };
         "hyprland/language" = {
           format-lt = "lt";
           format-en = "us";
