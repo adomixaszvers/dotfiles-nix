@@ -71,7 +71,9 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 })
 
 vim.o.timeout = true
-vim.o.timeoutlen = 300
+-- if the timeoutlen is too short I am too slow to input surround.vim bindings
+-- so let the timeoutlen be 1000 (default)
+-- vim.o.timeoutlen = 300
 vim.cmd.packadd('fidget.nvim')
 require('fidget').setup({})
 require('which-key').setup {}
