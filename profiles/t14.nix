@@ -80,13 +80,6 @@
         };
       };
     };
-    ghostty = {
-      settings = {
-        gtk-adwaita = false;
-        gtk-titlebar = false;
-        window-decoration = false;
-      };
-    };
   };
   services.screen-locker = {
     # enable = true;
