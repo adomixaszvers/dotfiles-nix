@@ -1,6 +1,10 @@
 {
   programs.firefox = {
     enable = true;
-    policies.DisableTelemetry = true;
+    policies = {
+      DisablePocket = true;
+      DisableTelemetry = true;
+      PasswordManagerEnabled = false;
+    };
   };
 }
