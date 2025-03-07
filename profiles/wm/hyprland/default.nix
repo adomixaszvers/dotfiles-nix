@@ -19,7 +19,7 @@
     xwayland
   ];
   programs = {
-    emacs.package = pkgs.emacs29-pgtk;
+    emacs.package = pkgs.emacs-pgtk;
     rofi = {
       package = pkgs.rofi-wayland;
       extraConfig.modi = "drun,run,ssh";
