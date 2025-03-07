@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   programs.waybar = {
     enable = true;
@@ -42,13 +43,17 @@
           mode-mon-col = 3;
           weeks-pos = "right";
           on-scroll = 1;
-          format = {
-            months = "<span color='#ffead3'><b>{}</b></span>";
-            days = "<span color='#ecc6d9'><b>{}</b></span>";
-            weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-            weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-            today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-          };
+          format =
+            let
+              inherit (config.lib.stylix.colors.withHashtag) base04 base05 base08;
+            in
+            {
+              months = "<span color='${base04}'><b>{}</b></span>";
+              days = "<span color='${base05}'><b>{}</b></span>";
+              weeks = "<span color='${base04}'><b>W{}</b></span>";
+              weekdays = "<span color='${base04}'><b>{}</b></span>";
+              today = "<span color='${base08}'><b><u>{}</u></b></span>";
+            };
         };
         actions = {
           on-click-right = "mode";
