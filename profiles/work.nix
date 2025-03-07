@@ -4,6 +4,10 @@
   lib,
   ...
 }:
+let
+  isX11 = config.xsession.enable;
+  isHypr = config.wayland.windowManager.hyprland.enable;
+in
 {
   imports = [
     ./work-common.nix
@@ -16,14 +20,14 @@
   services = {
     # network-manager-applet.enable = false;
     # udiskie.enable = false;
-    # kbdd.enable = false;
-    # picom.enable = false;
+    kbdd.enable = isX11;
+    picom.enable = isX11;
     screen-locker = {
-      enable = lib.mkDefault config.xsession.enable;
+      enable = lib.mkDefault isX11;
       inactiveInterval = 5;
     };
     hypridle = {
-      enable = lib.mkDefault config.wayland.windowManager.hyprland.enable;
+      enable = lib.mkDefault isHypr;
       settings = {
         general = {
           before_sleep_cmd = "loginctl lock-session";
@@ -36,8 +40,8 @@
             on-timeout = "loginctl lock-session";
           }
           {
-            timeout = 330;
-            on-timeout = "hyprctl dispatch dpms off";
+            timeout = 30;
+            on-timeout = "pidof hyprlock && hyprctl dispatch dpms off";
             on-resume = "hyprctl dispatch dpms on";
           }
         ];
@@ -47,31 +51,34 @@
   };
   programs = {
     hyprlock = {
-      enable = lib.mkDefault config.wayland.windowManager.hyprland.enable;
+      enable = lib.mkDefault isHypr;
       settings = {
         general = {
           enable_fingerprint = true;
+          no_fade_in = true;
+          no_fade_out = true;
+          ignore_empty_input = true;
         };
-        background = {
-          path = "screenshot";
-          color = "rgba(25, 20, 20, 1.0)";
-          blur_passes = 2;
-        };
-        input-field = [
+        label = [
           {
-            size = "200, 50";
-            position = "0, -80";
             monitor = "";
-            dots_center = true;
-            fade_on_empty = false;
-            font_color = "rgb(202, 211, 245)";
-            inner_color = "rgb(91, 96, 120)";
-            outer_color = "rgb(24, 25, 38)";
-            outline_thickness = 5;
-            # placeholder_text = # html
-            #   ''<span foreground="##cad3f5">Password...</span>'';
-            shadow_passes = 2;
+            position = "0, 100";
+            text = "$TIME";
+            font_size = 40;
+            color = "rgb(${config.lib.stylix.colors.base05})";
+            halign = "center";
+            valign = "center";
           }
+          # {
+          #   monitor = "";
+          #   text = ''<span allow_breaks="true">Prompt: $PROMPT<br/>Fail: $FAIL<br/>Attempts: $ATTEMPTS<br/>Fprint message: $FPRINTMESSAGE</span>'';
+          #   color = "rgba(200, 200, 200, 1.0)";
+          #   font_size = 25;
+
+          #   position = "0, 80";
+          #   halign = "center";
+          #   valign = "center";
+          # }
         ];
       };
     };

@@ -72,6 +72,7 @@
   ];
 
   networking = {
+    enableIPv6 = true;
     hostId = "d864861a";
     hostName = "adomas-jatuzis-nixos"; # Define your hostname.
     domain = "x.insoft.lt";
@@ -154,6 +155,10 @@
   };
   services = {
     autorandr.enable = true;
+    avahi.allowInterfaces = [
+      "enp0s13f0u3u1"
+      "wlp9s0"
+    ];
     gnome.glib-networking.enable = true;
     gvfs.enable = true;
     flatpak = {
