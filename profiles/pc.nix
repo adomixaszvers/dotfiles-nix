@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     brave
     discord
-    firefox
     # gamescope
     libreoffice-still
     (lutris.override {

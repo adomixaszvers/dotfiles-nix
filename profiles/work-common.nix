@@ -288,12 +288,6 @@
         path = "~/projektai/git_work.inc";
       }
     ];
-    firefox = {
-      enable = true;
-      # package = pkgs.firefox.override {
-      #   cfg = {nativeMessagingHosts = [pkgs.plasma-shell-integration];};
-      # };
-    };
     gh = {
       enable = true;
       gitCredentialHelper.enable = true;

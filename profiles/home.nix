@@ -12,7 +12,6 @@
     discord
     exercism
     nautilus
-    firefox
     gtypist
     mpv
     playerctl

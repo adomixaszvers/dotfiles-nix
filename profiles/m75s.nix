@@ -2,7 +2,6 @@
 {
   imports = [ ./common.nix ];
   home.packages = with pkgs; [
-    firefox
     # gamescope
     mpv
     playerctl

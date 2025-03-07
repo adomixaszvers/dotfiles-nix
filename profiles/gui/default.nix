@@ -10,6 +10,7 @@
     ./alacritty
     ./chemacs
     ./doom-emacs.nix
+    ./firefox.nix
     ./fonts.nix
     ./ghostty.nix
     ./kitty.nix
