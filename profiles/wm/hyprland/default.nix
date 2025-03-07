@@ -44,6 +44,10 @@
           format-lt = "lt";
           format-en = "us";
         };
+        "hyprland/window" = {
+          # format = "{title:.100}";
+          separate-outputs = true;
+        };
         temperature.thermal-zone = config.gui.thermal-zone;
       };
       systemd = {
@@ -67,6 +71,7 @@
   };
   stylix.targets = {
     hyprland.enable = true;
+    hyprlock.enable = true;
     waybar = {
       enable = true;
       enableCenterBackColors = true;
@@ -277,6 +282,7 @@
         "workspace 3 silent,class:^(jetbrains-idea)$"
         "workspace 5 silent,class:^(steam)$"
         "workspace 9 silent,class:^(KeepassXC)$"
+        "tile,class:^(com-eviware-soapui-SoapUI)$,title:^(SoapUI)(.*)$"
         # fix steam menus
         # "stayfocused, title:^()$,class:^(steam)$"
         # "minsize 1 1, title:^()$,class:^(steam)$"
