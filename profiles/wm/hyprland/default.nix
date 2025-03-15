@@ -181,6 +181,9 @@
       misc = {
         vrr = 1;
         disable_hyprland_logo = true; # no anime
+        # https://wiki.hyprland.org/0.45.0/Configuring/Variables/#misc
+        # unmaximise when a new app is launched
+        new_window_takes_over_fullscreen = 2;
       };
 
       # Example windowrule v1
