@@ -10,14 +10,17 @@
     ../waybar
     ../dunst.nix
   ];
-  home.packages = with pkgs; [
-    grimblast
-    pamixer
-    swayidle
-    wl-clipboard
-    wdisplays
-    xwayland
-  ];
+  home = {
+    packages = with pkgs; [
+      grimblast
+      pamixer
+      swayidle
+      wl-clipboard
+      wdisplays
+      xwayland
+    ];
+    sessionVariables.NIXOS_OZONE_WL = 1;
+  };
   programs = {
     emacs.package = pkgs.emacs-pgtk;
     rofi = {
