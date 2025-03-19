@@ -23,7 +23,7 @@
     ../yubikey.nix
     ../thinkfan.nix
     # ./bitburner.nix
-    ./dante.nix
+    # ./dante.nix
     ./hardware-configuration.nix
     ./kerberos.nix
     ./ltXkb.nix
@@ -34,7 +34,7 @@
     # ./unbound.nix
     # ./vnc.nix
     ../xdg-portal.nix
-    ./wireguard-client.nix
+    # ./wireguard-client.nix
     ../fprintd.nix
     # ./throttled
     ./tlp.nix
@@ -79,7 +79,6 @@
     dhcpcd.enable = false;
     networkmanager = {
       enable = true;
-      dns = "dnsmasq";
       dispatcherScripts = [
         {
           type = "basic";
@@ -123,13 +122,6 @@
   };
 
   environment = {
-    etc."NetworkManager/dnsmasq.d/wireguard".text = # ini
-      ''
-        addn-hosts=/etc/hosts
-        address=/wg.beastade.top/10.6.0.1
-        server=/wg/10.6.0.1
-        rev-server=10.6.0.0/24,10.6.0.1
-      '';
     systemPackages = with pkgs; [
       wget
       vim
