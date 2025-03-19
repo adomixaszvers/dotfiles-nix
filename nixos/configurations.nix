@@ -27,10 +27,6 @@ in
       inherit specialArgs;
       modules = [ ./t14/configuration.nix ];
     };
-    m75s = nixpkgs.lib.nixosSystem {
-      inherit specialArgs;
-      modules = [ ./m75s/configuration.nix ];
-    };
     raspberrypi-nixos = nixpkgs.lib.nixosSystem {
       inherit specialArgs;
       modules = [ ./pi/configuration.nix ];
