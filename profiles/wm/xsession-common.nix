@@ -9,7 +9,7 @@
   programs.autorandr.enable = true;
   services = {
     unclutter = {
-      enable = true;
+      enable = lib.mkDefault true;
       timeout = 10;
     };
     screen-locker = {

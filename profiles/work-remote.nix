@@ -6,5 +6,8 @@
     ./wm/xmonad
   ];
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
-  services.picom.enable = false;
+  services = {
+    picom.enable = false;
+    unclutter.enable = false;
+  };
 }
