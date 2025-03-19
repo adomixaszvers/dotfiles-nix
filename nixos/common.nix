@@ -140,7 +140,6 @@
         "video"
         "wheel"
       ];
-      shell = pkgs.zsh;
     };
   };
 }
