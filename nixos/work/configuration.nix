@@ -113,11 +113,14 @@
 
   security = {
     pki.certificateFiles = [ ./insoft-ca.crt ];
-    pam.services = {
-      hyprlock = {
-        fprintAuth = false;
+    pam = {
+      u2f.enable = true;
+      services = {
+        hyprlock = {
+          fprintAuth = false;
+        };
+        swaylock = { };
       };
-      swaylock = { };
     };
   };
 
