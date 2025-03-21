@@ -285,7 +285,7 @@
         "float,class:^(Vampire_Survivors)$"
         "workspace 1 silent,class:^(Google-chrome)$"
         "workspace 1 silent,class:^(firefox)$"
-        "workspace 3 silent,class:^(jetbrains-idea)$"
+        "workspace 3 silent,class:^(jetbrains-idea),floating:0$"
         "workspace 5 silent,class:^(steam)$"
         "workspace 9 silent,class:^(KeepassXC)$"
         "tile,class:^(com-eviware-soapui-SoapUI)$,title:^(SoapUI)(.*)$"
