@@ -105,7 +105,7 @@ in
     hyprland.settings.monitor = [
       "DP-6,2560x1440,0x0,1.00"
       "DP-7,2560x1440,2560x0,1.00"
-      "eDP-1,1920x1080,5120x0,1.25"
+      "eDP-1,disable"
     ];
     sway.config = {
       startup = [
