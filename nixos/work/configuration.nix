@@ -133,7 +133,6 @@
 
   programs = {
     # adb.enable = true;
-    fish.enable = true;
     nix-ld.enable = true;
     ssh = {
       extraConfig = ''
@@ -298,7 +297,6 @@
           ../keys/yubikey.pub
           ../keys/t14.pub
         ];
-        shell = pkgs.fish;
       };
       root.hashedPasswordFile = config.sops.secrets."root/password".path;
     };

@@ -8,7 +8,6 @@
 {
   imports = [
     ./common.nix
-    ./cli/fish
     ./wm/xrdp.nix
     ./work/kerberos.nix
   ];
