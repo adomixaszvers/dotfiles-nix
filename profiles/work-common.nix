@@ -106,6 +106,8 @@
       CS_AUTH_KEYS = "/home/adomas/HSMrsa.pub";
       CS_PKCS11_R2_CFG = "/home/adomas/cs_pkcs11_R2.cfg";
       CRYPTOSERVER = "3001@localhost";
+      # see https://github.com/skywind3000/z.lua?tab=readme-ov-file#options
+      _ZL_EXCLUDE_DIRS = "/kiti"; # don't trigger automount with z-lua
     };
   };
 
