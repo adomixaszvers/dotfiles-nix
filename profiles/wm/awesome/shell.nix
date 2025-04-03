@@ -6,7 +6,7 @@ with pkgs;
 
 mkShellNoCC {
   name = "awesomewm-shell";
-  buildInputs = [
+  packages = [
     luaPackages.luacheck
     stylua
   ];
