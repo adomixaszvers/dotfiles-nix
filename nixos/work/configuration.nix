@@ -208,6 +208,7 @@
       ]
     ];
     vnstat.enable = true;
+    upower.enable = true;
   };
 
   systemd.services.check-internet = {
