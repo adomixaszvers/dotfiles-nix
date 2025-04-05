@@ -3,9 +3,10 @@
     enable = true;
     settings = {
       allow_remote_control = true;
-
+      bold_font = "auto";
+      italic_font = "auto";
+      bold_italic_font = "auto";
       enable_audio_bell = false;
-
       envinclude = "KITTY_CONF_*";
 
     };
