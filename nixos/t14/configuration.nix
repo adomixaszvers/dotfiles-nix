@@ -17,6 +17,7 @@
     ../gc.nix
     ../libvirtd.nix
     ../nix-registry.nix
+    ../patch-nm-vpnc.nix
     ../pipewire.nix
     ../realtime.nix
     ../syncthing.nix

@@ -18,6 +18,7 @@
     # ../ld-link.nix
     ../libvirtd.nix
     ../nix-registry.nix
+    ../patch-nm-vpnc.nix
     ../pipewire.nix
     ../syncthing.nix
     ../yubikey.nix
@@ -60,16 +61,6 @@
       options zfs zfs_arc_sys_free=${toString (3 * 1024 * 1024 * 1024)}
     '';
   };
-
-  nixpkgs.overlays = [
-    (_: super: {
-      networkmanager-vpnc = super.networkmanager-vpnc.overrideAttrs (old: {
-        patches = old.patches ++ [
-          ../../export_nm_vpn_editor_factory_vpnc.patch
-        ];
-      });
-    })
-  ];
 
   networking = {
     enableIPv6 = true;
