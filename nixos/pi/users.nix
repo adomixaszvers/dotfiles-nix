@@ -17,6 +17,7 @@
     };
     extraUsers.pi = {
       hashedPasswordFile = config.sops.secrets."pi/password".path;
+      linger = true;
       isNormalUser = true;
       uid = 1000;
       extraGroups = [
