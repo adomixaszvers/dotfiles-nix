@@ -94,9 +94,11 @@
         # explained below in the `regularCats` package's definition
         # OR see :help nixCats.flake.outputs.settings for all of the settings available
         wrapRc = true;
-        withPython3 = false;
-        withNode = false;
-        withRuby = false;
+        hosts = {
+          python3.enable = false;
+          node.enable = false;
+          ruby.enable = false;
+        };
       };
       # enable the categories you want from categoryDefinitions
       categories = {
@@ -118,9 +120,11 @@
         # explained below in the `regularCats` package's definition
         # OR see :help nixCats.flake.outputs.settings for all of the settings available
         wrapRc = true;
-        withPython3 = false;
-        withNode = false;
-        withRuby = false;
+        hosts = {
+          python3.enable = false;
+          node.enable = false;
+          ruby.enable = false;
+        };
       };
       # enable the categories you want from categoryDefinitions
       categories = {
