@@ -27,6 +27,7 @@
   ];
 
   boot = {
+    initrd.systemd.enable = true;
     loader = {
       systemd-boot = {
         enable = true;
@@ -90,6 +91,7 @@
   };
 
   services = {
+    flatpak.enable = true;
     fwupd.enable = true;
     gnome.gnome-keyring.enable = false;
     openssh = {
