@@ -28,6 +28,6 @@
     shellAliases = {
       setlt = "setxkbmap lt,us -option grp:caps_toggle -model pc104";
     };
-    initExtra = builtins.readFile ./initExtra.zsh;
+    initContent = builtins.readFile ./initExtra.zsh;
   };
 }
