@@ -2,7 +2,7 @@
 {
   networking = {
     domain = "lan";
-    nameservers = [ "9.9.9.9" ];
+    nameservers = [ "192.168.1.254" ];
     firewall = {
       allowedTCPPorts = [
         53

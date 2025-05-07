@@ -8,11 +8,6 @@
 
 {
   gtk = {
-    cursorTheme = {
-      package = pkgs.vanilla-dmz;
-      name = "Vanilla-DMZ";
-      size = 32;
-    };
     iconTheme = {
       name = "Arc";
       package = pkgs.arc-icon-theme;
@@ -23,7 +18,7 @@
   };
   qt = {
     enable = lib.mkDefault true;
-    platformTheme.name = "gtk";
+    platformTheme.name = "adwaita";
   };
   services.network-manager-applet.enable = lib.mkDefault true;
   services.udiskie = {

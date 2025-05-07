@@ -1,10 +1,6 @@
-{ pkgs, ... }:
 {
-  hardware.pulseaudio.enable = false;
-
   # rtkit is optional but recommended
   security.rtkit.enable = true;
-  systemd.user.services.pipewire-pulse.path = [ pkgs.pulseaudio ];
   services.pipewire = {
     enable = true;
     alsa.enable = true;

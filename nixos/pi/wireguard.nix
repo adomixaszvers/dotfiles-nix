@@ -4,12 +4,12 @@
     "wireguard/privateKey".sopsFile = ./secrets/wireguard.yaml;
     "wireguard/presharedKeys/telefonas".sopsFile = ../common-secrets/wireguard.yaml;
     "wireguard/presharedKeys/rutosKompas".sopsFile = ../common-secrets/wireguard.yaml;
-    "wireguard/presharedKeys/windowsNew".sopsFile = ../common-secrets/wireguard.yaml;
-    "wireguard/presharedKeys/work".sopsFile = ../common-secrets/wireguard.yaml;
-    "wireguard/presharedKeys/laptop".sopsFile = ../common-secrets/wireguard.yaml;
+    "wireguard/presharedKeys/pc".sopsFile = ../common-secrets/wireguard/pc.yaml;
+    # "wireguard/presharedKeys/work".sopsFile = ../common-secrets/wireguard/work.yaml;
+    "wireguard/presharedKeys/laptop".sopsFile = ../common-secrets/wireguard/laptop.yaml;
     "wireguard/presharedKeys/samsung".sopsFile = ../common-secrets/wireguard.yaml;
     "wireguard/presharedKeys/rycioKompas".sopsFile = ../common-secrets/wireguard.yaml;
-    "wireguard/presharedKeys/t14".sopsFile = ../common-secrets/wireguard.yaml;
+    "wireguard/presharedKeys/t14".sopsFile = ../common-secrets/wireguard/t14.yaml;
     "wireguard/presharedKeys/steamdeck".sopsFile = ../common-secrets/wireguard.yaml;
   };
   networking = {
@@ -23,7 +23,7 @@
       "10.6.0.2" = [ "oneplus-3t.wg" ];
       "10.6.0.3" = [ "rutos-pc.wg" ];
       "10.6.0.5" = [ "windows-pc.wg" ];
-      "10.6.0.6" = [ "work.wg" ];
+      # "10.6.0.6" = [ "work.wg" ];
       "10.6.0.7" = [ "asus.wg" ];
       "10.6.0.10" = [ "samsung-a52.wg" ];
       "10.6.0.11" = [ "t14.wg" ];
@@ -63,15 +63,15 @@
           {
             # windows-new
             publicKey = "eJvrBUU4+8zPRm/k/BgZTzimrZk97pKxz/GvVApBohE=";
-            presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/windowsNew".path;
+            presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/pc".path;
             allowedIPs = [ "10.6.0.5/32" ];
           }
-          {
-            # work
-            publicKey = "C1PNVCRetK41/lxm3/lT5dZRzw+z8p99YNkroIilHEA=";
-            presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/work".path;
-            allowedIPs = [ "10.6.0.6/32" ];
-          }
+          # {
+          #   # work
+          #   publicKey = "C1PNVCRetK41/lxm3/lT5dZRzw+z8p99YNkroIilHEA=";
+          #   presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/work".path;
+          #   allowedIPs = [ "10.6.0.6/32" ];
+          # }
           {
             # laptop
             publicKey = "tINtePHKYYaoh+H3k9WTozeNcrWay7hZ3mq1HY0I+Fg=";
@@ -95,7 +95,7 @@
             allowedIPs = [ "10.6.0.12/32" ];
           }
           {
-            publicKey = "jntAqEorAVCP3Z9MbecPE8MiWi4q4Ay+Ue9UtrD2Hwc=";
+            publicKey = "r0v6/SesQlu9ZubRzeEkKFC3pBQLH4XePaCZojA3oGY=";
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/steamdeck".path;
             allowedIPs = [ "10.6.0.13/32" ];
           }

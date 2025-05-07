@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     brave
     discord
-    firefox
     # gamescope
     libreoffice-still
     (lutris.override {
@@ -35,6 +34,7 @@
   home.sessionVariables = {
     BROWSER = "firefox";
   };
+
   stylix = {
     enable = true;
     targets.gtk.enable = false;

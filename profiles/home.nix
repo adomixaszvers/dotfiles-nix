@@ -6,15 +6,17 @@
     ./wm/xmonad
   ];
   home.packages = with pkgs; [
+    brave
     borgbackup
     compsize
     discord
     exercism
     nautilus
-    firefox
     gtypist
     mpv
     playerctl
+    remmina
+    qbittorrent
     spotify
     tor-browser-bundle-bin
     keepassxc

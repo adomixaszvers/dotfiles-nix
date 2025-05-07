@@ -8,6 +8,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixCats.url = "github:BirdeeHub/nixCats-nvim/v7.1.2";
     nixGL = {
       url = "github:guibou/nixGL";
       inputs = {
@@ -22,6 +23,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs = {
@@ -32,23 +34,24 @@
       url = "github:danth/stylix/master";
       inputs = {
         flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+        git-hooks.follows = "git-hooks";
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
     };
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
       inputs = {
         flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
-        nixpkgs-stable.follows = "";
       };
     };
   };
   outputs =
     {
       nixpkgs,
-      pre-commit-hooks,
+      git-hooks,
       nixos-unstable,
       flake-parts,
       ...
@@ -59,7 +62,7 @@
         "aarch64-linux"
       ];
       imports = [
-        pre-commit-hooks.flakeModule
+        git-hooks.flakeModule
         ./pkgs
         ./nixos/configurations.nix
         ./homes.nix
@@ -68,9 +71,8 @@
         {
           pkgs,
           system,
-          self',
-          inputs',
           config,
+          self',
           ...
         }:
         {
@@ -84,14 +86,6 @@
               config = import ./config.nix;
             };
           };
-          apps.my-neovim =
-            let
-              myNeovim = self'.packages.neovim;
-            in
-            {
-              type = "app";
-              program = "${myNeovim}/bin/nvim";
-            };
           pre-commit.settings = {
             src = ./.;
             hooks = {
@@ -104,7 +98,7 @@
               shellcheck = {
                 enable = true;
                 # shellcheck does not support zsh files but after
-                # https://github.com/cachix/pre-commit-hooks.nix/commit/61bda56530889b4acf6c935d832f219b6c0ebd83
+                # https://github.com/cachix/git-hooks.nix/commit/61bda56530889b4acf6c935d832f219b6c0ebd83
                 # it is run on initExtra.zsh and it fails on pre-commit
                 excludes = [ "\\.zsh$" ];
               };
@@ -112,8 +106,10 @@
           };
           devShells = {
             default = pkgs.mkShellNoCC {
-              buildInputs = [
-                inputs'.home-manager.packages.home-manager
+              packages = [
+                # inputs'.home-manager.packages.home-manager
+                # workaround until https://github.com/nix-community/home-manager/issues/6354 has been backported to release-24.11
+                self'.packages.home-manager
                 pkgs.sops
               ] ++ config.pre-commit.settings.enabledPackages;
               shellHook = config.pre-commit.installationScript;

@@ -3,7 +3,7 @@
 }:
 pkgs.mkShellNoCC {
   name = "qtile-shell";
-  buildInputs = [
+  packages = [
     (pkgs.python3.withPackages (
       ps: with ps; [
         python-lsp-server

@@ -1,10 +1,18 @@
-{ pkgs, ... }:
+{ inputs, lib, ... }:
 {
-  programs.neovim = {
-    enable = true;
-    package = pkgs.neovim-unwrapped;
-    plugins = import ./plugins.nix pkgs;
-    extraConfig = import ./customRc.nix;
-    extraPackages = with pkgs; [ lua-language-server ];
-  };
+  imports = [ inputs.nixCats.homeModule ];
+  nixCats =
+    let
+      inherit (import ./nixCats.nix) categoryDefinitions packageDefinitions;
+    in
+    {
+      enable = true;
+      luaPath = builtins.path {
+        name = "my-neovim-config";
+        path = ./luapath;
+      };
+      packageNames = lib.mkDefault [ "nixCats" ];
+      categoryDefinitions.replace = categoryDefinitions;
+      packageDefinitions.replace = packageDefinitions;
+    };
 }

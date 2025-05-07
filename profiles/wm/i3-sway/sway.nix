@@ -78,7 +78,7 @@ in
     ])
     ++ [ myPkgs.sway-greedy-focus ];
   programs = {
-    emacs.package = pkgs.emacs29-pgtk;
+    emacs.package = pkgs.emacs-pgtk;
     rofi = {
       package = pkgs.rofi-wayland;
       extraConfig.modi = "drun,run,ssh";
@@ -138,8 +138,10 @@ in
             "${modifier}+d" = "exec rofi -show drun -show-icons";
             "${modifier}+Shift+d" = "exec rofi -show run";
             "${modifier}+Tab" = "exec ${rofi-windows}";
-            "${modifier}+Ctrl+e" = ''exec swaymsg "[app_id=emacs_scratch] scratchpad show, fullscreen enable" || exec emacs --name emacs_scratch'';
-            "${modifier}+Ctrl+s" = ''exec swaymsg "[app_id=kitty_scratch] scratchpad show, fullscreen enable" || exec kitty --class kitty_scratch'';
+            "${modifier}+Ctrl+e" =
+              ''exec swaymsg "[app_id=emacs_scratch] scratchpad show, fullscreen enable" || exec emacs --name emacs_scratch'';
+            "${modifier}+Ctrl+s" =
+              ''exec swaymsg "[app_id=kitty_scratch] scratchpad show, fullscreen enable" || exec kitty --class kitty_scratch'';
           };
         in
         combined;

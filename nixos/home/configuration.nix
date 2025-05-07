@@ -12,7 +12,7 @@
   imports = [
     # ./bumblebee.nix
     # ./gnome.nix
-    # ./kde.nix
+    # ../kde.nix
     ../avahi.nix
     ../common.nix
     ../flakes.nix
@@ -20,11 +20,12 @@
     ../nix-registry.nix
     ../pipewire.nix
     ../syncthing.nix
+    ../xdg-portal.nix
     ../yubikey.nix
-    ./bumblebee-nvidia.nix
+    ./bumblebee.nix
     ./hardware-configuration.nix
     # ./remote-build.nix
-    ./static-ip.nix
+    # ./static-ip.nix
     ./steam.nix
     ./wakeonlan.nix
     ./wireguard-client.nix
@@ -91,11 +92,6 @@
     bash.completion.enable = true;
     mosh.enable = true;
     ssh.startAgent = false;
-    sway.enable = true;
-  };
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   };
   services = {
     autorandr = {

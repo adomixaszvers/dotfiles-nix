@@ -10,7 +10,9 @@
     ./alacritty
     ./chemacs
     ./doom-emacs.nix
+    ./firefox.nix
     ./fonts.nix
+    ./ghostty.nix
     ./kitty.nix
     ./stylix.nix
   ];
@@ -45,12 +47,14 @@
       TERMINAL = "kitty";
     };
   };
-  programs.feh.enable = true;
-  programs.rofi = {
-    enable = true;
-    extraConfig = {
-      modi = lib.mkDefault "drun,window,run,ssh";
-      dpi = 1; # autodetect dpi based on monitor size
+  programs = {
+    feh.enable = true;
+    rofi = {
+      enable = true;
+      extraConfig = {
+        modi = lib.mkDefault "drun,window,run,ssh";
+        dpi = 1; # autodetect dpi based on monitor size
+      };
     };
   };
   stylix.targets = {

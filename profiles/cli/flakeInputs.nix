@@ -1,15 +1,24 @@
 {
   inputs,
-  lib,
-  config,
   ...
 }:
+let
+  inputNames = [
+    "home-manager"
+    "nixos-hardware"
+    "nixpkgs"
+    "nixos-unstable"
+    "stylix"
+  ];
+in
 {
-  xdg.configFile = lib.attrsets.mapAttrs' (n: v: {
-    name = "flakeInputs/${n}";
-    value = {
-      source = v.outPath;
-    };
-  }) (builtins.removeAttrs inputs [ "self" ]);
-  home.sessionVariables."NIX_PATH" = "${config.home.sessionVariables.XDG_CONFIG_HOME}/flakeInputs\${NIX_PATH:+:}$NIX_PATH";
+  xdg.configFile = builtins.listToAttrs (
+    builtins.map (n: {
+      name = "flakeInputs/${n}";
+      value = {
+        source = builtins.getAttr n inputs;
+      };
+    }) inputNames
+  );
+  nix.nixPath = builtins.map (n: "${n}=${builtins.getAttr n inputs}") inputNames;
 }

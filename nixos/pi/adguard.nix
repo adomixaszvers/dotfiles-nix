@@ -1,7 +1,7 @@
 {
   networking = {
     domain = "lan";
-    nameservers = [ "9.9.9.9" ];
+    nameservers = [ "192.168.1.254" ];
     firewall = {
       allowedTCPPorts = [
         53
@@ -43,9 +43,13 @@
         ];
         ratelimit = 0;
         upstream_dns = [
+          "https://cloudflare-dns.com/dns-query"
+          # "https://dns.quad9.net/dns-query"
+          "[/lan/]192.168.1.254"
+        ];
+        bootstrap_dns = [
           "9.9.9.9"
           "149.112.112.112"
-          "[/lan/]192.168.1.254"
         ];
         aaaa_disabled = true;
         local_ptr_upstreams = [ "192.168.1.254" ];
@@ -93,6 +97,12 @@
           url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts";
           name = "Unified hosts file with base extensions";
           id = 5;
+        }
+        {
+          enabled = true;
+          url = "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/refs/heads/main/noai_hosts.txt";
+          name = "Main AI blocklist";
+          id = 6;
         }
       ];
     };

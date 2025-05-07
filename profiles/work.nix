@@ -4,24 +4,84 @@
   lib,
   ...
 }:
+let
+  isX11 = config.xsession.enable;
+  isHypr = config.wayland.windowManager.hyprland.enable;
+in
 {
   imports = [
     ./work-common.nix
-    ./wm/xsession-common.nix
-    ./wm/xmonad
+    # ./wm/xsession-common.nix
+    # ./wm/xmonad
+    ./wm/hyprland
   ];
   # gtk.enable = false;
   # qt.enable = false;
   services = {
     # network-manager-applet.enable = false;
     # udiskie.enable = false;
-    # kbdd.enable = false;
-    # picom.enable = false;
+    kbdd.enable = isX11;
+    picom.enable = isX11;
     screen-locker = {
-      enable = lib.mkDefault config.xsession.enable;
+      enable = lib.mkDefault isX11;
       inactiveInterval = 5;
     };
+    hypridle = {
+      enable = lib.mkDefault isHypr;
+      settings = {
+        general = {
+          before_sleep_cmd = "loginctl lock-session";
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+          lock_cmd = "pidof hyprlock || hyprlock";
+        };
+        listener = [
+          {
+            timeout = 300;
+            on-timeout = "loginctl lock-session";
+          }
+          {
+            timeout = 30;
+            on-timeout = "pidof hyprlock && hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+        ];
+      };
+    };
 
+  };
+  programs = {
+    hyprlock = {
+      enable = lib.mkDefault isHypr;
+      settings = {
+        general = {
+          enable_fingerprint = true;
+          no_fade_in = true;
+          no_fade_out = true;
+          ignore_empty_input = true;
+        };
+        label = [
+          {
+            monitor = "";
+            position = "0, 100";
+            text = "$TIME";
+            font_size = 40;
+            color = "rgb(${config.lib.stylix.colors.base05})";
+            halign = "center";
+            valign = "center";
+          }
+          # {
+          #   monitor = "";
+          #   text = ''<span allow_breaks="true">Prompt: $PROMPT<br/>Fail: $FAIL<br/>Attempts: $ATTEMPTS<br/>Fprint message: $FPRINTMESSAGE</span>'';
+          #   color = "rgba(200, 200, 200, 1.0)";
+          #   font_size = 25;
+
+          #   position = "0, 80";
+          #   halign = "center";
+          #   valign = "center";
+          # }
+        ];
+      };
+    };
   };
   xsession.windowManager.bspwm = {
     monitors = {
@@ -45,7 +105,7 @@
     hyprland.settings.monitor = [
       "DP-6,2560x1440,0x0,1.00"
       "DP-7,2560x1440,2560x0,1.00"
-      "eDP-1,1920x1080,5120x0,1.25"
+      "eDP-1,disable"
     ];
     sway.config = {
       startup = [

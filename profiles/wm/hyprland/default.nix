@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   myPkgs,
   config,
   ...
@@ -9,16 +10,19 @@
     ../waybar
     ../dunst.nix
   ];
-  home.packages = with pkgs; [
-    grimblast
-    pamixer
-    swayidle
-    wl-clipboard
-    wdisplays
-    xwayland
-  ];
+  home = {
+    packages = with pkgs; [
+      grimblast
+      pamixer
+      swayidle
+      wl-clipboard
+      wdisplays
+      xwayland
+    ];
+    sessionVariables.NIXOS_OZONE_WL = 1;
+  };
   programs = {
-    emacs.package = pkgs.emacs29-pgtk;
+    emacs.package = pkgs.emacs-pgtk;
     rofi = {
       package = pkgs.rofi-wayland;
       extraConfig.modi = "drun,run,ssh";
@@ -30,7 +34,8 @@
         height = 16;
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [
+        modules-right = (lib.optional config.gui.hasBattery "battery") ++ [
+          "hyprland/language"
           "pulseaudio"
           "cpu"
           "memory"
@@ -38,11 +43,13 @@
           "clock"
           "tray"
         ];
-        "clock" = {
-          format = "{:%Y-%m-%d %H:%M}";
+        "hyprland/language" = {
+          format-lt = "lt";
+          format-en = "us";
         };
-        "pulseaudio" = {
-          scroll-step = 5.0;
+        "hyprland/window" = {
+          # format = "{title:.100}";
+          separate-outputs = true;
         };
         temperature.thermal-zone = config.gui.thermal-zone;
       };
@@ -65,11 +72,18 @@
         }
       ];
   };
+  stylix.targets = {
+    hyprland.enable = true;
+    hyprlock.enable = true;
+    waybar = {
+      enable = true;
+      enableCenterBackColors = true;
+      enableLeftBackColors = true;
+      enableRightBackColors = false;
+    };
+  };
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland.overrideAttrs (_old: {
-      patches = [ (builtins.path { path = ./hyprctl-deps.patch; }) ];
-    });
     xwayland.enable = true;
     settings = {
 
@@ -95,7 +109,6 @@
 
       # Some default env vars.
       env = [
-        "XCURSOR_SIZE,24"
         "KITTY_CONF_FONT,font_size 9.0"
       ];
       # sets xwayland scale
@@ -125,10 +138,9 @@
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
 
         layout = "master";
+        allow_tearing = true;
       };
 
       decoration = {
@@ -136,33 +148,29 @@
 
         rounding = 5;
         blur = {
-          enabled = true;
+          enabled = lib.mkDefault true;
           size = 3;
           passes = 1;
           new_optimizations = true;
         };
 
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
-      };
+        shadow = {
+          enabled = lib.mkDefault true;
+          range = 4;
+          render_power = 3;
+        };
 
-      animations = {
-        enabled = false;
       };
 
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
         pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
         preserve_split = true; # you probably want this
-        no_gaps_when_only = true;
       };
 
       master = {
         # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
         new_status = "master";
-        no_gaps_when_only = true;
       };
 
       gestures = {
@@ -173,6 +181,9 @@
       misc = {
         vrr = 1;
         disable_hyprland_logo = true; # no anime
+        # https://wiki.hyprland.org/0.45.0/Configuring/Variables/#misc
+        # unmaximise when a new app is launched
+        new_window_takes_over_fullscreen = 2;
       };
 
       # Example windowrule v1
@@ -186,6 +197,12 @@
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind =
+        let
+          volumeCommand =
+            cmd:
+            cmd
+            + ''&& dunstify -i audio-card -t 2000 -h string:x-dunst-stack-tag:volume "Volume $(pamixer --get-volume)"'';
+        in
         [
           "$mainMod, Return, exec, kitty"
           "$mainMod SHIFT, Q, killactive,"
@@ -230,6 +247,21 @@
           # Scroll through existing workspaces with mainMod + scroll
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
+
+          "$mainMod, minus, exec, ${volumeCommand "pamixer -d 5"}"
+          "$mainMod, minus, exec, ${volumeCommand "pamixer -d 5"}"
+          ", XF86AudioLowerVolume, exec, ${volumeCommand "pamixer -d 5"}"
+          "$mainMod, equal, exec, ${volumeCommand "pamixer -i 5"}"
+          "$mainMod, zcaron, exec, ${volumeCommand "pamixer -i 5"}"
+          ", XF86AudioRaiseVolume, exec, ${volumeCommand "pamixer -i 5"}"
+          ", XF86AudioMute, exec, ${volumeCommand "pamixer -t"}"
+
+          ", XF86AudioPlay, exec, playerctl play-pause"
+          "$mainMod, F5, exec, playerctl play-pause"
+          ", XF86AudioPrev, exec, playerctl previous"
+          "$mainMod, F6, exec, playerctl previous"
+          ", XF86AudioNext, exec, playerctl next"
+          "$mainMod, F7, exec, playerctl next"
         ]
         ++ (builtins.concatMap (
           x:
@@ -253,13 +285,33 @@
         "float,class:^(Vampire_Survivors)$"
         "workspace 1 silent,class:^(Google-chrome)$"
         "workspace 1 silent,class:^(firefox)$"
-        "workspace 3 silent,class:^(jetbrains-idea)$"
+        "workspace 3 silent,class:^(jetbrains-idea),floating:0$"
         "workspace 5 silent,class:^(steam)$"
         "workspace 9 silent,class:^(KeepassXC)$"
+        "tile,class:^(com-eviware-soapui-SoapUI)$,title:^(SoapUI)(.*)$"
         # fix steam menus
-        "stayfocused, title:^()$,class:^(steam)$"
-        "minsize 1 1, title:^()$,class:^(steam)$"
+        # "stayfocused, title:^()$,class:^(steam)$"
+        # "minsize 1 1, title:^()$,class:^(steam)$"
+        "noanim,floating:1"
         "fullscreen,class:^(.gamescope-wrapped)$"
+
+        # smart gaps
+        # see https://wiki.hyprland.org/0.45.0/Configuring/Workspace-Rules/#smart-gaps
+        # damn you, Vaxry
+        # no_gaps_when_only was good enough :/
+        "bordersize 0, floating:0, onworkspace:w[t1]"
+        "rounding 0, floating:0, onworkspace:w[t1]"
+        "bordersize 0, floating:0, onworkspace:w[tg1]"
+        "rounding 0, floating:0, onworkspace:w[tg1]"
+        "bordersize 0, floating:0, onworkspace:f[1]"
+        "rounding 0, floating:0, onworkspace:f[1]"
+      ];
+
+      # for smart gaps
+      workspace = [
+        "w[t1], gapsout:0, gapsin:0"
+        "w[tg1], gapsout:0, gapsin:0"
+        "f[1], gapsout:0, gapsin:0"
       ];
     };
   };

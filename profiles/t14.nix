@@ -2,8 +2,9 @@
 {
   imports = [
     ./common.nix
-    ./wm/xsession-common.nix
-    ./wm/xmonad
+    # ./wm/xsession-common.nix
+    # ./wm/xmonad
+    ./wm/hyprland
   ];
   # imports = [ ./common.nix ];
   # gtk.enable = false;
@@ -21,25 +22,31 @@
       "Xft.dpi" = dpi;
       "rofi.dpi" = dpi;
     };
-  services.polybar.config = {
-    "bar/top" = {
-      modules-right = "battery disk memory cpu temperature volume keyboard date tray";
+  services = {
+    polybar.config = {
+      "bar/top" = {
+        modules-right = "battery disk memory cpu temperature volume keyboard date tray";
 
+      };
+      "module/battery" = {
+        type = "internal/battery";
+        battery = "BAT0";
+        adapter = "AC";
+        format-charging = "<ramp-capacity> <label-charging>";
+        format-discharging = "<ramp-capacity> <label-discharging>";
+        label-charging = " c %percentage%%";
+        label-discharging = " d %percentage%%";
+
+        ramp-capacity-0 = "";
+        ramp-capacity-1 = "";
+        ramp-capacity-2 = "";
+        ramp-capacity-3 = "";
+        ramp-capacity-4 = "";
+      };
     };
-    "module/battery" = {
-      type = "internal/battery";
-      battery = "BAT0";
-      adapter = "AC";
-      format-charging = "<ramp-capacity> <label-charging>";
-      format-discharging = "<ramp-capacity> <label-discharging>";
-      label-charging = " c %percentage%%";
-      label-discharging = " d %percentage%%";
-
-      ramp-capacity-0 = "";
-      ramp-capacity-1 = "";
-      ramp-capacity-2 = "";
-      ramp-capacity-3 = "";
-      ramp-capacity-4 = "";
+    screen-locker = {
+      # enable = true;
+      inactiveInterval = 60;
     };
   };
   home.packages =
@@ -67,7 +74,10 @@
   home.sessionVariables = {
     BROWSER = "firefox";
   };
-  gui.thermal-zone = 0;
+  gui = {
+    thermal-zone = 0;
+    hasBattery = true;
+  };
   programs = {
     firefox = {
       enable = true;
@@ -78,16 +88,19 @@
       };
     };
   };
-  services.screen-locker = {
-    # enable = true;
-    inactiveInterval = 60;
-  };
   xsession.initExtra = # bash
     ''
       xset s off -dpms
       xrandr --output eDP --set TearFree on
     '';
-  wayland.windowManager.hyprland.settings.monitor = [ "eDP-1,1920x1080,0x0,1.25" ];
+  wayland.windowManager.hyprland.settings = {
+    animations.enabled = false;
+    monitor = [ "eDP-1,1920x1080,0x0,1.25" ];
+    decoration = {
+      blur.enabled = false;
+      shadow.enabled = false;
+    };
+  };
   wayland.windowManager.sway = {
     config = {
       input = {

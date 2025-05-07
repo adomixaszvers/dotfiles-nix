@@ -11,11 +11,35 @@ creation_rules:
       - pgp:
           - *adomas
         age:
-          - *laptop
-          - *work
           - *pi
-          - *t14
-          - *pc
+  - path_regex: nixos/common-secrets/wireguard/laptop\.yaml$
+    key_groups:
+      - pgp:
+        - *adomas
+        age:
+        - *laptop
+        - *pi
+  - path_regex: nixos/common-secrets/wireguard/work\.yaml$
+    key_groups:
+      - pgp:
+        - *adomas
+        age:
+        - *work
+        - *pi
+  - path_regex: nixos/common-secrets/wireguard/t14\.yaml$
+    key_groups:
+      - pgp:
+        - *adomas
+        age:
+        - *t14
+        - *pi
+  - path_regex: nixos/common-secrets/wireguard/pc\.yaml$
+    key_groups:
+      - pgp:
+        - *adomas
+        age:
+        - *pc
+        - *pi
   - path_regex: nixos/common-secrets/vpnc\.conf$
     key_groups:
       - pgp:

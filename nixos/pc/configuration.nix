@@ -11,10 +11,11 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common.nix
+    ../cachyos.nix
     ../flakes.nix
     ../gc.nix
     ../nix-registry.nix
-    # ../pipewire.nix
+    ../pipewire.nix
     ../realtime.nix
     ../syncthing.nix
     ../yubikey.nix
@@ -30,12 +31,12 @@
       systemd-boot = {
         enable = true;
         netbootxyz.enable = true;
+        memtest86.enable = true;
       };
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "zfs" ];
-    # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_1;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
     kernel.sysctl."vm.max_map_count" = 2147483642;
     zfs.requestEncryptionCredentials = false;
   };
@@ -46,18 +47,17 @@
     networkmanager.enable = true;
   };
 
-  systemd.tmpfiles.rules = [
-    "w+ /sys/class/drm/card1/device/power_dpm_force_performance_level - - - - manual"
-    "w+ /sys/class/drm/card1/device/pp_power_profile_mode - - - - 1"
-  ];
+  # systemd.tmpfiles.rules = [
+  #   "w+ /sys/class/drm/card1/device/power_dpm_force_performance_level - - - - high"
+  #   "w+ /sys/class/drm/card1/device/pp_power_profile_mode - - - - 1"
+  # ];
 
   specialisation = {
-    latest-kernel.configuration = {
-      boot = {
-        kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-        kernelParams = [ "earlyprintk=efi,keep" ];
-      };
-    };
+    # old-kernel.configuration = {
+    #   boot = {
+    #     kernelPackages = pkgs.linuxPackages_6_1;
+    #   };
+    # };
   };
 
   hardware = {
@@ -71,7 +71,7 @@
       powerManagement.enable = true;
     };
     pulseaudio = {
-      enable = true;
+      enable = false;
       support32Bit = true;
       configFile = pkgs.runCommand "default.pa" { } ''
         sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
@@ -99,15 +99,10 @@
 
   services = {
     fwupd.enable = true;
+    gnome.gnome-keyring.enable = false;
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
-    };
-    pipewire = {
-      # conflicts with pulseaudio
-      audio.enable = false;
-      alsa.enable = false;
-      pulse.enable = false;
     };
     xserver = {
       enable = true;

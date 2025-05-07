@@ -18,12 +18,13 @@
     # ../ld-link.nix
     ../libvirtd.nix
     ../nix-registry.nix
+    ../patch-nm-vpnc.nix
     ../pipewire.nix
     ../syncthing.nix
     ../yubikey.nix
     ../thinkfan.nix
     # ./bitburner.nix
-    ./dante.nix
+    # ./dante.nix
     ./hardware-configuration.nix
     ./kerberos.nix
     ./ltXkb.nix
@@ -34,13 +35,12 @@
     # ./unbound.nix
     # ./vnc.nix
     ../xdg-portal.nix
-    ./wireguard-client.nix
+    # ./wireguard-client.nix
     ../fprintd.nix
     # ./throttled
     ./tlp.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad
-    inputs.nixos-hardware.nixosModules.common-pc-laptop-acpi_call
     inputs.nixpkgs.nixosModules.notDetected
     inputs.sops-nix.nixosModules.sops
   ];
@@ -56,16 +56,20 @@
       consoleMode = "auto";
     };
     loader.efi.canTouchEfiVariables = true;
+    # leave 3 GB free for avoiding systemd-oomd
+    extraModprobeConfig = ''
+      options zfs zfs_arc_sys_free=${toString (3 * 1024 * 1024 * 1024)}
+    '';
   };
 
   networking = {
+    enableIPv6 = true;
     hostId = "d864861a";
     hostName = "adomas-jatuzis-nixos"; # Define your hostname.
     domain = "x.insoft.lt";
     dhcpcd.enable = false;
     networkmanager = {
       enable = true;
-      dns = "dnsmasq";
       dispatcherScripts = [
         {
           type = "basic";
@@ -100,17 +104,18 @@
 
   security = {
     pki.certificateFiles = [ ./insoft-ca.crt ];
-    pam.services.swaylock = { };
+    pam = {
+      u2f.enable = true;
+      services = {
+        hyprlock = {
+          fprintAuth = false;
+        };
+        swaylock = { };
+      };
+    };
   };
 
   environment = {
-    etc."NetworkManager/dnsmasq.d/wireguard".text = # ini
-      ''
-        addn-hosts=/etc/hosts
-        address=/wg.beastade.top/10.6.0.1
-        server=/wg/10.6.0.1
-        rev-server=10.6.0.0/24,10.6.0.1
-      '';
     systemPackages = with pkgs; [
       wget
       vim
@@ -128,7 +133,6 @@
       '';
     };
     mosh.enable = true;
-    sway.enable = true;
     virt-manager.enable = true;
     wireshark = {
       enable = true;
@@ -137,6 +141,10 @@
   };
   services = {
     autorandr.enable = true;
+    avahi.allowInterfaces = [
+      "enp0s13f0u3u1"
+      "wlp9s0"
+    ];
     gnome.glib-networking.enable = true;
     gvfs.enable = true;
     flatpak = {
@@ -200,6 +208,7 @@
       ]
     ];
     vnstat.enable = true;
+    upower.enable = true;
   };
 
   systemd.services.check-internet = {
