@@ -66,7 +66,6 @@
       enable = true;
       enable32Bit = true;
     };
-    pulseaudio.support32Bit = true;
     usb-modeswitch.enable = true;
   };
 

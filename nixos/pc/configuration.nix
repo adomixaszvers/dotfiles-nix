@@ -70,14 +70,6 @@
       modesetting.enable = true;
       powerManagement.enable = true;
     };
-    pulseaudio = {
-      enable = false;
-      support32Bit = true;
-      configFile = pkgs.runCommand "default.pa" { } ''
-        sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
-          ${pkgs.pulseaudio}/etc/pulse/default.pa > $out
-      '';
-    };
     xone.enable = true;
   };
   powerManagement.cpuFreqGovernor = "performance";
@@ -103,6 +95,14 @@
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
+    };
+    pulseaudio = {
+      enable = false;
+      support32Bit = true;
+      configFile = pkgs.runCommand "default.pa" { } ''
+        sed 's/module-udev-detect$/module-udev-detect tsched=0/' \
+          ${pkgs.pulseaudio}/etc/pulse/default.pa > $out
+      '';
     };
     xserver = {
       enable = true;

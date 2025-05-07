@@ -5,10 +5,10 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixCats.url = "github:BirdeeHub/nixCats-nvim/v7.1.2";
+    nixCats.url = "github:BirdeeHub/nixCats-nvim/v7.2.13";
     nixGL = {
       url = "github:guibou/nixGL";
       inputs = {
@@ -22,7 +22,7 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -31,7 +31,7 @@
       };
     };
     stylix = {
-      url = "github:danth/stylix/release-24.11";
+      url = "github:danth/stylix/master";
       inputs = {
         flake-compat.follows = "flake-compat";
         flake-utils.follows = "flake-utils";
