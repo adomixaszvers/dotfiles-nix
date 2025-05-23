@@ -126,7 +126,6 @@
       enable = true;
       enable32Bit = true;
     };
-    pulseaudio.support32Bit = true;
   };
 
   sops.secrets."adomas/password" = {

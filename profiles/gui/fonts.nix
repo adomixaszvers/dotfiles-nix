@@ -4,15 +4,11 @@
   home.packages = with pkgs; [
     corefonts
     material-icons
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "FiraMono"
-        "JetBrainsMono"
-        "Noto"
-        "NerdFontsSymbolsOnly"
-      ];
-    })
+    nerd-fonts.fira-code
+    nerd-fonts.fira-mono
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.noto
+    nerd-fonts.symbols-only
     noto-fonts-emoji
   ];
 }

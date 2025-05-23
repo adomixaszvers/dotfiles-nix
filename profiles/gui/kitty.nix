@@ -11,7 +11,7 @@
 
     };
   };
-  programs.zsh.initExtra = # bash
+  programs.zsh.initContent = # bash
     ''
       if [ "$TERM" = 'xterm-kitty' ] && [ -x "$(command -v kitty)" ] && [ -n "$DISPLAY" ]; then
         alias ssh='kitty +kitten ssh'

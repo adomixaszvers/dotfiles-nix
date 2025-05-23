@@ -38,11 +38,11 @@ in
       system = "x86_64-linux";
       modules = [ ./installers/minimal.nix ];
     };
-    # build with `nix build '.#nixosConfigurations.iso-plasma5.config.system.build.isoImage'`
-    iso-plasma5 = nixpkgs.lib.nixosSystem {
+    # build with `nix build '.#nixosConfigurations.iso-plasma6.config.system.build.isoImage'`
+    iso-plasma6 = nixpkgs.lib.nixosSystem {
       specialArgs = isoSpecialArgs;
       system = "x86_64-linux";
-      modules = [ ./installers/plasma5.nix ];
+      modules = [ ./installers/plasma6.nix ];
     };
   };
 }

@@ -10,7 +10,7 @@
   };
   services.gpg-agent = {
     enable = lib.mkDefault true;
-    pinentryPackage = pkgs.pinentry-qt;
+    pinentry.package = pkgs.pinentry-qt;
     enableSshSupport = true;
     enableExtraSocket = true;
   };
