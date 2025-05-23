@@ -60,15 +60,10 @@
     {
       pkgs,
       system,
+      inputs',
       ...
     }:
     let
-      home-manager = pkgs.callPackage "${inputs.home-manager}/home-manager" {
-        # home-manager sets `path = "${./.} and it creates store path
-        # hash-hash-source
-        # builtins.path recreates that
-        path = builtins.path { path = inputs.home-manager; };
-      };
       nixCatsBuilder = import ../profiles/cli/neovim/nixCatsBuilder.nix {
         inherit (inputs) nixpkgs nixCats;
         inherit system;
@@ -76,7 +71,6 @@
     in
     {
       packages = {
-        inherit home-manager;
         bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
         bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
         hunspell-lt = pkgs.callPackage ./hunspell-lt { };
@@ -85,7 +79,9 @@
         hypr-greedy-focus = pkgs.callPackage ./hypr-greedy-focus.nix { };
         hm-option = pkgs.callPackage ./hm-option.nix { };
         hm-repl = pkgs.callPackage ./hm-repl.nix { };
-        hm-switch = pkgs.callPackage ./hm-switch.nix { inherit home-manager; };
+        hm-switch = pkgs.callPackage ./hm-switch.nix {
+          inherit (inputs'.home-manager.packages) home-manager;
+        };
         kaknix = pkgs.callPackage ./kaknix.nix { };
         maimpick = pkgs.callPackage ./maimpick.nix { };
         neovim = nixCatsBuilder "nixCats";

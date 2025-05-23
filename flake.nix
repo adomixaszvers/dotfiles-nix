@@ -71,7 +71,7 @@
           pkgs,
           system,
           config,
-          self',
+          inputs',
           ...
         }:
         {
@@ -108,7 +108,7 @@
               packages = [
                 # inputs'.home-manager.packages.home-manager
                 # workaround until https://github.com/nix-community/home-manager/issues/6354 has been backported to release-24.11
-                self'.packages.home-manager
+                inputs'.home-manager.packages.home-manager
                 pkgs.sops
               ] ++ config.pre-commit.settings.enabledPackages;
               shellHook = config.pre-commit.installationScript;
