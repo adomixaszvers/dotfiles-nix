@@ -56,7 +56,7 @@
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
-      LANGUAGE = "en_US:lt_LT:C";
+      # LANGUAGE = "en_US:lt_LT:C";
       LC_ADDRESS = "lt_LT.UTF-8";
       LC_COLLATE = "lt_LT.UTF-8";
       LC_CTYPE = "lt_LT.UTF-8";
