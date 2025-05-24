@@ -21,8 +21,9 @@
     ../yubikey.nix
     ../steam.nix
     ../kde.nix
-    ./wireguard-client.nix
-    inputs.nixos-hardware.nixosModules.common-gpu-amd
+    # ./wireguard-client.nix
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
     inputs.sops-nix.nixosModules.sops
   ];
 
@@ -68,12 +69,13 @@
       enable32Bit = true;
     };
     nvidia = {
+      open = true;
       modesetting.enable = true;
       powerManagement.enable = true;
     };
     xone.enable = true;
   };
-  powerManagement.cpuFreqGovernor = "performance";
+  # powerManagement.cpuFreqGovernor = "performance";
 
   services.zfs = {
     autoScrub = {
