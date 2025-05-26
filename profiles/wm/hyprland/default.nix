@@ -59,22 +59,26 @@
       };
     };
   };
-  services.swayidle = {
-    timeouts =
-      let
-        hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
-      in
-      [
-        {
-          timeout = 360;
-          command = "${hyprctl} dispatch dpms off";
-          resumeCommand = "${hyprctl} dispatch dpms on";
-        }
-      ];
+  services = {
+    hyprpaper.enable = true;
+    swayidle = {
+      timeouts =
+        let
+          hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
+        in
+        [
+          {
+            timeout = 360;
+            command = "${hyprctl} dispatch dpms off";
+            resumeCommand = "${hyprctl} dispatch dpms on";
+          }
+        ];
+    };
   };
   stylix.targets = {
     hyprland.enable = true;
     hyprlock.enable = true;
+    hyprpaper.enable = true;
     waybar = {
       enable = true;
       enableCenterBackColors = true;

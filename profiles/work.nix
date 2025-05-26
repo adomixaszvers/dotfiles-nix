@@ -53,12 +53,11 @@ in
     hyprlock = {
       enable = lib.mkDefault isHypr;
       settings = {
+        animations.enabled = false;
         general = {
-          enable_fingerprint = true;
-          no_fade_in = true;
-          no_fade_out = true;
           ignore_empty_input = true;
         };
+        auth.fingerprint.enabled = true;
         label = [
           {
             monitor = "";

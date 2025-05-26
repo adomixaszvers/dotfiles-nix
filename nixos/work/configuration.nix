@@ -124,6 +124,7 @@
 
   programs = {
     # adb.enable = true;
+    hyprlock.enable = true;
     nix-ld.enable = true;
     ssh = {
       extraConfig = ''
