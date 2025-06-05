@@ -289,9 +289,9 @@
         "float,class:^(Vampire_Survivors)$"
         "workspace 1 silent,class:^(Google-chrome)$"
         "workspace 1 silent,class:^(firefox)$"
-        "workspace 3 silent,class:^(jetbrains-idea),floating:0$"
+        "workspace 3 silent,class:^(jetbrains-idea)$,floating:0"
         "workspace 5 silent,class:^(steam)$"
-        "workspace 9 silent,class:^(KeepassXC)$"
+        "workspace 9 silent,class:^(KeepassXC)$,floating:0"
         "tile,class:^(com-eviware-soapui-SoapUI)$,title:^(SoapUI)(.*)$"
         # fix steam menus
         # "stayfocused, title:^()$,class:^(steam)$"
