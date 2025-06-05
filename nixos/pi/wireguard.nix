@@ -5,7 +5,7 @@
     "wireguard/presharedKeys/telefonas".sopsFile = ../common-secrets/wireguard.yaml;
     "wireguard/presharedKeys/rutosKompas".sopsFile = ../common-secrets/wireguard.yaml;
     "wireguard/presharedKeys/pc".sopsFile = ../common-secrets/wireguard/pc.yaml;
-    # "wireguard/presharedKeys/work".sopsFile = ../common-secrets/wireguard/work.yaml;
+    "wireguard/presharedKeys/work".sopsFile = ../common-secrets/wireguard/work.yaml;
     "wireguard/presharedKeys/laptop".sopsFile = ../common-secrets/wireguard/laptop.yaml;
     "wireguard/presharedKeys/samsung".sopsFile = ../common-secrets/wireguard.yaml;
     "wireguard/presharedKeys/rycioKompas".sopsFile = ../common-secrets/wireguard.yaml;
@@ -23,7 +23,7 @@
       "10.6.0.2" = [ "oneplus-3t.wg" ];
       "10.6.0.3" = [ "rutos-pc.wg" ];
       "10.6.0.5" = [ "windows-pc.wg" ];
-      # "10.6.0.6" = [ "work.wg" ];
+      "10.6.0.6" = [ "work.wg" ];
       "10.6.0.7" = [ "asus.wg" ];
       "10.6.0.10" = [ "samsung-a52.wg" ];
       "10.6.0.11" = [ "t14.wg" ];
@@ -66,12 +66,12 @@
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/pc".path;
             allowedIPs = [ "10.6.0.5/32" ];
           }
-          # {
-          #   # work
-          #   publicKey = "C1PNVCRetK41/lxm3/lT5dZRzw+z8p99YNkroIilHEA=";
-          #   presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/work".path;
-          #   allowedIPs = [ "10.6.0.6/32" ];
-          # }
+          {
+            # work
+            publicKey = "C1PNVCRetK41/lxm3/lT5dZRzw+z8p99YNkroIilHEA=";
+            presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/work".path;
+            allowedIPs = [ "10.6.0.6/32" ];
+          }
           {
             # laptop
             publicKey = "tINtePHKYYaoh+H3k9WTozeNcrWay7hZ3mq1HY0I+Fg=";
