@@ -24,7 +24,7 @@
     ../yubikey.nix
     ../thinkfan.nix
     # ./bitburner.nix
-    # ./dante.nix
+    ./dante.nix
     ./hardware-configuration.nix
     ./kerberos.nix
     ./ltXkb.nix
@@ -35,7 +35,7 @@
     # ./unbound.nix
     # ./vnc.nix
     ../xdg-portal.nix
-    # ./wireguard-client.nix
+    ./wireguard-client.nix
     ../fprintd.nix
     # ./throttled
     ./tlp.nix

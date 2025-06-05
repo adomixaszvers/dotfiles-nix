@@ -17,6 +17,10 @@
         from: 10.6.0.0/24 to: 0.0.0.0/0
         log: error # connect disconnect
       }
+      client pass {
+        from: 192.168.1.0/24 to: 0.0.0.0/0
+        log: error # connect disconnect
+      }
 
       #generic pass statement - bind/outgoing traffic
       socks pass {
