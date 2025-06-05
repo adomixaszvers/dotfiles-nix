@@ -21,6 +21,7 @@ in
     # network-manager-applet.enable = false;
     # udiskie.enable = false;
     kbdd.enable = isX11;
+    shikane.enable = isHypr;
     picom.enable = isX11;
     screen-locker = {
       enable = lib.mkDefault isX11;
