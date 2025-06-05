@@ -92,7 +92,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'hls', 'pylsp', 'rust_analyzer', 'zls', 'gopls', }
+local servers = { 'angularls', 'hls', 'pylsp', 'rust_analyzer', 'zls', 'gopls', 'ts_ls',}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     capabilities = capabilities,
