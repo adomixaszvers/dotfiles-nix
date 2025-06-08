@@ -240,7 +240,7 @@
           "$mainMod SHIFT, Return, layoutmsg, swapwithmaster"
           "$mainMod, SPACE, layoutmsg, orientationcycle left top"
 
-          "$mainMod, C, cyclenext"
+          "$mainMod, C, cyclenext, tiled"
 
           "$mainMod, bracketleft, focusmonitor, -1"
           "$mainMod, bracketright, focusmonitor, +1"
