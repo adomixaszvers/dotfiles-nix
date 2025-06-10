@@ -19,7 +19,20 @@
       wdisplays
       xwayland
     ];
-    sessionVariables.NIXOS_OZONE_WL = 1;
+    sessionVariables = {
+      IDEA_VM_OPTIONS = pkgs.writeText "idea64.vmoptions" ''
+        -Xmx3971m
+        -Djava.net.preferIPv4Stack=true
+        -Dawt.useSystemAAFontSettings=lcd
+        -Dsun.java2d.renderer=sun.java2d.marlin.MarlinRenderingEngine
+
+        -Dswing.bufferPerWindow=false
+        -Dcom.sun.awt.use.national.layouts=true
+        -Dsun.java2d.uiScale.enabled=true
+        -Dawt.toolkit.name=WLToolkit
+      '';
+      NIXOS_OZONE_WL = 1;
+    };
   };
   programs = {
     emacs.package = pkgs.emacs-pgtk;
