@@ -14,7 +14,7 @@
     packages = with pkgs; [
       grimblast
       pamixer
-      swayidle
+      hyprpicker
       wl-clipboard
       wdisplays
       xwayland
@@ -226,6 +226,7 @@
 
           ", Print, exec, grimblast copy output"
           "ALT, Print, exec, grimblast copy area"
+          "$mainMod, SLASH, exec, hyprpicker -a"
 
           # Move focus with mainMod + arrow keys
           "$mainMod, left, movefocus, l"
