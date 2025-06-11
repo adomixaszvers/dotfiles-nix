@@ -13,6 +13,7 @@
     ./acme.nix
     # ./dns.nix
     ./adguard.nix
+    ./asf.nix
     # ./vpn.nix
     # ./fail2ban.nix
     ./nginx.nix
