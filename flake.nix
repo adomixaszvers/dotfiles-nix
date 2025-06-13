@@ -23,7 +23,15 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs = {
+        fenix.follows = "";
+        flake-schemas.follows = "";
+        home-manager.follows = "";
+        jovian.follows = "";
+      };
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs = {
