@@ -288,8 +288,8 @@
             keyCode = toString (x + 9);
           in
           [
-            "$mainMod, ${keyCode}, exec, ${myPkgs.hypr-greedy-focus}/bin/hypr-greedy-focus ${ws}"
-            "$mainMod SHIFT, ${keyCode}, movetoworkspace,  ${ws}"
+            "$mainMod, ${keyCode}, focusworkspaceoncurrentmonitor, ${ws}"
+            "$mainMod SHIFT, ${keyCode}, movetoworkspace, ${ws}"
           ]
         ) (builtins.genList (x: x + 1) 10));
 
