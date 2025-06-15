@@ -10,7 +10,7 @@
     };
     nixCats.url = "github:BirdeeHub/nixCats-nvim/v7.2.13";
     nixGL = {
-      url = "github:guibou/nixGL";
+      url = "github:nix-community/nixGL";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
