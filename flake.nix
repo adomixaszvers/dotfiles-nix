@@ -26,7 +26,6 @@
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
       inputs = {
-        fenix.follows = "";
         flake-schemas.follows = "";
         home-manager.follows = "";
         jovian.follows = "";
