@@ -23,7 +23,7 @@
     ../kde.nix
     # ./wireguard-client.nix
     inputs.nixos-hardware.nixosModules.common-cpu-amd
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     inputs.sops-nix.nixosModules.sops
   ];
 
@@ -70,6 +70,12 @@
     };
     nvidia = {
       open = true;
+      prime = {
+        offload.enable = false;
+        sync.enable = true;
+        amdgpuBusId = "PCI:12:0:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
       modesetting.enable = true;
       powerManagement.enable = true;
     };
