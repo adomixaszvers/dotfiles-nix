@@ -66,6 +66,12 @@
         };
         temperature.thermal-zone = config.gui.thermal-zone;
       };
+      style = # css
+        ''
+          window#waybar.fullscreen #window {
+            border-radius: 8px;
+          }
+        '';
       systemd = {
         enable = true;
         target = "hyprland-session.target";
