@@ -81,7 +81,7 @@
       engines = lib.mapAttrsToList (name: value: { inherit name; } // value) {
         "duckduckgo".disabled = true;
         "brave".disabled = true;
-        "bing".disabled = false;
+        "bing".disabled = true; # WTF are those Chinese results?
         "mojeek".disabled = true;
         "mwmbl".disabled = false;
         "mwmbl".weight = 0.4;
