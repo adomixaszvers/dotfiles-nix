@@ -439,17 +439,28 @@
       "inode/directory" = "org.gnome.Nautilus.desktop";
     };
   };
-  wayland.windowManager.sway.config = {
-    input = {
-      "6127:24729:Lenovo_Lenovo_Traditional_USB_Keyboard" = {
-        xkb_layout = "lt,us";
-        xkb_numlock = "enabled";
-        xkb_options = "grp:caps_toggle";
-      };
-      "1:1:AT_Translated_Set_2_keyboard" = {
-        xkb_layout = "lt,us";
-        xkb_numlock = "enabled";
-        xkb_options = "grp:caps_toggle";
+  wayland.windowManager = {
+    hyprland.settings.env =
+      let
+        ideaOptions = pkgs.writeText "idea64.vmoptions" ''
+          -Dawt.toolkit.name=WLToolkit
+        '';
+      in
+      [
+        "IDEA_VM_OPTIONS,${ideaOptions}"
+      ];
+    sway.config = {
+      input = {
+        "6127:24729:Lenovo_Lenovo_Traditional_USB_Keyboard" = {
+          xkb_layout = "lt,us";
+          xkb_numlock = "enabled";
+          xkb_options = "grp:caps_toggle";
+        };
+        "1:1:AT_Translated_Set_2_keyboard" = {
+          xkb_layout = "lt,us";
+          xkb_numlock = "enabled";
+          xkb_options = "grp:caps_toggle";
+        };
       };
     };
   };
