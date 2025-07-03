@@ -5,6 +5,7 @@
     # ./wm/xsession-common.nix
     # ./wm/xmonad
     ./wm/hyprland
+    ./cli/jujutsu.nix
   ];
   # imports = [ ./common.nix ];
   # gtk.enable = false;

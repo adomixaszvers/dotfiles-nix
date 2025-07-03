@@ -10,6 +10,7 @@
     ./common.nix
     ./wm/xrdp.nix
     ./work/kerberos.nix
+    ./cli/jujutsu.nix
   ];
   gui = {
     hasBattery = true;
