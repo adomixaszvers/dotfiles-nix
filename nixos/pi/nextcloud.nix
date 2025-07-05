@@ -42,6 +42,8 @@
       rootCredentialsFile = config.sops.secrets."nextcloud/minioAdminCredentials".path;
     };
 
+    postgresql.package = pkgs.postgresql_16;
+
     nginx.virtualHosts.${config.services.nextcloud.hostName} = {
       useACMEHost = "lan.beastade.top";
       forceSSL = true;

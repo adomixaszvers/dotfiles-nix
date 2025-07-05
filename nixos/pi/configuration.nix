@@ -10,6 +10,7 @@
     ../flakes.nix
     ../nix-registry.nix
     ../gc.nix
+    # ../pg-upgrade.nix
     ./acme.nix
     # ./dns.nix
     ./adguard.nix
@@ -134,5 +135,5 @@
 
   powerManagement.cpuFreqGovernor = "schedutil";
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }
