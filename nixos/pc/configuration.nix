@@ -41,6 +41,9 @@
     kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
     kernel.sysctl."vm.max_map_count" = 2147483642;
     zfs.requestEncryptionCredentials = false;
+    extraModprobeConfig = ''
+      options zfs zfs_arc_sys_free=${toString (3 * 1024 * 1024 * 1024)}
+    '';
   };
 
   networking = {
