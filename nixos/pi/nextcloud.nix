@@ -5,9 +5,15 @@
       sopsFile = ./secrets/nextcloud.yaml;
     in
     {
-      "nextcloud/adminpass" = { inherit sopsFile; };
+      "nextcloud/adminpass" = {
+        owner = "nextcloud";
+        inherit sopsFile;
+      };
       "nextcloud/minioAdminCredentials" = { inherit sopsFile; };
-      "nextcloud/minioSecret" = { inherit sopsFile; };
+      "nextcloud/minioSecret" = {
+        owner = "nextcloud";
+        inherit sopsFile;
+      };
     };
 
   services = {
@@ -19,8 +25,9 @@
         adminpassFile = config.sops.secrets."nextcloud/adminpass".path;
         dbtype = "pgsql";
         objectstore.s3 = {
+          enable = true;
           bucket = "nextcloud";
-          verify_bucket_exists = true;
+          verify_bucket_exists = false;
           key = "nextcloud";
           secretFile = config.sops.secrets."nextcloud/minioSecret".path;
           useSsl = false;

@@ -18,7 +18,7 @@
     # ./vpn.nix
     # ./fail2ban.nix
     ./nginx.nix
-    ./nextcloud.nix
+    # ./nextcloud.nix
     ./searx.nix
     ./static-ip.nix
     ./syncthing.nix
