@@ -40,9 +40,6 @@
     stylix = {
       url = "github:nix-community/stylix/release-25.05";
       inputs = {
-        flake-compat.follows = "flake-compat";
-        git-hooks.follows = "git-hooks";
-        home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
     };
