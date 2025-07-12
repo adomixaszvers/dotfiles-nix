@@ -262,7 +262,6 @@
           "$mainMod, mouse_up, workspace, e-1"
 
           "$mainMod, minus, exec, ${volumeCommand "pamixer -d 5"}"
-          "$mainMod, minus, exec, ${volumeCommand "pamixer -d 5"}"
           ", XF86AudioLowerVolume, exec, ${volumeCommand "pamixer -d 5"}"
           "$mainMod, equal, exec, ${volumeCommand "pamixer -i 5"}"
           "$mainMod, zcaron, exec, ${volumeCommand "pamixer -i 5"}"
