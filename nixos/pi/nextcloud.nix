@@ -1,20 +1,27 @@
 { pkgs, config, ... }:
 {
-  sops.secrets =
-    let
-      sopsFile = ./secrets/nextcloud.yaml;
-    in
-    {
-      "nextcloud/adminpass" = {
-        owner = "nextcloud";
-        inherit sopsFile;
+  sops = {
+    secrets =
+      let
+        sopsFile = ./secrets/nextcloud.yaml;
+      in
+      {
+        "nextcloud/adminpass" = {
+          owner = "nextcloud";
+          inherit sopsFile;
+        };
+        "nextcloud/minioSecret" = {
+          owner = "nextcloud";
+          inherit sopsFile;
+        };
       };
-      "nextcloud/minioAdminCredentials" = { inherit sopsFile; };
-      "nextcloud/minioSecret" = {
-        owner = "nextcloud";
-        inherit sopsFile;
-      };
+    templates."minio-credentials.env" = {
+      content = ''
+        MINIO_ROOT_USER=nextcloud
+        MINIO_ROOT_PASSWORD=${config.sops.placeholder."nextcloud/minioSecret"}
+      '';
     };
+  };
 
   services = {
     nextcloud = {
@@ -59,7 +66,7 @@
       enable = true;
       listenAddress = "127.0.0.1:9000";
       consoleAddress = "127.0.0.1:9001";
-      rootCredentialsFile = config.sops.secrets."nextcloud/minioAdminCredentials".path;
+      rootCredentialsFile = config.sops.templates."minio-credentials.env".path;
     };
 
     postgresql.package = pkgs.postgresql_16;
