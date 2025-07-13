@@ -4,10 +4,6 @@ let
   specialArgs = {
     inherit inputs;
   };
-  isoSpecialArgs = {
-    inherit inputs;
-    myPkgs = inputs.self.packages.x86_64-linux;
-  };
 in
 {
   flake.nixosConfigurations = {
@@ -32,17 +28,5 @@ in
       modules = [ ./pi/configuration.nix ];
     };
 
-    # build with `nix build '.#nixosConfigurations.iso-minimal.config.system.build.isoImage'`
-    iso-minimal = nixpkgs.lib.nixosSystem {
-      specialArgs = isoSpecialArgs;
-      system = "x86_64-linux";
-      modules = [ ./installers/minimal.nix ];
-    };
-    # build with `nix build '.#nixosConfigurations.iso-plasma6.config.system.build.isoImage'`
-    iso-plasma6 = nixpkgs.lib.nixosSystem {
-      specialArgs = isoSpecialArgs;
-      system = "x86_64-linux";
-      modules = [ ./installers/plasma6.nix ];
-    };
   };
 }

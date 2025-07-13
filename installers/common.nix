@@ -6,8 +6,8 @@
 }:
 {
   imports = [
-    ../flakes.nix
-    ../nix-registry.nix
+    ../nixos/flakes.nix
+    ../nixos/nix-registry.nix
   ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   boot = {
@@ -21,5 +21,5 @@
       ripgrep
       nixfmt-rfc-style
     ]);
-  users.users.nixos.openssh.authorizedKeys.keyFiles = [ ../keys/yubikey.pub ];
+  users.users.nixos.openssh.authorizedKeys.keyFiles = [ ../nixos/keys/yubikey.pub ];
 }
