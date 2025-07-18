@@ -26,7 +26,7 @@ let
               stateVersion = "25.05";
             };
           }
-          inputs.nix-index-database.hmModules.nix-index
+          inputs.nix-index-database.homeModules.nix-index
           configuration
         ];
         extraSpecialArgs = {
