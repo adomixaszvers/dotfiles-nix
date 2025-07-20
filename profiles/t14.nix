@@ -82,12 +82,8 @@
   programs = {
     firefox = {
       enable = true;
-      package = pkgs.firefox.override {
-        cfg = {
-          nativeMessagingHosts = [ pkgs.plasma-shell-integration ];
-        };
-      };
     };
+    rclone.enable = true;
   };
   xsession.initExtra = # bash
     ''

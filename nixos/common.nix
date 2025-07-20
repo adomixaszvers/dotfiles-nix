@@ -73,7 +73,7 @@
   };
 
   networking = {
-    enableIPv6 = lib.mkDefault false;
+    # enableIPv6 = lib.mkDefault false;
     networkmanager = {
       enable = lib.mkDefault true;
       unmanaged = [
