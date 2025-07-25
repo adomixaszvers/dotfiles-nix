@@ -93,7 +93,8 @@ let
     nativeBuildInputs = [
       file
       makeWrapper
-    ] ++ lib.optional installjce unzip;
+    ]
+    ++ lib.optional installjce unzip;
 
     # See: https://github.com/NixOS/patchelf/issues/10
     dontStrip = 1;
@@ -176,34 +177,33 @@ let
     /**
       libXt is only needed on amd64
     */
-    libraries =
-      [
-        stdenv.cc.libc
-        glib
-        libxml2
-        ffmpeg
-        libxslt
-        libGL
-        xorg.libXxf86vm
-        alsa-lib
-        fontconfig
-        freetype
-        pango
-        gtk2
-        cairo
-        gdk-pixbuf
-        atk
-      ]
-      ++ lib.optionals swingSupport [
-        xorg.libX11
-        xorg.libXext
-        xorg.libXtst
-        xorg.libXi
-        xorg.libXp
-        xorg.libXt
-        xorg.libXrender
-        stdenv.cc.cc
-      ];
+    libraries = [
+      stdenv.cc.libc
+      glib
+      libxml2
+      ffmpeg
+      libxslt
+      libGL
+      xorg.libXxf86vm
+      alsa-lib
+      fontconfig
+      freetype
+      pango
+      gtk2
+      cairo
+      gdk-pixbuf
+      atk
+    ]
+    ++ lib.optionals swingSupport [
+      xorg.libX11
+      xorg.libXext
+      xorg.libXtst
+      xorg.libXi
+      xorg.libXp
+      xorg.libXt
+      xorg.libXrender
+      stdenv.cc.cc
+    ];
 
     rpath = lib.strings.makeLibraryPath libraries;
 
