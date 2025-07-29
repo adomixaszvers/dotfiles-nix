@@ -12,9 +12,6 @@
       name = "Arc";
       package = pkgs.arc-icon-theme;
     };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-    };
   };
   qt = {
     enable = lib.mkDefault true;
@@ -25,7 +22,10 @@
     enable = lib.mkDefault true;
     automount = false;
   };
-  stylix.targets.gtk.enable = lib.mkDefault true;
+  stylix.targets = {
+    gnome.enable = lib.mkDefault true;
+    gtk.enable = lib.mkDefault true;
+  };
   home.packages = with myPkgs; [
     maimpick
     (rofi-powermenu.override { rofi = config.programs.rofi.finalPackage; })
