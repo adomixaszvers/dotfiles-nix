@@ -72,7 +72,7 @@
     fzf = {
       changeDirWidgetCommand = "bfs -type d";
       defaultCommand = "fd --type f";
-      enable = true;
+      enable = false;
       enableBashIntegration = true;
       enableZshIntegration = true;
       fileWidgetCommand = "fd --type f";

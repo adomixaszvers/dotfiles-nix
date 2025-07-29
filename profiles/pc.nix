@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  imports = [ ./common.nix ];
+  imports = [
+    ./common.nix
+    ./cli/atuin.nix
+  ];
   home.packages = with pkgs; [
     brave
     discord

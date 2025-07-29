@@ -6,6 +6,16 @@ keys:
   - &t14 age18shz3w4pvxqvagegx50dq8ujcjaq6xa56ptqlqna255xxx4jp9lsu6qjna
   - &pc age1970uksmphn9sggda6mqh32g9nk9tnh6qrxg54rg3dwclrj9vugfscev2uw
 creation_rules:
+  - path_regex: nixos/common-secrets/atuin\.yaml$
+    key_groups:
+      - pgp:
+        - *adomas
+        age:
+        - *laptop
+        - *pc
+        - *pi
+        - *t14
+        - *work
   - path_regex: nixos/common-secrets/(zerotier|wireguard)\.yaml$
     key_groups:
       - pgp:

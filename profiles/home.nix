@@ -2,6 +2,7 @@
 {
   imports = [
     ./common.nix
+    ./cli/atuin.nix
     ./wm/xsession-common.nix
     ./wm/xmonad
   ];

@@ -8,6 +8,7 @@
 {
   imports = [
     ./common.nix
+    ./cli/atuin.nix
     ./wm/xrdp.nix
     ./work/kerberos.nix
     ./cli/jujutsu.nix

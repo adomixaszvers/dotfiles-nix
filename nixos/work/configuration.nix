@@ -11,6 +11,7 @@
 }:
 {
   imports = [
+    ../atuin-client.nix
     ../avahi.nix
     ../common.nix
     ../flakes.nix
