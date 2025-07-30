@@ -13,7 +13,6 @@
     # ./bumblebee.nix
     # ./gnome.nix
     # ../kde.nix
-    ../atuin-client.nix
     ../avahi.nix
     ../common.nix
     ../flakes.nix

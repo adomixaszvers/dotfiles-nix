@@ -1,7 +1,7 @@
 {
   imports = [
     ./cli
-    ./cli/atuin.nix
+    ./cli/atuin
     ./cli/jujutsu.nix
   ];
   services.gpg-agent.enable = false;

@@ -5,6 +5,11 @@ keys:
   - &pi age1n7jt7lxh9u26u25ggaltvt3xsjqg8rsaakjcm4lrykzn70l40s0qjp9vqu
   - &t14 age18shz3w4pvxqvagegx50dq8ujcjaq6xa56ptqlqna255xxx4jp9lsu6qjna
   - &pc age1970uksmphn9sggda6mqh32g9nk9tnh6qrxg54rg3dwclrj9vugfscev2uw
+  - &t14hm age1dncg28clhzcs75n59k69jsm57vrx30jzy7z72scu7enzc4fyfvaqexs4ns
+  - &workhm age1ls4m3p7wvxshrzznldw4t4pp66hsh64qhqamyfz7qlwl8f3c74fs6mqh2r
+  - &pihm age14nmypynph4vjumtj7sv3jffvlzmajj8uy8j7s094jhetudchpu4sjrqjvp
+  - &pchm age14w94f0ljuaqt03ajw205fje6rl9lglzq5p647uk9nu0h7pt9p5kqlzazka
+  - &laptophm age14m9cxe9vtt87dwm3u37cy50vk5yla7tcvsruez24v05yr5yuhvksvpjunw
 creation_rules:
   - path_regex: nixos/common-secrets/atuin\.yaml$
     key_groups:
@@ -87,3 +92,15 @@ creation_rules:
           - *adomas
         age:
           - *pi
+  - path_regex: hm-secrets/keys\.yaml$
+    key_groups:
+      - pgp:
+          - *adomas
+  - path_regex: profiles/cli/atuin/secrets\.yaml$
+    key_groups:
+      - age:
+        - *laptophm
+        - *pchm
+        - *pihm
+        - *t14hm
+        - *workhm

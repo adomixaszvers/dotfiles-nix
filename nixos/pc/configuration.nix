@@ -10,7 +10,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../atuin-client.nix
     ../common.nix
     ../cachyos.nix
     ../flakes.nix

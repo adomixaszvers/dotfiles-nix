@@ -11,7 +11,6 @@
     ../flakes.nix
     ../nix-registry.nix
     ../gc.nix
-    ../atuin-client.nix
     # ../pg-upgrade.nix
     ./acme.nix
     # ./dns.nix
@@ -132,10 +131,6 @@
       ''
         SUBSYSTEM=="vchiq",KERNEL=="vchiq",GROUP="video",MODE="0660"
       '';
-  };
-  sops.secrets = {
-    "atuin/key".owner = config.users.users.pi.name;
-    "atuin/session".owner = config.users.users.pi.name;
   };
   virtualisation.podman.enable = true;
   virtualisation.oci-containers.backend = "podman";

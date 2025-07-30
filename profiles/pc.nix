@@ -2,7 +2,7 @@
 {
   imports = [
     ./common.nix
-    ./cli/atuin.nix
+    ./cli/atuin
   ];
   home.packages = with pkgs; [
     brave
