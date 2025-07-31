@@ -69,6 +69,7 @@
       libreoffice-still
       liquibase
       maven
+      minio-client
       myPkgs.hunspell-lt
       keystore-explorer
       myPkgs.sqldeveloper
@@ -446,6 +447,7 @@
     hyprland.settings.env =
       let
         ideaOptions = pkgs.writeText "idea64.vmoptions" ''
+          -Xmx3971m
           -Dawt.toolkit.name=WLToolkit
         '';
       in

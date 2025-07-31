@@ -3,7 +3,7 @@
   imports = [
     ./work-common.nix
     ./wm/xsession-common.nix
-    ./wm/bspwm
+    ./wm/xmonad
   ];
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
   xsession.numlock.enable = true;
