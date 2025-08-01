@@ -14,13 +14,13 @@ creation_rules:
   - path_regex: nixos/common-secrets/atuin\.yaml$
     key_groups:
       - pgp:
-        - *adomas
+          - *adomas
         age:
-        - *laptop
-        - *pc
-        - *pi
-        - *t14
-        - *work
+          - *laptop
+          - *pc
+          - *pi
+          - *t14
+          - *work
   - path_regex: nixos/common-secrets/(zerotier|wireguard)\.yaml$
     key_groups:
       - pgp:
@@ -30,31 +30,31 @@ creation_rules:
   - path_regex: nixos/common-secrets/wireguard/laptop\.yaml$
     key_groups:
       - pgp:
-        - *adomas
+          - *adomas
         age:
-        - *laptop
-        - *pi
+          - *laptop
+          - *pi
   - path_regex: nixos/common-secrets/wireguard/work\.yaml$
     key_groups:
       - pgp:
-        - *adomas
+          - *adomas
         age:
-        - *work
-        - *pi
+          - *work
+          - *pi
   - path_regex: nixos/common-secrets/wireguard/t14\.yaml$
     key_groups:
       - pgp:
-        - *adomas
+          - *adomas
         age:
-        - *t14
-        - *pi
+          - *t14
+          - *pi
   - path_regex: nixos/common-secrets/wireguard/pc\.yaml$
     key_groups:
       - pgp:
-        - *adomas
+          - *adomas
         age:
-        - *pc
-        - *pi
+          - *pc
+          - *pi
   - path_regex: nixos/common-secrets/vpnc\.conf$
     key_groups:
       - pgp:
@@ -99,8 +99,8 @@ creation_rules:
   - path_regex: profiles/cli/atuin/secrets\.yaml$
     key_groups:
       - age:
-        - *laptophm
-        - *pchm
-        - *pihm
-        - *t14hm
-        - *workhm
+          - *laptophm
+          - *pchm
+          - *pihm
+          - *t14hm
+          - *workhm
