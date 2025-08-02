@@ -21,8 +21,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixos-unstable.url = "https://channels.nixos.org/nixos-unstable-small/nixexprs.tar.xz";
+    nixpkgs.url = "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz";
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
       inputs = {
