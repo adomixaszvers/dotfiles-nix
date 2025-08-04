@@ -9,6 +9,7 @@
   programs.atuin = {
     enable = true;
     daemon.enable = true;
+    flags = [ "--disable-up-arrow" ];
     settings = {
       auto_sync = true;
       sync_frequency = "1h";
