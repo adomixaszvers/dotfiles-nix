@@ -60,6 +60,11 @@
           window#waybar.fullscreen #window {
             border-radius: 8px;
           }
+
+          /* see https://github.com/Alexays/Waybar/issues/2793#issuecomment-2039369688 */
+          #language {
+            min-width: 20px;
+          }
         '';
       systemd = {
         enable = true;
