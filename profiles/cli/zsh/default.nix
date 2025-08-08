@@ -5,13 +5,16 @@
     # see: https://www.emacswiki.org/emacs/TrampMode#h5o-9
     [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
   '';
-  home.packages = [ pkgs.pure-prompt ];
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
     enableCompletion = true;
     defaultKeymap = "viins";
     plugins = [
+      {
+        name = "pure";
+        src = "${pkgs.pure-prompt}/share/zsh/site-functions";
+      }
       {
         name = "fz";
         src = pkgs.fetchFromGitHub {
