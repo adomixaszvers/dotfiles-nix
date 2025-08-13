@@ -38,4 +38,5 @@
         };
       };
   };
+  systemd.user.services.atuin-daemon.Unit.After = [ "sops-nix.service" ];
 }
