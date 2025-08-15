@@ -15,7 +15,8 @@
     ./acme.nix
     # ./dns.nix
     ./adguard.nix
-    ./asf.nix
+    # dotnet is not in nixos cache
+    # ./asf.nix
     ./atuin.nix
     # ./vpn.nix
     # ./fail2ban.nix
