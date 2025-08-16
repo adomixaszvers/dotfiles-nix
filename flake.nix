@@ -26,9 +26,7 @@
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
       inputs = {
-        flake-schemas.follows = "";
-        home-manager.follows = "";
-        jovian.follows = "";
+        home-manager.follows = "home-manager";
       };
     };
     sops-nix = {
