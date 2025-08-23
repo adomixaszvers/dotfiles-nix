@@ -23,12 +23,6 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-unstable.url = "https://channels.nixos.org/nixos-unstable-small/nixexprs.tar.xz";
     nixpkgs.url = "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz";
-    chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-      inputs = {
-        home-manager.follows = "home-manager";
-      };
-    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs = {

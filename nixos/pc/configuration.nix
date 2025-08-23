@@ -11,7 +11,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common.nix
-    ../cachyos.nix
     ../flakes.nix
     ../gc.nix
     ../nix-registry.nix
@@ -38,7 +37,7 @@
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "zfs" ];
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_15;
     kernel.sysctl."vm.max_map_count" = 2147483642;
     zfs.requestEncryptionCredentials = false;
     extraModprobeConfig = ''
