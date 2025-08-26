@@ -220,91 +220,88 @@
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       "$mainMod" = "SUPER";
+      "$showVolume" =
+        ''dunstify -i audio-card -t 2000 -h string:x-dunst-stack-tag:volume "Volume $(pamixer --get-volume)"'';
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-      bind =
+      bind = [
+        "$mainMod, Return, exec, kitty"
+        "$mainMod SHIFT, Q, killactive,"
+        "$mainMod SHIFT, C, exit,"
+        "$mainMod, T, togglefloating,"
+        "$mainMod, D, exec, rofi -show-icons -combi-modi windows,drun,run -show combi -modi windows:${myPkgs.hypr-window-select}/bin/hypr-window-select"
+        "$mainMod SHIFT, D, exec, rofi -show run"
+        "$mainMod, F, fullscreen, 1"
+        "$mainMod SHIFT, F, fullscreen, 0" # true fullscreen
+        "$mainMod, P, pseudo," # dwindle
+        "$mainMod, S, togglesplit," # dwindle
+        "$mainMod, F4, exec, rofi-powermenu"
+
+        "$mainMod, W, focusmonitor, 0"
+        "$mainMod, E, focusmonitor, 1"
+        "$mainMod, R, focusmonitor, 2"
+
+        ", Print, exec, grimblast copy output"
+        "ALT, Print, exec, grimblast copy area"
+        "$mainMod, SLASH, exec, hyprpicker -a"
+
+        # Move focus with mainMod + arrow keys
+        "$mainMod, left, movefocus, l"
+        "$mainMod, right, movefocus, r"
+        "$mainMod, up, movefocus, u"
+        "$mainMod, down, movefocus, d"
+
+        "$mainMod, J, layoutmsg, cyclenext"
+        "$mainMod, K, layoutmsg, cycleprev"
+        "$mainMod SHIFT, J, layoutmsg, swapnext"
+        "$mainMod SHIFT, K, layoutmsg, swapprev"
+        "$mainMod SHIFT, Return, layoutmsg, swapwithmaster"
+        "$mainMod, SPACE, layoutmsg, orientationcycle left top"
+
+        "$mainMod, C, cyclenext, tiled"
+
+        "$mainMod, bracketleft, focusmonitor, -1"
+        "$mainMod, bracketright, focusmonitor, +1"
+
+        "$mainMod CTRL, bracketleft, swapactiveworkspaces, current -1"
+        "$mainMod CTRL, bracketright, swapactiveworkspaces, current +1"
+
+        # Scroll through existing workspaces with mainMod + scroll
+        "$mainMod, mouse_down, workspace, e+1"
+        "$mainMod, mouse_up, workspace, e-1"
+
+        "$mainMod, minus, exec, pamixer -d 5 && $showVolume"
+        "$mainMod, equal, exec, pamixer -i 5 && $showVolume"
+        "$mainMod, zcaron, exec, pamixer -i 5 && $showVolume"
+        "$mainMod, F5, exec, playerctl play-pause"
+        "$mainMod, F6, exec, playerctl previous"
+        "$mainMod, F7, exec, playerctl next"
+      ]
+      ++ (builtins.concatMap (
+        x:
         let
-          volumeCommand =
-            cmd:
-            cmd
-            + ''&& dunstify -i audio-card -t 2000 -h string:x-dunst-stack-tag:volume "Volume $(pamixer --get-volume)"'';
+          ws = toString x;
+          keyCode = toString (x + 9);
         in
         [
-          "$mainMod, Return, exec, kitty"
-          "$mainMod SHIFT, Q, killactive,"
-          "$mainMod SHIFT, C, exit,"
-          "$mainMod, T, togglefloating,"
-          "$mainMod, D, exec, rofi -show-icons -combi-modi windows,drun,run -show combi -modi windows:${myPkgs.hypr-window-select}/bin/hypr-window-select"
-          "$mainMod SHIFT, D, exec, rofi -show run"
-          "$mainMod, F, fullscreen, 1"
-          "$mainMod SHIFT, F, fullscreen, 0" # true fullscreen
-          "$mainMod, P, pseudo," # dwindle
-          "$mainMod, S, togglesplit," # dwindle
-          "$mainMod, F4, exec, rofi-powermenu"
-
-          "$mainMod, W, focusmonitor, 0"
-          "$mainMod, E, focusmonitor, 1"
-          "$mainMod, R, focusmonitor, 2"
-
-          ", Print, exec, grimblast copy output"
-          "ALT, Print, exec, grimblast copy area"
-          "$mainMod, SLASH, exec, hyprpicker -a"
-
-          # Move focus with mainMod + arrow keys
-          "$mainMod, left, movefocus, l"
-          "$mainMod, right, movefocus, r"
-          "$mainMod, up, movefocus, u"
-          "$mainMod, down, movefocus, d"
-
-          "$mainMod, J, layoutmsg, cyclenext"
-          "$mainMod, K, layoutmsg, cycleprev"
-          "$mainMod SHIFT, J, layoutmsg, swapnext"
-          "$mainMod SHIFT, K, layoutmsg, swapprev"
-          "$mainMod SHIFT, Return, layoutmsg, swapwithmaster"
-          "$mainMod, SPACE, layoutmsg, orientationcycle left top"
-
-          "$mainMod, C, cyclenext, tiled"
-
-          "$mainMod, bracketleft, focusmonitor, -1"
-          "$mainMod, bracketright, focusmonitor, +1"
-
-          "$mainMod CTRL, bracketleft, swapactiveworkspaces, current -1"
-          "$mainMod CTRL, bracketright, swapactiveworkspaces, current +1"
-
-          # Scroll through existing workspaces with mainMod + scroll
-          "$mainMod, mouse_down, workspace, e+1"
-          "$mainMod, mouse_up, workspace, e-1"
-
-          "$mainMod, minus, exec, ${volumeCommand "pamixer -d 5"}"
-          ", XF86AudioLowerVolume, exec, ${volumeCommand "pamixer -d 5"}"
-          "$mainMod, equal, exec, ${volumeCommand "pamixer -i 5"}"
-          "$mainMod, zcaron, exec, ${volumeCommand "pamixer -i 5"}"
-          ", XF86AudioRaiseVolume, exec, ${volumeCommand "pamixer -i 5"}"
-          ", XF86AudioMute, exec, ${volumeCommand "pamixer -t"}"
-
-          ", XF86AudioPlay, exec, playerctl play-pause"
-          "$mainMod, F5, exec, playerctl play-pause"
-          ", XF86AudioPrev, exec, playerctl previous"
-          "$mainMod, F6, exec, playerctl previous"
-          ", XF86AudioNext, exec, playerctl next"
-          "$mainMod, F7, exec, playerctl next"
+          "$mainMod, ${keyCode}, focusworkspaceoncurrentmonitor, ${ws}"
+          "$mainMod SHIFT, ${keyCode}, movetoworkspace, ${ws}"
         ]
-        ++ (builtins.concatMap (
-          x:
-          let
-            ws = toString x;
-            keyCode = toString (x + 9);
-          in
-          [
-            "$mainMod, ${keyCode}, focusworkspaceoncurrentmonitor, ${ws}"
-            "$mainMod SHIFT, ${keyCode}, movetoworkspace, ${ws}"
-          ]
-        ) (builtins.genList (x: x + 1) 10));
+      ) (builtins.genList (x: x + 1) 10));
 
       # Move/resize windows with mainMod + LMB/RMB and dragging
       bindm = [
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
+      ];
+
+      bindl = [
+        ", XF86AudioLowerVolume, exec, pamixer -d 5 && $showVolume"
+        ", XF86AudioRaiseVolume, exec, pamixer -i 5 && $showVolume"
+        ", XF86AudioMute, exec, pamixer -t && $showVolume"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioNext, exec, playerctl next"
       ];
 
       windowrulev2 = [
