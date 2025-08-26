@@ -314,7 +314,7 @@
         "workspace 3 silent,class:^(jetbrains-idea)$,floating:0"
         "workspace 5 silent,class:^(steam)$"
         "workspace 7,class:^(steam_app_3191030)$"
-        "workspace 9 silent,class:^(KeepassXC)$,floating:0"
+        "workspace 9 silent,class:^(org.keepassxc.KeePassXC)$,floating:0"
         "tile,class:^(com-eviware-soapui-SoapUI)$,title:^(SoapUI)(.*)$"
         # fix steam menus
         # "stayfocused, title:^()$,class:^(steam)$"

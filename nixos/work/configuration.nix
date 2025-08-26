@@ -146,7 +146,10 @@
       "enp0s13f0u3u1"
       "wlp9s0"
     ];
-    gnome.glib-networking.enable = true;
+    gnome = {
+      glib-networking.enable = true;
+      gnome-keyring.enable = false;
+    };
     gvfs.enable = true;
     flatpak = {
       enable = true;

@@ -444,16 +444,19 @@
     };
   };
   wayland.windowManager = {
-    hyprland.settings.env =
-      let
-        ideaOptions = pkgs.writeText "idea64.vmoptions" ''
-          -Xmx3971m
-          -Dawt.toolkit.name=WLToolkit
-        '';
-      in
-      [
-        "IDEA_VM_OPTIONS,${ideaOptions}"
-      ];
+    hyprland.settings = {
+      env =
+        let
+          ideaOptions = pkgs.writeText "idea64.vmoptions" ''
+            -Xmx3971m
+            -Dawt.toolkit.name=WLToolkit
+          '';
+        in
+        [
+          "IDEA_VM_OPTIONS,${ideaOptions}"
+        ];
+      exec-once = [ "keepassxc" ];
+    };
     sway.config = {
       input = {
         "6127:24729:Lenovo_Lenovo_Traditional_USB_Keyboard" = {
