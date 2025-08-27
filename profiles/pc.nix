@@ -27,7 +27,9 @@
         ];
     })
     mpv
-    obs-studio
+    (obs-studio.override {
+      cudaSupport = true;
+    })
     playerctl
     remmina
     keepassxc
