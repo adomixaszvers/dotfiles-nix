@@ -298,6 +298,11 @@
       enable = true;
       gitCredentialHelper.enable = true;
     };
+    # see https://learn.microsoft.com/en-us/troubleshoot/microsoftteams/teams-sign-in/sign-in-loop
+    firefox.policies.EnableTrackingProtection.Exceptions = [
+      "https://teams.microsoft.com"
+      "https://outlook.office.com"
+    ];
     zsh.shellAliases = {
       imvn = "mvn -s ~/.m2/insoft-settings.xml";
       amvn = "mvn -s ~/.m2/kazan-settings.xml";
