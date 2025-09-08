@@ -69,16 +69,16 @@ in
             halign = "center";
             valign = "center";
           }
-          # {
-          #   monitor = "";
-          #   text = ''<span allow_breaks="true">Prompt: $PROMPT<br/>Fail: $FAIL<br/>Attempts: $ATTEMPTS<br/>Fprint message: $FPRINTMESSAGE</span>'';
-          #   color = "rgba(200, 200, 200, 1.0)";
-          #   font_size = 25;
-
-          #   position = "0, 80";
-          #   halign = "center";
-          #   valign = "center";
-          # }
+          {
+            monitor = "";
+            text = "$FPRINTPROMPT";
+            text_align = "center";
+            color = "rgb(${config.lib.stylix.colors.base05})";
+            font_size = 24;
+            position = "0, -100";
+            halign = "center";
+            valign = "center";
+          }
         ];
       };
     };
