@@ -54,4 +54,10 @@
     x11.enable = true;
   };
   home.sessionVariables.KITTY_CONF_FONT = "font_size 9";
+  systemd.user.targets.hm-graphical-session = lib.mkIf config.xdg.autostart.enable {
+    Unit = {
+      Wants = [ "xdg-desktop-autostart.target" ];
+      Before = [ "xdg-desktop-autostart.target" ];
+    };
+  };
 }

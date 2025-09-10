@@ -429,38 +429,47 @@
         bspc desktop 3 -l monocle
       '';
   };
-  xdg.configFile."mimeapps.list".force = true;
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "x-scheme-handler/https" = [
-        "firefox.desktop"
-        "google-chrome.desktop"
-      ];
-      "x-scheme-handler/http" = [
-        "firefox.desktop"
-        "google-chrome.desktop"
-      ];
-      "text/html" = [
-        "firefox.desktop"
-        "google-chrome.desktop"
-      ];
-      "inode/directory" = "org.gnome.Nautilus.desktop";
+  xdg = {
+    autostart = {
+      enable = true;
+      entries = [ "${pkgs.keepassxc}/share/applications/org.keepassxc.KeePassXC.desktop" ];
+      readOnly = false;
+    };
+    configFile."mimeapps.list".force = true;
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/https" = [
+          "firefox.desktop"
+          "google-chrome.desktop"
+        ];
+        "x-scheme-handler/http" = [
+          "firefox.desktop"
+          "google-chrome.desktop"
+        ];
+        "text/html" = [
+          "firefox.desktop"
+          "google-chrome.desktop"
+        ];
+        "inode/directory" = "org.gnome.Nautilus.desktop";
+      };
     };
   };
   wayland.windowManager = {
-    hyprland.settings = {
-      env =
-        let
-          ideaOptions = pkgs.writeText "idea64.vmoptions" ''
-            -Xmx3971m
-            -Dawt.toolkit.name=WLToolkit
-          '';
-        in
-        [
-          "IDEA_VM_OPTIONS,${ideaOptions}"
-        ];
-      exec-once = [ "keepassxc" ];
+    hyprland = {
+      systemd.enableXdgAutostart = true;
+      settings = {
+        env =
+          let
+            ideaOptions = pkgs.writeText "idea64.vmoptions" ''
+              -Xmx3971m
+              -Dawt.toolkit.name=WLToolkit
+            '';
+          in
+          [
+            "IDEA_VM_OPTIONS,${ideaOptions}"
+          ];
+      };
     };
     sway.config = {
       input = {
