@@ -30,15 +30,6 @@
       extraConfig.modi = "drun,run,ssh";
     };
     waybar = {
-      package = pkgs.waybar.overrideAttrs (old: {
-        patches = old.patches ++ [
-          (pkgs.fetchpatch {
-            url = "https://patch-diff.githubusercontent.com/raw/Alexays/Waybar/pull/4242.patch";
-            name = "fix-hyprland-language-parsing.patch";
-            sha256 = "sha256-0GZYdiMlD5x5w6iRKZt1ap3HmZPS4uuiYFRw64N+wy8=";
-          })
-        ];
-      });
       settings.mainbar = {
         layer = "top";
         position = "top";
