@@ -110,6 +110,7 @@
         hyprlock = {
           fprintAuth = false;
         };
+        login.fprintAuth = true;
         swaylock = { };
       };
     };
