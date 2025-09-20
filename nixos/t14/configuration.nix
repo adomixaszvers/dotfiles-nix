@@ -101,15 +101,8 @@
       enable = true;
       settings.PasswordAuthentication = false;
     };
-    power-profiles-daemon.enable = false;
+    power-profiles-daemon.enable = true;
     upower.enable = true;
-    tlp = {
-      enable = true;
-      settings = {
-        START_CHARGE_THRESH_BAT0 = 75;
-        STOP_CHARGE_THRESH_BAT0 = 80;
-      };
-    };
     udev.extraRules = # udev
       ''
         # Lenovo Lenovo Essential Wireless Keyboard and Mouse Combo
@@ -132,29 +125,6 @@
   sops.secrets."root/password" = {
     sopsFile = ./secrets/passwords.yaml;
     neededForUsers = true;
-  };
-
-  specialisation = {
-    powersafe.configuration = {
-      services.tlp.settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "powersave";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "power";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-        PLATFORM_PROFILE_ON_AC = "low-power";
-        PLATFORM_PROFILE_ON_BAT = "low-power";
-      };
-    };
-    performance.configuration = {
-      services.tlp.settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "balance-performance";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-        PLATFORM_PROFILE_ON_AC = "performance";
-        PLATFORM_PROFILE_ON_BAT = "low-power";
-      };
-    };
   };
 
   users.users.adomas = {
