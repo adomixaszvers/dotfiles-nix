@@ -142,7 +142,7 @@
     };
   };
   services = {
-    autorandr.enable = true;
+    # autorandr.enable = true;
     avahi.allowInterfaces = [
       "enp0s13f0u3u1"
       "wlp9s0"
