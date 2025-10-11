@@ -1,6 +1,8 @@
+{ unstable, ... }:
 {
   programs.jujutsu = {
     enable = true;
+    package = unstable.jujutsu;
     settings = {
       aliases.tug = [
         "bookmark"
@@ -13,7 +15,8 @@
       revset-aliases."private()" = "description(glob:'wip:*') | description(glob:'private:*')";
       git.private-commits = "private()";
       ui = {
-        pager = "less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init";
+        pager = "delta";
+        diff-formatter = ":git";
       };
       user = {
         email = "adomixaszvers@gmail.com";
