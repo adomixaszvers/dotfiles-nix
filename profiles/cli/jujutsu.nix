@@ -1,7 +1,11 @@
-{ unstable, ... }:
+{
+  unstable,
+  ...
+}:
 {
   programs.jujutsu = {
     enable = true;
+    ediff = false; # it uses emacsclient
     package = unstable.jujutsu;
     settings = {
       aliases.tug = [
@@ -14,6 +18,26 @@
       ];
       revset-aliases."private()" = "description(glob:'wip:*') | description(glob:'private:*')";
       git.private-commits = "private()";
+      merge-tools.nvim = {
+        diff-invocation-mode = "file-by-file";
+        merge-args = [
+          "-f"
+          "-d"
+          "$output"
+          "-M"
+          "$left"
+          "$base"
+          "$right"
+          "-c"
+          "wincmd J"
+          "-c"
+          "set modifiable"
+          "-c"
+          "set write"
+        ];
+        merge-tool-edits-conflict-markers = true;
+        program = "nvim";
+      };
       ui = {
         pager = "delta";
         diff-formatter = ":git";
