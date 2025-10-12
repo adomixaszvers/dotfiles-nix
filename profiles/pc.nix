@@ -3,6 +3,7 @@
   imports = [
     ./common.nix
     ./cli/atuin
+    ./cli/jujutsu.nix
   ];
   home.packages = with pkgs; [
     brave
