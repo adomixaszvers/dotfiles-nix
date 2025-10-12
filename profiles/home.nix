@@ -3,6 +3,7 @@
   imports = [
     ./common.nix
     ./cli/atuin
+    ./cli/jujutsu.nix
     ./wm/xsession-common.nix
     ./wm/xmonad
   ];
