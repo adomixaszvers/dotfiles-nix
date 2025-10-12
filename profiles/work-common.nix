@@ -303,6 +303,18 @@
       "https://teams.microsoft.com"
       "https://outlook.office.com"
     ];
+    jujutsu.settings = {
+      merge-tools.idea = {
+        program = "idea-ultimate";
+        merge-args = [
+          "merge"
+          "$left"
+          "$right"
+          "$base"
+          "$output"
+        ];
+      };
+    };
     zsh.shellAliases = {
       imvn = "mvn -s ~/.m2/insoft-settings.xml";
       amvn = "mvn -s ~/.m2/kazan-settings.xml";
