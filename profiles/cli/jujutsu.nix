@@ -39,6 +39,7 @@
         program = "nvim";
       };
       ui = {
+        default-command = "log";
         pager = "delta";
         diff-formatter = ":git";
       };
