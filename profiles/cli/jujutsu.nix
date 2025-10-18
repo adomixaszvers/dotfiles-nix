@@ -16,7 +16,16 @@
         "--to"
         "@-"
       ];
-      revset-aliases."private()" = "description(glob:'wip:*') | description(glob:'private:*')";
+      revset-aliases = {
+        "private()" = "description(glob:'wip:*') | description(glob:'private:*')";
+        # stack(x, n) is the set of mutable commits reachable from 'x', with 'n'
+        # parents. 'n' is often useful to customize the display and return set for
+        # certain operations. 'x' can be used to target the set of 'roots' to traverse,
+        # e.g. @ is the current stack.
+        "stack()" = "stack(@)";
+        "stack(x)" = "stack(x, 2)";
+        "stack(x, n)" = "ancestors(reachable(x, mutable()), n)";
+      };
       git.private-commits = "private()";
       merge-tools.nvim = {
         diff-invocation-mode = "file-by-file";
