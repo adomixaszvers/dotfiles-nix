@@ -18,6 +18,12 @@
     thermal-zone = 1;
   };
   stylix.enable = true;
+  xdg.dataFile."dbus-1/services/org.freedesktop.secrets.service".source =
+    pkgs.writeText "keepassxc-autostart" ''
+      [D-BUS Service]
+      Name=org.freedesktop.secrets
+      Exec=${pkgs.keepassxc}/bin/keepassxc
+    '';
   home = {
     file = {
       "jdks/openjdk8".source = pkgs.openjdk8;
@@ -443,7 +449,7 @@
   };
   xdg = {
     autostart = {
-      enable = true;
+      enable = false;
       entries = [ "${pkgs.keepassxc}/share/applications/org.keepassxc.KeePassXC.desktop" ];
       readOnly = false;
     };
