@@ -47,6 +47,7 @@
         email = "adomixaszvers@gmail.com";
         name = "Adomas Jatužis";
       };
+      working-copy.eol-conversion = "input";
 
     };
   };
