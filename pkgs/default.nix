@@ -86,6 +86,7 @@
         maimpick = pkgs.callPackage ./maimpick.nix { };
         neovim = nixCatsBuilder "nixCats";
         neovim-nix = nixCatsBuilder "nixCats-small";
+        niri-window-select = pkgs.callPackage ./niri-window-select.nix { };
         restart-eww = pkgs.callPackage ./restart-eww.nix { };
         rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
         sxhkd = pkgs.sxhkd.overrideAttrs (old: {
