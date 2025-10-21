@@ -13,6 +13,7 @@
     ../waybar
     ../dunst.nix
   ];
+  home.packages = [ pkgs.xwayland-satellite ];
   programs = {
     niri = {
       enable = true;

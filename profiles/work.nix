@@ -14,6 +14,7 @@ in
     # ./wm/xsession-common.nix
     # ./wm/xmonad
     ./wm/hyprland
+    # ./wm/niri
   ];
   # gtk.enable = false;
   # qt.enable = false;
