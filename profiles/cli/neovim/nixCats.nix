@@ -42,7 +42,6 @@
         ];
         extra = with pkgs.vimPlugins; [
           direnv-vim
-          vim-polyglot
         ];
         themer = with pkgs.vimPlugins; [
           nordic-nvim
