@@ -70,6 +70,15 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
     end
 })
 
+local kdl_ag = vim.api.nvim_create_augroup('kdl-syntax', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+    pattern = '*.kdl',
+    group = kdl_ag,
+    callback = function()
+        vim.bo.filetype = 'kdl'
+    end
+})
+
 vim.o.timeout = true
 -- if the timeoutlen is too short I am too slow to input surround.vim bindings
 -- so let the timeoutlen be 1000 (default)
