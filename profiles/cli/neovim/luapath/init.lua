@@ -19,8 +19,6 @@ vim.o.scrolloff = 5 -- minimal lines visible above and below cursor
 vim.o.showmode = false
 vim.o.mouse = '';
 
-vim.g.rainbow_active = 1
-
 do
     local opts = { noremap = true, silent = true }
     vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope find_files<cr>', opts)

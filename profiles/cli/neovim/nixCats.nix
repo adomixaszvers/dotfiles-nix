@@ -30,7 +30,7 @@
           neoformat
           nvim-sops
           playground
-          rainbow
+          rainbow-delimiters-nvim
           repeat
           vim-suda
           surround
