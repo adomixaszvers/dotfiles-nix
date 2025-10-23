@@ -12,6 +12,7 @@
 {
   imports = [
     ../avahi.nix
+    ./btrfs.nix
     ../common.nix
     ../flakes.nix
     ../gc.nix
@@ -50,16 +51,16 @@
     tmp.cleanOnBoot = true;
     kernelParams = [ "consoleblank=60" ];
     # kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = [ "zfs" ];
+    # supportedFilesystems = [ "zfs" ];
     loader.systemd-boot = {
       enable = true;
       consoleMode = "auto";
     };
     loader.efi.canTouchEfiVariables = true;
     # leave 3 GB free for avoiding systemd-oomd
-    extraModprobeConfig = ''
-      options zfs zfs_arc_sys_free=${toString (3 * 1024 * 1024 * 1024)}
-    '';
+    # extraModprobeConfig = ''
+    #   options zfs zfs_arc_sys_free=${toString (3 * 1024 * 1024 * 1024)}
+    # '';
   };
 
   networking = {

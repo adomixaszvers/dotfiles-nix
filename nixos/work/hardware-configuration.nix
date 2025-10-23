@@ -7,8 +7,11 @@
   modulesPath,
   ...
 }:
+
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -24,61 +27,78 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "rpool/root/nixos";
-    fsType = "zfs";
+    device = "/dev/disk/by-uuid/c4ba101c-f7c4-42b0-854e-ca481f29f969";
+    fsType = "btrfs";
+    options = [ "subvol=root/nixos/current" ];
+  };
+
+  fileSystems."/var/lib/containers/storage" = {
+    device = "/dev/disk/by-uuid/c4ba101c-f7c4-42b0-854e-ca481f29f969";
+    fsType = "btrfs";
+    options = [ "subvol=root/containers/current" ];
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/c4ba101c-f7c4-42b0-854e-ca481f29f969";
+    fsType = "btrfs";
+    options = [ "subvol=local/nix/current" ];
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/c4ba101c-f7c4-42b0-854e-ca481f29f969";
+    fsType = "btrfs";
+    options = [ "subvol=home/current" ];
+  };
+
+  fileSystems."/home/adomas/.local/share/libvirt" = {
+    device = "/dev/disk/by-uuid/c4ba101c-f7c4-42b0-854e-ca481f29f969";
+    fsType = "btrfs";
+    options = [ "subvol=adomas/libvirt/current" ];
+  };
+
+  fileSystems."/home/adomas/.local/share/containers/storage" = {
+    device = "/dev/disk/by-uuid/c4ba101c-f7c4-42b0-854e-ca481f29f969";
+    fsType = "btrfs";
+    options = [ "subvol=adomas/containers/current" ];
+  };
+
+  fileSystems."/home/adomas/.local/share/Steam" = {
+    device = "/dev/disk/by-uuid/c4ba101c-f7c4-42b0-854e-ca481f29f969";
+    fsType = "btrfs";
+    options = [ "subvol=adomas/steam/current" ];
+  };
+
+  fileSystems."/tmp" = {
+    device = "/dev/disk/by-uuid/c4ba101c-f7c4-42b0-854e-ca481f29f969";
+    fsType = "btrfs";
+    options = [ "subvol=local/tmp/current" ];
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/2641-D99C";
     fsType = "vfat";
     options = [
-      "umask=077"
+      "fmask=0077"
+      "dmask=0077"
     ];
   };
 
-  fileSystems."/home" = {
-    device = "rpool/home";
-    fsType = "zfs";
-  };
-
-  fileSystems."/var/lib/docker" = {
-    device = "rpool/root/docker";
-    fsType = "zfs";
-  };
-
-  fileSystems."/tmp" = {
-    device = "rpool/local/tmp";
-    fsType = "zfs";
-  };
-
-  fileSystems."/nix" = {
-    device = "rpool/local/nix";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home/adomas/.local/share/Steam" = {
-    device = "rpool/adomas/steam";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home/adomas/.local/share/libvirt" = {
-    device = "rpool/adomas/libvirt";
-    fsType = "zfs";
-  };
-
   fileSystems."/var/lib/libvirt" = {
-    device = "rpool/root/libvirt";
-    fsType = "zfs";
+    device = "/dev/disk/by-uuid/c4ba101c-f7c4-42b0-854e-ca481f29f969";
+    fsType = "btrfs";
+    options = [ "subvol=root/libvirt/current" ];
   };
 
-  swapDevices = [ { device = "/dev/disk/by-uuid/2d0b3a0d-d438-4c12-b14d-8b879d9777b4"; } ];
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/2d0b3a0d-d438-4c12-b14d-8b879d9777b4"; }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp0s13f0u3u1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp0s13f0u2u2.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp9s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

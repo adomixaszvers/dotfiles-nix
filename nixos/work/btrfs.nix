@@ -13,7 +13,7 @@ in
 
     "/home".options = commonBtrfsOptions;
 
-    "/var/lib/docker".options = commonBtrfsOptions;
+    "/var/lib/containers/storage".options = commonBtrfsOptions;
 
     "/tmp".options = [
       "compress=zstd"
@@ -29,6 +29,8 @@ in
     ];
 
     "/home/adomas/.local/share/libvirt".options = commonBtrfsOptions;
+    "/home/adomas/.local/share/containers/storage".options = commonBtrfsOptions;
+    "/home/adomas/.local/share/Steam".options = commonBtrfsOptions;
 
     "/var/lib/libvirt".options = commonBtrfsOptions;
   };
