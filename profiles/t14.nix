@@ -1,4 +1,9 @@
-{ pkgs, myPkgs, ... }:
+{
+  pkgs,
+  myPkgs,
+  unstable,
+  ...
+}:
 {
   imports = [
     ./common.nix
@@ -62,7 +67,7 @@
       nautilus
       gtypist
       libreoffice-still
-      lutris
+      unstable.lutris
       mpv
       playerctl
       remmina
