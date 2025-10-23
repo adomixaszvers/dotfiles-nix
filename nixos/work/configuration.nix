@@ -224,28 +224,22 @@
     startAt = "Mon-Fri 02:00";
   };
 
-  virtualisation.docker = {
-    enable = true;
-    storageDriver = "zfs";
-    # listenOptions = [ "/var/run/docker.sock" "2375" ];
+  virtualisation = {
+    spiceUSBRedirection.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      dockerSocket.enable = true;
+    };
+    containers.storage.settings = {
+      storage = {
+        driver = "btrfs";
+        graphroot = "/var/lib/containers/storage";
+        runroot = "/run/containers/storage";
+        rootless_storage_path = "$XDG_DATA_HOME/containers/storage";
+      };
+    };
   };
-  virtualisation.spiceUSBRedirection.enable = true;
-  # virtualisation.podman = {
-  #   enable = true;
-  #   dockerCompat = true;
-  #   dockerSocket.enable = true;
-  # };
-  # virtualisation.containers.storage.settings = {
-  #   storage = {
-  #     driver = "zfs";
-  #     graphroot = "/var/lib/containers/storage";
-  #     runroot = "/run/containers/storage";
-  #     options.zfs = {
-  #       fsname = "rpool/podman";
-  #       mountopt = "nodev";
-  #     };
-  #   };
-  # };
 
   hardware = {
     graphics = {

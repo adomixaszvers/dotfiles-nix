@@ -54,7 +54,6 @@
       brave
       brightnessctl
       dbeaver-bin
-      docker-compose
       docker-credential-helpers
       dos2unix
       myPkgs.eclipse-activiti
@@ -80,6 +79,7 @@
       myPkgs.sqldeveloper
       mercurial
       pnpm_10
+      podman-compose
       numlockx
       openssl
       oracle-instantclient
