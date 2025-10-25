@@ -8,7 +8,17 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # niri.url = "github:sodiboo/niri-flake";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "";
+        niri-stable.follows = "";
+        niri-unstable.follows = "";
+        xwayland-satellite-stable.follows = "";
+        xwayland-satellite-unstable.follows = "";
+      };
+    };
     nixCats.url = "github:BirdeeHub/nixCats-nvim/v7.3.0";
     nixGL = {
       url = "github:nix-community/nixGL";

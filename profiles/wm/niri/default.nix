@@ -13,11 +13,16 @@
     ../waybar
     ../dunst.nix
   ];
-  home.packages = [ pkgs.xwayland-satellite ];
+  home.packages = [
+    pkgs.xwayland-satellite
+    myPkgs.niri-swap-monitors
+  ];
+  xdg.configFile."niri/config.kdl".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nixpkgs/profiles/wm/niri/config.kdl";
   programs = {
     niri = {
       enable = true;
-      config = builtins.readFile ./config.kdl;
+      config = null;
       package = pkgs.niri;
     };
     rofi = {

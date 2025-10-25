@@ -87,6 +87,7 @@
         neovim = nixCatsBuilder "nixCats";
         neovim-nix = nixCatsBuilder "nixCats-small";
         niri-window-select = pkgs.callPackage ./niri-window-select.nix { };
+        niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
         restart-eww = pkgs.callPackage ./restart-eww.nix { };
         rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
         sxhkd = pkgs.sxhkd.overrideAttrs (old: {
