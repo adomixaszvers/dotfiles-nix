@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./common.nix
@@ -10,7 +10,7 @@
     discord
     # gamescope
     libreoffice-still
-    unstable.lutris
+    lutris
     mpv
     (obs-studio.override {
       cudaSupport = true;

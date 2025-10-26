@@ -1,7 +1,6 @@
 {
   pkgs,
   myPkgs,
-  unstable,
   ...
 }:
 {
@@ -67,7 +66,7 @@
       nautilus
       gtypist
       libreoffice-still
-      unstable.lutris
+      lutris
       mpv
       playerctl
       remmina
