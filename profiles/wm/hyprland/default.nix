@@ -21,6 +21,7 @@
     ];
     sessionVariables = {
       NIXOS_OZONE_WL = 1;
+      _JAVA_AWT_WM_NONREPARENTING = 1;
     };
   };
   programs = {
