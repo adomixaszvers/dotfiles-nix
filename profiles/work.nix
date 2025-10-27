@@ -6,7 +6,7 @@
 }:
 let
   isX11 = config.xsession.enable;
-  isHypr = config.wayland.windowManager.hyprland.enable;
+  isHypr = config.wayland.windowManager.hyprland.enable || config.programs.niri.enable;
 in
 {
   imports = [

@@ -327,6 +327,7 @@
   };
 
   services = {
+    gnome-keyring.enable = lib.mkForce false;
     kanshi.profiles = {
       docked.outputs = [
         {
