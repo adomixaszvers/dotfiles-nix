@@ -68,7 +68,6 @@
       ];
     };
     broot.enable = true;
-    carapace.enable = true;
     eza.enable = true;
     fzf = {
       changeDirWidgetCommand = "bfs -type d";
