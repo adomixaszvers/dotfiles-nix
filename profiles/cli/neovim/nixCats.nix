@@ -19,6 +19,7 @@
         ];
         lsp = with pkgs; [
           lua-language-server
+          taplo-lsp
         ];
       };
       startupPlugins = {
