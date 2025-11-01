@@ -55,18 +55,12 @@
         local_ptr_upstreams = [ "192.168.1.254" ];
       };
       filtering = {
-        blocked_response_ttl = 7200;
-        rewrites = [
-          {
-            domain = "*.wg.beastade.top";
-            answer = "10.6.0.1";
-          }
-          {
-            domain = "*.lan.beastade.top";
-            answer = "192.168.1.207";
-          }
-        ];
+        blocked_response_ttl = 600;
       };
+      user_rules = [
+        "||beastade.top^$dnsrewrite=10.6.0.1,client=10.6.0.0/24"
+        "||beastade.top^$dnsrewrite=192.168.1.207,client=192.168.1.0/24"
+      ];
       filters = [
         {
           enabled = true;
