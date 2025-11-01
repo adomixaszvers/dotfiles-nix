@@ -27,7 +27,7 @@
     ./hardware-configuration.nix
     # ./powermanagement.nix
     ../steam.nix
-    # ./wireguard-client.nix
+    ./wireguard-client.nix
     # ../kde.nix
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
     inputs.nixpkgs.nixosModules.notDetected
