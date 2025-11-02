@@ -5,7 +5,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
@@ -33,7 +33,7 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-unstable.url = "https://channels.nixos.org/nixos-unstable-small/nixexprs.tar.xz";
-    nixpkgs.url = "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz";
+    nixpkgs.follows = "nixos-unstable";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs = {
@@ -41,7 +41,7 @@
       };
     };
     stylix = {
-      url = "github:nix-community/stylix/release-25.05";
+      url = "github:nix-community/stylix/master";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };

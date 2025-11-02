@@ -220,16 +220,16 @@
     "gnome-shell": {
       "flake": false,
       "locked": {
-        "lastModified": 1744584021,
-        "narHash": "sha256-0RJ4mJzf+klKF4Fuoc8VN8dpQQtZnKksFmR2jhWE1Ew=",
+        "lastModified": 1748186689,
+        "narHash": "sha256-UaD7Y9f8iuLBMGHXeJlRu6U1Ggw5B9JnkFs3enZlap0=",
         "owner": "GNOME",
         "repo": "gnome-shell",
-        "rev": "52c517c8f6c199a1d6f5118fae500ef69ea845ae",
+        "rev": "8c88f917db0f1f0d80fa55206c863d3746fa18d0",
         "type": "github"
       },
       "original": {
         "owner": "GNOME",
-        "ref": "48.1",
+        "ref": "48.2",
         "repo": "gnome-shell",
         "type": "github"
       }
@@ -241,16 +241,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1758463745,
-        "narHash": "sha256-uhzsV0Q0I9j2y/rfweWeGif5AWe0MGrgZ/3TjpDYdGA=",
+        "lastModified": 1762087455,
+        "narHash": "sha256-hpbPma1eUKwLAmiVRoMgIHbHiIKFkcACobJLbDt6ABw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "3b955f5f0a942f9f60cdc9cacb7844335d0f21c3",
+        "rev": "43e205606aeb253bfcee15fd8a4a01d8ce8384ca",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "release-25.05",
+        "ref": "master",
         "repo": "home-manager",
         "type": "github"
       }
@@ -367,19 +367,6 @@
         "url": "https://channels.nixos.org/nixos-unstable-small/nixexprs.tar.xz"
       }
     },
-    "nixpkgs": {
-      "locked": {
-        "lastModified": 1761818262,
-        "narHash": "sha256-4/MWuMWJCL2C7VTSwQKB8PdYRdd6klqikxDm2FTkU+0=",
-        "rev": "daf6dc47aa4b44791372d6139ab7b25269184d55",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/25.05/nixos-25.05.811874.daf6dc47aa4b/nixexprs.tar.xz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz"
-      }
-    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1754788789,
@@ -434,7 +421,9 @@
         "nixGL": "nixGL",
         "nixos-hardware": "nixos-hardware",
         "nixos-unstable": "nixos-unstable",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": [
+          "nixos-unstable"
+        ],
         "sops-nix": "sops-nix",
         "stylix": "stylix"
       }
@@ -480,16 +469,16 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1761668239,
-        "narHash": "sha256-b0+7/5hBUsLjd/gMY9/LSEsvuWFFolHdpUAOlG73zmw=",
+        "lastModified": 1762101397,
+        "narHash": "sha256-wGiL2K3kAyBBmIZpJEskaSIgyzzpg0zwfvri+Sy6/CI=",
         "owner": "nix-community",
         "repo": "stylix",
-        "rev": "a149a557dc306e76d53e7dd488826e61ef9c6289",
+        "rev": "8c0640d5722a02178c8ee80a62c5f019cab4b3c1",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "release-25.05",
+        "ref": "master",
         "repo": "stylix",
         "type": "github"
       }
