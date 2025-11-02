@@ -55,7 +55,7 @@
   };
   nix.gc = {
     automatic = true;
-    frequency = "weekly";
+    dates = "weekly";
     options = "-d --delete-older-than 14d";
   };
   programs = {

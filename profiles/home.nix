@@ -20,10 +20,10 @@
     remmina
     qbittorrent
     spotify
-    tor-browser-bundle-bin
+    tor-browser
     keepassxc
     xpra
-    protonup
+    protonup-ng
   ];
   home.sessionVariables = {
     BROWSER = "firefox";

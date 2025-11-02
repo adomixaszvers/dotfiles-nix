@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   sops.secrets."vpnc/config" = {
     sopsFile = ../common-secrets/vpnc.conf;

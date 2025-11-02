@@ -160,7 +160,7 @@
       enable = true;
       interval = "monthly";
     };
-    logind.lidSwitchExternalPower = "ignore";
+    logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
     openssh = {
       enable = true;
       extraConfig = ''

@@ -6,7 +6,7 @@
     nixos-hardware.follows = "parent/nixos-hardware";
   };
   outputs =
-    { nixpkgs, parent, ... }@inputs:
+    { nixpkgs, ... }@inputs:
     let
       isoSpecialArgs = {
         inherit inputs;

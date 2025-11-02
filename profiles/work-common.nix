@@ -34,7 +34,7 @@
         let
           # nixos-20.09
           oldNixpkgs = builtins.getFlake "github:NixOS/nixpkgs/1c1f5649bb9c1b0d98637c8c365228f57126f361";
-          oldPkgs = builtins.getAttr pkgs.system oldNixpkgs.legacyPackages;
+          oldPkgs = builtins.getAttr pkgs.stdenv.hostPlatform.system oldNixpkgs.legacyPackages;
         in
         oldPkgs.nodejs-12_x;
       "nodejs/22".source = pkgs.nodejs_22;
@@ -60,7 +60,7 @@
       evince
       filezilla
       gimp
-      gitAndTools.gitflow
+      gitflow
       libsecret
       nemo
       gnumake
@@ -89,7 +89,7 @@
       remmina
       rlwrap
       samba
-      protonup
+      protonup-ng
       soapui
       # spotify
       sshpass
@@ -100,7 +100,7 @@
       thunderbird
       unrar
       discord
-      tor-browser-bundle-bin
+      tor-browser
       unzip
       whois
       xpra

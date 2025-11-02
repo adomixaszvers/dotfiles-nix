@@ -26,7 +26,6 @@
   programs = {
     emacs.package = pkgs.emacs-pgtk;
     rofi = {
-      package = pkgs.rofi-wayland;
       extraConfig.modi = "drun,run,ssh";
     };
     waybar = {

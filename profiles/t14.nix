@@ -70,10 +70,10 @@
       mpv
       playerctl
       remmina
-      tor-browser-bundle-bin
+      tor-browser
       keepassxc
       xpra
-      protonup
+      protonup-ng
       steamtinkerlaunch
     ])
     ++ (with myPkgs; [ toggle-touchpad ]);

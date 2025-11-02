@@ -1,4 +1,3 @@
-{ config }:
 let
   gaps = {
     inner = 15;

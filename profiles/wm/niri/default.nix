@@ -26,7 +26,6 @@
       package = pkgs.niri;
     };
     rofi = {
-      package = pkgs.rofi-wayland;
       # modes = [
       #   "run"
       #   "drun"

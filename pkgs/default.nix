@@ -66,7 +66,7 @@
     let
       nixCatsBuilder = import ../profiles/cli/neovim/nixCatsBuilder.nix {
         inherit (inputs) nixpkgs nixCats;
-        inherit system;
+        inherit (pkgs.stdenv.hostPlatform) system;
       };
     in
     {
@@ -91,7 +91,7 @@
         restart-eww = pkgs.callPackage ./restart-eww.nix { };
         rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
         sxhkd = pkgs.sxhkd.overrideAttrs (old: {
-          patches = old.patches ++ [ ./sxhkd.patch ];
+          patches = (old.patches or [ ]) ++ [ ./sxhkd.patch ];
         });
         sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
         toggle-touchpad = pkgs.callPackage ./toggle-touchpad.nix { };
