@@ -40,9 +40,9 @@
         sha256.x86_64-linux = "1q4l8pymjvsvxfwaw0rdcnhryh1la2bvg5f4d4my41ka390k4p4s";
       }) { };
       mcard-toolbox = pkgs.callPackage ./mcard-toolbox { };
-      sqldeveloper = pkgs.callPackage ./sqldeveloper {
-        jdk = pkgs.openjdk17.override { enableJavaFX = true; };
-      };
+      # sqldeveloper = pkgs.callPackage ./sqldeveloper {
+      #   jdk = pkgs.openjdk17.override { enableJavaFX = true; };
+      # };
       soapui =
         let
           version = "5.6.1";
