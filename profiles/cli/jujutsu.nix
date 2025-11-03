@@ -1,12 +1,7 @@
 {
-  unstable,
-  ...
-}:
-{
   programs.jujutsu = {
     enable = true;
     ediff = false; # it uses emacsclient
-    package = unstable.jujutsu;
     settings = {
       aliases.tug = [
         "bookmark"
