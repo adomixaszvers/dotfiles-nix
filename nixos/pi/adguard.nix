@@ -10,25 +10,17 @@
       allowedUDPPorts = [ 53 ];
     };
   };
-  services.nginx.virtualHosts =
-    let
+  services.nginx.virtualHosts = {
+    "adguard.rpi4.beastade.top" = {
+      useACMEHost = "rpi4.beastade.top";
       locations = {
         "/" = {
           proxyPass = "http://192.168.1.207:6080";
         };
       };
       forceSSL = true;
-    in
-    {
-      "adguard.lan.beastade.top" = {
-        useACMEHost = "lan.beastade.top";
-        inherit forceSSL locations;
-      };
-      "adguard.wg.beastade.top" = {
-        useACMEHost = "wg.beastade.top";
-        inherit forceSSL locations;
-      };
     };
+  };
 
   services.adguardhome = {
     enable = true;
@@ -58,8 +50,8 @@
         blocked_response_ttl = 600;
       };
       user_rules = [
-        "||beastade.top^$dnsrewrite=10.6.0.1,client=10.6.0.0/24"
-        "||beastade.top^$dnsrewrite=192.168.1.207,client=192.168.1.0/24"
+        "||rpi4.beastade.top^$dnsrewrite=10.6.0.1,client=10.6.0.0/24"
+        "||rpi4.beastade.top^$dnsrewrite=192.168.1.207,client=192.168.1.0/24"
       ];
       filters = [
         {

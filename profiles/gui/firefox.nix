@@ -30,16 +30,16 @@
           {
             Name = "Searx English";
             Alias = "sx";
-            URLTemplate = "https://searx.lan.beastade.top/search?q={searchTerms}&language=en&&safesearch=2&";
+            URLTemplate = "https://searx.rpi4.beastade.top/search?q={searchTerms}&language=en&&safesearch=2&";
             Method = "GET";
-            IconURL = "https://searx.lan.beastade.top/favicon.ico";
+            IconURL = "https://searx.rpi4.beastade.top/favicon.ico";
           }
           {
             Name = "Searx Lithuanian";
             Alias = "slt";
-            URLTemplate = "https://searx.lan.beastade.top/search?q={searchTerms}&language=lt&&safesearch=2&";
+            URLTemplate = "https://searx.rpi4.beastade.top/search?q={searchTerms}&language=lt&&safesearch=2&";
             Method = "GET";
-            IconURL = "https://searx.lan.beastade.top/favicon.ico";
+            IconURL = "https://searx.rpi4.beastade.top/favicon.ico";
           }
         ];
         Default = "Searx English";

@@ -10,25 +10,17 @@ in
       openRegistration = true;
       host = "127.0.0.1";
     };
-    nginx.virtualHosts =
-      let
+    nginx.virtualHosts = {
+      "atuin.rpi4.beastade.top" = {
+        useACMEHost = "rpi4.beastade.top";
         locations = {
           "/" = {
             proxyPass = "http://127.0.0.1:${toString port}";
           };
         };
         forceSSL = true;
-      in
-      {
-        "atuin.lan.beastade.top" = {
-          useACMEHost = "lan.beastade.top";
-          inherit forceSSL locations;
-        };
-        "atuin.wg.beastade.top" = {
-          useACMEHost = "wg.beastade.top";
-          inherit forceSSL locations;
-        };
       };
+    };
   };
   networking.firewall.interfaces = {
     eth0.allowedTCPPorts = [ port ];

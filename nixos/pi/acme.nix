@@ -19,13 +19,9 @@
         credentialsFile = config.sops.templates."acme.env".path;
       in
       {
-        "lan.beastade.top" = {
+        "rpi4.beastade.top" = {
           inherit dnsProvider dnsResolver credentialsFile;
-          extraDomainNames = [ "*.lan.beastade.top" ];
-        };
-        "wg.beastade.top" = {
-          inherit dnsProvider dnsResolver credentialsFile;
-          extraDomainNames = [ "*.wg.beastade.top" ];
+          extraDomainNames = [ "*.rpi4.beastade.top" ];
         };
       };
   };

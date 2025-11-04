@@ -15,23 +15,15 @@
       };
     };
   };
-  services.nginx.virtualHosts =
-    let
+  services.nginx.virtualHosts = {
+    "asf.rpi4.beastade.top" = {
+      useACMEHost = "rpi4.beastade.top";
       locations = {
         "/" = {
           proxyPass = "http://127.0.0.1:1242";
         };
       };
       forceSSL = true;
-    in
-    {
-      "asf.lan.beastade.top" = {
-        useACMEHost = "lan.beastade.top";
-        inherit forceSSL locations;
-      };
-      "asf.wg.beastade.top" = {
-        useACMEHost = "wg.beastade.top";
-        inherit forceSSL locations;
-      };
     };
+  };
 }

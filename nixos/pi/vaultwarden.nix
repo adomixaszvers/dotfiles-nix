@@ -15,8 +15,9 @@
     };
     environmentFile = config.sops.secrets."vaultwarden.env".path;
   };
-  services.nginx.virtualHosts =
-    let
+  services.nginx.virtualHosts = {
+    "vaultwarden.rpi4.beastade.top" = {
+      useACMEHost = "rpi4.beastade.top";
       locations =
         let
           proxyPass = "http://127.0.0.1:8222";
@@ -31,15 +32,6 @@
           };
         };
       forceSSL = true;
-    in
-    {
-      "vaultwarden.lan.beastade.top" = {
-        useACMEHost = "lan.beastade.top";
-        inherit forceSSL locations;
-      };
-      "vaultwarden.wg.beastade.top" = {
-        useACMEHost = "wg.beastade.top";
-        inherit forceSSL locations;
-      };
     };
+  };
 }

@@ -14,8 +14,9 @@
     openDefaultPorts = true;
     guiAddress = "0.0.0.0:8384";
   };
-  services.nginx.virtualHosts =
-    let
+  services.nginx.virtualHosts = {
+    "syncthing.rpi4.beastade.top" = {
+      useACMEHost = "rpi4.beastade.top";
       locations = {
         "/" = {
           proxyPass = "http://127.0.0.1:8384";
@@ -32,15 +33,6 @@
         };
       };
       forceSSL = true;
-    in
-    {
-      "syncthing.lan.beastade.top" = {
-        useACMEHost = "lan.beastade.top";
-        inherit forceSSL locations;
-      };
-      "syncthing.wg.beastade.top" = {
-        useACMEHost = "wg.beastade.top";
-        inherit forceSSL locations;
-      };
     };
+  };
 }

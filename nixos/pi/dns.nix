@@ -11,25 +11,17 @@
       allowedUDPPorts = [ 53 ];
     };
   };
-  services.nginx.virtualHosts =
-    let
+  services.nginx.virtualHosts = {
+    "pihole.rpi4.beastade.top" = {
+      useACMEHost = "rpi4.beastade.top";
       locations = {
         "/" = {
           proxyPass = "http://192.168.1.207:5080";
         };
       };
       forceSSL = true;
-    in
-    {
-      "pihole.lan.beastade.top" = {
-        useACMEHost = "lan.beastade.top";
-        inherit forceSSL locations;
-      };
-      "pihole.wg.beastade.top" = {
-        useACMEHost = "wg.beastade.top";
-        inherit forceSSL locations;
-      };
     };
+  };
 
   users = {
     users.pihole = {

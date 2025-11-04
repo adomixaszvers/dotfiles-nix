@@ -17,7 +17,7 @@
           ];
         }
         {
-          name = "wg.beastade.top.";
+          name = "rpi4.beastade.top.";
           forward-addr = "10.6.0.1";
         }
       ];

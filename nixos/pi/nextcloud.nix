@@ -57,7 +57,7 @@
         "OC\\Preview\\XBitmap"
         "OC\\Preview\\HEIC"
       ];
-      hostName = "nextcloud.lan.beastade.top";
+      hostName = "nextcloud.rpi4.beastade.top";
       https = true;
       configureRedis = true;
     };
@@ -72,7 +72,7 @@
     postgresql.package = pkgs.postgresql_16;
 
     nginx.virtualHosts.${config.services.nextcloud.hostName} = {
-      useACMEHost = "lan.beastade.top";
+      useACMEHost = "rpi4.beastade.top";
       forceSSL = true;
     };
   };

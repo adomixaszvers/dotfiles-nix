@@ -4,25 +4,17 @@
     sopsFile = ./secrets/webdav.env;
     format = "binary";
   };
-  services.nginx.virtualHosts =
-    let
+  services.nginx.virtualHosts = {
+    "webdav.rpi4.beastade.top" = {
+      useACMEHost = "rpi4.beastade.top";
       locations = {
         "/" = {
           proxyPass = "http://127.0.0.1:8080";
         };
       };
       forceSSL = true;
-    in
-    {
-      "webdav.lan.beastade.top" = {
-        useACMEHost = "lan.beastade.top";
-        inherit forceSSL locations;
-      };
-      "webdav.wg.beastade.top" = {
-        useACMEHost = "wg.beastade.top";
-        inherit forceSSL locations;
-      };
     };
+  };
   services.webdav = {
     enable = true;
     user = "syncthing";

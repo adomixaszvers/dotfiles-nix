@@ -67,7 +67,7 @@
 
       # Server configuration
       server = {
-        base_url = "https://searx.lan.beastade.top";
+        base_url = "https://searx.rpi4.beastade.top";
         port = 8888;
         bind_address = "127.0.0.1";
         secret_key = config.sops.secrets."searx/secret_key".path;
@@ -174,19 +174,8 @@
   # Nginx configuration
   services.nginx = {
     virtualHosts = {
-      "searx.lan.beastade.top" = {
-        useACMEHost = "lan.beastade.top";
-        forceSSL = true;
-        locations = {
-          "/" = {
-            extraConfig = ''
-              uwsgi_pass unix:${config.services.searx.uwsgiConfig.socket};
-            '';
-          };
-        };
-      };
-      "searx.wg.beastade.top" = {
-        useACMEHost = "wg.beastade.top";
+      "searx.rpi4.beastade.top" = {
+        useACMEHost = "rpi4.beastade.top";
         forceSSL = true;
         locations = {
           "/" = {
