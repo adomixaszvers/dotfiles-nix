@@ -115,6 +115,13 @@ require('gitsigns').setup({
     end
 })
 
+vim.api.nvim_create_autocmd('BufWritePre', {
+    pattern = "*.nix",
+    callback = function()
+        vim.cmd.Neoformat()
+    end,
+})
+
 require('myConfig.cmp')
 require('myConfig.nvim-treesitter')
 require('myConfig.playground')
