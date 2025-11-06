@@ -57,4 +57,5 @@
 
     };
   };
+  programs.zsh.sessionVariables.PURE_GIT_PULL = "0";
 }
