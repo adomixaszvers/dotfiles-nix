@@ -10,7 +10,7 @@
     discord
     # gamescope
     libreoffice-still
-    lutris
+    # lutris
     mpv
     (obs-studio.override {
       cudaSupport = true;
