@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  myPkgs,
   config,
   ...
 }:
@@ -27,7 +26,7 @@
   programs = {
     emacs.package = pkgs.emacs-pgtk;
     rofi = {
-      extraConfig.modi = "drun,run,ssh";
+      extraConfig.modi = "window,drun,run,ssh";
     };
     waybar = {
       settings.mainbar = {
@@ -220,7 +219,7 @@
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod SHIFT, C, exit,"
         "$mainMod, T, togglefloating,"
-        "$mainMod, D, exec, rofi -show-icons -combi-modi windows,drun,run -show combi -modi windows:${myPkgs.hypr-window-select}/bin/hypr-window-select"
+        "$mainMod, D, exec, rofi -show-icons -combi-modi window,drun,run -show combi"
         "$mainMod SHIFT, D, exec, rofi -show run"
         "$mainMod, F, fullscreen, 1"
         "$mainMod SHIFT, F, fullscreen, 0" # true fullscreen
