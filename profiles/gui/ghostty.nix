@@ -1,5 +1,6 @@
 {
   programs.ghostty = {
+    enable = true;
     settings = {
       keybind = [
         "ctrl+shift+s=paste_from_selection"

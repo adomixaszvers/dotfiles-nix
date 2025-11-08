@@ -215,7 +215,7 @@
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind = [
-        "$mainMod, Return, exec, kitty"
+        "$mainMod, Return, exec, ghostty +new-window"
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod SHIFT, C, exit,"
         "$mainMod, T, togglefloating,"
