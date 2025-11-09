@@ -31,11 +31,7 @@ local on_attach = function(client, bufnr)
         "<cmd>lua require'telescope.builtin'.lsp_workspace_symbols{default_text=\":class: \"}<CR>", opts)
 end
 
-local cmp_lsp = require("cmp_nvim_lsp")
-local capabilities = cmp_lsp.default_capabilities()
-
 vim.lsp.config('*', {
-    capabilities = capabilities,
     on_attach = on_attach,
     flags = {
         debounce_text_changes = 150,

@@ -55,6 +55,10 @@
           telescope-nvim
           telescope-fzf-native-nvim
         ];
+        blink-cmp = with pkgs.vimPlugins; [
+          blink-cmp
+          blink-cmp-git
+        ];
         cmp = with pkgs.vimPlugins; [
           cmp-nvim-lsp
           cmp-buffer
@@ -106,7 +110,8 @@
         general = true;
         themer = true;
         lsp = true;
-        cmp = true;
+        blink-cmp = true;
+        cmp = false;
         extra = true;
         telescope = true;
         treesitter-full = true;
@@ -133,7 +138,8 @@
         themer = true;
         extra = false;
         lsp = false;
-        cmp = true;
+        blink-cmp = true;
+        cmp = false;
         telescope = true;
         treesitter-full = false;
         treesitter-small = true;
