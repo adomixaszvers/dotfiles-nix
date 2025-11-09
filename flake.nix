@@ -52,20 +52,17 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs = {
-        flake-compat.follows = "flake-compat";
-        nixpkgs.follows = "nixpkgs";
-      };
+    treefmt = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs =
     {
       nixpkgs,
-      git-hooks,
       nixos-unstable,
       flake-parts,
+      treefmt,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -74,7 +71,7 @@
         "aarch64-linux"
       ];
       imports = [
-        git-hooks.flakeModule
+        treefmt.flakeModule
         ./pkgs
         ./nixos/configurations.nix
         ./homes.nix
@@ -83,7 +80,6 @@
         {
           pkgs,
           system,
-          config,
           inputs',
           ...
         }:
@@ -98,13 +94,12 @@
               config = import ./config.nix;
             };
           };
-          pre-commit.settings = {
-            src = ./.;
-            hooks = {
-              nixfmt-rfc-style.enable = true;
+          treefmt = {
+            programs = {
+              nixfmt.enable = true;
               statix = {
                 enable = true;
-                settings.ignore = [ "hardware-configuration.nix" ];
+                excludes = [ "hardware-configuration.nix" ];
               };
               deadnix.enable = true;
               shellcheck = {
@@ -122,9 +117,7 @@
                 inputs'.home-manager.packages.home-manager
                 pkgs.sops
                 pkgs.age
-              ]
-              ++ config.pre-commit.settings.enabledPackages;
-              shellHook = config.pre-commit.installationScript;
+              ];
             };
             xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
             qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
