@@ -1,4 +1,4 @@
-require "nvim-treesitter.configs".setup {
+require('nvim-treesitter.configs').setup({
   playground = {
     enable = true,
     disable = {},
@@ -16,5 +16,5 @@ require "nvim-treesitter.configs".setup {
       goto_node = '<cr>',
       show_help = '?',
     },
-  }
-}
+  },
+})

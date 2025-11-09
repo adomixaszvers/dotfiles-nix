@@ -101,6 +101,18 @@
                 enable = true;
                 excludes = [ "hardware-configuration.nix" ];
               };
+              stylua = {
+                enable = true;
+                settings = {
+                  # like in https://github.com/neovim/neovim/blob/5d3df1c41afec9e0dd4609ae3dfbccbf3ccd3241/.stylua.toml
+                  column_width = 100;
+                  line_endings = "Unix";
+                  indent_type = "Spaces";
+                  indent_width = 2;
+                  quote_style = "AutoPreferSingle";
+                  call_parentheses = "Input";
+                };
+              };
               deadnix.enable = true;
               shellcheck.enable = true;
             };
