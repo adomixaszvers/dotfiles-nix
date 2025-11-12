@@ -76,6 +76,7 @@
     # enableIPv6 = lib.mkDefault false;
     networkmanager = {
       enable = lib.mkDefault true;
+      plugins = [ pkgs.networkmanager-vpnc ];
       unmanaged = [
         "driver:wireguard"
         "interface-name:br-*"
