@@ -55,9 +55,8 @@
           telescope-nvim
           telescope-fzf-native-nvim
         ];
-        blink-cmp = with pkgs.vimPlugins; [
-          blink-cmp
-          blink-cmp-git
+        blink-cmp = [
+          pkgs.vimPlugins.blink-cmp
         ];
         cmp = with pkgs.vimPlugins; [
           cmp-nvim-lsp
