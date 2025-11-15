@@ -47,7 +47,7 @@
           direnv-vim
         ];
         themer = with pkgs.vimPlugins; [
-          nordic-nvim
+          catppuccin-nvim
           solarized
         ];
         lsp = [ pkgs.vimPlugins.nvim-lspconfig ];

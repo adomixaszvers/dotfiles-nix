@@ -15,7 +15,7 @@
     };
 
     polarity = "dark";
-    base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
     cursor = {
       name = "Banana";
