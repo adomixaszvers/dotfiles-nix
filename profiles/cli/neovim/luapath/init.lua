@@ -131,7 +131,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 require('myConfig.nvim-treesitter')
-require('myConfig.playground')
 local nixCats = require('nixCats')
 if nixCats('lsp') then
   require('myConfig.lspconfig')
