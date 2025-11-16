@@ -8,14 +8,14 @@
 {
   imports = [
     ./cli
+    ./cli/jujutsu.nix
     ./gui/stylix.nix
     ./gui/fonts.nix
     ./gui/kitty.nix
   ];
+  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     # glibc_multi
-    # firefox # does not detect amd gpu
-    (config.lib.nixGL.wrap firefox)
     keepassxc
     xsel
   ];
@@ -24,11 +24,6 @@
     SSH_AUTH_SOCK = "\${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh";
   };
   manual.html.enable = true;
-  nixGL = {
-    defaultWrapper = "mesa";
-    installScripts = [ "mesa" ];
-    inherit (inputs.nixGL) packages;
-  };
   nixCats.packageNames = [ "nixCats-small" ];
   programs = {
     gpg.enable = lib.mkForce false;
@@ -45,12 +40,16 @@
       done;
       export PATH="$NON_NIX_PATHS:$NIX_PATHS"
     '';
+    firefox = {
+      enable = true;
+      # firefox # does not detect amd gpu
+      package = config.lib.nixGL.wrap pkgs.firefox;
+    };
     kitty.package = config.lib.nixGL.wrap pkgs.kitty;
     ssh = {
       enable = true;
-      extraConfig = ''
-        PKCS11Provider "${pkgs.yubico-piv-tool}/lib/libykcs11.so"
-      '';
+      enableDefaultConfig = false;
+      matchBlocks."*".extraOptions.PKCS11Provider = "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
     };
   };
   services = {
@@ -64,5 +63,12 @@
   xdg = {
     enable = true;
   };
-  targets.genericLinux.enable = true;
+  targets.genericLinux = {
+    enable = true;
+    nixGL = {
+      defaultWrapper = "mesa";
+      installScripts = [ "mesa" ];
+      inherit (inputs.nixGL) packages;
+    };
+  };
 }
