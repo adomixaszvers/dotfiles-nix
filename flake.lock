@@ -393,19 +393,6 @@
         "type": "github"
       }
     },
-    "nixos-unstable": {
-      "locked": {
-        "lastModified": 1763061370,
-        "narHash": "sha256-BNfgfYSwFGU/tpj/kd5UNLIpNuycq5+pvicLrOC6CcE=",
-        "rev": "636528d617af0dbafc261a3b97fab7c9ca0a53f4",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable-small/nixos-25.11pre895491.636528d617af/nixexprs.tar.xz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-unstable-small/nixexprs.tar.xz"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1762844143,
@@ -487,7 +474,9 @@
         "nixCats": "nixCats",
         "nixGL": "nixGL",
         "nixos-hardware": "nixos-hardware",
-        "nixos-unstable": "nixos-unstable",
+        "nixos-unstable": [
+          "nixpkgs"
+        ],
         "nixpkgs": "nixpkgs_2",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
