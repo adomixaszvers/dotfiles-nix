@@ -66,7 +66,7 @@
       nautilus
       gtypist
       libreoffice-still
-      # lutris
+      lutris
       mpv
       playerctl
       remmina
