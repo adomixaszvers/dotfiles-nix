@@ -21,16 +21,15 @@ vim.o.mouse = ''
 
 do
   local opts = { noremap = true, silent = true }
-  vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope find_files<cr>', opts)
-  vim.keymap.set('n', '<leader>/', '<cmd>Telescope live_grep<cr>', opts)
-  vim.keymap.set('n', "<leader>'", '<cmd>Telescope resume<cr>', opts)
-  vim.keymap.set('n', '<leader>,', '<cmd>Telescope buffers<cr>', opts)
+  local tb = require('telescope.builtin')
+  vim.keymap.set('n', '<leader><leader>', tb.find_files, opts)
+  vim.keymap.set('n', '<leader>/', tb.live_grep, opts)
+  vim.keymap.set('n', "<leader>'", tb.resume, opts)
+  vim.keymap.set('n', '<leader>,', tb.buffers, opts)
   vim.keymap.set('n', '<leader>f', '<cmd>Neoformat<cr>', opts)
   vim.keymap.set('n', '-', '-', opts)
-  vim.keymap.set('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  vim.keymap.set('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 end
 
 vim.o.updatetime = 100
@@ -67,7 +66,13 @@ vim.cmd.packadd('fidget.nvim')
 require('fidget').setup({})
 require('which-key').setup({})
 
-require('telescope').load_extension('fzf')
+local telescope = require('telescope')
+telescope.setup({
+  extensions = {
+    fzf = {},
+  },
+})
+telescope.load_extension('fzf')
 require('gitsigns').setup({
   on_attach = function(bufnr)
     local gitsigns = require('gitsigns')
@@ -98,28 +103,41 @@ require('gitsigns').setup({
     -- Actions
     map('n', '<leader>hs', gitsigns.stage_hunk)
     map('n', '<leader>hr', gitsigns.reset_hunk)
+
     map('v', '<leader>hs', function()
       gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
     end)
+
     map('v', '<leader>hr', function()
       gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
     end)
+
     map('n', '<leader>hS', gitsigns.stage_buffer)
-    map('n', '<leader>hu', gitsigns.undo_stage_hunk)
     map('n', '<leader>hR', gitsigns.reset_buffer)
     map('n', '<leader>hp', gitsigns.preview_hunk)
+    map('n', '<leader>hi', gitsigns.preview_hunk_inline)
+
     map('n', '<leader>hb', function()
       gitsigns.blame_line({ full = true })
     end)
-    map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+
     map('n', '<leader>hd', gitsigns.diffthis)
+
     map('n', '<leader>hD', function()
       gitsigns.diffthis('~')
     end)
-    map('n', '<leader>td', gitsigns.toggle_deleted)
+
+    map('n', '<leader>hQ', function()
+      gitsigns.setqflist('all')
+    end)
+    map('n', '<leader>hq', gitsigns.setqflist)
+
+    -- Toggles
+    map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+    map('n', '<leader>tw', gitsigns.toggle_word_diff)
 
     -- Text object
-    map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+    map({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
   end,
 })
 
