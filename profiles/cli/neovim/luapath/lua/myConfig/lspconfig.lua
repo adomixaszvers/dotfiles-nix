@@ -3,45 +3,38 @@ local nvim_lsp = require('lspconfig')
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  vim.cmd('ALEDisableBuffer')
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-  local function buf_set_option(name, value)
-    vim.api.nvim_set_option_value(name, value, { buf = bufnr })
-  end
+  vim.cmd.ALEDisableBuffer()
 
-  -- Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  ---comment
+  ---@param keys string
+  ---@param func function
+  ---@param desc string
+  local nmap = function(keys, func, desc)
+    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
 
   -- Mappings.
-  local opts = { noremap = true, silent = true }
-
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap(
-    'n',
-    '<space>wl',
-    '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-    opts
-  )
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
-  buf_set_keymap(
-    'n',
-    '<space>n',
-    '<cmd>lua require\'telescope.builtin\'.lsp_workspace_symbols{default_text=":class: "}<CR>',
-    opts
-  )
+  nmap('gD', vim.lsp.buf.declaration, 'LSP declaration')
+  nmap('gd', vim.lsp.buf.definition, 'LSP definition')
+  nmap('K', vim.lsp.buf.hover, 'LSP hover')
+  nmap('gi', vim.lsp.buf.implementation, 'LSP implementation')
+  nmap('<C-k>', vim.lsp.buf.signature_help, 'LSP signature_help')
+  nmap('<space>wa', vim.lsp.buf.add_workspace_folder, 'LSP add_workspace_folder')
+  nmap('<space>wr', vim.lsp.buf.remove_workspace_folder, 'LSP remove_workspace_folder')
+  nmap('<space>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, 'LSP list workspace folders')
+  nmap('<space>D', vim.lsp.buf.type_definition, 'LSP type_definition')
+  nmap('<space>rn', vim.lsp.buf.rename, 'LSP rename')
+  nmap('<space>ca', vim.lsp.buf.code_action, 'LSP code_action')
+  nmap('gr', vim.lsp.buf.references, 'LSP references')
+  nmap('<space>f', function()
+    vim.lsp.buf.format({ async = true })
+  end, 'LSP format')
+  nmap('<space>n', function()
+    require 'telescope.builtin'.lsp_workspace_symbols { default_text = ':class: ' }
+  end, 'LSP lsp_workspace_symbols')
 end
 
 vim.lsp.config('*', {
