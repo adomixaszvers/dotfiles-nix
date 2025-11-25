@@ -16,6 +16,7 @@
           ripgrep
           deadnix
           statix
+          stylua
         ];
         lsp = with pkgs; [
           lua-language-server
@@ -27,9 +28,9 @@
         general = with pkgs.vimPlugins; [
           ale
           commentary
+          conform-nvim
           fugitive
           gitsigns-nvim
-          neoformat
           nvim-sops
           playground
           # rainbow-delimiters-nvim

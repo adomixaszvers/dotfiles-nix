@@ -19,6 +19,7 @@ vim.o.scrolloff = 5 -- minimal lines visible above and below cursor
 vim.o.showmode = false
 vim.o.mouse = ''
 
+local conform = require('conform')
 do
   local tb = require('telescope.builtin')
   vim.keymap.set('n', '<leader><leader>', tb.find_files, { desc = 'Telescope find files' })
@@ -26,7 +27,13 @@ do
   vim.keymap.set('n', "<leader>'", tb.resume, { desc = 'Telescope resume' })
   vim.keymap.set('n', '<leader>,', tb.buffers, { desc = 'Telescope buffers' })
   vim.keymap.set('n', '<leader><F1>', tb.help_tags, { desc = 'Telescope help_tags' })
-  vim.keymap.set('n', '<leader>f', '<cmd>Neoformat<cr>', { desc = 'Neoformat' })
+  vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
+    conform.format({
+      lsp_fallback = true,
+      async = false,
+      timeout_ms = 1000,
+    })
+  end, { desc = 'Format file' })
   vim.keymap.set('n', '-', '-', { noremap = true, silent = true })
   vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Diagnostic open_float' })
   vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Diagnostic setloclist' })
@@ -62,6 +69,14 @@ vim.o.timeout = true
 -- if the timeoutlen is too short I am too slow to input surround.vim bindings
 -- so let the timeoutlen be 1000 (default)
 -- vim.o.timeoutlen = 300
+
+conform.setup({
+  formatters_by_ft = {
+    lua = { 'stylua' },
+    nix = { 'nixfmt' },
+  },
+})
+
 vim.cmd.packadd('fidget.nvim')
 require('fidget').setup({})
 require('which-key').setup({})
@@ -148,8 +163,8 @@ require('gitsigns').setup({
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.nix',
-  callback = function()
-    vim.cmd.Neoformat()
+  callback = function(args)
+    conform.format({ bufnr = args.buf })
   end,
 })
 
