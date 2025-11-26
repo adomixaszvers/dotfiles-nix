@@ -12,7 +12,7 @@
     ./doom-emacs.nix
     ./firefox.nix
     ./fonts.nix
-    ./ghostty.nix
+    # ./ghostty.nix
     ./kitty.nix
     ./stylix.nix
   ];
