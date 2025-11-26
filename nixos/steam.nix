@@ -4,6 +4,8 @@
     steam = {
       enable = true;
       extraCompatPackages = lib.mkDefault [ pkgs.proton-ge-bin ];
+      localNetworkGameTransfers.openFirewall = true;
+      remotePlay.openFirewall = true;
       package = pkgs.steam.override {
         extraPkgs =
           pkgs: with pkgs; [
