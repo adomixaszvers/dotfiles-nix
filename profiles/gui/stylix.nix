@@ -8,6 +8,7 @@
   imports = [ inputs.stylix.homeModules.stylix ];
   stylix = {
     autoEnable = false;
+    enableReleaseChecks = false;
     image = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/wallpapers/nix-wallpaper-nineish-catppuccin-frappe.png";
       sha256 = "03lrj64zig62ibhcss5dshy27kvw363gzygm4rgk7ihbdjj2sw7w";
