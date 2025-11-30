@@ -48,6 +48,7 @@
         default-command = "log";
         pager = "delta";
         diff-formatter = ":git";
+        conflict-marker-style = "snapshot";
       };
       user = {
         email = "adomixaszvers@gmail.com";
