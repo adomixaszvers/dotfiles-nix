@@ -8,7 +8,9 @@
       bold_italic_font = "auto";
       enable_audio_bell = false;
       envinclude = "KITTY_CONF_*";
-
+      cursor_trail = 10;
+      cursor_trail_start_threshold = 0;
+      cursor_trail_decay = "0.01 0.05";
     };
   };
   programs.zsh.initContent = # bash
