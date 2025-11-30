@@ -20,13 +20,15 @@ vim.o.showmode = false
 vim.o.mouse = ''
 
 local conform = require('conform')
+local fzf = require('fzf-lua')
+fzf.setup({ 'telescope' })
+fzf.register_ui_select()
 do
-  local tb = require('telescope.builtin')
-  vim.keymap.set('n', '<leader><leader>', tb.find_files, { desc = 'Telescope find files' })
-  vim.keymap.set('n', '<leader>/', tb.live_grep, { desc = 'Telescope live grep' })
-  vim.keymap.set('n', "<leader>'", tb.resume, { desc = 'Telescope resume' })
-  vim.keymap.set('n', '<leader>,', tb.buffers, { desc = 'Telescope buffers' })
-  vim.keymap.set('n', '<leader><F1>', tb.help_tags, { desc = 'Telescope help_tags' })
+  vim.keymap.set('n', '<leader><leader>', fzf.files, { desc = 'Find files' })
+  vim.keymap.set('n', '<leader>/', fzf.live_grep, { desc = 'Live grep' })
+  vim.keymap.set('n', "<leader>'", fzf.resume, { desc = 'Picker resume' })
+  vim.keymap.set('n', '<leader>,', fzf.buffers, { desc = 'Buffers' })
+  vim.keymap.set('n', '<leader><F1>', fzf.helptags, { desc = 'Help tags' })
   vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
     conform.format({
       lsp_fallback = true,
@@ -81,13 +83,6 @@ vim.cmd.packadd('fidget.nvim')
 require('fidget').setup({})
 require('which-key').setup({})
 
-local telescope = require('telescope')
-telescope.setup({
-  extensions = {
-    fzf = {},
-  },
-})
-telescope.load_extension('fzf')
 require('gitsigns').setup({
   on_attach = function(bufnr)
     local gitsigns = require('gitsigns')

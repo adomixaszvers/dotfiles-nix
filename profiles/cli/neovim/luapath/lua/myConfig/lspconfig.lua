@@ -27,7 +27,7 @@ local on_attach = function(client, bufnr)
   nmap('<space>rn', vim.lsp.buf.rename, 'LSP rename')
   nmap('<space>ca', vim.lsp.buf.code_action, 'LSP code_action')
   nmap('<space>n', function()
-    require 'telescope.builtin'.lsp_workspace_symbols { default_text = ':class: ' }
+    require 'fzf-lua'.lsp_workspace_symbols { default_text = ':class: ' }
   end, 'LSP lsp_workspace_symbols')
 end
 

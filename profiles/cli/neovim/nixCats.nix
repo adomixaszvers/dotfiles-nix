@@ -30,6 +30,7 @@
           commentary
           conform-nvim
           fugitive
+          fzf-lua
           gitsigns-nvim
           nvim-sops
           playground
@@ -51,11 +52,6 @@
           solarized
         ];
         lsp = [ pkgs.vimPlugins.nvim-lspconfig ];
-        telescope = with pkgs.vimPlugins; [
-          plenary-nvim
-          telescope-nvim
-          telescope-fzf-native-nvim
-        ];
         blink-cmp = [
           pkgs.vimPlugins.blink-cmp
         ];
@@ -113,7 +109,6 @@
         blink-cmp = true;
         cmp = false;
         extra = true;
-        telescope = true;
         treesitter-full = true;
         treesitter-small = false;
       };
@@ -140,7 +135,6 @@
         lsp = false;
         blink-cmp = true;
         cmp = false;
-        telescope = true;
         treesitter-full = false;
         treesitter-small = true;
       };
