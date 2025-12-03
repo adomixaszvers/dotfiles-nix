@@ -15,6 +15,7 @@
     # ../kde.nix
     ../avahi.nix
     ../common.nix
+    ../determinate.nix
     ../flakes.nix
     ../gc.nix
     ../nix-package.nix

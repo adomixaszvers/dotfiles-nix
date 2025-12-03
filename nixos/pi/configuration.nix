@@ -7,6 +7,7 @@
 {
   imports = [
     # ./vaultwarden.nix
+    ../determinate.nix
     ../flakes.nix
     ../nix-package.nix
     ../nix-registry.nix
