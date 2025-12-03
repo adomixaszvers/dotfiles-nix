@@ -12,6 +12,7 @@
     ./hardware-configuration.nix
     ../common.nix
     ../cachyos.nix
+    ../determinate.nix
     ../flakes.nix
     ../gc.nix
     ../nix-registry.nix
