@@ -9,7 +9,8 @@
     ./cli/atuin
     # ./wm/xsession-common.nix
     # ./wm/xmonad
-    ./wm/hyprland
+    # ./wm/hyprland
+    ./wm/niri
     ./cli/jujutsu.nix
   ];
   # imports = [ ./common.nix ];
