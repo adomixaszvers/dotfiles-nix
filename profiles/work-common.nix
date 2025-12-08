@@ -76,7 +76,7 @@
       minio-client
       myPkgs.hunspell-lt
       keystore-explorer
-      # myPkgs.sqldeveloper
+      myPkgs.sqldeveloper
       mercurial
       pnpm_10
       podman-compose
