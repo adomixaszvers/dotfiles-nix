@@ -11,7 +11,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common.nix
-    ../cachyos.nix
     ../flakes.nix
     ../gc.nix
     ../nix-registry.nix
