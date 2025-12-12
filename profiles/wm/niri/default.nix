@@ -365,7 +365,10 @@
             };
           };
         };
-        layout.gaps = 8;
+        layout = {
+          gaps = 8;
+          default-column-width.proportion = 0.5;
+        };
         environment = {
           QT_QPA_PLATFORM = "wayland";
           KITTY_CONF_FONT = "font_size 9.0";
