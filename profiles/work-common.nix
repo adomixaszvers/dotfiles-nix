@@ -467,21 +467,6 @@
     };
   };
   wayland.windowManager = {
-    hyprland = {
-      systemd.enableXdgAutostart = true;
-      settings = {
-        env =
-          let
-            ideaOptions = pkgs.writeText "idea64.vmoptions" ''
-              -Xmx3971m
-              -Dawt.toolkit.name=WLToolkit
-            '';
-          in
-          [
-            "IDEA_VM_OPTIONS,${ideaOptions}"
-          ];
-      };
-    };
     sway.config = {
       input = {
         "6127:24729:Lenovo_Lenovo_Traditional_USB_Keyboard" = {

@@ -6,15 +6,21 @@
 }:
 let
   isX11 = config.xsession.enable;
-  isHypr = config.wayland.windowManager.hyprland.enable || config.programs.niri.enable;
+  isHypr = config.wayland.windowManager.hyprland.enable;
+  isNiri = config.programs.niri.enable;
+  isWayland = isHypr || isNiri;
+  ideaOptions = pkgs.writeText "idea64.vmoptions" ''
+    -Xmx3971m
+    -Dawt.toolkit.name=WLToolkit
+  '';
 in
 {
   imports = [
     ./work-common.nix
     # ./wm/xsession-common.nix
     # ./wm/xmonad
-    ./wm/hyprland
-    # ./wm/niri
+    # ./wm/hyprland
+    ./wm/niri
   ];
   # gtk.enable = false;
   # qt.enable = false;
@@ -22,38 +28,56 @@ in
     # network-manager-applet.enable = false;
     # udiskie.enable = false;
     kbdd.enable = isX11;
-    shikane.enable = isHypr;
+    shikane.enable = isWayland;
     picom.enable = isX11;
     screen-locker = {
       enable = lib.mkDefault isX11;
       inactiveInterval = 5;
     };
     hypridle = {
-      enable = lib.mkDefault isHypr;
-      settings = {
-        general = {
-          before_sleep_cmd = "loginctl lock-session";
-          after_sleep_cmd = "hyprctl dispatch dpms on";
-          lock_cmd = "pidof hyprlock || hyprlock";
+      enable = lib.mkDefault isWayland;
+      settings =
+        let
+          niri = lib.getExe config.programs.niri.package;
+          dpmsOnCmd =
+            if isHypr then
+              "hyprctl dispatch dpms on"
+            else if isNiri then
+              "${niri} msg action power-on-monitors"
+            else
+              "";
+          dpmsOffCmd =
+            if isHypr then
+              "hyprctl dispatch dpms off"
+            else if isNiri then
+              "${niri} msg action power-off-monitors"
+            else
+              "";
+        in
+        {
+          general = {
+            before_sleep_cmd = "loginctl lock-session";
+            after_sleep_cmd = dpmsOnCmd;
+            lock_cmd = "pidof hyprlock || hyprlock";
+          };
+          listener = [
+            {
+              timeout = 300;
+              on-timeout = "loginctl lock-session";
+            }
+            {
+              timeout = 30;
+              on-timeout = "pidof hyprlock && ${dpmsOffCmd}";
+              on-resume = dpmsOnCmd;
+            }
+          ];
         };
-        listener = [
-          {
-            timeout = 300;
-            on-timeout = "loginctl lock-session";
-          }
-          {
-            timeout = 30;
-            on-timeout = "pidof hyprlock && hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
-          }
-        ];
-      };
     };
 
   };
   programs = {
     hyprlock = {
-      enable = lib.mkDefault isHypr;
+      enable = lib.mkDefault isWayland;
       settings = {
         animations.enabled = false;
         general = {
@@ -83,6 +107,9 @@ in
         ];
       };
     };
+    niri.settings.environment = {
+      IDEA_VM_OPTIONS = ideaOptions.outPath;
+    };
   };
   xsession.windowManager.bspwm = {
     monitors = {
@@ -103,11 +130,16 @@ in
     };
   };
   wayland.windowManager = {
-    hyprland.settings.monitor = [
-      "DP-6,2560x1440,0x0,1.00"
-      "DP-7,2560x1440,2560x0,1.00"
-      # "eDP-1,disable"
-    ];
+    hyprland.settings = {
+      env = [
+        "IDEA_VM_OPTIONS,${ideaOptions}"
+      ];
+      monitor = [
+        "DP-6,2560x1440,0x0,1.00"
+        "DP-7,2560x1440,2560x0,1.00"
+        # "eDP-1,disable"
+      ];
+    };
     sway.config = {
       startup = [
         {

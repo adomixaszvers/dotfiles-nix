@@ -400,6 +400,7 @@
       extraConfig.modi = "drun,run,window,combi";
     };
     waybar = {
+      systemd.enable = true;
       settings.mainbar = {
         layer = "top";
         position = "top";
