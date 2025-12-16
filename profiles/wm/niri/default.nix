@@ -279,9 +279,10 @@
           "Mod+R".action.switch-preset-column-width = [ ];
           "Mod+Shift+R".action.switch-preset-window-height = [ ];
           "Mod+Ctrl+R".action.reset-window-height = [ ];
-          "Mod+F".action.maximize-window-to-edges = [ ];
+          "Mod+F".action.maximize-column = [ ];
           "Mod+Shift+F".action.fullscreen-window = [ ];
-          "Mod+Ctrl+F".action.maximize-column = [ ];
+          "Mod+Ctrl+F".action.expand-column-to-available-width = [ ];
+          "Mod+N".action.maximize-window-to-edges = [ ];
 
           "Mod+C".action.center-column = [ ];
 
@@ -344,6 +345,11 @@
           # Powers off the monitors. To turn them back on, do any input like
           # moving the mouse or pressing any other key.
           "Mod+Shift+P".action.power-off-monitors = [ ];
+
+          "Mod+F4".action.spawn = "rofi-powermenu";
+          "Mod+F5".action.spawn = "playerctl play-pause";
+          "Mod+F6".action.spawn = "playerctl previous";
+          "Mod+F7".action.spawn = "playerctl next";
         };
         prefer-no-csd = true;
         spawn-at-startup = [
@@ -356,7 +362,10 @@
           }
         ];
         input = {
-          # focus-follows-mouse.enable = true;
+          focus-follows-mouse = {
+            enable = true;
+            max-scroll-amount = "10%";
+          };
           keyboard = {
             numlock = true;
             xkb = {
@@ -386,13 +395,28 @@
           }
           {
             matches = [
-              {
-                app-id = "firefox$";
-              }
+              { app-id = "firefox$"; }
             ];
             open-maximized = true;
           }
+          {
+            matches = [
+              { app-id = "^steam$"; }
+            ];
+            open-on-workspace = "game";
+          }
         ];
+        workspaces = {
+          "01-browser" = {
+            name = "browser";
+          };
+          "02-game" = {
+            name = "game";
+          };
+          "03-dev" = {
+            name = "dev";
+          };
+        };
       };
       package = pkgs.niri;
     };
