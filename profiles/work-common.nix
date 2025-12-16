@@ -116,6 +116,7 @@
       CRYPTOSERVER = "3001@localhost";
       PNPM_HOME = "${config.xdg.dataHome}/pnpm";
       # see https://github.com/skywind3000/z.lua?tab=readme-ov-file#options
+      TESTCONTAINERS_RYUK_DISABLED = "true";
       _ZL_EXCLUDE_DIRS = "/kiti"; # don't trigger automount with z-lua
     };
   };
