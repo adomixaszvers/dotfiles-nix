@@ -35,4 +35,17 @@ if [ "$TERM" = linux ]; then
   PURE_GIT_STASH_SYMBOL="#"
 fi
 
+hm-input() {
+  input=$(nix eval --option warn-dirty false --raw --impure --expr 'builtins.concatStringsSep "\n" (builtins.attrNames (import ~/.config/nixpkgs).inputs)'| fzf)
+  if [ -z "$input" ]; then
+    return 0
+  fi
+
+  outpath=$(nix eval --raw -f ~/.config/nixpkgs "inputs.$input.outPath")
+  if [ -d "$outpath" ]; then
+    echo "changing directory to input \"$input\""
+    cd "$outpath"
+  fi
+}
+
 PATH="${PATH:+${PATH}:}$HOME/.local/bin"

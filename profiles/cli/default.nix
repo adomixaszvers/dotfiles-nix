@@ -5,7 +5,6 @@
     ./direnv
     ./git.nix
     ./gnupg.nix
-    ./flakeInputs.nix
     ./neovim
     ./registry.nix
     ./zsh
