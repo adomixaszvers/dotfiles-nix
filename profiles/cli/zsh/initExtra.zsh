@@ -36,12 +36,12 @@ if [ "$TERM" = linux ]; then
 fi
 
 hm-input() {
-  input=$(nix eval --option warn-dirty false --raw --impure --expr 'builtins.concatStringsSep "\n" (builtins.attrNames (import ~/.config/nixpkgs).inputs)'| fzf)
+  input=$(nix eval --option warn-dirty false --raw --impure --expr 'builtins.concatStringsSep "\n" (builtins.attrNames (builtins.getFlake "mine").inputs)'| fzf)
   if [ -z "$input" ]; then
     return 0
   fi
 
-  outpath=$(nix eval --raw -f ~/.config/nixpkgs "inputs.$input.outPath")
+  outpath=$(nix eval --raw --impure --expr "(builtins.getFlake \"mine\").inputs.$input.outPath")
   if [ -d "$outpath" ]; then
     echo "changing directory to input \"$input\""
     cd "$outpath"
