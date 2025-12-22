@@ -14,6 +14,7 @@
     ../dunst.nix
   ];
   home.packages = [
+    pkgs.wl-clipboard
     pkgs.xwayland-satellite
   ];
   programs = {
