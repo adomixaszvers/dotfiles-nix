@@ -228,7 +228,6 @@
     spiceUSBRedirection.enable = true;
     podman = {
       enable = true;
-      package = pkgs.podman.override { systemdMinimal = pkgs.systemd; };
       dockerCompat = true;
       dockerSocket.enable = true;
     };

@@ -132,10 +132,7 @@
         SUBSYSTEM=="vchiq",KERNEL=="vchiq",GROUP="video",MODE="0660"
       '';
   };
-  virtualisation.podman = {
-    enable = true;
-    package = pkgs.podman.override { systemdMinimal = pkgs.systemd; };
-  };
+  virtualisation.podman.enable = true;
   virtualisation.oci-containers.backend = "podman";
 
   powerManagement.cpuFreqGovernor = "schedutil";
