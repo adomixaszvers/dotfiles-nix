@@ -37,9 +37,12 @@
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "zfs" ];
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_18;
     kernel.sysctl."vm.max_map_count" = 2147483642;
-    zfs.requestEncryptionCredentials = false;
+    zfs = {
+      package = pkgs.zfs_2_4;
+      requestEncryptionCredentials = false;
+    };
     extraModprobeConfig = ''
       options zfs zfs_arc_sys_free=${toString (3 * 1024 * 1024 * 1024)}
     '';
