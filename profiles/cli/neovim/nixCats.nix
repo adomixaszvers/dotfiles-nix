@@ -33,7 +33,6 @@
           fzf-lua
           gitsigns-nvim
           nvim-sops
-          playground
           # rainbow-delimiters-nvim
           repeat
           vim-suda
