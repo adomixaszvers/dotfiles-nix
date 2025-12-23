@@ -4,13 +4,13 @@
     ./common.nix
     ./cli/atuin
     ./cli/jujutsu.nix
+    ./gui/lutris.nix
   ];
   home.packages = with pkgs; [
     brave
     discord
     # gamescope
     libreoffice-still
-    lutris
     mpv
     (obs-studio.override {
       cudaSupport = true;

@@ -12,6 +12,7 @@
     # ./wm/hyprland
     ./wm/niri
     ./cli/jujutsu.nix
+    ./gui/lutris.nix
   ];
   # imports = [ ./common.nix ];
   # gtk.enable = false;
@@ -67,7 +68,6 @@
       nautilus
       gtypist
       libreoffice-still
-      lutris
       mpv
       playerctl
       remmina
