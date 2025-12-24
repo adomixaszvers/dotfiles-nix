@@ -55,7 +55,21 @@
         name = "Adomas Jatužis";
       };
       working-copy.eol-conversion = "input";
-
+      "--scope" = [
+        {
+          "--when.repositories" = [ "~/.config/nixpkgs" ];
+          fix.tools.treefmt = {
+            command = [
+              "treefmt"
+              "--no-cache"
+              "--quiet"
+              "--stdin"
+              "$path"
+            ];
+            patterns = [ "glob:'**/*.nix'" ];
+          };
+        }
+      ];
     };
   };
   programs.zsh.sessionVariables.PURE_GIT_PULL = "0";
