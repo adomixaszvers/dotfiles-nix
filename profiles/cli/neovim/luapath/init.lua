@@ -74,8 +74,8 @@ vim.o.timeout = true
 
 conform.setup({
   formatters_by_ft = {
-    lua = { 'treefmt', 'stylua' },
-    nix = { 'treefmt', 'nixfmt' },
+    lua = { 'treefmt', 'stylua', stop_after_first = true },
+    nix = { 'treefmt', 'nixfmt', stop_after_first = true },
   },
   formatters = {
     treefmt = function(bufnr)
