@@ -73,6 +73,7 @@
           pkgs,
           system,
           inputs',
+          config,
           ...
         }:
         {
@@ -115,6 +116,7 @@
                 inputs'.home-manager.packages.home-manager
                 pkgs.sops
                 pkgs.age
+                config.treefmt.build.wrapper
               ];
             };
             xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
