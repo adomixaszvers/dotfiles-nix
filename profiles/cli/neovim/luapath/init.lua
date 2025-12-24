@@ -74,8 +74,16 @@ vim.o.timeout = true
 
 conform.setup({
   formatters_by_ft = {
-    lua = { 'stylua' },
-    nix = { 'nixfmt' },
+    lua = { 'treefmt', 'stylua' },
+    nix = { 'treefmt', 'nixfmt' },
+  },
+  formatters = {
+    treefmt = function(bufnr)
+      local dotfiles_root = vim.fs.joinpath(vim.env.XDG_CONFIG_HOME, 'nixpkgs')
+      local bufname = vim.fn.expand('%:p')
+      local fs = require('conform.fs')
+      return { require_cwd = not fs.is_subpath(dotfiles_root, bufname) }
+    end,
   },
 })
 
