@@ -57,7 +57,7 @@
       working-copy.eol-conversion = "input";
       "--scope" = [
         {
-          "--when.repositories" = [ "~/.config/nixpkgs" ];
+          "--when".repositories = [ "~/.config/nixpkgs" ];
           fix.tools.treefmt = {
             command = [
               "treefmt"
