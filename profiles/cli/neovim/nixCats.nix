@@ -32,6 +32,7 @@
           fugitive
           fzf-lua
           gitsigns-nvim
+          lazydev-nvim
           nvim-sops
           # rainbow-delimiters-nvim
           repeat
