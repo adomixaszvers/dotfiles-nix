@@ -1,5 +1,7 @@
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
+--- @param client vim.lsp.Client
+--- @param bufnr integer
 local on_attach = function(client, bufnr)
   vim.cmd.ALEDisableBuffer()
 
@@ -25,7 +27,9 @@ local on_attach = function(client, bufnr)
   end, 'LSP list workspace folders')
   nmap('<space>D', vim.lsp.buf.type_definition, 'LSP type_definition')
   nmap('<space>rn', vim.lsp.buf.rename, 'LSP rename')
-  nmap('<space>ca', vim.lsp.buf.code_action, 'LSP code_action')
+  if client:supports_method('textDocument/codeAction', bufnr) then
+    nmap('<space>ca', vim.lsp.buf.code_action, 'LSP code_action')
+  end
   nmap('<space>n', function()
     require 'fzf-lua'.lsp_workspace_symbols { default_text = ':class: ' }
   end, 'LSP lsp_workspace_symbols')
