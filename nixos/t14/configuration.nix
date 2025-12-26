@@ -16,6 +16,7 @@
     ../fprintd.nix
     ../gc.nix
     ../libvirtd.nix
+    ../nix-package.nix
     ../nix-registry.nix
     ../patch-nm-vpnc.nix
     ../pipewire.nix

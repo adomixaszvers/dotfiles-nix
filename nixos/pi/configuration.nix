@@ -8,6 +8,7 @@
   imports = [
     # ./vaultwarden.nix
     ../flakes.nix
+    ../nix-package.nix
     ../nix-registry.nix
     ../gc.nix
     # ../pg-upgrade.nix
