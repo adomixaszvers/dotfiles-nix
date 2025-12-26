@@ -7,6 +7,7 @@
 
 {
   imports = [
+    ../../nixos/nix-package.nix
     ./direnv
     ./git.nix
     ./gnupg.nix
