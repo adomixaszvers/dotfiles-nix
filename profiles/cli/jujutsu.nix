@@ -66,7 +66,10 @@
               "--stdin"
               "$path"
             ];
-            patterns = [ "glob:'**/*.nix'" ];
+            patterns = [
+              "glob:'**/*.nix'"
+              "glob:'**/*.lua'"
+            ];
           };
         }
       ];
