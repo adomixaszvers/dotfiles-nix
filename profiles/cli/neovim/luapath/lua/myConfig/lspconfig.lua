@@ -3,9 +3,6 @@
 --- @param client vim.lsp.Client
 --- @param bufnr integer
 local on_attach = function(client, bufnr)
-  vim.cmd.ALEDisableBuffer()
-
-  ---comment
   ---@param keys string
   ---@param func function
   ---@param desc string

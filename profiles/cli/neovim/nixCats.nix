@@ -26,7 +26,6 @@
       };
       startupPlugins = {
         general = with pkgs.vimPlugins; [
-          ale
           commentary
           conform-nvim
           fugitive

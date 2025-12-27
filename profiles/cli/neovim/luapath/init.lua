@@ -44,8 +44,6 @@ end
 vim.o.updatetime = 100
 vim.o.grepprg = 'rg --vimgrep --no-heading --smart-case'
 vim.g.suda_smart_edit = 0
-vim.g.ale_disable_lsp = 1
-vim.g.ale_use_neovim_diagnostics_api = 1
 
 if vim.env.TERM == 'linux' then
   vim.cmd('colorscheme solarized')
