@@ -93,8 +93,7 @@ require('gitsigns').setup({
   on_attach = function(bufnr)
     local gitsigns = require('gitsigns')
 
-    ---comment
-    ---@param mode string
+    ---@param mode string|string[]
     ---@param l string
     ---@param r function
     ---@param opts { desc: string, buffer?: number }
