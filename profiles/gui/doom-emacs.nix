@@ -12,13 +12,7 @@
       sqlite
       wordnet
     ];
-    file.".emacs-profile".text = ''
-      doom
-    '';
     sessionVariables.DOOMDIR = "~/.config/nixpkgs/profiles/gui/doom";
   };
-  programs.emacs = {
-    enable = true;
-    # package = pkgs.emacs29-pgtk;
-  };
+  programs.emacs.enable = true;
 }
