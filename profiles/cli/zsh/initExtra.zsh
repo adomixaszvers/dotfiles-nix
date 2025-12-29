@@ -36,12 +36,12 @@ if [ "$TERM" = linux ]; then
 fi
 
 hm-input() {
-  input=$(nix eval --option warn-dirty false --raw --impure --expr 'builtins.concatStringsSep "\n" (builtins.attrNames (builtins.getFlake "mine").inputs)'| fzf)
+  input=$(jq -r '.nodes[.root].inputs[]|select(type=="string")' ~/.config/nixpkgs/flake.lock| fzf)
   if [ -z "$input" ]; then
     return 0
   fi
 
-  outpath=$(nix eval --raw --impure --expr "(builtins.getFlake \"mine\").inputs.$input.outPath")
+  outpath=$(nix eval --raw --expr "(builtins.fetchTree (builtins.fromJSON $(jq ".nodes.\"$input\".locked|@text" ~/.config/nixpkgs/flake.lock))).outPath")
   if [ -d "$outpath" ]; then
     echo "changing directory to input \"$input\""
     cd "$outpath"
