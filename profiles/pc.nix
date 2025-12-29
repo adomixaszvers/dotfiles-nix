@@ -25,6 +25,8 @@
     BROWSER = "firefox";
   };
 
+  programs.emacs.package = pkgs.emacs-pgtk;
+
   stylix = {
     enable = true;
     targets.gtk.enable = false;
