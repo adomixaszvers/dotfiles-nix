@@ -36,7 +36,13 @@ if [ "$TERM" = linux ]; then
 fi
 
 hm-input() {
-  input=$(jq -r '.nodes[.root].inputs[]|select(type=="string")' ~/.config/nixpkgs/flake.lock| fzf)
+  local input_path
+  if [ "$1" = "-a" ]; then
+    input_path='.nodes| keys| join("\n")'
+  else
+    input_path='.nodes[.root].inputs[]|select(type=="string")'
+  fi
+  input=$(jq -r "$input_path" ~/.config/nixpkgs/flake.lock| fzf)
   if [ -z "$input" ]; then
     return 0
   fi
