@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 lib.mkMerge [
   {
     programs.zsh.initContent = lib.mkBefore ''
@@ -13,6 +18,7 @@ lib.mkMerge [
       autosuggestion.enable = true;
       enableCompletion = true;
       defaultKeymap = "viins";
+      dotDir = "${config.xdg.configHome}/zsh";
       plugins = [
         {
           name = "pure";
