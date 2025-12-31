@@ -20,6 +20,7 @@
     # ../ld-link.nix
     ../libvirtd.nix
     ../nix-registry.nix
+    ../patch-nm-vpnc.nix
     ../pipewire.nix
     ../syncthing.nix
     ../yubikey.nix

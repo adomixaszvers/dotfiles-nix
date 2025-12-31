@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  inputs,
   ...
 }:
 {
@@ -79,7 +78,6 @@
     # enableIPv6 = lib.mkDefault false;
     networkmanager = {
       enable = lib.mkDefault true;
-      plugins = [ inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.networkmanager-vpnc ];
       unmanaged = [
         "driver:wireguard"
         "interface-name:br-*"
