@@ -76,7 +76,6 @@
         hunspell-lt = pkgs.callPackage ./hunspell-lt { };
         he = pkgs.callPackage ./he.nix { };
         hypr-window-select = pkgs.callPackage ./hypr-window-select.nix { };
-        hypr-greedy-focus = pkgs.callPackage ./hypr-greedy-focus.nix { };
         hm-option = pkgs.callPackage ./hm-option.nix { };
         hm-repl = pkgs.callPackage ./hm-repl.nix { };
         hm-switch = pkgs.callPackage ./hm-switch.nix {
@@ -86,7 +85,6 @@
         maimpick = pkgs.callPackage ./maimpick.nix { };
         neovim = nixCatsBuilder "nixCats";
         neovim-nix = nixCatsBuilder "nixCats-small";
-        niri-window-select = pkgs.callPackage ./niri-window-select.nix { };
         niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
         restart-eww = pkgs.callPackage ./restart-eww.nix { };
         rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
