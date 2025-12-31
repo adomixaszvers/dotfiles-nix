@@ -10,11 +10,11 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "mcard-toolbox";
-  version = "1.4.0.0";
+  version = "1.6.0.0";
   src = fetchzip {
     stripRoot = false;
     url = "https://www.nsc.vrm.lt/files/Toolbox_LT-${finalAttrs.version}.zip";
-    hash = "sha256-S8+MmIaDnbP8IYInK7JPsHpptSB1ZyoAbj1Ht5W01yo=";
+    hash = "sha256-RQ+5+0XhUFC1CWg0zhCRAur6pSZ+xOi11aTnqm+1cFA=";
   };
   buildInputs = [
     pcsclite
@@ -27,8 +27,8 @@ stdenv.mkDerivation (finalAttrs: {
     autoPatchelfHook
   ];
   unpackPhase = ''
-    bsdtar xf $src/$pname-amd64-$version.deb
-    bsdtar xf data.tar.xz
+    bsdtar xf $src/$pname-lt-amd64.deb
+    bsdtar xf data.tar.zst
   '';
   installPhase = ''
     mkdir $out
