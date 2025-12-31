@@ -27,4 +27,4 @@ jobs:
       - name: Check the flake
         run: 'nix flake check'
       - name: Prebuild packages
-        run: 'nix build .#networkmanager-vpnc .#neovim .#neovim-nix .#sxhkd'
+        run: 'nix run nixpkgs\#nix-fast-build -- --skip-cached --no-nom --flake .#packages'
