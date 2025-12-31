@@ -399,6 +399,11 @@
               { app-id = "firefox$"; }
             ];
             open-maximized = true;
+            open-on-workspace = "browser";
+          }
+          {
+            matches = [ { app-id = "^jetbrains-idea$"; } ];
+            open-on-workspace = "dev";
           }
           {
             matches = [
