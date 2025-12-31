@@ -26,3 +26,5 @@ jobs:
         run: 'find -name "*.nix" -exec nix-instantiate --parse 1>/dev/null {} +'
       - name: Check the flake
         run: 'nix flake check'
+      - name: Prebuild packages
+        run: 'nix build .#networkmanager-vpnc .#neovim .#neovim-nix .#sxhkd'

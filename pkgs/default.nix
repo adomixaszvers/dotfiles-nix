@@ -85,6 +85,7 @@
         maimpick = pkgs.callPackage ./maimpick.nix { };
         neovim = nixCatsBuilder "nixCats";
         neovim-nix = nixCatsBuilder "nixCats-small";
+        networkmanager-vpnc = pkgs.callPackage ./networkmanager-vpnc { };
         niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
         restart-eww = pkgs.callPackage ./restart-eww.nix { };
         rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
