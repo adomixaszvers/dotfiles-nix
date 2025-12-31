@@ -35,5 +35,5 @@ jobs:
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
       - name: Prebuild packages
         continue-on-error: true
-        run: 'nix run nixpkgs\#nix-fast-build -- --skip-cached --no-nom --flake .#packages'
+        run: 'nix run nixpkgs\#nix-fast-build -- --skip-cached --no-nom --eval-workers 1 --flake .#packages'
 
