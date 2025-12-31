@@ -66,7 +66,7 @@
       gnumake
       google-chrome
       html-tidy
-      jetbrains.idea-ultimate
+      jetbrains.idea
       jmeter
       jq
       keepassxc
@@ -304,7 +304,7 @@
     ];
     jujutsu.settings = {
       merge-tools.idea = {
-        program = "idea-ultimate";
+        program = "idea";
         merge-args = [
           "merge"
           "$left"
