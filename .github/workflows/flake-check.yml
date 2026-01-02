@@ -26,6 +26,20 @@ jobs:
   package-build:
     runs-on: ubuntu-latest
     steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
+        with:
+          # this might remove tools that are actually needed,
+          # if set to "true" but frees about 6 GB
+          tool-cache: false
+          # all of these default to true, but feel free to set to
+          # "false" if necessary for your workflow
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
       - *checkout
       - *nix
       - uses: cachix/cachix-action@v16
@@ -34,5 +48,5 @@ jobs:
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
       - name: Prebuild packages
         continue-on-error: true
-        run: 'nix run nixpkgs\#nix-fast-build -- --skip-cached --no-nom --flake .#packages'
+        run: 'nix run --inputs-from . nixpkgs#omnix -- ci'
 
