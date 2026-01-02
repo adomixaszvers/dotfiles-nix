@@ -13,7 +13,7 @@
         ''
           PATH=${lib.makeBinPath [ nix ]}:$PATH
           nix flake archive --refresh '${flakeRef}'
-          nix build --no-link '${flakeRef}#nixosConfigurations.raspberrypi-nixos.config.system.build.toplevel' '${flakeRef}#homeConfigurations.pi.activationPackage' '${flakeRef}#devShells.aarch64-linux.default'
+          nix build --no-link --keep-going '${flakeRef}#nixosConfigurations.raspberrypi-nixos.config.system.build.toplevel' '${flakeRef}#homeConfigurations.pi.activationPackage' '${flakeRef}#devShells.aarch64-linux.default'
         '';
       startAt = "Fri, 06:00";
     };
