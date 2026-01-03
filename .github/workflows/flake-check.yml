@@ -47,6 +47,8 @@ jobs:
         with:
           name: adomixaszvers
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+      - name: Copy Oracle sources
+        run: 'nix copy --from https://adomixaszvers.cachix.org $(nix path-info .#oraclejdk8.src .#sqldeveloper.src)'
       - name: Prebuild packages
         run: 'nix run --inputs-from . nixpkgs#omnix -- ci'
 
