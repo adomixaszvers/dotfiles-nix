@@ -13,12 +13,13 @@ jobs:
         uses: actions/checkout@v6
       - &nix
         name: Nix
-        uses: cachix/install-nix-action@v31
+        uses: DeterminateSystems/determinate-nix-action@main
         with:
-          extra_nix_config: |
+          extra-conf: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            substituters = https://cache.nixos.org/ https://install.determinate.systems https://nix-community.cachix.org https://adomixaszvers.cachix.org
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= adomixaszvers.cachix.org-1:r3/lrlbDE7o/Vjk/muEU2iLIiCEZMbC09ZqiwAs64so= cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=
+            eval-cores = 4
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://adomixaszvers.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= adomixaszvers.cachix.org-1:r3/lrlbDE7o/Vjk/muEU2iLIiCEZMbC09ZqiwAs64so=
       - name: Check evaluation
         run: 'find -name "*.nix" -exec nix-instantiate --parse 1>/dev/null {} +'
       - name: Check the flake
