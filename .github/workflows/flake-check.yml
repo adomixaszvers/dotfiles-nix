@@ -6,7 +6,10 @@ on:
   pull_request:
 jobs:
   flake-checker:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy: &strategy
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm]
     steps:
       - &checkout
         name: Checkout
@@ -25,8 +28,9 @@ jobs:
       - name: Check the flake
         run: 'nix flake check'
   package-build:
+    runs-on: ${{ matrix.os }}
     if: github.event.pull_request.merged != true && github.base_ref == 'master'
-    runs-on: ubuntu-latest
+    strategy: *strategy
     steps:
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@main
