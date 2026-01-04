@@ -66,15 +66,13 @@
       imports = [
         treefmt.flakeModule
         ./pkgs
+        ./devshells.nix
         ./nixos/configurations.nix
         ./homes.nix
       ];
       perSystem =
         {
-          pkgs,
           system,
-          inputs',
-          config,
           ...
         }:
         {
@@ -110,19 +108,6 @@
               deadnix.enable = true;
               shellcheck.enable = true;
             };
-          };
-          devShells = {
-            default = pkgs.mkShellNoCC {
-              packages = [
-                inputs'.home-manager.packages.home-manager
-                pkgs.sops
-                pkgs.age
-                config.treefmt.build.wrapper
-              ];
-            };
-            xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
-            qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
-            awesomewm = import ./profiles/wm/awesome/shell.nix { inherit pkgs; };
           };
         };
     };

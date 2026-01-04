@@ -5,6 +5,8 @@
     {
       # does not work because it depends on OPENSSL_1.0.0
       # dokobit-plugin = pkgs.callPackage ./dokobit-plugin { };
+      bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
+      bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
       eclipse-activiti = pkgs.eclipses.eclipseWithPlugins {
         eclipse =
           pkgs.callPackage "${inputs.nixpkgs}/pkgs/applications/editors/eclipse/build-eclipse.nix"
@@ -32,7 +34,13 @@
           })
         ];
       };
+      hypr-window-select = pkgs.callPackage ./hypr-window-select.nix { };
+      maimpick = pkgs.callPackage ./maimpick.nix { };
       mcard-toolbox = pkgs.callPackage ./mcard-toolbox { };
+      networkmanager-vpnc = pkgs.callPackage ./networkmanager-vpnc { };
+      niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
+      restart-eww = pkgs.callPackage ./restart-eww.nix { };
+      rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
       soapui =
         let
           version = "5.6.1";
@@ -44,6 +52,12 @@
             sha256 = "sha256-c13iRcceMtLILlw6ockB9bMf7EVBeAATFy/Ln5ezy3c=";
           };
         });
+      sxhkd = pkgs.sxhkd.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [ ./sxhkd.patch ];
+      });
+      sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
+      toggle-touchpad = pkgs.callPackage ./toggle-touchpad.nix { };
+      tail-volume = pkgs.callPackage ./tail-volume { };
     }
   );
   perSystem =
@@ -61,30 +75,16 @@
     in
     {
       packages = {
-        bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
-        bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
         hunspell-lt = pkgs.callPackage ./hunspell-lt { };
         he = pkgs.callPackage ./he.nix { };
-        hypr-window-select = pkgs.callPackage ./hypr-window-select.nix { };
         hm-option = pkgs.callPackage ./hm-option.nix { };
         hm-repl = pkgs.callPackage ./hm-repl.nix { };
         hm-switch = pkgs.callPackage ./hm-switch.nix {
           inherit (inputs'.home-manager.packages) home-manager;
         };
         kaknix = pkgs.callPackage ./kaknix.nix { };
-        maimpick = pkgs.callPackage ./maimpick.nix { };
         neovim = nixCatsBuilder "nixCats";
         neovim-nix = nixCatsBuilder "nixCats-small";
-        networkmanager-vpnc = pkgs.callPackage ./networkmanager-vpnc { };
-        niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
-        restart-eww = pkgs.callPackage ./restart-eww.nix { };
-        rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
-        sxhkd = pkgs.sxhkd.overrideAttrs (old: {
-          patches = (old.patches or [ ]) ++ [ ./sxhkd.patch ];
-        });
-        sway-greedy-focus = pkgs.callPackage ./sway-greedy-focus.nix { };
-        toggle-touchpad = pkgs.callPackage ./toggle-touchpad.nix { };
-        tail-volume = pkgs.callPackage ./tail-volume { };
       };
     };
 }
