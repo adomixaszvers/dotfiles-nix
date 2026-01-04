@@ -434,7 +434,6 @@
         ramp-capacity-4 = "";
       };
     };
-    kbdd.enable = lib.mkDefault true;
   };
   xsession.windowManager.i3.config.startup = [
     {
