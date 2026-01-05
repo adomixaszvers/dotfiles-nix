@@ -52,7 +52,6 @@ elseif vim.env.TERM == 'xterm' then
   vim.cmd('colorscheme default')
 else
   vim.cmd([[
-        colorscheme catppuccin-mocha
         packadd lualine.nvim
         packadd nvim-web-devicons
     ]])
@@ -170,6 +169,9 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
 require('myConfig.nvim-treesitter')
 local nixCats = require('nixCats')
+if nixCats('themer') then
+  vim.cmd('colorscheme catppuccin-mocha')
+end
 if nixCats('lsp') then
   require('myConfig.lspconfig')
 end
