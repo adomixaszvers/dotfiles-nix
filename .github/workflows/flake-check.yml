@@ -20,6 +20,8 @@ jobs:
         with:
           extra-conf: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            min-free = 536870912   # 512MB minimum free space (reduced)
+            max-free = 1073741824  # 1GB maximum free space (reduced)
             eval-cores = 0
             substituters = https://cache.nixos.org/ https://install.determinate.systems https://nix-community.cachix.org https://adomixaszvers.cachix.org https://cache.nixos.asia/oss
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= adomixaszvers.cachix.org-1:r3/lrlbDE7o/Vjk/muEU2iLIiCEZMbC09ZqiwAs64so= oss:KO872wNJkCDgmGN3xy9dT89WAhvv13EiKncTtHDItVU= cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=
@@ -32,21 +34,8 @@ jobs:
     if: github.event.pull_request.merged != true && github.base_ref == 'master'
     strategy: *strategy
     steps:
-      - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@main
-        with:
-          # this might remove tools that are actually needed,
-          # if set to "true" but frees about 6 GB
-          tool-cache: false
-          # all of these default to true, but feel free to set to
-          # "false" if necessary for your workflow
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: true
-          docker-images: true
-          swap-storage: true
       - *checkout
+      - uses: wimpysworld/nothing-but-nix@main
       - *nix
       - uses: cachix/cachix-action@v16
         with:

@@ -35,9 +35,7 @@ let
         };
       }
     );
-in
-{
-  flake.homeConfigurations = rec {
+  homeConfigurations = rec {
     work = buildHomeManager ./profiles/work.nix { };
     work-remote = buildHomeManager ./profiles/work-remote.nix { };
     home = buildHomeManager ./profiles/home.nix { };
@@ -57,5 +55,19 @@ in
     thinkpad-home = work-remote;
     "deck@steamdeck" = buildHomeManager ./profiles/steamdeck.nix { username = "deck"; };
     thinkpad-work = work;
+  };
+
+in
+{
+  flake = {
+    inherit homeConfigurations;
+    legacyPackages = {
+      x86_64-linux.homeConfigurations = builtins.filterAttrs (
+        _: value: value.config.nixpkgs.system == "x86_64-linux"
+      ) homeConfigurations;
+      aarch64-linux.homeConfigurations = builtins.filterAttrs (
+        _: value: value.config.nixpkgs.system == "aarch64-linux"
+      ) homeConfigurations;
+    };
   };
 }
