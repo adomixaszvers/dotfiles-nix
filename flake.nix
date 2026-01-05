@@ -19,7 +19,7 @@
         xwayland-satellite-unstable.follows = "";
       };
     };
-    nixCats.url = "github:BirdeeHub/nixCats-nvim/v7.3.3";
+    nixCats.url = "github:BirdeeHub/nixCats-nvim/v7.3.4";
     nixGL = {
       url = "github:nix-community/nixGL";
       inputs = {
