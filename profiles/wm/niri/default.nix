@@ -54,6 +54,14 @@
             ];
             hotkey-overlay.title = "Run an Application: rofi";
           };
+          "Mod+Shift+D" = {
+            action.spawn = [
+              "rofi"
+              "-show"
+              "run"
+            ];
+            hotkey-overlay.title = "Run a Command: rofi";
+          };
           "Super+Alt+L" = {
             action.spawn = "hyprlock";
             hotkey-overlay.title = "Lock the Screen: hyprlock";
