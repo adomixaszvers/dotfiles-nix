@@ -59,7 +59,10 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [ virt-manager ];
+    systemPackages = with pkgs; [
+      android-tools
+      virt-manager
+    ];
     variables.LIBVA_DRIVER_NAME = "i965";
   };
 
@@ -89,7 +92,6 @@
   };
 
   programs = {
-    adb.enable = true;
     bash.completion.enable = true;
     mosh.enable = true;
     ssh.startAgent = false;

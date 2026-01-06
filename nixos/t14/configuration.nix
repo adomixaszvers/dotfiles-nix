@@ -70,9 +70,14 @@
     usb-modeswitch.enable = true;
   };
 
-  environment.systemPackages = (with pkgs; [ virt-manager ]) ++ [
-    config.boot.kernelPackages.cpupower
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      android-tools
+      virt-manager
+    ])
+    ++ [
+      config.boot.kernelPackages.cpupower
+    ];
 
   networking = {
     domain = "lan";
@@ -84,7 +89,6 @@
   };
 
   programs = {
-    adb.enable = true;
     bash.completion.enable = true;
     mosh.enable = true;
     ssh.startAgent = false;
