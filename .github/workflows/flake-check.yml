@@ -29,6 +29,7 @@ jobs:
         run: 'nix flake check'
   package-build:
     runs-on: ${{ matrix.os }}
+    needs: flake-checker
     if: github.event.pull_request.merged != true && github.base_ref == 'master'
     strategy: *strategy
     steps:
