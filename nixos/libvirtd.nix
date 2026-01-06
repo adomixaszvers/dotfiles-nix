@@ -1,4 +1,5 @@
 {
+  networking.nat.enable = true;
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
