@@ -70,7 +70,6 @@
       libsecret
       nemo
       gnumake
-      google-chrome
       html-tidy
       jetbrains.idea
       jmeter
@@ -107,13 +106,11 @@
       traceroute
       thunderbird
       unrar
-      discord
       tor-browser
       unzip
       whois
       xpra
       zip
-      zoom-us
       dumpasn1
     ];
     sessionPath = [ config.home.sessionVariables.PNPM_HOME ];

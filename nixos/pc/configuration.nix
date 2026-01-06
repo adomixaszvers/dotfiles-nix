@@ -84,6 +84,7 @@
       };
       modesetting.enable = true;
       powerManagement.enable = true;
+      nvidiaSettings = false;
     };
     xone.enable = true;
   };

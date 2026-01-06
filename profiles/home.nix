@@ -11,7 +11,6 @@
     brave
     borgbackup
     compsize
-    discord
     exercism
     nautilus
     gtypist

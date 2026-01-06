@@ -8,7 +8,6 @@
   ];
   home.packages = with pkgs; [
     brave
-    discord
     # gamescope
     libreoffice-still
     mpv

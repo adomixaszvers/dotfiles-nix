@@ -63,7 +63,6 @@
       brightnessctl
       borgbackup
       compsize
-      discord
       exercism
       nautilus
       gtypist
