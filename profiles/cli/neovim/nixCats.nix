@@ -12,7 +12,7 @@
     {
       lspsAndRuntimeDeps = {
         general = with pkgs; [
-          nixfmt-rfc-style
+          nixfmt
           ripgrep
           deadnix
           statix

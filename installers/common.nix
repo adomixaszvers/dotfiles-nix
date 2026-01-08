@@ -20,7 +20,7 @@
     fd
     git
     ripgrep
-    nixfmt-rfc-style
+    nixfmt
   ]);
   users.users.nixos.openssh.authorizedKeys.keyFiles = [ ../nixos/keys/yubikey.pub ];
 }

@@ -28,7 +28,7 @@
         lf
         lsof
         ncdu
-        nixfmt-rfc-style
+        nixfmt
         nix-tree
         p7zip
         patchelf

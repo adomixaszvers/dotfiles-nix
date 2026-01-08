@@ -113,7 +113,7 @@
     libraspberrypi
     lm_sensors
     neovim
-    nixfmt-rfc-style
+    nixfmt
     wol
   ];
   networking = {
