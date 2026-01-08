@@ -34,6 +34,8 @@ jobs:
     strategy: *strategy
     steps:
       - *checkout
+      - name: Fix "Fails To Build From Source"
+        run: git apply ftbfs.patch
       - uses: wimpysworld/nothing-but-nix@v6
       - *nix
       - uses: cachix/cachix-action@v16
