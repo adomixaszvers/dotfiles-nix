@@ -34,7 +34,7 @@ jobs:
     strategy: *strategy
     steps:
       - *checkout
-      - uses: wimpysworld/nothing-but-nix@main
+      - uses: wimpysworld/nothing-but-nix@v6
       - *nix
       - uses: cachix/cachix-action@v16
         with:
