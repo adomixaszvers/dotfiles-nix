@@ -1,5 +1,6 @@
 {
   allowUnfree = true;
+  contentAddressedByDefault = true;
   vim.ftNix = false;
   joypixels.acceptLicense = true;
   permittedInsecurePackages = [
