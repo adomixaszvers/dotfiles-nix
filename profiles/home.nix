@@ -18,7 +18,6 @@
     playerctl
     remmina
     qbittorrent
-    spotify
     tor-browser
     keepassxc
     xpra

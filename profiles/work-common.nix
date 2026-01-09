@@ -98,7 +98,6 @@
       samba
       protonup-ng
       soapui
-      # spotify
       sshpass
       steam-run
       subversion
