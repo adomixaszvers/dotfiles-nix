@@ -43,5 +43,5 @@ jobs:
           name: adomixaszvers
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
       - name: Prebuild packages
-        run: 'nix run "https://flakehub.com/f/DeterminateSystems/flake-iter/*" -- build'
+        run: 'nix run "https://flakehub.com/f/DeterminateSystems/flake-iter/*" -- build --verbose'
 
