@@ -41,17 +41,6 @@
       niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
       restart-eww = pkgs.callPackage ./restart-eww.nix { };
       rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
-      soapui =
-        let
-          version = "5.6.1";
-        in
-        pkgs.soapui.overrideAttrs (_old: {
-          inherit version;
-          src = pkgs.fetchurl {
-            url = "https://s3.amazonaws.com/downloads.eviware/soapuios/${version}/SoapUI-${version}-linux-bin.tar.gz";
-            sha256 = "sha256-c13iRcceMtLILlw6ockB9bMf7EVBeAATFy/Ln5ezy3c=";
-          };
-        });
       sxhkd = pkgs.sxhkd.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [ ./sxhkd.patch ];
       });
@@ -77,7 +66,6 @@
       packages = {
         hunspell-lt = pkgs.callPackage ./hunspell-lt { };
         he = pkgs.callPackage ./he.nix { };
-        hm-option = pkgs.callPackage ./hm-option.nix { };
         hm-repl = pkgs.callPackage ./hm-repl.nix { };
         hm-switch = pkgs.callPackage ./hm-switch.nix {
           inherit (inputs'.home-manager.packages) home-manager;
