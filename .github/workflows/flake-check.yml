@@ -21,6 +21,7 @@ jobs:
           extra-conf: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             eval-cores = 0
+            keep-going = true
             substituters = https://cache.nixos.org/ https://install.determinate.systems https://nix-community.cachix.org https://adomixaszvers.cachix.org https://cache.nixos-cuda.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= adomixaszvers.cachix.org-1:r3/lrlbDE7o/Vjk/muEU2iLIiCEZMbC09ZqiwAs64so= cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM= cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=
       - name: Check evaluation
