@@ -43,5 +43,9 @@ jobs:
           name: adomixaszvers
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
       - name: Prebuild packages
-        run: 'nix run "https://flakehub.com/f/DeterminateSystems/flake-iter/*" -- build --verbose'
+        run: |
+          SYSTEM=$(nix eval --raw --impure --expr builtins.currentSystem)
+          nix eval 'https://flakehub.com/f/DeterminateSystems/inspect/*#contents.includingOutputPaths' --json --override-input flake . --no-write-lock-file| tee inspect.json
+          DERIVATIONS=$(nix run nixpkgs#jq -- -r --arg system $SYSTEM '[.inventory|.homeConfigurations,.nixosConfigurations,(.checks,.packages,.devShells).children.[$system]|.children.[]|select(.forSystems|contains([$system]))|.derivation]|unique|join(" ")' ./inspect.json)
+          nix shell nixpkgs#nix nixpkgs#nix-build-uncached -c nix-build-uncached --keep-going $DERIVATIONS
 
