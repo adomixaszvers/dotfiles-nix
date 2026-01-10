@@ -37,7 +37,7 @@ jobs:
       - name: Prebuild packages
         if: *pull_request
         run: |
-          SYSTEM=$(nix eval --raw --impure --expr builtins.currentSystem)
-          nix eval 'https://flakehub.com/f/DeterminateSystems/inspect/*#contents.includingOutputPaths' --json --override-input flake . --no-write-lock-file| tee inspect.json
-          DERIVATIONS=$(nix run --inputs-from . nixpkgs#jq -- -r --arg system $SYSTEM '[.inventory|.homeConfigurations,.nixosConfigurations,(.checks,.packages,.devShells).children.[$system]|.children.[]|select(.forSystems|contains([$system]))|.derivation]|unique|join(" ")' ./inspect.json)
-          nix shell --inputs-from . nixpkgs#nix nixpkgs#nix-build-uncached -c nix-build-uncached --keep-going $DERIVATIONS
+          nix eval 'https://flakehub.com/f/DeterminateSystems/inspect/*#contents.includingOutputPaths' --json --override-input flake . --no-write-lock-file | \
+          nix run --inputs-from . nixpkgs#jq -- --arg system $(nix eval --raw --impure --expr builtins.currentSystem) -r -j \
+            '[..| objects | select(has("derivation") and (.forSystems| contains([$system])))|.derivation]|unique| join("\u0000")' | \
+          nix shell --inputs-from . nixpkgs#nix nixpkgs#nix-build-uncached -c xargs -0 nix-build-uncached --keep-going
