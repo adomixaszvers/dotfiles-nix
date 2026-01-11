@@ -1,4 +1,9 @@
-{ pkgs, myPkgs, ... }:
+{
+  config,
+  pkgs,
+  myPkgs,
+  ...
+}:
 
 {
   imports = [
@@ -43,7 +48,6 @@
       ++ (with myPkgs; [
         he
         hm-repl
-        hm-switch
       ]);
     sessionVariables = {
       EDITOR = "nvim";
@@ -78,6 +82,10 @@
     };
     git.enable = true;
     lazygit.enable = true;
+    nh = {
+      enable = true;
+      flake = "git+file://${config.xdg.configHome}/nixpkgs";
+    };
     tmux = {
       enable = true;
       keyMode = "vi";

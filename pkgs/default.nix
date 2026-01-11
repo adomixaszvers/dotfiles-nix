@@ -53,7 +53,6 @@
     {
       pkgs,
       system,
-      inputs',
       ...
     }:
     let
@@ -67,9 +66,6 @@
         hunspell-lt = pkgs.callPackage ./hunspell-lt { };
         he = pkgs.callPackage ./he.nix { };
         hm-repl = pkgs.callPackage ./hm-repl.nix { };
-        hm-switch = pkgs.callPackage ./hm-switch.nix {
-          inherit (inputs'.home-manager.packages) home-manager;
-        };
         kaknix = pkgs.callPackage ./kaknix.nix { };
         neovim = nixCatsBuilder "nixCats";
         neovim-nix = nixCatsBuilder "nixCats-small";
