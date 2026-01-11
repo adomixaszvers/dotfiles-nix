@@ -37,4 +37,5 @@ jobs:
         run: 'nix flake check'
       - name: Prebuild packages
         if: *pull_request
-        run: 'nix run --inputs-from . nixpkgs#nix-fast-build -- --skip-cached --no-nom --flake .#legacyPackages'
+        run: |
+          nix run 'github:Mic92/nix-fast-build' -- --skip-cached --no-nom --flake .#legacyPackages
