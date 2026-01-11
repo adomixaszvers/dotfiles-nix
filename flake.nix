@@ -70,6 +70,7 @@
         ./devshells.nix
         ./nixos/configurations.nix
         ./homes.nix
+        ./legacyPackages.nix
       ];
       perSystem =
         {
