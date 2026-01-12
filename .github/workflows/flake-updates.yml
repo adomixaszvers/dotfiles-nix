@@ -36,7 +36,7 @@ jobs:
         with:
           token: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
       - name: Nix
-        uses: DeterminateSystems/determinate-nix-action@main
+        uses: DeterminateSystems/determinate-nix-action@v3.15.1
         with:
           extra-conf: |
             eval-cores = 0
