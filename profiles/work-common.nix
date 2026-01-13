@@ -43,7 +43,7 @@
           oldPkgs = builtins.getAttr pkgs.stdenv.hostPlatform.system oldNixpkgs.legacyPackages;
         in
         oldPkgs.nodejs-12_x;
-      "nodejs/22".source = pkgs.nodejs_22;
+      "nodejs/24".source = pkgs.nodejs_24;
       "maven".source = pkgs.maven;
       "tomcat-native".source = pkgs.tomcat-native;
       "tomcats/tomcat9".source = pkgs.tomcat9;
