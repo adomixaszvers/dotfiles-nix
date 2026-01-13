@@ -106,8 +106,20 @@ in
         ];
       };
     };
-    niri.settings.environment = {
-      IDEA_VM_OPTIONS = ideaOptions.outPath;
+    niri.settings = {
+      environment = {
+        IDEA_VM_OPTIONS = ideaOptions.outPath;
+      };
+      workspaces = {
+        "01-browser" = {
+          name = "browser";
+          open-on-output = "DP-7";
+        };
+        "03-dev" = {
+          name = "dev";
+          open-on-output = "DP-6";
+        };
+      };
     };
   };
   xsession.windowManager.bspwm = {

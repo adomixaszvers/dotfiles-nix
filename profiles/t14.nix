@@ -88,6 +88,15 @@
     firefox = {
       enable = true;
     };
+    niri.settings.workspaces = {
+      "01-browser" = {
+        name = "browser";
+      };
+      "02-game" = {
+        name = "game";
+      };
+    };
+
     rclone.enable = true;
   };
   xsession.initExtra = # bash

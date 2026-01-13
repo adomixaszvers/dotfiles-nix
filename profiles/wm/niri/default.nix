@@ -420,17 +420,6 @@
             open-on-workspace = "game";
           }
         ];
-        workspaces = {
-          "01-browser" = {
-            name = "browser";
-          };
-          "02-game" = {
-            name = "game";
-          };
-          "03-dev" = {
-            name = "dev";
-          };
-        };
       };
       package = pkgs.niri;
     };
