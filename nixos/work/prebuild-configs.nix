@@ -1,8 +1,10 @@
-{ config, ... }:
+{ pkgs, ... }:
 {
   systemd = {
     services.prebuild-configs = {
-      path = [ config.nix.package ];
+      path = [
+        pkgs.nix-fast-build
+      ];
       serviceConfig.User = "adomas";
       description = "Prebuild personal configs";
       script =
@@ -11,8 +13,7 @@
         in
         # bash
         ''
-          nix flake archive --refresh '${flakeRef}'
-          nix build --no-link --keep-going '${flakeRef}#nixosConfigurations.adomas-jatuzis-nixos.config.system.build.toplevel' '${flakeRef}#homeConfigurations.work.activationPackage' '${flakeRef}#homeConfigurations.work-remote.activationPackage' '${flakeRef}#devShells.x86_64-linux.default'
+          nix-fast-build --skip-cached --no-nom --no-link --max-jobs 4 --eval-workers 4 --cachix-cache adomixaszvers --flake '${flakeRef}#legacyPackages'
         '';
       startAt = "Fri, 06:00";
     };
