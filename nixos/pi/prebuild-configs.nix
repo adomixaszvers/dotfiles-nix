@@ -1,9 +1,10 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   systemd = {
     services.prebuild-configs = {
       path = [
-        pkgs.nix-fast-build
+        config.nix.package
+        pkgs.cachix
       ];
       serviceConfig.User = "pi";
       description = "Prebuild personal configs";
@@ -13,7 +14,7 @@
         in
         # bash
         ''
-          nix-fast-build --skip-cached --no-nom --no-link --max-jobs 2 --eval-workers 1 --cachix-cache adomixaszvers --flake '${flakeRef}#legacyPackages'
+          nix build --no-link --keep-going '${flakeRef}#nixosConfigurations.raspberrypi-nixos.config.system.build.toplevel' '${flakeRef}#homeConfigurations.pi.activationPackage' '${flakeRef}#devShells.aarch64-linux.default'| cachix push adomixaszvers
         '';
       startAt = "Fri, 06:00";
     };
