@@ -20,6 +20,7 @@
     ./atuin.nix
     # ./vpn.nix
     # ./fail2ban.nix
+    ./forgejo.nix
     ./nginx.nix
     # ./nextcloud.nix
     ./searx.nix
