@@ -4,6 +4,9 @@ let
   srv = cfg.settings.server;
 in
 {
+  networking.extraHosts = ''
+    127.0.0.1 git.rpi4.beastade.top
+  '';
   services.nginx = {
     virtualHosts.${cfg.settings.server.DOMAIN} = {
       forceSSL = true;
@@ -28,6 +31,7 @@ in
         HTTP_PORT = 3000;
         SSH_PORT = lib.head config.services.openssh.ports;
       };
+      webhook.ALLOWED_HOST_LIST = "10.6.0.6";
       # You can temporarily allow registration to create an admin user.
       service.DISABLE_REGISTRATION = true;
       # Add support for actions, based on act: https://github.com/nektos/act

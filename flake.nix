@@ -1,6 +1,14 @@
 {
   description = "My dotfiles";
   inputs = {
+    buildbot-nix = {
+      url = "github:nix-community/buildbot-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        treefmt-nix.follows = "treefmt";
+      };
+    };
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";

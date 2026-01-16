@@ -26,6 +26,8 @@
     ../yubikey.nix
     ../thinkfan.nix
     # ./bitburner.nix
+    ./buildbot-master.nix
+    ./buildbot-worker.nix
     ./dante.nix
     ./hardware-configuration.nix
     ./kerberos.nix
