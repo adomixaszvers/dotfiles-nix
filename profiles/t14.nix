@@ -96,8 +96,6 @@
         name = "game";
       };
     };
-
-    rclone.enable = true;
   };
   xsession.initExtra = # bash
     ''
