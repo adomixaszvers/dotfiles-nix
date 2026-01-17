@@ -21,11 +21,8 @@
             lib.filterAttrs (n: _v: !(builtins.elem n blacklistPackages)) self'.packages
           );
           devShells = lib.mapAttrs' (n: lib.nameValuePair "devShell-${n}") self'.devShells;
-          homeConfigurations = lib.mapAttrs' (
-            name: config: lib.nameValuePair "home-manager-${name}" config.activation-script
-          ) (systemFilter self.homeConfigurations or { });
         in
-        nixosMachines // packages // devShells // homeConfigurations;
+        nixosMachines // packages // devShells;
 
     };
 }
