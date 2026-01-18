@@ -23,6 +23,7 @@
     ./forgejo.nix
     ./nginx.nix
     # ./nextcloud.nix
+    ./nix-remote-builder.nix
     ./searx.nix
     ./static-ip.nix
     ./syncthing.nix

@@ -31,6 +31,7 @@
     ./kerberos.nix
     ./ltXkb.nix
     ./prebuild-configs.nix
+    ./remote-build.nix
     ./samba.nix
     ./xrdp/current.nix
     # ./turbovnc.nix
