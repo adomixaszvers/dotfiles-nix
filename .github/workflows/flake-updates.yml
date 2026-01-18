@@ -8,42 +8,15 @@ on:
     inputs: {}
 jobs:
   flake-updater:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
-      - name: Create GitHub App token
-        uses: actions/create-github-app-token@v2
-        if: vars.APP_ID
-        id: app-token
-        with:
-          app-id: ${{ vars.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-      - name: Get GitHub App user info
-        if: vars.APP_ID
-        id: user-info
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token}}
-          slug: ${{ steps.app-token.outputs.app-slug }}
-        run: |
-          name="$slug[bot]"
-          id=$(gh api "/users/$name" --jq .id)
-          {
-            echo "id=$id"
-            echo "name=$name"
-            echo "email=$id+$name@users.noreply.github.com"
-          } >> "$GITHUB_OUTPUT"
       - name: Checkout
         uses: actions/checkout@v6
-        with:
-          token: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
       - name: Nix
-        uses: DeterminateSystems/determinate-nix-action@v3.15.1
+        uses: cachix/install-nix-action@v31
         with:
-          extra-conf: |
-            eval-cores = 0
-            access-tokens = github.com=${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
+          extra_nix_config: |
             substituters = https://cache.nixos.org/ https://install.determinate.systems https://nix-community.cachix.org https://adomixaszvers.cachix.org https://cache.nixos.asia/oss https://cache.nixos-cuda.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= adomixaszvers.cachix.org-1:r3/lrlbDE7o/Vjk/muEU2iLIiCEZMbC09ZqiwAs64so= oss:KO872wNJkCDgmGN3xy9dT89WAhvv13EiKncTtHDItVU= cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM= cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v28
-        with:
-          token: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
