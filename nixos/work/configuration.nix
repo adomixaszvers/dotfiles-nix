@@ -14,7 +14,6 @@
     ../avahi.nix
     ./btrfs.nix
     ../common.nix
-    ../determinate.nix
     ../flakes.nix
     ../gc.nix
     # ../ld-link.nix

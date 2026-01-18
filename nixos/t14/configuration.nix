@@ -12,7 +12,6 @@
   imports = [
     ../avahi.nix
     ../common.nix
-    ../determinate.nix
     ../flakes.nix
     ../fprintd.nix
     ../gc.nix

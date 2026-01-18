@@ -9,7 +9,6 @@
         treefmt-nix.follows = "treefmt";
       };
     };
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
