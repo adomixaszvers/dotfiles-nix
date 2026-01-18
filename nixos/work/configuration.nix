@@ -32,7 +32,7 @@
     ./hardware-configuration.nix
     ./kerberos.nix
     ./ltXkb.nix
-    ./prebuild-configs.nix
+    # ./prebuild-configs.nix
     ./remote-build.nix
     ./samba.nix
     ./xrdp/current.nix

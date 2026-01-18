@@ -28,7 +28,7 @@
     ./static-ip.nix
     ./syncthing.nix
     ./users.nix
-    ./prebuild-configs.nix
+    # ./prebuild-configs.nix
     # ./webdav.nix
     ./wireguard.nix
     ./zsh.nix

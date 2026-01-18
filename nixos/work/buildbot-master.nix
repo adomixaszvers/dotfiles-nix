@@ -71,6 +71,15 @@ in
     };
     # optional expose latest store path as text file
     # outputsPath = "/var/www/buildbot/nix-outputs";
+    pullBased = {
+      pollInterval = 3600;
+      repositories = {
+        dotfiles-nix-gh = {
+          url = "https://github.com/adomixaszvers/dotfiles-nix.git";
+          defaultBranch = "update_flake_lock_action";
+        };
+      };
+    };
 
     # optional nix-eval-jobs settings
     buildSystems = [
