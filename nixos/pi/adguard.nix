@@ -52,6 +52,8 @@
       user_rules = [
         "||rpi4.beastade.top^$dnsrewrite=10.6.0.1,client=10.6.0.0/24"
         "||rpi4.beastade.top^$dnsrewrite=192.168.1.207,client=192.168.1.0/24"
+        "||l15.beastade.top^$dnsrewrite=10.6.0.6,client=10.6.0.0/24"
+        "||l15.beastade.top^$dnsrewrite=10.6.0.6,client=192.168.1.0/24"
       ];
       filters = [
         {

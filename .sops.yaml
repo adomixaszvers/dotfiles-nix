@@ -21,6 +21,13 @@ creation_rules:
           - *pi
           - *t14
           - *work
+  - path_regex: nixos/common-secrets/acme\.yaml$
+    key_groups:
+      - pgp:
+          - *adomas
+        age:
+          - *pi
+          - *work
   - path_regex: nixos/common-secrets/(zerotier|wireguard)\.yaml$
     key_groups:
       - pgp:

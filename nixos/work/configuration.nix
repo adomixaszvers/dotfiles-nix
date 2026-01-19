@@ -25,6 +25,7 @@
     ../yubikey.nix
     ../thinkfan.nix
     # ./bitburner.nix
+    ./acme.nix
     ./buildbot-master.nix
     ./buildbot-worker.nix
     ./dante.nix

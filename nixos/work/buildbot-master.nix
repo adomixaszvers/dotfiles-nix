@@ -28,7 +28,7 @@ in
   services.buildbot-nix.master = {
     enable = true;
     # Domain name under which the buildbot frontend is reachable
-    domain = "10.6.0.6";
+    domain = "buildbot.l15.beastade.top";
     # The workers file configures credentials for the buildbot workers to connect to the master.
     # "name" is the configured worker name in services.buildbot-nix.worker.name of a worker
     # (defaults to the hostname of the machine)
@@ -121,10 +121,10 @@ in
   };
 
   # Optional: Enable acme/TLS in nginx (recommended)
-  # services.nginx.virtualHosts.${config.services.buildbot-nix.master.domain} = {
-  #   forceSSL = true;
-  #   useACMEHost = "rpi4.beastade.top";
-  # };
+  services.nginx.virtualHosts.${config.services.buildbot-nix.master.domain} = {
+    forceSSL = true;
+    useACMEHost = "l15.beastade.top";
+  };
 
   # Optional: If buildbot is setup to run behind another proxy that does TLS
   # termination set this to true to have buildbot use https:// for its endpoint
