@@ -18,18 +18,6 @@
       allowedTCPPorts = [ 51820 ];
       allowedUDPPorts = [ 51820 ];
     };
-    hosts = {
-      "10.6.0.1" = [ "rpi4.wg" ];
-      "10.6.0.2" = [ "oneplus-3t.wg" ];
-      "10.6.0.3" = [ "rutos-pc.wg" ];
-      "10.6.0.5" = [ "windows-pc.wg" ];
-      "10.6.0.6" = [ "work.wg" ];
-      "10.6.0.7" = [ "asus.wg" ];
-      "10.6.0.10" = [ "samsung-a52.wg" ];
-      "10.6.0.11" = [ "t14.wg" ];
-      "10.6.0.12" = [ "rycio-pc.wg" ];
-      "10.6.0.13" = [ "steamdeck.wg" ];
-    };
     wireguard = {
       enable = true;
       interfaces.wg0 = {

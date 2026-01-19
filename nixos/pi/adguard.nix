@@ -33,6 +33,7 @@
           "10.6.0.1"
           "192.168.1.207"
         ];
+        hostsfile_enabled = false;
         ratelimit = 0;
         upstream_dns = [
           "https://cloudflare-dns.com/dns-query"
@@ -48,6 +49,58 @@
       };
       filtering = {
         blocked_response_ttl = 600;
+        rewrites = [
+          {
+            answer = "10.6.0.1";
+            domain = "rpi4.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.2";
+            domain = "oneplus-3t.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.3";
+            domain = "rutos-pc.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.5";
+            domain = "windows-pc.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.6";
+            domain = "work.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.7";
+            domain = "asus.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.10";
+            domain = "samsung-a52.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.11";
+            domain = "t14.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.12";
+            domain = "rycio-pc.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.13";
+            domain = "steamdeck.wg";
+            enabled = true;
+          }
+        ];
       };
       user_rules = [
         "||rpi4.beastade.top^$dnsrewrite=10.6.0.1,client=10.6.0.0/24"
