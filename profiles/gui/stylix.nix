@@ -13,6 +13,7 @@
       sha256 = "03lrj64zig62ibhcss5dshy27kvw363gzygm4rgk7ihbdjj2sw7w";
     };
 
+    polarity = "dark";
     base16Scheme = {
       polarity = "dark";
       scheme = "Catppuccin Mocha";
