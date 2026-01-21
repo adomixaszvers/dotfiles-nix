@@ -7,6 +7,7 @@ on:
 jobs:
   flake-checker:
     runs-on: ubuntu-24.04-arm
+    if: ${{ github.server_url == 'https://github.com' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
