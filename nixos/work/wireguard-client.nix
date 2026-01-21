@@ -38,7 +38,7 @@
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/work".path;
             allowedIPs = [
               "10.6.0.0/24"
-              "192.168.1.0/24"
+              # "192.168.1.0/24"
             ];
             persistentKeepalive = 25;
           }
