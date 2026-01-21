@@ -1,4 +1,6 @@
+{ pkgs, ... }:
 {
+  home.packages = [ pkgs.sops ];
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;

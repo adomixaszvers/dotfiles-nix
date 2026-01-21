@@ -8,3 +8,10 @@ direnv_layout_dir() {
         echo "${XDG_CACHE_HOME}/direnv/layouts/${dhash}${path}"
     )}"
 }
+
+# https://github.com/direnv/direnv/wiki/Sops
+use_sops() {
+    local path=${1:-$PWD/secrets.yaml}
+    eval "$(sops -d --output-type dotenv "$path" | direnv dotenv bash /dev/stdin)"
+    watch_file "$path"
+}
