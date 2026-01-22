@@ -26,6 +26,7 @@
       tokenFile = config.sops.templates."forgejo-runner.env".path;
       labels = [
         "ubuntu-24.04-arm:docker://gitea/runner-images:ubuntu-latest"
+        "ubuntu-slim:docker://gitea/runner-images:ubuntu-latest-slim"
         # "ubuntu-latest:docker://node:16-bullseye"
         # "ubuntu-22.04:docker://node:16-bullseye"
         # "ubuntu-20.04:docker://node:16-bullseye"
