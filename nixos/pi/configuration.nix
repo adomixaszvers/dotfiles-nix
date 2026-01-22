@@ -20,7 +20,7 @@
     # ./vpn.nix
     # ./fail2ban.nix
     ./forgejo.nix
-    ./forgejo-runner.nix
+    # ./forgejo-runner.nix
     ./nginx.nix
     # ./nextcloud.nix
     ./nix-remote-builder.nix

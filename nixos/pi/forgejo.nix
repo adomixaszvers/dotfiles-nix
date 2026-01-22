@@ -37,7 +37,7 @@ in
       service.DISABLE_REGISTRATION = true;
       # Add support for actions, based on act: https://github.com/nektos/act
       actions = {
-        ENABLED = true;
+        ENABLED = false;
         DEFAULT_ACTIONS_URL = "github";
       };
     };
