@@ -9,6 +9,7 @@ on:
 jobs:
   flake-updater:
     runs-on: ubuntu-slim
+    if: ${{ github.server_url == 'https://github.com' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
