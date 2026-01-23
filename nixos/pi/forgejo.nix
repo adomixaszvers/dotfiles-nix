@@ -6,7 +6,7 @@ in
 {
   networking.extraHosts = ''
     127.0.0.1 git.rpi4.beastade.top
-    10.6.0.6 buildbot.l15.beastade.top
+    127.0.0.1 buildbot.rpi4.beastade.top
   '';
   services.nginx = {
     virtualHosts.${cfg.settings.server.DOMAIN} = {

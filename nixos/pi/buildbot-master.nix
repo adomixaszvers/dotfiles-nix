@@ -4,7 +4,7 @@
   ...
 }:
 let
-  sopsFile = ./secrets/builbot-nix.yaml;
+  sopsFile = ../common-secrets/buildbot-nix.yaml;
   secretConf = {
     inherit sopsFile;
     owner = config.users.users.buildbot.name;
@@ -14,10 +14,14 @@ in
   imports = [
     inputs.buildbot-nix.nixosModules.buildbot-master
   ];
+
+  networking.firewall.interfaces.wg0.allowedTCPPorts = [ 9989 ];
+
   sops.secrets."buildbot-nix/oauth-secret" = secretConf;
   sops.secrets."buildbot-nix/webhook-secret" = secretConf;
   sops.secrets."buildbot-nix/token" = secretConf;
   sops.secrets."buildbot-nix/cachix-signing-key" = secretConf;
+  sops.secrets."buildbot-nix/worker-password" = secretConf;
   sops.templates."buildbot-nix/workers.json".content = ''
     [
       { "name": "darbas", "pass": "${
@@ -28,7 +32,7 @@ in
   services.buildbot-nix.master = {
     enable = true;
     # Domain name under which the buildbot frontend is reachable
-    domain = "buildbot.l15.beastade.top";
+    domain = "buildbot.rpi4.beastade.top";
     # The workers file configures credentials for the buildbot workers to connect to the master.
     # "name" is the configured worker name in services.buildbot-nix.worker.name of a worker
     # (defaults to the hostname of the machine)
@@ -123,7 +127,7 @@ in
   # Optional: Enable acme/TLS in nginx (recommended)
   services.nginx.virtualHosts.${config.services.buildbot-nix.master.domain} = {
     forceSSL = true;
-    useACMEHost = "l15.beastade.top";
+    useACMEHost = "rpi4.beastade.top";
   };
 
   # Optional: If buildbot is setup to run behind another proxy that does TLS

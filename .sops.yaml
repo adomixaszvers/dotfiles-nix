@@ -28,6 +28,13 @@ creation_rules:
         age:
           - *pi
           - *work
+  - path_regex: nixos/common-secrets/buildbot-nix\.yaml$
+    key_groups:
+      - pgp:
+          - *adomas
+        age:
+          - *pi
+          - *work
   - path_regex: nixos/common-secrets/(zerotier|wireguard)\.yaml$
     key_groups:
       - pgp:
