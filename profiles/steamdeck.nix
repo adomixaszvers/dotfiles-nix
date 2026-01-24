@@ -21,7 +21,7 @@
   ];
   home.sessionVariables = {
     BROWSER = "firefox";
-    SSH_AUTH_SOCK = "\${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh";
+    SSH_AUTH_SOCK = "\${XDG_RUNTIME_DIR}/ssh-agent";
   };
   manual.html.enable = true;
   nixCats.packageNames = [ "nixCats-small" ];

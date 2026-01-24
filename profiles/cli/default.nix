@@ -13,6 +13,7 @@
     ./gnupg.nix
     ./neovim
     ./registry.nix
+    ./ssh-agent.nix
     ./zsh
   ];
   home = {

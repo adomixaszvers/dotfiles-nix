@@ -14,7 +14,7 @@
   services.gpg-agent = {
     enable = lib.mkDefault true;
     pinentry.package = pkgs.pinentry-qt;
-    enableSshSupport = true;
+    enableSshSupport = false; # cannot add yubikey piv
     enableExtraSocket = true;
   };
 }
