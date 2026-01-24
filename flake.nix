@@ -39,7 +39,8 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-unstable.follows = "nixpkgs";
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    # nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs = {
