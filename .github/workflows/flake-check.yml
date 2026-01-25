@@ -21,3 +21,6 @@ jobs:
         run: 'find -name "*.nix" -exec nix-instantiate --parse 1>/dev/null {} +'
       - name: Check the flake
         run: 'nix flake check'
+      - name: Eval legacyPackages
+        run: |
+          nix run --inputs-from . nixpkgs\#nix-eval-jobs -- --flake .\#legacyPackages --force-recurse --no-eval-cache
