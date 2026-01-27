@@ -2,6 +2,7 @@
 {
   imports = [
     inputs.buildbot-nix.nixosModules.buildbot-worker
+    ../github-hosts.nix
   ];
   sops.secrets."buildbot-nix/worker-password" = {
     owner = config.users.users.buildbot-worker.name;
