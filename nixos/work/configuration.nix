@@ -130,13 +130,6 @@
   programs = {
     hyprlock.enable = true;
     nix-ld.enable = true;
-    ssh = {
-      extraConfig = ''
-        Host github
-          HostName github.com
-          ProxyCommand nc -x 10.6.0.1:1080 %h %p
-      '';
-    };
     mosh.enable = true;
     virt-manager.enable = true;
     wireshark = {
