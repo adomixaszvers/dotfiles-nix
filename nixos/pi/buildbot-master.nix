@@ -96,7 +96,7 @@ in
       "x86_64-linux"
       "aarch64-linux"
     ];
-    evalWorkerCount = 4; # limit number of concurrent evaluations
+    evalWorkerCount = 2; # limit number of concurrent evaluations
     evalMaxMemorySize = 4096; # limit memory usage per evaluation
 
     # optional cachix
