@@ -66,6 +66,7 @@
         hunspell-lt = pkgs.callPackage ./hunspell-lt { };
         he = pkgs.callPackage ./he.nix { };
         hm-repl = pkgs.callPackage ./hm-repl.nix { };
+        jj-watch = pkgs.callPackage ./jj-watch.nix { };
         kaknix = pkgs.callPackage ./kaknix.nix { };
         neovim = nixCatsBuilder "nixCats";
         neovim-nix = nixCatsBuilder "nixCats-small";
