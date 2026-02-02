@@ -16,7 +16,7 @@
     # ./dns.nix
     ./adguard.nix
     # dotnet is not in nixos cache
-    ./asf.nix
+    # ./asf.nix
     ./atuin.nix
     ./buildbot-master.nix
     # ./vpn.nix
