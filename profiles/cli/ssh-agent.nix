@@ -1,6 +1,12 @@
 { pkgs, ... }:
 {
-  programs.zsh.shellAliases.sshyk = "ssh-add -s $(nix path-info nixpkgs\\#yubico-piv-tool.^out)/lib/libykcs11.so";
+  home.packages =
+    let
+      sshyk = pkgs.writers.writeDashBin "sshyk" ''
+        exec ssh-add -s ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+      '';
+    in
+    [ sshyk ];
   services.ssh-agent = {
     enable = true;
     pkcs11Whitelist = [ "${pkgs.yubico-piv-tool}/lib/*" ];
