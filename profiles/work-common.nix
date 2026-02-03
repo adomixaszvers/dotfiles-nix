@@ -309,6 +309,16 @@
     jujutsu.settings = {
       merge-tools.idea = {
         program = "idea";
+        diff-args = [
+          "diff"
+          "$left"
+          "$right"
+        ];
+        edit-args = [
+          "diff"
+          "$left"
+          "$right"
+        ];
         merge-args = [
           "merge"
           "$left"
