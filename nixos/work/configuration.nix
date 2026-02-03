@@ -134,7 +134,7 @@
     virt-manager.enable = true;
     wireshark = {
       enable = true;
-      package = pkgs.wireshark-qt;
+      package = pkgs.wireshark;
     };
   };
   services = {
