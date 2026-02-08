@@ -3,7 +3,7 @@
   imports = [
     ./work-common.nix
     ./wm/xsession-common.nix
-    ./wm/xmonad
+    ./wm/bspwm
   ];
   xsession.numlock.enable = true;
   services = {
