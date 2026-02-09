@@ -135,7 +135,7 @@
             else
               DPI=96
             fi
-            echo "Xft.dpi: $DPI"| ${pkgs.xorg.xrdb}/bin/xrdb -merge
+            echo "Xft.dpi: $DPI"| ${pkgs.xrdb}/bin/xrdb -merge
           '';
         postswitch = {
           restart-picom = "systemctl --user restart picom.service";

@@ -187,7 +187,7 @@ in
           gnugrep
           procps
           psmisc
-          xorg.xrandr
+          xrandr
           xdotool
         ]
       }

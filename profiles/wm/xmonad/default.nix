@@ -14,7 +14,7 @@ let
       lib.makeBinPath [
         coreutils
         gnugrep
-        xorg.xrandr
+        xrandr
       ]
     }
 

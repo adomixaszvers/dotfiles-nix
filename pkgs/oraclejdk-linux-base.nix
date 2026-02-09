@@ -32,6 +32,14 @@
   atk,
   gdk-pixbuf,
   setJavaClassPath,
+  libXxf86vm,
+  libX11,
+  libXext,
+  libXtst,
+  libXi,
+  libXp,
+  libXt,
+  libXrender,
 }:
 
 assert swingSupport -> xorg != null;
@@ -184,7 +192,7 @@ let
       ffmpeg
       libxslt
       libGL
-      xorg.libXxf86vm
+      libXxf86vm
       alsa-lib
       fontconfig
       freetype
@@ -195,13 +203,13 @@ let
       atk
     ]
     ++ lib.optionals swingSupport [
-      xorg.libX11
-      xorg.libXext
-      xorg.libXtst
-      xorg.libXi
-      xorg.libXp
-      xorg.libXt
-      xorg.libXrender
+      libX11
+      libXext
+      libXtst
+      libXi
+      libXp
+      libXt
+      libXrender
       stdenv.cc.cc
     ];
 

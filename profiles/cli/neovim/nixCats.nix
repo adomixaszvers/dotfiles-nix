@@ -26,20 +26,20 @@
       };
       startupPlugins = {
         general = with pkgs.vimPlugins; [
-          commentary
+          vim-commentary
           conform-nvim
-          fugitive
+          vim-fugitive
           fzf-lua
           gitsigns-nvim
           lazydev-nvim
           nvim-sops
           # rainbow-delimiters-nvim
-          repeat
+          vim-repeat
           vim-suda
-          surround
+          vim-surround
           vim-sneak
           vim-unimpaired
-          vinegar
+          vim-vinegar
           which-key-nvim
           yuck-vim
         ];
@@ -48,7 +48,7 @@
         ];
         themer = with pkgs.vimPlugins; [
           catppuccin-nvim
-          solarized
+          vim-colors-solarized
         ];
         lsp = [ pkgs.vimPlugins.nvim-lspconfig ];
         blink-cmp = [

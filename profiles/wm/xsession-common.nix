@@ -20,7 +20,7 @@
             PATH=${
               lib.makeBinPath [
                 pkgs.i3lock-color
-                pkgs.xorg.xset
+                pkgs.xset
               ]
             }:$PATH
             DPMS_TIMEOUT=${toString dpmsTimeoutSeconds}
