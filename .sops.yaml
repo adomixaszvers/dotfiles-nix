@@ -69,6 +69,14 @@ creation_rules:
         age:
           - *pc
           - *pi
+  - path_regex: nixos/common-secrets/wifi\.yaml$
+    key_groups:
+      - pgp:
+          - *adomas
+        age:
+          - *t14
+          - *work
+          - *laptop
   - path_regex: nixos/common-secrets/vpnc\.conf$
     key_groups:
       - pgp:
