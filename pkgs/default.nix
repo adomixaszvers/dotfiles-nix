@@ -1,4 +1,12 @@
 { inputs, withSystem, ... }:
+let
+  nixCatsBuilder =
+    system:
+    import ../profiles/cli/neovim/nixCatsBuilder.nix {
+      inherit (inputs) nixpkgs nixCats;
+      inherit system;
+    };
+in
 {
   flake.packages.x86_64-linux = withSystem "x86_64-linux" (
     { pkgs, ... }:
@@ -35,8 +43,12 @@
         ];
       };
       hypr-window-select = pkgs.callPackage ./hypr-window-select.nix { };
+      hunspell-lt = pkgs.callPackage ./hunspell-lt { };
+      jj-watch = pkgs.callPackage ./jj-watch.nix { };
+      kaknix = pkgs.callPackage ./kaknix.nix { };
       maimpick = pkgs.callPackage ./maimpick.nix { };
       # mcard-toolbox = pkgs.callPackage ./mcard-toolbox { };
+      neovim = nixCatsBuilder pkgs.stdenv.hostPlatform.system "nixCats";
       networkmanager-vpnc = pkgs.callPackage ./networkmanager-vpnc { };
       niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
       restart-eww = pkgs.callPackage ./restart-eww.nix { };
@@ -52,24 +64,13 @@
   perSystem =
     {
       pkgs,
-      system,
       ...
     }:
-    let
-      nixCatsBuilder = import ../profiles/cli/neovim/nixCatsBuilder.nix {
-        inherit (inputs) nixpkgs nixCats;
-        inherit (pkgs.stdenv.hostPlatform) system;
-      };
-    in
     {
       packages = {
-        hunspell-lt = pkgs.callPackage ./hunspell-lt { };
         he = pkgs.callPackage ./he.nix { };
         hm-repl = pkgs.callPackage ./hm-repl.nix { };
-        jj-watch = pkgs.callPackage ./jj-watch.nix { };
-        kaknix = pkgs.callPackage ./kaknix.nix { };
-        neovim = nixCatsBuilder "nixCats";
-        neovim-nix = nixCatsBuilder "nixCats-small";
+        neovim-nix = nixCatsBuilder pkgs.stdenv.hostPlatform.system "nixCats-small";
       };
     };
 }
