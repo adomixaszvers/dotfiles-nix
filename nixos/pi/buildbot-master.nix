@@ -4,7 +4,7 @@
   ...
 }:
 let
-  sopsFile = ../common-secrets/buildbot-nix.yaml;
+  sopsFile = ./secrets/buildbot.yaml;
   secretConf = {
     inherit sopsFile;
     owner = config.users.users.buildbot.name;
@@ -18,19 +18,19 @@ in
 
   networking.firewall.interfaces.wg0.allowedTCPPorts = [ 9989 ];
 
-  sops.secrets."buildbot-nix/oauth-secret" = secretConf;
-  sops.secrets."buildbot-nix/webhook-secret" = secretConf;
-  sops.secrets."buildbot-nix/token" = secretConf;
-  sops.secrets."buildbot-nix/cachix-signing-key" = secretConf;
-  sops.secrets."buildbot-nix/worker-password" = secretConf;
-  sops.secrets."buildbot/ssh-key" = {
-    sopsFile = ./secrets/buildbot.yaml;
+  sops.secrets."buildbot/oauth-secret" = secretConf;
+  sops.secrets."buildbot/webhook-secret" = secretConf;
+  sops.secrets."buildbot/token" = secretConf;
+  sops.secrets."buildbot/cachix-signing-key" = secretConf;
+  sops.secrets."buildbot/ssh-key" = secretConf;
+  sops.secrets."buildbot-nix/work-worker-password" = {
+    sopsFile = ../common-secrets/buildbot/work.yaml;
     owner = config.users.users.buildbot.name;
   };
   sops.templates."buildbot-nix/workers.json".content = ''
     [
       { "name": "darbas", "pass": "${
-        config.sops.placeholder."buildbot-nix/worker-password"
+        config.sops.placeholder."buildbot-nix/work-worker-password"
       }", "cores": 4 }
     ]
   '';
@@ -72,10 +72,10 @@ in
       enable = true;
       instanceUrl = "https://git.rpi4.beastade.top";
       # Create a Gitea App with for redirect uris: https://buildbot.clan.lol/auth/login
-      oauthId = "65015936-7b37-4972-8d7d-61dfbbbaa9b1";
-      oauthSecretFile = config.sops.secrets."buildbot-nix/oauth-secret".path;
-      webhookSecretFile = config.sops.secrets."buildbot-nix/webhook-secret".path;
-      tokenFile = config.sops.secrets."buildbot-nix/token".path; # replace this with a secret not stored in the nix store
+      oauthId = "4cf00734-7279-404b-aa0f-c5f7a6411aba";
+      oauthSecretFile = config.sops.secrets."buildbot/oauth-secret".path;
+      webhookSecretFile = config.sops.secrets."buildbot/webhook-secret".path;
+      tokenFile = config.sops.secrets."buildbot/token".path; # replace this with a secret not stored in the nix store
       topic = "buildbot-nix";
     };
     # optional expose latest store path as text file
@@ -104,7 +104,7 @@ in
       enable = true;
       name = "adomixaszvers";
       # One of the following is required:
-      auth.signingKey.file = config.sops.secrets."buildbot-nix/cachix-signing-key".path;
+      auth.signingKey.file = config.sops.secrets."buildbot/cachix-signing-key".path;
       # auth.authToken.file = "/var/lib/secrets/cachix-token";
     };
 
