@@ -3,11 +3,7 @@
   programs.ssh.askPassword = "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
   services = {
     displayManager = {
-      sddm = {
-        enable = true;
-        autoNumlock = true;
-        wayland.enable = true;
-      };
+      plasma-login-manager.enable = true;
       defaultSession = "plasma";
     };
     desktopManager.plasma6.enable = true;
