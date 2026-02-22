@@ -72,7 +72,7 @@ in
       "pi@raspberrypi-nixos" = pi;
       "deck@steamdeck" = deck;
     };
-    legacyPackages = {
+    buildbotJobs = {
       "aarch64-linux" = {
         home-manager-pi = pi.activationPackage;
       };

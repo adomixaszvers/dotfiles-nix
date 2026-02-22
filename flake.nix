@@ -74,11 +74,12 @@
       ];
       imports = [
         treefmt.flakeModule
+        ./modules/buildbotJobs.nix
         ./pkgs
         ./devshells.nix
         ./nixos/configurations.nix
         ./homes.nix
-        ./legacyPackages.nix
+        ./buildbotJobs.nix
       ];
       perSystem =
         {
