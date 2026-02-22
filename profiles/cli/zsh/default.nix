@@ -24,19 +24,15 @@ lib.mkMerge [
           name = "pure";
           src =
             let
+              version = "1.27.1";
               upstreamPackage = pkgs.pure-prompt;
-              updatedPackage = upstreamPackage.overrideAttrs (
-                finalAttrs: _prev: {
-                  version = "1.27.1";
-                  src = pkgs.fetchFromGitHub {
-                    owner = "sindresorhus";
-                    repo = "pure";
-                    rev = "v${finalAttrs.version}";
-                    sha256 = "sha256-Fhk4nlVPS09oh0coLsBnjrKncQGE6cUEynzDO2Skiq8=";
-                  };
-                }
-              );
-              isUpdatedVersion = lib.versionAtLeast upstreamPackage.version updatedPackage.version;
+              updatedPackage = upstreamPackage.overrideAttrs (prev: {
+                inherit version;
+                src = prev.src.override {
+                  sha256 = "sha256-Fhk4nlVPS09oh0coLsBnjrKncQGE6cUEynzDO2Skiq8=";
+                };
+              });
+              isUpdatedVersion = lib.versionAtLeast upstreamPackage.version version;
               pure-prompt = lib.warnIf isUpdatedVersion "pure-prompt was updated in nixpkgs" updatedPackage;
             in
             "${pure-prompt}/share/zsh/site-functions";
