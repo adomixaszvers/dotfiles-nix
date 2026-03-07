@@ -269,6 +269,7 @@
     users = {
       adomas = {
         hashedPasswordFile = config.sops.secrets."adomas/password".path;
+        linger = true;
         extraGroups = [
           "docker"
           "audio"
