@@ -1,12 +1,24 @@
 { pkgs, ... }:
-let
-  inherit (pkgs) xdg-desktop-portal-gtk;
-in
 {
   xdg.portal = {
     enable = true;
-    config.common.default = "gtk";
-    extraPortals = [ xdg-desktop-portal-gtk ];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
+    ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      niri = {
+        default = [
+          "gtk"
+          "gnome"
+        ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
+      };
+    };
     wlr.enable = true;
   };
 }
