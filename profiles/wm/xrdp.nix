@@ -9,8 +9,6 @@
     source /etc/profile
 
     # fixes AltGr producing Left Arrow input on kitty
-    export XKB_DEFAULT_RULES=base
-    systemctl --user import-environment XKB_DEFAULT_RULES
     systemctl --user stop picom.service # picom doesn't work right on xrdp session
     export NH_HOME_FLAKE="git+file://$HOME/.config/nixpkgs#homeConfigurations.thinkpad-home.activationPackage"
     if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
