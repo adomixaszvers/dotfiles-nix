@@ -113,11 +113,11 @@ in
       workspaces = {
         "01-browser" = {
           name = "browser";
-          open-on-output = "DP-7";
+          open-on-output = "DP-9";
         };
         "03-dev" = {
           name = "dev";
-          open-on-output = "DP-6";
+          open-on-output = "DP-7";
         };
       };
     };

@@ -392,9 +392,9 @@
           {
             enable = false;
             search = [
-              "m=0x15E7"
+              "m=0x157F"
               "s="
-              "v=Chimei Innolux Corporation"
+              "v=Sharp Corporation"
             ];
           }
         ];
@@ -409,9 +409,9 @@
             mode = "1920x1080@60";
             scale = 1;
             search = [
-              "m=0x15E7"
+              "m=0x157F"
               "s="
-              "v=Chimei Innolux Corporation"
+              "v=Sharp Corporation"
             ];
             transform = "normal";
           }

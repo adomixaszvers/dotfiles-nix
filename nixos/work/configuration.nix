@@ -25,7 +25,7 @@
     ../pipewire.nix
     ../syncthing.nix
     ../yubikey.nix
-    ../thinkfan.nix
+    # ../thinkfan.nix
     # ./bitburner.nix
     ./buildbot-worker.nix
     ./dante.nix
@@ -43,9 +43,9 @@
     ./wireguard-client.nix
     ../fprintd.nix
     # ./throttled
-    ./tlp.nix
+    # ./tlp.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
-    inputs.nixos-hardware.nixosModules.lenovo-thinkpad
+    inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixpkgs.nixosModules.notDetected
     inputs.sops-nix.nixosModules.sops
   ];
@@ -141,7 +141,7 @@
   services = {
     # autorandr.enable = true;
     avahi.allowInterfaces = [
-      "enp0s13f0u3u1"
+      "enp0s13f0u2u4u1"
       "wlp9s0"
     ];
     gnome = {
@@ -168,6 +168,7 @@
       };
       ports = [ 22 ];
     };
+    power-profiles-daemon.enable = true;
     printing = {
       enable = true;
       browsed.enable = false;

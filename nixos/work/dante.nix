@@ -8,7 +8,7 @@
     enable = true;
     config = ''
       internal: 10.6.0.6 port = 1080
-      external: enp0s13f0u3u1
+      external: enp0s13f0u2u4u1
 
       clientmethod: none
       socksmethod: none
