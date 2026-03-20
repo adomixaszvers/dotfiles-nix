@@ -406,7 +406,7 @@
             adaptive_sync = false;
             enable = true;
             position = "0,0";
-            mode = "1920x1080@60";
+            mode = "1920x1200@120.003Hz";
             scale = 1;
             search = [
               "m=0x157F"
