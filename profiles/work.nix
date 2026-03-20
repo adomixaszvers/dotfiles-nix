@@ -113,11 +113,11 @@ in
       workspaces = {
         "01-browser" = {
           name = "browser";
-          open-on-output = "DP-9";
+          open-on-output = "Dell Inc. DELL P2723D GRJX0V3";
         };
         "03-dev" = {
           name = "dev";
-          open-on-output = "DP-7";
+          open-on-output = "Dell Inc. DELL P2723D 3MHX0V3";
         };
       };
     };
