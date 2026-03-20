@@ -1,0 +1,3 @@
+{
+  services.squid.enable = true;
+}
