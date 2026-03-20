@@ -169,7 +169,7 @@
       };
       ports = [ 22 ];
     };
-    power-profiles-daemon.enable = true;
+    tuned.enable = true;
     printing = {
       enable = true;
       browsed.enable = false;
