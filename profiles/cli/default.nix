@@ -16,24 +16,6 @@
     ./ssh-agent.nix
     ./zsh
   ];
-  nixpkgs.overlays = [
-    (final: prev: {
-      less =
-        let
-          version = "692";
-          upstreamPackage = prev.less;
-          updatedPackage = upstreamPackage.overrideAttrs {
-            inherit version;
-            src = final.fetchzip {
-              url = "https://www.greenwoodsoftware.com/less/less-${version}.tar.gz";
-              hash = "sha256-Imc5m0jh85vfsNhA9iqvfBb2MSQul7PYqm1Ppe75UGA=";
-            };
-          };
-          isUpdatedVersion = final.lib.versionAtLeast upstreamPackage.version version;
-        in
-        final.lib.warnIf isUpdatedVersion "less was updated in nixpkgs" updatedPackage;
-    })
-  ];
   home = {
     packages =
       (with pkgs; [
