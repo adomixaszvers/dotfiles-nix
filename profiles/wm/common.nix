@@ -8,6 +8,7 @@
 
 {
   gtk = {
+    gtk4.theme = null;
     iconTheme = {
       name = "Arc";
       package = pkgs.arc-icon-theme;
