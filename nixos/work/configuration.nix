@@ -23,6 +23,7 @@
     ../nix-registry.nix
     ../patch-nm-vpnc.nix
     ../pipewire.nix
+    ../snx-rs.nix
     ../syncthing.nix
     ../yubikey.nix
     # ../thinkfan.nix
