@@ -1,4 +1,5 @@
 require('nvim-treesitter.config').setup({
+  install_dir = vim.fn.stdpath('data') .. '/site',
   auto_install = false,
   ensure_installed = {},
   ignore_install = {},

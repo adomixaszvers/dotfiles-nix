@@ -78,7 +78,7 @@ conform.setup({
   formatters = {
     treefmt = function(bufnr)
       local dotfiles_root = vim.fs.joinpath(vim.env.XDG_CONFIG_HOME, 'nixpkgs')
-      local bufname = vim.fn.expand('%:p')
+      local bufname = vim.api.nvim_buf_get_name(bufnr)
       local fs = require('conform.fs')
       return { require_cwd = not fs.is_subpath(dotfiles_root, bufname) }
     end,
