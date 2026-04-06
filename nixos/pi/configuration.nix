@@ -44,11 +44,7 @@
     hostPlatform = lib.mkDefault "aarch64-linux";
   };
 
-  boot = {
-    # use mainline kernel
-    kernelPackages = pkgs.linuxPackages;
-    tmp.useTmpfs = true;
-  };
+  boot.tmp.useTmpfs = true;
   # boot.loader.raspberryPi = {
   #   enable = true;
   #   version = 4;
