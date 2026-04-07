@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./hardware-configuration.nix
     # ./vaultwarden.nix
     ../flakes.nix
     ../nix-package.nix
@@ -35,7 +36,7 @@
     ./wireguard.nix
     ./zsh.nix
     ./dante.nix
-    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+    # inputs.nixos-hardware.nixosModules.raspberry-pi-4
     inputs.sops-nix.nixosModules.sops
   ];
 
@@ -44,7 +45,18 @@
     hostPlatform = lib.mkDefault "aarch64-linux";
   };
 
-  boot.tmp.useTmpfs = true;
+  boot = {
+    initrd.availableKernelModules = [
+      "usbhid"
+      "usb_storage"
+      "vc4"
+      "pcie_brcmstb" # required for the pcie bus to work
+      "reset-raspberrypi" # required for vl805 firmware to load
+    ];
+
+    loader.systemd-boot.enable = true;
+    tmp.useTmpfs = true;
+  };
   # boot.loader.raspberryPi = {
   #   enable = true;
   #   version = 4;
@@ -74,13 +86,17 @@
       };
     */
     "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
+      device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
       options = [ "noatime" ];
     };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/BE86-6532";
+      options = [
+        "umask=077"
+      ];
+    };
     "/boot/firmware" = {
-      device = "/dev/disk/by-label/FIRMWARE";
-      fsType = "vfat";
+      device = "/dev/disk/by-uuid/2178-694E";
       # Alternatively, this could be removed from the configuration.
       # The filesystem is not needed at runtime, it could be treated
       # as an opaque blob instead of a discrete FAT32 filesystem.
