@@ -23,6 +23,7 @@
               }
               {
                 id = "ActiveWindow";
+                maxWidth = 500;
               }
               {
                 id = "MediaMini";
