@@ -11,6 +11,7 @@
       cursor_trail = 10;
       cursor_trail_start_threshold = 0;
       cursor_trail_decay = "0.01 0.05";
+      scrollback_pager = " nvim --cmd 'set eventignore=FileType' +'nnoremap q ZQ' +'call nvim_open_term(0, {})' +'set nomodified nolist' +'$' -";
     };
   };
   programs.zsh.initContent = # bash
