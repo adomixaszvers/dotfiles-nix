@@ -12,6 +12,7 @@
     ../noctalia.nix
   ];
   home.packages = [
+    pkgs.nautilus # for file chooser dialogs
     pkgs.wl-clipboard
     pkgs.xwayland-satellite
   ];
