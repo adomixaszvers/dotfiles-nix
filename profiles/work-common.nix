@@ -303,7 +303,7 @@
     };
     # see https://learn.microsoft.com/en-us/troubleshoot/microsoftteams/teams-sign-in/sign-in-loop
     firefox.policies.EnableTrackingProtection.Exceptions = [
-      "https://teams.microsoft.com"
+      "https://teams.cloud.microsoft/"
       "https://outlook.office.com"
     ];
     jujutsu.settings = {
