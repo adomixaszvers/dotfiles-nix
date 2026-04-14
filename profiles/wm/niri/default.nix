@@ -44,11 +44,12 @@
           };
           "Mod+D" = {
             action.spawn = [
-              "noctalia-shell"
-              "ipc"
-              "call"
-              "launcher"
-              "toggle"
+              "rofi"
+              "-show-icons"
+              "-combi-modi"
+              "window,drun,run"
+              "-show"
+              "combi"
             ];
             hotkey-overlay.title = "Run an Application: rofi";
           };
