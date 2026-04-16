@@ -7,7 +7,6 @@
     noctalia-shell = {
       enable = true;
       package = pkgs.noctalia-shell;
-      systemd.enable = true;
       settings = {
         appLauncher = {
           density = "condenced";

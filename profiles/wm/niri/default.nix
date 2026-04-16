@@ -368,6 +368,11 @@
               "reset-failed"
             ];
           }
+          {
+            command = [
+              "noctalia-shell"
+            ];
+          }
         ];
         input = {
           focus-follows-mouse = {
