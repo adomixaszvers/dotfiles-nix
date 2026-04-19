@@ -1,12 +1,4 @@
 { inputs, withSystem, ... }:
-let
-  nixCatsBuilder =
-    system:
-    import ../profiles/cli/neovim/nixCatsBuilder.nix {
-      inherit (inputs) nixpkgs nixCats;
-      inherit system;
-    };
-in
 {
   flake.packages.x86_64-linux = withSystem "x86_64-linux" (
     { pkgs, ... }:
@@ -48,7 +40,6 @@ in
       kaknix = pkgs.callPackage ./kaknix.nix { };
       maimpick = pkgs.callPackage ./maimpick.nix { };
       # mcard-toolbox = pkgs.callPackage ./mcard-toolbox { };
-      neovim = nixCatsBuilder pkgs.stdenv.hostPlatform.system "nixCats";
       networkmanager-vpnc = pkgs.callPackage ./networkmanager-vpnc { };
       niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
       restart-eww = pkgs.callPackage ./restart-eww.nix { };
@@ -70,7 +61,6 @@ in
       packages = {
         he = pkgs.callPackage ./he.nix { };
         hm-repl = pkgs.callPackage ./hm-repl.nix { };
-        neovim-nix = nixCatsBuilder pkgs.stdenv.hostPlatform.system "nixCats-small";
       };
     };
 }

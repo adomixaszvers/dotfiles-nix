@@ -24,7 +24,6 @@
     SSH_AUTH_SOCK = "\${XDG_RUNTIME_DIR}/ssh-agent";
   };
   manual.html.enable = true;
-  nixCats.packageNames = [ "nixCats-small" ];
   programs = {
     gpg.enable = lib.mkForce false;
     bash.profileExtra = ''
@@ -70,5 +69,9 @@
       installScripts = [ "mesa" ];
       inherit (inputs.nixGL) packages;
     };
+  };
+  wrappers = {
+    neovim.enable = false;
+    neovim-nix.enable = true;
   };
 }

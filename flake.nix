@@ -33,7 +33,6 @@
         noctalia-qs.follows = "";
       };
     };
-    nixCats.url = "github:BirdeeHub/nixCats-nvim/v7.3.6";
     nixGL = {
       url = "github:nix-community/nixGL";
       inputs = {
@@ -42,6 +41,10 @@
     };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-wrapper-modules = {
+      url = "github:BirdeeHub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
@@ -81,6 +84,7 @@
       ];
       imports = [
         treefmt.flakeModule
+        ./wrappers
         ./modules/buildbotJobs.nix
         ./pkgs
         ./devshells.nix

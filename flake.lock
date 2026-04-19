@@ -287,19 +287,23 @@
         "type": "github"
       }
     },
-    "nixCats": {
+    "nix-wrapper-modules": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1768881702,
-        "narHash": "sha256-fasxRy7+7kRh0gFhjaC0vdaRXfaUnP8Ea37inBszNvQ=",
+        "lastModified": 1776464146,
+        "narHash": "sha256-XwLFfJDz71vIF7BAhnbLhrzQjmDC2uXdo7N0oHUrYzA=",
         "owner": "BirdeeHub",
-        "repo": "nixCats-nvim",
-        "rev": "cb2ab46052f94c20b14eb86ca2421a7d4b540217",
+        "repo": "nix-wrapper-modules",
+        "rev": "75febede14a0845f4ef429da692a0698bf433600",
         "type": "github"
       },
       "original": {
         "owner": "BirdeeHub",
-        "ref": "v7.3.6",
-        "repo": "nixCats-nvim",
+        "repo": "nix-wrapper-modules",
         "type": "github"
       }
     },
@@ -424,7 +428,7 @@
         "home-manager": "home-manager",
         "niri": "niri",
         "nix-index-database": "nix-index-database",
-        "nixCats": "nixCats",
+        "nix-wrapper-modules": "nix-wrapper-modules",
         "nixGL": "nixGL",
         "nixos-hardware": "nixos-hardware",
         "nixos-unstable": [

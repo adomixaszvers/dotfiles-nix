@@ -169,13 +169,13 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 require('myConfig.nvim-treesitter')
-local nixCats = require('nixCats')
-if nixCats('lsp') then
+local nixInfo = require(vim.g.nix_info_plugin_name)
+if nixInfo(false, 'settings', 'cats', 'lsp') then
   require('myConfig.lspconfig')
 end
-if nixCats('blink-cmp') then
+if nixInfo(false, 'settings', 'cats', 'blink-cmp') then
   require('myConfig.blink-cmp')
 end
-if nixCats('cmp') then
+if nixInfo(false, 'settings', 'cats', 'cmp') then
   require('myConfig.cmp')
 end

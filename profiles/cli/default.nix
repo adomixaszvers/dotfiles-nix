@@ -2,16 +2,33 @@
   config,
   pkgs,
   myPkgs,
+  inputs,
+  lib,
   ...
 }:
 
 {
   imports = [
     ../../nixos/nix-package.nix
+    (inputs.nix-wrapper-modules.lib.mkInstallModule {
+      loc = [
+        "home"
+        "packages"
+      ];
+      name = "neovim";
+      value = inputs.self.wrapperModules.neovim;
+    })
+    (inputs.nix-wrapper-modules.lib.mkInstallModule {
+      loc = [
+        "home"
+        "packages"
+      ];
+      name = "neovim-nix";
+      value = inputs.self.wrapperModules.neovim-nix;
+    })
     ./direnv
     ./git.nix
     ./gnupg.nix
-    ./neovim
     ./registry.nix
     ./ssh-agent.nix
     ./zsh
@@ -108,4 +125,5 @@
       options = [ "once" ];
     };
   };
+  wrappers.neovim.enable = lib.mkDefault true;
 }
