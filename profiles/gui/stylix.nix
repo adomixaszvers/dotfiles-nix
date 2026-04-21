@@ -13,8 +13,8 @@
       sha256 = "03lrj64zig62ibhcss5dshy27kvw363gzygm4rgk7ihbdjj2sw7w";
     };
 
-    polarity = "dark";
-    base16Scheme = "${inputs.stylix.inputs.tinted-schemes.outPath}/base24/catppuccin-mocha.yaml";
+    polarity = "light";
+    base16Scheme = "${inputs.stylix.inputs.tinted-schemes.outPath}/base24/catppuccin-latte.yaml";
 
     cursor = {
       name = "Banana";

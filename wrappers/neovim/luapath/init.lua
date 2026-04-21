@@ -52,7 +52,7 @@ elseif vim.env.TERM == 'xterm' then
   vim.cmd('colorscheme default')
 else
   vim.cmd([[
-        colorscheme catppuccin-mocha
+        colorscheme catppuccin-latte
         packadd lualine.nvim
         packadd nvim-web-devicons
     ]])
