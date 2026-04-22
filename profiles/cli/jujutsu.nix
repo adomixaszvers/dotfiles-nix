@@ -19,9 +19,10 @@
         # parents. 'n' is often useful to customize the display and return set for
         # certain operations. 'x' can be used to target the set of 'roots' to traverse,
         # e.g. @ is the current stack.
-        "stack()" = "stack(@)";
-        "stack(x)" = "stack(x, 2)";
-        "stack(x, n)" = "ancestors(reachable(x, mutable()), n)";
+        # TODO uncomment after https://github.com/NixOS/nixpkgs/pull/512271
+        # "stack()" = "stack(@)";
+        # "stack(x)" = "stack(x, 2)";
+        # "stack(x, n)" = "ancestors(reachable(x, mutable()), n)";
       };
       git.private-commits = "private()";
       merge-tools.nvim = {
