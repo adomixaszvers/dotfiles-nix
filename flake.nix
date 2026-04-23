@@ -26,13 +26,6 @@
         xwayland-satellite-unstable.follows = "";
       };
     };
-    noctalia-shell = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        noctalia-qs.follows = "";
-      };
-    };
     nixGL = {
       url = "github:nix-community/nixGL";
       inputs = {
