@@ -3,6 +3,7 @@
   inputs,
   pkgs,
   lib,
+  myPkgs,
   ...
 }:
 {
@@ -70,20 +71,23 @@
   };
   wrappers.niri = {
     enable = true;
+    "config.kdl".path = "${config.xdg.configHome}/niri/config.kdl";
     settings = {
-      cursor = lib.mkIf (config.stylix.cursor != null) {
-        size = lib.mkDefault config.stylix.cursor.size;
-        theme = lib.mkDefault config.stylix.cursor.name;
+      binds."Mod+Ctrl+O".spawn = lib.getExe myPkgs.niri-swap-monitors;
+
+      cursor = {
+        xcursor-size = config.stylix.cursor.size;
+        xcursor-theme = config.stylix.cursor.name;
       };
-      layout.focus-ring.enable = lib.mkDefault false;
       layout.border = with config.lib.stylix.colors.withHashtag; {
-        enable = lib.mkDefault true;
-        active = lib.mkDefault { color = base0D; };
-        inactive = lib.mkDefault { color = base03; };
+        active-color = base0D;
+        inactive-color = base03;
       };
 
     };
   };
+  xdg.configFile."niri/config.kdl".source =
+    config.wrappers.niri.constructFiles.generatedConfig.outPath;
   stylix.targets = {
     hyprlock.enable = true;
     hyprpaper.enable = true;

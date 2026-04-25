@@ -91,12 +91,8 @@
   };
   wrappers = {
     niri.settings.workspaces = {
-      "01-browser" = {
-        name = "browser";
-      };
-      "02-game" = {
-        name = "game";
-      };
+      "browser" = _: { };
+      "game" = _: { };
     };
   };
   xsession.initExtra = # bash

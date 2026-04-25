@@ -40,7 +40,7 @@
       ];
     };
     niri = {
-      imports = [ ((import ./niri) { inherit inputs; }) ];
+      imports = [ ./niri ];
     };
   };
 }

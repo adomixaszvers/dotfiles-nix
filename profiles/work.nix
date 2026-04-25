@@ -131,12 +131,10 @@ in
         IDEA_VM_OPTIONS = ideaOptions.outPath;
       };
       workspaces = {
-        "01-browser" = {
-          name = "browser";
+        "browser" = {
           open-on-output = "Dell Inc. DELL P2723D GRJX0V3";
         };
-        "03-dev" = {
-          name = "dev";
+        "dev" = {
           open-on-output = "Dell Inc. DELL P2723D 3MHX0V3";
         };
       };
