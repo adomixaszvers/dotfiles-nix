@@ -15,17 +15,6 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri = {
-      url = "github:sodiboo/niri-flake/c991f50de9977cbedee3e6a475d8e7afe18b70f7";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nixpkgs-stable.follows = "";
-        niri-stable.follows = "";
-        niri-unstable.follows = "";
-        xwayland-satellite-stable.follows = "";
-        xwayland-satellite-unstable.follows = "";
-      };
-    };
     nixGL = {
       url = "github:nix-community/nixGL";
       inputs = {

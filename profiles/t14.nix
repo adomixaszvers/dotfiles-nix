@@ -88,6 +88,8 @@
     firefox = {
       enable = true;
     };
+  };
+  wrappers = {
     niri.settings.workspaces = {
       "01-browser" = {
         name = "browser";

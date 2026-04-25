@@ -7,7 +7,7 @@
 let
   isX11 = config.xsession.enable;
   isHypr = config.wayland.windowManager.hyprland.enable;
-  isNiri = config.programs.niri.enable;
+  isNiri = config.wrappers.niri.enable;
   isWayland = isHypr || isNiri;
   ideaOptions = pkgs.writeText "idea64.vmoptions" ''
     -Xmx3971m
@@ -37,7 +37,7 @@ in
       enable = lib.mkDefault isWayland;
       settings =
         let
-          niri = lib.getExe config.programs.niri.package;
+          niri = lib.getExe config.wrappers.niri.wrapper;
           dpmsOnCmd =
             if isHypr then
               "hyprctl dispatch dpms on"
@@ -106,21 +106,6 @@ in
         ];
       };
     };
-    niri.settings = {
-      environment = {
-        IDEA_VM_OPTIONS = ideaOptions.outPath;
-      };
-      workspaces = {
-        "01-browser" = {
-          name = "browser";
-          open-on-output = "Dell Inc. DELL P2723D GRJX0V3";
-        };
-        "03-dev" = {
-          name = "dev";
-          open-on-output = "Dell Inc. DELL P2723D 3MHX0V3";
-        };
-      };
-    };
   };
   xsession.windowManager.bspwm = {
     monitors = {
@@ -138,6 +123,23 @@ in
         "9"
         "10"
       ];
+    };
+  };
+  wrappers = {
+    niri.settings = {
+      environment = {
+        IDEA_VM_OPTIONS = ideaOptions.outPath;
+      };
+      workspaces = {
+        "01-browser" = {
+          name = "browser";
+          open-on-output = "Dell Inc. DELL P2723D GRJX0V3";
+        };
+        "03-dev" = {
+          name = "dev";
+          open-on-output = "Dell Inc. DELL P2723D 3MHX0V3";
+        };
+      };
     };
   };
   wayland.windowManager = {

@@ -241,32 +241,6 @@
         "type": "github"
       }
     },
-    "niri": {
-      "inputs": {
-        "niri-stable": [],
-        "niri-unstable": [],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nixpkgs-stable": [],
-        "xwayland-satellite-stable": [],
-        "xwayland-satellite-unstable": []
-      },
-      "locked": {
-        "lastModified": 1767540596,
-        "narHash": "sha256-RVb/DtwNSoYs7VGwQvL+YioUIJVZHsDi6ETZqCmVBVI=",
-        "owner": "sodiboo",
-        "repo": "niri-flake",
-        "rev": "c991f50de9977cbedee3e6a475d8e7afe18b70f7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sodiboo",
-        "repo": "niri-flake",
-        "rev": "c991f50de9977cbedee3e6a475d8e7afe18b70f7",
-        "type": "github"
-      }
-    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -405,7 +379,6 @@
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
-        "niri": "niri",
         "nix-index-database": "nix-index-database",
         "nix-wrapper-modules": "nix-wrapper-modules",
         "nixGL": "nixGL",
