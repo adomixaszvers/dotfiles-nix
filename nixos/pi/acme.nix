@@ -12,17 +12,13 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "adomixaszvers@gmail.com";
-    certs =
-      let
+    certs = {
+      "rpi4.beastade.top" = {
         dnsProvider = "namesilo";
         dnsResolver = "ns1.dnsowl.com:53";
-        credentialsFile = config.sops.templates."acme.env".path;
-      in
-      {
-        "rpi4.beastade.top" = {
-          inherit dnsProvider dnsResolver credentialsFile;
-          extraDomainNames = [ "*.rpi4.beastade.top" ];
-        };
+        environmentFile = config.sops.templates."acme.env".path;
+        extraDomainNames = [ "*.rpi4.beastade.top" ];
       };
+    };
   };
 }
