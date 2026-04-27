@@ -1,10 +1,25 @@
 {
   wlib,
+  lib,
   ...
 }:
 {
   imports = [ wlib.wrapperModules.niri ];
-  settings = {
+  options.settings.environment = lib.mkOption {
+    default = { };
+    type = lib.types.attrs;
+    description = "Environment configuration";
+    example = lib.literalMD ''
+      ```nix
+      {
+        QT_QPA_PLATFORM = "wayland";
+        KITTY_CONF_FONT = "font_size 9.0";
+        _JAVA_AWT_WM_NONREPARENTING = "1";
+      }
+      ```
+    '';
+  };
+  config.settings = {
     binds = {
 
       # Keys consist of modifiers separated by + signs, followed by an XKB key name
