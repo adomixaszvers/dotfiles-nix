@@ -21,6 +21,12 @@
       package = pkgs.banana-cursor;
       size = 24;
     };
+    icons = {
+      dark = "Papirus-Dark";
+      light = "Papirus-Light";
+      package = pkgs.papirus-icon-theme;
+
+    };
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;

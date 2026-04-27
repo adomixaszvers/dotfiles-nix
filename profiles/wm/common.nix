@@ -9,10 +9,6 @@
 {
   gtk = {
     gtk4.theme = null;
-    iconTheme = {
-      name = "Arc";
-      package = pkgs.arc-icon-theme;
-    };
   };
   qt = {
     enable = lib.mkDefault true;
@@ -23,9 +19,12 @@
     enable = lib.mkDefault true;
     automount = false;
   };
-  stylix.targets = {
-    gnome.enable = lib.mkDefault true;
-    gtk.enable = lib.mkDefault true;
+  stylix = {
+    icons.enable = lib.mkDefault true;
+    targets = {
+      gnome.enable = lib.mkDefault true;
+      gtk.enable = lib.mkDefault true;
+    };
   };
   home.packages = with myPkgs; [
     maimpick
