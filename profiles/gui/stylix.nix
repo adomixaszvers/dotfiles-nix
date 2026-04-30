@@ -9,8 +9,8 @@
     autoEnable = false;
     enableReleaseChecks = false;
     image = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/wallpapers/nix-wallpaper-nineish-catppuccin-frappe.png";
-      sha256 = "03lrj64zig62ibhcss5dshy27kvw363gzygm4rgk7ihbdjj2sw7w";
+      url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/wallpapers/nix-wallpaper-nineish-catppuccin-latte.png";
+      sha256 = "09p6dyz5csx6gajbmdnnwk8fss4rzj87i07dz60lfk9m4i1anf7q";
     };
 
     polarity = "light";
