@@ -22,7 +22,6 @@
   stylix = {
     icons.enable = lib.mkDefault true;
     targets = {
-      gnome.enable = lib.mkDefault true;
       gtk.enable = lib.mkDefault true;
     };
   };
