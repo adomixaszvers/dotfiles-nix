@@ -10,6 +10,7 @@
     ./cli
     ./cli/jujutsu.nix
     ./gui/stylix.nix
+    ./gui/firefox.nix
     ./gui/fonts.nix
     ./gui/kitty.nix
   ];
