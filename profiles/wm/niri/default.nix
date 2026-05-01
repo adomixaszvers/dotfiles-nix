@@ -10,11 +10,7 @@
   imports = [
     ../waybar
     ../dunst.nix
-    (inputs.nix-wrapper-modules.lib.mkInstallModule {
-      loc = [
-        "home"
-        "packages"
-      ];
+    (inputs.nix-wrapper-modules.lib.getInstallModule {
       name = "niri";
       value = inputs.self.wrapperModules.niri;
     })

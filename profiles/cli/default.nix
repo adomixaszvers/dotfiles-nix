@@ -10,19 +10,11 @@
 {
   imports = [
     ../../nixos/nix-package.nix
-    (inputs.nix-wrapper-modules.lib.mkInstallModule {
-      loc = [
-        "home"
-        "packages"
-      ];
+    (inputs.nix-wrapper-modules.lib.getInstallModule {
       name = "neovim";
       value = inputs.self.wrapperModules.neovim;
     })
-    (inputs.nix-wrapper-modules.lib.mkInstallModule {
-      loc = [
-        "home"
-        "packages"
-      ];
+    (inputs.nix-wrapper-modules.lib.getInstallModule {
       name = "neovim-nix";
       value = inputs.self.wrapperModules.neovim-nix;
     })

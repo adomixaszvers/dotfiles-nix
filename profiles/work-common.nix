@@ -455,11 +455,6 @@
       '';
   };
   xdg = {
-    autostart = {
-      enable = false;
-      entries = [ "${pkgs.keepassxc}/share/applications/org.keepassxc.KeePassXC.desktop" ];
-      readOnly = false;
-    };
     configFile."mimeapps.list".force = true;
     mimeApps = {
       enable = true;
