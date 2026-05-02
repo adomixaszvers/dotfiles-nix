@@ -48,6 +48,7 @@
     initrd.systemd.enable = true;
     supportedFilesystems = [ "zfs" ];
     zfs = {
+      forceImportRoot = false;
       requestEncryptionCredentials = false;
     };
   };
