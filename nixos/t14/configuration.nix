@@ -32,7 +32,6 @@
     ./wireguard-client.nix
     # ../kde.nix
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
-    inputs.nixpkgs.nixosModules.notDetected
     inputs.sops-nix.nixosModules.sops
   ];
 
@@ -56,10 +55,6 @@
   systemd.generators = {
     systemd-gpt-auto-generator = "/dev/null";
   };
-  powerManagement.resumeCommands = # bash
-    ''
-      /run/current-system/sw/bin/bluetoothctl discoverable on
-    '';
   console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
   hardware = {
     bluetooth.enable = true;
