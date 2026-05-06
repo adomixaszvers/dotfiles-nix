@@ -36,7 +36,7 @@
     # ./prebuild-configs.nix
     ./remote-build.nix
     ./samba.nix
-    ./squid.nix
+    # ./squid.nix
     ./xrdp/current.nix
     # ./turbovnc.nix
     # ./unbound.nix
