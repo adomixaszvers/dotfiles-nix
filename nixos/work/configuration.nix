@@ -136,8 +136,7 @@
     mosh.enable = true;
     virt-manager.enable = true;
     wireshark = {
-      # disable until https://github.com/NixOS/nixpkgs/pull/515269 hits nixos-unstable
-      enable = false;
+      enable = true;
       package = pkgs.wireshark;
     };
   };
