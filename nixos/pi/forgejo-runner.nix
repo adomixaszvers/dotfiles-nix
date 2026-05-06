@@ -24,6 +24,19 @@
       # tokenFile should be in format TOKEN=<secret>, since it's EnvironmentFile for systemd
       settings.container.options = "--add-host git.rpi4.beastade.top:host-gateway";
       tokenFile = config.sops.templates."forgejo-runner.env".path;
+      hostPackages = [
+        config.nix.package
+      ]
+      ++ (with pkgs; [
+        bash
+        coreutils
+        curl
+        gawk
+        gitMinimal
+        gnused
+        nodejs
+        wget
+      ]);
       labels = [
         "ubuntu-24.04-arm:docker://gitea/runner-images:ubuntu-latest"
         "ubuntu-slim:docker://gitea/runner-images:ubuntu-latest-slim"
@@ -32,7 +45,7 @@
         # "ubuntu-20.04:docker://node:16-bullseye"
         # "ubuntu-18.04:docker://node:16-buster"
         ## optionally provide native execution on the host:
-        # "native:host"
+        "native:host"
       ];
     };
   };

@@ -1,0 +1,20 @@
+name: Update Flake Inputs
+
+on:
+  schedule:
+    - cron: '0 2 * * 1,4'  # At 02:00 on Monday and Thursday.
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: native
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Update flake inputs
+      uses: Mic92/update-flake-inputs-gitea@main
+      with:
+        gitea-token: ${{ secrets.GITEA_TOKEN }}
+        github-token: ${{ secrets.UPDATES_TOKEN }}
+        base-branch: master
+        auto-merge: true
