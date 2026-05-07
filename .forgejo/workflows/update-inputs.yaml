@@ -10,11 +10,12 @@ jobs:
     runs-on: native
     steps:
     - uses: actions/checkout@v4
-
-    - name: Update flake inputs
-      uses: Mic92/update-flake-inputs-gitea@main
+    - name: update flake
+      run: nix flake update --commit-lock-file --option access-tokens github.com=${{ secrets.UPDATES_TOKEN }}
+    - name: Create Pull Request
+      uses: Mai0313/create-pull-request@95b41bb74c7689393eaf7c540f02702d8d41e3e6
       with:
-        gitea-token: ${{ secrets.GITEA_TOKEN }}
-        github-token: ${{ secrets.UPDATES_TOKEN }}
-        base-branch: master
-        auto-merge: true
+        branch: update-flake-inputs
+        token: ${{ secrets.GITEA_TOKEN }}
+        github-server-url: git.rpi4.beastade.top
+        title: Update flake inputs
