@@ -89,7 +89,6 @@
       podman-compose
       numlockx
       openssl
-      oracle-instantclient
       playerctl
       # volatile versions
       # postman
