@@ -17,7 +17,9 @@
           ) (systemFilter self.nixosConfigurations);
           blacklistPackages = [
           ];
-          checks = lib.mapAttrs' (n: lib.nameValuePair "check-${n}") self'.checks;
+          checks = lib.optionalAttrs (system == "x86_64-linux") (
+            lib.mapAttrs' (n: lib.nameValuePair "check-${n}") self'.checks
+          );
           packages = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") (
             lib.filterAttrs (n: _v: !(builtins.elem n blacklistPackages)) self'.packages
           );
