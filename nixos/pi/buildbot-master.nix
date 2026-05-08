@@ -22,7 +22,7 @@ in
   sops.secrets."buildbot/webhook-secret" = secretConf;
   sops.secrets."buildbot/token" = secretConf;
   sops.secrets."buildbot/cachix-signing-key" = secretConf;
-  sops.secrets."buildbot/ssh-key" = secretConf;
+  # sops.secrets."buildbot/ssh-key" = secretConf;
   sops.secrets."buildbot-nix/work-worker-password" = {
     sopsFile = ../common-secrets/buildbot/work.yaml;
     owner = config.users.users.buildbot.name;
@@ -80,16 +80,16 @@ in
     };
     # optional expose latest store path as text file
     # outputsPath = "/var/www/buildbot/nix-outputs";
-    pullBased = {
-      pollInterval = 600; # 10 minutes
-      repositories = {
-        dotfiles-nix-gh = {
-          url = "git@github.com:adomixaszvers/dotfiles-nix.git";
-          defaultBranch = "update_flake_lock_action";
-          sshPrivateKeyFile = config.sops.secrets."buildbot/ssh-key".path;
-        };
-      };
-    };
+    # pullBased = {
+    #   pollInterval = 600; # 10 minutes
+    #   repositories = {
+    #     dotfiles-nix-gh = {
+    #       url = "git@github.com:adomixaszvers/dotfiles-nix.git";
+    #       defaultBranch = "update_flake_lock_action";
+    #       sshPrivateKeyFile = config.sops.secrets."buildbot/ssh-key".path;
+    #     };
+    #   };
+    # };
 
     # optional nix-eval-jobs settings
     buildSystems = [
