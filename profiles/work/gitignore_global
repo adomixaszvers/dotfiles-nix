@@ -6,6 +6,7 @@
 
 application-local.yaml
 docker-compose.override.yml
+compose.override.yml
 shell.nix
 .envrc
 .direnv
