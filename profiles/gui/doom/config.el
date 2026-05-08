@@ -5,7 +5,7 @@
 (setq doom-unicode-font doom-font)
 (setq! display-line-numbers-type 'visual)
 (when (display-graphic-p)
-  (setq doom-theme 'doom-nord))
+  (setq doom-theme 'doom-one-light))
 (setq! +notmuch-mail-folder "~/Maildir/adomixaszvers")
 ;;; Show all outlines while diffing org-mode files
 (after! (ediff org)
