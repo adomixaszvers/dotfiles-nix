@@ -1,4 +1,7 @@
-{ writeShellScriptBin, gnused }:
+{
+  writeShellScriptBin,
+  gnused,
+}:
 writeShellScriptBin "kaknix" ''
   if [ $# -ne 1 ] || [ ! -f "$1"  ]; then
     exit 1

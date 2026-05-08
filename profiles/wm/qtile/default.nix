@@ -1,4 +1,9 @@
-{ pkgs, myPkgs, ... }:
+{
+  pkgs,
+  myPkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [ ../dunst.nix ];
@@ -19,7 +24,7 @@
   };
   xdg.configFile."qtile/autostart.sh".source = pkgs.writers.writeDash "autostart.sh" ''
     if [ -n "$WAYLAND_DISPLAY" ]; then
-      ${pkgs.kanshi}/bin/kanshi &
+      ${lib.getExe pkgs.kanshi} &
     fi
   '';
 }

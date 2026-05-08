@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs = {
     nushell = {
@@ -9,7 +9,7 @@
               $spans | skip 1 | zoxide query -l $in | lines | where {|x| $x != $env.PWD}
           }
           let fish_completer = {|spans|
-              ${pkgs.fish}/bin/fish --command $'complete "--do-complete=($spans | str join " ")"'
+              ${lib.getExe pkgs.fish} --command $'complete "--do-complete=($spans | str join " ")"'
               | $"value(char tab)description(char newline)" + $in
               | from tsv --flexible --no-infer
           }

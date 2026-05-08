@@ -51,7 +51,7 @@ in
     "bar/top-extra".modules-left = "xmonad";
     "module/xmonad" = {
       type = "custom/script";
-      exec = "${xmonad-dbus}/bin/xmonad-dbus $SCREEN_ID";
+      exec = "${lib.getExe xmonad-dbus} $SCREEN_ID";
       tail = true;
     };
   };

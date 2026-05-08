@@ -34,13 +34,14 @@ in
           ;
         keybindings =
           let
+            rofi = lib.getExe pkgs.rofi;
             combined = common.config.keybindings // {
-              "Shift+${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show run -sidebar-mode";
-              "${modifier}+d" = ''exec ${pkgs.rofi}/bin/rofi -show combi -combi-modi "window#drun" -modi combi'';
-              "${modifier}+Tab" = "exec ${pkgs.rofi}/bin/rofi -show window";
+              "Shift+${modifier}+d" = "exec ${rofi} -show run -sidebar-mode";
+              "${modifier}+d" = ''exec ${rofi} -show combi -combi-modi "window#drun" -modi combi'';
+              "${modifier}+Tab" = "exec ${rofi} -show window";
 
               "${modifier}+r" = "mode resize";
-              "${modifier}+F4" = "exec --no-startup-id ${myPkgs.rofi-powermenu}/bin/rofi-powermenu";
+              "${modifier}+F4" = "exec --no-startup-id ${lib.getExe myPkgs.rofi-powermenu}";
               "${modifier}+m" = "move workspace to output left";
 
               "Print" = "exec --no-startup-id maimpick";

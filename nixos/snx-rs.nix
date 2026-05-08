@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   environment.systemPackages = [ pkgs.snx-rs ];
   systemd.services.snx-rs = {
@@ -14,7 +14,7 @@
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.snx-rs}/bin/snx-rs -m command -l debug";
+      ExecStart = "${lib.getExe pkgs.snx-rs} -m command -l debug";
       Restart = "on-failure";
     };
   };

@@ -21,7 +21,7 @@
   xdg.dataFile."dbus-1/services/org.freedesktop.secrets.service".text = ''
     [D-BUS Service]
     Name=org.freedesktop.secrets
-    Exec=${pkgs.keepassxc}/bin/keepassxc
+    Exec=${lib.getExe pkgs.keepassxc}
   '';
   home = {
     file = {
@@ -135,7 +135,7 @@
             else
               DPI=96
             fi
-            echo "Xft.dpi: $DPI"| ${pkgs.xrdb}/bin/xrdb -merge
+            echo "Xft.dpi: $DPI"| ${lib.getExe pkgs.xrdb} -merge
           '';
         postswitch = {
           restart-picom = "systemctl --user restart picom.service";

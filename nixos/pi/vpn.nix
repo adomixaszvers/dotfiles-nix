@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   sops.secrets."vpnc/config" = {
     sopsFile = ../common-secrets/vpnc.conf;
@@ -67,7 +68,7 @@
             Restart = "on-failure";
             RestartSec = 30;
           };
-          script = "${pkgs.vpnc}/bin/vpnc /vpnc.conf --no-detach --non-inter --local-port 0";
+          script = "${lib.getExe pkgs.vpnc} /vpnc.conf --no-detach --non-inter --local-port 0";
         };
         systemd.services.dante.requires = [ "vpnc.service" ];
         services.dante = {

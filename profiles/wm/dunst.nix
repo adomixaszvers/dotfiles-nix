@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   home.packages = with pkgs; [ dunst ];
   services.dunst = {
@@ -12,7 +17,7 @@
         allow_markup = true;
         bounce_freq = 0;
         browser = "${pkgs.xdg-utils}/bin/xdg-open";
-        dmenu = "${config.programs.rofi.finalPackage}/bin/rofi -dmenu -p dunst";
+        dmenu = "${lib.getExe config.programs.rofi.finalPackage} -dmenu -p dunst";
         follow = "keyboard";
         format = "<b>%s</b>\\n%b";
         geometry = "300x5-30+20";

@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
-  swaylock = pkgs.swaylock-effects;
+  swaylock = lib.getExe pkgs.swaylock-effects;
 in
 {
   programs.swaylock = {
@@ -16,13 +16,13 @@ in
       }
       {
         event = "lock";
-        command = "${swaylock}/bin/swaylock -f";
+        command = "${swaylock} -f";
       }
     ];
     timeouts = [
       {
         timeout = 300;
-        command = "${swaylock}/bin/swaylock -f";
+        command = "${swaylock} -f";
       }
     ];
   };

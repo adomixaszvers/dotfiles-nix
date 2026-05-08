@@ -1,4 +1,8 @@
-{ jq, writers }:
+{
+  jq,
+  writers,
+  lib,
+}:
 writers.writeDashBin "sway-greedy-focus" ''
   PROG="''${0##*/}"
 
@@ -14,7 +18,7 @@ writers.writeDashBin "sway-greedy-focus" ''
   export WS=$1
 
   read -r WS_ACTIVE WS_OUTPUT FOCUSED_WS FOCUSED_OUTPUT <<EOF
-    $(swaymsg -t get_tree| ${jq}/bin/jq --raw-output '(.nodes[].nodes[] | select(.name == env.WS) | .output ) as $ws_output|
+    $(swaymsg -t get_tree| ${lib.getExe jq} --raw-output '(.nodes[].nodes[] | select(.name == env.WS) | .output ) as $ws_output|
       (.nodes[] | select(.name == $ws_output)| .current_workspace == env.WS) as $ws_active|
       (.nodes[].nodes[] | select(.. | .focused?)) as $focused | [
       $ws_active,

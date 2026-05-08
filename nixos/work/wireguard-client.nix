@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 {
   environment.etc."NetworkManager/dnsmasq.d/wireguard".text = # ini
     ''
