@@ -9,7 +9,7 @@ jobs:
   update:
     runs-on: native
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
     - name: update flake
       run: nix flake update --commit-lock-file --option access-tokens github.com=${{ secrets.UPDATES_TOKEN }}
     - name: Create Pull Request
