@@ -26,23 +26,9 @@
   home = {
     file = {
       "jdks/openjdk8".source = pkgs.openjdk8;
-      "jdks/oraclejdk8".source = pkgs.callPackage (import ../pkgs/oraclejdk-linux-base.nix {
-        productVersion = "8";
-        patchVersion = "202";
-        jceName = "jce_policy-8.zip";
-        sha256JCE = "19n5wadargg3v8x76r7ayag6p2xz1bwhrgdzjs9f4i6fvxz9jr4w";
-        sha256.x86_64-linux = "1q4l8pymjvsvxfwaw0rdcnhryh1la2bvg5f4d4my41ka390k4p4s";
-      }) { };
       "jdks/openjdk11".source = pkgs.openjdk11;
       "jdks/openjdk17".source = pkgs.openjdk17;
       "jdks/openjdk21".source = pkgs.openjdk21;
-      "nodejs/12".source =
-        let
-          # nixos-20.09
-          oldNixpkgs = builtins.getFlake "github:NixOS/nixpkgs/1c1f5649bb9c1b0d98637c8c365228f57126f361";
-          oldPkgs = builtins.getAttr pkgs.stdenv.hostPlatform.system oldNixpkgs.legacyPackages;
-        in
-        oldPkgs.nodejs-12_x;
       "nodejs/24".source = pkgs.nodejs_24;
       "maven".source = pkgs.maven;
       "tomcat-native".source = pkgs.tomcat-native;
@@ -62,7 +48,6 @@
       dbeaver-bin
       docker-credential-helpers
       dos2unix
-      myPkgs.eclipse-activiti
       evince
       filezilla
       gimp
@@ -81,9 +66,6 @@
       minio-client
       myPkgs.hunspell-lt
       keystore-explorer
-      (pkgs.callPackage ../pkgs/sqldeveloper {
-        jdk = pkgs.openjdk17.override { enableJavaFX = true; };
-      })
       mercurial
       pnpm_10
       podman-compose
@@ -114,9 +96,6 @@
     sessionPath = [ config.home.sessionVariables.PNPM_HOME ];
     sessionVariables = {
       BROWSER = "firefox";
-      CS_AUTH_KEYS = "/home/adomas/HSMrsa.pub";
-      CS_PKCS11_R2_CFG = "/home/adomas/cs_pkcs11_R2.cfg";
-      CRYPTOSERVER = "3001@localhost";
       PNPM_HOME = "${config.xdg.dataHome}/pnpm";
       # see https://github.com/skywind3000/z.lua?tab=readme-ov-file#options
       TESTCONTAINERS_RYUK_DISABLED = "true";
