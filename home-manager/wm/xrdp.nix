@@ -8,7 +8,6 @@
   home.file."startwm.sh".source = pkgs.writeShellScript "startwm.sh" ''
     source /etc/profile
 
-    # fixes AltGr producing Left Arrow input on kitty
     systemctl --user stop picom.service # picom doesn't work right on xrdp session
     if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
       export DBUS_SESSION_BUS_ADDRESS
