@@ -4,9 +4,9 @@
     { pkgs, ... }:
     {
 
-      xmonad = import ./profiles/wm/xmonad/shell.nix { inherit pkgs; };
-      qtile = import ./profiles/wm/qtile/shell.nix { inherit pkgs; };
-      awesomewm = import ./profiles/wm/awesome/shell.nix { inherit pkgs; };
+      xmonad = import ./home-manager/wm/xmonad/shell.nix { inherit pkgs; };
+      qtile = import ./home-manager/wm/qtile/shell.nix { inherit pkgs; };
+      awesomewm = import ./home-manager/wm/awesome/shell.nix { inherit pkgs; };
     }
   );
   perSystem =

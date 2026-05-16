@@ -69,8 +69,8 @@
         ./modules/buildbotJobs.nix
         ./pkgs
         ./devshells.nix
-        ./nixos/configurations.nix
-        ./homes.nix
+        ./nixos
+        ./home-manager
         ./buildbotJobs.nix
       ];
       perSystem =

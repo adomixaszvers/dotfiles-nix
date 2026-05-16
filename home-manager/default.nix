@@ -35,18 +35,18 @@ let
         };
       }
     );
-  work = buildHomeManager ./profiles/work.nix { };
-  work-remote = buildHomeManager ./profiles/work-remote.nix { };
-  home = buildHomeManager ./profiles/home.nix { };
-  t14 = buildHomeManager ./profiles/t14.nix { };
-  foreign = buildHomeManager ./profiles/foreign.nix { };
-  pi = buildHomeManager ./profiles/pi.nix {
+  work = buildHomeManager ./work.nix { };
+  work-remote = buildHomeManager ./work-remote.nix { };
+  home = buildHomeManager ./home.nix { };
+  t14 = buildHomeManager ./t14.nix { };
+  foreign = buildHomeManager ./foreign.nix { };
+  pi = buildHomeManager ./pi.nix {
     username = "pi";
     system = "aarch64-linux";
   };
-  pc = buildHomeManager ./profiles/pc.nix { };
+  pc = buildHomeManager ./pc.nix { };
   thinkpad-home = work-remote;
-  deck = buildHomeManager ./profiles/steamdeck.nix { username = "deck"; };
+  deck = buildHomeManager ./steamdeck.nix { username = "deck"; };
   thinkpad-work = work;
 in
 {
