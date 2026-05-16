@@ -7,12 +7,23 @@
 }:
 {
   imports = [
-    ./common.nix
-    ./cli/atuin
-    ./wm/xrdp.nix
-    ./work/kerberos.nix
-    ./cli/jujutsu.nix
+    ../common.nix
+    ../cli/atuin
+    ../cli/jujutsu.nix
+    ../wm/xrdp.nix
+    ./kerberos.nix
   ];
+  specialisation = {
+    work.configuration = {
+      imports = [ ./work.nix ];
+      xdg.dataFile."home-manager/specialisation".text = "work";
+    };
+
+    work-remote.configuration = {
+      imports = [ ./work-remote.nix ];
+      xdg.dataFile."home-manager/specialisation".text = "work-remote";
+    };
+  };
   gui = {
     hasBattery = true;
     thermal-zone = 1;
@@ -268,7 +279,7 @@
     git.includes = [
       {
         condition = "gitdir:~/projektai/**";
-        contents.core.excludesfile = "${./work/gitignore_global}";
+        contents.core.excludesfile = "${./gitignore_global}";
       }
       {
         condition = "gitdir:~/projektai/**";

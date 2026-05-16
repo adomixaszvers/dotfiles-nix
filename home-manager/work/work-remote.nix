@@ -1,9 +1,7 @@
-{ ... }:
 {
   imports = [
-    ./work-common.nix
-    ./wm/xsession-common.nix
-    ./wm/xmonad
+    ../wm/xsession-common.nix
+    ../wm/xmonad
   ];
   xsession.numlock.enable = true;
   services = {

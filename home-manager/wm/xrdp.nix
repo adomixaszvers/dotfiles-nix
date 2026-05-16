@@ -10,8 +10,6 @@
 
     # fixes AltGr producing Left Arrow input on kitty
     systemctl --user stop picom.service # picom doesn't work right on xrdp session
-    export NH_FILE="$HOME/.config/nixpkgs"
-    export NH_ATTRP='homeConfigurations.thinkpad-home'
     if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
       export DBUS_SESSION_BUS_ADDRESS
       exec ${pkgs.runtimeShell} ~/.xsession

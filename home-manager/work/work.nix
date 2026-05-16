@@ -16,11 +16,10 @@ let
 in
 {
   imports = [
-    ./work-common.nix
     # ./wm/xsession-common.nix
     # ./wm/xmonad
     # ./wm/hyprland
-    ./wm/niri
+    ../wm/niri
   ];
   # gtk.enable = false;
   # qt.enable = false;

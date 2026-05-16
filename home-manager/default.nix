@@ -35,8 +35,7 @@ let
         };
       }
     );
-  work = buildHomeManager ./work.nix { };
-  work-remote = buildHomeManager ./work-remote.nix { };
+  work = buildHomeManager ./work { };
   asus-laptop = buildHomeManager ./asus-laptop.nix { };
   t14 = buildHomeManager ./t14.nix { };
   foreign = buildHomeManager ./foreign.nix { };
@@ -45,24 +44,19 @@ let
     system = "aarch64-linux";
   };
   pc = buildHomeManager ./pc.nix { };
-  thinkpad-home = work-remote;
   deck = buildHomeManager ./steamdeck.nix { username = "deck"; };
-  thinkpad-work = work;
 in
 {
   flake = {
     homeConfigurations = {
       inherit
         work
-        work-remote
         asus-laptop
         t14
         foreign
         pi
         pc
-        thinkpad-home
         deck
-        thinkpad-work
         ;
       "adomas@adomo-nixos" = asus-laptop;
       "adomas@adomo-t14" = t14;
@@ -78,7 +72,6 @@ in
       };
       "x86_64-linux" = {
         home-manager-work = work.activationPackage;
-        home-manager-work-remote = work-remote.activationPackage;
         home-manager-home = asus-laptop.activationPackage;
         home-manager-t14 = t14.activationPackage;
         home-manager-foreign = foreign.activationPackage;
