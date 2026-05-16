@@ -10,7 +10,7 @@ in
     adomo-nixos = nixpkgs.lib.nixosSystem {
       inherit specialArgs;
       modules = [
-        ./home/configuration.nix
+        ./asus-laptop/configuration.nix
       ];
     };
     adomas-jatuzis-nixos = nixpkgs.lib.nixosSystem {

@@ -37,7 +37,7 @@ let
     );
   work = buildHomeManager ./work.nix { };
   work-remote = buildHomeManager ./work-remote.nix { };
-  home = buildHomeManager ./home.nix { };
+  asus-laptop = buildHomeManager ./asus-laptop.nix { };
   t14 = buildHomeManager ./t14.nix { };
   foreign = buildHomeManager ./foreign.nix { };
   pi = buildHomeManager ./pi.nix {
@@ -55,7 +55,7 @@ in
       inherit
         work
         work-remote
-        home
+        asus-laptop
         t14
         foreign
         pi
@@ -64,7 +64,7 @@ in
         deck
         thinkpad-work
         ;
-      "adomas@adomo-nixos" = home;
+      "adomas@adomo-nixos" = asus-laptop;
       "adomas@adomo-t14" = t14;
       "adomas@arch-vm" = foreign;
       "adomas@adomas-jatuzis-nixos" = work;
@@ -79,7 +79,7 @@ in
       "x86_64-linux" = {
         home-manager-work = work.activationPackage;
         home-manager-work-remote = work-remote.activationPackage;
-        home-manager-home = home.activationPackage;
+        home-manager-home = asus-laptop.activationPackage;
         home-manager-t14 = t14.activationPackage;
         home-manager-foreign = foreign.activationPackage;
         home-manager-pc = pc.activationPackage;
