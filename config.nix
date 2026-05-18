@@ -5,7 +5,6 @@
     builtins.elem (lib.getName pkg) [
       "corefonts" # used in onlyoffice
       "idea"
-      "replace"
       "steam"
       "steam-unwrapped"
       "unrar"
