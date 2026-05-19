@@ -78,7 +78,7 @@
       myPkgs.hunspell-lt
       keystore-explorer
       mercurial
-      pnpm_10
+      pnpm_11
       podman-compose
       numlockx
       openssl
