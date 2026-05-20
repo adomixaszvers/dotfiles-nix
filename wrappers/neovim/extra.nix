@@ -6,7 +6,7 @@
     ];
     lsp = {
       data = [ pkgs.vimPlugins.nvim-lspconfig ];
-      extraPackages = with pkgs; [
+      runtimePkgs = with pkgs; [
         lua-language-server
         nil
         taplo

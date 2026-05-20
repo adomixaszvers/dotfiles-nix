@@ -20,7 +20,7 @@
         which-key-nvim
         yuck-vim
       ];
-      extraPackages = with pkgs; [
+      runtimePkgs = with pkgs; [
         nixfmt
         ripgrep
         deadnix

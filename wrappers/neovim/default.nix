@@ -2,6 +2,7 @@
   config,
   wlib,
   lib,
+  options,
   ...
 }:
 {
@@ -27,12 +28,8 @@
     };
     # This submodule modifies both levels of your specs
     specMods = _: {
-      options.extraPackages = lib.mkOption {
-        type = lib.types.listOf wlib.types.stringable;
-        default = [ ];
-        description = "a extraPackages spec field to put packages to suffix to the PATH";
-      };
+      options.runtimePkgs = options.runtimePkgs;
     };
-    extraPackages = config.specCollect (acc: v: acc ++ (v.extraPackages or [ ])) [ ];
+    runtimePkgs = config.specCollect (acc: v: acc ++ (v.runtimePkgs or [ ])) [ ];
   };
 }
