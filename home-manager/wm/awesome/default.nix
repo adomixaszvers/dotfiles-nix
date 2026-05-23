@@ -7,7 +7,7 @@
   };
   xdg.configFile =
     let
-      copycats = pkgs.fetchGitHub {
+      copycats = pkgs.fetchFromGitHub {
         owner = "lcpz";
         repo = "awesome-copycats";
         rev = "16c16bb16eb1f2d272d6bd85872a05c8c958aeb6";
