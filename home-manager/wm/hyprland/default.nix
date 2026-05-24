@@ -68,7 +68,7 @@
         '';
       systemd = {
         enable = true;
-        target = "hyprland-session.target";
+        targets = [ "hyprland-session.target" ];
       };
     };
   };
@@ -181,7 +181,6 @@
 
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-        pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
         preserve_split = true; # you probably want this
       };
 
@@ -198,7 +197,7 @@
       misc = {
         vrr = 1;
         disable_hyprland_logo = true; # no anime
-        new_window_takes_over_fullscreen = 1; # take over
+        on_focus_under_fullscreen = 1; # take over
         exit_window_retains_fullscreen = true;
       };
 
@@ -224,7 +223,7 @@
         "$mainMod, F, fullscreen, 1"
         "$mainMod SHIFT, F, fullscreen, 0" # true fullscreen
         "$mainMod, P, pseudo," # dwindle
-        "$mainMod, S, togglesplit," # dwindle
+        "$mainMod, S, layoutmsg, togglesplit," # dwindle
         "$mainMod, F4, exec, rofi-powermenu"
 
         "$mainMod, W, focusmonitor, 0"
@@ -294,31 +293,93 @@
         ", XF86AudioNext, exec, playerctl next"
       ];
 
-      windowrulev2 = [
-        "float,class:^(Vampire_Survivors)$"
-        "workspace 1 silent,class:^(Google-chrome)$"
-        "workspace 1 silent,class:^(firefox)$"
-        "workspace 3 silent,class:^(jetbrains-idea)$,floating:0"
-        "workspace 5 silent,class:^(steam)$"
-        "workspace 7,class:^(steam_app_3191030)$"
-        "workspace 9 silent,class:^(KeePassXC)$,floating:0"
-        "tile,class:^(com-eviware-soapui-SoapUI)$,title:^(SoapUI)(.*)$"
-        # fix steam menus
-        # "stayfocused, title:^()$,class:^(steam)$"
-        # "minsize 1 1, title:^()$,class:^(steam)$"
-        "noanim,floating:1"
-        "fullscreen,class:^(.gamescope-wrapped)$"
+      windowrule = [
+        {
+          name = "windowrule-1";
+          float = "on";
+          match.class = "^(Vampire_Survivors)$";
+        }
 
-        # smart gaps
-        # see https://wiki.hyprland.org/0.45.0/Configuring/Workspace-Rules/#smart-gaps
-        # damn you, Vaxry
-        # no_gaps_when_only was good enough :/
-        "bordersize 0, floating:0, onworkspace:w[t1]"
-        "rounding 0, floating:0, onworkspace:w[t1]"
-        "bordersize 0, floating:0, onworkspace:w[tg1]"
-        "rounding 0, floating:0, onworkspace:w[tg1]"
-        "bordersize 0, floating:0, onworkspace:f[1]"
-        "rounding 0, floating:0, onworkspace:f[1]"
+        {
+          name = "windowrule-2";
+          workspace = "1 silent";
+          match.class = "^(Google-chrome)$";
+        }
+
+        {
+          name = "windowrule-3";
+          workspace = "1 silent";
+          match.class = "^(firefox)$";
+        }
+
+        {
+          name = "windowrule-4";
+          workspace = "3 silent";
+          match.class = "^(jetbrains-idea)$";
+          match.float = "0";
+        }
+
+        {
+          name = "windowrule-5";
+          workspace = "5 silent";
+          match.class = "^(steam)$";
+        }
+
+        {
+          name = "windowrule-6";
+          workspace = "7";
+          match.class = "^(steam_app_3191030)$";
+        }
+
+        {
+          name = "windowrule-7";
+          workspace = "9 silent";
+          match.class = "^(KeePassXC)$";
+          match.float = "0";
+        }
+
+        {
+          name = "windowrule-8";
+          tile = "on";
+          match.class = "^(com-eviware-soapui-SoapUI)$";
+          match.title = "^(SoapUI)(.*)$";
+        }
+
+        {
+          name = "windowrule-9";
+          no_anim = "on";
+          match.float = "1";
+        }
+
+        {
+          name = "windowrule-10";
+          fullscreen = "on";
+          match.class = "^(.gamescope-wrapped)$";
+        }
+
+        {
+          name = "windowrule-11";
+          border_size = "0";
+          rounding = "0";
+          match.float = "0";
+          match.workspace = "w[t1]";
+        }
+
+        {
+          name = "windowrule-12";
+          border_size = "0";
+          rounding = "0";
+          match.float = "0";
+          match.workspace = "w[tg1]";
+        }
+
+        {
+          name = "windowrule-13";
+          border_size = "0";
+          rounding = "0";
+          match.float = "0";
+          match.workspace = "f[1]";
+        }
       ];
 
       # for smart gaps
