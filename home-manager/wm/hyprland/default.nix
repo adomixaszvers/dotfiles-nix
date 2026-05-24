@@ -167,10 +167,10 @@
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
           gaps_in = 5;
-          gaps_out = 20;
+          gaps_out = 5;
           border_size = 2;
 
-          layout = "master";
+          layout = "scrolling";
           allow_tearing = true;
         };
 
@@ -202,6 +202,8 @@
           # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
           new_status = "slave";
         };
+
+        scrolling.follow_min_visible = 0.6;
 
         misc = {
           vrr = 1;
@@ -320,6 +322,18 @@
             _args = [
               "${mainMod} + R"
               (lib.generators.mkLuaInline "hl.dsp.focus({monitor = 2})")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + page_up"
+              (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 'm-1'})")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + page_down"
+              (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 'm+1'})")
             ];
           }
 
