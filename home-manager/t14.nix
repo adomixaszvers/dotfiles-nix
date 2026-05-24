@@ -101,11 +101,20 @@
       xrandr --output eDP --set TearFree on
     '';
   wayland.windowManager.hyprland.settings = {
-    animations.enabled = false;
-    monitor = [ "eDP-1,1920x1080,0x0,1.25" ];
-    decoration = {
-      blur.enabled = false;
-      shadow.enabled = false;
+    monitor = [
+      {
+        output = "eDP-1";
+        mode = "1920x1080";
+        position = "0x0";
+        scale = "1.25";
+      }
+    ];
+    config = {
+      animations.enabled = false;
+      decoration = {
+        blur.enabled = false;
+        shadow.enabled = false;
+      };
     };
   };
   wayland.windowManager.sway = {

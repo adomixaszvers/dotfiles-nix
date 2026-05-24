@@ -142,11 +142,26 @@ in
   wayland.windowManager = {
     hyprland.settings = {
       env = [
-        "IDEA_VM_OPTIONS,${ideaOptions}"
+        {
+          _args = [
+            "IDEA_VM_OPTIONS"
+            ideaOptions
+          ];
+        }
       ];
       monitor = [
-        "DP-6,2560x1440,0x0,1.00"
-        "DP-7,2560x1440,2560x0,1.00"
+        {
+          output = "DP-6";
+          mode = "2560x1440";
+          position = "0x0";
+          scale = "1.0";
+        }
+        {
+          output = "DP-7";
+          mode = "2560x1440";
+          position = "2560x0";
+          scale = "1.0";
+        }
         # "eDP-1,disable"
       ];
     };

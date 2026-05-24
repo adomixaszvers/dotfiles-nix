@@ -101,6 +101,7 @@
   };
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "lua";
     xwayland.enable = true;
     settings = {
 
@@ -114,7 +115,14 @@
       #
 
       # See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor = [ ",preferred,auto,1" ];
+      monitor = [
+        {
+          output = "";
+          mode = "preferred";
+          position = "auto";
+          scale = "auto";
+        }
+      ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
@@ -126,80 +134,91 @@
 
       # Some default env vars.
       env = [
-        "KITTY_CONF_FONT,font_size 9.0"
+        {
+          _args = [
+            "KITTY_CONF_FONT"
+            "9.0"
+          ];
+        }
       ];
-      # sets xwayland scale
+      config = {
+        # sets xwayland scale
 
-      # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
-      input = {
-        kb_layout = "lt,us";
-        kb_options = "grp:caps_toggle";
-        numlock_by_default = true;
+        # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
+        input = {
+          kb_layout = "lt,us";
+          kb_options = "grp:caps_toggle";
+          numlock_by_default = true;
 
-        follow_mouse = 1;
+          follow_mouse = 1;
 
-        touchpad = {
-          natural_scroll = false;
+          touchpad = {
+            natural_scroll = false;
+          };
+
+          sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
         };
 
-        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
-      };
-
-      xwayland = {
-        force_zero_scaling = true;
-      };
-
-      general = {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
-
-        gaps_in = 5;
-        gaps_out = 20;
-        border_size = 2;
-
-        layout = "master";
-        allow_tearing = true;
-      };
-
-      decoration = {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
-
-        rounding = 5;
-        blur = {
-          enabled = lib.mkDefault true;
-          size = 3;
-          passes = 1;
-          new_optimizations = true;
+        xwayland = {
+          force_zero_scaling = true;
         };
 
-        shadow = {
-          enabled = lib.mkDefault true;
-          range = 4;
-          render_power = 3;
+        general = {
+          # See https://wiki.hyprland.org/Configuring/Variables/ for more
+
+          gaps_in = 5;
+          gaps_out = 20;
+          border_size = 2;
+
+          layout = "master";
+          allow_tearing = true;
         };
 
+        decoration = {
+          # See https://wiki.hyprland.org/Configuring/Variables/ for more
+
+          rounding = 5;
+          blur = {
+            enabled = lib.mkDefault true;
+            size = 3;
+            passes = 1;
+            new_optimizations = true;
+          };
+
+          shadow = {
+            enabled = lib.mkDefault true;
+            range = 4;
+            render_power = 3;
+          };
+
+        };
+
+        dwindle = {
+          # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+          preserve_split = true; # you probably want this
+        };
+
+        master = {
+          # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+          new_status = "slave";
+        };
+
+        misc = {
+          vrr = 1;
+          disable_hyprland_logo = true; # no anime
+          on_focus_under_fullscreen = 1; # take over
+          exit_window_retains_fullscreen = true;
+        };
       };
 
-      dwindle = {
-        # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-        preserve_split = true; # you probably want this
-      };
-
-      master = {
-        # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-        new_status = "slave";
-      };
-
-      gestures = {
+      gesture = [
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        gesture = "3, horizontal, workspace";
-      };
-
-      misc = {
-        vrr = 1;
-        disable_hyprland_logo = true; # no anime
-        on_focus_under_fullscreen = 1; # take over
-        exit_window_retains_fullscreen = true;
-      };
+        {
+          fingers = 3;
+          direction = "horizontal";
+          action = "workspace";
+        }
+      ];
 
       # Example windowrule v1
       # windowrule = float, ^(kitty)$
@@ -208,95 +227,352 @@
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
-      "$mainMod" = "SUPER";
-      "$showVolume" =
-        ''dunstify -i audio-card -t 2000 -h string:x-dunst-stack-tag:volume "Volume $(pamixer --get-volume)"'';
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-      bind = [
-        "$mainMod, Return, exec, kitty"
-        "$mainMod SHIFT, Q, killactive,"
-        "$mainMod SHIFT, C, exit,"
-        "$mainMod, T, togglefloating,"
-        "$mainMod, D, exec, rofi -show-icons -combi-modi windows,drun,run -show combi"
-        "$mainMod SHIFT, D, exec, rofi -show run"
-        "$mainMod, F, fullscreen, 1"
-        "$mainMod SHIFT, F, fullscreen, 0" # true fullscreen
-        "$mainMod, P, pseudo," # dwindle
-        "$mainMod, S, layoutmsg, togglesplit," # dwindle
-        "$mainMod, F4, exec, rofi-powermenu"
-
-        "$mainMod, W, focusmonitor, 0"
-        "$mainMod, E, focusmonitor, 1"
-        "$mainMod, R, focusmonitor, 2"
-
-        ", Print, exec, grimblast copy output"
-        "ALT, Print, exec, grimblast copy area"
-        "$mainMod, SLASH, exec, hyprpicker -a"
-
-        # Move focus with mainMod + arrow keys
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
-
-        "$mainMod, J, layoutmsg, cyclenext"
-        "$mainMod, K, layoutmsg, cycleprev"
-        "$mainMod SHIFT, J, layoutmsg, swapnext"
-        "$mainMod SHIFT, K, layoutmsg, swapprev"
-        "$mainMod SHIFT, Return, layoutmsg, swapwithmaster"
-        "$mainMod, SPACE, layoutmsg, orientationcycle left top"
-
-        "$mainMod, C, cyclenext, tiled"
-
-        "$mainMod, bracketleft, focusmonitor, -1"
-        "$mainMod, bracketright, focusmonitor, +1"
-
-        "$mainMod CTRL, bracketleft, swapactiveworkspaces, current -1"
-        "$mainMod CTRL, bracketright, swapactiveworkspaces, current +1"
-
-        # Scroll through existing workspaces with mainMod + scroll
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
-
-        "$mainMod, minus, exec, pamixer -d 5 && $showVolume"
-        "$mainMod, equal, exec, pamixer -i 5 && $showVolume"
-        "$mainMod, zcaron, exec, pamixer -i 5 && $showVolume"
-        "$mainMod, F5, exec, playerctl play-pause"
-        "$mainMod, F6, exec, playerctl previous"
-        "$mainMod, F7, exec, playerctl next"
-      ]
-      ++ (builtins.concatMap (
-        x:
+      bind =
         let
-          ws = toString x;
-          keyCode = toString (x + 9);
+          mainMod = "SUPER";
+          showVolume = ''dunstify -i audio-card -t 2000 -h string:x-dunst-stack-tag:volume "Volume $(pamixer --get-volume)"'';
         in
         [
-          "$mainMod, ${keyCode}, focusworkspaceoncurrentmonitor, ${ws}"
-          "$mainMod SHIFT, ${keyCode}, movetoworkspace, ${ws}"
+          {
+            _args = [
+              "${mainMod} + RETURN"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('kitty')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SHIFT + Q"
+              (lib.generators.mkLuaInline "hl.dsp.window.close()")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SHIFT + C"
+              (lib.generators.mkLuaInline "hl.dsp.exit()")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + T"
+              (lib.generators.mkLuaInline "hl.dsp.window.float()")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + D"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('rofi -show-icons -combi-modi windows,drun,run -show combi')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SHIFT + D"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('rofi -show run')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + F"
+              (lib.generators.mkLuaInline "hl.dsp.window.fullscreen({mode = 'maximized', action = 'toggle'})")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SHIFT + F"
+              (lib.generators.mkLuaInline "hl.dsp.window.fullscreen({mode = 'fullscreen', action = 'toggle'})")
+            ];
+          }
+          {
+            # dwindle
+            _args = [
+              "${mainMod} + P"
+              (lib.generators.mkLuaInline "hl.dsp.window.pseudo()")
+            ];
+          }
+          {
+            # dwindle
+            _args = [
+              "${mainMod} + S"
+              (lib.generators.mkLuaInline "hl.dsp.layout('togglesplit')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + F4"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('rofi-powermenu')")
+            ];
+          }
+
+          {
+            _args = [
+              "${mainMod} + W"
+              (lib.generators.mkLuaInline "hl.dsp.focus({monitor = 0})")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + E"
+              (lib.generators.mkLuaInline "hl.dsp.focus({monitor = 1})")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + R"
+              (lib.generators.mkLuaInline "hl.dsp.focus({monitor = 2})")
+            ];
+          }
+
+          {
+            _args = [
+              "Print"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('grimblast copy output')")
+            ];
+          }
+          {
+            _args = [
+              "ALT + Print"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('grimblast copy area')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SLASH"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('hyprpicker -a')")
+            ];
+          }
+
+          # Move focus with mainMod + arrow keys
+          {
+            _args = [
+              "${mainMod} + left"
+              (lib.generators.mkLuaInline "hl.dsp.focus({direction = 'l'})")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + right"
+              (lib.generators.mkLuaInline "hl.dsp.focus({direction = 'r'})")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + up"
+              (lib.generators.mkLuaInline "hl.dsp.focus({direction = 'u'})")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + down"
+              (lib.generators.mkLuaInline "hl.dsp.focus({direction = 'd'})")
+            ];
+          }
+
+          {
+            _args = [
+              "${mainMod} + J"
+              (lib.generators.mkLuaInline "hl.dsp.layout('cyclenext')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + K"
+              (lib.generators.mkLuaInline "hl.dsp.layout('cycleprev')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SHIFT + J"
+              (lib.generators.mkLuaInline "hl.dsp.layout('swapnext')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SHIFT + K"
+              (lib.generators.mkLuaInline "hl.dsp.layout('swapprev')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SHIFT + Return"
+              (lib.generators.mkLuaInline "hl.dsp.layout('swapwithmaster')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SPACE"
+              (lib.generators.mkLuaInline "hl.dsp.layout('orientationcycle left top')")
+            ];
+          }
+
+          {
+            _args = [
+              "${mainMod} + C"
+              (lib.generators.mkLuaInline "hl.dsp.window.cycle_next({tiled = true})")
+            ];
+          }
+
+          {
+            _args = [
+              "${mainMod} + bracketleft"
+              (lib.generators.mkLuaInline "hl.dsp.focus({monitor = '-1'})")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + bracketright"
+              (lib.generators.mkLuaInline "hl.dsp.focus({monitor = '+1'})")
+            ];
+          }
+
+          {
+            _args = [
+              "${mainMod} + CTRL + bracketleft"
+              (lib.generators.mkLuaInline "hl.dsp.workspace.swap_monitors({monitor1 = 'current', monitor2 = '-1'})")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + CTRL + bracketright"
+              (lib.generators.mkLuaInline "hl.dsp.workspace.swap_monitors({monitor1 = 'current', monitor2 = '+1'})")
+            ];
+          }
+
+          # Scroll through existing workspaces with mainMod + scroll
+          {
+            _args = [
+              "${mainMod} + mouse_down"
+              (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 'e+1'})")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + mouse_up"
+              (lib.generators.mkLuaInline "hl.dsp.focus({workspace = 'e-1'})")
+            ];
+          }
+
+          {
+            _args = [
+              "${mainMod} + minus"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('pamixer -d 5 && ${showVolume}')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + equal"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('pamixer -i 5 && ${showVolume}')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + zcaron"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('pamixer -i 5 && ${showVolume}')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + F5"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('playerctl play-pause')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + F6"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('playerctl previous')")
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + F7"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('playerctl next')")
+            ];
+          }
+
+          # Move/resize windows with mainMod + LMB/RMB and dragging
+          {
+            _args = [
+              "${mainMod} + mouse:272"
+              (lib.generators.mkLuaInline "hl.dsp.window.drag()")
+              { mouse = true; }
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + mouse:273"
+              (lib.generators.mkLuaInline "hl.dsp.window.resize()")
+              { mouse = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioLowerVolume"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('pamixer -d 5 && ${showVolume}')")
+              { locked = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioRaiseVolume"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('pamixer -i 5 && ${showVolume}')")
+              { locked = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioMute"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('pamixer -t && ${showVolume}')")
+              { locked = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioPlay"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('playerctl play-pause')")
+              { locked = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioPrev"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('playerctl previous')")
+              { locked = true; }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioNext"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('playerctl next')")
+              { locked = true; }
+            ];
+          }
         ]
-      ) (builtins.genList (x: x + 1) 10));
+        ++ (builtins.concatMap (
+          x:
+          let
+            ws = toString x;
+            keyCode = toString (x + 9);
+          in
+          [
+            {
+              _args = [
+                "${mainMod} + code:${keyCode}"
+                (lib.generators.mkLuaInline "hl.dsp.focus({workspace = ${ws}, on_current_monitor = true})")
+              ];
+            }
+            {
+              _args = [
+                "${mainMod} + SHIFT + code:${keyCode}"
+                (lib.generators.mkLuaInline "hl.dsp.window.move({workspace = ${ws}})")
+              ];
+            }
+          ]
+        ) (builtins.genList (x: x + 1) 10));
 
-      # Move/resize windows with mainMod + LMB/RMB and dragging
-      bindm = [
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow"
-      ];
-
-      bindl = [
-        ", XF86AudioLowerVolume, exec, pamixer -d 5 && $showVolume"
-        ", XF86AudioRaiseVolume, exec, pamixer -i 5 && $showVolume"
-        ", XF86AudioMute, exec, pamixer -t && $showVolume"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioPrev, exec, playerctl previous"
-        ", XF86AudioNext, exec, playerctl next"
-      ];
-
-      windowrule = [
+      window_rule = [
         {
           name = "windowrule-1";
-          float = "on";
+          float = true;
           match.class = "^(Vampire_Survivors)$";
         }
 
@@ -316,7 +592,7 @@
           name = "windowrule-4";
           workspace = "3 silent";
           match.class = "^(jetbrains-idea)$";
-          match.float = "0";
+          match.float = false;
         }
 
         {
@@ -335,58 +611,65 @@
           name = "windowrule-7";
           workspace = "9 silent";
           match.class = "^(KeePassXC)$";
-          match.float = "0";
+          match.float = false;
         }
 
         {
           name = "windowrule-8";
-          tile = "on";
+          tile = true;
           match.class = "^(com-eviware-soapui-SoapUI)$";
           match.title = "^(SoapUI)(.*)$";
         }
 
         {
           name = "windowrule-9";
-          no_anim = "on";
+          no_anim = true;
           match.float = "1";
         }
 
         {
           name = "windowrule-10";
-          fullscreen = "on";
+          fullscreen = true;
           match.class = "^(.gamescope-wrapped)$";
         }
 
         {
           name = "windowrule-11";
-          border_size = "0";
-          rounding = "0";
-          match.float = "0";
+          border_size = 0;
+          rounding = 0;
+          match.float = 0;
           match.workspace = "w[t1]";
         }
 
         {
           name = "windowrule-12";
-          border_size = "0";
-          rounding = "0";
-          match.float = "0";
+          border_size = 0;
+          rounding = 0;
+          match.float = 0;
           match.workspace = "w[tg1]";
         }
 
         {
           name = "windowrule-13";
-          border_size = "0";
-          rounding = "0";
-          match.float = "0";
+          border_size = 0;
+          rounding = 0;
+          match.float = 0;
           match.workspace = "f[1]";
         }
       ];
 
       # for smart gaps
-      workspace = [
-        "w[t1], gapsout:0, gapsin:0"
-        "w[tg1], gapsout:0, gapsin:0"
-        "f[1], gapsout:0, gapsin:0"
+      workspace_rule = [
+        {
+          workspace = "w[tv1]";
+          gaps_out = 0;
+          gaps_in = 0;
+        }
+        {
+          workspace = "f[1]";
+          gaps_out = 0;
+          gaps_in = 0;
+        }
       ];
     };
   };
