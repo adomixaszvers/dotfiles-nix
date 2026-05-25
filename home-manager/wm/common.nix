@@ -3,10 +3,17 @@
   pkgs,
   myPkgs,
   config,
+  inputs,
   ...
 }:
 
 {
+  imports = [
+    (inputs.nix-wrapper-modules.lib.getInstallModule {
+      name = "niri";
+      value = inputs.self.wrapperModules.niri;
+    })
+  ];
   gtk = {
     gtk4.theme = null;
   };

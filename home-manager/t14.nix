@@ -9,8 +9,8 @@
     ./cli/atuin
     # ./wm/xsession-common.nix
     # ./wm/xmonad
-    # ./wm/hyprland
-    ./wm/niri
+    ./wm/hyprland
+    # ./wm/niri
     ./cli/jujutsu.nix
     ./gui/lutris.nix
   ];
@@ -100,23 +100,16 @@
       xset s off -dpms
       xrandr --output eDP --set TearFree on
     '';
-  wayland.windowManager.hyprland.settings = {
-    monitor = [
-      {
-        output = "eDP-1";
-        mode = "1920x1080";
-        position = "0x0";
-        scale = "1.25";
-      }
-    ];
-    config = {
-      animations.enabled = false;
-      decoration = {
-        blur.enabled = false;
-        shadow.enabled = false;
-      };
-    };
-  };
+
+  wayland.windowManager.hyprland.settings.monitor = [
+    {
+      output = "eDP-1";
+      mode = "1920x1080";
+      position = "0x0";
+      scale = "1.25";
+    }
+  ];
+
   wayland.windowManager.sway = {
     config = {
       input = {

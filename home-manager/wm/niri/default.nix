@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   pkgs,
   lib,
   myPkgs,
@@ -10,10 +9,6 @@
   imports = [
     ../waybar
     ../dunst.nix
-    (inputs.nix-wrapper-modules.lib.getInstallModule {
-      name = "niri";
-      value = inputs.self.wrapperModules.niri;
-    })
   ];
   home.packages = [
     pkgs.nautilus # for file chooser dialogs

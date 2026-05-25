@@ -7,7 +7,6 @@
       # dokobit-plugin = pkgs.callPackage ./dokobit-plugin { };
       bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
       bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
-      hypr-window-select = pkgs.callPackage ./hypr-window-select.nix { };
       hunspell-lt = pkgs.callPackage ./hunspell-lt { };
       jj-watch = pkgs.callPackage ./jj-watch.nix { };
       kaknix = pkgs.callPackage ./kaknix.nix { };

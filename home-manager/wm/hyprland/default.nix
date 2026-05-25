@@ -1,6 +1,5 @@
 {
   pkgs,
-  myPkgs,
   lib,
   config,
   ...
@@ -26,9 +25,6 @@
   };
   programs = {
     emacs.package = pkgs.emacs-pgtk;
-    rofi = {
-      extraConfig.modi = "windows:${lib.getExe myPkgs.hypr-window-select},drun,run,ssh";
-    };
     waybar = {
       settings.mainbar = {
         layer = "top";
@@ -104,6 +100,21 @@
     configType = "lua";
     xwayland.enable = true;
     settings = {
+
+      layout_bind = {
+        _var = lib.generators.mkLuaInline ''
+          function (table)
+            return function()
+              local layout = hl.get_active_workspace().tiled_layout
+              if table[layout] then
+                hl.dispatch(table[layout])
+              elseif table['default'] then
+                hl.dispatch(table['default'])
+              end
+            end
+          end
+        '';
+      };
 
       # This is an example Hyprland config file.
       #
@@ -210,6 +221,7 @@
           disable_hyprland_logo = true; # no anime
           on_focus_under_fullscreen = 1; # take over
           exit_window_retains_fullscreen = true;
+          focus_on_activate = true;
         };
       };
 
@@ -264,7 +276,7 @@
           {
             _args = [
               "${mainMod} + D"
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('rofi -show-icons -combi-modi windows,drun,run -show combi')")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd('rofi -show-icons -combi-modi window,drun,run -show combi')")
             ];
           }
           {
@@ -321,7 +333,12 @@
           {
             _args = [
               "${mainMod} + R"
-              (lib.generators.mkLuaInline "hl.dsp.focus({monitor = 2})")
+              (lib.generators.mkLuaInline ''
+                layout_bind({
+                  scrolling = hl.dsp.layout('colresize +conf'),
+                  default = hl.dsp.focus({monitor = 2}),
+                })
+              '')
             ];
           }
           {
@@ -381,6 +398,48 @@
               (lib.generators.mkLuaInline "hl.dsp.focus({direction = 'd'})")
             ];
           }
+          {
+            _args = [
+              "${mainMod} + SHIFT + left"
+              (lib.generators.mkLuaInline ''
+                layout_bind({
+                  scrolling = hl.dsp.layout('swapcol l'),
+                  master = hl.dsp.layout('swapnext'),
+                })
+              '')
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SHIFT + right"
+              (lib.generators.mkLuaInline ''
+                layout_bind({
+                  scrolling = hl.dsp.layout('swapcol r'),
+                  master = hl.dsp.layout('swapprev'),
+                })
+              '')
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SHIFT + up"
+              (lib.generators.mkLuaInline ''
+                layout_bind({
+                  scrolling = hl.dsp.layout('consume'),
+                })
+              '')
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SHIFT + down"
+              (lib.generators.mkLuaInline ''
+                layout_bind({
+                  scrolling = hl.dsp.layout('expel'),
+                })
+              '')
+            ];
+          }
 
           {
             _args = [
@@ -409,7 +468,12 @@
           {
             _args = [
               "${mainMod} + SHIFT + Return"
-              (lib.generators.mkLuaInline "hl.dsp.layout('swapwithmaster')")
+              (lib.generators.mkLuaInline ''
+                layout_bind({
+                  scrolling = hl.dsp.layout('promote'),
+                  master = hl.dsp.layout('swapwithmaster'),
+                })
+              '')
             ];
           }
           {
@@ -423,6 +487,27 @@
             _args = [
               "${mainMod} + C"
               (lib.generators.mkLuaInline "hl.dsp.window.cycle_next({tiled = true})")
+            ];
+          }
+
+          {
+            _args = [
+              "${mainMod} + comma"
+              (lib.generators.mkLuaInline ''
+                layout_bind({
+                  scrolling = hl.dsp.layout('colresize -0.1'),
+                })
+              '')
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + period"
+              (lib.generators.mkLuaInline ''
+                layout_bind({
+                  scrolling = hl.dsp.layout('colresize +0.1'),
+                })
+              '')
             ];
           }
 
@@ -652,19 +737,11 @@
           border_size = 0;
           rounding = 0;
           match.float = 0;
-          match.workspace = "w[t1]";
+          match.workspace = "w[tv1]";
         }
 
         {
           name = "windowrule-12";
-          border_size = 0;
-          rounding = 0;
-          match.float = 0;
-          match.workspace = "w[tg1]";
-        }
-
-        {
-          name = "windowrule-13";
           border_size = 0;
           rounding = 0;
           match.float = 0;
