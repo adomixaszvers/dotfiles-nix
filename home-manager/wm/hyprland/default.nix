@@ -762,6 +762,12 @@
           gaps_out = 0;
           gaps_in = 0;
         }
+        {
+          workspace = "3";
+          gaps_in = 0;
+          gaps_out = 0;
+          no_rounding = true;
+        }
       ];
     };
   };
