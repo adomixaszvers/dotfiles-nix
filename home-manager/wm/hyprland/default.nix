@@ -30,7 +30,7 @@
         layer = "top";
         position = "top";
         height = 16;
-        modules-left = [ "hyprland/workspaces" ];
+        modules-left = [ "ext/workspaces" ];
         modules-center = [ "hyprland/window" ];
         modules-right = (lib.optional config.gui.hasBattery "battery") ++ [
           "hyprland/language"
@@ -41,6 +41,7 @@
           "clock"
           "tray"
         ];
+        "ext/workspaces".on-click = "activate";
         "hyprland/language" = {
           format-lt = "lt";
           format-en = "us";
