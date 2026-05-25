@@ -49,7 +49,7 @@
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks."*".extraOptions.PKCS11Provider = "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
+      settings."*".PKCS11Provider = "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
     };
   };
   services = {
