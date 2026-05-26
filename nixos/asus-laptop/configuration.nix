@@ -17,7 +17,6 @@
     ../common.nix
     ../flakes.nix
     ../gc.nix
-    ../nix-package.nix
     ../nix-registry.nix
     ../pipewire.nix
     ../syncthing.nix

@@ -9,7 +9,6 @@
     ./hardware-configuration.nix
     # ./vaultwarden.nix
     ../flakes.nix
-    ../nix-package.nix
     ../nix-registry.nix
     ../gc.nix
     # ../pg-upgrade.nix
@@ -24,6 +23,7 @@
     # ./fail2ban.nix
     ./forgejo.nix
     ./forgejo-runner.nix
+    ./home-manager.nix
     ./nginx.nix
     # ./nextcloud.nix
     ./nix-remote-builder.nix

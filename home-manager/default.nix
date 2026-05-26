@@ -39,10 +39,6 @@ let
   asus-laptop = buildHomeManager ./asus-laptop.nix { };
   t14 = buildHomeManager ./t14.nix { };
   foreign = buildHomeManager ./foreign.nix { };
-  pi = buildHomeManager ./pi.nix {
-    username = "pi";
-    system = "aarch64-linux";
-  };
   pc = buildHomeManager ./pc.nix { };
   deck = buildHomeManager ./steamdeck.nix { username = "deck"; };
 in
@@ -54,7 +50,6 @@ in
         asus-laptop
         t14
         foreign
-        pi
         pc
         deck
         ;
@@ -63,13 +58,9 @@ in
       "adomas@arch-vm" = foreign;
       "adomas@adomas-jatuzis-nixos" = work;
       "adomas@adomo-pc-nixos" = pc;
-      "pi@raspberrypi-nixos" = pi;
       "deck@steamdeck" = deck;
     };
     buildbotJobs = {
-      "aarch64-linux" = {
-        home-manager-pi = pi.activationPackage;
-      };
       "x86_64-linux" = {
         home-manager-work = work.activationPackage;
         home-manager-home = asus-laptop.activationPackage;

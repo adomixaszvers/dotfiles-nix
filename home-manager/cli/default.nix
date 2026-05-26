@@ -9,7 +9,6 @@
 
 {
   imports = [
-    ../../nixos/nix-package.nix
     (inputs.nix-wrapper-modules.lib.getInstallModule {
       name = "neovim";
       value = inputs.self.wrapperModules.neovim;
