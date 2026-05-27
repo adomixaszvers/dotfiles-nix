@@ -118,7 +118,7 @@ creation_rules:
     key_groups:
       - pgp:
           - *adomas
-  - path_regex: profiles/cli/atuin/secrets\.yaml$
+  - path_regex: home-manager/cli/atuin/secrets\.yaml$
     key_groups:
       - age:
           - *laptophm
