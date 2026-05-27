@@ -7,14 +7,13 @@
     settings = {
       aliases.tug = [
         "bookmark"
-        "move"
-        "--from"
-        "heads(::@- & bookmarks())"
-        "--to"
-        "@-"
+        "advance"
       ];
+      revsets.bookmark-advance-to = "closest_pushable(@)";
       revset-aliases = {
         "private()" = "description(glob:'wip:*') | description(glob:'private:*')";
+        "closest_pushable(to)" =
+          ''heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))'';
         # stack(x, n) is the set of mutable commits reachable from 'x', with 'n'
         # parents. 'n' is often useful to customize the display and return set for
         # certain operations. 'x' can be used to target the set of 'roots' to traverse,
