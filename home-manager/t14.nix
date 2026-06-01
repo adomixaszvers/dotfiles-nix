@@ -90,9 +90,12 @@
     };
   };
   wrappers = {
-    niri.settings.workspaces = {
-      "browser" = _: { };
-      "game" = _: { };
+    niri.settings = {
+      input.touchpad.tap = _: { };
+      workspaces = {
+        "browser" = _: { };
+        "game" = _: { };
+      };
     };
   };
   xsession.initExtra = # bash

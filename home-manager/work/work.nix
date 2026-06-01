@@ -129,6 +129,7 @@ in
       environment = {
         IDEA_VM_OPTIONS = ideaOptions.outPath;
       };
+      input.touchpad.tap = _: { };
       workspaces = {
         "browser" = {
           open-on-output = "Dell Inc. DELL P2723D GRJX0V3";
