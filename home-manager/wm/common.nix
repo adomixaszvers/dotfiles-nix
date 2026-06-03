@@ -14,9 +14,6 @@
       value = inputs.self.wrapperModules.niri;
     })
   ];
-  gtk = {
-    gtk4.theme = null;
-  };
   qt = {
     enable = lib.mkDefault true;
     platformTheme.name = "adwaita";
