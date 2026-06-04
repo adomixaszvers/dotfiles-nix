@@ -3,6 +3,8 @@
     enable = true;
     settings = {
       allow_remote_control = true;
+      # workaround for https://github.com/kovidgoyal/kitty/issues/10066
+      auto_reload_config = -1;
       bold_font = "auto";
       italic_font = "auto";
       bold_italic_font = "auto";
