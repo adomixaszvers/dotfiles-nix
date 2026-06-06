@@ -3,17 +3,10 @@
   pkgs,
   myPkgs,
   config,
-  inputs,
   ...
 }:
 
 {
-  imports = [
-    (inputs.nix-wrapper-modules.lib.getInstallModule {
-      name = "niri";
-      value = inputs.self.wrapperModules.niri;
-    })
-  ];
   qt = {
     enable = lib.mkDefault true;
     platformTheme.name = "adwaita";
