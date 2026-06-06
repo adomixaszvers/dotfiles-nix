@@ -2,7 +2,7 @@ name: Update Flake Inputs
 
 on:
   schedule:
-    - cron: '0 2 * * 1,4'  # At 02:00 on Monday and Thursday.
+    - cron: '0 2 * * 5'  # At 02:00 on Friday
   workflow_dispatch:
 
 jobs:
