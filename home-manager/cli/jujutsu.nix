@@ -5,10 +5,20 @@
     enable = true;
     ediff = false; # it uses emacsclient
     settings = {
-      aliases.tug = [
-        "bookmark"
-        "advance"
-      ];
+      aliases = {
+        tug = [
+          "bookmark"
+          "advance"
+        ];
+        retrunk = [
+          "rebase"
+          "--simplify-parents"
+          "--branch"
+          "trunk().. & mutable()"
+          "--onto"
+          "trunk()"
+        ];
+      };
       revsets.bookmark-advance-to = "closest_pushable(@)";
       revset-aliases = {
         "private()" = "description(glob:'wip:*') | description(glob:'private:*')";
