@@ -107,6 +107,27 @@
         ];
         props.allow-when-locked = true;
       };
+      "XF86AudioPlay" = _: {
+        content.spawn = [
+          "playerctl"
+          "play-pause"
+        ];
+        props.allow-when-locked = true;
+      };
+      "XF86AudioPrev" = _: {
+        content.spawn = [
+          "playerctl"
+          "previous"
+        ];
+        props.allow-when-locked = true;
+      };
+      "XF86AudioNext" = _: {
+        content.spawn = [
+          "playerctl"
+          "next"
+        ];
+        props.allow-when-locked = true;
+      };
 
       # Open/close the Overview: a zoomed-out view of workspaces and windows.
       # You can also move the mouse into the top-left hot corner,
