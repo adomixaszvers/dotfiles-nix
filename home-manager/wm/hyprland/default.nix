@@ -1,3 +1,4 @@
+# vim: foldmethod=marker
 {
   pkgs,
   lib,
@@ -243,6 +244,7 @@
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
+      # Bindings {{{
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind =
         let
@@ -668,7 +670,9 @@
             }
           ]
         ) (builtins.genList (x: x + 1) 10));
+      # }}}
 
+      # Window rules {{{
       window_rule = [
         {
           name = "windowrule-1";
@@ -749,6 +753,7 @@
           match.workspace = "f[1]";
         }
       ];
+      # }}}
 
       # for smart gaps
       workspace_rule = [
@@ -769,6 +774,53 @@
           no_rounding = true;
         }
       ];
+
+      # make workspace animations similar to Niri {{{
+      curve = [
+        {
+          _args = [
+            "fluent_decel"
+            {
+              type = "bezier";
+              points = [
+                [
+                  0
+                  0.2
+                ]
+                [
+                  0.4
+                  1
+                ]
+              ];
+            }
+          ];
+        }
+      ];
+      animation = [
+        {
+          _args = [
+            {
+              leaf = "workspaces";
+              enabled = true;
+              speed = 3;
+              bezier = "fluent_decel";
+              style = "slidefadevert 30%";
+            }
+          ];
+        }
+        {
+          _args = [
+            {
+              leaf = "specialWorkspace";
+              enabled = true;
+              speed = 2;
+              bezier = "fluent_decel";
+              style = "slidevert 10%";
+            }
+          ];
+        }
+      ];
+      # }}}
     };
   };
 }
