@@ -6,5 +6,6 @@
   writers,
 }:
 writers.writeDashBin "jj-watch" ''
-  exec ${lib.getExe watchexec} --quiet --clear --restart --watch=.jj/repo/op_heads/heads --ignore-nothing --wrap-process=none -- ${lib.getExe jujutsu} --ignore-working-copy log
+  root="$(${lib.getExe jujutsu} root)"
+  exec ${lib.getExe watchexec} --quiet --clear --restart --watch="$root"/.jj/repo/op_heads/heads --ignore-nothing --wrap-process=none -- ${lib.getExe jujutsu} --ignore-working-copy log
 ''
