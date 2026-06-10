@@ -348,65 +348,68 @@
         }
       ];
     };
-    shikane.settings.profile = [
-      {
-        name = "work-duo";
-        output = [
-          {
-            adaptive_sync = true;
-            enable = true;
-            mode = "2560x1440@59.951Hz";
-            position = "0,0";
-            scale = 1;
-            search = [
-              "m=DELL P2723D"
-              "s=3MHX0V3"
-              "v=Dell Inc."
-            ];
-            transform = "normal";
-          }
-          {
-            adaptive_sync = true;
-            enable = true;
-            mode = "2560x1440@59.951Hz";
-            position = "2560,0";
-            scale = 1;
-            search = [
-              "m=DELL P2723D"
-              "s=GRJX0V3"
-              "v=Dell Inc."
-            ];
-            transform = "normal";
-          }
-          {
-            enable = false;
-            search = [
-              "m=0x157F"
-              "s="
-              "v=Sharp Corporation"
-            ];
-          }
-        ];
-      }
-      {
-        name = "undocked";
-        output = [
-          {
-            adaptive_sync = false;
-            enable = true;
-            position = "0,0";
-            mode = "1920x1200@120.003Hz";
-            scale = 1;
-            search = [
-              "m=0x157F"
-              "s="
-              "v=Sharp Corporation"
-            ];
-            transform = "normal";
-          }
-        ];
-      }
-    ];
+    shikane = {
+      package = myPkgs.shikane;
+      settings.profile = [
+        {
+          name = "work-duo";
+          output = [
+            {
+              adaptive_sync = true;
+              enable = true;
+              mode = "2560x1440@59.951Hz";
+              position = "0,0";
+              scale = 1;
+              search = [
+                "m=DELL P2723D"
+                "s=3MHX0V3"
+                "v=Dell Inc."
+              ];
+              transform = "normal";
+            }
+            {
+              adaptive_sync = true;
+              enable = true;
+              mode = "2560x1440@59.951Hz";
+              position = "2560,0";
+              scale = 1;
+              search = [
+                "m=DELL P2723D"
+                "s=GRJX0V3"
+                "v=Dell Inc."
+              ];
+              transform = "normal";
+            }
+            {
+              enable = false;
+              search = [
+                "m=0x157F"
+                "s="
+                "v=Sharp Corporation"
+              ];
+            }
+          ];
+        }
+        {
+          name = "undocked";
+          output = [
+            {
+              adaptive_sync = false;
+              enable = true;
+              position = "0,0";
+              mode = "1920x1200@120.003Hz";
+              scale = 1;
+              search = [
+                "m=0x157F"
+                "s="
+                "v=Sharp Corporation"
+              ];
+              transform = "normal";
+            }
+          ];
+        }
+      ];
+    };
     # network-manager-applet.enable = true;
     polybar.config = {
       "module/temperature".thermal-zone = config.gui.thermal-zone;

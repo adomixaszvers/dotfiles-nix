@@ -16,6 +16,21 @@
       niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
       restart-eww = pkgs.callPackage ./restart-eww.nix { };
       rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
+      shikane = pkgs.shikane.overrideAttrs (
+        finalAttrs: _previousAttrs: {
+          version = "1.0.1";
+          src = pkgs.fetchFromGitLab {
+            owner = "w0lff";
+            repo = "shikane";
+            rev = "v${finalAttrs.version}";
+            hash = "sha256-Chc1+JUHXzuLl26NuBGVxSiXiaE4Ns1FXb0dBs6STVk=";
+          };
+          cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
+            inherit (finalAttrs) pname version src;
+            hash = "sha256-eVEfuX/dNFoNH9o18fIx51DP/MWrQMqInU4wtGCmUbQ=";
+          };
+        }
+      );
       sxhkd = pkgs.sxhkd.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [ ./sxhkd.patch ];
       });
