@@ -9,8 +9,8 @@
     ./cli/atuin
     # ./wm/xsession-common.nix
     # ./wm/xmonad
-    ./wm/hyprland
-    # ./wm/niri
+    # ./wm/hyprland
+    ./wm/niri
     ./cli/jujutsu.nix
     ./gui/lutris.nix
   ];
