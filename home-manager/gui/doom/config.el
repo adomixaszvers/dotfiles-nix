@@ -33,6 +33,6 @@
 (defun my-ediff-init ()
   "Diffs init.el with init.example.el."
   (interactive)
-  (let ((my-init (expand-file-name "init.el" "~/.config/nixpkgs/profiles/gui/doom"))
+  (let ((my-init (expand-file-name "init.el" "~/.config/nixpkgs/home-manager/gui/doom"))
         (upstream-init (expand-file-name "static/init.example.el" doom-emacs-dir)))
     (ediff-files my-init upstream-init)))

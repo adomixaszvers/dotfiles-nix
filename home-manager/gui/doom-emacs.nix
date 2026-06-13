@@ -12,7 +12,7 @@
       sqlite
       wordnet
     ];
-    sessionVariables.DOOMDIR = "~/.config/nixpkgs/profiles/gui/doom";
+    sessionVariables.DOOMDIR = "~/.config/nixpkgs/home-manager/gui/doom";
   };
   programs.emacs.enable = true;
 }
