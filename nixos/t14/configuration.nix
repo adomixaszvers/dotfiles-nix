@@ -90,6 +90,7 @@
     ssh.startAgent = false;
   };
   services = {
+    blueman.enable = true;
     flatpak.enable = true;
     autorandr = {
       enable = false;

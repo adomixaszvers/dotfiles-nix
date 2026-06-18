@@ -31,6 +31,7 @@
       "rofi.dpi" = dpi;
     };
   services = {
+    blueman-applet.enable = true;
     polybar.config = {
       "bar/top" = {
         modules-right = "battery disk memory cpu temperature volume keyboard date tray";
