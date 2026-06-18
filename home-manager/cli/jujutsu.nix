@@ -14,7 +14,7 @@
           "rebase"
           "--simplify-parents"
           "--branch"
-          "trunk().. & mutable()"
+          "trunk().. & mutable() & mine()"
           "--onto"
           "trunk()"
         ];
