@@ -4,6 +4,7 @@
     {
       system = "aarch64-linux";
       hostName = "rpi4";
+      maxJobs = 4;
       protocol = "ssh-ng";
     }
   ];
