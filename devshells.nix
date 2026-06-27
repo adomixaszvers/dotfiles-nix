@@ -5,8 +5,7 @@
     {
 
       xmonad = import ./home-manager/wm/xmonad/shell.nix { inherit pkgs; };
-      # TODO uncomment when https://github.com/NixOS/nixpkgs/pull/522705 is merged
-      # qtile = import ./home-manager/wm/qtile/shell.nix { inherit pkgs; };
+      qtile = import ./home-manager/wm/qtile/shell.nix { inherit pkgs; };
       awesomewm = import ./home-manager/wm/awesome/shell.nix { inherit pkgs; };
     }
   );
