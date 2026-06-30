@@ -58,6 +58,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. 'xresources/theme.lua')
 beautiful.gap_single_client = false
 beautiful.useless_gap = dpi(5)
+beautiful.notification_icon_size = 64
 
 -- This is used later as the default terminal and editor to run.
 local terminal = 'kitty'
