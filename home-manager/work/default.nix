@@ -40,6 +40,7 @@
       "jdks/openjdk11".source = pkgs.openjdk11;
       "jdks/openjdk17".source = pkgs.openjdk17;
       "jdks/openjdk21".source = pkgs.openjdk21;
+      "jdks/openjdk25".source = pkgs.openjdk25;
       "nodejs/24".source = pkgs.nodejs_24;
       "maven".source = pkgs.maven;
       "tomcat-native".source = pkgs.tomcat-native;
