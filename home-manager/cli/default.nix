@@ -83,12 +83,13 @@
     broot.enable = true;
     eza.enable = true;
     fzf = {
-      changeDirWidgetCommand = "bfs -type d";
+      changeDirWidget.command = "bfs -type d";
       defaultCommand = "fd --type f";
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
-      fileWidgetCommand = "fd --type f";
+      fileWidget.command = "fd --type f";
+      historyWidget.command = ""; # should be handled by atuin
     };
     git.enable = true;
     lazygit.enable = true;
