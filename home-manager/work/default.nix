@@ -297,6 +297,12 @@
       "https://outlook.office.com"
     ];
     jujutsu.settings = {
+      aliases.jr = [
+        "util"
+        "exec"
+        "--"
+        (lib.getExe myPkgs.jj-jr)
+      ];
       merge-tools.idea = {
         program = "idea";
         diff-args = [

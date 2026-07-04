@@ -8,6 +8,7 @@
       bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
       bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
       hunspell-lt = pkgs.callPackage ./hunspell-lt { };
+      jj-jr = pkgs.callPackage ./jj-jr.nix { };
       jj-watch = pkgs.callPackage ./jj-watch.nix { };
       kaknix = pkgs.callPackage ./kaknix.nix { };
       maimpick = pkgs.callPackage ./maimpick.nix { };
