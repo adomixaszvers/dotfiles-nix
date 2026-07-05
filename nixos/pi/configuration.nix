@@ -146,6 +146,7 @@
       enable = true;
       settings.PasswordAuthentication = false;
     };
+    postgresql.package = pkgs.postgresql_18;
     udev.extraRules = # udev
       ''
         SUBSYSTEM=="vchiq",KERNEL=="vchiq",GROUP="video",MODE="0660"

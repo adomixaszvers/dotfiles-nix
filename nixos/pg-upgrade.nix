@@ -10,7 +10,7 @@
       let
         # XXX specify the postgresql package you'd like to upgrade to.
         # Do not forget to list the extensions you need.
-        newPostgres = pkgs.postgresql_16.withPackages (_pp: [
+        newPostgres = pkgs.postgresql_18.withPackages (_pp: [
           # pp.plv8
         ]);
         cfg = config.services.postgresql;
@@ -18,6 +18,9 @@
       pkgs.writeScriptBin "upgrade-pg-cluster" ''
         set -eux
         # XXX it's perhaps advisable to stop all services that depend on postgresql
+        systemctl stop forgejo
+        systemctl stop atuin
+        systemctl stop buildbot-master
         systemctl stop postgresql
 
         export NEWDATA="/var/lib/postgresql/${newPostgres.psqlSchema}"
