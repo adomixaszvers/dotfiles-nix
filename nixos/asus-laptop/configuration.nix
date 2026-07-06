@@ -96,10 +96,6 @@
     ssh.startAgent = false;
   };
   services = {
-    autorandr = {
-      enable = true;
-      defaultTarget = "home-prime";
-    };
     flatpak.enable = true;
     journald.extraConfig = "SystemMaxUse=500M";
     atd.enable = true;

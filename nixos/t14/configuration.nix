@@ -92,10 +92,6 @@
   services = {
     blueman.enable = true;
     flatpak.enable = true;
-    autorandr = {
-      enable = false;
-      defaultTarget = "home-prime";
-    };
     journald.extraConfig = "SystemMaxUse=500M";
     atd.enable = true;
     fstrim.enable = true;

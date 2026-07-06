@@ -6,7 +6,6 @@
 }:
 {
   imports = [ ./xinitrc.nix ];
-  programs.autorandr.enable = true;
   services = {
     unclutter = {
       enable = lib.mkDefault true;
@@ -42,11 +41,6 @@
   };
   xsession = {
     enable = lib.mkDefault true;
-    initExtra = # bash
-      ''
-        autorandr --change
-        dbus-update-activation-environment --systemd DISPLAY
-      '';
     numlock.enable = true;
   };
   home.pointerCursor = {
