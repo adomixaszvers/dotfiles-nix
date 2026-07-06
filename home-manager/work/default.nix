@@ -116,167 +116,6 @@
   };
 
   programs = {
-    autorandr = {
-      hooks = {
-        preswitch.set-dpi = # bash
-          ''
-            if [ "$AUTORANDR_CURRENT_PROFILE" = work-single ]; then
-              DPI=120
-            else
-              DPI=96
-            fi
-            echo "Xft.dpi: $DPI"| ${lib.getExe pkgs.xrdb} -merge
-          '';
-        postswitch = {
-          restart-picom = "systemctl --user restart picom.service";
-          notify = # bash
-            ''${pkgs.libnotify}/bin/notify-send -i display "Display profile" "$AUTORANDR_CURRENT_PROFILE"'';
-        };
-      };
-      profiles =
-        let
-          fingerprints = rec {
-            eDP-1 = "00ffffffffffff000daee71500000000211a0104a52213780228659759548e271e505400000001010101010101010101010101010101b43b804a713834405036680058c110000018000000fe004e3135364843412d4541420a20000000fe00434d4e0a202020202020202020000000fe004e3135364843412d4541420a2000b2";
-            DP-2-2 = "00ffffffffffff0010ac41d1424c563005210104a53c22783ad735ab534f9e250f5054a54b008100b300d100714fa9408180d1c00101565e00a0a0a029503020350055502100001a000000ff00334d48583056330a2020202020000000fc0044454c4c205032373233440a20000000fd00314b1d711c010a202020202020019702030eb14990040302011211131f023a801871382d40582c450055502100001e011d007251d01e206e28550055502100001e7e3900a080381f4030203a0055502100001a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000d7";
-            DP-2-3 = "00ffffffffffff0010ac41d1424b513005210104a53c22783ad735ab534f9e250f5054a54b008100b300d100714fa9408180d1c00101565e00a0a0a029503020350055502100001a000000ff0047524a583056330a2020202020000000fc0044454c4c205032373233440a20000000fd00314b1d711c010a202020202020018202030eb14990040302011211131f023a801871382d40582c450055502100001e011d007251d01e206e28550055502100001e7e3900a080381f4030203a0055502100001a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000d7";
-            DP-3-2 = DP-2-2;
-            DP-3-3 = DP-2-3;
-          };
-        in
-        {
-          work-single = {
-            fingerprint = {
-              inherit (fingerprints) eDP-1;
-            };
-            config = {
-              eDP-1 = {
-                enable = true;
-                crtc = 0;
-                position = "0x0";
-                primary = true;
-                rate = "60.01";
-                mode = "1920x1080";
-              };
-            };
-          };
-          work-duo = {
-            fingerprint = {
-              inherit (fingerprints) DP-2-2 DP-2-3;
-            };
-            config = {
-              DP-2-2 = {
-                enable = true;
-                crtc = 2;
-                position = "0x0";
-                rate = "59.95";
-                mode = "1920x1200";
-              };
-              DP-2-3 = {
-                primary = true;
-                enable = true;
-                crtc = 0;
-                position = "2560x0";
-                rate = "59.95";
-                mode = "2560x1440";
-              };
-              eDP-1 = {
-                enable = false;
-                crtc = 1;
-                mode = "1920x1080";
-                position = "3840x0";
-                rate = "60.01";
-              };
-            };
-          };
-          work-duo-prime = {
-            fingerprint = {
-              inherit (fingerprints) DP-3-2 DP-3-3;
-            };
-            config = {
-              DP-3-2 = {
-                enable = true;
-                crtc = 0;
-                position = "0x0";
-                rate = "59.95";
-                mode = "2560x1440";
-              };
-              DP-3-3 = {
-                enable = true;
-                primary = true;
-                crtc = 2;
-                position = "2560x0";
-                rate = "59.95";
-                mode = "2560x1440";
-              };
-              eDP-1 = {
-                enable = false;
-                crtc = 1;
-                mode = "1920x1080";
-                position = "3840x0";
-                rate = "60.01";
-              };
-            };
-          };
-          work-trio = {
-            fingerprint = {
-              inherit (fingerprints) eDP-1 DP-2-2 DP-2-3;
-            };
-            config = {
-              eDP-1 = {
-                enable = true;
-                crtc = 1;
-                mode = "1920x1080";
-                position = "0x0";
-                rate = "60.01";
-              };
-              DP-2-2 = {
-                enable = true;
-                primary = true;
-                crtc = 2;
-                position = "1920x0";
-                rate = "59.95";
-                mode = "2560x1440";
-              };
-              DP-2-3 = {
-                enable = true;
-                crtc = 0;
-                position = "4480x0";
-                rate = "59.95";
-                mode = "2560x1440";
-              };
-            };
-          };
-          work-trio-prime = {
-            fingerprint = {
-              inherit (fingerprints) eDP-1 DP-3-2 DP-3-3;
-            };
-            config = {
-              eDP-1 = {
-                enable = true;
-                crtc = 1;
-                mode = "1920x1080";
-                position = "5120x0";
-                rate = "60.01";
-              };
-              DP-3-2 = {
-                enable = true;
-                crtc = 0;
-                position = "0x0";
-                rate = "59.95";
-                mode = "2560x1440";
-              };
-              DP-3-3 = {
-                enable = true;
-                primary = true;
-                crtc = 2;
-                position = "2560x0";
-                rate = "59.95";
-                mode = "2560x1440";
-              };
-            };
-          };
-        };
-    };
     git.includes = [
       {
         condition = "gitdir:~/projektai/**";
@@ -324,39 +163,11 @@
         ];
       };
     };
-    zsh.shellAliases = {
-      imvn = "mvn -s ~/.m2/insoft-settings.xml";
-      amvn = "mvn -s ~/.m2/kazan-settings.xml";
-    };
   };
 
   services = {
     gnome-keyring.enable = lib.mkForce false;
-    kanshi.profiles = {
-      docked.outputs = [
-        {
-          criteria = "Hewlett Packard HP E242 CNC614066M";
-          position = "0,0";
-        }
-        {
-          criteria = "Hewlett Packard HP E242 CNC6430827";
-          position = "1920,0";
-        }
-        {
-          criteria = "Chimei Innolux Corporation 0x15E7 0x00000000";
-          status = "disable";
-        }
-      ];
-      undocked.outputs = [
-        {
-          criteria = "Chimei Innolux Corporation 0x15E7 0x00000000";
-          position = "0,0";
-          # scale = 1.25;
-        }
-      ];
-    };
     shikane = {
-      package = myPkgs.shikane;
       settings.profile = [
         {
           name = "work-duo";
@@ -440,12 +251,6 @@
       };
     };
   };
-  xsession.windowManager.i3.config.startup = [
-    {
-      command = "rambox";
-      notification = false;
-    }
-  ];
 
   xsession.windowManager.bspwm = {
     extraConfig = # bash
