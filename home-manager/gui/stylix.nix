@@ -5,6 +5,7 @@
 }:
 {
   imports = [ inputs.stylix.homeModules.stylix ];
+  home.pointerCursor.enable = true;
   stylix = {
     autoEnable = false;
     enableReleaseChecks = false;
