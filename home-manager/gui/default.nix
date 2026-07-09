@@ -28,7 +28,7 @@
     };
     file."wallpaper.png".source = config.stylix.image;
     packages = with pkgs; [
-      arandr
+      # arandr # TODO does not build for now
       font-manager
       adwaita-icon-theme
       hicolor-icon-theme
