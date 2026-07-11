@@ -16,8 +16,6 @@ in
     ../github-hosts.nix
   ];
 
-  networking.firewall.interfaces.wg0.allowedTCPPorts = [ 9989 ];
-
   sops.secrets."buildbot/oauth-secret" = secretConf;
   sops.secrets."buildbot/webhook-secret" = secretConf;
   sops.secrets."buildbot/token" = secretConf;
@@ -25,7 +23,6 @@ in
   # sops.secrets."buildbot/ssh-key" = secretConf;
   sops.secrets."buildbot-nix/work-worker-password" = {
     sopsFile = ../common-secrets/buildbot/work.yaml;
-    owner = config.users.users.buildbot.name;
   };
   sops.templates."buildbot-nix/workers.json".content = ''
     [
@@ -37,7 +34,7 @@ in
   services.buildbot-nix.master = {
     enable = true;
     # Domain name under which the buildbot frontend is reachable
-    domain = "buildbot.rpi4.beastade.top";
+    domain = "buildbot.w.beastade.top";
     # The workers file configures credentials for the buildbot workers to connect to the master.
     # "name" is the configured worker name in services.buildbot-nix.worker.name of a worker
     # (defaults to the hostname of the machine)
@@ -133,7 +130,7 @@ in
   # Optional: Enable acme/TLS in nginx (recommended)
   services.nginx.virtualHosts.${config.services.buildbot-nix.master.domain} = {
     forceSSL = true;
-    useACMEHost = "rpi4.beastade.top";
+    useACMEHost = "w.beastade.top";
   };
 
   # Optional: If buildbot is setup to run behind another proxy that does TLS

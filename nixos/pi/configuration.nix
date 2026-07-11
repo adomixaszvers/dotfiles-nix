@@ -18,7 +18,6 @@
     # dotnet is not in nixos cache
     # ./asf.nix
     ./atuin.nix
-    ./buildbot-master.nix
     # ./vpn.nix
     # ./fail2ban.nix
     ./forgejo.nix

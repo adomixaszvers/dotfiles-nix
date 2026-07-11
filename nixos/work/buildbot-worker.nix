@@ -12,7 +12,7 @@
     enable = true;
     name = "darbas";
     workerPasswordFile = config.sops.secrets."buildbot-nix/work-worker-password".path;
-    masterUrl = "tcp:host=10.6.0.1:port=9989";
+    masterUrl = "tcp:host=127.0.0.1:port=9989";
     # The number of workers to start (default: 0 == the number of CPU cores).
     # If you experience flaky builds under high load, try to reduce this value.
     workers = 4;
