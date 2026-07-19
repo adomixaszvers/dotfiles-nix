@@ -60,23 +60,25 @@
   };
   home.packages =
     (with pkgs; [
+      # keep-sorted start
+      borgbackup
       brave # needed for messenger calls
       brightnessctl
-      borgbackup
       compsize
       exercism
       google-chrome
-      nautilus
       gtypist
+      keepassxc
       libreoffice-still
       mpv
+      nautilus
       playerctl
-      remmina
-      tor-browser
-      keepassxc
-      xpra
       protonup-ng
+      remmina
       steamtinkerlaunch
+      tor-browser
+      xpra
+      # keep-sorted end
     ])
     ++ (with myPkgs; [ toggle-touchpad ]);
   home.sessionVariables = {

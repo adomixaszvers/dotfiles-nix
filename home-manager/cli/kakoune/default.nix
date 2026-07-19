@@ -1,8 +1,10 @@
 { pkgs, myPkgs, ... }:
 {
   home.packages = with pkgs; [
+    # keep-sorted start
     kak-lsp
     myPkgs.kaknix
+    # keep-sorted end
   ];
   programs.kakoune = {
     enable = true;

@@ -8,9 +8,11 @@
 {
   imports = [ ../dunst.nix ];
   home.packages = [
+    # keep-sorted start
+    myPkgs.rofi-powermenu
     pkgs.qtile
     pkgs.wofi
-    myPkgs.rofi-powermenu
+    # keep-sorted end
   ];
   # services.pasystray.enable = true;
   services.kanshi.enable = true;

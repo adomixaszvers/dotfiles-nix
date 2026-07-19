@@ -27,11 +27,11 @@
     enable = true;
   };
   environment.systemPackages = with pkgs; [
+    # keep-sorted start
     acpi
     efibootmgr
     exfat
     git
-    vim
     gparted
     lm_sensors
     neovim
@@ -41,7 +41,9 @@
     psmisc
     shared-mime-info
     usbutils
+    vim
     wget
+    # keep-sorted end
   ];
   environment.shells = [
     pkgs.zsh

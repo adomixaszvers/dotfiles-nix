@@ -16,9 +16,11 @@ let
 in
 {
   home.packages = [
+    # keep-sorted start
     drive
-    my-keepass
     keepass-trigger-load
     keepass-trigger-save
+    my-keepass
+    # keep-sorted end
   ];
 }

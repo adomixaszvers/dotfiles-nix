@@ -28,9 +28,10 @@
     };
     file."wallpaper.png".source = config.stylix.image;
     packages = with pkgs; [
+      # keep-sorted start
+      adwaita-icon-theme
       # arandr # TODO does not build for now
       font-manager
-      adwaita-icon-theme
       hicolor-icon-theme
       meld
       pavucontrol
@@ -41,6 +42,7 @@
       xarchiver
       xsel
       zathura
+      # keep-sorted end
     ];
     sessionVariables = {
       TERMINAL = "kitty";

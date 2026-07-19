@@ -53,57 +53,59 @@
       );
     };
     packages = with pkgs; [
+      # keep-sorted start
       asciinema
-      ghex
       brave
       brightnessctl
       dbeaver-bin
       docker-credential-helpers
       dos2unix
+      dumpasn1
       evince
       filezilla
+      ghex
       gimp
       gitflow
-      libsecret
-      nemo
       gnumake
       html-tidy
       jetbrains.idea
       jmeter
       jq
       keepassxc
+      keystore-explorer
       libreoffice-still
+      libsecret
       liquibase
       maven
+      mercurial
       minio-client
       myPkgs.hunspell-lt
-      keystore-explorer
-      mercurial
-      pnpm_11
-      podman-compose
+      nemo
       numlockx
       openssl
       playerctl
+      pnpm_11
+      podman-compose
+      protonup-ng
       # volatile versions
       # postman
       remmina
       rlwrap
       samba
-      protonup-ng
       soapui
       sshpass
       steam-run
       subversion
+      thunderbird
+      tor-browser
       # teams
       traceroute
-      thunderbird
       unrar
-      tor-browser
       unzip
       whois
       xpra
       zip
-      dumpasn1
+      # keep-sorted end
     ];
     sessionPath = [ config.home.sessionVariables.PNPM_HOME ];
     sessionVariables = {

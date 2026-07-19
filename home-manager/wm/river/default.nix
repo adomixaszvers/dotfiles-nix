@@ -11,13 +11,15 @@
       '';
     in
     [
+      # keep-sorted start
       launch-river
       pkgs.kanshi
       pkgs.river
-      pkgs.wofi
       pkgs.rivercarro
-      pkgs.wl-clipboard
       pkgs.wdisplays
+      pkgs.wl-clipboard
+      pkgs.wofi
+      # keep-sorted end
     ];
   programs.waybar = {
     settings = [

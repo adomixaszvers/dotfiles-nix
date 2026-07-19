@@ -16,9 +16,11 @@
   ];
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    # keep-sorted start
     # glibc_multi
     keepassxc
     xsel
+    # keep-sorted end
   ];
   home.sessionVariables = {
     BROWSER = "firefox";

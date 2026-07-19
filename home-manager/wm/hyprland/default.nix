@@ -12,12 +12,14 @@
   ];
   home = {
     packages = with pkgs; [
+      # keep-sorted start
       grimblast
-      pamixer
       hyprpicker
-      wl-clipboard
+      pamixer
       wdisplays
+      wl-clipboard
       xwayland
+      # keep-sorted end
     ];
     sessionVariables = {
       NIXOS_OZONE_WL = 1;

@@ -36,9 +36,11 @@ in
   ];
   home.packages =
     (with pkgs; [
+      # keep-sorted start
       pamixer
       xdotool
       zenity
+      # keep-sorted end
     ])
     ++ [
       xmonad-dbus

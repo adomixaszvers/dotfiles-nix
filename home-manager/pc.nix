@@ -7,18 +7,20 @@
     ./gui/lutris.nix
   ];
   home.packages = with pkgs; [
-    brave
-    # gamescope
-    libreoffice-still
-    mpv
+    # keep-sorted start block=yes
     (obs-studio.override {
       cudaSupport = true;
     })
-    playerctl
-    remmina
+    brave
     keepassxc
-    xpra
+    # gamescope
+    libreoffice-still
+    mpv
+    playerctl
     protonup-qt
+    remmina
+    xpra
+    # keep-sorted end
   ];
   home.sessionVariables = {
     BROWSER = "firefox";

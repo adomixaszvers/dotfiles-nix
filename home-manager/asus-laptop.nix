@@ -8,20 +8,22 @@
     ./wm/xmonad
   ];
   home.packages = with pkgs; [
-    brave
+    # keep-sorted start
     borgbackup
+    brave
     compsize
     exercism
-    nautilus
     gtypist
-    mpv
-    playerctl
-    remmina
-    qbittorrent
-    tor-browser
     keepassxc
-    xpra
+    mpv
+    nautilus
+    playerctl
     protonup-ng
+    qbittorrent
+    remmina
+    tor-browser
+    xpra
+    # keep-sorted end
   ];
   home.sessionVariables = {
     BROWSER = "firefox";

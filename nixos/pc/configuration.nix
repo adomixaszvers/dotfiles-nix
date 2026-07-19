@@ -132,8 +132,10 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # keep-sorted start
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    # keep-sorted end
   ];
 
   sops.secrets."adomas/password" = {

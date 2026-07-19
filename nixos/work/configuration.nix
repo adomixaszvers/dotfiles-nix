@@ -126,8 +126,10 @@
 
   environment = {
     systemPackages = with pkgs; [
-      wget
+      # keep-sorted start
       vim
+      wget
+      # keep-sorted end
     ];
   };
 

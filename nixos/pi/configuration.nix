@@ -127,6 +127,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # keep-sorted start
     bind
     git
     libraspberrypi
@@ -134,6 +135,7 @@
     neovim
     nixfmt
     wol
+    # keep-sorted end
   ];
   networking = {
     hostName = "raspberrypi-nixos";

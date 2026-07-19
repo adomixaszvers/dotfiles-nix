@@ -2,6 +2,7 @@
 {
   home = {
     packages = with pkgs; [
+      # keep-sorted start
       emacs-all-the-icons-fonts
       fd
       gcc
@@ -11,6 +12,7 @@
       ripgrep
       sqlite
       wordnet
+      # keep-sorted end
     ];
     sessionVariables.DOOMDIR = "~/.config/nixpkgs/home-manager/gui/doom";
   };

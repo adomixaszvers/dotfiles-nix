@@ -27,6 +27,7 @@
   home = {
     packages =
       (with pkgs; [
+        # keep-sorted start
         bat
         bfs
         binutils
@@ -43,8 +44,8 @@
         lf
         lsof
         ncdu
-        nixfmt
         nix-tree
+        nixfmt
         p7zip
         patchelf
         ripgrep
@@ -54,10 +55,13 @@
         unzip
         wol
         xdg-user-dirs
+        # keep-sorted end
       ])
       ++ (with myPkgs; [
+        # keep-sorted start
         he
         hm-repl
+        # keep-sorted end
       ]);
     sessionVariables = {
       EDITOR = "nvim";

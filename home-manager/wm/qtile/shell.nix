@@ -6,9 +6,11 @@ pkgs.mkShellNoCC {
   packages = [
     (pkgs.python3.withPackages (
       ps: with ps; [
-        python-lsp-server
+        # keep-sorted start
         python-lsp-black
+        python-lsp-server
         qtile
+        # keep-sorted end
       ]
     ))
   ];

@@ -71,10 +71,12 @@ in
   ];
   home.packages =
     (with pkgs; [
-      pamixer
-      wl-clipboard
+      # keep-sorted start
       font-awesome_5
+      pamixer
       wdisplays
+      wl-clipboard
+      # keep-sorted end
     ])
     ++ [ myPkgs.sway-greedy-focus ];
   programs = {

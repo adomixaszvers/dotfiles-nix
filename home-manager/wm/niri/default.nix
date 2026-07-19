@@ -11,9 +11,11 @@
     ../dunst.nix
   ];
   home.packages = [
+    # keep-sorted start
     pkgs.nautilus # for file chooser dialogs
     pkgs.wl-clipboard
     pkgs.xwayland-satellite
+    # keep-sorted end
   ];
   programs = {
     emacs.package = pkgs.emacs-pgtk;

@@ -17,10 +17,12 @@
     myPkgs.neovim
   ]
   ++ (with pkgs; [
+    # keep-sorted start
     fd
     git
-    ripgrep
     nixfmt
+    ripgrep
+    # keep-sorted end
   ]);
   users.users.nixos.openssh.authorizedKeys.keyFiles = [ ../nixos/keys/yubikey.pub ];
 }

@@ -13,9 +13,11 @@
   ];
   home.packages =
     (with pkgs; [
+      # keep-sorted start
       pamixer
       tdrop
       wmname
+      # keep-sorted end
     ])
     ++ (with myPkgs; [
       bspwm-reorder-desktops
