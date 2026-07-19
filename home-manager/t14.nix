@@ -65,6 +65,7 @@
       borgbackup
       compsize
       exercism
+      google-chrome
       nautilus
       gtypist
       libreoffice-still
