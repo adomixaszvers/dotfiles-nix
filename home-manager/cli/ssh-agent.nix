@@ -9,6 +9,6 @@
     [ sshyk ];
   services.ssh-agent = {
     enable = true;
-    pkcs11Whitelist = [ "${pkgs.yubico-piv-tool}/lib/*" ];
+    pkcs11Whitelist = [ "/nix/store/*" ];
   };
 }
