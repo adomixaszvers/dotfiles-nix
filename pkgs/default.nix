@@ -14,7 +14,6 @@
       kaknix = pkgs.callPackage ./kaknix.nix { };
       maimpick = pkgs.callPackage ./maimpick.nix { };
       # mcard-toolbox = pkgs.callPackage ./mcard-toolbox { };
-      networkmanager-vpnc = pkgs.callPackage ./networkmanager-vpnc { };
       niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
       restart-eww = pkgs.callPackage ./restart-eww.nix { };
       rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };

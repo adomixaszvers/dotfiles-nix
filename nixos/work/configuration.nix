@@ -20,7 +20,6 @@
     # ../ld-link.nix
     ../libvirtd.nix
     ../nix-registry.nix
-    ../patch-nm-vpnc.nix
     ../pipewire.nix
     ../snx-rs.nix
     ../syncthing.nix
