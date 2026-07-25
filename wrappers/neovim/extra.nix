@@ -8,7 +8,7 @@
       data = [ pkgs.vimPlugins.nvim-lspconfig ];
       runtimePkgs = with pkgs; [
         lua-language-server
-        nil
+        nixd
         taplo
       ];
     };

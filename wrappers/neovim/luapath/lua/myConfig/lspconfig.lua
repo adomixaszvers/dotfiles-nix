@@ -65,11 +65,14 @@ if vim.fn.executable('nixd') == 1 then
   vim.lsp.enable('nixd')
 end
 
-vim.lsp.config('nil_ls', {
-  settings = {
-    formatting = { command = { 'nixfmt' } },
-  },
-})
+if vim.fn.executable('nil') == 1 then
+  vim.lsp.config('nil_ls', {
+    settings = {
+      formatting = { command = { 'nixfmt' } },
+    },
+  })
+  vim.lsp.enable('nil_ls')
+end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
@@ -77,7 +80,6 @@ local servers = {
   'angularls',
   'hls',
   'lua_ls',
-  'nil_ls',
   'pylsp',
   'rust_analyzer',
   'zls',
