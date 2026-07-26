@@ -42,52 +42,55 @@
         '';
         peers = [
           {
-            # adomo-telefonas
+            name = "adomo-telefonas";
             publicKey = "8aQnXeb3mM7JCRYp34CZ7NYPBr/LEhiWBx5icpln014=";
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/telefonas".path;
             allowedIPs = [ "10.6.0.2/32" ];
           }
           {
-            # rutos-kompas
+            name = "rutos-kompas";
             publicKey = "lyniEfPL2BMwFS6lrip/smKNjpLPWe/LiyIWtGVQ/H4=";
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/rutosKompas".path;
             allowedIPs = [ "10.6.0.3/32" ];
           }
           {
-            # windows-new
+            name = "windows-new";
             publicKey = "eJvrBUU4+8zPRm/k/BgZTzimrZk97pKxz/GvVApBohE=";
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/pc".path;
             allowedIPs = [ "10.6.0.5/32" ];
           }
           {
-            # work
+            name = "work";
             publicKey = "C1PNVCRetK41/lxm3/lT5dZRzw+z8p99YNkroIilHEA=";
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/work".path;
             allowedIPs = [ "10.6.0.6/32" ];
           }
           {
-            # laptop
+            name = "laptop";
             publicKey = "tINtePHKYYaoh+H3k9WTozeNcrWay7hZ3mq1HY0I+Fg=";
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/laptop".path;
             allowedIPs = [ "10.6.0.7/32" ];
           }
           {
-            # samsung
+            name = "samsung";
             publicKey = "RRUoaihwS9llZeUYLQUvWc2B+ND25leP6hW+As5Hsw4=";
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/samsung".path;
             allowedIPs = [ "10.6.0.10/32" ];
           }
           {
+            name = "t14";
             publicKey = "rnh9/k44jIP57tubQNBcMz35J4JuoP1AN7Az8St8cmk=";
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/t14".path;
             allowedIPs = [ "10.6.0.11/32" ];
           }
           {
+            name = "rycio-kompas";
             publicKey = "GJFNOA0GxnOGoigrw5g5JksQhSAMRRKT6PXE2rZL7xw=";
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/rycioKompas".path;
             allowedIPs = [ "10.6.0.12/32" ];
           }
           {
+            name = "steamdeck";
             publicKey = "r0v6/SesQlu9ZubRzeEkKFC3pBQLH4XePaCZojA3oGY=";
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/steamdeck".path;
             allowedIPs = [ "10.6.0.13/32" ];
