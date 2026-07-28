@@ -14,12 +14,22 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./static-ip.nix
     ../avahi.nix
     ../flakes.nix
     ../gc.nix
+    ../aarch64.nix
     # ../ld-link.nix
     ../nix-registry.nix
-    ./wifi.nix
+    ./acme.nix
+    ./nginx.nix
+    ./searx.nix
+    ./adguard.nix
+    ./forgejo.nix
+    ./atuin.nix
+    ./buildbot-master.nix
+    ./buildbot-worker.nix
+    # ./forgejo-runner.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixpkgs.nixosModules.notDetected
@@ -36,9 +46,6 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Vilnius";
@@ -117,7 +124,10 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services = {
+    openssh.enable = true;
+    postgresql.package = pkgs.postgresql_18;
+  };
 
   nix = {
     settings = {
@@ -177,14 +187,6 @@
       ];
     };
   };
-  systemd.services.NetworkManager-wait-online = {
-    serviceConfig = {
-      ExecStart = [
-        ""
-        "${pkgs.networkmanager}/bin/nm-online -q"
-      ];
-    };
-  };
 
   programs = {
     command-not-found.enable = true;
@@ -214,6 +216,9 @@
       ];
     };
   };
+
+  virtualisation.podman.enable = true;
+  virtualisation.oci-containers.backend = "podman";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

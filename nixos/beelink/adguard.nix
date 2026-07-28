@@ -1,0 +1,151 @@
+{
+  networking = {
+    domain = "lan";
+    nameservers = [ "192.168.1.254" ];
+    firewall = {
+      allowedTCPPorts = [
+        53
+        6080
+      ];
+      allowedUDPPorts = [ 53 ];
+    };
+  };
+  services.nginx.virtualHosts = {
+    "adguard.bl.beastade.top" = {
+      useACMEHost = "bl.beastade.top";
+      locations = {
+        "/" = {
+          proxyPass = "http://192.168.1.150:6080";
+        };
+      };
+      forceSSL = true;
+    };
+  };
+
+  services.adguardhome = {
+    enable = true;
+    mutableSettings = true;
+    port = 6080;
+    host = "192.168.1.150";
+    settings = {
+      dns = {
+        bind_hosts = [
+          "192.168.1.150"
+        ];
+        hostsfile_enabled = false;
+        ratelimit = 0;
+        upstream_dns = [
+          "https://cloudflare-dns.com/dns-query"
+          # "https://dns.quad9.net/dns-query"
+          "[/lan/]192.168.1.254"
+        ];
+        bootstrap_dns = [
+          "9.9.9.9"
+          "149.112.112.112"
+        ];
+        aaaa_disabled = true;
+        local_ptr_upstreams = [ "192.168.1.254" ];
+      };
+      filtering = {
+        blocked_response_ttl = 600;
+        rewrites = [
+          {
+            answer = "10.6.0.1";
+            domain = "rpi4.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.2";
+            domain = "oneplus-3t.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.3";
+            domain = "rutos-pc.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.5";
+            domain = "windows-pc.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.6";
+            domain = "work.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.7";
+            domain = "asus.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.10";
+            domain = "samsung-a52.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.11";
+            domain = "t14.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.12";
+            domain = "rycio-pc.wg";
+            enabled = true;
+          }
+          {
+            answer = "10.6.0.13";
+            domain = "steamdeck.wg";
+            enabled = true;
+          }
+        ];
+      };
+      user_rules = [
+        "||bl.beastade.top^$dnsrewrite=10.6.0.1,client=10.6.0.0/24"
+        "||bl.beastade.top^$dnsrewrite=192.168.1.150,client=192.168.1.0/24"
+        "||w.beastade.top^$dnsrewrite=10.6.0.6,client=10.6.0.0/24"
+        "||w.beastade.top^$dnsrewrite=10.6.0.6,client=192.168.1.0/24"
+      ];
+      filters = [
+        {
+          enabled = true;
+          url = "https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt";
+          name = "Disconnect.me SimpleAd";
+          id = 1;
+        }
+        {
+          enabled = true;
+          url = "https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt";
+          name = "Disconnect.me SimpleTracking";
+          id = 2;
+        }
+        {
+          enabled = true;
+          url = "http://sysctl.org/cameleon/hosts";
+          name = "sysctl";
+          id = 3;
+        }
+        {
+          enabled = true;
+          url = "https://raw.githubusercontent.com/kevinle-1/Windows-telemetry-blocklist/master/windowsblock.txt";
+          name = "Windows Telemetry BlockList";
+          id = 4;
+        }
+        {
+          enabled = true;
+          url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts";
+          name = "Unified hosts file with base extensions";
+          id = 5;
+        }
+        {
+          enabled = true;
+          url = "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/refs/heads/main/noai_hosts.txt";
+          name = "Main AI blocklist";
+          id = 6;
+        }
+      ];
+    };
+  };
+
+}

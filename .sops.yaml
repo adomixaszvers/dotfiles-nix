@@ -11,6 +11,7 @@ keys:
   - &pihm age14nmypynph4vjumtj7sv3jffvlzmajj8uy8j7s094jhetudchpu4sjrqjvp
   - &pchm age14w94f0ljuaqt03ajw205fje6rl9lglzq5p647uk9nu0h7pt9p5kqlzazka
   - &laptophm age14m9cxe9vtt87dwm3u37cy50vk5yla7tcvsruez24v05yr5yuhvksvpjunw
+  - &beelinkhm age1tr5hgpkptqx8klahzryq749l3tkyp2gwjc4s9uzfjwfj2l80fpjqvcsps9
 creation_rules:
   - path_regex: nixos/common-secrets/atuin\.yaml$
     key_groups:
@@ -30,6 +31,7 @@ creation_rules:
         age:
           - *pi
           - *work
+          - *beelink
   - path_regex: nixos/common-secrets/buildbot/work\.yaml$
     key_groups:
       - pgp:
@@ -135,3 +137,4 @@ creation_rules:
           - *pihm
           - *t14hm
           - *workhm
+          - *beelinkhm
