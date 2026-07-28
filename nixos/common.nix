@@ -121,14 +121,14 @@
 
   services = {
     xserver = {
-      enable = true;
+      enable = lib.mkDefault true;
       exportConfiguration = true;
       xkb.layout = "lt,us";
       desktopManager.xterm.enable = true;
       displayManager.startx.enable = lib.mkDefault true;
     };
     libinput = {
-      enable = true;
+      enable = lib.mkDefault true;
       mouse.middleEmulation = lib.mkDefault false;
     };
   };

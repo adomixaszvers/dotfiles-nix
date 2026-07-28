@@ -6,6 +6,7 @@ keys:
   - &t14 age18shz3w4pvxqvagegx50dq8ujcjaq6xa56ptqlqna255xxx4jp9lsu6qjna
   - &pc age1970uksmphn9sggda6mqh32g9nk9tnh6qrxg54rg3dwclrj9vugfscev2uw
   - &t14hm age1dncg28clhzcs75n59k69jsm57vrx30jzy7z72scu7enzc4fyfvaqexs4ns
+  - &beelink age1ujl0936xnwjc5f6jkjt0pdxl0mkzq80xwqegd3n65qg8n5k4d9usphax3p
   - &workhm age1ls4m3p7wvxshrzznldw4t4pp66hsh64qhqamyfz7qlwl8f3c74fs6mqh2r
   - &pihm age14nmypynph4vjumtj7sv3jffvlzmajj8uy8j7s094jhetudchpu4sjrqjvp
   - &pchm age14w94f0ljuaqt03ajw205fje6rl9lglzq5p647uk9nu0h7pt9p5kqlzazka
@@ -21,6 +22,7 @@ creation_rules:
           - *pi
           - *t14
           - *work
+          - *beelink
   - path_regex: nixos/common-secrets/acme\.yaml$
     key_groups:
       - pgp:
@@ -77,6 +79,7 @@ creation_rules:
           - *t14
           - *work
           - *laptop
+          - *beelink
   - path_regex: nixos/common-secrets/vpnc\.conf$
     key_groups:
       - pgp:
@@ -114,6 +117,12 @@ creation_rules:
           - *adomas
         age:
           - *pi
+  - path_regex: nixos/beelink/secrets/[^/]+\.(yaml|env)$
+    key_groups:
+      - pgp:
+          - *adomas
+        age:
+          - *beelink
   - path_regex: hm-secrets/keys\.yaml$
     key_groups:
       - pgp:
