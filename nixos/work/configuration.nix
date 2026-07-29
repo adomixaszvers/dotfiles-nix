@@ -46,6 +46,7 @@
     ../fprintd.nix
     # ./throttled
     # ./tlp.nix
+    ../zerotier.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixpkgs.nixosModules.notDetected

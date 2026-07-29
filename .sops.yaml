@@ -39,12 +39,23 @@ creation_rules:
         age:
           - *pi
           - *work
-  - path_regex: nixos/common-secrets/(zerotier|wireguard)\.yaml$
+  - path_regex: nixos/common-secrets/wireguard\.yaml$
     key_groups:
       - pgp:
           - *adomas
         age:
           - *pi
+  - path_regex: nixos/common-secrets/zerotier\.yaml$
+    key_groups:
+      - pgp:
+          - *adomas
+        age:
+          - *laptop
+          - *pc
+          - *pi
+          - *t14
+          - *work
+          - *beelink
   - path_regex: nixos/common-secrets/wireguard/laptop\.yaml$
     key_groups:
       - pgp:

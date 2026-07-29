@@ -19,6 +19,7 @@
     ../yubikey.nix
     ../steam.nix
     ../kde.nix
+    ../zerotier.nix
     # ./wireguard-client.nix
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia

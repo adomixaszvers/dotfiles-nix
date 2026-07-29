@@ -29,6 +29,7 @@
     ./wifi.nix
     ./wireguard-client.nix
     # ../kde.nix
+    ../zerotier.nix
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
     inputs.sops-nix.nixosModules.sops
   ];
