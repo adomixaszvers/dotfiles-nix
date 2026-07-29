@@ -15,7 +15,7 @@
         {
           publicKey = "FQV2434Wk2isZNZYDEr8R5yAf11B3K/tL//RIvW1qWw=";
           presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/laptop".path;
-          endpoint = "192.168.1.207:51820";
+          endpoint = "192.168.1.150:51820";
           allowedIPs = [ "10.6.0.0/24" ];
           persistentKeepalive = 25;
         }

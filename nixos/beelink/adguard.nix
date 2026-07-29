@@ -51,7 +51,7 @@
         rewrites = [
           {
             answer = "10.6.0.1";
-            domain = "rpi4.wg";
+            domain = "beelink.wg";
             enabled = true;
           }
           {

@@ -10,7 +10,7 @@
       }
     ];
     nameservers = [
-      "192.168.1.207"
+      "192.168.1.150"
       "9.9.9.9"
     ];
     networkmanager.enable = false;

@@ -17,7 +17,7 @@
           {
             inherit publicKey;
             presharedKeyFile = config.sops.secrets."wireguard/presharedKeys/pc".path;
-            endpoint = "192.168.1.207:51820";
+            endpoint = "192.168.1.150:51820";
             # allowedIPs = [ "0.0.0.0/0" ];
             allowedIPs = [ "10.6.0.0/24" ];
             persistentKeepalive = 25;

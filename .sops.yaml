@@ -45,6 +45,7 @@ creation_rules:
           - *adomas
         age:
           - *pi
+          - *beelink
   - path_regex: nixos/common-secrets/zerotier\.yaml$
     key_groups:
       - pgp:
@@ -63,6 +64,7 @@ creation_rules:
         age:
           - *laptop
           - *pi
+          - *beelink
   - path_regex: nixos/common-secrets/wireguard/work\.yaml$
     key_groups:
       - pgp:
@@ -70,6 +72,7 @@ creation_rules:
         age:
           - *work
           - *pi
+          - *beelink
   - path_regex: nixos/common-secrets/wireguard/t14\.yaml$
     key_groups:
       - pgp:
@@ -77,6 +80,7 @@ creation_rules:
         age:
           - *t14
           - *pi
+          - *beelink
   - path_regex: nixos/common-secrets/wireguard/pc\.yaml$
     key_groups:
       - pgp:
@@ -84,6 +88,7 @@ creation_rules:
         age:
           - *pc
           - *pi
+          - *beelink
   - path_regex: nixos/common-secrets/wifi\.yaml$
     key_groups:
       - pgp:

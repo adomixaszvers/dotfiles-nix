@@ -7,7 +7,7 @@
   environment.etc."NetworkManager/dnsmasq.d/wireguard".text = # ini
     ''
       addn-hosts=/etc/hosts
-      address=/rpi4.beastade.top/10.6.0.1
+      address=/bl.beastade.top/10.6.0.1
       server=/wg/10.6.0.1
       rev-server=10.6.0.0/24,10.6.0.1
     '';
