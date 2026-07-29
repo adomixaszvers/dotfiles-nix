@@ -26,6 +26,7 @@
     ./searx.nix
     ./adguard.nix
     ./forgejo.nix
+    ./forgejo-runner.nix
     ./atuin.nix
     ./buildbot-master.nix
     ./buildbot-worker.nix

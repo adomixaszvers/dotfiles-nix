@@ -17,5 +17,5 @@ jobs:
       with:
         branch: update-flake-inputs
         token: ${{ secrets.GITEA_TOKEN }}
-        github-server-url: git.rpi4.beastade.top
+        github-server-url: git.bl.beastade.top
         title: Update flake inputs
