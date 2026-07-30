@@ -31,6 +31,7 @@
       dns = {
         bind_hosts = [
           "192.168.1.150"
+          "10.6.0.1"
         ];
         hostsfile_enabled = false;
         ratelimit = 0;
