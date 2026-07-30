@@ -14,25 +14,19 @@
     # ../pg-upgrade.nix
     ./acme.nix
     # ./dns.nix
-    ./adguard.nix
     # dotnet is not in nixos cache
     # ./asf.nix
     ./atuin.nix
     # ./vpn.nix
     # ./fail2ban.nix
-    ./forgejo.nix
-    ./forgejo-runner.nix
     ./home-manager.nix
-    ./nginx.nix
     # ./nextcloud.nix
     # ./nix-remote-builder.nix
-    ./searx.nix
     ./static-ip.nix
     ./syncthing.nix
     ./users.nix
     # ./prebuild-configs.nix
     # ./webdav.nix
-    ./wireguard.nix
     ./zsh.nix
     ./dante.nix
     # inputs.nixos-hardware.nixosModules.raspberry-pi-4
