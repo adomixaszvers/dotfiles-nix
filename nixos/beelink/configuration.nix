@@ -34,6 +34,7 @@
     ../zerotier.nix
     ./wireguard.nix
     ./syncthing.nix
+    ./home-manager.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixpkgs.nixosModules.notDetected

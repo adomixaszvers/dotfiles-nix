@@ -41,7 +41,6 @@ let
   foreign = buildHomeManager ./foreign.nix { };
   pc = buildHomeManager ./pc.nix { };
   deck = buildHomeManager ./steamdeck.nix { username = "deck"; };
-  beelink = buildHomeManager ./beelink.nix { };
 in
 {
   flake = {
@@ -53,14 +52,12 @@ in
         foreign
         pc
         deck
-        beelink
         ;
       "adomas@adomo-nixos" = asus-laptop;
       "adomas@adomo-t14" = t14;
       "adomas@arch-vm" = foreign;
       "adomas@adomas-jatuzis-nixos" = work;
       "adomas@adomo-pc-nixos" = pc;
-      "adomas@beelink" = beelink;
       "deck@steamdeck" = deck;
     };
     buildbotJobs = {
@@ -71,7 +68,6 @@ in
         home-manager-foreign = foreign.activationPackage;
         home-manager-pc = pc.activationPackage;
         home-manager-deck = deck.activationPackage;
-        home-manager-beelink = beelink.activationPackage;
       };
     };
   };
