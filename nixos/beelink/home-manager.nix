@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
@@ -8,7 +8,7 @@
     useUserPackages = true;
     extraSpecialArgs = {
       inherit inputs;
-      myPkgs = inputs.self.packages.aarch64-linux;
+      myPkgs = builtins.getAttr pkgs.stdenv.hostPlatform.system inputs.self.packages;
     };
     users.adomas = {
       imports = [ ../../home-manager/beelink.nix ];

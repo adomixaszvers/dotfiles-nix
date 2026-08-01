@@ -37,12 +37,12 @@ in
         ./beelink/configuration.nix
       ];
     };
-    raspberrypi-nixos = nixpkgs.lib.nixosSystem {
-      inherit specialArgs;
-      modules = [
-        ./pi/configuration.nix
-      ];
-    };
+    # raspberrypi-nixos = nixpkgs.lib.nixosSystem {
+    #   inherit specialArgs;
+    #   modules = [
+    #     ./pi/configuration.nix
+    #   ];
+    # };
 
   };
 }
