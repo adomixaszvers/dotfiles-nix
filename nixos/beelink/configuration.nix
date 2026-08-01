@@ -18,7 +18,7 @@
     ../avahi.nix
     ../flakes.nix
     ../gc.nix
-    ../aarch64.nix
+    # ../aarch64.nix
     # ../ld-link.nix
     ../nix-registry.nix
     ./acme.nix

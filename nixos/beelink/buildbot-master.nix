@@ -89,10 +89,10 @@ in
     # optional nix-eval-jobs settings
     buildSystems = [
       "x86_64-linux"
-      "aarch64-linux"
+      # "aarch64-linux"
     ];
-    evalWorkerCount = 2; # limit number of concurrent evaluations
-    evalMaxMemorySize = 4096; # limit memory usage per evaluation
+    evalWorkerCount = 4; # limit number of concurrent evaluations
+    evalMaxMemorySize = 2048; # limit memory usage per evaluation
 
     # optional cachix
     cachix = {
