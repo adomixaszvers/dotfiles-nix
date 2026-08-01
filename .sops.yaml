@@ -141,6 +141,12 @@ creation_rules:
           - *adomas
         age:
           - *beelink
+  - path_regex: nixos/beelink/secrets/harmonia\.secret$
+    key_groups:
+      - pgp:
+          - *adomas
+        age:
+          - *beelink
   - path_regex: hm-secrets/keys\.yaml$
     key_groups:
       - pgp:

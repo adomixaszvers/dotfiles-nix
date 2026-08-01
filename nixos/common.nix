@@ -12,12 +12,14 @@
       substituters = lib.mkAfter [
         "https://nix-community.cachix.org"
         "https://cache.nixos-cuda.org"
+        "https://cache.bl.beastade.top"
         "https://adomixaszvers.cachix.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
         "adomixaszvers.cachix.org-1:r3/lrlbDE7o/Vjk/muEU2iLIiCEZMbC09ZqiwAs64so="
+        "cache.bl.beastade.top:OTIZaJes4OQCs0HBX+nQtDFQpBadQQpS81f358hQPRE="
       ];
       auto-optimise-store = true;
     };
