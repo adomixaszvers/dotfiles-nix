@@ -11,7 +11,7 @@
 }:
 {
   imports = [
-    ../aarch64.nix
+    # ../aarch64.nix
     ../avahi.nix
     ./btrfs.nix
     ../common.nix
