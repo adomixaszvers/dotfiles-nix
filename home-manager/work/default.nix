@@ -53,7 +53,8 @@
       );
     };
     packages = with pkgs; [
-      # keep-sorted start
+      # keep-sorted start block=yes
+      (soapui.override { jdk = jdk.override { enableJavaFX = true; }; })
       asciinema
       brave
       brightnessctl
@@ -92,7 +93,6 @@
       remmina
       rlwrap
       samba
-      soapui
       sshpass
       steam-run
       subversion
