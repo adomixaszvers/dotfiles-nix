@@ -10,3 +10,4 @@ compose.override.yml
 shell.nix
 .envrc
 .direnv
+secrets.yaml
