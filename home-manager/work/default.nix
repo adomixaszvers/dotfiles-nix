@@ -54,7 +54,6 @@
     };
     packages = with pkgs; [
       # keep-sorted start block=yes
-      (soapui.override { jdk = jdk.override { enableJavaFX = true; }; })
       asciinema
       brave
       brightnessctl
@@ -81,6 +80,7 @@
       mercurial
       minio-client
       myPkgs.hunspell-lt
+      myPkgs.soapui
       nemo
       numlockx
       openssl
