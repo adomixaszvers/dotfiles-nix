@@ -145,6 +145,7 @@
       "enp0s13f0u2u4u1"
       "wlp9s0"
     ];
+    blueman.enable = true;
     gnome = {
       glib-networking.enable = true;
       gnome-keyring.enable = false;
