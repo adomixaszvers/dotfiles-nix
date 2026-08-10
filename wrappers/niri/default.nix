@@ -62,7 +62,10 @@
       };
       "Super+Alt+L" = _: {
         content.spawn = "hyprlock";
-        props.hotkey-overlay-title = "Lock the Screen: hyprlock";
+        props = {
+          allow-when-locked = true;
+          hotkey-overlay-title = "Lock the Screen: hyprlock";
+        };
       };
 
       # You can also use a shell. Do this if you need pipes, multiple commands, etc.
