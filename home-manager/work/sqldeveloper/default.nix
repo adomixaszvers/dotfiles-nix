@@ -21,7 +21,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
 
-  version = "24.3.0.284.2209";
+  version = "26.2.0.186.2220";
   pname = "sqldeveloper";
 
   src = requireFile rec {
@@ -52,7 +52,7 @@ stdenv.mkDerivation (finalAttrs: {
 
         nix-prefetch-url --type sha256 file:///path/to/${name}
     '';
-    sha256 = "1lhxcklk3wcgp9mlyzkwn33nd4yr0ypadjjdplq377x9jalix4zx";
+    sha256 = "0zfvzhqlyrzfpj4mw2n3vmd7vnn7qradgpq32nkhkpxnn1rw0hk9";
   };
 
   nativeBuildInputs = [

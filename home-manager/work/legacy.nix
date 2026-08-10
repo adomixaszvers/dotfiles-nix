@@ -9,13 +9,6 @@
         sha256JCE = "19n5wadargg3v8x76r7ayag6p2xz1bwhrgdzjs9f4i6fvxz9jr4w";
         sha256.x86_64-linux = "1q4l8pymjvsvxfwaw0rdcnhryh1la2bvg5f4d4my41ka390k4p4s";
       }) { };
-      "nodejs/12".source =
-        let
-          # nixos-20.09
-          oldNixpkgs = builtins.getFlake "github:NixOS/nixpkgs/1c1f5649bb9c1b0d98637c8c365228f57126f361";
-          oldPkgs = builtins.getAttr pkgs.stdenv.hostPlatform.system oldNixpkgs.legacyPackages;
-        in
-        oldPkgs.nodejs-12_x;
     };
     packages =
       let
@@ -50,7 +43,10 @@
       [
         eclipse-activiti
         (pkgs.callPackage ./sqldeveloper {
-          jdk = pkgs.openjdk17.override { enableJavaFX = true; };
+          jdk = pkgs.openjdk21.override {
+            enableJavaFX = true;
+            openjfx_jdk = pkgs.openjfx21.override { withWebKit = true; };
+          };
         })
       ];
     sessionVariables = {

@@ -12,6 +12,7 @@
     ../cli/jujutsu.nix
     ../wm/xrdp.nix
     ./kerberos.nix
+    ./legacy.nix
   ];
   specialisation = {
     work.configuration = {
