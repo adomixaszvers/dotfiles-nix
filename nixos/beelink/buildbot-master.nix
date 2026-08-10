@@ -96,7 +96,7 @@ in
 
     # optional cachix
     cachix = {
-      enable = true;
+      enable = false;
       name = "adomixaszvers";
       # One of the following is required:
       auth.signingKey.file = config.sops.secrets."buildbot/cachix-signing-key".path;
