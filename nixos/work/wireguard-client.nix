@@ -19,7 +19,6 @@
   networking = {
     networkmanager.dns = "dnsmasq";
     firewall = {
-      trustedInterfaces = [ "wg0" ];
       # interfaces = {
       #   # eno1 = { allowedUDPPorts = [ 51820 ]; };
       #   wg0 = { allowedTCPPorts = [ 1080 3389 5901 22000 8443 5900 3128 ]; };

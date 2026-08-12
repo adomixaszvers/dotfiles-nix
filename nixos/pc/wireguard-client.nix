@@ -4,7 +4,6 @@
     "wireguard/presharedKeys/pc".sopsFile = ../common-secrets/wireguard/pc.yaml;
     "wireguard/privateKey".sopsFile = ./secrets/wireguard.yaml;
   };
-  networking.firewall.trustedInterfaces = [ "wg0" ];
   networking.wg-quick = {
     interfaces.wg0 =
       let

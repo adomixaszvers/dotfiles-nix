@@ -6,7 +6,6 @@
   sops.secrets."wireguard/privateKey" = {
     sopsFile = ./secrets/wireguard.yaml;
   };
-  networking.firewall.trustedInterfaces = [ "wg0" ];
   networking.wg-quick = {
     interfaces.wg0 = {
       address = [ "10.6.0.7/24" ];

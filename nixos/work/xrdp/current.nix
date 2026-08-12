@@ -1,8 +1,6 @@
 { config, inputs, ... }:
 {
-  environment.etc = {
-    "xrdp/sesman.ini".source = "${config.services.xrdp.confDir}/sesman.ini";
-  };
+  networking.firewall.interfaces.wg0.allowedTCPPorts = [ config.services.xrdp.port ];
   services.xrdp = {
     enable = true;
     extraConfDirCommands =

@@ -5,7 +5,6 @@
     "wireguard/privateKey".sopsFile = ./secrets/wireguard.yaml;
     "wireguard/endpoint".sopsFile = ./secrets/wireguard.yaml;
   };
-  networking.firewall.trustedInterfaces = [ "wg0" ];
   networking.wg-quick = {
     interfaces.wg0 =
       let
