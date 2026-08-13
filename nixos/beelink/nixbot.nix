@@ -4,7 +4,7 @@
   ...
 }:
 let
-  sopsFile = ./secrets/buildbot.yaml;
+  sopsFile = ./secrets/nixbot.yaml;
   secretConf = {
     inherit sopsFile;
     owner = config.users.users.nixbot.name;
@@ -16,19 +16,8 @@ in
     ../github-hosts.nix
   ];
 
-  sops.secrets."buildbot/oauth-secret" = secretConf;
-  sops.secrets."buildbot/webhook-secret" = secretConf;
-  sops.secrets."buildbot/token" = secretConf;
-  sops.secrets."buildbot/cachix-signing-key" = secretConf;
-  # sops.secrets."buildbot/ssh-key" = secretConf;
-  sops.secrets."buildbot/worker-password" = {
-    inherit sopsFile;
-  };
-  sops.templates."buildbot-nix/workers.json".content = ''
-    [
-      { "name": "darbas", "pass": "${config.sops.placeholder."buildbot/worker-password"}", "cores": 4 }
-    ]
-  '';
+  sops.secrets."nixbot/oauth-secret" = secretConf;
+  sops.secrets."nixbot/token" = secretConf;
   services.nixbot = {
     enable = true;
     # Domain name under which the buildbot frontend is reachable
@@ -66,9 +55,9 @@ in
       instanceUrl = "https://git.bl.beastade.top";
       # Create a Gitea App with for redirect uris: https://buildbot.clan.lol/auth/login
       oauthId = "c6360c4e-ff02-4e3e-866e-a7b94ea3d03b";
-      oauthSecretFile = config.sops.secrets."buildbot/oauth-secret".path;
-      tokenFile = config.sops.secrets."buildbot/token".path; # replace this with a secret not stored in the nix store
-      topic = "buildbot-nix";
+      oauthSecretFile = config.sops.secrets."nixbot/oauth-secret".path;
+      tokenFile = config.sops.secrets."nixbot/token".path; # replace this with a secret not stored in the nix store
+      topic = "nixbot";
     };
     # optional expose latest store path as text file
     # outputsPath = "/var/www/buildbot/nix-outputs";
@@ -96,7 +85,7 @@ in
       enable = false;
       name = "adomixaszvers";
       # One of the following is required:
-      auth.signingKey.file = config.sops.secrets."buildbot/cachix-signing-key".path;
+      auth.signingKey.file = config.sops.secrets."nixbot/cachix-signing-key".path;
       # auth.authToken.file = "/var/lib/secrets/cachix-token";
     };
 

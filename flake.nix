@@ -69,12 +69,12 @@
       imports = [
         treefmt.flakeModule
         ./wrappers
-        ./modules/buildbotJobs.nix
+        ./modules/nixbotJobs.nix
         ./pkgs
         ./devshells.nix
         ./nixos
         ./home-manager
-        ./buildbotJobs.nix
+        ./nixbotJobs.nix
       ];
       perSystem =
         {

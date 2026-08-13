@@ -9,13 +9,13 @@ let
     ;
 in
 mkTransposedPerSystemModule {
-  name = "buildbotJobs";
+  name = "nixbotJobs";
   option = mkOption {
     type = types.lazyAttrsOf types.package;
     default = { };
     description = ''
-      An attribute set of packages to be built by builbbot-nix
+      An attribute set of packages to be built by nixbot
     '';
   };
-  file = ./buildbotJobs.nix;
+  file = ./nixbotJobs.nix;
 }

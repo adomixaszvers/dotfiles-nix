@@ -9,7 +9,7 @@
       ...
     }:
     {
-      buildbotJobs =
+      nixbotJobs =
         let
           systemFilter = lib.filterAttrs (_: config: config.pkgs.stdenv.hostPlatform.system == system);
           nixosMachines = lib.mapAttrs' (

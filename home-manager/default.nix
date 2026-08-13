@@ -60,7 +60,7 @@ in
       "adomas@adomo-pc-nixos" = pc;
       "deck@steamdeck" = deck;
     };
-    buildbotJobs = {
+    nixbotJobs = {
       "x86_64-linux" = {
         home-manager-work = work.activationPackage;
         home-manager-home = asus-laptop.activationPackage;
