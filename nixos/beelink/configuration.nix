@@ -28,8 +28,7 @@
     ./forgejo.nix
     ./forgejo-runner.nix
     ./atuin.nix
-    ./buildbot-master.nix
-    ./buildbot-worker.nix
+    ./nixbot.nix
     # ./forgejo-runner.nix
     ../zerotier.nix
     ./wireguard.nix

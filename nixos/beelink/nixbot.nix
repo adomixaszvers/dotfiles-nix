@@ -7,12 +7,12 @@ let
   sopsFile = ./secrets/buildbot.yaml;
   secretConf = {
     inherit sopsFile;
-    owner = config.users.users.buildbot.name;
+    owner = config.users.users.nixbot.name;
   };
 in
 {
   imports = [
-    inputs.buildbot-nix.nixosModules.buildbot-master
+    inputs.nixbot.nixosModules.nixbot
     ../github-hosts.nix
   ];
 
@@ -29,21 +29,19 @@ in
       { "name": "darbas", "pass": "${config.sops.placeholder."buildbot/worker-password"}", "cores": 4 }
     ]
   '';
-  services.buildbot-nix.master = {
+  services.nixbot = {
     enable = true;
     # Domain name under which the buildbot frontend is reachable
-    domain = "buildbot.bl.beastade.top";
+    domain = "nixbot.bl.beastade.top";
     # The workers file configures credentials for the buildbot workers to connect to the master.
     # "name" is the configured worker name in services.buildbot-nix.worker.name of a worker
     # (defaults to the hostname of the machine)
     # "pass" is the password for the worker configured in `services.buildbot-nix.worker.workerPasswordFile`
     # "cores" is the number of cpu cores the worker has.
     # The number must match the actual core count of the machine as otherwise not enough buildbot-workers are created.
-    workersFile = config.sops.templates."buildbot-nix/workers.json".path;
     # Users in this list will be able to reload the project list.
     # All other user in the organization will be able to restart builds or evaluations.
-    authBackend = "gitea";
-    admins = [ "adomas" ];
+    admins = [ "gitea:adomas" ];
     # github = {
     #   # GitHub App configuration
     #   appId = 0; # FIXME: replace with App ID obtained from GitHub
@@ -69,7 +67,6 @@ in
       # Create a Gitea App with for redirect uris: https://buildbot.clan.lol/auth/login
       oauthId = "c6360c4e-ff02-4e3e-866e-a7b94ea3d03b";
       oauthSecretFile = config.sops.secrets."buildbot/oauth-secret".path;
-      webhookSecretFile = config.sops.secrets."buildbot/webhook-secret".path;
       tokenFile = config.sops.secrets."buildbot/token".path; # replace this with a secret not stored in the nix store
       topic = "buildbot-nix";
     };
@@ -126,9 +123,14 @@ in
   };
 
   # Optional: Enable acme/TLS in nginx (recommended)
-  services.nginx.virtualHosts.${config.services.buildbot-nix.master.domain} = {
+  services.nginx.virtualHosts.${config.services.nixbot.domain} = {
     forceSSL = true;
     useACMEHost = "bl.beastade.top";
+  };
+  services.nginx.virtualHosts."buildbot.bl.beastade.top" = {
+    forceSSL = true;
+    useACMEHost = "bl.beastade.top";
+    locations."/".return = "301 https://nixbot.bl.beastade.top$request_uri";
   };
 
   # Optional: If buildbot is setup to run behind another proxy that does TLS

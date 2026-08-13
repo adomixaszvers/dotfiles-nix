@@ -1,13 +1,6 @@
 {
   description = "My dotfiles";
   inputs = {
-    buildbot-nix = {
-      url = "github:nix-community/buildbot-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "treefmt";
-      };
-    };
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
@@ -27,6 +20,13 @@
     nix-wrapper-modules = {
       url = "github:BirdeeHub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixbot = {
+      url = "github:Mic92/nixbot";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt";
+      };
     };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
