@@ -81,7 +81,6 @@
       mercurial
       minio-client
       myPkgs.hunspell-lt
-      myPkgs.soapui
       nemo
       numlockx
       openssl
@@ -94,6 +93,7 @@
       remmina
       rlwrap
       samba
+      soapui
       sshpass
       steam-run
       subversion

@@ -17,16 +17,6 @@
       niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
       restart-eww = pkgs.callPackage ./restart-eww.nix { };
       rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
-      soapui =
-        let
-          jdk = pkgs.openjdk.override (
-            pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
-              enableJavaFX = true;
-              openjfx_jdk = pkgs.openjfx.override { withWebKit = true; };
-            }
-          );
-        in
-        pkgs.soapui.override { inherit jdk; };
       sxhkd = pkgs.sxhkd.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [ ./sxhkd.patch ];
       });
