@@ -6,22 +6,6 @@
     enable = true;
     redisCreateLocally = true;
 
-    # Rate limiting
-    limiterSettings = {
-      real_ip = {
-        x_for = 1;
-        ipv4_prefix = 32;
-        ipv6_prefix = 56;
-      };
-
-      botdetection = {
-        ip_limit = {
-          filter_link_local = true;
-          link_token = true;
-        };
-      };
-    };
-
     # UWSGI configuration
     configureUwsgi = true;
 
