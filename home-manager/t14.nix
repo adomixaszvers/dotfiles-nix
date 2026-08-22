@@ -69,7 +69,7 @@
       google-chrome
       gtypist
       keepassxc
-      libreoffice-still
+      libreoffice-stable
       mpv
       nautilus
       playerctl

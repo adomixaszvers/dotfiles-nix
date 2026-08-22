@@ -3,15 +3,18 @@
   allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      # keep-sorted start
       "corefonts" # used in onlyoffice
       "google-chrome"
-      "jdk"
       "idea"
+      "jdk"
+      "liquibase"
       "oraclejdk"
+      "sqldeveloper"
       "steam"
       "steam-unwrapped"
-      "sqldeveloper"
       "unrar"
+      # keep-sorted end
     ];
   permittedInsecurePackages = [
     "oraclejdk-8u202"

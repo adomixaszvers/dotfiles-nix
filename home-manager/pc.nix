@@ -14,7 +14,7 @@
     brave
     keepassxc
     # gamescope
-    libreoffice-still
+    libreoffice-stable
     mpv
     playerctl
     protonup-qt

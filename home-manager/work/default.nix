@@ -74,7 +74,7 @@
       jq
       keepassxc
       keystore-explorer
-      libreoffice-still
+      libreoffice-stable
       libsecret
       liquibase
       maven
