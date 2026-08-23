@@ -40,10 +40,20 @@
     inputs.nixpkgs.nixosModules.notDetected
     inputs.sops-nix.nixosModules.sops
   ];
+  boot = {
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+    # Bootloader.
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+
+    # Boot Kernel Modules
+    kernelModules = [ "it87" ];
+
+    # Boot Kernel Parameters
+    kernelParams = [
+      "it87.force_id=0x8623" # it87: force chip id
+    ];
+  };
 
   networking.hostName = "beelink"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
