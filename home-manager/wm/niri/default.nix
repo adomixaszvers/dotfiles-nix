@@ -6,10 +6,6 @@
   ...
 }:
 {
-  imports = [
-    ../waybar
-    ../dunst.nix
-  ];
   home.packages = [
     # keep-sorted start
     pkgs.nautilus # for file chooser dialogs
@@ -18,49 +14,28 @@
   ];
   programs = {
     emacs.package = pkgs.emacs-pgtk;
+    noctalia = {
+      enable = true;
+      systemd.enable = true;
+      settings = {
+        bar.default = {
+          concave_edge_corners = false;
+          margin_ends = 0;
+          radius = 0;
+          thickness = 24;
+          start = [
+            "workspaces"
+            "active_window"
+          ];
+        };
+        widget.network.show_label = false;
+      };
+    };
     rofi = {
       extraConfig.modi = "drun,run,window,combi";
     };
-    waybar = {
-      systemd.enable = true;
-      settings.mainbar = {
-        layer = "top";
-        position = "top";
-        height = 16;
-        modules-left = [ "niri/workspaces" ];
-        modules-center = [ "niri/window" ];
-        modules-right = (lib.optional config.gui.hasBattery "battery") ++ [
-          "niri/language"
-          "pulseaudio"
-          "cpu"
-          "memory"
-          "temperature"
-          "clock"
-          "tray"
-        ];
-        "niri/language" = {
-          format-lt = "lt";
-          format-en = "us";
-        };
-        "niri/window" = {
-          # format = "{title:.100}";
-          separate-outputs = true;
-        };
-        temperature.thermal-zone = config.gui.thermal-zone;
-      };
-      style = # css
-        ''
-          window#waybar.fullscreen #window {
-            border-radius: 8px;
-          }
-
-          /* see https://github.com/Alexays/Waybar/issues/2793#issuecomment-2039369688 */
-          #language {
-            min-width: 20px;
-          }
-        '';
-    };
   };
+  services.network-manager-applet.enable = false;
   wayland.windowManager.niri = {
     enable = true;
     xwaylandSatellitePackage = pkgs.xwayland-satellite.overrideAttrs (old: {
@@ -536,6 +511,7 @@
   stylix.targets = {
     hyprlock.enable = true;
     hyprpaper.enable = true;
+    noctalia.enable = true;
     waybar = {
       enable = true;
       enableCenterBackColors = true;

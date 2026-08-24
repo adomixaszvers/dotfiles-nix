@@ -26,7 +26,6 @@ in
   services = {
     # network-manager-applet.enable = false;
     # udiskie.enable = false;
-    blueman-applet.enable = true;
     shikane.enable = isWayland;
     picom.enable = isX11;
     screen-locker = {
