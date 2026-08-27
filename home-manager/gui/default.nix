@@ -30,8 +30,8 @@
     packages = with pkgs; [
       # keep-sorted start
       adwaita-icon-theme
-      # arandr # TODO does not build for now
-      font-manager
+      arandr
+      # font-manager # TODO does not build for now
       hicolor-icon-theme
       meld
       pavucontrol
