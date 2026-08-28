@@ -53,8 +53,8 @@
         port = 8888;
         bind_address = "127.0.0.1";
         secret_key = config.sops.secrets."searx/secret_key".path;
-        limiter = true;
-        public_instance = true;
+        limiter = false;
+        public_instance = false;
         image_proxy = true;
         method = "GET";
       };
