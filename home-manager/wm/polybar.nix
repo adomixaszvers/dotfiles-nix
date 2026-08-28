@@ -8,9 +8,18 @@ let
   colors =
     let
       inherit (config.lib.stylix) colors;
+      inherit (colors)
+        # keep-sorted start
+        base00
+        base01
+        base05
+        base08
+        base0C
+        # keep-sorted end
+        ;
     in
     colors
-    // (with colors; {
+    // {
       foreground = base05;
       background = base00;
       custom-foreground = base05;
@@ -18,7 +27,7 @@ let
       custom-background-light = base01;
       custom-primary = base0C;
       custom-warn = base08;
-    });
+    };
   module =
     icon: other:
     {
@@ -180,16 +189,19 @@ in
     };
     script = ''
       PATH=$PATH:${
-        with pkgs;
-        lib.makeBinPath [
-          coreutils
-          gawk
-          gnugrep
-          procps
-          psmisc
-          xrandr
-          xdotool
-        ]
+        lib.makeBinPath (
+          builtins.attrValues {
+            inherit (pkgs)
+              coreutils
+              gawk
+              gnugrep
+              procps
+              psmisc
+              xrandr
+              xdotool
+              ;
+          }
+        )
       }
 
       # Terminate already running bar instances

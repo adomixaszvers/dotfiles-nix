@@ -22,9 +22,9 @@
       gtk.enable = lib.mkDefault true;
     };
   };
-  home.packages = with myPkgs; [
-    maimpick
-    (rofi-powermenu.override { rofi = config.programs.rofi.finalPackage; })
+  home.packages = [
+    myPkgs.maimpick
+    (myPkgs.rofi-powermenu.override { rofi = config.programs.rofi.finalPackage; })
   ];
   home.sessionVariables =
     let

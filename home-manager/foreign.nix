@@ -1,10 +1,10 @@
 { pkgs, ... }:
 {
   imports = [ ./cli ];
-  home.packages = with pkgs; [
+  home.packages = [
     # keep-sorted start
-    hostname
-    nix
+    pkgs.hostname
+    pkgs.nix
     # keep-sorted end
   ];
   services.gpg-agent.enable = false;

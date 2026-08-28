@@ -4,7 +4,7 @@
   #   kernelParams = [ "initcall_blacklist=acpi_cpufreq_init" ];
   #   kernelModules = [ "amd_pstate" ];
   # };
-  environment.systemPackages = with pkgs; [ cpufrequtils ];
+  environment.systemPackages = [ pkgs.cpufrequtils ];
   # powerManagement.cpuFreqGovernor = "schedutil";
   services.tlp = {
     enable = true;

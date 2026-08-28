@@ -27,16 +27,18 @@
       hostPackages = [
         config.nix.package
       ]
-      ++ (with pkgs; [
-        bash
-        coreutils
-        curl
-        gawk
-        gitMinimal
-        gnused
-        nodejs
-        wget
-      ]);
+      ++ (builtins.attrValues {
+        inherit (pkgs)
+          bash
+          coreutils
+          curl
+          gawk
+          gitMinimal
+          gnused
+          nodejs
+          wget
+          ;
+      });
       labels = [
         "ubuntu-24.04:docker://gitea/runner-images:ubuntu-latest"
         "ubuntu-slim:docker://gitea/runner-images:ubuntu-latest-slim"

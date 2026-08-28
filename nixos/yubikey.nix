@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    yubioath-flutter
+  environment.systemPackages = [
+    pkgs.yubioath-flutter
     # yubikey-manager-qt
   ];
   hardware.gpgSmartcards.enable = true;
@@ -9,9 +9,9 @@
     PKCS11Provider "${pkgs.yubico-piv-tool}/lib/libykcs11.so"
   '';
   services = {
-    udev.packages = with pkgs; [
-      yubikey-personalization
-      libu2f-host
+    udev.packages = [
+      pkgs.yubikey-personalization
+      pkgs.libu2f-host
     ];
     pcscd.enable = true;
   };

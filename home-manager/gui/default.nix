@@ -27,23 +27,28 @@
       };
     };
     file."wallpaper.png".source = config.stylix.image;
-    packages = with pkgs; [
-      # keep-sorted start
-      adwaita-icon-theme
-      arandr
-      # font-manager # TODO does not build for now
-      hicolor-icon-theme
-      meld
-      pavucontrol
-      pcmanfm
-      qt5.qttools.bin
-      vlc
-      wmctrl
-      xarchiver
-      xsel
-      zathura
-      # keep-sorted end
-    ];
+    packages =
+      builtins.attrValues {
+        inherit (pkgs)
+          # keep-sorted start
+          adwaita-icon-theme
+          arandr
+          # font-manager # TODO does not build for now
+          hicolor-icon-theme
+          meld
+          pavucontrol
+          pcmanfm
+          vlc
+          wmctrl
+          xarchiver
+          xsel
+          zathura
+          # keep-sorted end
+          ;
+      }
+      ++ [
+        pkgs.qt5.qttools.bin
+      ];
     sessionVariables = {
       TERMINAL = "kitty";
     };

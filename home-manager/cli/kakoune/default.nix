@@ -1,9 +1,9 @@
 { pkgs, myPkgs, ... }:
 {
-  home.packages = with pkgs; [
+  home.packages = [
     # keep-sorted start
-    kak-lsp
     myPkgs.kaknix
+    pkgs.kak-lsp
     # keep-sorted end
   ];
   programs.kakoune = {
@@ -21,11 +21,11 @@
             rev = "da9a268c3f239e40e0ca4665faa17f709563795b";
             hash = "sha256-kuef+hxz/QisHL1UL6XKMcPq+OAq09wUT8thDhqee8Q=";
           };
-          meta = with lib; {
+          meta = {
             description = "kakoune plugin providing extra text-objects";
             homepage = "https://github.com/Delapouite/kakoune-text-objects";
-            license = licenses.mit;
-            platform = platforms.all;
+            license = lib.licenses.mit;
+            platform = lib.platforms.all;
           };
 
         };
@@ -38,11 +38,11 @@
             rev = "ec0d6d26ceaadd93d6824630ba587b31e442214d";
             hash = "sha256-O+yw8upyYnQThDoWKnFbjrjthPTCm6EaBUoJNqpUPLA=";
           };
-          meta = with lib; {
+          meta = {
             description = "Write to files using 'sudo'";
             homepage = "https://github.com/occivink/kakoune-sudo-write";
-            license = licenses.unlicense;
-            platform = platforms.all;
+            license = lib.licenses.unlicense;
+            platform = lib.platforms.all;
           };
 
         };

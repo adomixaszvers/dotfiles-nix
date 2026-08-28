@@ -1,12 +1,12 @@
 { inputs, config, ... }:
 {
-  nix.registry = with inputs; {
+  nix.registry = {
     mine.to = {
       type = "git";
       url = "file://${config.home.homeDirectory}/.config/nixpkgs";
     };
-    nixpkgs.flake = nixpkgs;
-    nixos-unstable.flake = nixos-unstable;
+    nixpkgs.flake = inputs.nixpkgs;
+    nixos-unstable.flake = inputs.nixos-unstable;
     master.to = {
       type = "github";
       owner = "NixOS";

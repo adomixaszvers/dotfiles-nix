@@ -15,11 +15,11 @@
     ./gui/kitty.nix
   ];
   fonts.fontconfig.enable = true;
-  home.packages = with pkgs; [
+  home.packages = [
     # keep-sorted start
     # glibc_multi
-    keepassxc
-    xsel
+    pkgs.keepassxc
+    pkgs.xsel
     # keep-sorted end
   ];
   home.sessionVariables = {

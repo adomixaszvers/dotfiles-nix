@@ -2,14 +2,12 @@
   pkgs ? import <nixpkgs> { },
 }:
 
-with pkgs;
-
-mkShellNoCC {
+pkgs.mkShellNoCC {
   name = "awesomewm-shell";
   packages = [
     # keep-sorted start
-    luaPackages.luacheck
-    stylua
+    pkgs.luaPackages.luacheck
+    pkgs.stylua
     # keep-sorted end
   ];
 }

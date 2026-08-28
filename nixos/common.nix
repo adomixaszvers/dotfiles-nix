@@ -28,25 +28,27 @@
   documentation = {
     enable = true;
   };
-  environment.systemPackages = with pkgs; [
-    # keep-sorted start
-    acpi
-    efibootmgr
-    exfat
-    git
-    gparted
-    lm_sensors
-    neovim
-    nixfmt
-    ntfs3g
-    pciutils
-    psmisc
-    shared-mime-info
-    usbutils
-    vim
-    wget
-    # keep-sorted end
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      # keep-sorted start
+      acpi
+      efibootmgr
+      exfat
+      git
+      gparted
+      lm_sensors
+      neovim
+      nixfmt
+      ntfs3g
+      pciutils
+      psmisc
+      shared-mime-info
+      usbutils
+      vim
+      wget
+      # keep-sorted end
+      ;
+  };
   environment.shells = [
     pkgs.zsh
     pkgs.nushell
@@ -116,7 +118,7 @@
   services = {
     acpid.enable = true;
     colord.enable = true;
-    dbus.packages = with pkgs; [ dconf ];
+    dbus.packages = [ pkgs.dconf ];
     gnome.gnome-keyring.enable = lib.mkDefault true;
     udisks2.enable = true;
   };

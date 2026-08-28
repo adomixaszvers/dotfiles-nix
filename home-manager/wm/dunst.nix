@@ -5,7 +5,7 @@
   ...
 }:
 {
-  home.packages = with pkgs; [ dunst ];
+  home.packages = [ pkgs.dunst ];
   services.dunst = {
     enable = true;
     iconTheme = {

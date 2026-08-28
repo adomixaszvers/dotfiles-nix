@@ -8,18 +8,23 @@
       remotePlay.openFirewall = true;
       package = pkgs.steam.override {
         extraPkgs =
-          pkgs: with pkgs; [
-            libXcursor
-            libXi
-            libXinerama
-            libXScrnSaver
-            libpng
-            libvorbis
-            stdenv.cc.cc.lib
-            libkrb5
-            keyutils
-            mangohud
-            (writeShellScriptBin "launch-gamescope" ''
+          pkgs:
+          builtins.attrValues {
+            inherit (pkgs)
+              libXcursor
+              libXi
+              libXinerama
+              libXScrnSaver
+              libpng
+              libvorbis
+              libkrb5
+              keyutils
+              mangohud
+              ;
+          }
+          ++ [
+            pkgs.stdenv.cc.cc.lib
+            (pkgs.writeShellScriptBin "launch-gamescope" ''
               if [ -z "$WAYLAND_DISPLAY" ]; then
                 exec nice -n -11 -- gamescope "$@"
               else

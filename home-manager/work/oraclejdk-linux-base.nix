@@ -224,8 +224,8 @@ let
 
     passthru.architecture = architecture;
 
-    meta = with lib; {
-      license = licenses.unfree;
+    meta = {
+      license = lib.licenses.unfree;
       platforms = [
         "i686-linux"
         "x86_64-linux"

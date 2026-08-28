@@ -7,24 +7,26 @@
     ./wm/xsession-common.nix
     ./wm/xmonad
   ];
-  home.packages = with pkgs; [
-    # keep-sorted start
-    borgbackup
-    brave
-    compsize
-    exercism
-    gtypist
-    keepassxc
-    mpv
-    nautilus
-    playerctl
-    protonup-ng
-    qbittorrent
-    remmina
-    tor-browser
-    xpra
-    # keep-sorted end
-  ];
+  home.packages = builtins.attrValues {
+    inherit (pkgs)
+      # keep-sorted start
+      borgbackup
+      brave
+      compsize
+      exercism
+      gtypist
+      keepassxc
+      mpv
+      nautilus
+      playerctl
+      protonup-ng
+      qbittorrent
+      remmina
+      tor-browser
+      xpra
+      # keep-sorted end
+      ;
+  };
   home.sessionVariables = {
     BROWSER = "firefox";
   };

@@ -31,12 +31,13 @@ let
   rofi-windows = pkgs.writeShellScript "rofi-windows" ''
         PATH=${
           lib.makeBinPath (
-            with pkgs;
-            [
-              sway
-              jq
-              rofi
-            ]
+            builtins.attrValues {
+              inherit (pkgs)
+                sway
+                jq
+                rofi
+                ;
+            }
           )
         }
         swaymsg -t get_tree | jq -r '
@@ -69,16 +70,19 @@ in
     ../dunst.nix
     ../waybar
   ];
-  home.packages =
-    (with pkgs; [
+  home.packages = builtins.attrValues {
+    inherit (pkgs)
       # keep-sorted start
       font-awesome_5
       pamixer
       wdisplays
       wl-clipboard
       # keep-sorted end
-    ])
-    ++ [ myPkgs.sway-greedy-focus ];
+      ;
+    inherit (myPkgs)
+      sway-greedy-focus
+      ;
+  };
   programs = {
     emacs.package = pkgs.emacs-pgtk;
     rofi = {

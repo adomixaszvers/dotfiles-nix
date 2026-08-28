@@ -120,17 +120,19 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    # keep-sorted start
-    bind
-    git
-    libraspberrypi
-    lm_sensors
-    neovim
-    nixfmt
-    wol
-    # keep-sorted end
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      # keep-sorted start
+      bind
+      git
+      libraspberrypi
+      lm_sensors
+      neovim
+      nixfmt
+      wol
+      # keep-sorted end
+      ;
+  };
   networking = {
     hostName = "raspberrypi-nixos";
   };

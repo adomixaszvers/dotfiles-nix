@@ -58,12 +58,14 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      # keep-sorted start
-      android-tools
-      virt-manager
-      # keep-sorted end
-    ];
+    systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        # keep-sorted start
+        android-tools
+        virt-manager
+        # keep-sorted end
+        ;
+    };
     variables.LIBVA_DRIVER_NAME = "i965";
   };
 

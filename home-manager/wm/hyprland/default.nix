@@ -11,16 +11,18 @@
     ../dunst.nix
   ];
   home = {
-    packages = with pkgs; [
-      # keep-sorted start
-      grimblast
-      hyprpicker
-      pamixer
-      wdisplays
-      wl-clipboard
-      xwayland
-      # keep-sorted end
-    ];
+    packages = builtins.attrValues {
+      inherit (pkgs)
+        # keep-sorted start
+        grimblast
+        hyprpicker
+        pamixer
+        wdisplays
+        wl-clipboard
+        xwayland
+        # keep-sorted end
+        ;
+    };
     sessionVariables = {
       NIXOS_OZONE_WL = 1;
       _JAVA_AWT_WM_NONREPARENTING = 1;

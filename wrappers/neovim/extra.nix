@@ -1,16 +1,18 @@
 { pkgs, ... }:
 {
   specs = {
-    extra.data = with pkgs.vimPlugins; [
-      direnv-vim
+    extra.data = [
+      pkgs.vimPlugins.direnv-vim
     ];
     lsp = {
       data = [ pkgs.vimPlugins.nvim-lspconfig ];
-      runtimePkgs = with pkgs; [
-        lua-language-server
-        nil
-        taplo
-      ];
+      runtimePkgs = builtins.attrValues {
+        inherit (pkgs)
+          lua-language-server
+          nil
+          taplo
+          ;
+      };
     };
   };
 }

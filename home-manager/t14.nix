@@ -58,8 +58,8 @@
       inactiveInterval = 60;
     };
   };
-  home.packages =
-    (with pkgs; [
+  home.packages = builtins.attrValues {
+    inherit (pkgs)
       # keep-sorted start
       borgbackup
       brave # needed for messenger calls
@@ -79,8 +79,11 @@
       tor-browser
       xpra
       # keep-sorted end
-    ])
-    ++ (with myPkgs; [ toggle-touchpad ]);
+      ;
+    inherit (myPkgs)
+      toggle-touchpad
+      ;
+  };
   home.sessionVariables = {
     BROWSER = "firefox";
   };

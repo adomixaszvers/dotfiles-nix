@@ -66,14 +66,13 @@
     usb-modeswitch.enable = true;
   };
 
-  environment.systemPackages =
-    (with pkgs; [
-      android-tools
-      virt-manager
-    ])
-    ++ [
-      config.boot.kernelPackages.cpupower
-    ];
+  environment.systemPackages = [
+    pkgs.android-tools
+    pkgs.virt-manager
+  ]
+  ++ [
+    config.boot.kernelPackages.cpupower
+  ];
 
   networking = {
     domain = "lan";

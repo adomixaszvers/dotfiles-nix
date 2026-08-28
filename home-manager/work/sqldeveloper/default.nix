@@ -49,7 +49,7 @@ stdenv.mkDerivation (finalAttrs: {
       --chdir "$out/libexec/sqldeveloper/bin"
   '';
 
-  meta = with lib; {
+  meta = {
     description = "Oracle's Oracle DB GUI client";
     longDescription = ''
       Oracle SQL Developer is a free integrated development environment that
@@ -61,8 +61,8 @@ stdenv.mkDerivation (finalAttrs: {
       platform for moving your 3rd party databases to Oracle.
     '';
     homepage = "http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/";
-    license = licenses.unfree;
+    license = lib.licenses.unfree;
     platforms = [ "x86_64-linux" ];
-    maintainers = with maintainers; [ ardumont ];
+    maintainers = [ lib.maintainers.ardumont ];
   };
 })

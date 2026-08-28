@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ rxvt_unicode-with-plugins ];
+  home.packages = [ pkgs.rxvt_unicode-with-plugins ];
   xresources.properties = {
     "URxvt*font" = "xft:FiraCode Nerd Font Mono:size=9";
     "URxvt.perl-ext-common" = "default,matcher,selection-to-clipboard,font-size";

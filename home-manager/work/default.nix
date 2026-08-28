@@ -46,68 +46,68 @@
       "maven".source = pkgs.maven;
       "tomcat-native".source = pkgs.tomcat-native;
       "tomcats/tomcat9".source = pkgs.tomcat9;
-      "pythons/python3".source = pkgs.python3.withPackages (
-        ps: with ps; [
-          cython
-          setuptools
-        ]
-      );
+      "pythons/python3".source = pkgs.python3.withPackages (ps: [
+        ps.cython
+        ps.setuptools
+      ]);
     };
-    packages = with pkgs; [
-      # keep-sorted start block=yes
-      asciinema
-      brave
-      brightnessctl
-      dbeaver-bin
-      docker-credential-helpers
-      dos2unix
-      dumpasn1
-      evince
-      filezilla
-      ghex
-      gimp
-      gitflow
-      gnumake
-      html-tidy
-      jetbrains.idea
-      jmeter
-      jq
-      keepassxc
-      keystore-explorer
-      libreoffice-stable
-      libsecret
-      liquibase
-      maven
-      mercurial
-      minio-client
-      myPkgs.hunspell-lt
-      nemo
-      numlockx
-      openssl
-      playerctl
-      pnpm_11
-      podman-compose
-      protonup-ng
-      # volatile versions
-      # postman
-      remmina
-      rlwrap
-      samba
-      soapui
-      sshpass
-      steam-run
-      subversion
-      thunderbird
-      tor-browser
-      # teams
-      traceroute
-      unrar
-      unzip
-      whois
-      xpra
-      zip
-      # keep-sorted end
-    ];
+    packages = builtins.attrValues {
+      inherit (pkgs)
+        # keep-sorted start block=yes
+        asciinema
+        brave
+        brightnessctl
+        dbeaver-bin
+        docker-credential-helpers
+        dos2unix
+        dumpasn1
+        evince
+        filezilla
+        ghex
+        gimp
+        gitflow
+        gnumake
+        html-tidy
+        jmeter
+        jq
+        keepassxc
+        keystore-explorer
+        libreoffice-stable
+        libsecret
+        liquibase
+        maven
+        mercurial
+        minio-client
+        nemo
+        numlockx
+        openssl
+        playerctl
+        pnpm_11
+        podman-compose
+        protonup-ng
+        # volatile versions
+        # postman
+        remmina
+        rlwrap
+        samba
+        soapui
+        sshpass
+        steam-run
+        subversion
+        thunderbird
+        tor-browser
+        # teams
+        traceroute
+        unrar
+        unzip
+        whois
+        xpra
+        zip
+        # keep-sorted end
+        ;
+      inherit (pkgs.jetbrains) idea;
+      inherit (myPkgs) hunspell-lt;
+    };
     sessionPath = [ config.home.sessionVariables.PNPM_HOME ];
     sessionVariables = {
       BROWSER = "firefox";

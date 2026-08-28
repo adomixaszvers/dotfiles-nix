@@ -25,8 +25,8 @@
     ./zsh
   ];
   home = {
-    packages =
-      (with pkgs; [
+    packages = builtins.attrValues {
+      inherit (pkgs)
         # keep-sorted start
         bat
         bfs
@@ -56,13 +56,14 @@
         wol
         xdg-user-dirs
         # keep-sorted end
-      ])
-      ++ (with myPkgs; [
+        ;
+      inherit (myPkgs)
         # keep-sorted start
         he
         hm-repl
         # keep-sorted end
-      ]);
+        ;
+    };
     sessionVariables = {
       EDITOR = "nvim";
       MANPAGER = "sh -c 'col -bx | bat -l man -p'";
@@ -107,9 +108,9 @@
       keyMode = "vi";
       mouse = true;
       terminal = "screen-256color";
-      plugins = with pkgs.tmuxPlugins; [
+      plugins = [
         {
-          plugin = mode-indicator;
+          plugin = pkgs.tmuxPlugins.mode-indicator;
           extraConfig = ''
             set -g status-right '%Y-%m-%d %H:%M #{tmux_mode_indicator}'
           '';

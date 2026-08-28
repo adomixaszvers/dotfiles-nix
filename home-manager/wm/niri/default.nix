@@ -72,10 +72,14 @@
         xcursor-size = config.stylix.cursor.size;
         xcursor-theme = config.stylix.cursor.name;
       };
-      layout.border = with config.lib.stylix.colors.withHashtag; {
-        active-color = base0D;
-        inactive-color = base03;
-      };
+      layout.border =
+        let
+          inherit (config.lib.stylix.colors.withHashtag) base0D base03;
+        in
+        {
+          active-color = base0D;
+          inactive-color = base03;
+        };
 
     };
   };

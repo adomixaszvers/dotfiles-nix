@@ -6,22 +6,27 @@
     ./cli/jujutsu.nix
     ./gui/lutris.nix
   ];
-  home.packages = with pkgs; [
-    # keep-sorted start block=yes
-    (obs-studio.override {
-      cudaSupport = true;
-    })
-    brave
-    keepassxc
-    # gamescope
-    libreoffice-stable
-    mpv
-    playerctl
-    protonup-qt
-    remmina
-    xpra
-    # keep-sorted end
-  ];
+  home.packages =
+    builtins.attrValues {
+      inherit (pkgs)
+        # keep-sorted start
+        brave
+        keepassxc
+        # gamescope
+        libreoffice-stable
+        mpv
+        playerctl
+        protonup-qt
+        remmina
+        xpra
+        # keep-sorted end
+        ;
+    }
+    ++ [
+      (pkgs.obs-studio.override {
+        cudaSupport = true;
+      })
+    ];
   home.sessionVariables = {
     BROWSER = "firefox";
   };

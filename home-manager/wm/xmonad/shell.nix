@@ -1,17 +1,16 @@
 {
   pkgs ? import <nixpkgs> { },
 }:
-with pkgs;
-mkShellNoCC {
+pkgs.mkShellNoCC {
   name = "xmonad-shell";
   packages =
     let
-      myHaskellPackages = import ./myHaskellPackages.nix { inherit haskellPackages; };
+      myHaskellPackages = import ./myHaskellPackages.nix { inherit (pkgs) haskellPackages; };
     in
     [
       (myHaskellPackages.ghcWithHoogle (
         hs: (import ./extraPackages.nix hs) ++ [ (hs.callPackage ./my-colors.nix { }) ]
       ))
-      haskellPackages.haskell-language-server
+      pkgs.haskellPackages.haskell-language-server
     ];
 }

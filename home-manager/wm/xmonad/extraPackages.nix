@@ -1,6 +1,9 @@
-hs: with hs; [
-  xmonad
-  xmonad-contrib
-  hostname
-  xmonad-dbus
-]
+hs:
+builtins.attrValues {
+  inherit (hs)
+    xmonad
+    xmonad-contrib
+    hostname
+    xmonad-dbus
+    ;
+}

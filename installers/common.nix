@@ -13,16 +13,16 @@
   boot = {
     supportedFilesystems = [ "zfs" ];
   };
-  environment.systemPackages = [
-    myPkgs.neovim
-  ]
-  ++ (with pkgs; [
-    # keep-sorted start
-    fd
-    git
-    nixfmt
-    ripgrep
-    # keep-sorted end
-  ]);
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      # keep-sorted start
+      fd
+      git
+      nixfmt
+      ripgrep
+      # keep-sorted end
+      ;
+    inherit (myPkgs) neovim;
+  };
   users.users.nixos.openssh.authorizedKeys.keyFiles = [ ../nixos/keys/yubikey.pub ];
 }

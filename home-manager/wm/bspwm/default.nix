@@ -11,18 +11,21 @@
     ../picom.nix
     ./sxhkd.nix
   ];
-  home.packages =
-    (with pkgs; [
+  home.packages = builtins.attrValues {
+    inherit (pkgs)
       # keep-sorted start
       pamixer
       tdrop
       wmname
       # keep-sorted end
-    ])
-    ++ (with myPkgs; [
-      bspwm-reorder-desktops
+      ;
+    inherit (myPkgs)
+      # keep-sorted start
       bspwm-greedy-focus
-    ]);
+      bspwm-reorder-desktops
+      # keep-sorted end
+      ;
+  };
   services.polybar.config =
     let
       common = {

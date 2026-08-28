@@ -110,24 +110,26 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    # keep-sorted start
-    acpi
-    efibootmgr
-    exfat
-    git
-    lm_sensors
-    neovim
-    nixfmt
-    ntfs3g
-    pciutils
-    psmisc
-    shared-mime-info
-    usbutils
-    vim
-    wget
-    # keep-sorted end
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      # keep-sorted start
+      acpi
+      efibootmgr
+      exfat
+      git
+      lm_sensors
+      neovim
+      nixfmt
+      ntfs3g
+      pciutils
+      psmisc
+      shared-mime-info
+      usbutils
+      vim
+      wget
+      # keep-sorted end
+      ;
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

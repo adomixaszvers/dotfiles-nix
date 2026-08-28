@@ -122,12 +122,14 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      # keep-sorted start
-      vim
-      wget
-      # keep-sorted end
-    ];
+    systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        # keep-sorted start
+        vim
+        wget
+        # keep-sorted end
+        ;
+    };
   };
 
   programs = {

@@ -10,11 +10,10 @@ let
   inherit (haskellPackages) xmonad-dbus;
   launch-polybar = pkgs.writeShellScriptBin "launch-polybar" ''
     PATH=$PATH:${
-      with pkgs;
       lib.makeBinPath [
-        coreutils
-        gnugrep
-        xrandr
+        pkgs.coreutils
+        pkgs.gnugrep
+        pkgs.xrandr
       ]
     }
 
@@ -34,18 +33,17 @@ in
     ../picom.nix
     ../polybar.nix
   ];
-  home.packages =
-    (with pkgs; [
-      # keep-sorted start
-      pamixer
-      xdotool
-      zenity
-      # keep-sorted end
-    ])
-    ++ [
-      xmonad-dbus
-      launch-polybar
-    ];
+  home.packages = [
+    # keep-sorted start
+    pkgs.pamixer
+    pkgs.xdotool
+    pkgs.zenity
+    # keep-sorted end
+  ]
+  ++ [
+    xmonad-dbus
+    launch-polybar
+  ];
   programs.polybar.enable = true;
   services.polybar.enable = false;
   services.polybar.config = {
