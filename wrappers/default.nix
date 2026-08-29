@@ -39,8 +39,5 @@
         ./neovim/treesitter-small.nix
       ];
     };
-    niri = {
-      imports = [ ./niri ];
-    };
   };
 }

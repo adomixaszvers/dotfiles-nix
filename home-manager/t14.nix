@@ -96,48 +96,46 @@
       enable = true;
     };
   };
-  wrappers = {
-    niri.settings = {
-      input.touchpad.tap = _: { };
-      workspaces = {
-        "browser" = _: { };
-        "game" = _: { };
-      };
-    };
-  };
   xsession.initExtra = # bash
     ''
       xset s off -dpms
       xrandr --output eDP --set TearFree on
     '';
-
-  wayland.windowManager.hyprland.settings.monitor = [
-    {
-      output = "eDP-1";
-      mode = "1920x1080";
-      position = "0x0";
-      scale = "1.25";
-    }
-  ];
-
-  wayland.windowManager.sway = {
-    config = {
-      input = {
-        "1133:49948:Logitech_USB_Keyboard" = {
-          xkb_layout = "lt,us";
-          xkb_numlock = "enabled";
+  wayland.windowManager = {
+    hyprland.settings.monitor = [
+      {
+        output = "eDP-1";
+        mode = "1920x1080";
+        position = "0x0";
+        scale = "1.25";
+      }
+    ];
+    niri.settings = {
+      input.touchpad.tap = { };
+      _children = [
+        { workspace._args = [ "browser" ]; }
+        { workspace._args = [ "game" ]; }
+      ];
+    };
+    sway = {
+      config = {
+        input = {
+          "1133:49948:Logitech_USB_Keyboard" = {
+            xkb_layout = "lt,us";
+            xkb_numlock = "enabled";
+          };
+          "type:keyboard" = {
+            xkb_layout = "lt,us";
+            xkb_numlock = "enabled";
+          };
         };
-        "type:keyboard" = {
-          xkb_layout = "lt,us";
-          xkb_numlock = "enabled";
-        };
-      };
-      output = {
-        "eDP-1" = {
-          mode = "1920x1080";
-          pos = "0 0";
-          adaptive_sync = "on";
-          scale = "1.25";
+        output = {
+          "eDP-1" = {
+            mode = "1920x1080";
+            pos = "0 0";
+            adaptive_sync = "on";
+            scale = "1.25";
+          };
         };
       };
     };
