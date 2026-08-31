@@ -33,7 +33,7 @@
           # keep-sorted start
           adwaita-icon-theme
           arandr
-          # font-manager # TODO does not build for now
+          font-manager
           hicolor-icon-theme
           meld
           pavucontrol
