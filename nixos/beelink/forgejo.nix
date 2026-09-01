@@ -4,10 +4,6 @@ let
   srv = cfg.settings.server;
 in
 {
-  networking.extraHosts = ''
-    127.0.0.1 git.bl.beastade.top
-    127.0.0.1 nixbot.bl.beastade.top
-  '';
   services.nginx = {
     virtualHosts.${cfg.settings.server.DOMAIN} = {
       forceSSL = true;

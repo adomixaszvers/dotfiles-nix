@@ -1,4 +1,9 @@
 { lib, config, ... }: {
+  networking.hosts = {
+    "10.147.17.214" = [ "work.zt" ];
+    "10.147.17.222" = [ "t14.zt" ];
+    "10.147.17.171" = [ "pc.zt" ];
+  };
   sops.secrets."zerotier/networks" = {
     sopsFile = ./common-secrets/zerotier.yaml;
   };

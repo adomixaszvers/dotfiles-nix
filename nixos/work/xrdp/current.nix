@@ -1,6 +1,9 @@
 { config, inputs, ... }:
 {
-  networking.firewall.interfaces.wg0.allowedTCPPorts = [ config.services.xrdp.port ];
+  networking.firewall.interfaces = {
+    wg0.allowedTCPPorts = [ config.services.xrdp.port ];
+    ztzlgoe57z.allowedTCPPorts = [ config.services.xrdp.port ];
+  };
   services.xrdp = {
     enable = true;
     extraConfDirCommands =

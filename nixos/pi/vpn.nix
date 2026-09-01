@@ -46,9 +46,7 @@
         '';
         environment.systemPackages = [ pkgs.kitty.terminfo ];
         networking = {
-          extraHosts = ''
-            88.119.198.57 vpn.insoft.lt
-          '';
+          hosts."88.119.198.57" = [ "vpn.insoft.lt" ];
           firewall.allowedTCPPorts = [ 1080 ];
           interfaces.eth0.ipv4.routes = [
             {

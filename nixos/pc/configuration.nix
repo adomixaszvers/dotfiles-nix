@@ -51,9 +51,7 @@
     hostName = "adomo-pc-nixos"; # Define your hostname.
     hostId = "92b8e669";
     networkmanager.enable = true;
-    extraHosts = ''
-      127.0.0.1 sr3.hydra.agoragames.com
-    '';
+    hosts."127.0.0.1" = [ "sr3.hydra.agoragames.com" ];
   };
 
   # systemd.tmpfiles.rules = [

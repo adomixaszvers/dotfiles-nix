@@ -39,6 +39,7 @@
           "https://cloudflare-dns.com/dns-query"
           # "https://dns.quad9.net/dns-query"
           "[/lan/]192.168.1.254"
+          "[/zt/]10.147.17.1"
         ];
         bootstrap_dns = [
           "9.9.9.9"

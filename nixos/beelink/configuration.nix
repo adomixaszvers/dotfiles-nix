@@ -22,7 +22,7 @@
     # ../ld-link.nix
     ../nix-registry.nix
     ./acme.nix
-    ./nginx.nix
+    ../nginx.nix
     ./searx.nix
     ./adguard.nix
     ./forgejo.nix
