@@ -138,7 +138,7 @@
   };
   services = {
     fstrim.enable = true;
-    journald.extraConfig = "SystemMaxUse=500M";
+    journald.settings.Journal.SystemMaxUse = "500M";
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;

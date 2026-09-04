@@ -91,7 +91,7 @@
   services = {
     blueman.enable = true;
     flatpak.enable = true;
-    journald.extraConfig = "SystemMaxUse=500M";
+    journald.settings.Journal.SystemMaxUse = "500M";
     atd.enable = true;
     fstrim.enable = true;
     openssh = {
