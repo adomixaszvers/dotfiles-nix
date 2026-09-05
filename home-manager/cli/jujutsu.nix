@@ -1,6 +1,5 @@
-{ pkgs, ... }:
 {
-  home.packages = [ pkgs.lazyjj ];
+  programs.jjui.enable = true;
   programs.jujutsu = {
     enable = true;
     ediff = false; # it uses emacsclient
