@@ -34,7 +34,7 @@
     # ./remote-build.nix
     ./samba.nix
     # ./squid.nix
-    ./xrdp/current.nix
+    ./xrdp
     # ./turbovnc.nix
     # ./unbound.nix
     # ./vnc.nix
