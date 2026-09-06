@@ -63,6 +63,16 @@
   };
   wayland.windowManager.niri = {
     enable = true;
+    xwaylandSatellitePackage = pkgs.xwayland-satellite.overrideAttrs (old: {
+      patches = old.patches ++ [
+        (pkgs.fetchpatch {
+          # https://github.com/Supreeeme/xwayland-satellite/pull/494
+          name = "fix-popups";
+          url = "https://patch-diff.githubusercontent.com/raw/Supreeeme/xwayland-satellite/pull/494.patch";
+          hash = "sha256-efUsFsMCDp9Oj0lQJGc2yBDJzIahh7G9QZwlZ8hanJQ=";
+        })
+      ];
+    });
     settings = {
       binds = {
 
