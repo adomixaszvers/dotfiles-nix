@@ -21,6 +21,7 @@
     ./git.nix
     ./gnupg.nix
     ./registry.nix
+    ./repack-nix-tarball-cache.nix
     ./ssh-agent.nix
     ./zsh
   ];
