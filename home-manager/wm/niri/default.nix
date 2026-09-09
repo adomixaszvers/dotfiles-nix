@@ -68,8 +68,8 @@
         (pkgs.fetchpatch {
           # https://github.com/Supreeeme/xwayland-satellite/pull/494
           name = "fix-popups";
-          url = "https://patch-diff.githubusercontent.com/raw/Supreeeme/xwayland-satellite/pull/494.patch";
-          hash = "sha256-efUsFsMCDp9Oj0lQJGc2yBDJzIahh7G9QZwlZ8hanJQ=";
+          url = "https://github.com/Supreeeme/xwayland-satellite/commit/add2795134593faafce60e404a0a75df68e9ee0c.patch";
+          hash = "sha256-/1zJYAIHC+xiVytHH5HDt83lZKLBGQQdAoS/y2ObTLc=";
         })
       ];
     });
