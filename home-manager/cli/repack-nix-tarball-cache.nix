@@ -7,6 +7,7 @@
     Timer = {
       OnCalendar = "daily";
       Unit = "repack-nix-tarball-cache.service";
+      Persistent = true;
     };
   };
 
