@@ -20,6 +20,7 @@
     ./direnv
     ./git.nix
     ./gnupg.nix
+    ./nushell
     ./registry.nix
     ./repack-nix-tarball-cache.nix
     ./ssh-agent.nix

@@ -74,6 +74,10 @@ if vim.fn.executable('nil') == 1 then
   vim.lsp.enable('nil_ls')
 end
 
+if vim.fn.executable('nu') == 1 then
+  vim.lsp.enable('nushell')
+end
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
