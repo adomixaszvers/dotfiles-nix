@@ -13,9 +13,6 @@ jobs:
     - name: update flake
       run: nix flake update --commit-lock-file --option access-tokens github.com=${{ secrets.UPDATES_TOKEN }}
     - name: Create Pull Request
-      uses: Mai0313/create-pull-request@95b41bb74c7689393eaf7c540f02702d8d41e3e6
-      with:
-        branch: update-flake-inputs
-        token: ${{ secrets.GITEA_TOKEN }}
-        github-server-url: git.bl.beastade.top
-        title: Update flake inputs
+      run: nix run --inputs-from . nixpkgs#nushell -- ./.forgejo/workflows/create-pr.nu
+      env:
+        FORGEJO_TOKEN: ${{ secrets.FORGEJO_TOKEN }}
