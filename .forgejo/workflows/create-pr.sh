@@ -6,12 +6,12 @@ branch=update-flake-inputs
 
 if git ls-remote --exit-code origin "refs/heads/$branch"; then
   git fetch origin "$branch:$branch"
+  if git diff-index --cached --quiet "origin/$branch"; then
+    echo "No changes detected"
+    exit
+  fi
 fi
 
-if git diff-index --cached --quiet "origin/$branch"; then
-  echo "No changes detected"
-  exit
-fi
 
 server_url="${FORGEJO_SERVER_URL##*/}"
 git push --force "https://${FORGEJO_TOKEN}@${server_url}/${FORGEJO_REPOSITORY}" "HEAD:${branch}"

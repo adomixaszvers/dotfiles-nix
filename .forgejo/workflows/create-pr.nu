@@ -3,10 +3,12 @@
 
 let branch = 'update-flake-inputs'
 
-git fetch origin $"($branch):($branch)"
+if (git ls-remote origin $branch | is-not-empty) {
+    git fetch origin $"($branch):($branch)"
 
-if (git diff-index --cached --quiet $"origin/($branch)" | complete).exit_code == 0 {
-    exit
+    if (git diff-index --cached --quiet $"origin/($branch)" | complete).exit_code == 0 {
+        exit
+    }
 }
 
 let serverUrl = $env.FORGEJO_SERVER_URL | url parse | get host
