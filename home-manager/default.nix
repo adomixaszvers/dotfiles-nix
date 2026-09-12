@@ -62,9 +62,7 @@ in
     };
     nixbotJobs = {
       "x86_64-linux" = {
-        home-manager-work = work.config.specialisation.work.configuration.home.activationPackage;
-        home-manager-work-remote =
-          work.config.specialisation.work-remote.configuration.home.activationPackage;
+        home-manager-work = work.activationPackage;
         home-manager-home = asus-laptop.activationPackage;
         home-manager-t14 = t14.activationPackage;
         home-manager-foreign = foreign.activationPackage;
