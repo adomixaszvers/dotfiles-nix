@@ -3,6 +3,12 @@
 
 let branch = 'update-flake-inputs'
 
+git fetch origin $"($branch):($branch)"
+
+if (git diff-index --cached --quiet $"origin/($branch)"| complete).exit_code == 0 {
+  exit
+}
+
 git push --force $"https://x-access-token:($env.FORGEJO_TOKEN)@git.bl.beastade.top/($env.FORGEJO_REPOSITORY)" $"HEAD:refs/heads/($branch)"
 let pullsUrl = $"($env.FORGEJO_API_URL)/repos/($env.FORGEJO_REPOSITORY)/pulls"
 let pulls = http get $"($pullsUrl)?state=open"
