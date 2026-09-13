@@ -6,14 +6,6 @@
       TOKEN=${config.sops.placeholder."forgejo-runner/token"}
     '';
   };
-  # systemd.services.gitea-actions-runner.serviceConfig = {
-  #   LoadCredential = [
-  #     "token:${config.sops.secrets."forgejo-runner/token".path}"
-  #   ];
-  #   Environment = [
-  #     "TOKEN=%d/token"
-  #   ];
-  # };
   services.gitea-actions-runner = {
     package = pkgs.forgejo-runner;
     instances.default = {
@@ -29,24 +21,22 @@
       ]
       ++ (builtins.attrValues {
         inherit (pkgs)
+          # keep-sorted start
           bash
           coreutils
           curl
           gawk
           gitMinimal
           gnused
+          jq
           nodejs
           wget
+          # keep-sorted end
           ;
       });
       labels = [
         "ubuntu-24.04:docker://gitea/runner-images:ubuntu-latest"
         "ubuntu-slim:docker://gitea/runner-images:ubuntu-latest-slim"
-        # "ubuntu-latest:docker://node:16-bullseye"
-        # "ubuntu-22.04:docker://node:16-bullseye"
-        # "ubuntu-20.04:docker://node:16-bullseye"
-        # "ubuntu-18.04:docker://node:16-buster"
-        ## optionally provide native execution on the host:
         "native:host"
       ];
     };

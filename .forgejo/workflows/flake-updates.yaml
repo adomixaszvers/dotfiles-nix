@@ -13,6 +13,6 @@ jobs:
     - name: update flake
       run: nix flake update --commit-lock-file --option access-tokens github.com=${{ secrets.UPDATES_TOKEN }}
     - name: Create Pull Request
-      run: nix run --inputs-from . nixpkgs#nushell -- ./.forgejo/workflows/create-pr.nu
+      run: bash ./.forgejo/workflows/create-pr.sh
       env:
         FORGEJO_TOKEN: ${{ secrets.FORGEJO_TOKEN }}
