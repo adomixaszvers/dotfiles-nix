@@ -13,7 +13,6 @@ jobs:
     - name: update flake
       run: nix flake update --commit-lock-file --option access-tokens github.com=${{ secrets.UPDATES_TOKEN }}
     - name: Create Pull Request
-      run: |
-        git push "https://${PR_TOKEN}@${FORGEJO_SERVER_URL##*/}/${FORGEJO_REPOSITORY}" HEAD:refs/for/master/update-flake-inputs -o force-push=true
+      run: nix run --inputs-from . nixpkgs#nushell -- ./.forgejo/workflows/create-pr.nu
       env:
-        PR_TOKEN: ${{ secrets.PR_TOKEN }}
+        FORGEJO_TOKEN: ${{ secrets.FORGEJO_TOKEN }}
