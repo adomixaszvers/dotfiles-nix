@@ -13,8 +13,7 @@ if git ls-remote --exit-code origin "refs/heads/$branch"; then
 fi
 
 
-server_url="${FORGEJO_SERVER_URL##*/}"
-git push --force "https://${FORGEJO_TOKEN}@${server_url}/${FORGEJO_REPOSITORY}" "HEAD:${branch}"
+git push origin "+HEAD:${branch}"
 
 pulls_url="${FORGEJO_API_URL}/repos/${FORGEJO_REPOSITORY}/pulls"
 if [ "$(curl --silent "${pulls_url}?state=open"| jq '.|any(.base.label == "master" and .head.label == "update-flake-inputs")')" = false ]; then
