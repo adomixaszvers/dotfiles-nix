@@ -12,7 +12,7 @@
     ../cli/jujutsu.nix
     ../wm/xrdp.nix
     ./kerberos.nix
-    ./legacy.nix
+    # ./legacy.nix
   ];
   specialisation = {
     work.configuration = {
@@ -90,7 +90,8 @@
         remmina
         rlwrap
         samba
-        soapui
+        # broken by cmake bump
+        # soapui
         sshpass
         steam-run
         subversion
