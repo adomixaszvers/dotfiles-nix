@@ -107,33 +107,7 @@
         # keep-sorted end
         ;
       inherit (myPkgs) hunspell-lt;
-      idea =
-        let
-          version = "2026.2.2";
-          system = pkgs.stdenv.hostPlatform.system;
-          upstreamPackage = pkgs.jetbrains.idea;
-          isUpdatedVersion = lib.versionAtLeast upstreamPackage.version version;
-          urls = {
-            x86_64-linux = {
-              url = "https://download.jetbrains.com/idea/ideaIU-2026.2.2.tar.gz";
-              hash = "sha256-8cxTKaet86s72IhnRBA/fTvPHKEuaZdi7Nm//lczX4s=";
-            };
-            aarch64-linux = {
-              url = "https://download.jetbrains.com/idea/ideaIU-2026.2.2-aarch64.tar.gz";
-              hash = "sha256-BLq6b7EDSuv7+G6LVRhsgYuT27vhMQEpdXGP9/cHQPU=";
-            };
-            aarch64-darwin = {
-              url = "https://download.jetbrains.com/idea/ideaIU-2026.2.2-aarch64.dmg";
-              hash = "sha256-9KRfRRAIyGzk6TQtWTH9ichVP506tugBLadTPp/lwkk=";
-            };
-          };
-          updatedPackage = upstreamPackage.overrideAttrs {
-            inherit version;
-            buildNumber = "262.10315.125";
-            src = pkgs.fetchurl (urls.${system} or (throw "Unsupported system: ${system}"));
-          };
-        in
-        lib.warnIf isUpdatedVersion "jetbrains.idea was updated in nixpkgs" updatedPackage;
+      inherit (pkgs.jetbrains) idea;
     };
     sessionPath = [ config.home.sessionVariables.PNPM_HOME ];
     sessionVariables = {
