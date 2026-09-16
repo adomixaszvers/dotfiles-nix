@@ -28,6 +28,7 @@
             "active_window"
           ];
         };
+        lockscreen.enabled = false;
         widget.network.show_label = false;
       };
     };
