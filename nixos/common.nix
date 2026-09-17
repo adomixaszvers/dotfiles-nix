@@ -104,7 +104,6 @@
   };
 
   programs = {
-    command-not-found.enable = true;
     dconf.enable = true;
     iotop.enable = true;
     ssh.startAgent = false;

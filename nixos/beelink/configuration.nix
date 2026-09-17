@@ -210,7 +210,6 @@
   };
 
   programs = {
-    command-not-found.enable = true;
     iotop.enable = true;
     ssh.startAgent = false;
     zsh = {
