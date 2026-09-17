@@ -82,7 +82,7 @@
         numlockx
         openssl
         playerctl
-        pnpm_11
+        pnpm_12
         podman-compose
         protonup-ng
         # volatile versions
