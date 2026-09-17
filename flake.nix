@@ -36,7 +36,8 @@
     # nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     sops-nix = {
-      url = "github:Mic92/sops-nix";
+      # see https://github.com/Mic92/sops-nix/issues/983
+      url = "github:Mic92/sops-nix/16954c1c360c3dc4d4b3b3e64df59f7e89452cb1";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
