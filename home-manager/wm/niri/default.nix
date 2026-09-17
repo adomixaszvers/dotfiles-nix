@@ -33,7 +33,7 @@
       };
     };
     rofi = {
-      extraConfig.modi = "drun,run,window,combi";
+      settings.modi = "drun,run,window,combi";
     };
   };
   services.network-manager-applet.enable = false;

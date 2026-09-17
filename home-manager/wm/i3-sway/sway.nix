@@ -86,7 +86,7 @@ in
   programs = {
     emacs.package = pkgs.emacs-pgtk;
     rofi = {
-      extraConfig.modi = "drun,run,ssh";
+      settings.modi = "drun,run,ssh";
     };
     waybar = {
       settings.mainbar = {
