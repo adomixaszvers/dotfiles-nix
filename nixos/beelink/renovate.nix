@@ -50,7 +50,7 @@
       prHourlyLimit = 0;
       repositories = [ "adomas/dotfiles-nix" ];
     };
-    schedule = "2:00";
+    schedule = "*:00:00"; # hourly
     validateSettings = true;
   };
 }

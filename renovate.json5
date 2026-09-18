@@ -1,0 +1,16 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  packageRules: [
+    {
+        matchManagers: ["nix"],
+        groupName: "Other nix inputs",
+        schedule: ["before 6am on friday"]
+    },
+    {
+        matchManagers: ["nix"],
+        matchDepNames: ["nixpkgs"],
+        groupName: "Nixpkgs",
+        schedule: ["before 6am"]
+    }
+  ]
+}
