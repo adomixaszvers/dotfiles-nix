@@ -22,10 +22,35 @@
     ];
     settings = {
       endpoint = "https://git.bl.beastade.top";
-      autodiscover = true;
       gitAuthor = "Renovate <renovate@beelink>";
       platform = "forgejo";
+      autodiscover = false;
+      configMigration = true;
+      extends = [
+        "config:recommended"
+        ":dependencyDashboard"
+        "helpers:pinGitHubActionDigests"
+      ];
+      lockFileMaintenance = {
+        enabled = true;
+        schedule = [ "at any time" ];
+      };
+      nix.enabled = true;
+      onboardingConfigFileName = "renovate.json";
+      optimizeForDisabled = true;
+      osvVulnerabilityAlerts = true;
+      packageRules = [
+        {
+          groupName = "flake inputs";
+          matchManagers = [ "nix" ];
+        }
+      ];
+      persistRepoData = true;
+      prConcurrentLimit = 0;
+      prHourlyLimit = 0;
+      repositories = [ "adomas/dotfiles-nix" ];
     };
-    schedule = "*:0/10";
+    schedule = "2:00";
+    validateSettings = true;
   };
 }
