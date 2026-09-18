@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   sops.secrets =
     let
@@ -16,6 +16,10 @@
       GITHUB_COM_TOKEN = config.sops.secrets.renovateGithubToken.path;
       RENOVATE_TOKEN = config.sops.secrets.renovateToken.path;
     };
+    runtimePackages = [
+      config.nix.package
+      pkgs.openssh
+    ];
     settings = {
       endpoint = "https://git.bl.beastade.top";
       autodiscover = true;
