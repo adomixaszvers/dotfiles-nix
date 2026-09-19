@@ -94,6 +94,7 @@
           };
           treefmt = {
             programs = {
+              jsonfmt.enable = true;
               keep-sorted.enable = true;
               nixfmt.enable = true;
               statix = {
