@@ -5,6 +5,9 @@
       "matchManagers": [
         "nix"
       ],
+      "matchDepNames": [
+        "!nixpkgs"
+      ],
       "groupName": "Other nix inputs",
       "schedule": [
         "before 6am on friday"
