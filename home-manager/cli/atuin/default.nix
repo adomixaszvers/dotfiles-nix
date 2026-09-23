@@ -16,7 +16,7 @@
       update_check = false;
       key_path = config.sops.secrets."atuin/key".path;
       session_path = config.sops.secrets."atuin/session".path;
-      sync_address = lib.mkDefault "https://atuin.rpi4.beastade.top";
+      sync_address = lib.mkDefault "https://atuin.bl.beastade.top";
       search_mode = "fuzzy";
       filter_mode = "host";
       workspaces = true;
