@@ -11,30 +11,45 @@
     ../cli/atuin
     ../cli/jujutsu.nix
     ../wm/xrdp.nix
+    ../wm/niri
+    ../wm/xmonad
+    ../wm/xinitrc.nix
     ./kerberos.nix
     ./legacy.nix
   ];
-  specialisation = {
-    work.configuration = {
-      imports = [ ./work.nix ];
-      xdg.dataFile."home-manager/specialisation".text = "work";
-    };
-
-    work-remote.configuration = {
-      imports = [ ./work-remote.nix ];
-      xdg.dataFile."home-manager/specialisation".text = "work-remote";
-    };
-  };
   gui = {
     hasBattery = true;
     thermal-zone = 1;
   };
   stylix.enable = true;
-  xdg.dataFile."dbus-1/services/org.freedesktop.secrets.service".text = ''
-    [D-BUS Service]
-    Name=org.freedesktop.secrets
-    Exec=${lib.getExe pkgs.keepassxc}
-  '';
+  xdg = {
+    dataFile."dbus-1/services/org.freedesktop.secrets.service".text = ''
+      [D-BUS Service]
+      Name=org.freedesktop.secrets
+      Exec=${lib.getExe pkgs.keepassxc}
+    '';
+
+    configFile."mimeapps.list".force = true;
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/https" = [
+          "firefox.desktop"
+          "google-chrome.desktop"
+        ];
+        "x-scheme-handler/http" = [
+          "firefox.desktop"
+          "google-chrome.desktop"
+        ];
+        "text/html" = [
+          "firefox.desktop"
+          "google-chrome.desktop"
+        ];
+        "inode/directory" = "org.gnome.Nautilus.desktop";
+      };
+    };
+
+  };
   home = {
     file = {
       "jdks/openjdk8".source = pkgs.openjdk8;
@@ -115,8 +130,8 @@
       TESTCONTAINERS_RYUK_DISABLED = "true";
       _ZL_EXCLUDE_DIRS = "/kiti"; # don't trigger automount with z-lua
     };
+    sessionVariables.KITTY_CONF_FONT = "font_size 9";
   };
-
   programs = {
     git.includes = [
       {
@@ -165,8 +180,39 @@
         ];
       };
     };
-  };
 
+    hyprlock = {
+      enable = true;
+      settings = {
+        animations.enabled = false;
+        general = {
+          ignore_empty_input = true;
+        };
+        auth.fingerprint.enabled = true;
+        label = [
+          {
+            monitor = "";
+            position = "0, 100";
+            text = "$TIME";
+            font_size = 40;
+            color = "rgb(${config.lib.stylix.colors.base05})";
+            halign = "center";
+            valign = "center";
+          }
+          {
+            monitor = "";
+            text = "$FPRINTPROMPT";
+            text_align = "center";
+            color = "rgb(${config.lib.stylix.colors.base05})";
+            font_size = 24;
+            position = "0, -100";
+            halign = "center";
+            valign = "center";
+          }
+        ];
+      };
+    };
+  };
   services = {
     gnome-keyring.enable = lib.mkForce false;
     shikane = {
@@ -230,7 +276,7 @@
         }
       ];
     };
-    # network-manager-applet.enable = true;
+    network-manager-applet.enable = true;
     polybar.config = {
       "module/temperature".thermal-zone = config.gui.thermal-zone;
       "bar/top" = {
@@ -252,49 +298,81 @@
         ramp-capacity-4 = "";
       };
     };
+
+    shikane.enable = true;
+    picom.enable = false;
+    hypridle = {
+      enable = true;
+      settings =
+        let
+          niri = lib.getExe config.wayland.windowManager.niri.package;
+          dpmsOnCmd = "${niri} msg action power-on-monitors";
+          dpmsOffCmd = "${niri} msg action power-off-monitors";
+        in
+        {
+          general = {
+            before_sleep_cmd = "loginctl lock-session";
+            after_sleep_cmd = dpmsOnCmd;
+            lock_cmd = "pidof hyprlock || hyprlock";
+          };
+          listener = [
+            {
+              timeout = 300;
+              on-timeout = "loginctl lock-session";
+            }
+            {
+              timeout = 30;
+              on-timeout = "pidof hyprlock && ${dpmsOffCmd}";
+              on-resume = dpmsOnCmd;
+            }
+          ];
+        };
+    };
+  };
+  wayland.systemd.target = "niri-session.target";
+  wayland.windowManager = {
+    niri.settings = {
+      environment = {
+        IDEA_VM_OPTIONS =
+          let
+            ideaOptions = pkgs.writeText "idea64.vmoptions" ''
+              -Xmx3971m
+              -Dawt.toolkit.name=WLToolkit
+            '';
+          in
+          ideaOptions.outPath;
+      };
+      input.touchpad.tap = { };
+      _children = [
+        {
+          workspace = {
+            _args = [
+              "browser"
+            ];
+            open-on-output = "Dell Inc. DELL P2723D GRJX0V3";
+          };
+        }
+        {
+          workspace = {
+            _args = [
+              "dev"
+            ];
+            open-on-output = "Dell Inc. DELL P2723D 3MHX0V3";
+          };
+        }
+      ];
+    };
+  };
+  xsession = {
+    enable = lib.mkDefault true;
+    numlock.enable = true;
+  };
+  systemd.user.services.dunst = {
+    Unit = {
+      Description = "Dunst notification daemon";
+      After = lib.mkForce [ "graphical-session.target" ];
+      PartOf = lib.mkForce [ "graphical-session.target" ];
+    };
   };
 
-  xsession.windowManager.bspwm = {
-    extraConfig = # bash
-      ''
-        bspc desktop 3 -l monocle
-      '';
-  };
-  xdg = {
-    configFile."mimeapps.list".force = true;
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "x-scheme-handler/https" = [
-          "firefox.desktop"
-          "google-chrome.desktop"
-        ];
-        "x-scheme-handler/http" = [
-          "firefox.desktop"
-          "google-chrome.desktop"
-        ];
-        "text/html" = [
-          "firefox.desktop"
-          "google-chrome.desktop"
-        ];
-        "inode/directory" = "org.gnome.Nautilus.desktop";
-      };
-    };
-  };
-  wayland.windowManager = {
-    sway.config = {
-      input = {
-        "6127:24729:Lenovo_Lenovo_Traditional_USB_Keyboard" = {
-          xkb_layout = "lt,us";
-          xkb_numlock = "enabled";
-          xkb_options = "grp:caps_toggle";
-        };
-        "1:1:AT_Translated_Set_2_keyboard" = {
-          xkb_layout = "lt,us";
-          xkb_numlock = "enabled";
-          xkb_options = "grp:caps_toggle";
-        };
-      };
-    };
-  };
 }

@@ -30,7 +30,6 @@ in
 {
   imports = [
     ../dunst.nix
-    ../picom.nix
     ../polybar.nix
   ];
   home.packages = [

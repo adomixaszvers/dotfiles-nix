@@ -35,7 +35,6 @@
       settings.modi = "drun,run,window,combi";
     };
   };
-  services.network-manager-applet.enable = false;
   wayland.windowManager.niri = {
     enable = true;
     settings = {

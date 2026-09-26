@@ -11,7 +11,6 @@
     enable = lib.mkDefault true;
     platformTheme.name = "adwaita";
   };
-  services.network-manager-applet.enable = lib.mkDefault true;
   services.udiskie = {
     enable = lib.mkDefault true;
     automount = false;
