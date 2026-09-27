@@ -305,9 +305,23 @@
       enable = true;
       settings =
         let
+          isHypr = config.wayland.windowManager.hyprland.enable;
+          isNiri = config.wayland.windowManager.niri.enable;
           niri = lib.getExe config.wayland.windowManager.niri.package;
-          dpmsOnCmd = "${niri} msg action power-on-monitors";
-          dpmsOffCmd = "${niri} msg action power-off-monitors";
+          dpmsOnCmd =
+            if isHypr then
+              "hyprctl dispatch dpms on"
+            else if isNiri then
+              "${niri} msg action power-on-monitors"
+            else
+              "";
+          dpmsOffCmd =
+            if isHypr then
+              "hyprctl dispatch dpms off"
+            else if isNiri then
+              "${niri} msg action power-off-monitors"
+            else
+              "";
         in
         {
           general = {
@@ -330,42 +344,112 @@
     };
   };
   wayland.systemd.target = "niri-session.target";
-  wayland.windowManager = {
-    niri.settings = {
-      environment = {
-        IDEA_VM_OPTIONS =
-          let
-            ideaOptions = pkgs.writeText "idea64.vmoptions" ''
-              -Xmx3971m
-              -Dawt.toolkit.name=WLToolkit
-            '';
-          in
-          ideaOptions.outPath;
+  wayland.windowManager =
+    let
+      ideaOptions = pkgs.writeText "idea64.vmoptions" ''
+        -Xmx3971m
+        -Dawt.toolkit.name=WLToolkit
+      '';
+    in
+    {
+      hyprland.settings = {
+        env = [
+          {
+            _args = [
+              "IDEA_VM_OPTIONS"
+              ideaOptions
+            ];
+          }
+        ];
+        monitor = [
+          {
+            output = "DP-6";
+            mode = "2560x1440";
+            position = "0x0";
+            scale = "1.0";
+          }
+          {
+            output = "DP-7";
+            mode = "2560x1440";
+            position = "2560x0";
+            scale = "1.0";
+          }
+          # "eDP-1,disable"
+        ];
       };
-      input.touchpad.tap = { };
-      _children = [
-        {
-          workspace = {
-            _args = [
-              "browser"
-            ];
-            open-on-output = "Dell Inc. DELL P2723D GRJX0V3";
+      niri.settings = {
+        environment = {
+          IDEA_VM_OPTIONS = ideaOptions.outPath;
+        };
+        input.touchpad.tap = { };
+        _children = [
+          {
+            workspace = {
+              _args = [
+                "browser"
+              ];
+              open-on-output = "Dell Inc. DELL P2723D GRJX0V3";
+            };
+          }
+          {
+            workspace = {
+              _args = [
+                "dev"
+              ];
+              open-on-output = "Dell Inc. DELL P2723D 3MHX0V3";
+            };
+          }
+        ];
+      };
+      sway.config = {
+        input = {
+          "6127:24729:Lenovo_Lenovo_Traditional_USB_Keyboard" = {
+            xkb_layout = "lt,us";
+            xkb_numlock = "enabled";
+            xkb_options = "grp:caps_toggle";
           };
-        }
-        {
-          workspace = {
-            _args = [
-              "dev"
-            ];
-            open-on-output = "Dell Inc. DELL P2723D 3MHX0V3";
+          "1:1:AT_Translated_Set_2_keyboard" = {
+            xkb_layout = "lt,us";
+            xkb_numlock = "enabled";
+            xkb_options = "grp:caps_toggle";
           };
-        }
-      ];
+        };
+        startup = [
+          {
+            command = "${lib.getExe pkgs.swayidle} -w timeout 300 '${pkgs.swaylock-effects}/bin/swaylock --clock --screenshots --effect-blur 7x5 --effect-vignette 0.5:0.5'";
+          }
+        ];
+        output = {
+          "Hewlett Packard HP E242 CNC614066M" = {
+            pos = "0 0";
+          };
+          "Hewlett Packard HP E242 CNC6430827" = {
+            pos = "1920 0";
+          };
+        };
+      };
     };
-  };
   xsession = {
     enable = lib.mkDefault true;
     numlock.enable = true;
+    windowManager.bspwm = {
+      monitors = {
+        "DP-1" = [
+          "1"
+          "2"
+          "3"
+          "4"
+          "5"
+        ];
+        "DP-2" = [
+          "6"
+          "7"
+          "8"
+          "9"
+          "10"
+        ];
+      };
+    };
   };
   systemd.user.services.dunst = {
     Unit = {
