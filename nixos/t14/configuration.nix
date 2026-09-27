@@ -58,7 +58,6 @@
   hardware = {
     bluetooth.enable = true;
     trackpoint.emulateWheel = false;
-    xone.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -98,7 +97,7 @@
       enable = true;
       settings.PasswordAuthentication = false;
     };
-    power-profiles-daemon.enable = true;
+    tuned.enable = true;
     upower.enable = true;
     udev.extraRules = # udev
       ''

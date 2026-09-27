@@ -4,7 +4,7 @@
     ./common.nix
     ./cli/atuin
     ./cli/jujutsu.nix
-    ./gui/lutris.nix
+    # ./gui/lutris.nix
   ];
   home.packages =
     builtins.attrValues {

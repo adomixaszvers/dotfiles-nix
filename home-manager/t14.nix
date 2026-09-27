@@ -12,7 +12,7 @@
     # ./wm/hyprland
     ./wm/niri
     ./cli/jujutsu.nix
-    ./gui/lutris.nix
+    # ./gui/lutris.nix
   ];
   # imports = [ ./common.nix ];
   # gtk.enable = false;
