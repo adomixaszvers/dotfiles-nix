@@ -13,7 +13,6 @@
     # keep-sorted end
   ];
   programs = {
-    emacs.package = pkgs.emacs-pgtk;
     noctalia = {
       enable = true;
       systemd.enable = true;

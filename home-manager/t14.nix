@@ -91,6 +91,7 @@
     hasBattery = true;
   };
   programs = {
+    emacs.package = pkgs.emacs-pgtk;
     firefox = {
       enable = true;
     };
