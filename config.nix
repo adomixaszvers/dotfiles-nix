@@ -6,7 +6,7 @@
       # keep-sorted start
       "corefonts" # used in onlyoffice
       "google-chrome"
-      "idea"
+      "intellij-idea"
       "jdk"
       "liquibase"
       "oraclejdk"
