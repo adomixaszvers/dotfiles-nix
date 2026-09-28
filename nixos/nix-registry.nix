@@ -4,7 +4,7 @@ let
 in
 {
   nix = {
-    nixPath = [
+    settings.nix-path = [
       "nixpkgs=${nixpkgs}"
       "nixos-hardware=${nixos-hardware}"
       "sops-nix=${sops-nix}"
