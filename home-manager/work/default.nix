@@ -101,7 +101,6 @@
         unrar
         unzip
         whois
-        xpra
         zip
         # keep-sorted end
         ;

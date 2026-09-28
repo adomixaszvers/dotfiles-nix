@@ -23,7 +23,6 @@
       qbittorrent
       remmina
       tor-browser
-      xpra
       # keep-sorted end
       ;
   };

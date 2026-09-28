@@ -18,7 +18,6 @@
         playerctl
         protonup-qt
         remmina
-        xpra
         # keep-sorted end
         ;
     }

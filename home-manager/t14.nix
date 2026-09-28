@@ -76,7 +76,6 @@
       remmina
       steamtinkerlaunch
       tor-browser
-      xpra
       # keep-sorted end
       ;
     inherit (myPkgs)
