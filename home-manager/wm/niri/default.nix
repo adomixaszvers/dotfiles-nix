@@ -38,16 +38,6 @@
   services.network-manager-applet.enable = false;
   wayland.windowManager.niri = {
     enable = true;
-    xwaylandSatellitePackage = pkgs.xwayland-satellite.overrideAttrs (old: {
-      patches = old.patches ++ [
-        (pkgs.fetchpatch {
-          # https://github.com/Supreeeme/xwayland-satellite/pull/494
-          name = "fix-popups";
-          url = "https://github.com/Supreeeme/xwayland-satellite/commit/add2795134593faafce60e404a0a75df68e9ee0c.patch";
-          hash = "sha256-/1zJYAIHC+xiVytHH5HDt83lZKLBGQQdAoS/y2ObTLc=";
-        })
-      ];
-    });
     settings = {
       binds = {
 
