@@ -145,7 +145,7 @@
         (lib.getExe myPkgs.jj-jr)
       ];
       merge-tools.idea = {
-        program = "idea";
+        program = "intellij-idea";
         diff-args = [
           "diff"
           "$left"
