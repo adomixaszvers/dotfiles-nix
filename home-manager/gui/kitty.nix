@@ -14,6 +14,7 @@
       cursor_trail_decay = "0.01 0.05";
       remember_window_size = false;
       scrollback_pager = " nvim --cmd 'set eventignore=FileType' +'nnoremap q ZQ' +'call nvim_open_term(0, {})' +'set nomodified nolist' +'$' -";
+      custom_shaders = "cursor-trail-lightning";
     };
   };
   programs.zsh.initContent = # bash
