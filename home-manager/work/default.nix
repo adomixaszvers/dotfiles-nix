@@ -343,7 +343,6 @@
         };
     };
   };
-  wayland.systemd.target = "niri-session.target";
   wayland.windowManager =
     let
       ideaOptions = pkgs.writeText "idea64.vmoptions" ''
@@ -431,6 +430,7 @@
     };
   xsession = {
     enable = lib.mkDefault true;
+    importedVariables = [ "XDG_SESSION_TYPE" ];
     numlock.enable = true;
     windowManager.bspwm = {
       monitors = {
@@ -451,12 +451,10 @@
       };
     };
   };
-  systemd.user.services.dunst = {
-    Unit = {
-      Description = "Dunst notification daemon";
-      After = lib.mkForce [ "graphical-session.target" ];
-      PartOf = lib.mkForce [ "graphical-session.target" ];
-    };
+  systemd.user.services = {
+    dunst.Unit.ConditionEnvironment = "XDG_SESSION_TYPE=x11";
+    network-manager-applet.Unit.ConditionEnvironment = "XDG_SESSION_TYPE=x11";
+    noctalia.Unit.ConditionEnvironment = "WAYLAND_DISPLAY";
   };
 
 }
