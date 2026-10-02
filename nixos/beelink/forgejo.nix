@@ -28,7 +28,7 @@ in
         HTTP_PORT = 3000;
         SSH_PORT = lib.head config.services.openssh.ports;
       };
-      migrations.ALLOWED_DOMAINS = "github.com,*.beastade.top";
+      migrations.ALLOWED_DOMAINS = "*.github.com,github.com,*.beastade.top";
       webhook.ALLOWED_HOST_LIST = "*.beastade.top";
       # You can temporarily allow registration to create an admin user.
       service.DISABLE_REGISTRATION = false;
