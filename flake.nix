@@ -42,7 +42,9 @@
       };
     };
     stylix = {
-      url = "github:nix-community/stylix/master";
+      # url = "github:nix-community/stylix/master";
+      # see https://github.com/nix-community/stylix/pull/2501
+      url = "github:adomixaszvers/stylix/merged-rofi-settings-font";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
