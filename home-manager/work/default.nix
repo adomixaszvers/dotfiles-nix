@@ -335,8 +335,8 @@
               on-timeout = "loginctl lock-session";
             }
             {
-              timeout = 30;
-              on-timeout = "pidof hyprlock && ${dpmsOffCmd}";
+              timeout = 330;
+              on-timeout = "${dpmsOffCmd}";
               on-resume = dpmsOnCmd;
             }
           ];
