@@ -212,6 +212,23 @@
         ];
       };
     };
+    noctalia.settings = {
+      lockscreen.enabled = true;
+      idle = {
+        behavior = {
+          lock = {
+            action = "lock";
+            enabled = true;
+            timeout = 300;
+          };
+          screen-off = {
+            action = "screen_off";
+            enabled = true;
+            timeout = 330;
+          };
+        };
+      };
+    };
   };
   services = {
     gnome-keyring.enable = lib.mkForce false;
@@ -302,7 +319,7 @@
     shikane.enable = true;
     picom.enable = false;
     hypridle = {
-      enable = true;
+      enable = false;
       settings =
         let
           isHypr = config.wayland.windowManager.hyprland.enable;

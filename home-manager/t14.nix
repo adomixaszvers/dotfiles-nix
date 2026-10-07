@@ -94,6 +94,7 @@
     firefox = {
       enable = true;
     };
+    noctalia.settings.lockscreen.enabled = false;
   };
   xsession.initExtra = # bash
     ''
