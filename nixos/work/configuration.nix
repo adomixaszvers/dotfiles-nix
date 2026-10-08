@@ -133,7 +133,7 @@
   };
 
   programs = {
-    hyprlock.enable = true;
+    hyprlock.enable = false;
     nix-ld.enable = true;
     mosh.enable = true;
     virt-manager.enable = true;
