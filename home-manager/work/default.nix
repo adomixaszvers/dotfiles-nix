@@ -469,9 +469,10 @@
     };
   };
   systemd.user.services = {
-    dunst.Unit.ConditionEnvironment = "XDG_SESSION_TYPE=x11";
-    network-manager-applet.Unit.ConditionEnvironment = "XDG_SESSION_TYPE=x11";
     noctalia.Unit.ConditionEnvironment = "WAYLAND_DISPLAY";
-  };
+  }
+  // lib.genAttrs [ "dunst" "network-manager-applet" "numlockx" "setxkbmap" "xplugd" ] (_: {
+    Unit.ConditionEnvironment = "XDG_SESSION_TYPE=x11";
+  });
 
 }
