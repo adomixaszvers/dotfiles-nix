@@ -27,6 +27,7 @@
             "active_window"
           ];
         };
+        location.address = "Vilnius";
         widget.network.show_label = false;
       };
     };
