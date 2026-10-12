@@ -10,8 +10,8 @@ let
 in
 {
   fileSystems = {
-    "/kiti/insoft" = mkMount "//disk.insoft.lt/storage" false;
-    "/kiti/insoft_rw" = mkMount "//disk.insoft.lt/storage" true;
-    "/kiti/home" = mkMount "//disk.insoft.lt/home" true;
+    "/kiti/insoft" = mkMount "//disk.x.insoft.lt/storage" false;
+    "/kiti/insoft_rw" = mkMount "//disk.x.insoft.lt/storage" true;
+    "/kiti/home" = mkMount "//disk.x.insoft.lt/home" true;
   };
 }
