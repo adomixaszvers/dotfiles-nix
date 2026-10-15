@@ -25,9 +25,8 @@
   services.adguardhome = {
     enable = true;
     mutableSettings = true;
-    port = 6080;
-    host = "192.168.1.150";
     settings = {
+      http.address = "192.168.1.150:6080";
       dns = {
         bind_hosts = [
           "192.168.1.150"
