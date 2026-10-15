@@ -105,7 +105,11 @@
 
   programs = {
     dconf.enable = true;
-    iotop.enable = true;
+    iotop = {
+      enable = true;
+      package = pkgs.iotop-c;
+      enableDelayacct = true;
+    };
     ssh.startAgent = false;
     seahorse.enable = true;
     zsh = {

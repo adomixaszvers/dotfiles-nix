@@ -211,7 +211,11 @@
   };
 
   programs = {
-    iotop.enable = true;
+    iotop = {
+      enable = true;
+      package = pkgs.iotop-c;
+      enableDelayacct = true;
+    };
     ssh.startAgent = false;
     zsh = {
       enable = true;
