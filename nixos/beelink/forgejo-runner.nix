@@ -2,20 +2,27 @@
 {
   sops = {
     secrets."forgejo-runner/token".sopsFile = ./secrets/forgejo-runner.yaml;
-    templates."forgejo-runner.env".content = ''
-      TOKEN=${config.sops.placeholder."forgejo-runner/token"}
-    '';
   };
-  services.gitea-actions-runner = {
-    package = pkgs.forgejo-runner;
+  services.forgejo-runner = {
     instances.default = {
       enable = true;
-      name = "monolith";
-      url = "https://git.bl.beastade.top";
-      # Obtaining the path to the runner token file may differ
-      # tokenFile should be in format TOKEN=<secret>, since it's EnvironmentFile for systemd
-      settings.container.options = "--add-host git.bl.beastade.top:host-gateway";
-      tokenFile = config.sops.templates."forgejo-runner.env".path;
+      settings = {
+        container.options = "--add-host git.bl.beastade.top:host-gateway";
+        server.connections = {
+          default = {
+            url = "https://git.bl.beastade.top";
+            uuid = "a7e04e3a-b25c-45b2-9edd-f299c9d9621f";
+          };
+        };
+        runner.labels = [
+          "ubuntu-24.04:docker://gitea/runner-images:ubuntu-latest"
+          "ubuntu-slim:docker://gitea/runner-images:ubuntu-latest-slim"
+          "native:host"
+        ];
+      };
+      secrets.server.connections.default = {
+        token_url = config.sops.secrets."forgejo-runner/token".path;
+      };
       hostPackages = [
         config.nix.package
       ]
@@ -34,11 +41,6 @@
           # keep-sorted end
           ;
       });
-      labels = [
-        "ubuntu-24.04:docker://gitea/runner-images:ubuntu-latest"
-        "ubuntu-slim:docker://gitea/runner-images:ubuntu-latest-slim"
-        "native:host"
-      ];
     };
   };
   systemd.services.gitea-runner-default.unitConfig.After = [ "forgejo.service" ];
