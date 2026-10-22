@@ -2,12 +2,11 @@
   services.avahi = {
     enable = true;
     nssmdns4 = true;
-    publish = {
-      enable = false;
-      addresses = true;
-      domain = true;
-      userServices = true;
-      workstation = true;
+    settings.publish = {
+      disable-publishing = true;
+      publish-addresses = true;
+      publish-domain = true;
+      publish-workstation = true;
     };
   };
 }
