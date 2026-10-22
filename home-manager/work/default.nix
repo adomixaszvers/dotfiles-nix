@@ -92,7 +92,6 @@
         liquibase
         maven
         mercurial
-        minio-client
         nemo
         numlockx
         openssl
@@ -100,6 +99,7 @@
         pnpm_12
         podman-compose
         protonup-ng
+        rclone
         # volatile versions
         # postman
         remmina
