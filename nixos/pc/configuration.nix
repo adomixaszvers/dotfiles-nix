@@ -85,7 +85,6 @@
       powerManagement.enable = true;
       nvidiaSettings = false;
     };
-    xone.enable = true;
   };
   # powerManagement.cpuFreqGovernor = "performance";
 
