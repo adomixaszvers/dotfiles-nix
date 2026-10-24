@@ -121,6 +121,28 @@
         ;
       inherit (myPkgs) hunspell-lt;
       inherit (pkgs.jetbrains) idea;
+      insoft-password-expires =
+        pkgs.writers.writeDashBin "insoft-password-expires"
+          {
+            makeWrapperArgs = [
+              "--prefix"
+              "PATH"
+              ":"
+              "${lib.makeBinPath [
+                pkgs.bc
+                pkgs.coreutils
+                pkgs.openldap
+              ]}"
+            ];
+          }
+          ''
+            LDAP_SEARCH="$(ldapsearch -LLL -Y GSSAPI \
+              -b 'dc=x,dc=insoft,dc=lt' \
+              '(sAMAccountName=adomas.jatuzis)' \
+              msDS-UserPasswordExpiryTimeComputed)"
+            LDAP="$(echo "$LDAP_SEARCH"| grep msDS-UserPasswordExpiryTimeComputed| cut -d' ' -f2)"
+            date -d @"$(echo "($LDAP / 10000000) - 11644473600" | bc)" '+%Y-%m-%d %H:%M'
+          '';
     };
     sessionPath = [ config.home.sessionVariables.PNPM_HOME ];
     sessionVariables = {
