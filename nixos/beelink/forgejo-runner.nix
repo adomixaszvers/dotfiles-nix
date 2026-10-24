@@ -43,5 +43,5 @@
       });
     };
   };
-  systemd.services.gitea-runner-default.unitConfig.After = [ "forgejo.service" ];
+  systemd.services.forgejo-runner-default.unitConfig.After = [ "forgejo.service" ];
 }
