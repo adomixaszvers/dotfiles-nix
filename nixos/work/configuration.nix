@@ -235,9 +235,11 @@
     containers.storage.settings = {
       storage = {
         driver = "btrfs";
-        graphroot = "/var/lib/containers/storage";
-        runroot = "/run/containers/storage";
-        rootless_storage_path = "$XDG_DATA_HOME/containers/storage";
+        rootful = {
+          graphroot = "/var/lib/containers/storage";
+          runroot = "/run/containers/storage";
+        };
+        rootless.graphroot = "$XDG_DATA_HOME/containers/storage";
       };
     };
   };
