@@ -83,6 +83,7 @@
 
   programs = {
     bash.completion.enable = true;
+    localsend.enable = true;
     mosh.enable = true;
     ssh.startAgent = false;
   };
