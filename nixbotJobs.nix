@@ -16,6 +16,11 @@
             name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel
           ) (systemFilter self.nixosConfigurations);
           blacklistPackages = [
+            # keep-sorted start
+            "eclipse-activiti"
+            "oraclejdk8"
+            "sqldeveloper"
+            # keep-sorted end
           ];
           checks = lib.optionalAttrs (system == "x86_64-linux") (
             lib.mapAttrs' (n: lib.nameValuePair "check-${n}") self'.checks

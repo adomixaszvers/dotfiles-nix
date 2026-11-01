@@ -1,4 +1,4 @@
-{ withSystem, ... }:
+{ withSystem, inputs, ... }:
 {
   flake.packages.x86_64-linux = withSystem "x86_64-linux" (
     { pkgs, ... }:
@@ -7,6 +7,7 @@
       # dokobit-plugin = pkgs.callPackage ./dokobit-plugin { };
       bspwm-greedy-focus = pkgs.callPackage ./bspwm-greedy-focus.nix { };
       bspwm-reorder-desktops = pkgs.callPackage ./bspwm-reorder-desktops.nix { };
+      eclipse-activiti = pkgs.callPackage ./eclipse-activiti.nix { inherit (inputs) nixpkgs; };
       hunspell-lt = pkgs.callPackage ./hunspell-lt { };
       jj-jr = pkgs.callPackage ./jj-jr.nix { };
       # jj-jr-nu = pkgs.callPackage ./jj-jr-nu.nix { };
@@ -15,6 +16,13 @@
       maimpick = pkgs.callPackage ./maimpick.nix { };
       # mcard-toolbox = pkgs.callPackage ./mcard-toolbox { };
       niri-swap-monitors = pkgs.callPackage ./niri-swap-monitors.nix { };
+      oraclejdk8 = pkgs.callPackage ./oraclejdk8 { };
+      sqldeveloper = pkgs.callPackage ./sqldeveloper {
+        jdk = pkgs.openjdk21.override {
+          enableJavaFX = true;
+          openjfx_jdk = pkgs.openjfx21.override { withWebKit = true; };
+        };
+      };
       restart-eww = pkgs.callPackage ./restart-eww.nix { };
       rofi-powermenu = pkgs.callPackage ./rofi-powermenu.nix { };
       sxhkd = pkgs.sxhkd.overrideAttrs (old: {
