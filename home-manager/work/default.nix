@@ -15,7 +15,7 @@
     ../wm/xmonad
     ../wm/xinitrc.nix
     ./kerberos.nix
-    ./legacy.nix
+    # ./legacy.nix
   ];
   gui = {
     hasBattery = true;
