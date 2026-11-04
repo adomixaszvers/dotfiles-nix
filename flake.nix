@@ -8,8 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixGL = {
-      # pinned to https://github.com/nix-community/nixGL/pull/227
-      url = "github:nix-community/nixGL/320297bd99179701d63e3670e64e636d6165afe2";
+      url = "github:nix-community/nixGL";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
