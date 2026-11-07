@@ -11,7 +11,6 @@
     inherit (pkgs)
       # keep-sorted start
       borgbackup
-      brave
       compsize
       exercism
       gtypist

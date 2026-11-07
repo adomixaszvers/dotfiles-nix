@@ -61,7 +61,6 @@
     inherit (pkgs)
       # keep-sorted start
       borgbackup
-      brave # needed for messenger calls
       brightnessctl
       compsize
       exercism

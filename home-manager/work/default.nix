@@ -70,7 +70,6 @@
       inherit (pkgs)
         # keep-sorted start block=yes
         asciinema
-        brave
         brightnessctl
         dbeaver-bin
         docker-credential-helpers

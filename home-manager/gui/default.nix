@@ -8,6 +8,7 @@
 {
   imports = [
     ./alacritty
+    ./brave.nix
     ./doom-emacs.nix
     ./firefox.nix
     ./fonts.nix

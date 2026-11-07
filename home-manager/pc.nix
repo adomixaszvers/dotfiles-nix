@@ -10,7 +10,6 @@
     builtins.attrValues {
       inherit (pkgs)
         # keep-sorted start
-        brave
         keepassxc
         # gamescope
         libreoffice-stable
