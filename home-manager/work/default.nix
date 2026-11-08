@@ -72,6 +72,7 @@
         asciinema
         brightnessctl
         dbeaver-bin
+        dive
         docker-credential-helpers
         dos2unix
         dumpasn1
