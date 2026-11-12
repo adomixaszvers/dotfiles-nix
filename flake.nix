@@ -1,10 +1,6 @@
 {
   description = "My dotfiles";
   inputs = {
-    brave = {
-      url = "git+https://codeberg.org/buckley310/brave-browser-nix.git?shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-compat.url = "github:edolstra/flake-compat";
     flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
