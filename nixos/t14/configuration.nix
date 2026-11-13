@@ -16,6 +16,7 @@
     ../fprintd.nix
     ../gc.nix
     ../libvirtd.nix
+    ../libreswan.nix
     ../nix-registry.nix
     ../pipewire.nix
     ../realtime.nix

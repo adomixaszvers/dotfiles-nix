@@ -19,6 +19,7 @@
     ../gc.nix
     # ../ld-link.nix
     ../libvirtd.nix
+    ../libreswan.nix
     ../nix-registry.nix
     ../pipewire.nix
     ../snx-rs.nix

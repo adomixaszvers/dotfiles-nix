@@ -493,7 +493,7 @@
   systemd.user.services = {
     noctalia.Unit.ConditionEnvironment = "WAYLAND_DISPLAY";
   }
-  // lib.genAttrs [ "dunst" "network-manager-applet" "numlockx" "setxkbmap" "xplugd" ] (_: {
+  // lib.genAttrs [ "dunst" "numlockx" "setxkbmap" "xplugd" ] (_: {
     Unit.ConditionEnvironment = "XDG_SESSION_TYPE=x11";
   });
 
