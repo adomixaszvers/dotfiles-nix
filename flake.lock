@@ -412,16 +412,16 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1793824198,
+        "lastModified": 1795034547,
         "narHash": "sha256-EngL6/bH6SSO/gEj0JOBtIQjKLEhaVyv115EADffDCY=",
-        "owner": "adomixaszvers",
+        "owner": "nix-community",
         "repo": "stylix",
-        "rev": "5a272f5b95923ad2b46b384335d232b6dd52feb8",
+        "rev": "836ef6222d8b0bab2611ba3e81c7e85722944691",
         "type": "github"
       },
       "original": {
-        "owner": "adomixaszvers",
-        "ref": "merged-rofi-settings-font",
+        "owner": "nix-community",
+        "ref": "master",
         "repo": "stylix",
         "type": "github"
       }
