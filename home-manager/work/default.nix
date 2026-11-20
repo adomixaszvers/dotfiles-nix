@@ -119,8 +119,8 @@
         zip
         # keep-sorted end
         ;
-      inherit (myPkgs) hunspell-lt;
-      inherit (pkgs.jetbrains) idea;
+      inherit (myPkgs) hunspell-lt intellij-idea;
+      # inherit (pkgs.jetbrains) idea;
       insoft-password-expires =
         pkgs.writers.writeDashBin "insoft-password-expires"
           {

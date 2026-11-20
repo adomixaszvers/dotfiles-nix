@@ -1,4 +1,5 @@
 .luacheckcache
 .direnv
 /.pre-commit-config.yaml
+.idea/
 result*
