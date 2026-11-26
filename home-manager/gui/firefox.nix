@@ -44,7 +44,8 @@
             IconURL = "https://searx.bl.beastade.top/favicon.ico";
           }
         ];
-        Default = "Searx English";
+        # Searx is not usuable nowadays
+        Default = "Google";
       };
     };
   };
