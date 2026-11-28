@@ -9,6 +9,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./home-manager.nix
     ../common.nix
     ../flakes.nix
     ../gc.nix

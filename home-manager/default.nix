@@ -39,7 +39,6 @@ let
   asus-laptop = buildHomeManager ./asus-laptop.nix { };
   t14 = buildHomeManager ./t14.nix { };
   foreign = buildHomeManager ./foreign.nix { };
-  pc = buildHomeManager ./pc.nix { };
   deck = buildHomeManager ./steamdeck.nix { username = "deck"; };
 in
 {
@@ -50,14 +49,12 @@ in
         asus-laptop
         t14
         foreign
-        pc
         deck
         ;
       "adomas@adomo-nixos" = asus-laptop;
       "adomas@adomo-t14" = t14;
       "adomas@arch-vm" = foreign;
       "adomas@adomas-jatuzis-nixos" = work;
-      "adomas@adomo-pc-nixos" = pc;
       "deck@steamdeck" = deck;
     };
     nixbotJobs = {
@@ -66,7 +63,6 @@ in
         home-manager-home = asus-laptop.activationPackage;
         home-manager-t14 = t14.activationPackage;
         home-manager-foreign = foreign.activationPackage;
-        home-manager-pc = pc.activationPackage;
         home-manager-deck = deck.activationPackage;
       };
     };
