@@ -56,13 +56,17 @@ nix repl                # repo flake attrset; `nix repl --file repl.nix` adds pk
 nix flake update        # update flake.lock (CI does this weekly via Forgejo workflow, opens a PR)
 ```
 
-Apply configurations (names from `home-manager/default.nix` / `nixos/default.nix`):
+Apply configurations (names from `home-manager/default.nix` / `nixos/default.nix`).
+Use `nh` (nix-helper) instead of `home-manager switch` / `nixos-rebuild switch`:
 
 ```sh
-home-manager switch --flake .#t14            # or .#asus-laptop / .#work / .#foreign / .#deck / .#adomas@adomo-t14 ...
-nixos-rebuild switch --flake .#adomo-t14     # or .#adomo-nixos / .#adomas-jatuzis-nixos / .#adomo-pc-nixos / .#beelink
-sudo nixos-rebuild switch --flake .#<host>   # NixOS targets need root
+nh home switch .#t14            # home-manager; or .#asus-laptop / .#work / .#foreign / .#deck / .#adomas@adomo-t14 ...
+nh os switch .#adomo-t14        # NixOS; or .#adomo-nixos / .#adomas-jatuzis-nixos / .#adomo-pc-nixos / .#beelink
+nh os test .#<host>             # activate without making boot default; `nh os build` / `nh home build` to just build
 ```
+
+nh handles privilege elevation itself (`-e`/`--elevation-strategy`, auto doas/sudo/run0/pkexec); no manual `sudo`.
+`nh home repl` / `nh os repl` for repls. `nh` is on PATH, not in `nix develop`.
 
 `.dir-locals.el` sets `projectile-project-compilation-cmd` to `hm-switch` (editor integration; not provided by this repo).
 
