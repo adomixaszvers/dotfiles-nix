@@ -17,7 +17,7 @@
           autocrlf = "input";
         };
         init = {
-          defaultBranch = "master";
+          defaultBranch = "main";
         };
         merge.tool = "nvimdiff";
         credential = {

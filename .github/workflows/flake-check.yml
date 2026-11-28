@@ -2,7 +2,7 @@ name: Flake checks
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 jobs:
   flake-checker:

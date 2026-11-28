@@ -16,7 +16,7 @@ fi
 git push origin "+HEAD:${branch}"
 
 pulls_url="${FORGEJO_API_URL}/repos/${FORGEJO_REPOSITORY}/pulls"
-if [ "$(curl --silent "${pulls_url}?state=open"| jq '.|any(.base.label == "master" and .head.label == "update-flake-inputs")')" = false ]; then
-  curl -X POST "$pulls_url" -H "Authorization: token ${FORGEJO_TOKEN}" -F "head=$branch" -F 'title=Update flake inputs' -F base=master
+if [ "$(curl --silent "${pulls_url}?state=open"| jq '.|any(.base.label == "main" and .head.label == "update-flake-inputs")')" = false ]; then
+  curl -X POST "$pulls_url" -H "Authorization: token ${FORGEJO_TOKEN}" -F "head=$branch" -F 'title=Update flake inputs' -F base=main
 fi
 
