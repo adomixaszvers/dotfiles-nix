@@ -87,7 +87,10 @@ column_width 100, Unix endings, spaces 2, `AutoPreferSingle` quotes, `call_paren
 **EditorConfig**: don't add entries for subfolders to root `.editorconfig`; create `<subfolder>/.editorconfig` instead;
 markdown indent 2, no hard line breaks.
 
-**Git/VCS**: repo is colocated **Jujutsu + Git** (`.jj/` + `.git/`); `.gitignore` `result*`, `.direnv`, `.idea`, `.luacheckcache`;
+**Search**: use `rg` (ripgrep) for grepping file contents; it respects `.gitignore`; avoid `grep -r`.
+
+**VCS**: use `jj` (Jujutsu) for version control; repo is colocated (`.jj/` + `.git/`), `jj` auto-exports to Git;
+prefer `jj` (`jj status`, `jj diff`, `jj commit -m ...`) over raw `git`. `.gitignore` `result*`, `.direnv`, `.idea`, `.luacheckcache`;
 `flake.lock` is committed; don't commit `result*` symlinks.
 
 ## Secrets
