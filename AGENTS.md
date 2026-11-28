@@ -36,7 +36,7 @@ nixpkgs input: `github:NixOS/nixpkgs/nixos-unstable` (`nixos-unstable` aliases `
 - `config.nix` — nixpkgs `config`: `allowUnfreePredicate` allowlist (`# keep-sorted` sorted), `permittedInsecurePackages`,
   `joypixels.acceptLicense`, `vim.ftNix = false`.
 - `profiles/`, `installers/`, `hm-secrets/`, `nixos/keys`, `.sops.yaml` — secrets / profiles / installers (see Secrets).
-- `ftbfs.patch`, `flake.lock`, `repl.nix`, `flakeCompat.nix` — misc.
+- `flake.lock`, `repl.nix`, `flakeCompat.nix` — misc.
 - `.stylua.toml`, `.editorconfig`, `.dir-locals.el`, `.gitignore`, `.envrc`, `.sops.yaml`.
 
 ## Common commands
